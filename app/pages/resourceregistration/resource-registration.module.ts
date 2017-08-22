@@ -22,7 +22,7 @@ import { RightsInfoForm, LicenseInfoForm } from "./shared/rights-info-form.compo
 import { LanguageVarietyInfoFormControl } from "./shared/language-variety-info-form.component";
 import { LanguageInfoFormControl } from "./shared/languageInfo.component";
 import {
-    DatasetDistributionInfoFormControl,
+    DatasetDistributionInfoFormControl, DatasetDistributionLocInfoFormControl,
     DatasetDistributionsInfoFormControl
 } from "./shared/datasetDistributionInfo.component";
 import { ZipUploadComponent } from "./shared/zip-upload-form.component";
@@ -58,6 +58,7 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
         ContactPersonFormControl,
         MyInlineArrayWrapper,
         MyStringFormGroup,
+        DatasetDistributionLocInfoFormControl,
         IdentifierCommonFormControl,
         ComponentDistributionInfoFormControl,
         DatasetDistributionInfoFormControl,
@@ -70,6 +71,7 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
     declarations: [
         MyArrayWrapper,
         MyStringFormGroup,
+        DatasetDistributionLocInfoFormControl,
         InlineFormWrapper,
         CorpusSubtypeSpecificInfoForm,
         MyInlineArrayWrapper,
@@ -116,6 +118,7 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
         MyStringFormGroup,
         MyInlineArrayWrapper,
         VersionFormControl,
+        DatasetDistributionLocInfoFormControl,
         ComponentCreationInfoFormControl,
         ContactPersonFormControl,
         ComponentGenericFormControl,

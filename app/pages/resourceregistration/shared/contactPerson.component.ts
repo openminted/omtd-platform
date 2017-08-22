@@ -16,9 +16,9 @@ import { IdentifierCommonFormControl } from "./identifierCommon.component";
     template : `
 
 <form-inline [description]="{desc : '', label : 'Choose'}" [params]="null">
-    <div *ngFor="let radio of radioButton">
-        <label class="col-sm-2 col-md-2 radio-label">
-            <input type="radio" name="{{contactInfoDesc.desc + index}}" [checked]="radio === radioButtonSelected"
+    <div class="uk-margin uk-grid-small uk-child-width-auto">
+        <label *ngFor="let radio of radioButton">
+            <input type="radio" class="uk-radio" name="{{contactInfoDesc.desc + index}}" [checked]="radio === radioButtonSelected"
                    (click)="changeType(radio)">
             {{radio}}
         </label>

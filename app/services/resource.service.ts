@@ -12,7 +12,7 @@ import { Resource } from "../domain/resource";
 @Injectable()
 export class ResourceService {
 
-    private endpoint = process.env.API_ENDPOINT + ':' + process.env.API_PORT + process.env.API_PATH ;
+    private endpoint = process.env.API_ENDPOINT;
 
     constructor (private http: Http) {
         console.log(this.endpoint);

@@ -38,29 +38,29 @@ export class RightsInfoForm extends MyGroup {
     selector: 'license-info',
     template: `
 <div [formGroup]="group">
-    <!--<div formGroupName="licenceInfo">-->
-        <!--<form-inline [description]="licenceDesc" [valid]="getMyControl('licenceInfo.licence').valid">-->
-            <!--<select name="role" class="form-control" formControlName="licence">-->
-                <!--<option *ngFor="let value of licenceEnum" [value]="value.key" [selected]="value.key == ''">-->
-                    <!--{{value.value}}-->
-                <!--</option>-->
-            <!--</select>-->
-        <!--</form-inline>-->
-    <!---->
-        <!--<div [hidden]="getMyControl('licenceInfo.licence').value !== 'NON_STANDARD_LICENCE_TERMS'">-->
-            <!--<div class="form-group-divider"></div>-->
-        <!---->
-            <!--<form-inline [description]="nonStandardLicenceNameDesc" [valid]="getMyControl('licenceInfo.nonStandardLicenceName').valid">-->
-                <!--<input type="text" class="form-control" formControlName="nonStandardLicenceName" placeholder="{{nonStandardLicenceNameDesc.label}}">-->
-            <!--</form-inline>-->
-        <!---->
-            <!--<div class="form-group-divider"></div>-->
-        <!---->
-            <!--<form-inline [description]="nonStandardLicenceTermsURLDesc" [valid]="getMyControl('licenceInfo.nonStandardLicenceTermsURL').valid">-->
-                <!--<input type="text" class="form-control" formControlName="nonStandardLicenceTermsURL" placeholder="{{nonStandardLicenceTermsURLDesc.label}}">-->
-            <!--</form-inline>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div formGroupName="licenceInfo">
+        <form-inline [description]="licenceDesc" [valid]="getMyControl('licenceInfo.licence').valid">
+            <select name="role" class="form-control" formControlName="licence">
+                <option *ngFor="let value of licenceEnum" [value]="value.key" [selected]="value.key == ''">
+                    {{value.value}}
+                </option>
+            </select>
+        </form-inline>
+    
+        <div [hidden]="getMyControl('licenceInfo.licence').value !== 'NON_STANDARD_LICENCE_TERMS'">
+            <div class="form-group-divider"></div>
+        
+            <form-inline [description]="nonStandardLicenceNameDesc" [valid]="getMyControl('licenceInfo.nonStandardLicenceName').valid">
+                <input type="text" class="form-control" formControlName="nonStandardLicenceName" placeholder="{{nonStandardLicenceNameDesc.label}}">
+            </form-inline>
+        
+            <div class="form-group-divider"></div>
+        
+            <form-inline [description]="nonStandardLicenceTermsURLDesc" [valid]="getMyControl('licenceInfo.nonStandardLicenceTermsURL').valid">
+                <input type="text" class="form-control" formControlName="nonStandardLicenceTermsURL" placeholder="{{nonStandardLicenceTermsURLDesc.label}}">
+            </form-inline>
+        </div>
+    </div>
     <form-inline [description]="rightsStatementDesc" [valid]="getMyControl('rightsStatement').valid">
         <select name="role" class="form-control" formControlName="rightsStatement">
             <option *ngFor="let value of rightsStatementEnum" [value]="value.key" [selected]="value.key == ''">
@@ -75,11 +75,11 @@ export class RightsInfoForm extends MyGroup {
 export class LicenseInfoForm extends MyGroup {
 
     readonly groupDefinition = {
-        // licenceInfo : this._fb.group({
-        //     licence : ['', Validators.required],
-        //     nonStandardLicenceName : ['',Validators.required],
-        //     nonStandardLicenceTermsURL : ['',Validators.required]
-        // }),
+        licenceInfo : this._fb.group({
+            licence : ['', Validators.required],
+            nonStandardLicenceName : ['',Validators.required],
+            nonStandardLicenceTermsURL : ['',Validators.required]
+        }),
         rightsStatement : ''
     };
 

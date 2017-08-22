@@ -14,10 +14,10 @@ export class ContentConnectorService {
 
     constructor (private http: Http) {}
 
-    private _contentConnectorSearchUrl = process.env.API_ENDPOINT + ':8888/content-connector-service/content/browse/';
-    private _contentConnectorPrepareCorpusUrl = process.env.API_ENDPOINT + ':8888/content-connector-service/corpus/prepare/';
-    private _contentConnectorBuildCorpusUrl = process.env.API_ENDPOINT + ':8888/content-connector-service/corpus/build/';
-    private _contentConnectorBuildCorpusStatusUrl = process.env.API_ENDPOINT + ':8888/content-connector-service/corpus/status/?id=';
+    private _contentConnectorSearchUrl = process.env.CONNECTOR_API_ENDPOINT + '/content/browse/';
+    private _contentConnectorPrepareCorpusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/prepare/';
+    private _contentConnectorBuildCorpusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/build/';
+    private _contentConnectorBuildCorpusStatusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/status/?id=';
 
     search(urlParameters: URLParameter[]) {
 

@@ -10,17 +10,17 @@ import {Description, sizeDesc, sizeInfoDesc, sizeUnitDesc} from "../../../domain
 @Component({
     selector: 'sizeInfo-form',
     template : `
-    <div [formGroup]="group" >
-        <div class="col-sm-8 col-md-8" [ngClass]="{'has-error':!getMyControl('size')}">
-            <input type="text" class="form-control" formControlName="size" placeholder="Size">
-        </div>
-        <div class="col-sm-4 col-md-4" [ngClass]="{'has-error':!getMyControl('sizeUnit')}">
-            <select name="role" class="form-control" formControlName="sizeUnit">
+    <div [formGroup]="group">
+        
+            <input type="text" class="uk-input uk-width-2-5" formControlName="size" placeholder="Size" [ngClass]="{'uk-form-danger':!getMyControl('size')}">
+        
+        
+            <select name="role" class="uk-select uk-width-2-5" formControlName="sizeUnit" [ngClass]="{'uk-form-danger':!getMyControl('sizeUnit')}">
                 <option *ngFor="let value of sizeUnitEnum" [value]="value.key" [selected]="value.key == ''">
                     {{value.value}}
                 </option>
             </select>
-        </div>
+        
     </div>
     `,
     styleUrls : ['./templates/common.css']

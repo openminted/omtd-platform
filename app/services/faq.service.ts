@@ -9,13 +9,13 @@ import { ActiveTopicQuestions } from "../domain/faq-active-topic-questions";
 @Injectable()
 export class FAQService {
 
-    private _faqUrl = 'http://83.212.101.85:5555/api/';
+    private _faqUrl = process.env.FAQ_ENDPOINT;
 
     constructor (private http: Http) {
     }
 
     getActiveTopicQuestions() {
-        return this.http.get(this._faqUrl + "topic/active")
+        return this.http.get(this._faqUrl + "/topic/active")
             .map(res => <ActiveTopicQuestions[]> res.json())
             .catch(this.handleError);
     }

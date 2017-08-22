@@ -52,7 +52,7 @@ export class MyArray extends MyGroup {
         this._cfr = injector.get(ComponentFactoryResolver);
     }
 
-    protected createView() : void {
+    protected createView(patchData? : any) : void {
         let componentFactory = this._cfr.resolveComponentFactory(this.component);
         let wrapperFactory = this._cfr.resolveComponentFactory(this.wrapper);
         let wrapperView = wrapperFactory.create(this.viewContainerRef.injector);
@@ -61,6 +61,7 @@ export class MyArray extends MyGroup {
         (<MyGroup>componentView.instance).index = this.viewContainerRef.length;
         (<MyGroup>componentView.instance).required = this.required;
         (<MyGroup>componentView.instance).data = this.data;
+        (<MyGroup>componentView.instance).patchData = patchData;
         (<MyGroup>componentView.instance).description = this.description;
         let arrayGroup = (<MyGroup>componentView.instance).generate();
 
@@ -74,7 +75,7 @@ export class MyArray extends MyGroup {
             let index = this.viewContainerRef.indexOf($event);
             if( this.viewContainerRef.length == 1 && this.description.mandatory==true) {
                 console.log(this.viewContainerRef.get(0));
-                (<FormArray>this.parentGroup.controls[this.name].at(0).patchValue((<MyGroup>componentView.instance).generate().value));
+                (<FormArray>this.parentGroup.controls[this.name].at(0).corpus((<MyGroup>componentView.instance).generate().value));
             } else {
                 this.remove(index);
                 <FormArray>this.parentGroup.controls[this.name].removeAt(index);
@@ -94,19 +95,20 @@ export class MyArray extends MyGroup {
         // super.ngOnInit();
         this.viewContainerRef = this.formComponents.viewContainerRef;
         (<FormGroup>this.parentGroup).addControl(<string>this.name, this._fb.array([]));
-        this.parentGroup.patchValue = this.patchValue();
+        this.parentGroup.get(this.name as string).patchValue = this.patchValue();
         this.createView();
     }
 
     protected patchValue() {
         let self = this;
         return (value: {[key: string]: any}, {onlySelf, emitEvent}: {onlySelf?: boolean, emitEvent?: boolean} = {}) => {
-            // TODO for (let i = (<FormArray>self.parentGroup.controls[self.name]).length; i < Object.keys(value).length; i++) {
-            // TODO    self.createView();
-            // TODO }
+            for (let i = (<FormArray>self.parentGroup.get(this.name as string)).length; i < Object.keys(value).length; i++) {
+                self.createView(value[i]);
+            }
             Object.keys(value).forEach(name => {
-                if (self.parentGroup.controls[name]) {
-                    self.parentGroup.controls[name].patchValue(value[name], {onlySelf: true, emitEvent});
+                let subgroup : FormArray = self.parentGroup.get(this.name as string) as FormArray;
+                if (subgroup.controls[name as string]) {
+                    subgroup.controls[name as string].patchValue(value[name], {onlySelf: true, emitEvent});
                 }
             });
             self.parentGroup.updateValueAndValidity({onlySelf, emitEvent});
@@ -119,14 +121,15 @@ export class MyArray extends MyGroup {
     template : `
     <form-inline [description]="description">
         <ng-template my-form></ng-template>
+        <a class="add-new-element" (click)="push()">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add {{description.label}}
+        </a>
     </form-inline>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-md-offset-2 col-sm-9 col-md-9">
-            <a class="add-new-element" (click)="push()">
-                <i class="fa fa-plus" aria-hidden="true"></i> Add {{description.label}}
-            </a>
-        </div>
-    </div>
+    <!--<div class="form-group">-->
+        <!--<div class="col-sm-offset-2 col-md-offset-2 col-sm-9 col-md-9">-->
+            <!---->
+        <!--</div>-->
+    <!--</div>-->
     `,
     styleUrls : ['../shared/templates/common.css']
 
@@ -144,21 +147,27 @@ export class MyArrayInline extends MyArray {
     selector : 'form-repeat-wrapper',
     template : `
 
-    <div class="group">
-        <div class="form-group">
-            <div class="col-md-offset-2 col-sm-offset-2 col-sm-10 col-md-10">
-                <div class="group-label">
-                    <span>{{description.label}}</span>
-                    <a *ngIf="canDelete" class="remove-element" (click)="remove()">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
+    <fieldset class="uk-fieldset group">
+        <legend class="uk-legend">
+            <span>{{description.label}}</span>
+            <a *ngIf="canDelete" class="remove-element" (click)="remove()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+        </legend>
+        <!--<div class="form-group">-->
+            <!--<div class="col-md-offset-2 col-sm-offset-2 col-sm-10 col-md-10">-->
+                <!--<div class="group-label">-->
+                    <!--<span>{{description.label}}</span>-->
+                    <!--<a *ngIf="canDelete" class="remove-element" (click)="remove()">-->
+                        <!--<i class="fa fa-times" aria-hidden="true"></i>-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
             <ng-template my-form></ng-template>
-        </div>
-    </div>
+        <!--</div>-->
+    </fieldset>
 `,
     styleUrls : ['../shared/templates/common.css']
 
@@ -169,11 +178,13 @@ export class MyArrayWrapper extends MyWrapper{
 @Component({
     selector : 'form-inline-repeat-wrapper',
     template : `
-    <div class="col-sm-10 col-md-10">
+<div class="uk-grid uk-margin">
+    <div class="uk-width-5-6">
         <ng-template my-form></ng-template>
     </div>
-    <a *ngIf="canDelete" class="remove-element col-sm-1 col-md-1" (click)="remove()"><i
+    <a *ngIf="canDelete" class="remove-element uk-width-1-6" (click)="remove()"><i
             class="fa fa-times" aria-hidden="true"></i></a>
+</div>
 `,
     styleUrls : ['../shared/templates/common.css']
 

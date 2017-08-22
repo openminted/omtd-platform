@@ -112,7 +112,7 @@ export class MyServicesComponent {
     }
 
     editComponent(component: OMTDComponent) {
-
+        console.log(component);
     }
 
     deleteConfirmationComponent(component: OMTDComponent) {

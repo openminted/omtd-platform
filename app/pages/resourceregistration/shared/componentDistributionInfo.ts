@@ -48,8 +48,8 @@ export class ComponentDistributionsInfoFormControl {
         
         <div class="form-group-divider"></div>
     
-        <form-inline [description]="distributionURLDesc" [valid]="getMyControl('componentLoc.distributionURL').valid">
-            <input type="text" class="form-control" formControlName="distributionURL" placeholder="{{distributionURLDesc.label}}">
+        <form-inline [description]="distributionURLDesc" [valid]="getMyControl('componentLoc.distributionLocation').valid">
+            <input type="text" class="form-control" formControlName="distributionLocation" placeholder="{{distributionURLDesc.label}}">
         </form-inline>
     </div>
 
@@ -78,7 +78,7 @@ export class ComponentDistributionInfoFormControl extends MyGroup {
     readonly groupDefinition = {
         componentLoc : this._fb.group({
             componentDistributionForm : ['', Validators.required],
-            distributionURL : ['', Validators.required]
+            distributionLocation : ['', Validators.required]
         }),
         command : ['', Validators.required]
     };

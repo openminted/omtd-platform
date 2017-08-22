@@ -1,8 +1,8 @@
 <div>
     <form-inline [description]="{label : 'Choose'}" [params]="null">
-        <div *ngFor="let radio of radioButton">
-            <label class="col-sm-3 col-md-3 radio-label">
-                <input type="radio" name="options{{name + index}}" [checked]="radio === radioButtonSelected"
+        <div class="uk-margin uk-grid-small uk-child-width-auto">
+            <label *ngFor="let radio of radioButton">
+                <input type="radio" name="options{{name + index}}" class="uk-radio" [checked]="radio === radioButtonSelected"
                        (click)="changeType(radio)">
                 {{radio}}
             </label>

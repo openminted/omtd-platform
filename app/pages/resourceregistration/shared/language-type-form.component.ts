@@ -55,7 +55,6 @@ export class LanguageTypeForm extends MyGroup {
 
     ngOnInit() {
         super.ngOnInit();
-        console.log('languageTypeForm',this.parentGroup);
         for(let type of ['languageId','scriptId','regiontId','variantId']) {
             this.group.controls[type].valueChanges.subscribe(_ => {
                 this.compositionObject[type] =   this.group.controls[type].value;

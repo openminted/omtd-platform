@@ -4,35 +4,37 @@
 
 <div [formGroup]="group">
     <form-inline [description]="languageIdDesc">
+        <!--<div class="uk-form-controls" uk-grid>-->
         <input type="hidden" class="form-control" formControlName="languageTag" placeholder="Language Tag">
-        <div class="col-sm-2 col-md-2" [ngClass]="{'has-error':!group.controls.languageTag.valid}">
-            <input type="text" class="form-control" placeholder="Language id" formControlName="languageId"
+        <!--<div class="uk-grid-1-4" [ngClass]="{'has-error':!group.controls.languageTag.valid}">-->
+            <input type="text" class="uk-input uk-width-1-5" placeholder="Language id" formControlName="languageId"
 
                    [typeahead]="languageIdEnum"
                    [typeaheadItemTemplate]="customItemTemplate"
                    (typeaheadOnSelect)="setLanguageId($event)"
                    [typeaheadOptionField]="'value'">
-        </div>
-        <div class="col-sm-2 col-md-2">
-            <select name="role" class="form-control" formControlName="scriptId">
+        <!--</div>-->
+        <!--<div class="uk-grid-1-4">-->
+            <select name="role" class="uk-select uk-width-1-5" formControlName="scriptId">
                 <option *ngFor="let value of scriptIdEnum" [value]="value.key" [selected]="value.key == ''">
                     {{value.value}}
                 </option>
             </select>
-        </div>
-        <div class="col-sm-2 col-md-2">
-            <select name="role" class="form-control" formControlName="regiontId">
+        <!--</div>-->
+        <!--<div class="uk-grid-1-4">-->
+            <select name="role" class="uk-select uk-width-1-5" formControlName="regiontId">
                 <option *ngFor="let value of regionIdEnum" [value]="value.key" [selected]="value.key == ''">
                     {{value.value}}
                 </option>
             </select>
-        </div>
-        <div class="col-sm-3 col-md-3">
-            <select name="role" class="form-control" formControlName="variantId">
+        <!--</div>-->
+        <!--<div class="uk-grid-1-4">-->
+            <select name="role" class="uk-select uk-width-1-5" formControlName="variantId">
                 <option *ngFor="let value of variantIdEnum" [value]="value.key" [selected]="value.key == ''">
                     {{value.value}}
                 </option>
             </select>
-        </div>
+        <!--</div>-->
+        <!--</div>-->
     </form-inline>
 </div>

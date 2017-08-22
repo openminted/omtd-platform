@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class AuthenticationService {
 
-    private endpoint = process.env.API_ENDPOINT + ':' + process.env.API_PORT + process.env.API_PATH ;
+    private endpoint = process.env.API_ENDPOINT;
 
     constructor (private http: Http,private router: Router) {}
 
@@ -39,7 +39,7 @@ export class AuthenticationService {
     logout() {
         deleteCookie('name');
         sessionStorage.removeItem('name');
-        window.location.href = `https://aai.openminted.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=${process.env.API_ENDPOINT}`;
+        window.location.href = `https://aai.openminted.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=${window.location.origin}`;
         //https://aai.openminted.eu/registry/auth/logout
     }
 

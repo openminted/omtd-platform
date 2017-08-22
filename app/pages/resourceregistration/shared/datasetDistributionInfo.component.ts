@@ -36,21 +36,10 @@ export class DatasetDistributionsInfoFormControl {
     selector: 'datasetDistributionInfo-form',
     template : `
 <div [formGroup]="group">
-    <div formGroupName="distributionLoc">
-        <form-inline [description]="distributionMediumDesc" [valid]="getMyControl('distributionLoc.distributionMedium').valid">
-            <select name="role" class="form-control" formControlName="distributionMedium">
-                <option *ngFor="let value of distributionMediumEnum" [value]="value.key" [selected]="value.key == ''">
-                    {{value.value}}
-                </option>
-            </select>
-        </form-inline>
+    <form-repeat-inline [component]="datasetDistributionLocType" [parentGroup]="parentGroup"
+                        [name]="'distributionLoc'" [required]="true" [description]="datasetDistributionDesc">
         
-        <div class="form-group-divider"></div>
-    
-        <form-inline [description]="distributionURLDesc" [valid]="getMyControl('distributionLoc.distributionURL').valid">
-            <input type="text" class="form-control" formControlName="distributionURL" placeholder="{{distributionURLDesc.label}}">
-        </form-inline>
-    </div>
+    </form-repeat-inline>
       
     <!--<rightsInfo-form [parentGroup]="group" [name]="'rightsInfo'"></rightsInfo-form>-->
     
@@ -62,16 +51,47 @@ export class DatasetDistributionsInfoFormControl {
 })
 export class DatasetDistributionInfoFormControl extends MyGroup {
 
+    readonly datasetDistributionDesc : Description = datasetDistributionInfoDesc;
+    private datasetDistributionLocType : Type<any> = DatasetDistributionLocInfoFormControl;
+
+    readonly groupDefinition = {
+
+    };
+
+
+}
+
+@Component({
+    selector: 'datasetDistributionLocInfo-form',
+    template : `
+        <div [formGroup]="group">
+            <form-inline [description]="distributionMediumDesc" [valid]="getMyControl('distributionMedium').valid">
+                <select name="role" class="form-control" formControlName="distributionMedium">
+                    <option *ngFor="let value of distributionMediumEnum" [value]="value.key" [selected]="value.key == ''">
+                        {{value.value}}
+                    </option>
+                </select>
+            </form-inline>
+
+            <div class="form-group-divider"></div>
+
+            <form-inline [description]="distributionURLDesc" [valid]="getMyControl('distributionLocation').valid">
+                <input type="text" class="form-control" formControlName="distributionLocation" placeholder="{{distributionURLDesc.label}}">
+            </form-inline>
+        </div>
+    `,
+    styleUrls : ['./templates/common.css']
+})
+export class DatasetDistributionLocInfoFormControl extends MyGroup {
+
     readonly distributionMediumEnum : EnumValues[] = distributionMediumEnum;
     readonly distributionMediumDesc : Description = distributionMediumDesc;
     readonly distributionURLDesc : Description = distributionURLDesc;
 
 
     readonly groupDefinition = {
-        distributionLoc : this._fb.group({
-            distributionMedium : ['', Validators.required],
-            distributionURL : ['', Validators.required]
-        })
+        distributionMedium : ['', Validators.required],
+        distributionLocation : ['', Validators.required]
     };
 
 

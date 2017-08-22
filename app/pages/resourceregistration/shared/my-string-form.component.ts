@@ -60,10 +60,10 @@ export class MyStringFormControl implements OnInit {
     selector: 'myString',
     template : `
 <div [formGroup]="group">
-    <div class="form-group" [attr.formGroupName]="isArray ? name : null" [ngClass]="{'has-error':!group.valid}">
-        <input type="text" class="form-control" formControlName="value" placeholder="Name">
+    <!--<div class="form-group" [attr.formGroupName]="isArray ? name : null" [ngClass]="{'has-error':!group.valid}">-->
+        <input type="text" class="uk-input" formControlName="value" placeholder="Name">
         <input type="hidden" class="form-control" formControlName="lang" placeholder="Language">
-    </div>
+    <!--</div>-->
 </div>
     `,
     styleUrls : ['./templates/common.css']
