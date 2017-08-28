@@ -16,7 +16,7 @@
                                 </form>
                                 <ul *ngIf="urlParameters && urlParameters.length>0" class="facets-selected cf uk-width-medium-9-10">
                                     <template ngFor let-urlParameter [ngForOf]="urlParameters">
-                                        <template [ngIf]="urlParameter.key!='advanced'">
+                                        <template [ngIf]="urlParameter.key!='from'">
                                             <li *ngFor="let facet of urlParameter.values" class="search-tag">
                                                 <span class="title">{{urlParameter.key}}:</span> {{facet}} <a (click)="deselectFacet(urlParameter.key, facet)" data-role="remove"></a>
                                             </li>
