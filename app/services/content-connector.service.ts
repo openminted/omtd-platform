@@ -6,8 +6,9 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { URLParameter } from "../domain/url-parameter";
 import { PublicationSearchResults } from "../domain/publications-search-results";
-import {Corpus as OMTDCorpus} from "../domain/openminted-model";
-import {ResourceService} from "./resource.service";
+import { Corpus as OMTDCorpus } from "../domain/openminted-model";
+import { ResourceService } from "./resource.service";
+import { ContentConnectorStatus } from "../domain/content-connector-status";
 
 @Injectable()
 export class ContentConnectorService {
@@ -18,6 +19,13 @@ export class ContentConnectorService {
     private _contentConnectorPrepareCorpusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/prepare/';
     private _contentConnectorBuildCorpusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/build/';
     private _contentConnectorBuildCorpusStatusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/status/?id=';
+    private _contentConnectorStatusUrl = process.env.CONNECTOR_API_ENDPOINT + '/content/status';
+
+    getContentConnectorStatus() {
+        return this.http.get(this._contentConnectorStatusUrl)
+            .map(res => <ContentConnectorStatus> res.json())
+            .catch(this.handleError);
+    }
 
     search(urlParameters: URLParameter[]) {
 

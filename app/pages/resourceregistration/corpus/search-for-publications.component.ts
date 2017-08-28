@@ -10,6 +10,7 @@ import { PublicationSearchResults } from "../../../domain/publications-search-re
 import { ContentConnectorService } from "../../../services/content-connector.service";
 import { Facet } from "../../../domain/facet";
 import { SearchQuery } from "../../../domain/search-query";
+import { ContentConnectorStatus } from "../../../domain/content-connector-status";
 
 @Component({
     selector: 'search',
@@ -33,6 +34,8 @@ export class SearchForPublicationsComponent {
 
     private searching:boolean = true;
 
+    private contentConnectorStatus: ContentConnectorStatus;
+
     constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
                 private contentConnectorService: ContentConnectorService) {
         this.publicationsSearchForm = fb.group({
@@ -45,6 +48,10 @@ export class SearchForPublicationsComponent {
         this.sub = this.activatedRoute
             .params
             .subscribe(params => {
+
+                this.contentConnectorService.getContentConnectorStatus().subscribe(
+                    contentConnectorStatus => this.contentConnectorStatus = contentConnectorStatus,
+                    error => this.handleError('System error retrieving content connector status', <any>error));
 
                 this.searching = true;
 
@@ -68,7 +75,7 @@ export class SearchForPublicationsComponent {
                 //request results from the content connector
                 this.contentConnectorService.search(this.urlParameters).subscribe(
                     publicationSearchResults => this.updatePublicationSearchResults(publicationSearchResults),
-                    error => this.handleError(<any>error));
+                    error => this.handleError('System error searching for publications', <any>error));
             });
     }
 
@@ -248,8 +255,13 @@ export class SearchForPublicationsComponent {
         return map;
     }
 
-    handleError(error) {
+    // handleError(error) {
+    //
+    //     this.errorMessage = 'System error searching for publications (Server responded: ' + error + ')';
+    // }
+
+    handleError(message: string, error) {
         this.searching = false;
-        this.errorMessage = 'System error searching for publications (Server responded: ' + error + ')';
+        this.errorMessage = message + ' (Server responded: ' + error + ')';
     }
 }

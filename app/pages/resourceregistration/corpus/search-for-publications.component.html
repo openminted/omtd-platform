@@ -40,6 +40,21 @@
         <div class="uk-container">
 
 
+            <!-- TOP HELP CONTENT -->
+            <help-content #topHelperContent [position]="'top'"
+                          [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+            </help-content>
+
+            <div *ngIf="contentConnectorStatus && contentConnectorStatus.maxFulltextDocuments" class="">
+                <div data-uk-alert="" class="uk-alert uk-alert-warning uk-margin-medium-bottom">
+                    <p>To reduce the load on our data providers, OpenMinTeD has imposed a limit on the number of publications
+                        in the user generated corpora. In this beta version the limit has been set to
+                        {{contentConnectorStatus.maxFulltextDocuments}} per data provider but this limit will be revised in
+                        future releases.
+                    </p>
+                </div>
+            </div>
+
             <div class="uk-grid" uk-grid="">
 
 
@@ -106,7 +121,18 @@
 
                     </div>
                 </div>
+
+                <!-- RIGHT HELP CONTENT -->
+                <aside-help-content #rightHelperContent [position]="'right'"
+                                    [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                </aside-help-content>
+
             </div>
+
+            <!-- BOTTOM HELP CONTENT -->
+            <help-content #bottomHelperContent [position]="'bottom'"
+                          [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+            </help-content>
         </div>
     </div>
 </div>
