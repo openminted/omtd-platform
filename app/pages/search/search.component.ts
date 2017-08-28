@@ -9,8 +9,8 @@ import { SearchQuery } from "../../domain/search-query";
 import { URLParameter } from "./../../domain/url-parameter";
 import { ResourceService } from "../../services/resource.service";
 import { SearchResults } from "../../domain/search-results";
-import {ShortResultInfo} from "../../domain/short-resource-info";
-import {BaseMetadataRecord, ComponentInfo, CorpusInfo, Order} from "../../domain/openminted-model";
+import { ShortResultInfo } from "../../domain/short-resource-info";
+import { BaseMetadataRecord, ComponentInfo, CorpusInfo, Order } from "../../domain/openminted-model";
 
 @Component({
     selector: 'search',
@@ -98,16 +98,19 @@ export class SearchComponent {
             let title : string;
             let description : string;
             let resourceType : string;
+            let creationDate: Date;
             if (typeof componentBody['corpusInfo'] != 'undefined') {
-                corpusInfo = componentBody['corpusInfo']
+                corpusInfo = componentBody['corpusInfo'];
                 title = corpusInfo.identificationInfo.resourceNames[0].value;
                 description = corpusInfo.identificationInfo.descriptions[0].value;
                 resourceType = 'corpus';
+                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
             } else if (typeof componentBody['componentInfo'] != 'undefined') {
                 componentInfo = componentBody['componentInfo'];
                 title = componentInfo.identificationInfo.resourceNames[0].value;
                 description = componentInfo.identificationInfo.descriptions[0].value;
                 resourceType = 'component';
+                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
             }
             let shortResultInfo: ShortResultInfo = {
                 // id: component.componentInfo.identificationInfo.identifiers[0].value,
@@ -115,7 +118,8 @@ export class SearchComponent {
                 id: componentBody.metadataHeaderInfo.metadataRecordIdentifier.value,
                 title: title,
                 description: description,
-                resourceType: resourceType
+                resourceType: resourceType,
+                creationDate: creationDate
             };
             this.shortResultsInfo.push(shortResultInfo);
         }

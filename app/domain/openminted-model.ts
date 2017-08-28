@@ -122,8 +122,8 @@ export class ComponentDistributionInfo  {
     copyrightStatements : CopyrightStatement[];
     attributionTexts : AttributionText[];
     rightsHolders : ActorInfo[];
-    availabilityStartDate : Date;
-    availabilityEndDate : Date;
+    availabilityStartDate : CustomDate;
+    availabilityEndDate : CustomDate;
     fee : string;
     userTypes : UserTypeEnum[];
 }
@@ -260,26 +260,26 @@ export class DatasetDistributionInfo  {
     copyrightStatements : CopyrightStatement[];
     attributionTexts : AttributionText[];
     rightsHolders : ActorInfo[];
-    availabilityStartDate : Date;
-    availabilityEndDate : Date;
+    availabilityStartDate : CustomDate;
+    availabilityEndDate : CustomDate;
     fee : string;
     userTypes : UserTypeEnum[];
 }
 
-export class Date  {
+export class CustomDate  {
     day : number;
     month : number;
     year : number;
 }
 
 export class DateCombination  {
-    date : Date;
+    date : CustomDate;
     dateRange : DateRange;
 }
 
 export class DateRange  {
-    startDate : Date;
-    endDate : Date;
+    startDate : CustomDate;
+    endDate : CustomDate;
 }
 
 export class DepartmentName extends MyString {
@@ -310,8 +310,8 @@ export class DocumentDistributionInfo  {
     copyrightStatements : CopyrightStatement[];
     attributionTexts : AttributionText[];
     rightsHolders : ActorInfo[];
-    availabilityStartDate : Date;
-    availabilityEndDate : Date;
+    availabilityStartDate : CustomDate;
+    availabilityEndDate : CustomDate;
     fee : string;
     userTypes : UserTypeEnum[];
 }
@@ -323,7 +323,7 @@ export class DocumentInfo  {
     titles : Title[];
     authors : PersonInfo[];
     contributors : ActorInfo[];
-    publicationDate : Date;
+    publicationDate : CustomDate;
     publisher : OrganizationInfo;
     journal : JournalInfo;
     inBook : RelatedDocumentInfo;
@@ -581,7 +581,7 @@ export class MetadataHeaderInfo  {
     metadataCreators : PersonInfo[];
     sourceOfMetadataRecord : SourceOfMetadataRecord;
     userQuery : string;
-    metadataLastDateUpdated : Date;
+    metadataLastDateUpdated : CustomDate;
     revision : string;
 }
 
@@ -939,7 +939,7 @@ export class VersionInfo  {
     versionDate : string;
     versionType : VersionTypeEnum;
     revision : string;
-    lastDateUpdated : Date;
+    lastDateUpdated : CustomDate;
     updateFrequency : string;
 }
 

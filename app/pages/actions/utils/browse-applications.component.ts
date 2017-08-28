@@ -10,7 +10,7 @@ import { SearchResults } from "../../../domain/search-results";
 import { URLParameter } from "../../../domain/url-parameter";
 import { Subscription } from "rxjs/Subscription";
 import { SearchQuery } from "../../../domain/search-query";
-import {ComponentInfo} from "../../../domain/openminted-model";
+import { ComponentInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'browse-applications',
@@ -100,7 +100,8 @@ export class BrowseApplicationsComponent {
                     id: componentBody.metadataHeaderInfo.metadataRecordIdentifier.value,
                     title: componentInfo.identificationInfo.resourceNames[0].value,
                     description: componentInfo.identificationInfo.descriptions[0].value,
-                    resourceType: 'component'
+                    resourceType: 'component',
+                    creationDate: componentBody.metadataHeaderInfo.metadataCreationDate
                 };
                 this.shortResultsInfo.push(shortResultInfo);
             }

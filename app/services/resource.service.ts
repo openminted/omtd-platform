@@ -305,6 +305,12 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
+    getLatestResources(latest: number) {
+        return this.http.get(`${this._searchUrl}?orderField=creation_date&order=asc&from=0&quantity=${latest}`)
+            .map(res => <SearchResults> res.json())
+            .catch(this.handleError);
+    }
+
 
     private extractData(res: Response) {
         let body = res.json();

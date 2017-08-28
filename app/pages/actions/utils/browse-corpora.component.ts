@@ -101,7 +101,8 @@ export class BrowseCorporaComponent {
                     id: corpusBody.metadataHeaderInfo.metadataRecordIdentifier.value,
                     title: corpusInfo.identificationInfo.resourceNames[0].value,
                     description: corpusInfo.identificationInfo.descriptions[0].value,
-                    resourceType: 'corpus'
+                    resourceType: 'corpus',
+                    creationDate: corpusBody.metadataHeaderInfo.metadataCreationDate
                 };
                 this.shortResultsInfo.push(shortResultInfo);
             }

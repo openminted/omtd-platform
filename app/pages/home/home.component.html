@@ -116,7 +116,7 @@
                     </div>
                 </div>
                 <div class="uk-margin uk-text-center uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
-                    <a class="el-content uk-button uk-button-default" href="/www.cnn.com">
+                    <a class="el-content uk-button uk-button-default" [routerLink]="['/search']">
                         <span class="uk-text-middle">Get started here</span>
                         <span uk-icon="arrow-right" class="uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><polyline fill="none" stroke="#000" points="10 5 15 9.5 10 14"/><line fill="none" stroke="#000" x1="4" y1="9.5" x2="15" y2="9.5"/></svg></span>
                     </a>
@@ -164,43 +164,69 @@
                         <h2 class="uk-h3">
                             Latest additions    </h2>
                         <div id="page#25" class="small-padding uk-margin-remove-vertical uk-grid-match uk-child-width-1-1 uk-child-width-1-1@m uk-child-width-1-1@l uk-child-width-1-1@xl uk-grid-small uk-grid-divider uk-grid uk-grid-stack" uk-grid="">
-                            <div class="uk-first-column"><div class="el-item uk-panel">
-                                <div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">
-                                    <div class="uk-width-1-5@m uk-first-column">
-                                        <a href="/www.cnn.com" class="el-link"><span uk-icon="icon: cog;ratio: 1" class="el-image uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><circle fill="none" stroke="#000" cx="9.997" cy="10" r="3.31"/><path fill="none" stroke="#000" d="M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z"/></svg></span></a>            </div>
-                                    <div>
-                                        <h6 class="el-title uk-margin uk-h6 uk-text-primary uk-margin-remove-adjacent uk-margin-remove-bottom">
-                                            Funder exractor    </h6>
-                                        <div class="el-meta uk-margin uk-text-meta">Athena Research &amp; Innovation Center</div>
-                                        <div class="el-content uk-margin"><div class="margin-top:0px!important; padding-top:0px">20 Dec 2016</div></div>
+                            <div *ngFor="let resourceInfo of shortResultsInfo" class="uk-first-column">
+                                <div class="el-item uk-panel">
+                                    <div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">
+                                        <div class="uk-width-1-5@m uk-first-column">
+                                            <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)">
+                                                <i *ngIf="resourceInfo.resourceType==='corpus'"
+                                                   class="fa fa-database fa-2x" aria-hidden="true"></i>
+                                                <i *ngIf="resourceInfo.resourceType==='component'"
+                                                   class="fa fa-cogs fa-2x" aria-hidden="true"></i>
+                                                <i *ngIf="resourceInfo.resourceType==='language'"
+                                                   class="fa fa-file-o fa-2x" aria-hidden="true"></i>
+                                                <i *ngIf="resourceInfo.resourceType==='lexical'"
+                                                   class="fa fa-language fa-2x" aria-hidden="true"></i>
+                                                <i *ngIf="resourceInfo.resourceType==='model'"
+                                                   class="fa fa-clipboard fa-2x" aria-hidden="true"></i>
+                                            </a>
+                                            <!--<a href="/www.cnn.com" class="el-link">-->
+                                                <!--<span uk-icon="icon: cog;ratio: 1" class="el-image uk-icon">-->
+                                                    <!--<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><circle fill="none" stroke="#000" cx="9.997" cy="10" r="3.31"/><path fill="none" stroke="#000" d="M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z"/></svg>-->
+                                                <!--</span>-->
+                                            <!--</a>-->
+                                        </div>
+                                        <div>
+                                            <h6 class="el-title uk-margin uk-h6 uk-text-primary uk-margin-remove-adjacent" style="word-wrap: break-word;">
+                                                {{resourceInfo.title}}
+                                            </h6>
+                                            <div class="el-meta uk-text-meta" style="max-height: 75px; overflow-y: hidden">
+                                                {{resourceInfo.description}}
+                                            </div>
+                                            <div class="el-meta">
+                                                ...
+                                            </div>
+                                            <div class="el-content uk-margin">
+                                                <div class="margin-top:0px!important; padding-top:0px">{{resourceInfo.creationDate | date }}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            <div class="uk-grid-margin uk-first-column"><div class="el-item uk-panel">
-                                <div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">
-                                    <div class="uk-width-1-5@m uk-first-column">
-                                        <a href="/www.cnn.com" class="el-link"><span uk-icon="icon: album;ratio: 1" class="el-image uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><rect x="5" y="2" width="10" height="1"/><rect x="3" y="4" width="14" height="1"/><rect fill="none" stroke="#000" x="1.5" y="6.5" width="17" height="11"/></svg></span></a>            </div>
-                                    <div>
-                                        <h6 class="el-title uk-margin uk-h6 uk-text-primary uk-margin-remove-adjacent uk-margin-remove-bottom">
-                                            Portuguese OA Sci literature    </h6>
-                                        <div class="el-meta uk-margin uk-text-meta">University of Minho</div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="uk-grid-margin uk-first-column"><div class="el-item uk-panel">
-                                <div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">
-                                    <div class="uk-width-1-5@m uk-first-column">
-                                        <a href="/www.cnn.com" class="el-link"><span uk-icon="icon: cog;ratio: 1" class="el-image uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><circle fill="none" stroke="#000" cx="9.997" cy="10" r="3.31"/><path fill="none" stroke="#000" d="M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z"/></svg></span></a>            </div>
-                                    <div>
-                                        <h6 class="el-title uk-margin uk-h6 uk-text-primary uk-margin-remove-adjacent uk-margin-remove-bottom">
-                                            Funder exractor    </h6>
-                                        <div class="el-meta uk-margin uk-text-meta">Athena Research &amp; Innovation Center</div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
+                            <!--<div class="uk-grid-margin uk-first-column"><div class="el-item uk-panel">-->
+                                <!--<div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">-->
+                                    <!--<div class="uk-width-1-5@m uk-first-column">-->
+                                        <!--<a href="/www.cnn.com" class="el-link"><span uk-icon="icon: album;ratio: 1" class="el-image uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><rect x="5" y="2" width="10" height="1"/><rect x="3" y="4" width="14" height="1"/><rect fill="none" stroke="#000" x="1.5" y="6.5" width="17" height="11"/></svg></span></a>            </div>-->
+                                    <!--<div>-->
+                                        <!--<h6 class="el-title uk-margin uk-h6 uk-text-primary uk-margin-remove-adjacent uk-margin-remove-bottom">-->
+                                            <!--Portuguese OA Sci literature    </h6>-->
+                                        <!--<div class="el-meta uk-margin uk-text-meta">University of Minho</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="uk-grid-margin uk-first-column"><div class="el-item uk-panel">-->
+                                <!--<div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">-->
+                                    <!--<div class="uk-width-1-5@m uk-first-column">-->
+                                        <!--<a href="/www.cnn.com" class="el-link"><span uk-icon="icon: cog;ratio: 1" class="el-image uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><circle fill="none" stroke="#000" cx="9.997" cy="10" r="3.31"/><path fill="none" stroke="#000" d="M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z"/></svg></span></a>            </div>-->
+                                    <!--<div>-->
+                                        <!--<h6 class="el-title uk-margin uk-h6 uk-text-primary uk-margin-remove-adjacent uk-margin-remove-bottom">-->
+                                            <!--Funder exractor    </h6>-->
+                                        <!--<div class="el-meta uk-margin uk-text-meta">Athena Research &amp; Innovation Center</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
  */
 import { Results } from "./results";
 import { Facet } from "./facet";
-import {BaseMetadataRecord, Order} from "./openminted-model";
+import { BaseMetadataRecord, Order } from "./openminted-model";
     
 export class SearchResults {
 
