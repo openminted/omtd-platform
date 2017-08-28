@@ -137,6 +137,10 @@ export class SearchForPublicationsComponent {
                 }
             }
             categoryIndex ++;
+
+            if(category==='query') {
+                this.publicationsSearchForm.get('query').setValue('');
+            }
         }
 
         this.navigateUsingParameters();

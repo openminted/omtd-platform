@@ -198,6 +198,10 @@ export class BrowseApplicationsComponent {
                 }
             }
             categoryIndex ++;
+
+            if(category==='query') {
+                this.searchApplicationsForm.get('query').setValue('');
+            }
         }
 
         this.navigateUsingParameters();

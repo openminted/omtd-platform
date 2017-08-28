@@ -201,6 +201,10 @@ export class BrowseCorporaComponent {
                 }
             }
             categoryIndex ++;
+
+            if(category==='query') {
+                this.searchCorporaForm.get('query').setValue('');
+            }
         }
 
         this.navigateUsingParameters();

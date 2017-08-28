@@ -262,6 +262,10 @@ export class SearchComponent {
                 }
             }
             categoryIndex ++;
+
+            if(category==='query') {
+                this.searchForm.get('query').setValue('');
+            }
         }
 
         this.navigateUsingParameters();
