@@ -128,6 +128,7 @@ export class CorpusBuilderComponent {
 
             // corpusFilled.metadataHeaderInfo.metadataRecordIdentifier.value=this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value;
             // corpusFilled.metadataHeaderInfo.metadataRecordIdentifier.metadataIdentifierSchemeName = this.corpus.metadataHeaderInfo.metadataRecordIdentifier.metadataIdentifierSchemeName;
+            corpusFilled.metadataHeaderInfo = this.corpus.metadataHeaderInfo;
             corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers = [new ResourceIdentifier()];
             corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].value= corpusFilled.corpusInfo.distributionInfos[0].distributionLoc[0].distributionLocation;
             corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
@@ -152,7 +153,7 @@ export class CorpusBuilderComponent {
         this.buildingCorpus = true;
 
         this.intervalId = window.setInterval(() => {
-            this.contentConnectorService.getStatus(this.corpusForm.value.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
+            this.contentConnectorService.getStatus(this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
                 res => this.checkStatus(res)
             );
         },10000)
