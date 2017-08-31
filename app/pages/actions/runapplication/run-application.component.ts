@@ -76,20 +76,20 @@ export class RunApplicationComponent {
                         sessionStorage.setItem(urlParameter.key, urlParameter.values[0]);
                         this.resourceService.getCorpus(urlParameter.values[0]).subscribe(
                             corpus => this.corpus = corpus,
-                            error => this.handleError(<any>error));
+                            error => this.handleError('System error loading input', <any>error));
                     }
                     if(urlParameter.key === 'application') {
                         sessionStorage.setItem(urlParameter.key, urlParameter.values[0]);
                         this.resourceService.getComponent(urlParameter.values[0]).subscribe(
                             component => {this.component = component; transform(this.component)},
-                            error => this.handleError(<any>error));
+                            error => this.handleError('System error loading application', <any>error));
                     }
                 }
             });
     }
 
-    handleError(error) {
-        this.errorMessage = 'System error loading resource (Server responded: ' + error + ')';
+    handleError(message: string, error) {
+        this.errorMessage = message + ' (Server responded: ' + error + ')';
     }
 
     selectInput() {
@@ -128,10 +128,10 @@ export class RunApplicationComponent {
                     this.intervalId = window.setInterval(() => {
                         this.workflowService.getStatus(this.jobId).subscribe(
                             res => { this.wsJobStatus=res; this.checkStatus(res) },
-                            error => this.handleError(<any>error)
+                            error => this.handleError('System error getting execution status', <any>error)
                         );
                     },5000)},
-                error => this.handleError(<any>error)
+                error => this.handleError('System error executing service', <any>error)
             );
     }
 
