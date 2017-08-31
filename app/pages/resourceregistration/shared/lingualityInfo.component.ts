@@ -41,7 +41,7 @@ export class LingualityInfoFormControl extends MyGroup {
 
     groupDefinition = {
         multilingualityTypeDetails : '',
-        lingualityType: ['',Validators.required],
+        lingualityType: ['MONOLINGUAL',Validators.required],
         multilingualityType: ''
     };
 

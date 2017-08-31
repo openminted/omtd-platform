@@ -1,7 +1,7 @@
 /**
  * Created by stefanos on 15/5/2017.
  */
-import {FormGroup, FormBuilder, Validators, FormArray} from "@angular/forms";
+import {FormGroup, FormBuilder, Validators, FormArray, FormControl} from "@angular/forms";
 import {
     Component, Input, OnInit, Type, ComponentFactoryResolver,
     AfterViewInit, ViewChild, ViewContainerRef, ComponentFactory, Injector, TemplateRef
@@ -10,6 +10,7 @@ import {MyFormDirective} from "./my-form.directive";
 import {MyGroup} from "./my-group.interface";
 import {MyWrapper} from "./my-wrapper.interface";
 import {Description} from "../../../domain/omtd.description";
+import {Subject} from "rxjs/Subject";
 
 
 @Component({
@@ -43,6 +44,8 @@ export class MyArray extends MyGroup {
 
     protected viewContainerRef : ViewContainerRef;
 
+    private arrayData_ : Subject<any>[] = [];
+
     protected push() {
         this.createView();
     }
@@ -52,7 +55,7 @@ export class MyArray extends MyGroup {
         this._cfr = injector.get(ComponentFactoryResolver);
     }
 
-    protected createView(patchData? : any) : void {
+    protected createView() : void {
         let componentFactory = this._cfr.resolveComponentFactory(this.component);
         let wrapperFactory = this._cfr.resolveComponentFactory(this.wrapper);
         let wrapperView = wrapperFactory.create(this.viewContainerRef.injector);
@@ -61,24 +64,24 @@ export class MyArray extends MyGroup {
         (<MyGroup>componentView.instance).index = this.viewContainerRef.length;
         (<MyGroup>componentView.instance).required = this.required;
         (<MyGroup>componentView.instance).data = this.data;
-        (<MyGroup>componentView.instance).patchData = patchData;
+        this.arrayData_.push((<MyGroup>componentView.instance).patchData);
         (<MyGroup>componentView.instance).description = this.description;
         let arrayGroup = (<MyGroup>componentView.instance).generate();
-
         (<MyGroup>componentView.instance).parentGroup = arrayGroup as FormGroup;
-
         (<MyWrapper>wrapperView.instance).component = componentView.hostView;
         (<MyWrapper>wrapperView.instance).viewRef = wrapperView.hostView;
         (<MyWrapper>wrapperView.instance).description = this.description;
         (<MyWrapper>wrapperView.instance).first = this.viewContainerRef.length == 0;
         (<MyWrapper>wrapperView.instance).deleteNotifier.subscribe($event => {
             let index = this.viewContainerRef.indexOf($event);
+            console.log(index);
             if( this.viewContainerRef.length == 1 && this.description.mandatory==true) {
                 console.log(this.viewContainerRef.get(0));
                 (<FormArray>this.parentGroup.controls[this.name].at(0).corpus((<MyGroup>componentView.instance).generate().value));
             } else {
                 this.remove(index);
-                <FormArray>this.parentGroup.controls[this.name].removeAt(index);
+                <FormArray>this.parentGroup.controls[this.name].removeAt(index-1);
+                this.arrayData_.splice(index-1,1);
             }
         });
 
@@ -95,23 +98,20 @@ export class MyArray extends MyGroup {
         // super.ngOnInit();
         this.viewContainerRef = this.formComponents.viewContainerRef;
         (<FormGroup>this.parentGroup).addControl(<string>this.name, this._fb.array([]));
-        this.parentGroup.get(this.name as string).patchValue = this.patchValue();
         this.createView();
+        this.parentGroup.get(this.name as string).patchValue = this.patchValue();
+
     }
 
     protected patchValue() {
         let self = this;
         return (value: {[key: string]: any}, {onlySelf, emitEvent}: {onlySelf?: boolean, emitEvent?: boolean} = {}) => {
             for (let i = (<FormArray>self.parentGroup.get(this.name as string)).length; i < Object.keys(value).length; i++) {
-                self.createView(value[i]);
+                self.createView();
             }
-            Object.keys(value).forEach(name => {
-                let subgroup : FormArray = self.parentGroup.get(this.name as string) as FormArray;
-                if (subgroup.controls[name as string]) {
-                    subgroup.controls[name as string].patchValue(value[name], {onlySelf: true, emitEvent});
-                }
-            });
-            self.parentGroup.updateValueAndValidity({onlySelf, emitEvent});
+            for (let i = 0; i < Object.keys(value).length; i++) {
+                self.arrayData_[i].next(value[i]);
+            }
         };
     }
 }

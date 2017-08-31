@@ -133,8 +133,8 @@ export class CorpusBuilderComponent {
             corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
             corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype="rawCorpus";
             corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusMediaPartsType.corpusTextParts[0].mediaType='text';
-            corpusFilled.corpusInfo.distributionInfos[0].rightsInfo = new RightsInfo();
-            corpusFilled.corpusInfo.distributionInfos[0].rightsInfo.rightsStatement = [RightsStatementEnum.OPEN_ACCESS]
+            // corpusFilled.corpusInfo.distributionInfos[0].rightsInfo = new RightsInfo();
+            // corpusFilled.corpusInfo.distributionInfos[0].rightsInfo.rightsStatement = [RightsStatementEnum.OPEN_ACCESS]
             console.log(corpusFilled);
             this.contentConnectorService.buildCorpus(corpusFilled).subscribe(
                 res => this.buildingCorpusFn(),

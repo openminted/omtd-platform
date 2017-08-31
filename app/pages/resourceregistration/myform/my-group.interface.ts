@@ -1,6 +1,10 @@
 import {FormGroup, FormBuilder, FormArray, AbstractControl} from "@angular/forms";
-import {Component, Input, OnInit, Injector, OnChanges, SimpleChanges, AfterContentInit} from "@angular/core";
+import {
+    Component, Input, OnInit, Injector, OnChanges, SimpleChanges, AfterContentInit, Type,
+    EventEmitter
+} from "@angular/core";
 import {Description} from "../../../domain/omtd.description";
+import {Subject} from "rxjs/Subject";
 /**
  * Created by stefanos on 15/5/2017.
  */
@@ -15,7 +19,7 @@ export class MyGroup implements OnInit, AfterContentInit {
 
     @Input() public data : any = null;
 
-    public patchData : any = null;
+    public patchData : Subject<any> = new Subject();
 
     @Input() public required : boolean = false;
 
@@ -27,10 +31,19 @@ export class MyGroup implements OnInit, AfterContentInit {
 
     protected groupDefinition : { [key:string]:any };
 
-    protected group : FormGroup | FormArray;
+    public group : FormGroup | FormArray;
+
+    public createdEvent : EventEmitter<any> = new EventEmitter();
 
     constructor(injector : Injector) {
         this._fb = injector.get(FormBuilder);
+        this.patchData.subscribe(_ => {
+            if(typeof _ != 'undefined') {
+                setTimeout( () => {
+                    (this.group as FormGroup).patchValue(_);
+                },1000);
+            }
+        });
     }
 
     protected get isArray() {
@@ -40,7 +53,7 @@ export class MyGroup implements OnInit, AfterContentInit {
     public generate() : FormGroup {
         let ret = this._fb.group(this.groupDefinition);
         if (this.patchData) {
-            ret.patchValue(this.patchData);
+            // console.log(this.patchData);
         }
         if (!this.required)
             Object.keys(ret.controls).forEach(item => ret.controls[item].clearValidators());
@@ -52,7 +65,6 @@ export class MyGroup implements OnInit, AfterContentInit {
             return this.group.get(<string>name);
         }
         else {
-            // return this.group.get([this.name, name].join('.'));
             return this.group.get(name as string);
         }
     }
@@ -73,21 +85,19 @@ export class MyGroup implements OnInit, AfterContentInit {
             this.name = this.index;
             this.group = this.parentGroup as FormGroup;
         }
-        // if(this.patchData != null) {
-        //     let tempObj = Object.assign({},this.group.controls);
-        //     console.log(this.name,tempObj,this.patchData);
-        //     console.log(Object.keys(this.patchData));
-            // for(let patchField of Object.keys(this.patchData)) {
-            //     if(this.parentGroup.controls[patchField])
-            //         console.log("Patching",this.patchData[patchField]);
-            //     this.parentGroup.get(patchField).patchValue(this.patchData[patchField]);
-            // }
-            // (this.parentGroup as FormGroup).patchValue(this.patchData);
-        // }
     }
 
     ngAfterContentInit(): void {
-
+        this.createdEvent.emit(this.name);
+        // setTimeout(() => {
+        //     if(this.patchData != null) {
+        //         (this.group as FormGroup).patchValue(this.patchData);
+        //     }
+        // },1000);
+        // setTimeout(() => {
+        //     console.log(this.group,this.parentGroup);
+        //     (this.group as FormGroup).updateValueAndValidity();
+        // },2000);
     }
 
     public get valid() {

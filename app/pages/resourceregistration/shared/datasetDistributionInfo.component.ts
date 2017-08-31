@@ -41,7 +41,7 @@ export class DatasetDistributionsInfoFormControl {
         
     </form-repeat-inline>
       
-    <!--<rightsInfo-form [parentGroup]="group" [name]="'rightsInfo'"></rightsInfo-form>-->
+    <rightsInfo-form [parentGroup]="group" [name]="'rightsInfo'"></rightsInfo-form>
     
 </div>  
     

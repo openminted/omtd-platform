@@ -18,7 +18,7 @@ export class CanActivateViaAuthGuard implements CanActivate {
         if (getCookie('name') != null) return true;
         // Store the attempted URL for redirecting
         this.authenticationService.redirectUrl = state.url;
-
+        sessionStorage.setItem("state.location",this.router.url);
         // Navigate to the login page
         this.router.navigate(['/home']);
         return false;

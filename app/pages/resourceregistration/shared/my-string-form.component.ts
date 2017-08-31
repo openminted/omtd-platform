@@ -76,3 +76,24 @@ export class MyStringFormGroup extends MyGroup {
         lang : 'en'
     };
 }
+
+@Component({
+    selector: 'myStringArea',
+    template : `
+        <div [formGroup]="group">
+            <!--<div class="form-group" [attr.formGroupName]="isArray ? name : null" [ngClass]="{'has-error':!group.valid}">-->
+            <textarea type="text" class="uk-textarea" formControlName="value" placeholder="Name"></textarea>
+            <input type="hidden" class="form-control" formControlName="lang" placeholder="Language">
+            <!--</div>-->
+        </div>
+    `,
+    styleUrls : ['./templates/common.css']
+})
+
+export class MyStringAreaFormGroup extends MyGroup {
+
+    public groupDefinition : any = {
+        value : ['', Validators.required],
+        lang : 'en'
+    };
+}

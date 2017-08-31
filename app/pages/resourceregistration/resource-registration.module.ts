@@ -12,7 +12,7 @@ import { ValuesPipe } from "./shared/values-pipe";
 import { RelatedCommonsForm, RelatedCommonForm } from "./shared/related-common-form.component";
 import { LanguageTypeForm } from "./shared/language-type-form.component";
 import { IdentifierFormControl } from "./shared/identifier-common-form.component";
-import { MyStringFormControl, MyStringFormGroup } from "./shared/my-string-form.component";
+import {MyStringAreaFormGroup, MyStringFormControl, MyStringFormGroup} from "./shared/my-string-form.component";
 import { IdentificationInfoFormControl } from "./shared/identification-info-form.component";
 import { EnumCommonForm } from "./shared/enum-common-form";
 import { ContactInfoFormControl } from "./shared/contact-info-form.component";
@@ -59,6 +59,7 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
         MyInlineArrayWrapper,
         MyStringFormGroup,
         DatasetDistributionLocInfoFormControl,
+        MyStringAreaFormGroup,
         IdentifierCommonFormControl,
         ComponentDistributionInfoFormControl,
         DatasetDistributionInfoFormControl,
@@ -71,6 +72,7 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
     declarations: [
         MyArrayWrapper,
         MyStringFormGroup,
+        MyStringAreaFormGroup,
         DatasetDistributionLocInfoFormControl,
         InlineFormWrapper,
         CorpusSubtypeSpecificInfoForm,
@@ -118,6 +120,7 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
         MyStringFormGroup,
         MyInlineArrayWrapper,
         VersionFormControl,
+        MyStringAreaFormGroup,
         DatasetDistributionLocInfoFormControl,
         ComponentCreationInfoFormControl,
         ContactPersonFormControl,

@@ -8,6 +8,7 @@
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
                         Identification Info
+                        <i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.identificationInfo')?.valid , 'fa-times' : !myForm.get('corpusInfo.identificationInfo')?.valid }"></i>
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>
@@ -21,6 +22,7 @@
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
                         Contact Info
+                        <i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.contactInfo')?.valid , 'fa-times' : !myForm.get('corpusInfo.contactInfo')?.valid }"></i>
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>
@@ -34,6 +36,7 @@
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
                         Version Info
+                        <i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.versionInfo')?.valid , 'fa-times' : !myForm.get('corpusInfo.versionInfo')?.valid }"></i>
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>
@@ -47,6 +50,7 @@
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
                         Distribution Info
+                        <i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.distributionInfos')?.valid , 'fa-times' : !myForm.get('corpusInfo.distributionInfos')?.valid }"></i>
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>
@@ -60,6 +64,7 @@
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
                         Corpus Info
+                        <!--<i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.corpusSubtypeSpecificInfo')?.valid , 'fa-times' : !myForm.get('corpusInfo.corpusSubtypeSpecificInfo')?.valid }"></i>-->
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>

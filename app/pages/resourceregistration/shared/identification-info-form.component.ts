@@ -3,7 +3,7 @@
  */
 import {Component, Input, OnInit, Type} from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import {MyStringFormControl, MyStringFormGroup} from "./my-string-form.component";
+import {MyStringAreaFormGroup, MyStringFormControl, MyStringFormGroup} from "./my-string-form.component";
 import {EnumValues, resourceIdentifierSchemeNameEnum} from "../../../domain/omtd.enum";
 import {IdentifierFormControl} from "./identifier-common-form.component";
 import {
@@ -28,6 +28,8 @@ export class IdentificationInfoFormControl extends MyGroup {
     public customClass: string = 'customAccordionPanel';
 
     private myStringType : Type<any> = MyStringFormGroup;
+
+    private myStringAreaType : Type<any> = MyStringAreaFormGroup;
 
     public groupDefinition = {
         public : false

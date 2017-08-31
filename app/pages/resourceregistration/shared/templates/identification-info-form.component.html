@@ -14,7 +14,7 @@
 
         <div class="form-group-divider"></div>
 
-        <form-repeat-inline [component]="myStringType" [parentGroup]="group"
+        <form-repeat-inline [component]="myStringAreaType" [parentGroup]="group"
                             [name]="'descriptions'" [required]="true" [description]="descriptionDesc">
         </form-repeat-inline>
 
@@ -29,7 +29,7 @@
         <form-inline [description]="publicDesc">
             <label>
                 <input type="checkbox" formControlName="public" class="uk-checkbox">
-                Check if the resource is meant for private use.
+                Check if the resource is meant for public use.
             </label>
         </form-inline>
 

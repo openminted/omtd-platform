@@ -32,13 +32,13 @@ export class ContactInfoFormControl extends MyGroup implements AfterContentInit 
 
     public groupDefinition = {
         contactEmail : ['',Validators.required],
-        landingPage : ['',Validators.required]
+        // landingPage : ['',Validators.required]
     };
 
     type : Type<any> = ContactPersonFormControl;
 
     ngAfterContentInit(): void {
-        this.getMyControl('landingPage').disable();
+        // this.getMyControl('landingPage').disable();
     }
 
     public deactivate() {
