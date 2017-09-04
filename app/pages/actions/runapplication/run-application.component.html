@@ -82,7 +82,7 @@
             <div *ngIf="wsJobStatus && wsJobStatus.status=='FINISHED'"
                  class="uk-width-1-5@m placeholderGrid output" style="height: 200px">
                 <a style="height: 100%" target="_blank"
-                   href="https://dev.openminted.eu:8080/omtd-registry/request/corpus/download?archiveId={{wsJobStatus.corpusID}}">
+                   href="{{endpoint}}/request/corpus/download?archiveId={{wsJobStatus.corpusID}}">
                     <div class="uk-placeholder uk-text-center" style="height: 100%">Download output!</div>
                 </a>
             </div>

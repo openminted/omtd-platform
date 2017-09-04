@@ -1,5 +1,5 @@
 <div>
-    <a (click)="loadComponent(componentPatch)">Patch Component</a>
+    <a *ngIf="production==false" (click)="loadComponent(componentPatch)">Patch Component</a>
     <form class="form-horizontal componentForm" [formGroup]="myForm">
 
         <ul uk-accordion="multiple: true">
@@ -102,7 +102,7 @@
         <!--</accordion>-->
     </form>
 </div>
-<div class="margin-20">
+<div *ngIf="production==false" class="margin-20">
     <div>myForm details:-</div>
     <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
     <pre>form value: <br>{{myForm.value | json}}</pre>

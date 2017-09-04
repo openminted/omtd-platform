@@ -39,6 +39,8 @@ export class RunApplicationComponent {
 
     private isRunning: boolean = false;
 
+    private endpoint = process.env.API_ENDPOINT;
+
     constructor(private router: Router, private activatedRoute: ActivatedRoute,
                 private resourceService: ResourceService, private workflowService: WorkflowService) {
 
