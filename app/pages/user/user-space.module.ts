@@ -12,6 +12,7 @@ import { MyCorporaComponent } from "./corpora/my-corpora.component";
 import { MyServicesComponent } from "./components/my-services.component";
 import { ConfirmationDialogComponent } from "../../shared/confirmation-dialog.component";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
+import { MyOperationsComponent } from "./operations/my-operations.component";
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
     declarations: [
         MyCorporaComponent,
         MyServicesComponent,
+        MyOperationsComponent,
         ConfirmationDialogComponent
     ],
     providers: [

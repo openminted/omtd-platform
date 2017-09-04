@@ -10,7 +10,7 @@ import { SearchResults } from "../../../domain/search-results";
 import { URLParameter } from "../../../domain/url-parameter";
 import { Subscription } from "rxjs/Subscription";
 import { SearchQuery } from "../../../domain/search-query";
-import { ComponentInfo } from "../../../domain/openminted-model";
+import { BaseMetadataRecord, ComponentInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'browse-applications',
@@ -26,7 +26,7 @@ export class BrowseApplicationsComponent {
 
     private urlParameters: URLParameter[] = [];
 
-    private searchResults: SearchResults;
+    private searchResults: SearchResults<BaseMetadataRecord>;
     private shortResultsInfo : ShortResultInfo[] = [];
 
     private pageSize: number = 0;
@@ -75,7 +75,7 @@ export class BrowseApplicationsComponent {
             });
     }
 
-    updateSearchResults(searchResults: SearchResults) {
+    updateSearchResults(searchResults: SearchResults<BaseMetadataRecord>) {
 
         //INITIALISATIONS
         this.errorMessage = null;

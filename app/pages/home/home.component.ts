@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchQuery } from "../../domain/search-query";
 import { ResourceService } from "../../services/resource.service";
-import { ComponentInfo, CorpusInfo } from "../../domain/openminted-model";
+import { BaseMetadataRecord, ComponentInfo, CorpusInfo } from "../../domain/openminted-model";
 import { SearchResults } from "../../domain/search-results";
 import { ShortResultInfo } from "../../domain/short-resource-info";
 
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     public searchForm: FormGroup;
 
     private errorMessage: string = null;
-    private searchResults: SearchResults;
+    private searchResults: SearchResults<BaseMetadataRecord>;
     private shortResultsInfo : ShortResultInfo[] = [];
     private foundResults = true;
 
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
             error => this.handleError('System error getting latest resources', <any>error));
     }
 
-    updateLatestResources(searchResults: SearchResults) {
+    updateLatestResources(searchResults: SearchResults<BaseMetadataRecord>) {
 
         this.errorMessage = null;
         this.searchResults = searchResults;

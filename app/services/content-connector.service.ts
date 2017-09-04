@@ -9,6 +9,7 @@ import { PublicationSearchResults } from "../domain/publications-search-results"
 import { Corpus as OMTDCorpus } from "../domain/openminted-model";
 import { ResourceService } from "./resource.service";
 import { ContentConnectorStatus } from "../domain/content-connector-status";
+import {CorpusBuildingState} from "../domain/corpus-building-state";
 
 @Injectable()
 export class ContentConnectorService {
@@ -20,6 +21,8 @@ export class ContentConnectorService {
     private _contentConnectorBuildCorpusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/build/';
     private _contentConnectorBuildCorpusStatusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/status/?id=';
     private _contentConnectorStatusUrl = process.env.CONNECTOR_API_ENDPOINT + '/content/status';
+
+    private _corpusBuildingStateUrl = process.env.API_ENDPOINT + '/request/corpusbuildingstate/aggregate/';
 
     getContentConnectorStatus() {
         return this.http.get(this._contentConnectorStatusUrl)
@@ -85,6 +88,12 @@ export class ContentConnectorService {
     getStatus(corpusId: string) {
         return this.http.get(this._contentConnectorBuildCorpusStatusUrl + corpusId)
             .map(res => res.text())
+            .catch(this.handleError);
+    }
+
+    getCorpusBuildingState(corpusId: string) {
+        return this.http.get(this._corpusBuildingStateUrl + corpusId)
+            .map(res => <CorpusBuildingState[]> res.json())
             .catch(this.handleError);
     }
 

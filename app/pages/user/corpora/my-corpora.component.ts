@@ -3,7 +3,7 @@
  */
 import { Component, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Corpus as OMTDCorpus } from "../../../domain/openminted-model";
+import { BaseMetadataRecord, Corpus as OMTDCorpus } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { SearchResults } from "../../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog.component";
@@ -22,7 +22,7 @@ export class MyCorporaComponent {
     @ViewChild('makePublicConfirmationModal')
     public makePublicConfirmationModal : ConfirmationDialogComponent;
 
-    public searchResults: SearchResults;
+    public searchResults: SearchResults<BaseMetadataRecord>;
     public corpora: OMTDCorpus[] = [];
     public errorMessage: string;
     public successMessage: string;
@@ -51,7 +51,7 @@ export class MyCorporaComponent {
             error => this.handleError('System error retrieving user corpora', <any>error));
     }
 
-    updateMyCorpora(searchResults: SearchResults) {
+    updateMyCorpora(searchResults: SearchResults<BaseMetadataRecord>) {
 
         //INITIALISATIONS
         this.errorMessage = null;

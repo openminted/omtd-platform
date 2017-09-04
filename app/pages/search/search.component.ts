@@ -26,7 +26,7 @@ export class SearchComponent {
 
     private urlParameters: URLParameter[] = [];
     
-    private searchResults: SearchResults;
+    private searchResults: SearchResults<BaseMetadataRecord>;
     private shortResultsInfo : ShortResultInfo[] = [];
 
     private pageSize: number = 0;
@@ -77,7 +77,7 @@ export class SearchComponent {
             });
     }
     
-    updateSearchResults(searchResults: SearchResults) {
+    updateSearchResults(searchResults: SearchResults<BaseMetadataRecord>) {
 
         //INITIALISATIONS
         this.errorMessage = null;

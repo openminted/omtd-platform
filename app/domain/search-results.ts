@@ -1,16 +1,15 @@
 /**
  * Created by stefania on 9/9/16.
  */
-import { Results } from "./results";
 import { Facet } from "./facet";
-import { BaseMetadataRecord, Order } from "./openminted-model";
+import { Order } from "./openminted-model";
     
-export class SearchResults {
+export class SearchResults<T> {
 
     from: number;
     to: number;
     total: number;
     
-    results: Order<BaseMetadataRecord>[];
+    results: Order<T>[];
     facets: Facet[];
 }

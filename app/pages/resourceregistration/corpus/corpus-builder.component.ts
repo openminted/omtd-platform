@@ -10,9 +10,11 @@ import { ContentConnectorService } from "../../../services/content-connector.ser
 import {
     Corpus as OMTDCorpus, MetadataHeaderInfo, PersonInfo, Name,
     MetadataIdentifier, ResourceIdentifier, ResourceIdentifierSchemeNameEnum,
-    RightsInfo, RightsStatementEnum
+    RightsInfo, RightsStatementEnum, Corpus
 } from "../../../domain/openminted-model";
 import { Observable } from 'rxjs/Rx';
+import { ResourceService } from "../../../services/resource.service";
+import {error} from "util";
 
 @Component({
     selector: 'corpus-builder',
@@ -47,7 +49,7 @@ export class CorpusBuilderComponent {
     intervalId: number = null;
 
     constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-                private contentConnectorService: ContentConnectorService) {
+                private contentConnectorService: ContentConnectorService, private resourceService: ResourceService) {
 
     }
 
@@ -134,17 +136,33 @@ export class CorpusBuilderComponent {
             corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
             corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype="rawCorpus";
             corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusMediaPartsType.corpusTextParts[0].mediaType='text';
+
             // corpusFilled.corpusInfo.distributionInfos[0].rightsInfo = new RightsInfo();
             // corpusFilled.corpusInfo.distributionInfos[0].rightsInfo.rightsStatement = [RightsStatementEnum.OPEN_ACCESS]
-            console.log(corpusFilled);
-            this.contentConnectorService.buildCorpus(corpusFilled).subscribe(
-                res => this.buildingCorpusFn(),
+
+            console.log('Corpus Filled', corpusFilled);
+
+            this.resourceService.registerIncompleteCorpus(corpusFilled).subscribe(
+                res =>
+                {   console.log('Result from register incomplete corpus', res);
+                    this.buildCorpus(corpusFilled)
+                },
                 error => this.handleError(error)
             );
+
+
 
         } else {
             window.scrollTo(0,0);
         }
+    }
+
+    buildCorpus(corpusFilled: OMTDCorpus) {
+
+        this.contentConnectorService.buildCorpus(corpusFilled).subscribe(
+            res => this.buildingCorpusFn(),
+            error => this.handleError(error)
+        );
     }
     
     buildingCorpusFn() {
@@ -156,7 +174,10 @@ export class CorpusBuilderComponent {
             this.contentConnectorService.getStatus(this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
                 res => this.checkStatus(res)
             );
-        },10000)
+            this.contentConnectorService.getCorpusBuildingState(this.corpusForm.value.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
+                res => console.log(res)
+            );
+        },5000)
     }
 
     checkStatus(res: string) {

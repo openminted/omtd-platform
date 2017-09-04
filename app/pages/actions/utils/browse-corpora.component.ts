@@ -10,7 +10,7 @@ import { SearchResults } from "../../../domain/search-results";
 import { URLParameter } from "../../../domain/url-parameter";
 import { Subscription } from "rxjs/Subscription";
 import { SearchQuery } from "../../../domain/search-query";
-import {CorpusInfo} from "../../../domain/openminted-model";
+import { BaseMetadataRecord, CorpusInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'browse-corpora',
@@ -26,7 +26,7 @@ export class BrowseCorporaComponent {
 
     private urlParameters: URLParameter[] = [];
 
-    private searchResults: SearchResults;
+    private searchResults: SearchResults<BaseMetadataRecord>;
     private shortResultsInfo : ShortResultInfo[] = [];
 
     private pageSize: number = 0;
@@ -75,7 +75,7 @@ export class BrowseCorporaComponent {
             });
     }
 
-    updateSearchResults(searchResults: SearchResults) {
+    updateSearchResults(searchResults: SearchResults<BaseMetadataRecord>) {
 
         //INITIALISATIONS
         this.errorMessage = null;

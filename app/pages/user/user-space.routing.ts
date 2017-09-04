@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CanActivateViaAuthGuard } from "../../services/can-activate-auth-guard.service";
 import { MyCorporaComponent } from "./corpora/my-corpora.component";
 import { MyServicesComponent } from "./components/my-services.component";
+import { MyOperationsComponent } from "./operations/my-operations.component";
 
 const userSpaceRoutes: Routes = [
     {
@@ -24,7 +25,7 @@ const userSpaceRoutes: Routes = [
     },
     {
         path: 'mySpace/operations',
-        component: MyCorporaComponent,
+        component: MyOperationsComponent,
         canActivate: [
             CanActivateViaAuthGuard
         ]

@@ -4,10 +4,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Component as OMTDComponent, Corpus as OMTDCorpus, LanguageDescription, Lexical } from "../domain/openminted-model";
+import {
+    BaseMetadataRecord, Component as OMTDComponent, Corpus as OMTDCorpus, LanguageDescription,
+    Lexical
+} from "../domain/openminted-model";
 import { URLParameter } from "../domain/url-parameter";
 import { SearchResults } from "../domain/search-results";
 import { Resource } from "../domain/resource";
+import { Operation } from "../domain/operation";
+import {CorpusBuildingState} from "../domain/corpus-building-state";
 
 @Injectable()
 export class ResourceService {
@@ -51,7 +56,7 @@ export class ResourceService {
         }
         
         return this.http.get(this._searchUrl + searchQuery)
-            .map(res => <SearchResults> res.json())
+            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
             .catch(this.handleError);
     }
 
@@ -83,7 +88,7 @@ export class ResourceService {
         }
 
         return this.http.get(this._searchUrl + searchQuery)
-            .map(res => <SearchResults> res.json())
+            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
             .catch(this.handleError);
     }
 
@@ -121,7 +126,7 @@ export class ResourceService {
         }
 
         return this.http.get(this._searchUrl + searchQuery)
-            .map(res => <SearchResults> res.json())
+            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
             .catch(this.handleError);
     }
 
@@ -237,13 +242,25 @@ export class ResourceService {
 
     getMyCorpora() {
         return this.http.get(this._resourcesUrl + "corpus/my", { withCredentials: true })
-            .map(res => <SearchResults> res.json())
+            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
             .catch(this.handleError);
     }
 
     getMyComponents() {
         return this.http.get(this._resourcesUrl + "component/my", { withCredentials: true })
-            .map(res => <SearchResults> res.json())
+            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
+            .catch(this.handleError);
+    }
+
+    getMyOperations() {
+        return this.http.get(this._resourcesUrl + "operation/my", { withCredentials: true })
+            .map(res => <SearchResults<Operation>> res.json())
+            .catch(this.handleError);
+    }
+
+    getMyCorpusBuildingStates() {
+        return this.http.get(this._resourcesUrl + "operation/my", { withCredentials: true })
+            .map(res => <SearchResults<CorpusBuildingState>> res.json())
             .catch(this.handleError);
     }
 
@@ -307,7 +324,19 @@ export class ResourceService {
 
     getLatestResources(latest: number) {
         return this.http.get(`${this._searchUrl}?orderField=creation_date&order=asc&from=0&quantity=${latest}`)
-            .map(res => <SearchResults> res.json())
+            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
+            .catch(this.handleError);
+    }
+
+    registerIncompleteCorpus(corpus: OMTDCorpus) {
+
+        console.log(JSON.stringify(corpus));
+
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        ResourceService.removeNulls(corpus);
+        return this.http.post(this._searchUrl + 'incompleteCorpus', JSON.stringify(corpus), options)
+            .map(res => res.status)
             .catch(this.handleError);
     }
 
