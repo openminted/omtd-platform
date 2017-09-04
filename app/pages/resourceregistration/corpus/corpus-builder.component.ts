@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 1/20/17.
  */
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from "rxjs/Subscription";
@@ -25,7 +25,7 @@ import { ContentConnectorStatus } from "../../../domain/content-connector-status
     styleUrls : ['../shared/templates/common.css','./corpus-builder.component.css']
 })
 
-export class CorpusBuilderComponent {
+export class CorpusBuilderComponent implements OnDestroy {
 
     private sub: Subscription;
 
@@ -202,6 +202,9 @@ export class CorpusBuilderComponent {
             this.createCorpusErrorMessage = 'There was a problem building this corpus. Try again in a while.';
             clearInterval(this.intervalId);
         }
+    }
+    ngOnDestroy(): void {
+        clearInterval(this.intervalId);
     }
 
     handleError(message: string, error) {
