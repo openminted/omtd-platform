@@ -85,7 +85,6 @@ export class MyCorporaComponent {
 
         for (let corpus of this.searchResults.results) {
             this.corpora.push(<OMTDCorpus> corpus.resource);
-            this.corporaStatus.push(this.contentConnectorService.getStatus((corpus.resource as OMTDCorpus).metadataHeaderInfo.metadataRecordIdentifier.value));
         }
 
         // this.pageSize = 10;
@@ -119,6 +118,7 @@ export class MyCorporaComponent {
 
         for (let corpus of this.incompleteCorporaSearchResults.results) {
             this.incompleteCorpora.push(<OMTDCorpus> corpus.resource);
+            this.corporaStatus.push(this.contentConnectorService.getStatus((corpus.resource as OMTDCorpus).metadataHeaderInfo.metadataRecordIdentifier.value));
         }
 
 

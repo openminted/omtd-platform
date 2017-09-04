@@ -27,6 +27,8 @@
 
                             <div *ngIf="searchResults && !errorMessage">
 
+                                <h4 class="uk-h4">Corpora registered</h4>
+
                                 <div *ngIf="successMessage" class="uk-alert uk-alert-success uk-margin-medium-top">
                                     {{successMessage}}
                                 </div>
@@ -148,56 +150,68 @@
 
                             </div>
 
-                            <div *ngIf="incompleteCorporaSearchResults">
+                            <div *ngIf="incompleteCorporaSearchResults && !errorMessage" class="uk-margin-medium-top">
 
                                 <h4 class="uk-h4">Corpora under construction</h4>
 
-                                <div class="uk-grid-margin">
+                                <div *ngIf="successMessage" class="uk-alert uk-alert-success uk-margin-medium-top">
+                                    {{successMessage}}
+                                </div>
 
-                                    <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
-                                        <div class="uk-width-1-1@m uk-first-column">
-                                            <div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
-                                                <table class="uk-table uk-table-striped uk-table-middle">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="">Name</th>
-                                                        <th class="">Date</th>
-                                                        <th class="">Description</th>
-                                                        <th class="">Status</th>
-                                                        <th class="">Actions</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr *ngFor="let incompleteCorpus of incompleteCorpora; let i=index" class="el-item">
-                                                        <td class=""><div class="el-title">{{incompleteCorpus.corpusInfo.identificationInfo.resourceNames[0].value}}</div></td>
-                                                        <td class=""><div class="el-title">{{incompleteCorpus.metadataHeaderInfo.metadataCreationDate | date:'shortDate'}}</div></td>
-                                                        <td class=""><div class="el-title">{{incompleteCorpus.corpusInfo.identificationInfo.descriptions[0].value}}</div></td>
-                                                        <td class="">
-                                                            <div *ngIf="corporaStatus[i] | async as status; else loading">
-                                                                {{status}}
-                                                            </div>
-                                                            <ng-template #loading>Loading Data...</ng-template>
-                                                        </td>
-                                                        <td class="uk-text-nowrap">
-                                                            --
-                                                            <!--<div *ngIf="!corpus.corpusInfo.identificationInfo.public" class="el-title">-->
-                                                            <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                            <!--<a (click)="editCorpus(corpus)"><i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                            <!--<a (click)="deleteConfirmationCorpus(corpus)"><i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                            <!--<a (click)="makePublicConfirmation(corpus)" class=""><i class="fa fa-share-alt" aria-hidden="true"></i></a>-->
-                                                            <!--</div>-->
-                                                            <!--<div *ngIf="corpus.corpusInfo.identificationInfo.public" class="el-title">-->
-                                                            <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info" aria-hidden="true"></i></a>-->
-                                                            <!--</div>-->
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                <div *ngIf="incompleteCorporaSearchResults.total==0" class="uk-alert uk-alert-warning uk-margin-medium-top">
+                                    There are no incomplete corpora under construction for your account
+                                </div>
+
+                                <div *ngIf="incompleteCorporaSearchResults.total>0">
+                                    <div class="uk-grid-margin">
+
+                                        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+                                            <div class="uk-width-1-1@m uk-first-column">
+                                                <div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
+                                                    <table class="uk-table uk-table-striped uk-table-middle">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="">Name</th>
+                                                            <th class="">Date</th>
+                                                            <th class="">Description</th>
+                                                            <th class="">Status</th>
+                                                            <th class="">Actions</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr *ngFor="let incompleteCorpus of incompleteCorpora; let i=index" class="el-item">
+                                                            <td class=""><div class="el-title">{{incompleteCorpus.corpusInfo.identificationInfo.resourceNames[0].value}}</div></td>
+                                                            <td class=""><div class="el-title">{{incompleteCorpus.metadataHeaderInfo.metadataCreationDate | date:'shortDate'}}</div></td>
+                                                            <td class=""><div class="el-title">{{incompleteCorpus.corpusInfo.identificationInfo.descriptions[0].value}}</div></td>
+                                                            <td class="">
+                                                                <div *ngIf="corporaStatus[i] | async as status; else loading">
+                                                                    {{status}}
+                                                                </div>
+                                                                <ng-template #loading>Loading Data...</ng-template>
+                                                            </td>
+                                                            <td class="uk-text-nowrap">
+                                                                --
+                                                                <!--<div *ngIf="!corpus.corpusInfo.identificationInfo.public" class="el-title">-->
+                                                                <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                                                <!--<a (click)="editCorpus(corpus)"><i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                                                <!--<a (click)="deleteConfirmationCorpus(corpus)"><i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                                                <!--<a (click)="makePublicConfirmation(corpus)" class=""><i class="fa fa-share-alt" aria-hidden="true"></i></a>-->
+                                                                <!--</div>-->
+                                                                <!--<div *ngIf="corpus.corpusInfo.identificationInfo.public" class="el-title">-->
+                                                                <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info" aria-hidden="true"></i></a>-->
+                                                                <!--</div>-->
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                    </div>
                                 </div>
+
+
                             </div>
 
                         </div>
