@@ -37,33 +37,33 @@
 
                                 <div *ngIf="searchResults.total>0">
 
-                                    <div class="uk-width-1-1 uk-row-first">
-                                        <ul class="uk-pagination">
+                                    <!--<div class="uk-width-1-1 uk-row-first">-->
+                                        <!--<ul class="uk-pagination">-->
 
-                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
-                                                <a class="uk-disabled" href="#">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
-                                            <li *ngIf="!isPreviousPageDisabled">
-                                                <a (click)="goToPreviousPage()">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
+                                            <!--<li class="uk-disabled" *ngIf="isPreviousPageDisabled">-->
+                                                <!--<a class="uk-disabled" href="#">-->
+                                                    <!--<span class="uk-margin-small-right" uk-pagination-previous></span> Previous-->
+                                                <!--</a>-->
+                                            <!--</li>-->
+                                            <!--<li *ngIf="!isPreviousPageDisabled">-->
+                                                <!--<a (click)="goToPreviousPage()">-->
+                                                    <!--<span class="uk-margin-small-right" uk-pagination-previous></span> Previous-->
+                                                <!--</a>-->
+                                            <!--</li>-->
 
-                                            <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
-                                                <a class="uk-disabled" href="#">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                            <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
-                                                <a (click)="goToNextPage()">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
-                                    </div>
+                                            <!--<li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">-->
+                                                <!--<a class="uk-disabled" href="#">Next-->
+                                                    <!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
+                                                <!--</a>-->
+                                            <!--</li>-->
+                                            <!--<li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">-->
+                                                <!--<a (click)="goToNextPage()">Next-->
+                                                    <!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
+                                                <!--</a>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                        <!--<div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>-->
+                                    <!--</div>-->
 
                                     <div class="uk-grid-margin">
 
@@ -113,38 +113,91 @@
 
                                     </div>
 
-                                    <div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top">
-                                        <ul class="uk-pagination">
 
-                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
-                                                <a class="uk-disabled" href="#">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
-                                            <li *ngIf="!isPreviousPageDisabled">
-                                                <a (click)="goToPreviousPage()">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
+                                    <!--<div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top">-->
+                                        <!--<ul class="uk-pagination">-->
 
-                                            <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
-                                                <a class="uk-disabled" href="#">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                            <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
-                                                <a (click)="goToNextPage()">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
-                                    </div>
+                                            <!--<li class="uk-disabled" *ngIf="isPreviousPageDisabled">-->
+                                                <!--<a class="uk-disabled" href="#">-->
+                                                    <!--<span class="uk-margin-small-right" uk-pagination-previous></span> Previous-->
+                                                <!--</a>-->
+                                            <!--</li>-->
+                                            <!--<li *ngIf="!isPreviousPageDisabled">-->
+                                                <!--<a (click)="goToPreviousPage()">-->
+                                                    <!--<span class="uk-margin-small-right" uk-pagination-previous></span> Previous-->
+                                                <!--</a>-->
+                                            <!--</li>-->
+
+                                            <!--<li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">-->
+                                                <!--<a class="uk-disabled" href="#">Next-->
+                                                    <!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
+                                                <!--</a>-->
+                                            <!--</li>-->
+                                            <!--<li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">-->
+                                                <!--<a (click)="goToNextPage()">Next-->
+                                                    <!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
+                                                <!--</a>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                        <!--<div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>-->
+                                    <!--</div>-->
 
 
                                     <!--You have {{searchResults.total}} corpora registered under your name-->
                                 </div>
 
+                            </div>
+
+                            <div *ngIf="incompleteCorporaSearchResults">
+
+                                <h4 class="uk-h4">Corpora under construction</h4>
+
+                                <div class="uk-grid-margin">
+
+                                    <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+                                        <div class="uk-width-1-1@m uk-first-column">
+                                            <div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
+                                                <table class="uk-table uk-table-striped uk-table-middle">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="">Name</th>
+                                                        <th class="">Date</th>
+                                                        <th class="">Description</th>
+                                                        <th class="">Status</th>
+                                                        <th class="">Actions</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr *ngFor="let incompleteCorpus of incompleteCorpora; let i=index" class="el-item">
+                                                        <td class=""><div class="el-title">{{incompleteCorpus.corpusInfo.identificationInfo.resourceNames[0].value}}</div></td>
+                                                        <td class=""><div class="el-title">{{incompleteCorpus.metadataHeaderInfo.metadataCreationDate | date:'shortDate'}}</div></td>
+                                                        <td class=""><div class="el-title">{{incompleteCorpus.corpusInfo.identificationInfo.descriptions[0].value}}</div></td>
+                                                        <td class="">
+                                                            <div *ngIf="corporaStatus[i] | async as status; else loading">
+                                                                {{status}}
+                                                            </div>
+                                                            <ng-template #loading>Loading Data...</ng-template>
+                                                        </td>
+                                                        <td class="uk-text-nowrap">
+                                                            --
+                                                            <!--<div *ngIf="!corpus.corpusInfo.identificationInfo.public" class="el-title">-->
+                                                            <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                                            <!--<a (click)="editCorpus(corpus)"><i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                                            <!--<a (click)="deleteConfirmationCorpus(corpus)"><i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                                            <!--<a (click)="makePublicConfirmation(corpus)" class=""><i class="fa fa-share-alt" aria-hidden="true"></i></a>-->
+                                                            <!--</div>-->
+                                                            <!--<div *ngIf="corpus.corpusInfo.identificationInfo.public" class="el-title">-->
+                                                            <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info" aria-hidden="true"></i></a>-->
+                                                            <!--</div>-->
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>

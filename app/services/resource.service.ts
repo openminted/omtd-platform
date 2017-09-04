@@ -246,6 +246,12 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
+    getMyIncompleteCorpora() {
+        return this.http.get(this._resourcesUrl + "incompleteCorpus/my", { withCredentials: true })
+            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
+            .catch(this.handleError);
+    }
+
     getMyComponents() {
         return this.http.get(this._resourcesUrl + "component/my", { withCredentials: true })
             .map(res => <SearchResults<BaseMetadataRecord>> res.json())
