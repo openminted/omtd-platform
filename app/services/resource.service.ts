@@ -181,8 +181,10 @@ export class ResourceService {
     registerComponent(component: Resource) {
 
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-
+        let options = new RequestOptions({
+            headers: headers,
+            withCredentials: true,
+        });
         console.log(JSON.stringify(component));
         return this.http.post(this._uploadUrl, JSON.stringify(component), options)
             .map(res => <Resource> res.json())
@@ -229,7 +231,7 @@ export class ResourceService {
         console.log(JSON.stringify(component));
 
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
         ResourceService.removeNulls(component);
         return this.http.post(this._searchUrl + 'component', JSON.stringify(component), options)
             .map(res => res.status)
@@ -339,7 +341,7 @@ export class ResourceService {
         console.log(JSON.stringify(corpus));
 
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, withCredentials : true });
         ResourceService.removeNulls(corpus);
         return this.http.post(this._searchUrl + 'incompleteCorpus', JSON.stringify(corpus), options)
             .map(res => res.status)

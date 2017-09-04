@@ -5,14 +5,15 @@ import {Injectable} from '@angular/core';
 import {User} from "./../domain/user";
 import {URLSearchParams, Http} from "@angular/http";
 import {getCookie, deleteCookie} from "../domain/utils";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable()
 export class AuthenticationService {
 
     private endpoint = process.env.API_ENDPOINT;
+    private oidcUrl = process.env.OIDC_ENDPOINT;
 
-    constructor (private http: Http,private router: Router) {}
+    constructor (private http: Http,private router: Router,private route: ActivatedRoute) {}
 
     isLoggedIn: boolean = false;
 
@@ -36,6 +37,12 @@ export class AuthenticationService {
         this.isLoggedIn = true;
     }
 
+    public loginWithState() {
+        console.log(this.route);
+        sessionStorage.setItem("state.location",this.router.url);
+        window.location.href =this.oidcUrl;
+    }
+
     logout() {
         deleteCookie('name');
         sessionStorage.removeItem('name');
@@ -53,17 +60,23 @@ export class AuthenticationService {
 
     public tryLogin() {
         if(getCookie('name')) {
+            setInterval(() =>{
+                this.http.get(this.endpoint + '/user',{ withCredentials: true }).subscribe(
+                    userInfo => {console.log("User is still logged in")},
+                    () => {sessionStorage.removeItem('name');deleteCookie('name');}
+                );
+            },1000 * 60 * 5);
             if(!sessionStorage.getItem('name')) {
                 this.http.get(this.endpoint + '/user',{ withCredentials: true }).subscribe(
                     userInfo => {console.log(userInfo.json());sessionStorage.setItem('name',userInfo.json()['name'])},
                     () => {sessionStorage.removeItem('name');deleteCookie('name');}
                 );
             }
-        }
-        if(sessionStorage.getItem("state.location")) {
-            let state = sessionStorage.getItem("state.location");
-            sessionStorage.removeItem("state.location");
-            this.router.navigateByUrl(state);
+            if(sessionStorage.getItem("state.location")) {
+                let state = sessionStorage.getItem("state.location");
+                sessionStorage.removeItem("state.location");
+                this.router.navigateByUrl(state);
+            }
         }
     }
 

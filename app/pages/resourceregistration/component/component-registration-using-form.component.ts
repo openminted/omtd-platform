@@ -3,7 +3,10 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms'
-import { Component as OMTDComponent } from "../../../domain/openminted-model";
+import {
+    Component as OMTDComponent, IdentificationInfo, ResourceIdentifier,
+    ResourceIdentifierSchemeNameEnum
+} from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 
 @Component({
@@ -16,6 +19,8 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
     componentForm: FormGroup;
     componentValue : OMTDComponent;
     componentFormErrorMessage: string = null;
+
+    private production = process.env.PRODUCTION;
 
     errorMessage: string = null;
     successfulMessage: string = null;
@@ -43,6 +48,16 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
                 'can see the ones invalid or missing marked as red.';
 
         if(this.componentForm.valid) {
+            let component : OMTDComponent = Object.assign({},this.componentForm.value);
+            let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
+            let text = "";
+            let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (let i = 0; i < 40; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
+            resourceIdentifier.value = text;
+            component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
             this.resourceService.uploadComponent(this.componentForm.value).subscribe(
                 res => {
                     this.successfulMessage = 'Component registered successfully';

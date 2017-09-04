@@ -4,6 +4,7 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DatasourceRegistrationComponent } from "./datasource-registration.component";
+import {CanActivateViaAuthGuard} from "../../../services/can-activate-auth-guard.service";
 
 const datasourceRegistrationRoutes: Routes = [
     {

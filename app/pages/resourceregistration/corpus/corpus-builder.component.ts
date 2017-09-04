@@ -15,6 +15,7 @@ import {
 import { Observable } from 'rxjs/Rx';
 import { ResourceService } from "../../../services/resource.service";
 import {error} from "util";
+import {AuthenticationService} from "../../../services/authentication.service";
 
 @Component({
     selector: 'corpus-builder',
@@ -48,7 +49,7 @@ export class CorpusBuilderComponent {
 
     intervalId: number = null;
 
-    constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
+    constructor(private authenticationService : AuthenticationService, private activatedRoute: ActivatedRoute,
                 private contentConnectorService: ContentConnectorService, private resourceService: ResourceService) {
 
     }
@@ -101,7 +102,9 @@ export class CorpusBuilderComponent {
     }
 
     onSubmit() {
-
+        if(!this.authenticationService.isUserLoggedIn) {
+            this.authenticationService.loginWithState();
+        }
         this.successfulMessage = null;
         this.errorMessage = null;
         this.corpusFormErrorMessage = null;
@@ -141,7 +144,6 @@ export class CorpusBuilderComponent {
             // corpusFilled.corpusInfo.distributionInfos[0].rightsInfo.rightsStatement = [RightsStatementEnum.OPEN_ACCESS]
 
             console.log('Corpus Filled', corpusFilled);
-
             this.resourceService.registerIncompleteCorpus(corpusFilled).subscribe(
                 res =>
                 {   console.log('Result from register incomplete corpus', res);
