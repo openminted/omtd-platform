@@ -17,16 +17,30 @@ import {MyGroup} from "../myform/my-group.interface";
             <form-repeat-inline [component]="licenseType" [parentGroup]="group"
                          [name]="'licenceInfos'" [required]="true" [description]="licenseInfoDesc">
             </form-repeat-inline>
+
+
+            <div formArrayName="rightsStatement">
+                <form-inline [description]="rightsStatementDesc" [valid]="getMyControl('rightsStatement').valid">
+                    <select name="role" class="form-control" formControlName="0">
+                        <option *ngFor="let value of rightsStatementEnum" [value]="value.key" [selected]="value.key == ''">
+                            {{value.value}}
+                        </option>
+                    </select>
+                </form-inline>
+            </div>
         </div>
+
 `,
     styleUrls: ['./templates/common.css']
 })
 export class RightsInfoForm extends MyGroup {
 
     readonly groupDefinition = {
-        // rightsStatement : ''
+        rightsStatement : this._fb.array(["OPEN_ACCESS"])
     };
 
+    private readonly rightsStatementEnum : EnumValues[] = rightsStatementEnum;
+    private readonly rightsStatementDesc : Description = rightsStatementDesc;
 
     private licenseInfoDesc : Description = licenceInfoDesc;
 
@@ -63,15 +77,6 @@ export class RightsInfoForm extends MyGroup {
             </div>
         </div>
     </div>
-    <div formArrayName="rightsStatement">
-        <form-inline [description]="rightsStatementDesc" [valid]="getMyControl('rightsStatement').valid">
-            <select name="role" class="form-control" formControlName="0">
-                <option *ngFor="let value of rightsStatementEnum" [value]="value.key" [selected]="value.key == ''">
-                    {{value.value}}
-                </option>
-            </select>
-        </form-inline>
-    </div>
 </div>
 `,
     styleUrls: ['./templates/common.css']
@@ -85,13 +90,9 @@ export class LicenseInfoForm extends MyGroup {
                 nonStandardLicenceName : ['',Validators.required],
                 nonStandardLicenceTermsURL : ['',Validators.required]
             })
-        ]),
-        rightsStatement : this._fb.array(["OPEN_ACCESS"])
+        ])
     };
 
-
-    private readonly rightsStatementEnum : EnumValues[] = rightsStatementEnum;
-    private readonly rightsStatementDesc : Description = rightsStatementDesc;
     private readonly licenceEnum : EnumValues[] = licenceEnum;
     private readonly licenceDesc : Description = licenceDesc;
     private readonly nonStandardLicenceNameDesc : Description = nonStandardLicenceNameDesc;
