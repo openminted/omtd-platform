@@ -14,13 +14,15 @@ import {
 } from "../../../domain/openminted-model";
 import { Observable } from 'rxjs/Rx';
 import { ResourceService } from "../../../services/resource.service";
-import {error} from "util";
-import {AuthenticationService} from "../../../services/authentication.service";
+import { error } from "util";
+import { AuthenticationService } from "../../../services/authentication.service";
+import { CorpusBuildingState } from "../../../domain/corpus-building-state";
+import { ContentConnectorStatus } from "../../../domain/content-connector-status";
 
 @Component({
     selector: 'corpus-builder',
     templateUrl: './corpus-builder.component.html',
-    styleUrls : ['../shared/templates/common.css']
+    styleUrls : ['../shared/templates/common.css','./corpus-builder.component.css']
 })
 
 export class CorpusBuilderComponent {
@@ -32,6 +34,8 @@ export class CorpusBuilderComponent {
     private gettingCorpusMetadata:boolean = true;
     private buildingCorpus:boolean = false;
     private callingBuildCorpus:boolean = false;
+
+    private min = Math.min;
 
     private corpus: OMTDCorpus;
     
@@ -47,9 +51,12 @@ export class CorpusBuilderComponent {
 
     status: string = null;
 
+    private corpusBuildingStates: CorpusBuildingState[] = [];
+    private contentConnectorStatus: ContentConnectorStatus;
+
     intervalId: number = null;
 
-    constructor(private authenticationService : AuthenticationService, private activatedRoute: ActivatedRoute,
+    constructor(private authenticationService : AuthenticationService, private activatedRoute: ActivatedRoute, private router: Router,
                 private contentConnectorService: ContentConnectorService, private resourceService: ResourceService) {
 
     }
@@ -83,6 +90,10 @@ export class CorpusBuilderComponent {
                 // this.contentConnectorService.prepareCorpus(this.urlParameters).subscribe(
                 //     corpus => this.loadCorpusMetadata(corpus),
                 //     error => this.handleError(<any>error));
+
+                this.contentConnectorService.getContentConnectorStatus().subscribe(
+                    contentConnectorStatus => this.contentConnectorStatus = contentConnectorStatus,
+                    error => this.handleError('System error retrieving content connector status', <any>error));
 
                 this.corpusPromise = this.contentConnectorService.prepareCorpus(this.urlParameters);
                 this.corpusPromise.subscribe(
@@ -149,7 +160,7 @@ export class CorpusBuilderComponent {
                 {   console.log('Result from register incomplete corpus', res);
                     this.buildCorpus(corpusFilled)
                 },
-                error => this.handleError(error)
+                error => this.handleError('Corpus building failed', error)
             );
 
 
@@ -163,7 +174,7 @@ export class CorpusBuilderComponent {
 
         this.contentConnectorService.buildCorpus(corpusFilled).subscribe(
             res => this.buildingCorpusFn(),
-            error => this.handleError(error)
+            error => this.handleError('Corpus building failed', error)
         );
     }
     
@@ -177,7 +188,7 @@ export class CorpusBuilderComponent {
                 res => this.checkStatus(res)
             );
             this.contentConnectorService.getCorpusBuildingState(this.corpusForm.value.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
-                res => console.log(res)
+                res => this.corpusBuildingStates = res
             );
         },5000)
     }
@@ -185,7 +196,7 @@ export class CorpusBuilderComponent {
     checkStatus(res: string) {
         this.status = res;
         if(this.status == '"CREATED"') {
-            this.successfulMessage = 'Corpus building finished successfully';
+            this.successfulMessage = 'Corpus building finished successfully.';
             clearInterval(this.intervalId);
         } else if(this.status == '"CANCELED"' || this.status == '"DELETED"') {
             this.createCorpusErrorMessage = 'There was a problem building this corpus. Try again in a while.';
@@ -193,10 +204,14 @@ export class CorpusBuilderComponent {
         }
     }
 
-    handleError(error) {
+    handleError(message: string, error) {
         window.scrollTo(0,0);
         this.callingBuildCorpus = false;
         this.buildingCorpus = false;
-        this.errorMessage = 'Corpus building failed (Server responded: ' + error + ')';
+        this.errorMessage = message + ' (Server responded: ' + error + ')';
+    }
+
+    navigateToCorpus() {
+        this.router.navigate(['/landingPage/corpus/', this.corpusForm.value.metadataHeaderInfo.metadataRecordIdentifier.value]);
     }
 }

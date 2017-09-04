@@ -25,16 +25,105 @@
                     <div *ngIf="!successfulMessage && !createCorpusErrorMessage">
                         <h3 class="subtitle">Corpus is building. Below you can see the progress of the process</h3>
 
-                        <p><strong>Status: </strong><span>{{status}}</span></p>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                <span class="sr-only">{{status}}</span>
+                        <p>Overall status - <strong>{{status}}</strong></p>
+
+                        <template [ngIf]="corpusBuildingStates && corpusBuildingStates.length>0 && contentConnectorStatus">
+
+                            <div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
+                                <table class="uk-table uk-table-striped uk-table-middle uk-margin-medium-bottom">
+                                    <thead>
+                                    <tr>
+                                        <th class="">Connector</th>
+                                        <th class="">Status</th>
+                                        <th class="">Progress</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let corpusBuildingState of corpusBuildingStates" class="el-item">
+                                        <td class=""><div class="el-title">{{corpusBuildingState.connector}}</div></td>
+                                        <td class=""><div class="el-title">{{corpusBuildingState.currentStatus}}</div></td>
+                                        <td class="">
+                                            <div class="el-title">
+                                                <template [ngIf]="contentConnectorStatus">
+                                                    <template [ngIf]="corpusBuildingState.currentStatus=='PROCESSING_METADATA'">
+                                                        <progress class="uk-progress"
+                                                                  value="{{corpusBuildingState.metadataProgress}}"
+                                                                  max="{{min(corpusBuildingState.totalHits,contentConnectorStatus.maxFulltextDocuments)}}">
+                                                        </progress>
+                                                        <div class="text-align: center">{{corpusBuildingState.metadataProgress}} / {{min(corpusBuildingState.totalHits,contentConnectorStatus.maxFulltextDocuments)}}</div>
+                                                    </template>
+                                                </template>
+                                                <template [ngIf]="!contentConnectorStatus">
+                                                    <template [ngIf]="corpusBuildingState.currentStatus=='PROCESSING_METADATA'">
+                                                        <progress class="uk-progress"
+                                                                  value="{{corpusBuildingState.metadataProgress}}"
+                                                                  max="{{corpusBuildingState.totalHits}}">
+                                                        </progress>
+                                                        <div class="text-align: center">{{corpusBuildingState.metadataProgress}} / {{corpusBuildingState.totalHits}}</div>
+                                                    </template>
+                                                </template>
+
+                                                <template [ngIf]="corpusBuildingState.currentStatus=='PROCESSING_FULLTEXT'">
+                                                    <progress class="uk-progress"
+                                                              value="{{corpusBuildingState.fulltextProgress}}" max="{{corpusBuildingState.totalFulltext}}">
+                                                    </progress>
+                                                    <div class="text-align: center">{{corpusBuildingState.fulltextProgress}} / {{corpusBuildingState.totalFulltext}}</div>
+                                                </template>
+
+                                                <template [ngIf]="corpusBuildingState.currentStatus=='SUBMITTED'">
+                                                    Waiting....
+                                                </template>
+
+                                            </div>
+                                            <!--<div class="el-title">{{incompleteCorpus.corpusInfo.identificationInfo.descriptions[0].value}}</div>-->
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
+                        </template>
+
+
+
+
+
+
+                            <!--<div *ngFor="let corpusBuildingState of corpusBuildingStates" class="uk-margin-medium-top">-->
+                                <!--<div>Content Provider - <strong>{{corpusBuildingState.connector}}</strong></div>-->
+                                <!--<div>Status - <strong>{{corpusBuildingState.currentStatus}}</strong></div>-->
+                                <!--<template [ngIf]="contentConnectorStatus">-->
+                                    <!--<progress *ngIf="corpusBuildingState.currentStatus=='PROCESSING_METADATA'" class="uk-progress"-->
+                                              <!--value="{{corpusBuildingState.metadataProgress}}"-->
+                                              <!--max="{{min(corpusBuildingState.totalHits,contentConnectorStatus.maxFulltextDocuments)}}">-->
+                                        <!--{{corpusBuildingState.metadataProgress}} / {{min(corpusBuildingState.totalHits,contentConnectorStatus.maxFulltextDocuments)}}-->
+                                    <!--</progress>-->
+                                <!--</template>-->
+                                <!--<template [ngIf]="!contentConnectorStatus">-->
+                                    <!--<progress *ngIf="corpusBuildingState.currentStatus=='PROCESSING_METADATA'" class="uk-progress"-->
+                                              <!--value="{{corpusBuildingState.metadataProgress}}"-->
+                                              <!--max="{{corpusBuildingState.totalHits}}">-->
+                                        <!--{{corpusBuildingState.metadataProgress}} / {{corpusBuildingState.totalHits}}-->
+                                    <!--</progress>-->
+                                <!--</template>-->
+
+                                <!--<progress *ngIf="corpusBuildingState.currentStatus=='PROCESSING_FULLTEXT'" class="uk-progress"-->
+                                          <!--value="{{corpusBuildingState.fulltextProgress}}" max="{{corpusBuildingState.totalFulltext}}">-->
+                                    <!--{{corpusBuildingState.fulltextProgress}} / {{corpusBuildingState.totalFulltext}}-->
+                                <!--</progress>-->
+                            <!--</div>-->
+                        <!--</template>-->
+
+                        <!--<div class="progress">-->
+                            <!--<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">-->
+                                <!--<span class="sr-only">{{status}}</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
 
                     <div *ngIf="successfulMessage" class="alert alert-success">
-                        {{successfulMessage}}
+                        {{successfulMessage}} <a (click)="navigateToCorpus()">Click here</a> to see the details of this corpus,
+                        or <a href="{{corpusForm.value.corpusInfo.distributionInfos[0].distributionLoc[0].distributionLocation}}">here</a>
+                        to directly download its data.
                     </div>
 
                     <div *ngIf="createCorpusErrorMessage">
