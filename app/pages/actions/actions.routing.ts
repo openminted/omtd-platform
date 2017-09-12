@@ -8,15 +8,19 @@ import { BuildAWorkflowComponent } from "./buildworkflow/build-a-workflow.compon
 import { RunApplicationComponent } from "./runapplication/run-application.component";
 import { BrowseCorporaComponent } from "./utils/browse-corpora.component";
 import { BrowseApplicationsComponent } from "./utils/browse-applications.component";
+import {CanActivateViaAuthGuard} from "../../services/can-activate-auth-guard.service";
 
 const actionsRoutes: Routes = [
     {
         path: 'runApplication',
         component: RunApplicationComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ]
     },
     {
         path: 'buildWorkflow',
-        component: BuildAWorkflowComponent,
+        component: BuildAWorkflowComponent
     },
     {
         path: 'browseCorpora',
