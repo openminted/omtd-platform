@@ -14,6 +14,7 @@ import { AccordionModule, TypeaheadModule } from "ngx-bootstrap";
 import { ResourceRegistrationModule } from "../resource-registration.module";
 import { ComponentRegistrationUsingFormComponent } from "./component-registration-using-form.component";
 import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reusable-components.module";
+import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reu
         ComponentRegistrationComponent,
         ComponentRegistrationXMLComponent, 
         ComponentRegistrationFormComponent,
-        ComponentRegistrationUsingFormComponent
+        ComponentRegistrationUsingFormComponent,
+        ComponentUpdateUsingFormComponent
     ],
     providers: [
         ResourceService

@@ -7,7 +7,8 @@ import { CorpusRegistrationComponent } from "./corpus-registration.component";
 import { SearchForPublicationsComponent } from "./search-for-publications.component";
 import { CorpusUploadComponent } from "./corpus-upload.component";
 import { CorpusBuilderComponent } from "./corpus-builder.component";
-import {CanActivateViaAuthGuard} from "../../../services/can-activate-auth-guard.service";
+import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-guard.service";
+import { CorpusUpdateUsingFormComponent } from "./corpus-update-using-form.component";
 
 const corpusRegistrationRoutes: Routes = [
     {
@@ -31,6 +32,13 @@ const corpusRegistrationRoutes: Routes = [
     {
         path: 'resourceRegistration/corpus/build',
         component: CorpusBuilderComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ]
+    },
+    {
+        path: 'resourceRegistration/corpus/form/edit/:id',
+        component: CorpusUpdateUsingFormComponent,
         canActivate: [
             CanActivateViaAuthGuard
         ]

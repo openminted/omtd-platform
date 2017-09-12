@@ -6,7 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentRegistrationComponent } from "./component-registration.component";
 import { ComponentRegistrationXMLComponent } from "./component-registration-xml.component";
 import { ComponentRegistrationUsingFormComponent } from "./component-registration-using-form.component";
-import {CanActivateViaAuthGuard} from "../../../services/can-activate-auth-guard.service";
+import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-guard.service";
+import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
 
 const componentRegistrationRoutes: Routes = [
     {
@@ -26,6 +27,13 @@ const componentRegistrationRoutes: Routes = [
     {
         path: 'resourceRegistration/component/form',
         component: ComponentRegistrationUsingFormComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ]
+    },
+    {
+        path: 'resourceRegistration/component/form/edit/:id',
+        component: ComponentUpdateUsingFormComponent,
         canActivate: [
             CanActivateViaAuthGuard
         ]

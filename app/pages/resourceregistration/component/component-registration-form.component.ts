@@ -23,7 +23,7 @@ export class ComponentRegistrationFormComponent implements OnInit {
     @Input('component')
     component: Observable<OMTDComponent> = null;
 
-    @Output('componentForm')
+    @Output('corpusForm')
     componentForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
     componentPatch: any = {

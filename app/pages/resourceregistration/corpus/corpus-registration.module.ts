@@ -19,6 +19,7 @@ import { AccordionModule, TypeaheadModule } from "ngx-bootstrap";
 import { CorpusUploadComponent } from "./corpus-upload.component";
 import { CorpusBuilderComponent } from "./corpus-builder.component";
 import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reusable-components.module";
+import { CorpusUpdateUsingFormComponent } from "./corpus-update-using-form.component";
 
 @NgModule({
     imports: [
@@ -39,7 +40,8 @@ import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reu
         CorpusRegistrationComponent, 
         SearchForPublicationsComponent,
         CorpusRegistrationFormComponent,
-        CorpusBuilderComponent
+        CorpusBuilderComponent,
+        CorpusUpdateUsingFormComponent
     ],
     providers: [
         ResourceService, 

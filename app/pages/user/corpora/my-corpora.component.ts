@@ -147,7 +147,7 @@ export class MyCorporaComponent {
     }
 
     editCorpus(corpus: OMTDCorpus) {
-
+        this.router.navigate(['/resourceRegistration/corpus/form/edit/', corpus.metadataHeaderInfo.metadataRecordIdentifier.value]);
     }
 
     deleteConfirmationCorpus(corpus: OMTDCorpus) {
