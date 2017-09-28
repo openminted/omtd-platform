@@ -221,7 +221,7 @@ export class ResourceService {
         formBody.append('filename',name);
         formBody.append('file',file);
         return this.http.post(this._uploadZip,formBody)
-            .map(res => this.corpusDownloadURL(res.text()))
+            .map(res => this.corpusDownloadURL(res.json()))
             .catch(this.handleError);
     }
 
@@ -238,7 +238,14 @@ export class ResourceService {
     }
 
     public corpusDownloadURL(id : string) : string {
-        return this._resourcesUrl + '/corpus/download?archiveId=' + id;
+        let location = "";
+        if ( this._resourcesUrl.startsWith('/') ) {
+            location = window.location.host + this._resourcesUrl;
+        } else {
+            location = this._resourcesUrl;
+        }
+        console.log(location + '/corpus/download?archiveId=' + id);
+        return location + '/corpus/download?archiveId=' + id;
     }
 
     getMyCorpora() {

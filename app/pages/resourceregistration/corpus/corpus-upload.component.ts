@@ -87,7 +87,7 @@ export class CorpusUploadComponent implements OnInit {
                 corpusBody.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
 
                 corpusBody.corpusInfo.distributionInfos  = [distributionInfo];
-
+id
                 this.resourceService.uploadCorpus(this.corpusForm.value).subscribe(
                     res => {
                         this.uploadingCorpus = false;
