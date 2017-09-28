@@ -240,12 +240,12 @@ export class ResourceService {
     public corpusDownloadURL(id : string) : string {
         let location = "";
         if ( this._resourcesUrl.startsWith('/') ) {
-            location = window.location.host + this._resourcesUrl;
+            location = window.location.protocol + "//" + window.location.host + this._resourcesUrl;
         } else {
             location = this._resourcesUrl;
         }
-        console.log(location + '/corpus/download?archiveId=' + id);
-        return location + '/corpus/download?archiveId=' + id;
+        console.log(location + 'corpus/download?archiveId=' + id);
+        return location + 'corpus/download?archiveId=' + id;
     }
 
     getMyCorpora() {
