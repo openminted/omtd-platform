@@ -55,12 +55,12 @@ export class VersionFormControl extends MyGroup {
         updateFrequency : ''
     };
 
-    private versionType :  EnumValues[] = versionTypeEnum;
+    versionType :  EnumValues[] = versionTypeEnum;
 
-    private revisionDesc : Description = revisionDesc;
-    private versionTypeDesc : Description = versionTypeDesc;
-    private updateFrequencyDesc : Description = updateFrequencyDesc;
-    private versionDesc : Description = versionDesc;
+    revisionDesc : Description = revisionDesc;
+    versionTypeDesc : Description = versionTypeDesc;
+    updateFrequencyDesc : Description = updateFrequencyDesc;
+    versionDesc : Description = versionDesc;
 
 
     required = true;

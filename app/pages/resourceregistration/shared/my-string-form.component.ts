@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 1/17/17.
  */
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Type} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import {MyGroup} from "../myform/my-group.interface";
 
@@ -31,9 +31,9 @@ export class MyStringFormControl implements OnInit {
 
 
     @Input('required')
-    private required : boolean = false;
+    required : boolean = false;
 
-    private hiddenLang = false;
+    hiddenLang = false;
 
     ngOnInit() {
     }
@@ -41,7 +41,7 @@ export class MyStringFormControl implements OnInit {
     validate(c : AbstractControl) {
     }
 
-    private toggle() {
+    toggle() {
         this.hiddenLang =!this.hiddenLang;
     }
 
@@ -96,4 +96,64 @@ export class MyStringAreaFormGroup extends MyGroup {
         value : ['', Validators.required],
         lang : 'en'
     };
+}
+
+@Component({
+    selector: 'my-string-desc',
+    template : `
+        <form-inline [description]="description" [valid]="group.valid">
+            <div [formGroup]="group">
+                <input type="text" class="uk-input" formControlName="value" placeholder="{{description.label}}">
+                <input type="hidden" formControlName="lang" placeholder="Language">
+            </div>
+        </form-inline>
+    `,
+    styleUrls : ['./templates/common.css']
+})
+
+export class MyStringDescFormGroup extends MyGroup {
+
+    public groupDefinition : any = {
+        value : ['', Validators.required],
+        lang : 'en'
+    };
+}
+
+@Component({
+    selector: 'my-string-array-group',
+    template : `
+        <form-repeat-inline [component]="myStringType" [parentGroup]="parentGroup"
+                            [required]="description.mandatory" [description]="description">
+
+        </form-repeat-inline>
+    `,
+    styleUrls : ['./templates/common.css']
+})
+
+export class MyStringArrayFormGroup extends MyGroup {
+
+    public groupDefinition : any = {};
+
+    myStringType : Type<any> = MyStringFormGroup;
+
+}
+
+@Component({
+    selector: 'my-simple-string-group',
+    template : `
+        <form-inline [description]="description" [valid]="group.valid">
+            <div [formGroup]="group">
+                <input type="text" class="uk-input" formControlName="value" placeholder="{{description.label}}">
+            </div>
+        </form-inline>
+    `,
+    styleUrls : ['./templates/common.css']
+})
+
+export class MySimpleStringControl extends MyGroup {
+
+    public groupDefinition : any = {};
+
+    myStringType : Type<any> = MyStringFormGroup;
+
 }

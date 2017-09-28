@@ -1,68 +1,54 @@
 /**
  * Created by stefania on 1/18/17.
  */
-import {AfterContentInit, Component, Input, OnInit, Type} from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import {EnumValues, resourceIdentifierSchemeNameEnum, personIdentifierSchemeNameEnum} from "../../../domain/omtd.enum";
+import { Component, Injector } from '@angular/core';
 import {
-    Description, resourceNameDesc, descriptionDesc, resourceShortNameDesc,
-    contactInfoDesc, landingPageDesc, contactEmailDesc
+    Description, contactInfoDesc, landingPageDesc, contactEmailDesc
 } from "../../../domain/omtd.description";
 import {ContactPersonFormControl} from "./contactPerson.component";
 import {MyGroup} from "../myform/my-group.interface";
+import {MyChoiceComponents} from "../myform/my-choice.interface";
+import {MyStringDescFormGroup} from "./my-string-form.component";
+import {AuthenticationService} from "../../../services/authentication.service";
+import {Validators} from "@angular/forms";
 
 @Component({
     selector: 'contact-info-form',
     templateUrl : './templates/contact-info-form.component.html',
+    // template : `
+    //     <div [formGroup]="group">
+    //         <form-choice [parentGroup]="group" [components]="myChoices"></form-choice>
+    //     </div>
+    //
+    // `,
     styleUrls : ['./templates/common.css']
 })
 
-export class ContactInfoFormControl extends MyGroup implements AfterContentInit {
+export class ContactInfoFormControl extends MyGroup {
 
 
-    private radioButton : string[] = ["Contact Email","Landing Page",'Contact Person'];
-    private radioButtonSelected : string = this.radioButton[0];
-    private personEnum : EnumValues[] = personIdentifierSchemeNameEnum;
+    contactInfoDesc : Description = contactInfoDesc;
+    landingPageDesc : Description = landingPageDesc;
+    emailDesc : Description = contactEmailDesc;
+    private authenticationService : AuthenticationService;
 
-    private contactInfoDesc : Description = contactInfoDesc;
-    private landingPageDesc : Description = landingPageDesc;
-    private emailDesc : Description = contactEmailDesc;
-
-    public customClass: string = 'customAccordionPanel';
+    readonly myChoices : MyChoiceComponents[] = [];
 
     public groupDefinition = {
-        contactEmail : ['',Validators.required],
-        // landingPage : ['',Validators.required]
+        contactEmail : ["",Validators.compose([Validators.required,Validators.email])]
     };
 
-    type : Type<any> = ContactPersonFormControl;
-
-    ngAfterContentInit(): void {
-        // this.getMyControl('landingPage').disable();
+    constructor(private injector : Injector){
+        super(injector);
+        this.authenticationService = this.injector.get(AuthenticationService) ;
+        this.myChoices.push(new MyChoiceComponents("contactEmail",MyStringDescFormGroup,this.emailDesc));
+        this.myChoices.push(new MyChoiceComponents("landingPage",MyStringDescFormGroup,this.landingPageDesc));
+        this.myChoices.push(new MyChoiceComponents("contactPersons",ContactPersonFormControl,this.contactInfoDesc));
     }
 
-    public deactivate() {
-        if (this.radioButtonSelected == "Contact Email") {
-            this.getMyControl('contactEmail').enable();
-            this.getMyControl('landingPage').disable();
-            this.getMyControl('contactPersons').disable();
-        }
-        else if (this.radioButtonSelected == "Landing Page") {
-            this.getMyControl('contactEmail').disable();
-            this.getMyControl('landingPage').enable();
-            this.getMyControl('contactPersons').disable();
-        } else if (this.radioButtonSelected == "Contact Person") {
-            this.getMyControl('contactEmail').disable();
-            this.getMyControl('landingPage').disable();
-            this.getMyControl('contactPersons').enable();
-        }
-    }
-
-    public changeType(choice: string) :void {
-
-        if (this.radioButtonSelected !== choice) {
-            this.radioButtonSelected = choice;
-        }
-        this.deactivate();
+    ngOnInit() {
+        super.ngOnInit();
+        this.getMyControl('contactEmail').setValue(this.authenticationService.email);
+        // this.parentGroup.get('contactEmail').setValue(this.authenticationService.email);
     }
 }

@@ -22,7 +22,7 @@ export class MetadataHeaderInfoFormControl implements OnInit{
 
     public myForm : FormGroup;
 
-    private personEnum : EnumValues[];
+    personEnum : EnumValues[];
 
     public customClass: string = 'customAccordionPanel';
 

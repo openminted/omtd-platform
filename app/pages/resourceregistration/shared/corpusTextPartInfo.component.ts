@@ -39,9 +39,9 @@ export class CorpusTextPartInfoFormControl extends MyGroup {
         mediaType : 'text'
     };
 
-    private sizeInfoType : Type<any> = SizeInfoFormControl;
-    private languageInfoType : Type<any> = LanguageInfoFormControl;
+    sizeInfoType : Type<any> = SizeInfoFormControl;
+    languageInfoType : Type<any> = LanguageInfoFormControl;
 
-    private sizeInfoDesc : Description = sizeInfoDesc;
-    private languageDesc : Description = languageDesc;
+    sizeInfoDesc : Description = sizeInfoDesc;
+    languageDesc : Description = languageDesc;
 }

@@ -28,30 +28,16 @@ export class CorpusUploadComponent implements OnInit {
     errorMessage: string = null;
     successfulMessage: string = null;
 
-    private uploadingCorpus:boolean = false;
+    uploadingCorpus:boolean = false;
 
     constructor(private _fb: FormBuilder, private resourceService: ResourceService) {
     }
 
     ngOnInit() {
-        // this.myForm = this._fb.group({
-        //     corpusInfo:this._fb.group({
-        //         corpusSubtypeSpecificInfo: this._fb.group({
-        //
-        //         })
-        //     })
-        // });
-        // var self = this;
-        // this.resourceService.getCorpus("rawCorpus_almostall").subscribe(res => {
-        //     console.log(res);
-        //     var x : OMTDCorpus = res;
-        //     this.myForm.patchValue(x);
-        //     //setTimeout(this.myForm.patchValue,1000,{metadataHeaderInfo : x.metadataHeaderInfo || {}})
-        //     this.resourceService.getCorpus("rawCorpus_almostall").subscribe(res => {
-        //         var x: OMTDCorpus = res;
-        //         this.myForm.patchValue(x);
-        //     });
-        // });
+        setTimeout( () => {
+            console.log("disable",this.corpusForm);
+            this.corpusForm.get("corpusInfo.distributionInfos.0.distributionLoc.0").disable();
+        },500)
 
     }
 

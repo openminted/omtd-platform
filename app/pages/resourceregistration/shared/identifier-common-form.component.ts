@@ -24,7 +24,7 @@ export class IdentifierFormControl implements OnInit{
 
 
     @Input('scheme-name')
-    private schemeName : string;
+    schemeName : string;
 
     @Input('scheme-desc')
     public schemeUriDesc : Description;
@@ -41,9 +41,9 @@ export class IdentifierFormControl implements OnInit{
     @Input('required')
     required: boolean = false;
 
-    private identifierDesc : Description;
+    identifierDesc : Description;
 
-    private identifierSchemeDesc : Description;
+    identifierSchemeDesc : Description;
 
     public myForm : FormGroup;
 

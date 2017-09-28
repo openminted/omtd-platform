@@ -25,8 +25,8 @@ import {
 })
 export class DatasetDistributionsInfoFormControl {
     @Input()
-    private parentGroup : FormGroup = null;
-    private datasetDistributionType : Type<any> = DatasetDistributionInfoFormControl;
+    parentGroup : FormGroup = null;
+    datasetDistributionType : Type<any> = DatasetDistributionInfoFormControl;
     readonly datasetDistributionDesc : Description = datasetDistributionInfoDesc;
 
 }
@@ -52,7 +52,7 @@ export class DatasetDistributionsInfoFormControl {
 export class DatasetDistributionInfoFormControl extends MyGroup {
 
     readonly datasetDistributionDesc : Description = datasetDistributionInfoDesc;
-    private datasetDistributionLocType : Type<any> = DatasetDistributionLocInfoFormControl;
+    datasetDistributionLocType : Type<any> = DatasetDistributionLocInfoFormControl;
 
     readonly groupDefinition = {
 

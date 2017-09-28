@@ -47,25 +47,25 @@ export class RelatedCommonsForm implements OnInit{
     public parentForm: FormGroup;
 
     @Input('name')
-    private name : string;
+    name : string;
 
     @Input('type')
-    private type : string;
+    type : string;
 
     @Input('schemeEnum')
-    private schemeEnum : EnumValues[];
+    schemeEnum : EnumValues[];
 
     @Input('topLabel')
-    private topLabel : string;
+    topLabel : string;
 
     @Input('required')
-    private required : boolean = false;
+    required : boolean = false;
 
     @Input('label')
-    private label : string;
+    label : string;
 
     // private myForm : FormGroup;
-    private formArray : FormArray;
+    formArray : FormArray;
 
     public add_new() {
         this.formArray.push(RelatedCommonForm.generate(this._fb,this.type,this.required));
@@ -111,29 +111,29 @@ export class RelatedCommonForm implements OnInit{
     public parentForm: FormGroup;
 
     @Input('personLabel')
-    private personLabel : string;
+    personLabel : string;
 
     @Input('index')
-    private index : number;
+    index : number;
 
     @Input('personEnum')
-    private personEnum : EnumValues[];
+    personEnum : EnumValues[];
 
     @Input('type')
-    private type : string;
+    type : string;
 
 
-    private myFormPerson : FormArray;
+    myFormPerson : FormArray;
 
-    private myFormIdentifier : FormArray;
+    myFormIdentifier : FormArray;
 
-    private relatedPerson : Description;
-    private relatedPersonIdentifier : Description;
+    relatedPerson : Description;
+    relatedPersonIdentifier : Description;
 
-    private radioButton : string[] = ["Names","Identifiers"];
-    private radioButtonSelected : string;
+    radioButton : string[] = ["Names","Identifiers"];
+    radioButtonSelected : string;
 
-    private personDesc : Description;
+    personDesc : Description;
 
     constructor(private _fb: FormBuilder) {
         this.relatedPersonIdentifier = personIdentifierDesc;

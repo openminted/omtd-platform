@@ -5,18 +5,18 @@
     <div *ngIf="annotationInfo.annotationStandoff">
         <strong>Annotation standoff: </strong>{{annotationInfo.annotationStandoff}}
     </div>
-    <div *ngIf="annotationInfo.dataFormat">
-        <strong>Data format: </strong>
-        <a *ngIf="annotationInfo.dataFormat.documentationURL" href="{{annotationInfo.dataFormat.documentationURL}}">
-            <span *ngIf="!annotationInfo.dataFormat.mimeType || !annotationInfo.dataFormat.dataFormatSpecific">{{annotationInfo.dataFormat.documentationURL}}</span>
-            <span *ngIf="annotationInfo.dataFormat.mimeType">{{annotationInfo.dataFormat.mimeType}} </span>
-            <span *ngIf="annotationInfo.dataFormat.dataFormatSpecific">{{annotationInfo.dataFormat.dataFormatSpecific}} </span>
-        </a>
-        <span *ngIf="!annotationInfo.dataFormat.documentationURL">
-            <span *ngIf="annotationInfo.dataFormat.mimeType">{{annotationInfo.dataFormat.mimeType}} </span>
-            <span *ngIf="annotationInfo.dataFormat.dataFormatSpecific">{{annotationInfo.dataFormat.dataFormatSpecific}} </span>
-        </span>
-    </div>
+    <!--<div *ngIf="annotationInfo.dataFormat">-->
+        <!--<strong>Data format: </strong>-->
+        <!--<a *ngIf="annotationInfo.dataFormat.documentationURL" href="{{annotationInfo.dataFormat.documentationURL}}">-->
+            <!--<span *ngIf="!annotationInfo.dataFormat.mimeType || !annotationInfo.dataFormat.dataFormatSpecific">{{annotationInfo.dataFormat.documentationURL}}</span>-->
+            <!--<span *ngIf="annotationInfo.dataFormat.mimeType">{{annotationInfo.dataFormat.mimeType}} </span>-->
+            <!--<span *ngIf="annotationInfo.dataFormat.dataFormatSpecific">{{annotationInfo.dataFormat.dataFormatSpecific}} </span>-->
+        <!--</a>-->
+        <!--<span *ngIf="!annotationInfo.dataFormat.documentationURL">-->
+            <!--<span *ngIf="annotationInfo.dataFormat.mimeType">{{annotationInfo.dataFormat.mimeType}} </span>-->
+            <!--<span *ngIf="annotationInfo.dataFormat.dataFormatSpecific">{{annotationInfo.dataFormat.dataFormatSpecific}} </span>-->
+        <!--</span>-->
+    <!--</div>-->
     <div *ngIf="annotationInfo.typesystem">
         <strong>Typesystem: </strong>
         <span *ngIf="annotationInfo.typesystem.resourceNames && annotationInfo.typesystem.resourceNames.length>0">
@@ -26,15 +26,15 @@
             {{annotationInfo.typesystem.resourceIdentifiers[0].value}}
         </span>
     </div>
-    <div *ngIf="annotationInfo.tagset">
-        <strong>Tagset: </strong>
-        <span *ngIf="annotationInfo.tagset.resourceNames && annotationInfo.tagset.resourceNames.length>0">
-            {{annotationInfo.tagset.resourceNames[0].value}}
-        </span>
-        <span *ngIf="annotationInfo.tagset.resourceIdentifiers && annotationInfo.tagset.resourceIdentifiers.length>0">
-            {{annotationInfo.tagset.resourceIdentifiers[0].value}}
-        </span>
-    </div>
+    <!--<div *ngIf="annotationInfo.tagset">-->
+        <!--<strong>Tagset: </strong>-->
+        <!--<span *ngIf="annotationInfo.tagset.resourceNames && annotationInfo.tagset.resourceNames.length>0">-->
+            <!--{{annotationInfo.tagset.resourceNames[0].value}}-->
+        <!--</span>-->
+        <!--<span *ngIf="annotationInfo.tagset.resourceIdentifiers && annotationInfo.tagset.resourceIdentifiers.length>0">-->
+            <!--{{annotationInfo.tagset.resourceIdentifiers[0].value}}-->
+        <!--</span>-->
+    <!--</div>-->
     <div *ngIf="annotationInfo.theoreticModel">
         <strong>Theoretic model: </strong>{{annotationInfo.theoreticModel}}
     </div>

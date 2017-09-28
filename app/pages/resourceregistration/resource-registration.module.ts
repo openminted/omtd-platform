@@ -12,7 +12,10 @@ import { ValuesPipe } from "./shared/values-pipe";
 import { RelatedCommonsForm, RelatedCommonForm } from "./shared/related-common-form.component";
 import { LanguageTypeForm } from "./shared/language-type-form.component";
 import { IdentifierFormControl } from "./shared/identifier-common-form.component";
-import {MyStringAreaFormGroup, MyStringFormControl, MyStringFormGroup} from "./shared/my-string-form.component";
+import {
+    MyStringAreaFormGroup, MyStringArrayFormGroup, MyStringDescFormGroup, MyStringFormControl,
+    MyStringFormGroup
+} from "./shared/my-string-form.component";
 import { IdentificationInfoFormControl } from "./shared/identification-info-form.component";
 import { EnumCommonForm } from "./shared/enum-common-form";
 import { ContactInfoFormControl } from "./shared/contact-info-form.component";
@@ -32,14 +35,16 @@ import { MyArray, MyArrayInline, MyArrayWrapper, MyInlineArrayWrapper } from "./
 import { MyFormDirective } from "./myform/my-form.directive";
 import { VersionFormControl } from "./shared/versionInfo.component";
 import { ComponentGenericFormControl } from "./shared/componentGeneric.component";
-import { InlineFormWrapper } from "./myform/my-group.interface";
-import { ContactPersonFormControl } from "./shared/contactPerson.component";
+import {InlineFormWrapper, MyGroup} from "./myform/my-group.interface";
+import {ContactPersonFormControl, SurnameGivenNameFormGroup} from "./shared/contactPerson.component";
 import { IdentifierCommonFormControl } from "./shared/identifierCommon.component";
 import { ComponentCreationInfoFormControl } from "./shared/componentCreationInfo.component";
 import { CorpusTextPartInfoFormControl } from "./shared/corpusTextPartInfo.component";
 import { CorpusSubtypeSpecificInfoForm } from "./shared/corpus-subtype-specific-info-form.component";
-import { AppModule } from "../../app.module";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
+import {MyChoice, MyChoiceWrapper} from "./myform/my-choice.interface";
+import {RawCorpusInfoFormControl} from "./shared/raw-corpus-info-form.component";
+import {DistributionMedium, DistributionMediums} from "./shared/distribution-mediums.component";
 
 
 @NgModule({
@@ -55,9 +60,12 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
     entryComponents: [
         ExampleFormControl,
         MyArrayWrapper,
+        MyChoice,
+        MyChoiceWrapper,
         ContactPersonFormControl,
         MyInlineArrayWrapper,
         MyStringFormGroup,
+        MyStringArrayFormGroup,
         DatasetDistributionLocInfoFormControl,
         MyStringAreaFormGroup,
         IdentifierCommonFormControl,
@@ -66,10 +74,12 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
         CorpusTextPartInfoFormControl,
         LicenseInfoForm,
         SizeInfoFormControl,
+        MyStringDescFormGroup,
         LanguageTypeForm,
         LanguageInfoFormControl
     ],
     declarations: [
+        MyGroup,
         MyArrayWrapper,
         MyStringFormGroup,
         MyStringAreaFormGroup,
@@ -81,13 +91,21 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
         CorpusTextPartInfoFormControl,
         MyArray,
         MyArrayInline,
+        MyChoice,
+        MyChoiceWrapper,
         ComponentCreationInfoFormControl,
         MyFormDirective,
         ExampleFormControl,
+        SurnameGivenNameFormGroup,
+        RawCorpusInfoFormControl,
+        DistributionMediums,
+        DistributionMedium,
+        MyStringArrayFormGroup,
         MetadataIdentifierFormControl,
         MetadataHeaderInfoFormControl,
         VersionFormControl,
         ValuesPipe,
+        MyStringDescFormGroup,
         IdentifierCommonFormControl,
         ComponentGenericFormControl,
         RelatedCommonsForm,
@@ -116,11 +134,16 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
         MyArrayWrapper,
         InlineFormWrapper,
         MyArray,
+        MyGroup,
         MyArrayInline,
         MyStringFormGroup,
         MyInlineArrayWrapper,
+        MyChoice,
+        MyChoiceWrapper,
         VersionFormControl,
         MyStringAreaFormGroup,
+        MyStringDescFormGroup,
+        MyStringArrayFormGroup,
         DatasetDistributionLocInfoFormControl,
         ComponentCreationInfoFormControl,
         ContactPersonFormControl,

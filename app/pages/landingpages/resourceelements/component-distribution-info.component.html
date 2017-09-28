@@ -1,31 +1,33 @@
 <div class="uk-list componentDistributionInfo">
-    <div *ngIf="componentDistributionInfo.componentDistributionMedium">
-        <strong>Component distribution medium: </strong>{{componentDistributionInfo.componentDistributionMedium}}
+    <div *ngIf="componentDistributionInfo.componentLoc.distributionLocation">
+        <strong>Component distribution medium: </strong>{{componentDistributionInfo.componentLoc.distributionLocation}}
     </div>
-    <div *ngIf="componentDistributionInfo.downloadURLs && componentDistributionInfo.downloadURLs.length>0">
+    <!--&& componentDistributionInfo.componentLoc.length>0-->
+    <div *ngIf="componentDistributionInfo.componentLoc">
         <strong>Download from: </strong>
-        <span *ngFor="let downloadURL of componentDistributionInfo.downloadURLs; let isLast = last;">
-            <a href="{{downloadURL}}" target="_blank">{{downloadURL}}</a>{{isLast ? '' : ', '}}
+        <!--*ngFor="let downloadURL of componentDistributionInfo.componentLoc; let isLast = last;"-->
+        <span>
+            <a href="{{componentDistributionInfo.componentLoc.distributionLocation}}" target="_blank">{{componentDistributionInfo.componentLoc.distributionLocation}}</a>{{isLast ? '' : ', '}}
         </span>
     </div>
-    <div *ngIf="componentDistributionInfo.accessURLs && componentDistributionInfo.accessURLs.length>0">
-        <strong>Access from: </strong>
-        <span *ngFor="let accessURL of componentDistributionInfo.accessURLs; let isLast = last;">
-            <a href="{{accessURL}}" target="_blank">{{accessURL}}</a>{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="componentDistributionInfo.mavenID">
-        <strong>Maven ID: </strong>{{componentDistributionInfo.mavenID}}
-    </div>
+    <!--<div *ngIf="componentDistributionInfo.accessURLs && componentDistributionInfo.accessURLs.length>0">-->
+        <!--<strong>Access from: </strong>-->
+        <!--<span *ngFor="let accessURL of componentDistributionInfo.accessURLs; let isLast = last;">-->
+            <!--<a href="{{accessURL}}" target="_blank">{{accessURL}}</a>{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="componentDistributionInfo.mavenID">-->
+        <!--<strong>Maven ID: </strong>{{componentDistributionInfo.mavenID}}-->
+    <!--</div>-->
     <div *ngIf="componentDistributionInfo.webServiceType">
         <strong>Web service type: </strong>{{componentDistributionInfo.webServiceType}}
     </div>
-    <div *ngIf="componentDistributionInfo.operatingSystem && componentDistributionInfo.operatingSystem.length>0">
-        <strong>Operating systems: </strong>
-        <span *ngFor="let operatingSystem of componentDistributionInfo.operatingSystem; let isLast = last;">
-            {{operatingSystem}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
+    <!--<div *ngIf="componentDistributionInfo.operatingSystem && componentDistributionInfo.operatingSystem.length>0">-->
+        <!--<strong>Operating systems: </strong>-->
+        <!--<span *ngFor="let operatingSystem of componentDistributionInfo.operatingSystem; let isLast = last;">-->
+            <!--{{operatingSystem}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
     <div *ngIf="componentDistributionInfo.rightsInfo" class="uk-margin-top">
         <h4>Rights</h4>
         <rights-info [rightsInfo]="componentDistributionInfo.rightsInfo"></rights-info>

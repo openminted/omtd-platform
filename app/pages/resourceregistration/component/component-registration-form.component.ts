@@ -2,7 +2,7 @@
  * Created by stefania on 10/19/16.
  */
 import {Component, OnInit, Input, Output, EventEmitter, Type} from '@angular/core';
-import {FormGroup, FormBuilder} from '@angular/forms'
+import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 import {Component as OMTDComponent} from "../../../domain/openminted-model";
 import {Observable} from 'rxjs/Rx';
 import {ExampleFormControl} from "../shared/example.component";
@@ -20,11 +20,16 @@ export class ComponentRegistrationFormComponent implements OnInit {
     @Input('group')
     myForm: FormGroup;
 
+    tocForm : FormGroup;
+
     @Input('component')
     component: Observable<OMTDComponent> = null;
 
-    @Output('corpusForm')
+    @Output('componentForm')
     componentForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+
+    @Output()
+    tocValid : EventEmitter<boolean> = new EventEmitter<boolean>();
 
     componentPatch: any = {
         "metadataHeaderInfo": {
@@ -309,7 +314,12 @@ export class ComponentRegistrationFormComponent implements OnInit {
 
     type: Type<any> = MyStringFormGroup;
 
+    production = process.env.PRODUCTION;
+
     constructor(private _fb: FormBuilder) {
+        this.tocForm = _fb.group({
+            toc : [false,Validators.requiredTrue]
+        })
     }
 
     loadComponent(component: OMTDComponent) {
@@ -317,9 +327,7 @@ export class ComponentRegistrationFormComponent implements OnInit {
             return (value == null) ? "" : value
         });
         component = JSON.parse(temp);
-
         this.myForm.patchValue(component);
-        // this.myForm.patchValue(component);
     }
 
     ngOnInit() {
@@ -330,8 +338,10 @@ export class ComponentRegistrationFormComponent implements OnInit {
             })
 
         });
-        this.myForm.valueChanges.subscribe(component => this.componentForm.emit(this.myForm));
-
+        this.myForm.valueChanges.subscribe(() => {
+            this.componentForm.emit(this.myForm);
+            this.tocValid.emit(this.tocForm.valid);
+        });
         if (this.component) {
             this.component.subscribe(
                 component => this.loadComponent(component),

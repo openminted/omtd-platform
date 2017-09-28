@@ -114,3 +114,17 @@ a.remove-element i {
 }
 
 /******************************************************************/
+
+.uk-form-controls.has-error input.uk-input {
+    color: #f0506e !important;
+    border-color: #f0506e !important;
+}
+
+/*.form-control {*/
+    /*color: #f0506e !important;*/
+    /*border-color: #f0506e !important;*/
+/*}*/
+
+.uk-form-controls.has-error .uk-input::-moz-placeholder {
+    color: #f0506e;
+}

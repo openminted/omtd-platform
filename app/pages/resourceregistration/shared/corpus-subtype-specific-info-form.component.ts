@@ -35,6 +35,6 @@ export class CorpusSubtypeSpecificInfoForm extends MyGroup {
     };
 
     readonly corpusTextPartInfoDesc : Description = corpusTextPartInfoDesc;
-    private textPartType : Type<any> = CorpusTextPartInfoFormControl;
+    textPartType : Type<any> = CorpusTextPartInfoFormControl;
 
 }

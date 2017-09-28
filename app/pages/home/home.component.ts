@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
     private errorMessage: string = null;
     private searchResults: SearchResults<BaseMetadataRecord>;
-    private shortResultsInfo : ShortResultInfo[] = [];
+    shortResultsInfo : ShortResultInfo[] = [];
     private foundResults = true;
 
     constructor(fb: FormBuilder,
@@ -96,5 +96,9 @@ export class HomeComponent implements OnInit {
 
     handleError(message: string, error) {
         this.errorMessage = message + ' (Server responded: ' + error + ')';
+    }
+
+    gotoDetail(resourceType : string, id : string) {
+        this.router.navigate(['/landingPage/' + resourceType + '/', id]);
     }
 }

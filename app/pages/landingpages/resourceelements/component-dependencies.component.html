@@ -8,18 +8,18 @@
             {{componentDependencies.typesystem.resourceIdentifiers[0].value}}
         </span>
     </div>
-    <div *ngIf="componentDependencies.tagsets && componentDependencies.tagsets.length>0">
-        <strong>Tagsets: </strong>
-        <span *ngFor="let tagset of componentDependencies.tagsets; let isLast = last;">
-            <span *ngIf="tagset.resourceNames && tagset.resourceNames.length>0">
-                {{tagset.resourceNames[0].value}}
-            </span>
-            <span *ngIf="tagset.resourceIdentifiers && tagset.resourceIdentifiers.length>0">
-                {{tagset.resourceIdentifiers[0].value}}
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </div>
+    <!--<div *ngIf="componentDependencies.tagsets && componentDependencies.tagsets.length>0">-->
+        <!--<strong>Tagsets: </strong>-->
+        <!--<span *ngFor="let tagset of componentDependencies.tagsets; let isLast = last;">-->
+            <!--<span *ngIf="tagset.resourceNames && tagset.resourceNames.length>0">-->
+                <!--{{tagset.resourceNames[0].value}}-->
+            <!--</span>-->
+            <!--<span *ngIf="tagset.resourceIdentifiers && tagset.resourceIdentifiers.length>0">-->
+                <!--{{tagset.resourceIdentifiers[0].value}}-->
+            <!--</span>-->
+            <!--{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
     <div *ngIf="componentDependencies.annotationResources && componentDependencies.annotationResources.length>0">
         <strong>Annotation resources: </strong>
         <span *ngFor="let annotationResource of componentDependencies.annotationResources; let isLast = last;">
@@ -38,10 +38,10 @@
             {{softwareLibrary}}{{isLast ? '' : ', '}}
         </span>
     </div>
-    <div *ngIf="componentDependencies.requiresHardware && componentDependencies.requiresHardware.length>0">
-        <strong>Requires hardware: </strong>
-        <span *ngFor="let requiresHardware of componentDependencies.requiresHardware; let isLast = last;">
-            {{requiresHardware}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
+    <!--<div *ngIf="componentDependencies.requiresHardware && componentDependencies.requiresHardware.length>0">-->
+        <!--<strong>Requires hardware: </strong>-->
+        <!--<span *ngFor="let requiresHardware of componentDependencies.requiresHardware; let isLast = last;">-->
+            <!--{{requiresHardware}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
 </div>

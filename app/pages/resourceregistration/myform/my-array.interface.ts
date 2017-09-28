@@ -44,9 +44,9 @@ export class MyArray extends MyGroup {
 
     protected viewContainerRef : ViewContainerRef;
 
-    private arrayData_ : Subject<any>[] = [];
+    arrayData_ : Subject<any>[] = [];
 
-    protected push() {
+    push() {
         this.createView();
     }
 
@@ -103,6 +103,11 @@ export class MyArray extends MyGroup {
 
     }
 
+    get valid() {
+        return this.parentGroup.valid;//true;//this.registerGroup_.valid;
+    }
+
+
     protected patchValue() {
         let self = this;
         return (value: {[key: string]: any}, {onlySelf, emitEvent}: {onlySelf?: boolean, emitEvent?: boolean} = {}) => {
@@ -119,7 +124,7 @@ export class MyArray extends MyGroup {
 @Component({
     selector : 'form-repeat-inline',
     template : `
-    <form-inline [description]="description">
+    <form-inline [description]="description" [valid]="valid">
         <ng-template my-form></ng-template>
         <a class="add-new-element" (click)="push()">
             <i class="fa fa-plus" aria-hidden="true"></i> Add {{description.label}}

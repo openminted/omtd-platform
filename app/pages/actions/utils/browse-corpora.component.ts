@@ -20,14 +20,14 @@ import { BaseMetadataRecord, CorpusInfo } from "../../../domain/openminted-model
 
 export class BrowseCorporaComponent {
 
-    private searchCorporaForm: FormGroup;
-    private errorMessage: string;
+    searchCorporaForm: FormGroup;
+    errorMessage: string;
     private sub: Subscription;
 
-    private urlParameters: URLParameter[] = [];
+    urlParameters: URLParameter[] = [];
 
-    private searchResults: SearchResults<BaseMetadataRecord>;
-    private shortResultsInfo : ShortResultInfo[] = [];
+    searchResults: SearchResults<BaseMetadataRecord>;
+    shortResultsInfo : ShortResultInfo[] = [];
 
     private pageSize: number = 0;
     private currentPage: number = 0;

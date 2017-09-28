@@ -1,17 +1,17 @@
-<div *ngIf="usageInfo.foreseenUseInfos && usageInfo.foreseenUseInfos.length>0">
-    <h4>Foreseen Usage</h4>
-    <ul *ngFor="let foreseenUsage of usageInfo.foreseenUseInfos" class="uk-list">
-        <li *ngIf="foreseenUsage.foreseenUse">
-            <strong>Foreseen use: </strong>{{foreseenUsage.foreseenUse}}
-        </li>
-        <li *ngIf="foreseenUsage.useNlpApplications && foreseenUsage.useNlpApplications">
-            <strong>Use NLP Applications: </strong>
-            <span *ngFor="let useNLPApplications of foreseenUsage.useNlpApplications; let isLast = last;">
-                {{useNLPApplications}}{{isLast ? '' : ', '}}
-            </span>
-        </li>
-    </ul>
-</div>
+<!--<div *ngIf="usageInfo.foreseenUseInfos && usageInfo.foreseenUseInfos.length>0">-->
+    <!--<h4>Foreseen Usage</h4>-->
+    <!--<ul *ngFor="let foreseenUsage of usageInfo.foreseenUseInfos" class="uk-list">-->
+        <!--<li *ngIf="foreseenUsage.foreseenUse">-->
+            <!--<strong>Foreseen use: </strong>{{foreseenUsage.foreseenUse}}-->
+        <!--</li>-->
+        <!--<li *ngIf="foreseenUsage.useNlpApplications && foreseenUsage.useNlpApplications">-->
+            <!--<strong>Use NLP Applications: </strong>-->
+            <!--<span *ngFor="let useNLPApplications of foreseenUsage.useNlpApplications; let isLast = last;">-->
+                <!--{{useNLPApplications}}{{isLast ? '' : ', '}}-->
+            <!--</span>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
 <div *ngIf="usageInfo.actualUseInfos && usageInfo.actualUseInfos.length>0">
     <h4>Actual Usage</h4>
     <ul *ngFor="let actualUsage of usageInfo.actualUseInfos" class="uk-list">

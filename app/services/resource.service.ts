@@ -180,14 +180,13 @@ export class ResourceService {
 
     registerComponent(component: Resource) {
 
-        let headers = new Headers({'Content-Type': 'application/json'});
+        let headers = new Headers({'Content-Type': 'application/xml'});
         let options = new RequestOptions({
             headers: headers,
             withCredentials: true,
         });
         console.log(JSON.stringify(component));
-        return this.http.post(this._uploadUrl, JSON.stringify(component), options)
-            .map(res => <Resource> res.json())
+        return this.http.post(this._searchUrl+'component', component, options)
             .catch(this.handleError);
     }
 

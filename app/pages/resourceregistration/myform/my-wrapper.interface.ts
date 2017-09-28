@@ -8,7 +8,6 @@ import {MyFormDirective} from "./my-form.directive";
 import {Description} from "../../../domain/omtd.description";
 
 
-@Component({})
 export abstract class MyWrapper implements OnInit{
 
     @Input() public component : ViewRef;

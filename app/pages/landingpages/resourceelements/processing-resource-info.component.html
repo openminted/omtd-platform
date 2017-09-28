@@ -1,13 +1,13 @@
 <div>
-    <div *ngIf="processingResourceInfo.resourceTypes && processingResourceInfo.resourceTypes.length>0">
-        <strong>Resource types: </strong>
-        <span *ngFor="let resourceType of processingResourceInfo.resourceTypes; let isLast = last;">
-            {{resourceType}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.mediaType">
-        <strong>Media type: </strong>{{processingResourceInfo.mediaType}}
-    </div>
+    <!--<div *ngIf="processingResourceInfo.resourceTypes && processingResourceInfo.resourceTypes.length>0">-->
+        <!--<strong>Resource types: </strong>-->
+        <!--<span *ngFor="let resourceType of processingResourceInfo.resourceTypes; let isLast = last;">-->
+            <!--{{resourceType}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="processingResourceInfo.mediaType">-->
+        <!--<strong>Media type: </strong>{{processingResourceInfo.mediaType}}-->
+    <!--</div>-->
     <div *ngIf="processingResourceInfo.languages && processingResourceInfo.languages.length>0">
         <strong>Languages: </strong>
         <span *ngFor="let language of processingResourceInfo.languages; let isLast = last;">
@@ -44,27 +44,27 @@
             {{processingResourceInfo.typesystem.resourceIdentifiers[0].value}}
         </span>
     </div>
-    <div *ngIf="processingResourceInfo.tagset">
-        <strong>Tagset: </strong>
-        <span *ngIf="processingResourceInfo.tagset.resourceNames && processingResourceInfo.tagset.resourceNames.length>0">
-            {{processingResourceInfo.tagset.resourceNames[0].value}}
-        </span>
-        <span *ngIf="processingResourceInfo.tagset.resourceIdentifiers && processingResourceInfo.tagset.resourceIdentifiers.length>0">
-            {{processingResourceInfo.tagset.resourceIdentifiers[0].value}}
-        </span>
-    </div>
+    <!--<div *ngIf="processingResourceInfo.tagset">-->
+        <!--<strong>Tagset: </strong>-->
+        <!--<span *ngIf="processingResourceInfo.tagset.resourceNames && processingResourceInfo.tagset.resourceNames.length>0">-->
+            <!--{{processingResourceInfo.tagset.resourceNames[0].value}}-->
+        <!--</span>-->
+        <!--<span *ngIf="processingResourceInfo.tagset.resourceIdentifiers && processingResourceInfo.tagset.resourceIdentifiers.length>0">-->
+            <!--{{processingResourceInfo.tagset.resourceIdentifiers[0].value}}-->
+        <!--</span>-->
+    <!--</div>-->
     <div *ngIf="processingResourceInfo.annotationLevels && processingResourceInfo.annotationLevels.length>0">
         <strong>Annotation levels: </strong>
         <span *ngFor="let annotationLevel of processingResourceInfo.annotationLevels; let isLast = last;">
             {{annotationLevel}}{{isLast ? '' : ', '}}
         </span>
     </div>
-    <div *ngIf="processingResourceInfo.modalityTypes && processingResourceInfo.modalityTypes.length>0">
-        <strong>Modality types: </strong>
-        <span *ngFor="let modalityType of processingResourceInfo.modalityTypes; let isLast = last;">
-            {{modalityType}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
+    <!--<div *ngIf="processingResourceInfo.modalityTypes && processingResourceInfo.modalityTypes.length>0">-->
+        <!--<strong>Modality types: </strong>-->
+        <!--<span *ngFor="let modalityType of processingResourceInfo.modalityTypes; let isLast = last;">-->
+            <!--{{modalityType}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
 
     <!--The following have 2 other fields apart from value. Should I display them somehow?-->
     <div *ngIf="processingResourceInfo.domains && processingResourceInfo.domains.length>0">
@@ -73,30 +73,30 @@
             {{domain.value}}{{isLast ? '' : ', '}}
         </span>
     </div>
-    <div *ngIf="processingResourceInfo.textGenres && processingResourceInfo.textGenres.length>0">
-        <strong>Text genres: </strong>
-        <span *ngFor="let textGenre of processingResourceInfo.textGenres; let isLast = last;">
-            {{textGenre.value}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.textTypes && processingResourceInfo.textTypes.length>0">
-        <strong>Text types: </strong>
-        <span *ngFor="let textType of processingResourceInfo.textTypes; let isLast = last;">
-            {{textType.value}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.registers && processingResourceInfo.registers.length>0">
-        <strong>Registers: </strong>
-        <span *ngFor="let register of processingResourceInfo.registers; let isLast = last;">
-            {{register.value}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.subjects && processingResourceInfo.subjects.length>0">
-        <strong>Subjects: </strong>
-        <span *ngFor="let subject of processingResourceInfo.subjects; let isLast = last;">
-            {{subject.value}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
+    <!--<div *ngIf="processingResourceInfo.textGenres && processingResourceInfo.textGenres.length>0">-->
+        <!--<strong>Text genres: </strong>-->
+        <!--<span *ngFor="let textGenre of processingResourceInfo.textGenres; let isLast = last;">-->
+            <!--{{textGenre.value}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="processingResourceInfo.textTypes && processingResourceInfo.textTypes.length>0">-->
+        <!--<strong>Text types: </strong>-->
+        <!--<span *ngFor="let textType of processingResourceInfo.textTypes; let isLast = last;">-->
+            <!--{{textType.value}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="processingResourceInfo.registers && processingResourceInfo.registers.length>0">-->
+        <!--<strong>Registers: </strong>-->
+        <!--<span *ngFor="let register of processingResourceInfo.registers; let isLast = last;">-->
+            <!--{{register.value}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="processingResourceInfo.subjects && processingResourceInfo.subjects.length>0">-->
+        <!--<strong>Subjects: </strong>-->
+        <!--<span *ngFor="let subject of processingResourceInfo.subjects; let isLast = last;">-->
+            <!--{{subject.value}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
 
 
     <div *ngIf="processingResourceInfo.keywords && processingResourceInfo.keywords.length>0">

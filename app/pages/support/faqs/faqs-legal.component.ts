@@ -15,8 +15,8 @@ import { ActiveTopicQuestions } from "../../../domain/faq-active-topic-questions
 
 export class FAQsComponent implements OnInit {
 
-    private activeTopicQuestions: ActiveTopicQuestions[] = [];
-    private errorMessage: string;
+    activeTopicQuestions: ActiveTopicQuestions[] = [];
+    errorMessage: string;
 
     constructor(
         private route: ActivatedRoute,

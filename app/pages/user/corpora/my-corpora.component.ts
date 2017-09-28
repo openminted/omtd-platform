@@ -15,7 +15,6 @@ import {ContentConnectorService} from "../../../services/content-connector.servi
     templateUrl: './my-corpora.component.html',
     styleUrls:  ['../user-space.component.css'],
 })
-
 export class MyCorporaComponent {
 
     @ViewChild('deleteConfirmationModal')
@@ -28,6 +27,8 @@ export class MyCorporaComponent {
     public incompleteCorporaSearchResults: SearchResults<BaseMetadataRecord>;
     public corpora: OMTDCorpus[] = [];
     public incompleteCorpora: OMTDCorpus[] = [];
+
+    public isModalShown : boolean;
 
     private corporaStatus: Observable<string>[] = [];
 

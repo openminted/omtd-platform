@@ -20,18 +20,18 @@ import {MyGroup} from "../myform/my-group.interface";
 
 export class IdentificationInfoFormControl extends MyGroup {
 
-    private resourceNameDesc: Description = resourceNameDesc;
-    private descriptionDesc: Description = descriptionDesc;
-    private resourceShortNameDesc: Description = resourceShortNameDesc;
-    private publicDesc : Description = publicDesc;
+    resourceNameDesc: Description = resourceNameDesc;
+    descriptionDesc: Description = descriptionDesc;
+    resourceShortNameDesc: Description = resourceShortNameDesc;
+    publicDesc : Description = publicDesc;
 
     public customClass: string = 'customAccordionPanel';
 
-    private myStringType : Type<any> = MyStringFormGroup;
+    myStringType : Type<any> = MyStringFormGroup;
 
-    private myStringAreaType : Type<any> = MyStringAreaFormGroup;
+    myStringAreaType : Type<any> = MyStringAreaFormGroup;
 
     public groupDefinition = {
-        public : false
+        "public" : false
     }
 }

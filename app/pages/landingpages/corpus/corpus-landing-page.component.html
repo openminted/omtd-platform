@@ -24,7 +24,7 @@
                                     corpus.corpusInfo.distributionInfos.length>0">
                             <template ngFor let-distributionInfo [ngForOf]="corpus.corpusInfo.distributionInfos">
                                 <template [ngIf]="distributionInfo.distributionLoc && distributionInfo.distributionLoc.length>0">
-                                    <button *ngIf="distributionInfo.distributionLoc[0].distributionLocation.startsWith('http://') || distributionInfo.distributionLoc[0].distributionLocation.startsWith('https://')"
+                                    <button *ngIf="distributionInfo.distributionLoc[0].distributionLocation.startsWith('/') || distributionInfo.distributionLoc[0].distributionLocation.startsWith('http://') || distributionInfo.distributionLoc[0].distributionLocation.startsWith('https://')"
                                             class="uk-button uk-button-primary" (click)="downloadCorpus(distributionInfo.distributionLoc[0].distributionLocation)">
                                         Download <i class="fa fa-download" aria-hidden="true"></i></button>
                                 </template>

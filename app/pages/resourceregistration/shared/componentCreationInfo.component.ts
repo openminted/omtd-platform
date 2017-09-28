@@ -34,8 +34,8 @@ export class ComponentCreationInfoFormControl extends MyGroup {
         framework : ['', Validators.required]
     };
 
-    private frameworkEnum :  EnumValues[] = frameworkEnum;
-    private frameworkDesc : Description = frameworkDesc;
+    frameworkEnum :  EnumValues[] = frameworkEnum;
+    frameworkDesc : Description = frameworkDesc;
 
     required = true;
 

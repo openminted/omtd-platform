@@ -29,8 +29,8 @@ import {EnumValues, personIdentifierSchemeNameEnum} from "../../../domain/omtd.e
 
 export class IdentifierCommonFormControl extends MyGroup {
 
-    private schemeName : string = 'schemeName';
-    private schemeEnum : EnumValues[] = null;
+    schemeName : string = 'schemeName';
+    schemeEnum : EnumValues[] = null;
 
     protected definition = {
         value : ['', Validators.required],
@@ -45,7 +45,7 @@ export class IdentifierCommonFormControl extends MyGroup {
         return ret;
     }
 
-    private init() {
+    init() {
         if(!this.data) {
             throw `Please add a { schemeName , schemeEnum } object as a data input in ${name} Component`;
         } else {

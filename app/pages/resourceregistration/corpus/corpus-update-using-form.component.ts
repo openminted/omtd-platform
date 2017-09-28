@@ -20,7 +20,7 @@ export class CorpusUpdateUsingFormComponent implements OnInit {
     corpusValue : OMTDCorpus;
     corpusFormErrorMessage: string = null;
 
-    private production = process.env.PRODUCTION;
+    production = process.env.PRODUCTION;
 
     errorMessage: string = null;
     successfulMessage: string = null;

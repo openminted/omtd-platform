@@ -15,6 +15,9 @@ import { ResourceRegistrationModule } from "../resource-registration.module";
 import { ComponentRegistrationUsingFormComponent } from "./component-registration-using-form.component";
 import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reusable-components.module";
 import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
+import { AceEditorModule } from "ng2-ace-editor"
+import { TestComponent } from "./test.component";
+
 
 @NgModule({
     imports: [
@@ -25,9 +28,11 @@ import { ComponentUpdateUsingFormComponent } from "./component-update-using-form
         AccordionModule.forRoot(),
         TypeaheadModule.forRoot(),
         ResourceRegistrationModule,
-        ReusableComponentsModule
+        ReusableComponentsModule,
+        AceEditorModule,
     ],
     declarations: [
+        TestComponent,
         ComponentRegistrationComponent,
         ComponentRegistrationXMLComponent, 
         ComponentRegistrationFormComponent,

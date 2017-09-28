@@ -20,29 +20,29 @@ import {WSJobStatus} from "../../../domain/ws-job-status";
 
 export class RunApplicationComponent {
 
-    private errorMessage: string;
-    private successfulMessage: string;
+    errorMessage: string;
+    successfulMessage: string;
 
-    private sub: Subscription;
+    sub: Subscription;
 
-    private urlParameters: URLParameter[] = [];
+    urlParameters: URLParameter[] = [];
 
-    private foundResults = true;
+    foundResults = true;
 
-    private corpus: OMTDCorpus;
-    private component: OMTDComponent;
+    corpus: OMTDCorpus;
+    component: OMTDComponent;
 
-    private jobId: string;
-    private intervalId: number = null;
+    jobId: string;
+    intervalId: number = null;
 
-    private wsJobStatus: WSJobStatus = null;
+    wsJobStatus: WSJobStatus = null;
 
-    private isRunning: boolean = false;
+    isRunning: boolean = false;
 
     private endpoint = process.env.API_ENDPOINT;
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute,
-                private resourceService: ResourceService, private workflowService: WorkflowService) {
+    constructor(private  router: Router,private  activatedRoute: ActivatedRoute,
+                private resourceService: ResourceService,private  workflowService: WorkflowService) {
 
     }
 

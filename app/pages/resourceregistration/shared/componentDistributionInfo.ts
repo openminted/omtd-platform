@@ -27,9 +27,9 @@ import {
 export class ComponentDistributionsInfoFormControl {
 
     @Input()
-    private parentGroup : FormGroup = null;
-    private componentDistributionType : Type<any> = ComponentDistributionInfoFormControl;
-    private componentDistributionInfoDesc : Description = componentDistributionInfoDesc;
+    parentGroup : FormGroup = null;
+    componentDistributionType : Type<any> = ComponentDistributionInfoFormControl;
+    componentDistributionInfoDesc : Description = componentDistributionInfoDesc;
 }
 
 
@@ -51,15 +51,18 @@ export class ComponentDistributionsInfoFormControl {
         <form-inline [description]="distributionURLDesc" [valid]="getMyControl('componentLoc.distributionLocation').valid">
             <input type="text" class="form-control" formControlName="distributionLocation" placeholder="{{distributionURLDesc.label}}">
         </form-inline>
+
+        <div [hidden]="getMyControl('componentLoc.componentDistributionForm').value !== 'WEB_SERVICE'">
+            <div  class="form-group-divider"></div>
+
+            <form-inline [description]="commandDesc" [valid]="getMyControl('componentLoc.command').valid">
+                <input type="text" class="form-control" formControlName="command" placeholder="{{commandDesc.label}}">
+            </form-inline>
+        </div>
+        
     </div>
 
-    <div [hidden]="getMyControl('componentLoc.componentDistributionForm').value !== 'WEB_SERVICE'">
-        <div  class="form-group-divider"></div>
-        
-        <form-inline [description]="commandDesc" [valid]="getMyControl('command').valid">
-            <input type="text" class="form-control" formControlName="command" placeholder="{{commandDesc.label}}">
-        </form-inline>
-    </div>
+    
     
     <rightsInfo-form [parentGroup]="group" [name]="'rightsInfo'"></rightsInfo-form>
     
@@ -70,27 +73,27 @@ export class ComponentDistributionsInfoFormControl {
 })
 export class ComponentDistributionInfoFormControl extends MyGroup {
 
-    private componentDistributionFormDesc : Description = componentDistributionFormDesc;
-    private distributionURLDesc : Description = distributionURLDesc;
-    private commandDesc : Description = commandDesc;
-    private readonly componentDistributionFormEnum : EnumValues[] = componentDistributionFormEnum;
+    componentDistributionFormDesc : Description = componentDistributionFormDesc;
+    distributionURLDesc : Description = distributionURLDesc;
+    commandDesc : Description = commandDesc;
+    readonly componentDistributionFormEnum : EnumValues[] = componentDistributionFormEnum;
 
     readonly groupDefinition = {
         componentLoc : this._fb.group({
             componentDistributionForm : ['', Validators.required],
-            distributionLocation : ['', Validators.required]
-        }),
-        command : ['', Validators.required]
+            distributionLocation : ['', Validators.required],
+            command : ['', Validators.required]
+        })
     };
 
     ngOnInit() {
         super.ngOnInit();
         this.getMyControl('componentLoc.componentDistributionForm').valueChanges.subscribe(_ => {
-            let command = this.getMyControl('command');
+            let command = this.getMyControl('componentLoc.command');
             if(_ ==='WEB_SERVICE') command.enable();
             else command.disable();
         });
-        this.getMyControl('command').disable();
+        this.getMyControl('componentLoc.command').disable();
     }
 
 }

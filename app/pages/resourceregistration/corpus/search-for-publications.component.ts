@@ -20,21 +20,21 @@ import { ContentConnectorStatus } from "../../../domain/content-connector-status
 
 export class SearchForPublicationsComponent {
 
-    private publicationsSearchForm: FormGroup;
-    private errorMessage: string;
-    private sub: Subscription;
+    publicationsSearchForm: FormGroup;
+    errorMessage: string;
+    sub: Subscription;
 
-    private urlParameters: URLParameter[] = [];
+    urlParameters: URLParameter[] = [];
 
-    private publicationSearchResults: PublicationSearchResults;
+    publicationSearchResults: PublicationSearchResults;
 
-    private foundResults = true;
+    foundResults = true;
 
-    private publicationSources: Facet;
+    publicationSources: Facet;
 
-    private searching:boolean = true;
+    searching:boolean = true;
 
-    private contentConnectorStatus: ContentConnectorStatus;
+    contentConnectorStatus: ContentConnectorStatus;
 
     constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
                 private contentConnectorService: ContentConnectorService) {

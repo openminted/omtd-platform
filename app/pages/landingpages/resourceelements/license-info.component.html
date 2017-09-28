@@ -20,9 +20,9 @@
             </li>
         </ul>
     </div>
-    <div *ngIf="licenseInfo.conditionsOfUse && licenseInfo.conditionsOfUse.length>0">
+    <div *ngIf="licenseInfo.conditionOfUse && licenseInfo.conditionOfUse.length>0">
         <strong>Conditions of use: </strong>
-        <span *ngFor="let conditionsOfUse of licenseInfo.conditionsOfUse; let isLast = last;">
+        <span *ngFor="let conditionsOfUse of licenseInfo.conditionOfUse; let isLast = last;">
             {{conditionsOfUse}}{{isLast ? '' : ', '}}
         </span>
     </div>

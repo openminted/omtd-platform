@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module" : "es6",
     "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
@@ -10,17 +10,18 @@
     "moduleResolution": "node",
     "typeRoots": [
       "node_modules/@types"
-    ],
-    "lib": ["es5", "dom"]
+    ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ],
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true
   },
   "angularCompilerOptions": {
-    "debug": false
+    "debug": false,
+    "skipMetadataEmit": true
   },
   "compileOnSave": false,
   "buildOnSave": false,

@@ -16,7 +16,8 @@
                               [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
                 </help-content>
 
-                <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+                <div *ngIf="errorMessage" class="uk-alert uk-alert-danger">{{errorMessage}}</div>
+                <div *ngIf="successMessage" class="uk-alert uk-alert-success">{{successMessage}}</div>
 
                 <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
                     <div class="uk-grid">
@@ -32,6 +33,7 @@
                             <form [formGroup]="componentXMLForm" role="form" class="m-t componentXMLForm" (ngSubmit)="onSubmit(componentXMLForm.value, $event)">
                                 <div class="form-group">
                                     <textarea class="form-control" rows="16" name="xml" formControlName="xml"></textarea>
+                                    <div ace-editor [theme]="'eclipse'" style="min-height: 200px; width:100%; overflow: auto;"></div>
                                 </div>
                                 <button class="uk-button uk-button-primary registerButton" type="submit">Register!</button>
                             </form>

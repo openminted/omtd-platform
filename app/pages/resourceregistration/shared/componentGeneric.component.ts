@@ -64,12 +64,12 @@ export class ComponentGenericFormControl extends MyGroup {
 
     @ViewChild('idapplication')  applicationCheckBoc : ElementRef;
 
-    private componentType :  EnumValues[] = componentTypeEnum;
-    private applicationType : EnumValues[] = applicationTypeEnum;
-    private applicationFunctionType : Description = applicationFunctionDesc;
-    private componentDesc : Description = componentTypeDesc;
-    private applicationDesc : Description = applicationTypeDesc;
-    private applicationCDesc : Description = applicationDesc;
+    componentType :  EnumValues[] = componentTypeEnum;
+    applicationType : EnumValues[] = applicationTypeEnum;
+    applicationFunctionType : Description = applicationFunctionDesc;
+    componentDesc : Description = componentTypeDesc;
+    applicationDesc : Description = applicationTypeDesc;
+    applicationCDesc : Description = applicationDesc;
 
     required = true;
 

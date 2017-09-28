@@ -31,6 +31,8 @@ export class MyServicesComponent {
     private currentPage: number = 0;
     private totalPages: number = 0;
 
+    public isModalShown : boolean;
+
     private isPreviousPageDisabled: boolean = false;
     private isFirstPageDisabled: boolean = false;
     private isNextPageDisabled: boolean = false;

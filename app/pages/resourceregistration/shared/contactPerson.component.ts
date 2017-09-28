@@ -1,31 +1,27 @@
 /**
  * Created by stefanos on 25/5/2017.
  */
-import { AfterViewInit, Component, Type} from "@angular/core";
+import {AfterViewInit, Component, Injector, Type} from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import {  personIdentifierSchemeNameEnum } from "../../../domain/omtd.enum";
 import {
     Description, surnameDesc, nameDesc, givenNameDesc,
     personIdentifierDesc, contactInfoDesc
 } from "../../../domain/omtd.description";
-import { MyStringFormGroup} from "./my-string-form.component";
+import {MyStringArrayFormGroup, MyStringDescFormGroup, MyStringFormGroup} from "./my-string-form.component";
 import { IdentifierCommonFormControl } from "./identifierCommon.component";
+import {MyChoiceComponents} from "../myform/my-choice.interface";
+import {MyArrayInline} from "../myform/my-array.interface";
 
 @Component({
     selector: 'contactPerson-form',
     template : `
+        
+        
+<form-choice [parentGroup]="parentGroup" [components]="myChoices">
+</form-choice>
 
-<form-inline [description]="{desc : '', label : 'Choose'}" [params]="null">
-    <div class="uk-margin uk-grid-small uk-child-width-auto">
-        <label *ngFor="let radio of radioButton">
-            <input type="radio" class="uk-radio" name="{{contactInfoDesc.desc + index}}" [checked]="radio === radioButtonSelected"
-                   (click)="changeType(radio)">
-            {{radio}}
-        </label>
-    </div>
-</form-inline>
-
-<div [hidden]="radioButtonSelected!=='Separate'">
+<!-- <div [hidden]="radioButtonSelected!=='Separate'">
 
     <form-repeat-inline [component]="myStringType" [parentGroup]="group"
                         [name]="'surnames'" [required]="true" [description]="surnameDesc">
@@ -48,7 +44,7 @@ import { IdentifierCommonFormControl } from "./identifierCommon.component";
     </form-repeat-inline>
 </div>
 
-<div class="form-group-divider"></div>
+<div class="form-group-divider"></div> -->
 
 
 <form-repeat-inline [component]="myIdentifierType" [parentGroup]="group" [data]="personIdentifierData"
@@ -60,49 +56,66 @@ import { IdentifierCommonFormControl } from "./identifierCommon.component";
     styleUrls : ['./templates/common.css']
 })
 
-export class ContactPersonFormControl extends MyGroup implements AfterViewInit {
+export class ContactPersonFormControl extends MyGroup {
 
     readonly groupDefinition = {};
 
-    private readonly radioButton : string[] = ['Separate','Name'];
+    readonly radioButton : string[] = ['Separate','Name'];
 
     myStringType : Type<any> = MyStringFormGroup;
     myIdentifierType : Type<any> = IdentifierCommonFormControl
 
-    private surnameDesc : Description = surnameDesc;
-    private radioButtonSelected : string = this.radioButton[0];
-    private nameDesc : Description = nameDesc;
-    private givenNameDesc : Description = givenNameDesc;
-    private contactInfoDesc : Description = contactInfoDesc;
-    private personIdentifierDesc : Description = personIdentifierDesc;
 
-    private personIdentifierData : any = {
+    radioButtonSelected : string = this.radioButton[0];
+    nameDesc : Description = nameDesc;
+    separateDesc : Description = surnameDesc;
+
+    contactInfoDesc : Description = contactInfoDesc;
+    personIdentifierDesc : Description = personIdentifierDesc;
+
+    personIdentifierData : any = {
         schemeName : 'personIdentifierSchemeName',
         schemeEnum : personIdentifierSchemeNameEnum
     };
 
-    public changeType(choice: string) :void {
-        if (this.radioButtonSelected !== choice) {
-            this.radioButtonSelected = choice;
-            this.applyChanges();
-        }
-    }
+    readonly myChoices : MyChoiceComponents[] = [];
+    constructor(private injector : Injector) {
+        super(injector);
+        this.separateDesc.label="Separate";
+        //MyArrayInline
+        this.myChoices.push(new MyChoiceComponents("separateNames",MyStringDescFormGroup,this.separateDesc));
+        this.myChoices.push(new MyChoiceComponents("names",MyStringDescFormGroup,this.nameDesc));
 
-    ngAfterViewInit(): void {
-        this.applyChanges();
-    }
-
-    private applyChanges() {
-        if(this.radioButtonSelected === 'Separate') {
-            this.getMyControl('names').disable();
-            this.getMyControl('surnames').enable();
-            this.getMyControl('givenNames').enable();
-        }
-        else if(this.radioButtonSelected === 'Name') {
-            this.getMyControl('names').enable();
-            this.getMyControl('surnames').disable();
-            this.getMyControl('givenNames').disable();
-        }
     }
 }
 
+
+@Component({
+    selector: 'surname-given-name-group',
+    template : `
+        <form-repeat-inline [component]="myStringType" [parentGroup]="group"
+                            [name]="'surnames'" [required]="true" [description]="surnameDesc">
+
+        </form-repeat-inline>
+
+        <div class="form-group-divider"></div>
+
+        <form-repeat-inline [component]="myStringType" [parentGroup]="group"
+                            [name]="'givenNames'" [description]="givenNameDesc">
+
+        </form-repeat-inline>
+    `,
+    styleUrls : ['./templates/common.css']
+})
+
+export class SurnameGivenNameFormGroup extends MyGroup {
+
+    public groupDefinition : any = {};
+
+    surnameDesc : Description = surnameDesc;
+
+    givenNameDesc : Description = givenNameDesc;
+
+    myStringType : Type<any> = MyStringFormGroup;
+
+}

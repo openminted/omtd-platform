@@ -10,6 +10,7 @@ import {Subject} from "rxjs/Subject";
  */
 
 @Component({
+    template:``
 })
 export class MyGroup implements OnInit, AfterContentInit {
 
@@ -109,11 +110,11 @@ export class MyGroup implements OnInit, AfterContentInit {
 @Component({
     selector : 'form-inline',
     template : `
-<template #descTemplate>{{description.desc}}</template>
+<ng-template #descTemplate>{{description.desc}}</ng-template>
 
 <div class="uk-form-horizontal">
     <label class="uk-width-1-5 uk-form-label">
-        <span *ngIf="description.mandatory==true"><i class="fa fa-star" style="color : red"></i></span>
+        <span *ngIf="description.mandatory==true && !valid"><i class="fa fa-star" style="color : red"></i></span>
         <!--<span *ngIf="description.recommended==true"><i class="fa fa-star" style="color : green"></i></span>-->
         {{description.label}}
         <span *ngIf="params==='tooltip'"><i class="fa fa-info-circle" [tooltip]="descTemplate" container="body"></i></span>

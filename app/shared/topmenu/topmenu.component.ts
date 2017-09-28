@@ -13,7 +13,7 @@ import { AuthenticationService } from "../../services/authentication.service";
 
 export class TopMenuComponent {
 
-    constructor(private oAuthService: AuthenticationService) {
+    constructor(public oAuthService: AuthenticationService) {
     }
 
     private loginWithState() {

@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
 import {FormGroup, FormBuilder} from "@angular/forms";
 import {Router, ActivatedRoute} from "@angular/router";
 import {ResourceService} from "../../../services/resource.service";
-import {Resource} from "../../../domain/resource";
 
 @Component({
     selector: 'component-registration-xml',
@@ -15,12 +14,12 @@ import {Resource} from "../../../domain/resource";
 
 export class ComponentRegistrationXMLComponent {
 
-    private componentXMLForm: FormGroup;
-    private errorMessage: string;
-    private xmlURL : string;
-    private successMessage: string;
+    componentXMLForm: FormGroup;
+    errorMessage: string;
+    xmlURL : string;
+    successMessage: string;
 
-    private uploadedFile : File;
+    uploadedFile : File;
 
     //private resource: Resource;
 
@@ -46,15 +45,10 @@ export class ComponentRegistrationXMLComponent {
             this.previewFromFile();
         }
 
-        var resource: Resource = new Resource();
-        resource.payload = componentXML.xml;
-        resource.resourceType = 'component';
-        resource.payloadFormat = 'xml';
         console.log("submit",this.xmlURL,this.uploadedFile);
 
-
-        this.resourceService.registerComponent(resource).subscribe(
-            resource => this.successfullySubscribed(resource),
+        this.resourceService.registerComponent(componentXML.xml).subscribe(
+            resource => this.successfullySubscribed(),
             error => this.handleError(<any>error));
     }
 
@@ -86,7 +80,8 @@ export class ComponentRegistrationXMLComponent {
     }
 
 
-    successfullySubscribed(resource : Resource) {
+    successfullySubscribed() {
+        window.scrollTo(0, 0)
         this.successMessage = 'Your component has been successfully registered';
         return false;
     }

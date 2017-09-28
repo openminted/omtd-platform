@@ -47,27 +47,27 @@
             </div>
         </div>
     </div>
-    <div *ngIf="corpusTextPartInfo.modalities && corpusTextPartInfo.modalities.length>0">
-        <strong>Modalities </strong>
-        <div *ngFor="let modality of corpusTextPartInfo.modalities">
-            <div *ngIf="modality.modalityType">
-                <strong>Modality types: </strong>
-                <span *ngFor="let modalityType of modality.modalityType; let isLast = last;">
-                    {{modalityType}}{{isLast ? '' : ', '}}
-                </span>
-            </div>
-            <div *ngIf="modality.modalityTypeDetails">
-                <span>Modality type details: </span>{{modality.modalityTypeDetails}}
-            </div>
-            <div *ngIf="modality.sizePerModality">
-                <strong>Size per modality: </strong>
-                <span>
-                    <span *ngIf="modality.sizePerModality.size">{{modality.sizePerModality.size}}</span>
-                    <span *ngIf="modality.sizePerModality.sizeUnit"> {{modality.sizePerModality.sizeUnit}}</span>
-                </span>
-            </div>
-        </div>
-    </div>
+    <!--<div *ngIf="corpusTextPartInfo.modalities && corpusTextPartInfo.modalities.length>0">-->
+        <!--<strong>Modalities </strong>-->
+        <!--<div *ngFor="let modality of corpusTextPartInfo.modalities">-->
+            <!--<div *ngIf="modality.modalityType">-->
+                <!--<strong>Modality types: </strong>-->
+                <!--<span *ngFor="let modalityType of modality.modalityType; let isLast = last;">-->
+                    <!--{{modalityType}}{{isLast ? '' : ', '}}-->
+                <!--</span>-->
+            <!--</div>-->
+            <!--<div *ngIf="modality.modalityTypeDetails">-->
+                <!--<span>Modality type details: </span>{{modality.modalityTypeDetails}}-->
+            <!--</div>-->
+            <!--<div *ngIf="modality.sizePerModality">-->
+                <!--<strong>Size per modality: </strong>-->
+                <!--<span>-->
+                    <!--<span *ngIf="modality.sizePerModality.size">{{modality.sizePerModality.size}}</span>-->
+                    <!--<span *ngIf="modality.sizePerModality.sizeUnit"> {{modality.sizePerModality.sizeUnit}}</span>-->
+                <!--</span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
     <div *ngIf="corpusTextPartInfo.sizes && corpusTextPartInfo.sizes.length>0">
         <strong>Sizes: </strong>
         <span *ngFor="let sizeItem of corpusTextPartInfo.sizes; let isLast = last;">

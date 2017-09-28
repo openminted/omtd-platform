@@ -39,12 +39,12 @@ export class RightsInfoForm extends MyGroup {
         rightsStatement : this._fb.array(["OPEN_ACCESS"])
     };
 
-    private readonly rightsStatementEnum : EnumValues[] = rightsStatementEnum;
-    private readonly rightsStatementDesc : Description = rightsStatementDesc;
+    readonly rightsStatementEnum : EnumValues[] = rightsStatementEnum;
+    readonly rightsStatementDesc : Description = rightsStatementDesc;
 
-    private licenseInfoDesc : Description = licenceInfoDesc;
+    licenseInfoDesc : Description = licenceInfoDesc;
 
-    private licenseType : Type<any> = LicenseInfoForm;
+    licenseType : Type<any> = LicenseInfoForm;
 
 }
 
@@ -93,10 +93,10 @@ export class LicenseInfoForm extends MyGroup {
         ])
     };
 
-    private readonly licenceEnum : EnumValues[] = licenceEnum;
-    private readonly licenceDesc : Description = licenceDesc;
-    private readonly nonStandardLicenceNameDesc : Description = nonStandardLicenceNameDesc;
-    private readonly nonStandardLicenceTermsURLDesc : Description = nonStandardLicenceTermsURLDesc;
+    readonly licenceEnum : EnumValues[] = licenceEnum;
+    readonly licenceDesc : Description = licenceDesc;
+    readonly nonStandardLicenceNameDesc : Description = nonStandardLicenceNameDesc;
+    readonly nonStandardLicenceTermsURLDesc : Description = nonStandardLicenceTermsURLDesc;
 
     ngOnInit() {
         super.ngOnInit();

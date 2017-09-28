@@ -1,11 +1,14 @@
 var webpack = require('webpack');
 var path = require('path');
 var webpackMerge = require('webpack-merge');
+const AotPlugin = require('@ngtools/webpack').AotPlugin;
 
 // Webpack Config
 var webpackConfig = {
     entry: {
         'main': './app/main.ts',
+        'vendor' : './app/vendors.ts',
+        'polyfills' : './app/polyfills.ts',
     },
 
     output: {
@@ -27,26 +30,20 @@ var webpackConfig = {
             $: 'jquery',
             jquery: 'jquery'
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['app', 'vendor', 'polyfills']
+        })
     ],
 
     module: {
         loaders: [
-            // .ts files for TypeScript
-            {
-                test: /\.ts$/,
-                loaders: [
-                    'awesome-typescript-loader',
-                    'angular2-template-loader',
-                    'angular2-router-loader'
-                ]
-            },
             { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'] },
             { test: /\.html$/, loader: 'raw-loader' },
             { test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass'] },
             { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
             { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' }
         ]
-    }
+    },
 
 };
 
@@ -101,8 +98,25 @@ module.exports = function(env) {
                     WORKFLOW_API_ENDPOINT : JSON.stringify(process.env.WORKFLOW_API_ENDPOINT || "https://dev.openminted.eu:8881"),
                     OIDC_ENDPOINT : JSON.stringify(process.env.OIDC_ENDPOINT || "http://localhost:8080/omtd-registry/openid_connect_login"),
                     AAI_ENDPOINT : JSON.stringify(process.env.AAI_ENDPOINT || "https://aai.openminted.eu/oidc")
-                }}));
+                }})
+            );
+            webpackConfig.module.loaders.push(
+                {
+                    test: /\.ts$/,
+                    loaders: [
+                        'awesome-typescript-loader',
+                        'angular2-template-loader',
+                        'angular2-router-loader'
+                    ]
+                }
+            );
         } else {
+            webpackConfig.plugins.push(
+                new AotPlugin({
+                    tsConfigPath: 'tsconfig.json',
+                    entryModule: path.resolve(__dirname,'./app/app.module#AppModule')
+                })
+            );
             webpackConfig.plugins.push(
                 new webpack.DefinePlugin({"process.env" : {
                     PRODUCTION: JSON.stringify(true),
@@ -112,7 +126,16 @@ module.exports = function(env) {
                     WORKFLOW_API_ENDPOINT : JSON.stringify("/workflow"),
                     OIDC_ENDPOINT : JSON.stringify("/api/openid_connect_login"),
                     AAI_ENDPOINT : JSON.stringify("https://aai.openminted.eu/oidc")
-                }}));
+                }})
+            );
+            webpackConfig.module.loaders.push(
+                {
+                    test: /\.ts$/,
+                    loaders: [
+                        '@ngtools/webpack'
+                    ]
+                }
+            );
         }
         return webpackMerge(defaultConfig, webpackConfig);
 };

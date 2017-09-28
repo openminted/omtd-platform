@@ -47,7 +47,7 @@
 <!--</div>-->
 
 <div class="uk-background-norepeat uk-background-cover uk-background-fixed uk-section uk-padding-remove-bottom uk-flex uk-flex-middle"
-     style="background-image: url('./imgs/omtd_home_2.jpeg'); box-sizing: border-box; height: 150px">
+     style="background-image: url('./assets/imgs/omtd_home_2.jpeg'); box-sizing: border-box; height: 150px">
     <div class="uk-position-cover"></div>
     <div class="uk-width-1-1">
         <div class="uk-position-relative">
@@ -63,13 +63,13 @@
                                     <button class=" uk-button uk-button-default" type="submit">Search</button>
                                 </form>
                                 <ul *ngIf="urlParameters && urlParameters.length>0" class="facets-selected cf uk-width-medium-9-10">
-                                    <template ngFor let-urlParameter [ngForOf]="urlParameters">
-                                        <template [ngIf]="urlParameter.key!='from'">
+                                    <ng-template ngFor let-urlParameter [ngForOf]="urlParameters">
+                                        <ng-template [ngIf]="urlParameter.key!='from'">
                                             <li *ngFor="let facet of urlParameter.values" class="search-tag">
                                                 <span class="title">{{urlParameter.key}}:</span> {{facet}} <a (click)="deselectFacet(urlParameter.key, facet)" data-role="remove"></a>
                                             </li>
-                                        </template>
-                                    </template>
+                                        </ng-template>
+                                    </ng-template>
                                 </ul>
                             </div>
                         </div>
@@ -96,8 +96,8 @@
                 <!--Simple view-->
                 <div *ngIf="searchResults && !advanced" class="uk-card uk-card-body uk-card-default sidemenu">
 
-                    <template ngFor let-facet [ngForOf]="searchResults.facets">
-                        <template [ngIf]="facet.field=='resourceType'">
+                    <ng-template ngFor let-facet [ngForOf]="searchResults.facets">
+                        <ng-template [ngIf]="facet.field=='resourceType'">
                             <h3 class="uk-h3 uk-heading-bullet">Resource Type</h3>
                             <p *ngFor="let facetValue of facet.values" class="resourceType">
                                 <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
@@ -114,8 +114,8 @@
                                                     <span *ngSwitchDefault><i class="fa fa-language uk-float-right resourceTypeIcon" aria-hidden="true"></i></span>
                                                 </span>
                             </p>
-                        </template>
-                    </template>
+                        </ng-template>
+                    </ng-template>
 
                 </div>
 
@@ -123,7 +123,7 @@
 
                     <h3 class="uk-h3 uk-heading-bullet">Refine</h3>
 
-                    <template ngFor let-facet [ngForOf]="searchResults.facets">
+                    <ng-template ngFor let-facet [ngForOf]="searchResults.facets">
                         <div *ngIf="facet.field!='resourceType'" class="refineCategory uk-grid-margin">
                             <read-more [maxHeight]="245">
                                 <span>{{facet.label}}</span>
@@ -136,15 +136,15 @@
                                 </div>
                             </read-more>
                         </div>
-                    </template>
+                    </ng-template>
 
                 </div>
 
                 <!--Advanced view-->
                 <div *ngIf="searchResults && advanced" class="uk-card uk-card-body uk-card-default sidemenu uk-panel-box-secondary">
 
-                    <template ngFor let-facet [ngForOf]="searchResults.facets">
-                        <template [ngIf]="facet.field=='resourceType'">
+                    <ng-template ngFor let-facet [ngForOf]="searchResults.facets">
+                        <ng-template [ngIf]="facet.field=='resourceType'">
                             <h3 class="uk-h3 uk-heading-bullet">Resource Type</h3>
                             <p *ngFor="let facetValue of facet.values"  class="resourceType">
                                 <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
@@ -167,8 +167,8 @@
                                                     <span *ngSwitchDefault><i class="fa fa-language uk-float-right resourceTypeIcon" aria-hidden="true"></i></span>
                                                 </span>
                             </p>
-                        </template>
-                    </template>
+                        </ng-template>
+                    </ng-template>
 
                 </div>
 
@@ -176,7 +176,7 @@
 
                     <h3 class="uk-h3 uk-heading-bullet">Refine</h3>
 
-                    <template ngFor let-facet [ngForOf]="searchResults.facets">
+                    <ng-template ngFor let-facet [ngForOf]="searchResults.facets">
                         <div *ngIf="facet.field!='resourceType'" class="refineCategory uk-grid-margin">
                             <read-more [maxHeight]="245">
                                 <span>{{facet.label}}</span>
@@ -189,7 +189,7 @@
                                 </div>
                             </read-more>
                         </div>
-                    </template>
+                    </ng-template>
 
                 </div>
 
@@ -203,7 +203,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="!errorMessage && shortResultsInfo" class="">
+                <div *ngIf="!errorMessage && shortResultsInfo.length != 0" class="">
 
                     <div *ngIf="!foundResults">
                         <div data-uk-alert="" class="uk-alert uk-alert-warning">
@@ -247,7 +247,7 @@
 
                         <div class="uk-grid-margin">
 
-                            <template ngFor let-resourceInfo [ngForOf]="shortResultsInfo">
+                            <ng-template ngFor let-resourceInfo [ngForOf]="shortResultsInfo">
 
                                 <div class="uk-grid" uk-grid="">
                                     <div class="uk-width-1-6@m uk-first-column">
@@ -302,7 +302,7 @@
 
                                 <hr uk-scrollspy-class="" style="" class="uk-scrollspy-inview uk-animation-slide-top-medium">
 
-                            </template>
+                            </ng-template>
                         </div>
 
                         <div class="uk-width-1-1 uk-row-first">

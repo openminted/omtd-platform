@@ -45,9 +45,9 @@ export class LingualityInfoFormControl extends MyGroup {
         multilingualityType: ''
     };
 
-    private lingualityInfoDesc : Description = lingualityInfoDesc;
-    private lingualityTypes: EnumValues[] = lingualityTypeEnum;
-    private multiLingualityTypes: EnumValues[] = multilingualityTypeEnum;
+    lingualityInfoDesc : Description = lingualityInfoDesc;
+    lingualityTypes: EnumValues[] = lingualityTypeEnum;
+    multiLingualityTypes: EnumValues[] = multilingualityTypeEnum;
 
     ngOnInit() {
         super.ngOnInit();

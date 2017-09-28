@@ -24,18 +24,19 @@
 
                         <!-- MIDDLE -->
                         <div *ngIf="!successfulMessage" class="uk-width-expand@m">
-                            <div *ngIf="errorMessage" class="alert alert-danger uk-margin-top">{{errorMessage}}</div>
-                            <div *ngIf="corpusFormErrorMessage" class="alert alert-danger uk-margin-top">{{corpusFormErrorMessage}}</div>
-                            <component-registration-form [group]="corpusForm" (componentForm)="handleCorpus($event)"
+                            <div *ngIf="componentFormErrorMessage" class="alert uk-alert-danger uk-margin-top">{{componentFormErrorMessage}}</div>
+                            <component-registration-form [group]="componentForm" [component]="component" (componentForm)="handleComponent($event)"
                                                          class="uk-margin-top"></component-registration-form>
                             <div>
-                                <button (click)="onSubmit()" class="uk-button uk-button-large
-                                            uk-button-blue registerButton">Update!</button>
+                                <button [disabled]="busy" (click)="onSubmit()" class="uk-button uk-button-large
+                                            uk-button-blue registerButton">Update!
+                                    <span *ngIf="busy"><i class="fa fa-spin fa-spinner"></i></span>
+                                </button>
                             </div>
                         </div>
 
                         <div *ngIf="successfulMessage" class="uk-width-expand@m">
-                            <div class="alert alert-success">{{successfulMessage}}</div>
+                            <div class="alert alert-success">{{successfulMessage}}. Click <a (click)="navigateToComponent()">here</a> to see it.</div>
                         </div>
 
 

@@ -27,19 +27,19 @@ import { ContentConnectorStatus } from "../../../domain/content-connector-status
 
 export class CorpusBuilderComponent implements OnDestroy {
 
-    private sub: Subscription;
+    sub: Subscription;
 
-    private urlParameters: URLParameter[] = [];
+    urlParameters: URLParameter[] = [];
 
-    private gettingCorpusMetadata:boolean = true;
-    private buildingCorpus:boolean = false;
-    private callingBuildCorpus:boolean = false;
+    gettingCorpusMetadata:boolean = true;
+    buildingCorpus:boolean = false;
+    callingBuildCorpus:boolean = false;
 
-    private min = Math.min;
+    min = Math.min;
 
-    private corpus: OMTDCorpus;
+    corpus: OMTDCorpus;
     
-    private corpusPromise : Observable<OMTDCorpus>;
+    corpusPromise : Observable<OMTDCorpus>;
 
     corpusForm: FormGroup;
 
@@ -51,8 +51,8 @@ export class CorpusBuilderComponent implements OnDestroy {
 
     status: string = null;
 
-    private corpusBuildingStates: CorpusBuildingState[] = [];
-    private contentConnectorStatus: ContentConnectorStatus;
+    corpusBuildingStates: CorpusBuildingState[] = [];
+    contentConnectorStatus: ContentConnectorStatus;
 
     intervalId: number = null;
 

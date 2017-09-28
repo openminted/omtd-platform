@@ -34,9 +34,9 @@ export class SizeInfoFormControl extends MyGroup {
     };
 
 
-    private sizeDesc : Description = sizeDesc;
-    private sizeInfoDesc : Description = sizeInfoDesc;
-    private sizeUnitDesc : Description = sizeUnitDesc;
-    private sizeUnitEnum : EnumValues[] = sizeUnitEnum;
+    sizeDesc : Description = sizeDesc;
+    sizeInfoDesc : Description = sizeInfoDesc;
+    sizeUnitDesc : Description = sizeUnitDesc;
+    sizeUnitEnum : EnumValues[] = sizeUnitEnum;
 
 }

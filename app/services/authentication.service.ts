@@ -58,18 +58,26 @@ export class AuthenticationService {
         return sessionStorage.getItem('name');
     }
 
+    public get email() : string {
+        return sessionStorage.getItem('email');
+    }
+
     public tryLogin() {
         if(getCookie('name')) {
             setInterval(() =>{
                 this.http.get(this.endpoint + '/user',{ withCredentials: true }).subscribe(
                     userInfo => {console.log("User is still logged in")},
-                    () => {sessionStorage.removeItem('name');deleteCookie('name');}
+                    () => {sessionStorage.removeItem('name');sessionStorage.removeItem('email');deleteCookie('name');}
                 );
             },1000 * 60 * 5);
             if(!sessionStorage.getItem('name')) {
                 this.http.get(this.endpoint + '/user',{ withCredentials: true }).subscribe(
-                    userInfo => {console.log(userInfo.json());sessionStorage.setItem('name',userInfo.json()['name'])},
-                    () => {sessionStorage.removeItem('name');deleteCookie('name');}
+                    userInfo => {
+                        console.log(userInfo.json());
+                        sessionStorage.setItem('name',userInfo.json()['name'])
+                        sessionStorage.setItem('email',userInfo.json()['email'])
+                    },
+                    () => {sessionStorage.removeItem('name');sessionStorage.removeItem('email');deleteCookie('name');}
                 );
             }
             if(sessionStorage.getItem("state.location")) {

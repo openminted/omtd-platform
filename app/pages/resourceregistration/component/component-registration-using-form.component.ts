@@ -20,8 +20,6 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
     componentValue : OMTDComponent;
     componentFormErrorMessage: string = null;
 
-    private production = process.env.PRODUCTION;
-
     errorMessage: string = null;
     successfulMessage: string = null;
 
@@ -29,7 +27,6 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
     handleComponent(component : any) {

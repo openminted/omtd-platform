@@ -1,7 +1,7 @@
-<div *ngIf="rawCorpusInfo.corpusMediaPartType">
-    <div *ngIf="rawCorpusInfo.corpusMediaPartType.corpusTextParts && rawCorpusInfo.corpusMediaPartType.corpusTextParts.length>0">
+<div *ngIf="rawCorpusInfo.corpusMediaPartsType">
+    <div *ngIf="rawCorpusInfo.corpusMediaPartsType.corpusTextParts && rawCorpusInfo.corpusMediaPartsType.corpusTextParts.length>0">
         <h4>Corpus Text Parts</h4>
-        <corpus-text-part-info *ngFor="let corpusTextPartInfo of rawCorpusInfo.corpusMediaPartType.corpusTextParts"
+        <corpus-text-part-info *ngFor="let corpusTextPartInfo of rawCorpusInfo.corpusMediaPartsType.corpusTextParts"
                                [corpusTextPartInfo]="corpusTextPartInfo">
         </corpus-text-part-info>
     </div>

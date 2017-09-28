@@ -25,25 +25,25 @@ export class LanguageTypeForm extends MyGroup {
         variantId: ''
     };
 
-    private languageTagDesc : Description;
-    private languageIdDesc : Description = languageIdDesc;
-    private scriptIdDesc : Description;
-    private regionIdDesc : Description;
-    private variantIdDesc : Description;
+    languageTagDesc : Description;
+    languageIdDesc : Description = languageIdDesc;
+    scriptIdDesc : Description;
+    regionIdDesc : Description;
+    variantIdDesc : Description;
 
-    private languageIdEnum : EnumValues[] = languageIdTypeEnum;
-    private scriptIdEnum : EnumValues[] = scriptIdTypeEnum;
-    private regionIdEnum : EnumValues[] = regionIdTypeEnum;
-    private variantIdEnum : EnumValues[] = variantIdTypeEnum;
+    languageIdEnum : EnumValues[] = languageIdTypeEnum;
+    scriptIdEnum : EnumValues[] = scriptIdTypeEnum;
+    regionIdEnum : EnumValues[] = regionIdTypeEnum;
+    variantIdEnum : EnumValues[] = variantIdTypeEnum;
 
-    private compositionObject : Language = new Language();
+    compositionObject : Language = new Language();
 
-    private setLanguageId($event : any) : void {
+    setLanguageId($event : any) : void {
         this.compositionObject.languageId = <string>$event.item.key.toLowerCase();
         this.getMyControl('languageId').setValue($event.item.key.toLowerCase());
     }
 
-    private get languageTag() {
+    get languageTag() {
         let arr : string[] = [];
         for(let type of ['languageId','scriptId','regiontId','variantId']) {
             if (this.compositionObject[type]) {

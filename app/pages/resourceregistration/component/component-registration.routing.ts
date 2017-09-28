@@ -8,6 +8,7 @@ import { ComponentRegistrationXMLComponent } from "./component-registration-xml.
 import { ComponentRegistrationUsingFormComponent } from "./component-registration-using-form.component";
 import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-guard.service";
 import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
+import { TestComponent } from "./test.component";
 
 const componentRegistrationRoutes: Routes = [
     {
@@ -37,7 +38,11 @@ const componentRegistrationRoutes: Routes = [
         canActivate: [
             CanActivateViaAuthGuard
         ]
-    }
+    },
+    {
+        path: 'resourceRegistration/component/form/test',
+        component: TestComponent
+    },
 ];
 
 export const componentRegistrationRouting: ModuleWithProviders = RouterModule.forChild(componentRegistrationRoutes);

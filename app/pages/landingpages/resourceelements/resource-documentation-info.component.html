@@ -1,19 +1,19 @@
 <!--<h4 class="uk-margin-top-remove">Resource Documentation Info </h4>-->
 <div class="uk-list">
-    <div *ngIf="resourceDocumentationInfo.mustBeCitedWith" class="uk-alert uk-alert-warning">
-        <div>
-            <strong><i class="fa fa-quote-left" aria-hidden="true"></i> Must be cited with </strong>
-        </div>
-        <div>
-            <span *ngIf="resourceDocumentationInfo.mustBeCitedWith.documentUnstructured">
-                {{resourceDocumentationInfo.mustBeCitedWith.documentUnstructured}}
-            </span>
-            <span *ngIf="resourceDocumentationInfo.mustBeCitedWith.publicationIdentifiers
-            && resourceDocumentationInfo.mustBeCitedWith.publicationIdentifiers.length>0">
-                {{resourceDocumentationInfo.mustBeCitedWith.publicationIdentifiers[0].value}}
-            </span>
-        </div>
-    </div>
+    <!--<div *ngIf="resourceDocumentationInfo.mustBeCitedWith" class="uk-alert uk-alert-warning">-->
+        <!--<div>-->
+            <!--<strong><i class="fa fa-quote-left" aria-hidden="true"></i> Must be cited with </strong>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<span *ngIf="resourceDocumentationInfo.mustBeCitedWith.documentUnstructured">-->
+                <!--{{resourceDocumentationInfo.mustBeCitedWith.documentUnstructured}}-->
+            <!--</span>-->
+            <!--<span *ngIf="resourceDocumentationInfo.mustBeCitedWith.publicationIdentifiers-->
+            <!--&& resourceDocumentationInfo.mustBeCitedWith.publicationIdentifiers.length>0">-->
+                <!--{{resourceDocumentationInfo.mustBeCitedWith.publicationIdentifiers[0].value}}-->
+            <!--</span>-->
+        <!--</div>-->
+    <!--</div>-->
     <div *ngIf="resourceDocumentationInfo.documentationPublications && resourceDocumentationInfo.documentationPublications.length>0">
         <strong>Documentation publications: </strong>
         <span *ngFor="let documentationPublication of resourceDocumentationInfo.documentationPublications; let isLast = last;">

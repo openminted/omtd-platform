@@ -4004,7 +4004,7 @@ select.uk-form-width-mini {
  ========================================================================== */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("../warp/vendor/uikit/fonts/fontawesome-webfont.woff2") format('woff2'), url("../warp/vendor/uikit/fonts/fontawesome-webfont.woff") format("woff"), url("../warp/vendor/uikit/fonts/fontawesome-webfont.ttf") format("truetype");
+  src: url("../../warp/vendor/uikit/fonts/fontawesome-webfont.woff2") format('woff2'), url("../../warp/vendor/uikit/fonts/fontawesome-webfont.woff") format("woff"), url("../../warp/vendor/uikit/fonts/fontawesome-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

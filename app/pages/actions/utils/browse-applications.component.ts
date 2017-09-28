@@ -20,14 +20,14 @@ import { BaseMetadataRecord, ComponentInfo } from "../../../domain/openminted-mo
 
 export class BrowseApplicationsComponent {
 
-    private searchApplicationsForm: FormGroup;
-    private errorMessage: string;
+    searchApplicationsForm: FormGroup;
+    errorMessage: string;
     private sub: Subscription;
 
-    private urlParameters: URLParameter[] = [];
+    urlParameters: URLParameter[] = [];
 
-    private searchResults: SearchResults<BaseMetadataRecord>;
-    private shortResultsInfo : ShortResultInfo[] = [];
+    searchResults: SearchResults<BaseMetadataRecord>;
+    shortResultsInfo : ShortResultInfo[] = [];
 
     private pageSize: number = 0;
     private currentPage: number = 0;

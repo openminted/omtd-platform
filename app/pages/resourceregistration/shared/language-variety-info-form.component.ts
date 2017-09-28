@@ -21,7 +21,7 @@ export class LanguageVarietyInfoFormControl implements OnInit {
 
     public myForm : FormGroup;
 
-    private languageVarietyTypes: EnumValues[];
+    languageVarietyTypes: EnumValues[];
 
     validate(c : AbstractControl) {
         //null otan einai swsto

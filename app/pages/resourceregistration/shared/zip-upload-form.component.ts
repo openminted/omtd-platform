@@ -40,15 +40,15 @@ export class ZipUploadComponent implements OnInit{
     @Output('file')
     fileChange : EventEmitter<File> = new EventEmitter<File>();
 
-    private errorMessage: string;
-    private successMessage: string;
+    errorMessage: string;
+    successMessage: string;
 
-    private uploadedZip : File;
+    uploadedZip : File;
 
     //private resource: Resource;
 
     constructor(private _fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-                private resourceService: ResourceService) {
+                resourceService: ResourceService) {
 
         this.uploadedZip = null;
     }

@@ -29,6 +29,8 @@ export class MyOperationsComponent {
     private currentPage: number = 0;
     private totalPages: number = 0;
 
+    isModalShown : boolean;
+
     private isPreviousPageDisabled: boolean = false;
     private isFirstPageDisabled: boolean = false;
     private isNextPageDisabled: boolean = false;
@@ -101,6 +103,10 @@ export class MyOperationsComponent {
 
         this.deleteConfirmationModal.ids = [corpus.metadataHeaderInfo.metadataRecordIdentifier.value];
         this.deleteConfirmationModal.showModal();
+    }
+
+    confirmedDeleteComponent(event : any) {
+        throw new Error("Stefaniaaa you forgot a method!");
     }
 
     // confirmedDeleteCorpus(ids: string[]) {
