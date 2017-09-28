@@ -13,6 +13,7 @@ import { RelatedCommonsForm, RelatedCommonForm } from "./shared/related-common-f
 import { LanguageTypeForm } from "./shared/language-type-form.component";
 import { IdentifierFormControl } from "./shared/identifier-common-form.component";
 import {
+    MySimpleStringControl,
     MyStringAreaFormGroup, MyStringArrayFormGroup, MyStringDescFormGroup, MyStringFormControl,
     MyStringFormGroup
 } from "./shared/my-string-form.component";
@@ -101,6 +102,7 @@ import {DistributionMedium, DistributionMediums} from "./shared/distribution-med
         DistributionMediums,
         DistributionMedium,
         MyStringArrayFormGroup,
+        MySimpleStringControl,
         MetadataIdentifierFormControl,
         MetadataHeaderInfoFormControl,
         VersionFormControl,
@@ -159,6 +161,7 @@ import {DistributionMedium, DistributionMediums} from "./shared/distribution-med
         CorpusSubtypeSpecificInfoForm,
         RelatedCommonForm,
         LanguageTypeForm,
+        MySimpleStringControl,
         IdentifierFormControl,
         DatasetDistributionInfoFormControl,
         DatasetDistributionsInfoFormControl,
