@@ -91,7 +91,7 @@ export class DatasetDistributionLocInfoFormControl extends MyGroup {
 
     readonly groupDefinition = {
         distributionMedium : ['', Validators.required],
-        distributionLocation : ['', Validators.required]
+        distributionLocation : ['', Validators.compose([Validators.required, Validators.pattern("(\\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]")])]
     };
 
 

@@ -8,6 +8,7 @@ import {
     ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'component-registration-using-form',
@@ -19,7 +20,7 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
     componentForm: FormGroup;
     componentValue : OMTDComponent;
     componentFormErrorMessage: string = null;
-
+    tocValid : Observable<boolean>;
     errorMessage: string = null;
     successfulMessage: string = null;
 
@@ -38,13 +39,15 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
         this.successfulMessage = null;
         this.errorMessage = null;
 
-        if(this.componentForm.valid)
+        if(this.componentForm.valid && this.tocValid)
             this.componentFormErrorMessage = null;
-        else
+        else if (!this.componentForm.valid)
             this.componentFormErrorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
+        else if (!this.tocValid)
+            this.componentFormErrorMessage = "Please accept the terms and conditions";
 
-        if(this.componentForm.valid) {
+        if(this.componentForm.valid && this.tocValid) {
             let component : OMTDComponent = Object.assign({},this.componentForm.value);
             let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
             let text = "";

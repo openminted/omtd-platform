@@ -26,7 +26,7 @@
                         <div *ngIf="!successfulMessage" class="uk-width-expand@m">
                             <div *ngIf="errorMessage" class="alert alert-danger uk-margin-top">{{errorMessage}}</div>
                             <div *ngIf="componentFormErrorMessage" class="alert alert-danger uk-margin-top">{{componentFormErrorMessage}}</div>
-                            <component-registration-form [group]="componentForm" (componentForm)="handleComponent($event)"
+                            <component-registration-form [group]="componentForm" (componentForm)="handleComponent($event)" (tocValid)="tocValid"
                                                          class="uk-margin-top"></component-registration-form>
                             <div>
                                 <button (click)="onSubmit()" class="uk-button uk-button-large

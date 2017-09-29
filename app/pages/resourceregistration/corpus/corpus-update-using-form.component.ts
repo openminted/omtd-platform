@@ -3,11 +3,10 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms'
-import {
-    Corpus as OMTDCorpus, IdentificationInfo, ResourceIdentifier,
-    ResourceIdentifierSchemeNameEnum
-} from "../../../domain/openminted-model";
+import { Corpus as OMTDCorpus } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Observable } from "rxjs/Observable";
 
 @Component({
     selector: 'corpus-update-using-form',
@@ -17,60 +16,70 @@ import { ResourceService } from "../../../services/resource.service";
 export class CorpusUpdateUsingFormComponent implements OnInit {
 
     corpusForm: FormGroup;
-    corpusValue : OMTDCorpus;
+    corpus : Observable<OMTDCorpus>;
     corpusFormErrorMessage: string = null;
-
-    production = process.env.PRODUCTION;
-
-    errorMessage: string = null;
+    corpusAll : OMTDCorpus = null;
+    busy : boolean = false;
     successfulMessage: string = null;
+    errorMessage: string = null;
+    tocValid : Observable<boolean>;
 
-    constructor(private resourceService: ResourceService) {
+
+    constructor(private resourceService: ResourceService,private route: ActivatedRoute,private router: Router) {
     }
 
     ngOnInit() {
-
+        this.route.params.subscribe(params => {
+            let id = params['id'];
+            this.corpus = this.resourceService.getCorpus(id);
+            this.corpus.subscribe(corpus => this.corpusAll = corpus, error => this.handleError("Error occured",error));
+        });
     }
 
+    updateCorpus(corpus : any) {
+        console.log(corpus);
+        this.busy = true;
+        this.resourceService.updateCorpus(
+            corpus).subscribe(corpus => {
+                console.log(corpus);
+                this.busy = false;
+                this.successfulMessage = "Corpus updated successfully";
+                window.scrollTo(0,0);},
+            error => this.handleError("Error",error)
+        );
+    }
+    
     handleCorpus(corpus : any) {
         this.corpusForm = corpus;
     }
 
     onSubmit() {
-
         this.successfulMessage = null;
-        this.errorMessage = null;
 
-        if(this.corpusForm.valid)
+        if(this.corpusForm.valid && this.tocValid)
             this.corpusFormErrorMessage = null;
-        else
+        else if(!this.corpusForm.valid)
             this.corpusFormErrorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
+        else if (!this.tocValid)
+            this.corpusFormErrorMessage = "Please accept the terms and conditions";
 
-        if(this.corpusForm.valid) {
-            let corpus : OMTDCorpus = Object.assign({},this.corpusForm.value);
-            let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
-            let text = "";
-            let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-            for (let i = 0; i < 40; i++)
-                text += possible.charAt(Math.floor(Math.random() * possible.length));
-            resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
-            resourceIdentifier.value = text;
-            corpus.corpusInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
-            this.resourceService.uploadCorpus(this.corpusForm.value).subscribe(
-                res => {
-                    this.successfulMessage = 'Corpus registered successfully';
-                    window.scrollTo(0,0);
-                }, error => this.handleError('Corpus registration failed', error)
-            );
+        if(this.corpusForm.valid && this.tocValid) {
+            let corpusFilled : OMTDCorpus = Object.assign({},this.corpusForm.value);
+            corpusFilled.metadataHeaderInfo = this.corpusAll.metadataHeaderInfo;
+            this.updateCorpus(corpusFilled);
         } else {
             window.scrollTo(0,0);
         }
     }
 
-    handleError(message: string, error) {
-        this.errorMessage = message + ' (Server responded: ' + error + ')';
+    handleError(message : string,error : any) {
+        this.corpusFormErrorMessage = message + ' (Server responded: ' + error + ')';
         window.scrollTo(0,0);
+        this.busy = false;
+    }
+
+    navigateToCorpus() {
+        this.router.navigate(['/landingPage/corpus/', this.corpusAll.metadataHeaderInfo.metadataRecordIdentifier.value]);
     }
 }

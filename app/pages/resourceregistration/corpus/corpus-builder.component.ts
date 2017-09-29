@@ -40,6 +40,7 @@ export class CorpusBuilderComponent implements OnDestroy {
     corpus: OMTDCorpus;
     
     corpusPromise : Observable<OMTDCorpus>;
+    tocValid : Observable<boolean>;
 
     corpusForm: FormGroup;
 
@@ -126,13 +127,15 @@ export class CorpusBuilderComponent implements OnDestroy {
         console.log(JSON.stringify(this.corpusForm.value));
         console.log(this.corpusForm);
 
-        if(this.corpusForm.valid)
+        if(this.corpusForm.valid && this.tocValid)
             this.corpusFormErrorMessage = null;
+        else if (!this.tocValid)
+            this.corpusFormErrorMessage = "Please accept the terms and conditions";
         else
             this.corpusFormErrorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
 
-        if(this.corpusForm.valid) {
+        if(this.corpusForm.valid && this.tocValid) {
 
             this.callingBuildCorpus = true;
             let corpusFilled : OMTDCorpus = this.corpusForm.value;
