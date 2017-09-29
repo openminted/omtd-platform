@@ -4,103 +4,67 @@
 
     <div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
         <div class="uk-container">
+
+            <!-- TOP HELP CONTENT -->
+            <help-content #topHelperContent [position]="'top'"
+                          [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+            </help-content>
+
             <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
 
-                <div *ngIf="!successfulMessage" class="uk-width-1-1@m uk-first-column uk-margin-bottom">
-                    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+                <!-- LEFT HELP CONTENT -->
+                <aside-help-content #leftHelperContent [position]="'left'"
+                                    [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                </aside-help-content>
 
-                    <article class="uk-article">
-                        <h3 class="subtitle">Upload your zip file</h3>
-                        <div *ngIf="zipFormErrorMessage" class="alert alert-danger">{{zipFormErrorMessage}}</div>
-                        <zip-upload [group]="zipForm" (file)="updateFile($event)"></zip-upload>
+                <div class="uk-width-expand@m uk-first-column">
+
+                    <div *ngIf="!successfulMessage" class="uk-width-1-1@m uk-first-column uk-margin-bottom">
+                        <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+
+                        <article class="uk-article">
+                            <h3 class="subtitle">Upload your zip file</h3>
+                            <div *ngIf="zipFormErrorMessage" class="alert alert-danger">{{zipFormErrorMessage}}</div>
+                            <zip-upload [group]="zipForm" (file)="updateFile($event)"></zip-upload>
+                            <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
+                        </article>
+                        <!--<h1 class="uk-article-title">Upload your zip file</h1>-->
                         <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
-                    </article>
-                    <!--<h1 class="uk-article-title">Upload your zip file</h1>-->
-                    <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
 
 
-                    <article class="uk-article">
-                        <h3 class="subtitle">Fill in the metadata for your corpus</h3>
-                        <div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>
-                        <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"></corpus-registration-form>
-                        <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
+                        <article class="uk-article">
+                            <h3 class="subtitle">Fill in the metadata for your corpus</h3>
+                            <div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>
+                            <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"></corpus-registration-form>
+                            <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
 
-                    </article>
+                        </article>
 
-                    <div>
-                        <button (click)="onSubmit()" class="uk-button uk-button-large
+                        <div>
+                            <button (click)="onSubmit()" class="uk-button uk-button-large
                                             uk-button-blue registerButton">Register!</button>
+                        </div>
+
                     </div>
 
+                    <div *ngIf="successfulMessage" class="alert alert-success">
+                        {{successfulMessage}}
+                    </div>
                 </div>
 
-                <div *ngIf="successfulMessage" class="alert alert-success">
-                    {{successfulMessage}}
-                </div>
+                <!-- RIGHT HELP CONTENT -->
+                <aside-help-content #rightHelperContent [position]="'right'"
+                                    [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                </aside-help-content>
 
             </div>
+
+            <!-- BOTTOM HELP CONTENT -->
+            <help-content #bottomHelperContent [position]="'bottom'"
+                          [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+            </help-content>
+
         </div>
     </div>
-
-
-
-
-    <!--<div class="uk-block tm-block-main uk-block-default uk-block-large">-->
-        <!--<div class="uk-container uk-container-center">-->
-            <!--<div id="tm-middle" class="tm-middle uk-grid" data-uk-grid-match="" data-uk-grid-margin="">-->
-                <!--<div class="tm-main uk-width-medium-1-1 uk-row-first">-->
-                    <!--<main id="tm-content" class="tm-content">-->
-                        <!--<div id="system-message-container">-->
-                        <!--</div>-->
-                        <!--<div class="yoo-zoo page-uikit page-uikit-test">-->
-
-                            <!--&lt;!&ndash;<h1 class="uk-h1"> Corpus Upload </h1>&ndash;&gt;-->
-
-                            <!--&lt;!&ndash;&lt;!&ndash;<p class="uk-text-muted">Written by Super User on 26 March 2010 </p>&ndash;&gt;&ndash;&gt;-->
-
-                            <!--&lt;!&ndash;<div class="uk-margin">&ndash;&gt;-->
-                            <!--&lt;!&ndash;Upload your corpus in a zip file and fill in its metadata.&ndash;&gt;-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                            <!--<div class="uk-margin uk-grid componentXMLRegistration">-->
-                                <!--<div class="uk-width-medium-1-1">-->
-
-                                    <!--<div *ngIf="!successfulMessage">-->
-                                        <!--<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>-->
-
-                                        <!--<article class="uk-article">-->
-                                            <!--<h3 class="subtitle">Upload your zip file</h3>-->
-                                            <!--<div *ngIf="zipFormErrorMessage" class="alert alert-danger">{{zipFormErrorMessage}}</div>-->
-                                            <!--<zip-upload [group]="zipForm" (file)="updateFile($event)"></zip-upload>-->
-                                            <!--&lt;!&ndash;<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>&ndash;&gt;-->
-                                        <!--</article>-->
-                                        <!--&lt;!&ndash;<h1 class="uk-article-title">Upload your zip file</h1>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>&ndash;&gt;-->
-
-
-                                        <!--<article class="uk-article">-->
-                                            <!--<h3 class="subtitle">Fill in the metadata for your corpus</h3>-->
-                                            <!--<div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>-->
-                                            <!--<corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"></corpus-registration-form>-->
-                                            <!--&lt;!&ndash;<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>&ndash;&gt;-->
-
-                                        <!--</article>-->
-                                        <!--&lt;!&ndash;<div class="uk-grid-margin uk-row-first">&ndash;&gt;-->
-                                        <!--<div>-->
-                                            <!--<button (click)="onSubmit()" class="uk-button uk-button-large-->
-                                            <!--uk-button-blue registerButton">Register!</button>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div *ngIf="successfulMessage" class="alert alert-success">{{successfulMessage}}</div>-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</main>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
 
 </div>

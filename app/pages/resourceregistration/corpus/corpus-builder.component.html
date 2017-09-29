@@ -3,23 +3,54 @@
 
     <div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
         <div class="uk-container">
+
             <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
 
                 <div *ngIf="!buildingCorpus" class="uk-width-1-1@m uk-first-column uk-margin-bottom">
+
                     <h1 class="uk-h2">Fill in the metadata for your corpus</h1>
                     <hr class="uk-scrollspy-inview uk-animation-slide-top-medium" style="" uk-scrollspy-class="">
-                    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-                    <div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>
 
-                    <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"
-                                              [corpus]="corpusPromise"></corpus-registration-form>
+                    <!-- TOP HELP CONTENT -->
+                    <help-content #topHelperContent [position]="'top'"
+                                  [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                    </help-content>
 
-                    <!--<div class="uk-grid-margin uk-row-first">-->
+                    <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+                        <div class="uk-grid">
+
+                            <!-- LEFT HELP CONTENT -->
+                            <aside-help-content #leftHelperContent [position]="'left'"
+                                                [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                            </aside-help-content>
+
+                            <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+
+                            <div class=" uk-width-expand@m">
+                                <div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>
+
+                                <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"
+                                                          [corpus]="corpusPromise"></corpus-registration-form>
+                            </div>
+
+                            <!-- RIGHT HELP CONTENT -->
+                            <aside-help-content #rightHelperContent [position]="'right'"
+                                                [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                            </aside-help-content>
+                        </div>
+                    </div>
+
                     <div>
                         <button (click)="onSubmit()" class="uk-button uk-button-large
                                             uk-button-blue registerButton">Register!</button>
                     </div>
+
+                    <!-- BOTTOM HELP CONTENT -->
+                    <help-content #bottomHelperContent [position]="'bottom'"
+                                  [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                    </help-content>
                 </div>
+
 
                 <div *ngIf="buildingCorpus" class="uk-width-1-1@m uk-first-column uk-margin-bottom">
                     <div *ngIf="!successfulMessage && !createCorpusErrorMessage">
@@ -133,63 +164,8 @@
                 </div>
 
             </div>
+
         </div>
     </div>
-
-
-    <!--<div class="uk-block tm-block-main uk-block-default uk-block-large searchBoxContainer">-->
-        <!--<div class="uk-container uk-container-center">-->
-            <!--<div data-uk-grid-margin="" data-uk-grid-match="" class="tm-middle uk-grid">-->
-                <!--<div class="tm-main uk-width-medium-1-1 uk-row-first">-->
-                    <!--<main class="tm-content">-->
-
-                        <!--<article *ngIf="!buildingCorpus" class="uk-article uk-width-medium-1-1 uk-align-center">-->
-
-                            <!--<h3 class="subtitle">Fill in the metadata for your corpus</h3>-->
-
-                            <!--<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>-->
-                            <!--<div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>-->
-
-                            <!--<corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"-->
-                                                      <!--[corpus]="corpusPromise"></corpus-registration-form>-->
-
-                            <!--&lt;!&ndash;<div class="uk-grid-margin uk-row-first">&ndash;&gt;-->
-                            <!--<div>-->
-                                <!--<button (click)="onSubmit()" class="uk-button uk-button-large-->
-                                            <!--uk-button-blue registerButton">Register!</button>-->
-                            <!--</div>-->
-
-                        <!--</article>-->
-
-                        <!--<article *ngIf="buildingCorpus" class="uk-article uk-width-medium-1-1 uk-align-center" style="min-height: 400px">-->
-
-                            <!--<div *ngIf="!successfulMessage && !createCorpusErrorMessage">-->
-                                <!--<h3 class="subtitle">Corpus is building. Below you can see the progress of the process</h3>-->
-
-                                <!--<p><strong>Status: </strong><span>{{status}}</span></p>-->
-                                <!--<div class="progress">-->
-                                    <!--<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">-->
-                                        <!--<span class="sr-only">{{status}}</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-
-                            <!--<div *ngIf="successfulMessage" class="alert alert-success">-->
-                                <!--{{successfulMessage}}-->
-                            <!--</div>-->
-
-                            <!--<div *ngIf="createCorpusErrorMessage">-->
-                                <!--<p><strong>Status: </strong><span>{{status}}</span></p>-->
-                                <!--<div class="alert alert-danger">{{createCorpusErrorMessage}}</div>-->
-                            <!--</div>-->
-
-                        <!--</article>-->
-
-                    <!--</main>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
 
 </div>
