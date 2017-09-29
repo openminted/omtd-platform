@@ -24,18 +24,20 @@
 
                         <!-- MIDDLE -->
                         <div *ngIf="!successfulMessage" class="uk-width-expand@m">
-                            <div *ngIf="errorMessage" class="alert alert-danger uk-margin-top">{{errorMessage}}</div>
                             <div *ngIf="corpusFormErrorMessage" class="alert alert-danger uk-margin-top">{{corpusFormErrorMessage}}</div>
-                            <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"
+                            <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)" [corpus]="corpus"
+                                                      (tocValid)="tocValid"
                                                          class="uk-margin-top"></corpus-registration-form>
                             <div>
-                                <button (click)="onSubmit()" class="uk-button uk-button-large
-                                            uk-button-blue registerButton">Update!</button>
+                                <button [disabled]="busy" (click)="onSubmit()" class="uk-button uk-button-large
+                                            uk-button-blue registerButton">Update!
+                                    <span *ngIf="busy"><i class="fa fa-spin fa-spinner"></i></span>
+                                </button>
                             </div>
                         </div>
 
                         <div *ngIf="successfulMessage" class="uk-width-expand@m">
-                            <div class="alert alert-success">{{successfulMessage}}</div>
+                            <div class="alert alert-success">{{successfulMessage}}. Click <a (click)="navigateToCorpus()">here</a> to see it.</div>
                         </div>
 
 

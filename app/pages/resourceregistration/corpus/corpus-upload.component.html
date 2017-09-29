@@ -29,13 +29,12 @@
                             <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
                         </article>
                         <!--<h1 class="uk-article-title">Upload your zip file</h1>-->
-                        <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
 
 
                         <article class="uk-article">
                             <h3 class="subtitle">Fill in the metadata for your corpus</h3>
                             <div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>
-                            <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"></corpus-registration-form>
+                            <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)" (tocValid)="tocValid"></corpus-registration-form>
                             <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
 
                         </article>

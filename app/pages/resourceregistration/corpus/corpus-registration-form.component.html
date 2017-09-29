@@ -98,6 +98,12 @@
             <!--</div>-->
         <!--</accordion>-->
     </form>
+    <form class="form-horizontal componentForm" [formGroup]="tocForm">
+        <form-inline [description]="{label : 'Terms and Conditions', mandatory : true, description:''}" [params]="null" [valid]="tocForm.get('toc').valid">
+            <input type="checkbox" formControlName="toc" class="uk-checkbox">
+            Agree to <a href="assets/files/OpenMinTeD_Terms_and_Conditions_v1.0.pdf" target="_blank">OpenMinted Terms and Conditions</a>
+        </form-inline>
+    </form>
 </div>
 <div *ngIf="production==false" class="margin-20">
     <div>myForm details:-</div>

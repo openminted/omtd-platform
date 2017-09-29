@@ -8,6 +8,7 @@ import {
     RightsInfo, ResourceIdentifier, ResourceIdentifierSchemeNameEnum, RightsStatementEnum,
 } from "../../../domain/openminted-model";
 import {ResourceService} from "../../../services/resource.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'corpus-upload',
@@ -21,7 +22,7 @@ export class CorpusUploadComponent implements OnInit {
     zipForm: FormGroup;
     zipFile : File;
     corpusValue : OMTDCorpus;
-
+    tocValid : Observable<boolean>;
     zipFormErrorMessage: string = null;
     corpusFormErrorMessage: string = null;
 
@@ -63,13 +64,15 @@ export class CorpusUploadComponent implements OnInit {
         else
             this.zipFormErrorMessage = 'You need to provide a zip file with the corpus.';
 
-        if(this.corpusForm.valid)
+        if(this.corpusForm.valid && this.tocValid)
             this.corpusFormErrorMessage = null;
-        else
+        else if (!this.corpusForm.valid)
             this.corpusFormErrorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
+        else if (!this.tocValid)
+            this.corpusFormErrorMessage = "Please accept the terms and conditions";
 
-        if(this.zipFile && this.zipFile.name.endsWith(".zip") && this.corpusForm.valid) {
+        if(this.zipFile && this.zipFile.name.endsWith(".zip") && this.corpusForm.valid && this.tocValid) {
 
             this.uploadingCorpus = true;
 

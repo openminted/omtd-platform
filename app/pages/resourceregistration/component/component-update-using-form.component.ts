@@ -23,7 +23,7 @@ export class ComponentUpdateUsingFormComponent implements OnInit {
     componentAll : OMTDComponent = null;
 
     busy : boolean = false;
-
+    tocValid : Observable<boolean>;
     successfulMessage: string = null;
 
     constructor(private resourceService: ResourceService,private route: ActivatedRoute,private router: Router) {
@@ -57,13 +57,15 @@ export class ComponentUpdateUsingFormComponent implements OnInit {
     onSubmit() {
         this.successfulMessage = null;
 
-        if(this.componentForm.valid)
+        if(this.componentForm.valid && this.tocValid)
             this.componentFormErrorMessage = null;
-        else
+        else if (!this.componentForm.valid)
             this.componentFormErrorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
+        else if (!this.tocValid)
+            this.componentFormErrorMessage = "Please accept the terms and conditions";
 
-        if(this.componentForm.valid) {
+        if(this.componentForm.valid && this.tocValid) {
             let componentFilled : OMTDComponent = Object.assign({},this.componentForm.value);
             componentFilled.metadataHeaderInfo = this.componentAll.metadataHeaderInfo;
             this.updateComponent(componentFilled);
