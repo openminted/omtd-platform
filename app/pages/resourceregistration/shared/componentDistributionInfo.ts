@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 1/22/17.
  */
-import {Component, OnInit, Input, Type} from "@angular/core";
+import {Component, OnInit, Input, Type, Injector} from "@angular/core";
 import {FormGroup, FormBuilder, FormControl, FormArray, Validators} from "@angular/forms";
 import {EnumValues, distributionMediumEnum, componentDistributionFormEnum} from "../../../domain/omtd.enum";
 import {MyGroup} from "../myform/my-group.interface";
@@ -47,10 +47,6 @@ export class ComponentDistributionsInfoFormControl {
         </form-inline>
         
         <div class="form-group-divider"></div>
-    
-        <form-inline [description]="distributionURLDesc" [valid]="getMyControl('componentLoc.distributionLocation').valid">
-            <input type="text" class="form-control" formControlName="distributionLocation" placeholder="{{distributionURLDesc.label}}">
-        </form-inline>
 
         <div [hidden]="getMyControl('componentLoc.componentDistributionForm').value !== 'WEB_SERVICE'">
             <div  class="form-group-divider"></div>
@@ -59,10 +55,16 @@ export class ComponentDistributionsInfoFormControl {
                 <input type="text" class="form-control" formControlName="command" placeholder="{{commandDesc.label}}">
             </form-inline>
         </div>
+
+        <div class="form-group-divider"></div>
+    
+        <form-inline [description]="distributionURLDesc" [valid]="getMyControl('componentLoc.distributionLocation').valid">
+            <input type="text" class="form-control" formControlName="distributionLocation" placeholder="{{distributionURLDesc.label}}">
+        </form-inline>
         
     </div>
 
-    
+    <div class="form-group-divider"></div>
     
     <rightsInfo-form [parentGroup]="group" [name]="'rightsInfo'"></rightsInfo-form>
     

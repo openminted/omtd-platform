@@ -28,11 +28,14 @@
                             <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)" [corpus]="corpus"
                                                       (tocValid)="tocValid"
                                                          class="uk-margin-top"></corpus-registration-form>
-                            <div>
-                                <button [disabled]="busy" (click)="onSubmit()" class="uk-button uk-button-large
+                            <div class="uk-grid">
+                                <div class="uk-width-1-5"></div>
+                                <div class="uk-width-4-5">
+                                    <button [disabled]="busy" (click)="onSubmit()" class="uk-button uk-button-large
                                             uk-button-blue registerButton">Update!
-                                    <span *ngIf="busy"><i class="fa fa-spin fa-spinner"></i></span>
-                                </button>
+                                        <span *ngIf="busy"><i class="fa fa-spin fa-spinner"></i></span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
