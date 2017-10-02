@@ -36,10 +36,12 @@ export class DatasetDistributionsInfoFormControl {
     selector: 'datasetDistributionInfo-form',
     template : `
 <div [formGroup]="group">
-    <form-repeat-inline [component]="datasetDistributionLocType" [parentGroup]="parentGroup"
+    <form-repeat-inline [component]="datasetDistributionLocType" [parentGroup]="parentGroup" [hidden]="true"
                         [name]="'distributionLoc'" [required]="true" [description]="datasetDistributionDesc">
         
     </form-repeat-inline>
+
+    <div class="form-group-divider"></div>
       
     <rightsInfo-form [parentGroup]="group" [name]="'rightsInfo'"></rightsInfo-form>
     

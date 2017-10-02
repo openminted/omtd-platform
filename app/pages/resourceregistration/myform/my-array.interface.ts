@@ -22,8 +22,9 @@ import {Subject} from "rxjs/Subject";
         <ng-template my-form></ng-template>
     <!--</div>-->
 </div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-md-offset-2 col-sm-9 col-md-9">
+<div class="uk-grid">
+    <div class="uk-width-1-5"></div>
+    <div class="uk-width-expand\@m">
         <a class="add-new-element add-new-group" (click)="push()"><i class="fa fa-plus" aria-hidden="true"></i>
             Add New {{description.label}}</a>
     </div>
@@ -152,27 +153,20 @@ export class MyArrayInline extends MyArray {
     selector : 'form-repeat-wrapper',
     template : `
 
-    <fieldset class="uk-fieldset group">
-        <legend class="uk-legend">
-            <span>{{description.label}}</span>
-            <a *ngIf="canDelete" class="remove-element" (click)="remove()">
-                <i class="fa fa-times" aria-hidden="true"></i>
-            </a>
-        </legend>
-        <!--<div class="form-group">-->
-            <!--<div class="col-md-offset-2 col-sm-offset-2 col-sm-10 col-md-10">-->
-                <!--<div class="group-label">-->
-                    <!--<span>{{description.label}}</span>-->
-                    <!--<a *ngIf="canDelete" class="remove-element" (click)="remove()">-->
-                        <!--<i class="fa fa-times" aria-hidden="true"></i>-->
-                    <!--</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <ng-template my-form></ng-template>
-        <!--</div>-->
-    </fieldset>
+    <div class="group">
+        <div class="uk-grid">
+            <div class="uk-width-1-5"></div>
+            <div class="uk-width-expand\@m">
+                <label class="">
+                    {{description.label}}
+                    <a *ngIf="canDelete" class="remove-element" (click)="remove()">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                </label>
+            </div>
+        </div>
+        <ng-template my-form></ng-template>
+    </div>
 `,
     styleUrls : ['../shared/templates/common.css']
 

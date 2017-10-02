@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Type} from "@angular/core";
+import {Component, OnInit, Input, Type, Injector} from "@angular/core";
 import {FormGroup, FormBuilder, FormArray, Validators} from "@angular/forms";
 import {EnumValues, licenceEnum, rightsStatementEnum} from "../../../domain/omtd.enum";
 import {
@@ -18,6 +18,7 @@ import {MyGroup} from "../myform/my-group.interface";
                          [name]="'licenceInfos'" [required]="true" [description]="licenseInfoDesc">
             </form-repeat-inline>
 
+            <div class="form-group-divider"></div>
 
             <div formArrayName="rightsStatement">
                 <form-inline [description]="rightsStatementDesc" [valid]="getMyControl('rightsStatement').valid">
@@ -39,10 +40,14 @@ export class RightsInfoForm extends MyGroup {
         rightsStatement : this._fb.array(["OPEN_ACCESS"])
     };
 
+    constructor(private injector : Injector) {
+        super(injector);
+        this.licenseInfoDesc = Object.assign({},licenceInfoDesc);
+    }
     readonly rightsStatementEnum : EnumValues[] = rightsStatementEnum;
     readonly rightsStatementDesc : Description = rightsStatementDesc;
 
-    licenseInfoDesc : Description = licenceInfoDesc;
+    licenseInfoDesc : Description;
 
     licenseType : Type<any> = LicenseInfoForm;
 
@@ -54,7 +59,7 @@ export class RightsInfoForm extends MyGroup {
 <div [formGroup]="group">
     <div formArrayName="licenceInfo">
         <div formGroupName="0">
-            <form-inline [description]="licenceDesc" [valid]="getMyControl('licenceInfo.0.licence').valid">
+            <form-inline [description]="licenceDesc" [valid]="getMyControl('licenceInfo.0.licence').valid" [params]="null">
                 <select name="role" class="uk-select" formControlName="licence">
                     <option *ngFor="let value of licenceEnum" [value]="value.key" [selected]="value.key == ''">
                         {{value.value}}
@@ -66,13 +71,13 @@ export class RightsInfoForm extends MyGroup {
                 <div class="form-group-divider"></div>
             
                 <form-inline [description]="nonStandardLicenceNameDesc" [valid]="getMyControl('licenceInfo.0.nonStandardLicenceName').valid">
-                    <input type="text" class="uk-input" formControlName="nonStandardLicenceName" placeholder="{{nonStandardLicenceNameDesc.label}}">
+                    <input type="text" class="uk-input" formControlName="nonStandardLicenceName" placeholder="Name (*)">
                 </form-inline>
             
                 <div class="form-group-divider"></div>
             
                 <form-inline [description]="nonStandardLicenceTermsURLDesc" [valid]="getMyControl('licenceInfo.0.nonStandardLicenceTermsURL').valid">
-                    <input type="text" class="uk-input" formControlName="nonStandardLicenceTermsURL" placeholder="{{nonStandardLicenceTermsURLDesc.label}}">
+                    <input type="text" class="uk-input" formControlName="nonStandardLicenceTermsURL" placeholder="URL (*)">
                 </form-inline>
             </div>
         </div>
@@ -92,6 +97,14 @@ export class LicenseInfoForm extends MyGroup {
             })
         ])
     };
+
+    constructor(private injector : Injector) {
+        super(injector);
+        this.licenceDesc = Object.assign({},licenceInfoDesc);
+        this.licenceDesc.label = null;
+        this.nonStandardLicenceNameDesc.label = null;
+        this.nonStandardLicenceTermsURLDesc.label = null;
+    }
 
     readonly licenceEnum : EnumValues[] = licenceEnum;
     readonly licenceDesc : Description = licenceDesc;
