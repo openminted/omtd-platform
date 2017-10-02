@@ -21,7 +21,7 @@ import {MyGroup} from "../myform/my-group.interface";
 
             <div formArrayName="rightsStatement">
                 <form-inline [description]="rightsStatementDesc" [valid]="getMyControl('rightsStatement').valid">
-                    <select name="role" class="form-control" formControlName="0">
+                    <select name="role" class="uk-select" formControlName="0">
                         <option *ngFor="let value of rightsStatementEnum" [value]="value.key" [selected]="value.key == ''">
                             {{value.value}}
                         </option>
@@ -55,7 +55,7 @@ export class RightsInfoForm extends MyGroup {
     <div formArrayName="licenceInfo">
         <div formGroupName="0">
             <form-inline [description]="licenceDesc" [valid]="getMyControl('licenceInfo.0.licence').valid">
-                <select name="role" class="form-control" formControlName="licence">
+                <select name="role" class="uk-select" formControlName="licence">
                     <option *ngFor="let value of licenceEnum" [value]="value.key" [selected]="value.key == ''">
                         {{value.value}}
                     </option>
@@ -66,13 +66,13 @@ export class RightsInfoForm extends MyGroup {
                 <div class="form-group-divider"></div>
             
                 <form-inline [description]="nonStandardLicenceNameDesc" [valid]="getMyControl('licenceInfo.0.nonStandardLicenceName').valid">
-                    <input type="text" class="form-control" formControlName="nonStandardLicenceName" placeholder="{{nonStandardLicenceNameDesc.label}}">
+                    <input type="text" class="uk-input" formControlName="nonStandardLicenceName" placeholder="{{nonStandardLicenceNameDesc.label}}">
                 </form-inline>
             
                 <div class="form-group-divider"></div>
             
                 <form-inline [description]="nonStandardLicenceTermsURLDesc" [valid]="getMyControl('licenceInfo.0.nonStandardLicenceTermsURL').valid">
-                    <input type="text" class="form-control" formControlName="nonStandardLicenceTermsURL" placeholder="{{nonStandardLicenceTermsURLDesc.label}}">
+                    <input type="text" class="uk-input" formControlName="nonStandardLicenceTermsURL" placeholder="{{nonStandardLicenceTermsURLDesc.label}}">
                 </form-inline>
             </div>
         </div>

@@ -128,3 +128,10 @@ a.remove-element i {
 .uk-form-controls.has-error .uk-input::-moz-placeholder {
     color: #f0506e;
 }
+
+.uk-input.ng-invalid.ng-touched,
+.uk-select.ng-invalid.ng-touched,
+.uk-textarea.ng-invalid.ng-touched {
+    color: #f0506e !important;
+    border-color: #f0506e !important;
+}

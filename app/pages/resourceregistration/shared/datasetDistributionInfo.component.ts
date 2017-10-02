@@ -66,7 +66,7 @@ export class DatasetDistributionInfoFormControl extends MyGroup {
     template : `
         <div [formGroup]="group">
             <form-inline [description]="distributionMediumDesc" [valid]="getMyControl('distributionMedium').valid">
-                <select name="role" class="form-control" formControlName="distributionMedium">
+                <select name="role" class="uk-select" formControlName="distributionMedium">
                     <option *ngFor="let value of distributionMediumEnum" [value]="value.key" [selected]="value.key == ''">
                         {{value.value}}
                     </option>
@@ -76,7 +76,7 @@ export class DatasetDistributionInfoFormControl extends MyGroup {
             <div class="form-group-divider"></div>
 
             <form-inline [description]="distributionURLDesc" [valid]="getMyControl('distributionLocation').valid">
-                <input type="text" class="form-control" formControlName="distributionLocation" placeholder="{{distributionURLDesc.label}}">
+                <input type="text" class="uk-select" formControlName="distributionLocation" placeholder="{{distributionURLDesc.label}}">
             </form-inline>
         </div>
     `,

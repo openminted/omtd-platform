@@ -2,7 +2,7 @@
  * Created by stefania on 1/19/17.
  */
 import {Component, OnInit, Input} from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms'
+import {FormGroup, FormBuilder, Validators, FormArray, FormControl} from '@angular/forms'
 import {
     Corpus as OMTDCorpus, DatasetDistributionInfo, DistributionLoc, DistributionMediumEnum,
     RightsInfo, ResourceIdentifier, ResourceIdentifierSchemeNameEnum, RightsStatementEnum,
@@ -51,7 +51,20 @@ export class CorpusUploadComponent implements OnInit {
         this.corpusForm = corpus;
     }
 
+    setAsTouched(group: FormGroup | FormArray) {
+        group.markAsTouched();
+        for (let i in group.controls) {
+            if (group.controls[i] instanceof FormControl) {
+                group.controls[i].markAsTouched();
+            } else {
+                this.setAsTouched(group.controls[i]);
+            }
+        }
+    }
+
     onSubmit() {
+
+        this.setAsTouched(this.corpusForm);
 
         this.successfulMessage = null;
         this.errorMessage = null;
@@ -90,7 +103,7 @@ export class CorpusUploadComponent implements OnInit {
                 corpusBody.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
 
                 corpusBody.corpusInfo.distributionInfos  = [distributionInfo];
-id
+
                 this.resourceService.uploadCorpus(this.corpusForm.value).subscribe(
                     res => {
                         this.uploadingCorpus = false;
