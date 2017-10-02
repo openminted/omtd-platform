@@ -2,7 +2,7 @@
  * Created by stefania on 1/22/17.
  */
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms'
+import {FormArray, FormControl, FormGroup} from '@angular/forms'
 import {
     Component as OMTDComponent, IdentificationInfo, ResourceIdentifier,
     ResourceIdentifierSchemeNameEnum
@@ -34,7 +34,20 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
         this.componentForm = component;
     }
 
+    setAsTouched(group: FormGroup | FormArray) {
+        group.markAsTouched();
+        for (let i in group.controls) {
+            if (group.controls[i] instanceof FormControl) {
+                group.controls[i].markAsTouched();
+            } else {
+                this.setAsTouched(group.controls[i]);
+            }
+        }
+    }
+
     onSubmit() {
+
+        this.setAsTouched(this.componentForm);
 
         this.successfulMessage = null;
         this.errorMessage = null;

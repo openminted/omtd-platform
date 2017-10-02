@@ -2,7 +2,7 @@
  * Created by stefania on 9/12/17.
  */
 import { Component, OnInit} from '@angular/core';
-import { FormGroup } from '@angular/forms'
+import {FormArray, FormControl, FormGroup} from '@angular/forms'
 import {
     Component as OMTDComponent
 } from "../../../domain/openminted-model";
@@ -54,7 +54,21 @@ export class ComponentUpdateUsingFormComponent implements OnInit {
         );
     }
 
+    setAsTouched(group: FormGroup | FormArray) {
+        group.markAsTouched();
+        for (let i in group.controls) {
+            if (group.controls[i] instanceof FormControl) {
+                group.controls[i].markAsTouched();
+            } else {
+                this.setAsTouched(group.controls[i]);
+            }
+        }
+    }
+
     onSubmit() {
+
+        this.setAsTouched(this.componentForm);
+
         this.successfulMessage = null;
 
         if(this.componentForm.valid && this.tocValid)
