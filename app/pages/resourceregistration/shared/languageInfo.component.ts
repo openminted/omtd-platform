@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 1/19/17.
  */
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Injector, Input, OnInit} from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { LanguageTypeForm } from "./language-type-form.component";
 import { SizeInfoFormControl } from "./sizeInfo.component";
@@ -13,7 +13,7 @@ import {Description, sizeInfoDesc} from "../../../domain/omtd.description";
     template : `
 
 <div [formGroup]="group">
-    <languageType-form [parentGroup]="group" [name]="'language'"></languageType-form>
+    <languageType-form [parentGroup]="group" [name]="'language'" [required]="true"></languageType-form>
     
     <div class="form-group-divider"></div>
     <form-inline [description]="sizeInfoDesc">
@@ -31,5 +31,11 @@ export class LanguageInfoFormControl extends MyGroup {
 
     };
 
-    readonly sizeInfoDesc : Description = sizeInfoDesc;
+    readonly sizeInfoDesc : Description;
+
+    constructor(injector : Injector) {
+        super(injector);
+        this.sizeInfoDesc = Object.assign({},sizeInfoDesc);
+        this.sizeInfoDesc.mandatory = false;
+    }
 }

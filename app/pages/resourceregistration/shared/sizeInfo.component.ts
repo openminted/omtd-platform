@@ -34,9 +34,15 @@ export class SizeInfoFormControl extends MyGroup {
     };
 
 
+
     sizeDesc : Description = sizeDesc;
-    sizeInfoDesc : Description = sizeInfoDesc;
+    sizeInfoDesc : Description = Object.assign({},sizeInfoDesc);
     sizeUnitDesc : Description = sizeUnitDesc;
     sizeUnitEnum : EnumValues[] = sizeUnitEnum;
+
+    ngOnInit() {
+        super.ngOnInit();
+        this.sizeInfoDesc.mandatory = this.sizeInfoDesc.mandatory && this.required;
+    }
 
 }

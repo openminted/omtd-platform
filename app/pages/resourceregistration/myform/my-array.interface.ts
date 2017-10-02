@@ -131,11 +131,6 @@ export class MyArray extends MyGroup {
             <i class="fa fa-plus" aria-hidden="true"></i> Add {{description.label}}
         </a>
     </form-inline>
-    <!--<div class="form-group">-->
-        <!--<div class="col-sm-offset-2 col-md-offset-2 col-sm-9 col-md-9">-->
-            <!---->
-        <!--</div>-->
-    <!--</div>-->
     `,
     styleUrls : ['../shared/templates/common.css']
 
