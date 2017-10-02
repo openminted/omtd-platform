@@ -40,7 +40,7 @@ export class CorpusBuilderComponent implements OnDestroy {
     corpus: OMTDCorpus;
     
     corpusPromise : Observable<OMTDCorpus>;
-    tocValid : Observable<boolean>;
+    tocValid : boolean;
 
     corpusForm: FormGroup;
 
