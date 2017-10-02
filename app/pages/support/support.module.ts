@@ -9,6 +9,7 @@ import { PoliciesComponent } from "./faqs/faqs-policies.component";
 import { FAQsComponent } from "./faqs/faqs-legal.component";
 import { FAQService } from "../../services/faq.service";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
+import { SupportComponent } from "./support.component";
 
     
 @NgModule({
@@ -20,6 +21,7 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
     declarations: [
         PoliciesComponent,
         FAQsComponent,
+        SupportComponent
     ],
     providers: [
         FAQService

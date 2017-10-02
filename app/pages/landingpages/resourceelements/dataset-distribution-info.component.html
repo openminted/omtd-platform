@@ -5,12 +5,16 @@
             {{distributionMedium.distributionMedium}}{{isLast ? '' : ', '}}
         </span>
     </div>
-    <div *ngIf="datasetDistributionInfo.distributionLoc && datasetDistributionInfo.distributionLoc.length>0">
-        <strong>Download from: </strong>
-        <span *ngFor="let downloadURL of datasetDistributionInfo.distributionLoc; let isLast = last;">
-            <a href="{{downloadURL.distributionLocation}}" target="_blank">{{downloadURL.distributionLocation}}</a>{{isLast ? '' : ', '}}
-        </span>
-    </div>
+
+    <!--TODO uncomment when we enable corpus download again-->
+    <!--<div *ngIf="datasetDistributionInfo.distributionLoc && datasetDistributionInfo.distributionLoc.length>0">-->
+        <!--<strong>Download from: </strong>-->
+        <!--<span *ngFor="let downloadURL of datasetDistributionInfo.distributionLoc; let isLast = last;">-->
+            <!--<a href="{{downloadURL.distributionLocation}}" target="_blank">{{downloadURL.distributionLocation}}</a>{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+
+
     <!--<div *ngIf="datasetDistributionInfo.accessURLs && datasetDistributionInfo.accessURLs.length>0">-->
         <!--<strong>Access from: </strong>-->
         <!--<span *ngFor="let accessURL of datasetDistributionInfo.accessURLs; let isLast = last;">-->

@@ -127,13 +127,19 @@
                                     <li><a [routerLink]="['/resourceRegistration/dataSource']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Data Source</a></li>
                                 </ul>
                             </li>
-                            <li class="uk-nav-header uk-parent" [routerLinkActive]="['uk-active']">Support
-                                <ul class="uk-nav-sub">
-                                    <li><a [routerLink]="['/support/faqPolicies']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">FAQs - Policies</a></li>
-                                    <li><a [routerLink]="['/support/faqLegal']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">FAQs - Legal</a></li>
-                                    <li><a href="http://openminted.eu/support/" target="_blank" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Ask a question</a></li>
-                                </ul>
+                            <li class="uk-nav-header" [routerLinkActive]="['uk-active']">
+                                <a [routerLink]="['/support']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">
+                                    Support
+                                    <!--<img class="uk-responsive-height" src="./imgs/Icons/Home_24white.svg" alt="home">-->
+                                </a>
                             </li>
+                            <!--<li class="uk-nav-header uk-parent" [routerLinkActive]="['uk-active']">Support-->
+                                <!--<ul class="uk-nav-sub">-->
+                                    <!--<li><a [routerLink]="['/support/faqPolicies']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">FAQs - Policies</a></li>-->
+                                    <!--<li><a [routerLink]="['/support/faqLegal']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">FAQs - Legal</a></li>-->
+                                    <!--<li><a href="http://openminted.eu/support/" target="_blank" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Ask a question</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
                             <li class="uk-nav-header uk-parent" [routerLinkActive]="['uk-active']">About
                                 <ul class="uk-nav-sub">
                                     <li><a href="http://openminted.eu/about/overview/" target="_blank" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Who we are</a></li>
@@ -246,19 +252,25 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="uk-parent" [routerLinkActive]="['uk-active']"><a href="#" class="" aria-expanded="false">Support</a>
-                            <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left" style="top: 80px; left: 106.55px;" id="support" (click)="onClick('support')">
-                                <div class="uk-navbar-dropdown-grid uk-child-width-1-1 uk-grid uk-grid-stack" uk-grid="">
-                                    <div class="uk-first-column">
-                                        <ul class="uk-nav uk-navbar-dropdown-nav">
-                                            <li><a [routerLink]="['/support/faqPolicies']" routerLinkActive="uk-active">FAQs - Policies</a></li>
-                                            <li><a [routerLink]="['/support/faqLegal']" routerLinkActive="uk-active">FAQs - Legal</a></li>
-                                            <li><a href="http://openminted.eu/support/" target="_blank" routerLinkActive="uk-active">Ask a question</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <li class="uk-parent" [routerLinkActive]="['uk-active']">
+                            <a routerLink="/support" routerLinkActive="uk-active">
+                                Support
+                                <!--<img class="uk-responsive-height" src="./imgs/Icons/Home_24white.svg" alt="home">-->
+                            </a>
                         </li>
+                        <!--<li class="uk-parent" [routerLinkActive]="['uk-active']"><a href="#" class="" aria-expanded="false">Support</a>-->
+                            <!--<div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left" style="top: 80px; left: 106.55px;" id="support" (click)="onClick('support')">-->
+                                <!--<div class="uk-navbar-dropdown-grid uk-child-width-1-1 uk-grid uk-grid-stack" uk-grid="">-->
+                                    <!--<div class="uk-first-column">-->
+                                        <!--<ul class="uk-nav uk-navbar-dropdown-nav">-->
+                                            <!--<li><a [routerLink]="['/support/faqPolicies']" routerLinkActive="uk-active">FAQs - Policies</a></li>-->
+                                            <!--<li><a [routerLink]="['/support/faqLegal']" routerLinkActive="uk-active">FAQs - Legal</a></li>-->
+                                            <!--<li><a href="http://openminted.eu/support/" target="_blank" routerLinkActive="uk-active">Ask a question</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
                         <li class="uk-parent" [routerLinkActive]="['uk-active']"><a href="#" class="" aria-expanded="false">About</a>
                             <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left" style="top: 80px; left: 106.55px;" id="about" (click)="onClick('about')">
                                 <div class="uk-navbar-dropdown-grid uk-child-width-1-1 uk-grid uk-grid-stack" uk-grid="">
