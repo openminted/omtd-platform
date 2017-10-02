@@ -23,7 +23,7 @@ export class ComponentUpdateUsingFormComponent implements OnInit {
     componentAll : OMTDComponent = null;
 
     busy : boolean = false;
-    tocValid : Observable<boolean>;
+    tocValid : boolean;
     successfulMessage: string = null;
 
     constructor(private resourceService: ResourceService,private route: ActivatedRoute,private router: Router) {

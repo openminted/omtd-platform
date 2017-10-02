@@ -340,8 +340,12 @@ export class ComponentRegistrationFormComponent implements OnInit {
         });
         this.myForm.valueChanges.subscribe(() => {
             this.componentForm.emit(this.myForm);
+        });
+
+        this.tocForm.valueChanges.subscribe( () => {
             this.tocValid.emit(this.tocForm.valid);
         });
+
         if (this.component) {
             this.component.subscribe(
                 component => this.loadComponent(component),

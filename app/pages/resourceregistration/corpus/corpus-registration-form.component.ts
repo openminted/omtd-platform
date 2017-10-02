@@ -56,6 +56,9 @@ export class CorpusRegistrationFormComponent implements OnInit {
         });
         this.myForm.valueChanges.subscribe(corpus => {
             this.corpusForm.emit(this.myForm);
+        });
+
+        this.tocForm.valueChanges.subscribe(value => {
             this.tocValid.emit(this.tocForm.valid);
         });
 

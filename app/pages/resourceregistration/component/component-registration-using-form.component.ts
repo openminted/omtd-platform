@@ -20,7 +20,7 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
     componentForm: FormGroup;
     componentValue : OMTDComponent;
     componentFormErrorMessage: string = null;
-    tocValid : Observable<boolean>;
+    tocValid : boolean;
     errorMessage: string = null;
     successfulMessage: string = null;
 

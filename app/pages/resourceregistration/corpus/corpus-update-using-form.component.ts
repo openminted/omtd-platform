@@ -22,7 +22,7 @@ export class CorpusUpdateUsingFormComponent implements OnInit {
     busy : boolean = false;
     successfulMessage: string = null;
     errorMessage: string = null;
-    tocValid : Observable<boolean>;
+    tocValid : boolean;
 
 
     constructor(private resourceService: ResourceService,private route: ActivatedRoute,private router: Router) {

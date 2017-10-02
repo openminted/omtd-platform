@@ -22,7 +22,7 @@ export class CorpusUploadComponent implements OnInit {
     zipForm: FormGroup;
     zipFile : File;
     corpusValue : OMTDCorpus;
-    tocValid : Observable<boolean>;
+    tocValid : boolean;
     zipFormErrorMessage: string = null;
     corpusFormErrorMessage: string = null;
 
@@ -83,7 +83,7 @@ export class CorpusUploadComponent implements OnInit {
             this.corpusFormErrorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
         else if (!this.tocValid)
-            this.corpusFormErrorMessage = "Please accept the terms and conditions";
+            this.corpusFormErrorMessage = "Please accept the terms and conditions.";
 
         if(this.zipFile && this.zipFile.name.endsWith(".zip") && this.corpusForm.valid && this.tocValid) {
 
