@@ -24,9 +24,12 @@
                                     corpus.corpusInfo.distributionInfos.length>0">
                             <template ngFor let-distributionInfo [ngForOf]="corpus.corpusInfo.distributionInfos">
                                 <template [ngIf]="distributionInfo.distributionLoc && distributionInfo.distributionLoc.length>0">
-                                    <button *ngIf="distributionInfo.distributionLoc[0].distributionLocation.startsWith('/') || distributionInfo.distributionLoc[0].distributionLocation.startsWith('http://') || distributionInfo.distributionLoc[0].distributionLocation.startsWith('https://')"
-                                            class="uk-button uk-button-primary" (click)="downloadCorpus(distributionInfo.distributionLoc[0].distributionLocation)">
+                                    <!--TODO re-enable when we enable corpus download again-->
+                                    <span title="Download of corpora is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">
+                                        <button *ngIf="distributionInfo.distributionLoc[0].distributionLocation.startsWith('/') || distributionInfo.distributionLoc[0].distributionLocation.startsWith('http://') || distributionInfo.distributionLoc[0].distributionLocation.startsWith('https://')"
+                                                class="uk-button uk-disabled" (click)="downloadCorpus(distributionInfo.distributionLoc[0].distributionLocation)">
                                         Download <i class="fa fa-download" aria-hidden="true"></i></button>
+                                    </span>
                                 </template>
                                 <!--<template ngFor let-downloadURL [ngForOf]="distributionInfo.downloadURLs">-->
                                     <!--<button *ngIf="downloadURL.startsWith('http://') || downloadURL.startsWith('https://')"-->
