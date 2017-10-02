@@ -113,8 +113,8 @@ export class MyGroup implements OnInit, AfterContentInit {
 <ng-template #descTemplate>{{description.desc}}</ng-template>
 
 <div class="uk-form-horizontal">
-    <label class="uk-width-1-5 uk-form-label">
-        <span *ngIf="description.mandatory==true && !valid"><i class="fa fa-star" style="color : red"></i></span>
+    <label class="uk-width-1-5 uk-form-label" [ngClass]="{'required' : description.mandatory==true}">
+        <!--<span *ngIf="description.mandatory==true && !valid"><i class="fa fa-star" style="color : red"></i></span>-->
         <!--<span *ngIf="description.recommended==true"><i class="fa fa-star" style="color : green"></i></span>-->
         {{description.label}}
         <span *ngIf="params==='tooltip'"><i class="fa fa-info-circle" [tooltip]="descTemplate" container="body"></i></span>
@@ -122,13 +122,11 @@ export class MyGroup implements OnInit, AfterContentInit {
     <!--<div class="form-group">-->
         <div class="uk-width-4-5 uk-form-controls" [ngClass]="{'has-error': !valid}">
             <ng-content></ng-content>
+            <div *ngIf="params==='inline'">
+                <i><small>{{description.desc}}</small></i>
+            </div>
         </div>
     <!--</div>-->
-</div>
-<div *ngIf="params==='inline'" class="form-group">
-    <div class="col-sm-offset-2 col-md-offset-2 col-sm-{{width}} col-md-{{width}}">
-        <small>{{description.desc}}</small>
-    </div>
 </div>
 
 `,
@@ -139,7 +137,7 @@ export class InlineFormWrapper implements OnChanges {
 
     @Input() public description : Description = null;
 
-    @Input() public params : string = 'tooltip';
+    @Input() public params : string = 'inline';
 
     @Input() public width : number = 9;
 

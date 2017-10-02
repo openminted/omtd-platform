@@ -135,3 +135,7 @@ a.remove-element i {
     color: #f0506e !important;
     border-color: #f0506e !important;
 }
+
+label.required::after {
+    content : "(*)";
+}
