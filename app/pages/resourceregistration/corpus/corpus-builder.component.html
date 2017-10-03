@@ -30,7 +30,7 @@
                                 <div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>
 
                                 <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"
-                                                          [corpus]="corpusPromise" (tocValid)="tocValid"></corpus-registration-form>
+                                                          [corpus]="corpusPromise" (tocValid)="tocValid = $event"></corpus-registration-form>
                             </div>
 
                             <!-- RIGHT HELP CONTENT -->
