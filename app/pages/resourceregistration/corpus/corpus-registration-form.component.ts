@@ -311,4 +311,9 @@ export class CorpusRegistrationFormComponent implements OnInit {
         //setTimeout(this.myForm.patchValue,2000,this.testCorpusData);
     }
 
+    get removeNullValue() {
+        let ret = Object.assign({},this.myForm.value);
+        ResourceService.removeNulls(ret);
+        return ret;
+    }
 }

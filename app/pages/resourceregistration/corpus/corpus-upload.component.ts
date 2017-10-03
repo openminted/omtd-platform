@@ -94,8 +94,8 @@ export class CorpusUploadComponent implements OnInit {
                 let distributionInfo : DatasetDistributionInfo = new DatasetDistributionInfo();
                 distributionInfo.distributionLoc = [new DistributionLoc()];
                 distributionInfo.rightsInfo = corpusBody.corpusInfo.distributionInfos[0].rightsInfo;
-                distributionInfo.rightsInfo = new RightsInfo();
-                distributionInfo.rightsInfo.rightsStatement = [RightsStatementEnum.OPEN_ACCESS]
+                // distributionInfo.rightsInfo = new RightsInfo();
+                // distributionInfo.rightsInfo.rightsStatement = [RightsStatementEnum.OPEN_ACCESS]
                 distributionInfo.distributionLoc[0].distributionMedium = DistributionMediumEnum.DOWNLOADABLE;
                 distributionInfo.distributionLoc[0].distributionLocation = id;
                 corpusBody.corpusInfo.identificationInfo.resourceIdentifiers = [new ResourceIdentifier()];

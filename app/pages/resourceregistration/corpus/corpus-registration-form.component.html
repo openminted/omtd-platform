@@ -108,5 +108,5 @@
 <div *ngIf="production==false" class="margin-20">
     <div>myForm details:-</div>
     <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
-    <pre>form value: <br>{{myForm.value | json}}</pre>
+    <pre>form value: <br>{{removeNullValue | json}}</pre>
 </div>
