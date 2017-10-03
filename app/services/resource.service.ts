@@ -193,7 +193,7 @@ export class ResourceService {
     static removeNulls(obj){
         let isArray = obj instanceof Array;
         for (let k in obj){
-            if (obj[k]===null || obj[k]==='' || Object.keys(obj[k]).length == 0) isArray ? obj.splice(k,1) : delete obj[k];
+            if (obj[k]===null || obj[k]==='') isArray ? obj.splice(k,1) : delete obj[k];
             else if (typeof obj[k]=="object") {
                 if (typeof obj[k].value != 'undefined' && typeof obj[k].lang != 'undefined')
                     if (obj[k].value == '' && obj[k].lang=='en')
@@ -207,6 +207,7 @@ export class ResourceService {
                 }
             }
             if(obj[k] instanceof Array && obj[k].length == 0) delete obj[k];
+            // if(obj[k] instanceof Object && Object.keys(obj[k]).length == 0 && typeof k == 'string') delete obj[k];
         }
     }
 
@@ -355,6 +356,7 @@ export class ResourceService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true });
         ResourceService.removeNulls(corpus);
+        console.log(corpus);
         return this.http.post(this._searchUrl + 'incompleteCorpus', JSON.stringify(corpus), options)
             .map(res => res.status)
             .catch(this.handleError);

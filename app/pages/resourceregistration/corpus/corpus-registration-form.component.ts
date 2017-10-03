@@ -269,7 +269,7 @@ export class CorpusRegistrationFormComponent implements OnInit {
         corpus = JSON.parse(temp);
         corpus.corpusInfo.resourceType = "corpus";
         for(let language of corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusMediaPartsType.corpusTextParts[0].languages) {
-            language.language.languageId = language.language.languageTag.toLowerCase();
+            language.language.languageId = language.language.languageId.toLowerCase();
         }
         this.myForm.patchValue(corpus);
         this.myForm.patchValue(corpus);

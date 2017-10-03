@@ -155,9 +155,9 @@
                     </div>
 
                     <div *ngIf="successfulMessage" class="alert alert-success">
-                        {{successfulMessage}} <a (click)="navigateToCorpus()">Click here</a> to see the details of this corpus,
-                        or <a href="{{corpusForm.value.corpusInfo.distributionInfos[0].distributionLoc[0].distributionLocation}}">here</a>
-                        to directly download its data.
+                        {{successfulMessage}} <a (click)="navigateToCorpus()">Click here</a> to see the details of this corpus.
+                        <!-- or <a href="{{corpusForm.value.corpusInfo.distributionInfos[0].distributionLoc[0].distributionLocation}}">here</a>
+                        to directly download its data. -->
                     </div>
 
                     <div *ngIf="createCorpusErrorMessage">

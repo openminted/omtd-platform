@@ -17,7 +17,7 @@ import {Description, sizeInfoDesc} from "../../../domain/omtd.description";
     
     <div class="form-group-divider"></div>
     <form-inline [description]="sizeInfoDesc">
-        <sizeInfo-form [parentGroup]="group" [name]="'sizePerLanguage'"></sizeInfo-form>
+        <sizeInfo-form [parentGroup]="group" [name]="'sizePerLanguage'" [required]="true"></sizeInfo-form>
     </form-inline>
 </div>
 
@@ -36,6 +36,6 @@ export class LanguageInfoFormControl extends MyGroup {
     constructor(injector : Injector) {
         super(injector);
         this.sizeInfoDesc = Object.assign({},sizeInfoDesc);
-        this.sizeInfoDesc.mandatory = false;
+        this.sizeInfoDesc.mandatory = true;
     }
 }
