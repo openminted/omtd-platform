@@ -193,20 +193,20 @@ export class ResourceService {
     static removeNulls(obj){
         let isArray = obj instanceof Array;
         for (let k in obj){
-            if (obj[k]===null || obj[k]==='') isArray ? obj.splice(k,1) : delete obj[k];
+            if (obj[k]===null || obj[k]==='' ) {console.log(k,obj[k]);isArray ? obj.splice(k,1) : delete obj[k];}
             else if (typeof obj[k]=="object") {
                 if (typeof obj[k].value != 'undefined' && typeof obj[k].lang != 'undefined')
                     if (obj[k].value == '' && obj[k].lang=='en')
                         obj[k].lang = '';
                 ResourceService.removeNulls(obj[k]);
             }
-            if(obj[k] instanceof Array) {
+            /* if(obj[k] instanceof Array) {
                 let tmp = obj[k] as Array<any>;
                 for (let a of obj[k]) {
                     if (Object.keys(a).length == 0) tmp.splice(tmp.indexOf(a),1);
                 }
-            }
-            if(obj[k] instanceof Array && obj[k].length == 0) delete obj[k];
+            } */
+            // if(obj[k] instanceof Array && obj[k].length == 0) delete obj[k];
             // if(obj[k] instanceof Object && Object.keys(obj[k]).length == 0 && typeof k == 'string') delete obj[k];
         }
     }
