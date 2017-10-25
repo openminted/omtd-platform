@@ -11,7 +11,7 @@
                 <h3 class="uk-accordion-title">
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Component General Info
+                        Component Details
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>
@@ -24,7 +24,7 @@
                 <h3 class="uk-accordion-title">
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Identification Info
+                        Identification
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>
@@ -37,7 +37,7 @@
                 <h3 class="uk-accordion-title">
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Contact Info
+                        Contact
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>
@@ -50,7 +50,7 @@
                 <h3 class="uk-accordion-title">
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Version Info
+                        Version
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>
@@ -63,7 +63,7 @@
                 <h3 class="uk-accordion-title">
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Distribution Info
+                        Distribution
                         <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
                     </span>
                 </h3>
@@ -72,34 +72,7 @@
                 </div>
 
             </li>
-
-            <!--<contact-info-form [required]="true" [parentGroup]="myForm.controls.componentInfo" [name]="'contactInfo'"></contact-info-form>-->
-            <!--<versionInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'versionInfo'"></versionInfo-form>-->
-            <!--<componentDistributionInfos-form [parentGroup]="myForm.controls.componentInfo">-->
-
-            <!--</componentDistributionInfos-form>-->
-            <!--<example-form [name]="'example1'" [group]="myForm"></example-form>-->
-
-
         </ul>
-
-        <!--<accordion>-->
-            <!--<div data-uk-grid-margin="" class="uk-grid uk-grid-width-1-1">-->
-                <!--&lt;!&ndash;<form-repeat-inline [component]="type" [group]="myForm" [name]="'example'" [required]="true" [description]="{label : 'Hello'}">&ndash;&gt;-->
-                <!--&lt;!&ndash;</form-repeat-inline>&ndash;&gt;-->
-                <!--&lt;!&ndash;<metadata-header-info-form [group]="myForm"></metadata-header-info-form>&ndash;&gt;-->
-                <!--<componentGeneric-form [parentGroup]="myForm" [name]="'componentInfo'"></componentGeneric-form>-->
-                <!--<identification-info-form [parentGroup]="myForm.controls.componentInfo" [name]="'identificationInfo'"></identification-info-form>-->
-                <!--<contact-info-form [required]="true" [parentGroup]="myForm.controls.componentInfo" [name]="'contactInfo'"></contact-info-form>-->
-                <!--<versionInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'versionInfo'"></versionInfo-form>-->
-                <!--<componentDistributionInfos-form [parentGroup]="myForm.controls.componentInfo">-->
-
-                <!--</componentDistributionInfos-form>-->
-                <!--&lt;!&ndash;<example-form [name]="'example1'" [group]="myForm"></example-form>&ndash;&gt;-->
-
-
-            <!--</div>-->
-        <!--</accordion>-->
     </form>
     <form class="form-horizontal componentForm" [formGroup]="tocForm">
         <form-inline [description]="{label : '', mandatory : false, description:''}" [params]="null" [valid]="tocForm.get('toc').valid">
