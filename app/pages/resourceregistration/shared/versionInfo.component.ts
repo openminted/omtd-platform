@@ -1,4 +1,4 @@
-import {OnInit, Component, Injector} from "@angular/core";
+import {OnInit, Component, Injector, Input} from "@angular/core";
 import {MyGroup} from "../myform/my-group.interface";
 import {Validators} from "@angular/forms";
 import {EnumValues, versionTypeEnum} from "../../../domain/omtd.enum";
@@ -21,13 +21,13 @@ import {
             
             <div class="form-group-divider"></div>
             
-            <form-inline [description]="versionTypeDesc">
-                <select name="role" class="form-control" formControlName="versionType">
-                    <option *ngFor="let value of versionType" [value]="value.key" [selected]="value.key == ''">
-                    {{value.value}}
-                    </option>
-                </select>
-            </form-inline>
+            <!--<form-inline [description]="versionTypeDesc">-->
+                <!--<select name="role" class="form-control" formControlName="versionType">-->
+                    <!--<option *ngFor="let value of versionType" [value]="value.key" [selected]="value.key == ''">-->
+                    <!--{{value.value}}-->
+                    <!--</option>-->
+                <!--</select>-->
+            <!--</form-inline>-->
             
             <div class="form-group-divider"></div>
             
@@ -37,7 +37,7 @@ import {
             
             <div class="form-group-divider"></div>
             
-            <form-inline [description]="updateFrequencyDesc">
+            <form-inline *ngIf="data?.update == true" [description]="updateFrequencyDesc">
                 <input type="text" class="form-control" formControlName="updateFrequency" placeholder="Update Frequency">
             </form-inline>
         </div>
@@ -48,10 +48,12 @@ import {
 
 export class VersionFormControl extends MyGroup {
 
+    @Input() data : any;
+
     readonly groupDefinition = {
         version : ['1.0.0', Validators.compose([Validators.required,Validators.pattern(/^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,3}$/)])],
         revision : '',
-        versionType : '',
+        // versionType : '',
         updateFrequency : ''
     };
 
