@@ -14,7 +14,7 @@ import {ResourceService} from "../../../services/resource.service";
 
 export class ComponentRegistrationXMLComponent {
 
-    componentXMLForm: FormGroup;
+    componentXML: string;
     errorMessage: string;
     xmlURL : string;
     successMessage: string;
@@ -25,9 +25,9 @@ export class ComponentRegistrationXMLComponent {
 
     constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
                 private resourceService: ResourceService) {
-        this.componentXMLForm = fb.group({
-            "xml": [""],
-        });
+        // this.componentXMLForm = fb.group({
+        //     "xml": [""],
+        // });
         this.uploadedFile = null;
         this.xmlURL = '';
     }
@@ -37,7 +37,7 @@ export class ComponentRegistrationXMLComponent {
         // event.preventDefault();
         this.errorMessage = null;
         this.successMessage = null;
-        console.log(componentXML.xml);
+        console.log(componentXML);
 
         if(this.xmlURL != '') {
             this.previewFromURL();
@@ -47,29 +47,29 @@ export class ComponentRegistrationXMLComponent {
 
         console.log("submit",this.xmlURL,this.uploadedFile);
 
-        this.resourceService.registerComponent(componentXML.xml).subscribe(
-            resource => this.successfullySubscribed(),
-            error => this.handleError(<any>error));
+        // this.resourceService.registerComponent(componentXML).subscribe(
+        //     resource => this.successfullySubscribed(),
+        //     error => this.handleError(<any>error));
     }
 
     previewFromURL() {
         this.resourceService.getXML(this.xmlURL).subscribe(
-            string => {this.componentXMLForm.setValue({'xml' : string});}
+            xml => this.componentXML = xml
         );
-
     }
 
     previewFromFile() {
+        let self = this;
         if (this.uploadedFile) {
-            var myReader:FileReader = new FileReader();
-            var tempForm = this.componentXMLForm;
+            let myReader:FileReader = new FileReader();
+            // var tempForm = this.componentXMLForm;
             console.log(this.uploadedFile);
             myReader.onloadstart = function(e) {
                 //TODO validation here
-            }
+            };
             myReader.onloadend = function(e){
-                tempForm.setValue({'xml' : myReader.result});
-            }
+                self.componentXML = myReader.result;
+            };
             myReader.readAsText(this.uploadedFile);
 
         }

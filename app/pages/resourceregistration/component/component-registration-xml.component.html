@@ -29,11 +29,11 @@
 
                         <!-- MIDDLE -->
                         <div class=" uk-width-expand@m">
-
-                            <form [formGroup]="componentXMLForm" role="form" class="m-t componentXMLForm" (ngSubmit)="onSubmit(componentXMLForm.value, $event)">
+                            <!--[formGroup]="componentXMLForm"-->
+                            <form role="form" class="m-t componentXMLForm" (ngSubmit)="onSubmit(componentXML, $event)">
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="16" name="xml" formControlName="xml"></textarea>
-                                    <div ace-editor [theme]="'eclipse'" style="min-height: 200px; width:100%; overflow: auto;"></div>
+                                    <!--<textarea class="form-control" rows="16" name="xml" formControlName="xml"></textarea>-->
+                                    <div ace-editor [(text)]="componentXML" [theme]="'eclipse'" style="min-height: 500px; width:100%; overflow: auto;"></div>
                                 </div>
                                 <button class="uk-button uk-button-primary registerButton" type="submit">Register!</button>
                             </form>
