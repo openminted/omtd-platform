@@ -4,16 +4,16 @@
             <div class="uk-width-1-1@m uk-first-column">
 
                 <h2 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
-                    Want to share a new component?
+                    Want to share a new service/tool?
                 </h2>
-                <hr class="uk-divider-icon uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                <!--<hr class="uk-divider-icon uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
 
                 <!-- TOP HELP CONTENT -->
                 <help-content #topHelperContent [position]="'top'"
                               [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
                 </help-content>
 
-                <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+                <div class="uk-container uk-margin-large-top uk-margin-large-bottom">
                     <div class="uk-grid">
 
                         <!-- LEFT HELP CONTENT -->
@@ -25,82 +25,155 @@
                         <!-- MIDDLE -->
                         <div class=" uk-width-expand@m">
 
-                            <div class="uk-margin uk-text-left@m uk-text-center uk-grid-match uk-child-width-1-1 uk-grid-large uk-grid-divider uk-grid uk-grid-stack uk-scrollspy-inview uk-animation-slide-bottom-small">
+                            <div class="uk-grid">
 
+                                <div class="uk-width-1-2@m" style="border-right:1px solid #ddd; padding-right: 35px">
+                                    <div class="uk-first-column">
 
-                                <div class="uk-first-column">
-                                    <div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-bottom-small" style="">
-                                        <div class="uk-child-width-expand uk-grid-large uk-grid" uk-grid="">
-                                            <div class="uk-width-1-4@m">
-                                                <!--<img src="http://dl119.madgik.di.uoa.gr/templates/yootheme/cache/destination-scandinavia-blog-01-1502bf0b.jpg" srcset="/templates/yootheme/cache/destination-scandinavia-blog-01-c1b3d866.jpg 192w, /templates/yootheme/cache/destination-scandinavia-blog-01-c07ab576.jpg 480w, /templates/yootheme/cache/destination-scandinavia-blog-01-1502bf0b.jpg 240w" sizes="(min-width: 240px) 240px, 100vw" class="el-image uk-border-rounded" alt="">-->
-                                                <img src="https://id.kickfire.com/img/icon-form.png" class="el-image uk-border-rounded"
-                                                     alt="Form" width="170" height="200">
-                                            </div>
-                                            <div class="uk-first-column">
-                                                <h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">
-                                                    Do you want to provide us with the metadata of the component?
-                                                </h3>
-                                                <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
-                                                <div class="el-content uk-margin">We have created a form for you so that you can easily provide us with the metadata that are needed and we can validate whether we have all the information that we need on the fly!</div>
-                                                <p><a class="el-link uk-button uk-button-primary" (click)="registerUsingForm()">I want to register using the form!</a></p>
-                                            </div>
+                                        <div class="uk-margin-medium-bottom">
+                                            <h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">
+                                                Do you want to provide us with the metadata of the component?
+                                            </h3>
+                                            <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
+                                            <div class="el-content uk-margin">We have created a form for you so that you can easily provide us with the metadata that are needed and we can validate whether we have all the information that we need on the fly!</div>
+                                            <p><a class="el-link uk-button uk-button-primary" (click)="registerUsingForm()">I want to register using the form!</a></p>
+
+                                            <hr class="uk-divider uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
                                         </div>
+
+                                        <hr class="uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+
+                                        <div class="uk-margin-medium-bottom uk-margin-medium-top">
+                                            <h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">
+                                                Do you have maven coordinates for your component?
+                                            </h3>
+                                            <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
+                                            <div class="el-content uk-margin">Provide us with the artifactId and groupId and we will try to pre-fill as much information as we can for you!</div>
+
+
+                                            <form role="form" class="m-t mavenCoordinatesForm">
+                                                <div class="form-group">
+                                                    <input name="artifactId" required="" placeholder="ArtifactId" class="form-control" type="text">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="groupId" required="" placeholder="GroupId" class="form-control" type="text">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="version" required="" placeholder="Version" class="form-control" type="text">
+                                                </div>
+                                                <a class="el-link uk-button uk-button-primary uk-disabled">Resolve maven coordinates (coming soon)!</a>
+                                            </form>
+                                        </div>
+
+                                        <hr class="uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+
+                                        <div class="uk-margin-medium-top">
+
+                                            <h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">
+                                                Do you have an XML description of your component?
+                                            </h3>
+                                            <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
+                                            <div class="el-content uk-margin">If you have an XML description of your component in the <a>OMTD-schema</a>, you can paste it below and we can register your component immediately!</div>
+                                            <p><a class="el-link uk-button uk-button-primary" (click)="registerUsingXML()">I want to register using an XML!</a></p>
+
+                                        </div>
+
                                     </div>
                                 </div>
 
-                                <div class="uk-grid-margin uk-first-column">
-                                    <div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-bottom-small" style="">
-                                        <div class="uk-child-width-expand uk-grid-large uk-grid" uk-grid="">
-                                            <div class="uk-width-1-4@m uk-flex-last@m">
-                                                <img src="https://maven.apache.org/images/maven-logo-black-on-white.png" class="el-image uk-border-rounded"
-                                                     alt="Maven" width="170" height="200" style="margin-top: 25%">
-                                            </div>
-                                            <div class="uk-first-column">
-                                                <h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">
-                                                    Do you have maven coordinates for your component?
-                                                </h3>
-                                                <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
-                                                <div class="el-content uk-margin">Provide us with the artifactId and groupId and we will try to pre-fill as much information as we can for you!</div>
+                                <div class="uk-width-1-2@m">
+                                    <div class="uk-first-column">
 
-
-                                                <form role="form" class="m-t mavenCoordinatesForm">
-                                                    <div class="form-group">
-                                                        <input name="artifactId" required="" placeholder="ArtifactId" class="form-control" type="text">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input name="groupId" required="" placeholder="GroupId" class="form-control" type="text">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input name="version" required="" placeholder="Version" class="form-control" type="text">
-                                                    </div>
-                                                    <a class="el-link uk-button uk-button-primary uk-disabled">Resolve maven coordinates (coming soon)!</a>
-                                                </form>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="uk-grid-margin uk-first-column">
-                                    <div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-bottom-small" style="">
-                                        <div class="uk-child-width-expand uk-grid-large uk-grid" uk-grid="">
-                                            <div class="uk-width-1-4@m">
-                                                <img src="http://0.tqn.com/d/pcsupport/1/0/h/Y/-/-/xml-file.png" class="el-image uk-border-rounded"
-                                                     alt="XML" width="170" height="200">
-                                            </div>
-                                            <div class="uk-first-column">
-                                                <h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">
-                                                    Do you have an XML description of your component?
-                                                </h3>
-                                                <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
-                                                <div class="el-content uk-margin">If you have an XML description of your component in the <a>OMTD-schema</a>, you can paste it below and we can register your component immediately!</div>
-                                                <p><a class="el-link uk-button uk-button-primary" (click)="registerUsingXML()">I want to register using an XML!</a></p>
-                                            </div>
-                                        </div>
+                                        <h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">
+                                            Would you like to create a new service using existing components?
+                                        </h3>
+                                        <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
+                                        <div class="el-content uk-margin">You can directly upload your corpus to OpenMinTeD!</div>
+                                        <p><a class="el-link uk-button uk-button-primary" (click)="buildWorkflow()">Build workflow!</a></p>
                                     </div>
                                 </div>
 
                             </div>
+
+
+
+
+                            <!--<div class="uk-margin uk-text-left@m uk-text-center uk-grid-match uk-child-width-1-1 uk-grid-large uk-grid-divider uk-grid uk-grid-stack uk-scrollspy-inview uk-animation-slide-bottom-small">-->
+
+
+                                <!--<div class="uk-first-column">-->
+                                    <!--<div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-bottom-small" style="">-->
+                                        <!--<div class="uk-child-width-expand uk-grid-large uk-grid" uk-grid="">-->
+                                            <!--<div class="uk-width-1-4@m">-->
+                                                <!--&lt;!&ndash;<img src="http://dl119.madgik.di.uoa.gr/templates/yootheme/cache/destination-scandinavia-blog-01-1502bf0b.jpg" srcset="/templates/yootheme/cache/destination-scandinavia-blog-01-c1b3d866.jpg 192w, /templates/yootheme/cache/destination-scandinavia-blog-01-c07ab576.jpg 480w, /templates/yootheme/cache/destination-scandinavia-blog-01-1502bf0b.jpg 240w" sizes="(min-width: 240px) 240px, 100vw" class="el-image uk-border-rounded" alt="">&ndash;&gt;-->
+                                                <!--<img src="https://id.kickfire.com/img/icon-form.png" class="el-image uk-border-rounded"-->
+                                                     <!--alt="Form" width="170" height="200">-->
+                                            <!--</div>-->
+                                            <!--<div class="uk-first-column">-->
+                                                <!--<h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">-->
+                                                    <!--Do you want to provide us with the metadata of the component?-->
+                                                <!--</h3>-->
+                                                <!--&lt;!&ndash;<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>&ndash;&gt;-->
+                                                <!--<div class="el-content uk-margin">We have created a form for you so that you can easily provide us with the metadata that are needed and we can validate whether we have all the information that we need on the fly!</div>-->
+                                                <!--<p><a class="el-link uk-button uk-button-primary" (click)="registerUsingForm()">I want to register using the form!</a></p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="uk-grid-margin uk-first-column">-->
+                                    <!--<div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-bottom-small" style="">-->
+                                        <!--<div class="uk-child-width-expand uk-grid-large uk-grid" uk-grid="">-->
+                                            <!--<div class="uk-width-1-4@m uk-flex-last@m">-->
+                                                <!--<img src="https://maven.apache.org/images/maven-logo-black-on-white.png" class="el-image uk-border-rounded"-->
+                                                     <!--alt="Maven" width="170" height="200" style="margin-top: 25%">-->
+                                            <!--</div>-->
+                                            <!--<div class="uk-first-column">-->
+                                                <!--<h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">-->
+                                                    <!--Do you have maven coordinates for your component?-->
+                                                <!--</h3>-->
+                                                <!--&lt;!&ndash;<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>&ndash;&gt;-->
+                                                <!--<div class="el-content uk-margin">Provide us with the artifactId and groupId and we will try to pre-fill as much information as we can for you!</div>-->
+
+
+                                                <!--<form role="form" class="m-t mavenCoordinatesForm">-->
+                                                    <!--<div class="form-group">-->
+                                                        <!--<input name="artifactId" required="" placeholder="ArtifactId" class="form-control" type="text">-->
+                                                    <!--</div>-->
+                                                    <!--<div class="form-group">-->
+                                                        <!--<input name="groupId" required="" placeholder="GroupId" class="form-control" type="text">-->
+                                                    <!--</div>-->
+                                                    <!--<div class="form-group">-->
+                                                        <!--<input name="version" required="" placeholder="Version" class="form-control" type="text">-->
+                                                    <!--</div>-->
+                                                    <!--<a class="el-link uk-button uk-button-primary uk-disabled">Resolve maven coordinates (coming soon)!</a>-->
+                                                <!--</form>-->
+
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="uk-grid-margin uk-first-column">-->
+                                    <!--<div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-bottom-small" style="">-->
+                                        <!--<div class="uk-child-width-expand uk-grid-large uk-grid" uk-grid="">-->
+                                            <!--<div class="uk-width-1-4@m">-->
+                                                <!--<img src="http://0.tqn.com/d/pcsupport/1/0/h/Y/-/-/xml-file.png" class="el-image uk-border-rounded"-->
+                                                     <!--alt="XML" width="170" height="200">-->
+                                            <!--</div>-->
+                                            <!--<div class="uk-first-column">-->
+                                                <!--<h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">-->
+                                                    <!--Do you have an XML description of your component?-->
+                                                <!--</h3>-->
+                                                <!--&lt;!&ndash;<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>&ndash;&gt;-->
+                                                <!--<div class="el-content uk-margin">If you have an XML description of your component in the <a>OMTD-schema</a>, you can paste it below and we can register your component immediately!</div>-->
+                                                <!--<p><a class="el-link uk-button uk-button-primary" (click)="registerUsingXML()">I want to register using an XML!</a></p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
 
                         </div>
 

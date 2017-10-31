@@ -9,6 +9,7 @@ import { ComponentRegistrationUsingFormComponent } from "./component-registratio
 import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-guard.service";
 import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
 import { TestComponent } from "./test.component";
+import { BuildAWorkflowComponent } from "../../actions/buildworkflow/build-a-workflow.component";
 
 const componentRegistrationRoutes: Routes = [
     {
@@ -42,6 +43,10 @@ const componentRegistrationRoutes: Routes = [
     {
         path: 'resourceRegistration/component/form/test',
         component: TestComponent
+    },
+    {
+        path: 'buildWorkflow',
+        component: BuildAWorkflowComponent
     },
 ];
 

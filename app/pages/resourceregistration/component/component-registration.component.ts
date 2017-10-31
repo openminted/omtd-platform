@@ -21,4 +21,8 @@ export class ComponentRegistrationComponent {
     registerUsingForm() {
         this.router.navigate(['/resourceRegistration/component/form']);
     }
+
+    buildWorkflow() {
+        this.router.navigate(['/buildWorkflow']);
+    }
 }

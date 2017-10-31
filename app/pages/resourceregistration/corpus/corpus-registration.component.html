@@ -1,57 +1,124 @@
-<div class="uk-block tm-block-main uk-block-default uk-block-large">
-    <div class="uk-container uk-container-center">
-        <div id="tm-middle" class="tm-middle uk-grid" data-uk-grid-match="" data-uk-grid-margin="">
-            <div class="tm-main uk-width-medium-1-1 uk-row-first">
-                <main id="tm-content" class="tm-content">
-                    <div id="system-message-container">
-                    </div>
-                    <div class="yoo-zoo page-uikit page-uikit-test">
+<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div class="uk-container">
+        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+            <div class="uk-width-1-1@m uk-first-column">
 
-                        <h1 class="uk-h1"> Want to share a new corpus? </h1>
+                <h2 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                    Want to share a new corpus?
+                </h2>
+                <!--<hr class="uk-divider-icon uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
 
-                        <!--<p class="uk-text-muted">Written by Super User on 26 March 2010 </p>-->
+                <!-- TOP HELP CONTENT -->
+                <help-content #topHelperContent [position]="'top'"
+                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
 
-                        <!--<div class="uk-thumbnail uk-align-medium-right">-->
-                        <!--<img src="http://yootheme.com/demo/themes/joomla/2016/chester/media/zoo/images/graph_de8a1911975877207d1987f357ec7d7e.jpg" alt="Welcome to our Website!" width="250" height="160">-->
-                        <!--</div>-->
+                <div class="uk-container uk-margin-large-top uk-margin-large-bottom">
+                    <div class="uk-grid">
 
-                        <div class="uk-margin">
-                            We offer 2 different ways for you to share your corpora. See them below and choose the
-                            one that suits you the most.
-                        </div>
+                        <!-- LEFT HELP CONTENT -->
+                        <aside-help-content #leftHelperContent [position]="'left'"
+                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
 
-                        <div class="registrationOptions">
-                            <div class="uk-margin uk-grid uk-panel uk-panel-box uk-panel-box-primary">
-                                <div class="uk-width-medium-1-4">
-                                    <img src="http://www.iconarchive.com/download/i60242/zerode/plump/Search.ico"
-                                         alt="Search" width="170" height="200">
+
+                        <!-- MIDDLE -->
+                        <div class=" uk-width-expand@m">
+
+                            <div class="uk-grid">
+
+                                <div class="uk-width-1-2@m" style="border-right:1px solid #ddd; padding-right: 35px">
+                                    <div class="uk-first-column">
+
+                                        <h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">
+                                            Do you want to search for publications to create a new corpus?
+                                        </h3>
+                                        <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
+                                        <div class="el-content uk-margin">We have created a corpus builder for you, where you can search for publications in a number of
+                                            aggregators, filter your results and combine them to create a new corpus!</div>
+                                        <p><a class="el-link uk-button uk-button-primary" (click)="corpusBuilder()">I want to build a new corpus!</a></p>
+                                    </div>
                                 </div>
-                                <div class="uk-width-medium-3-4">
-                                    <h3>Do you want to search for publications to create a new corpus?</h3>
-                                    <p>We have created a corpus builder for you, where you can search for publications in a number of
-                                        aggregators, filter your results and combine them to create a new corpus!</p>
-                                    <div class="uk-row-first"><button class="uk-button uk-button-large
-                                        uk-button-primary" (click)="corpusBuilder()">I want to build a new corpus!</button></div>
+
+                                <div class="uk-width-1-2@m">
+                                    <div class="uk-first-column">
+
+                                        <h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">
+                                            Do you have a corpus already?
+                                        </h3>
+                                        <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
+                                        <div class="el-content uk-margin">You can directly upload your corpus to OpenMinTeD!</div>
+                                        <p><a class="el-link uk-button uk-button-primary" (click)="uploadCorpus()">I want to upload my corpus!</a></p>
+                                    </div>
                                 </div>
+
                             </div>
 
-                            <div class="uk-margin uk-grid uk-panel uk-panel-box uk-panel-box-primary">
-                                <div class="uk-width-medium-3-4">
-                                    <h3>Do you have a corpus already?</h3>
-                                    <p>You can directly upload your corpus to OpenMinTeD!</p>
-                                    <div class="uk-row-first"><button class="uk-button uk-button-large
-                                        uk-button-primary" (click)="uploadCorpus()">I want to upload my corpus!</button></div>
-                                </div>
-                                <div class="uk-width-medium-1-4">
-                                    <img src="http://www.fancyicons.com/free-icons/133/shimmer/png/256/open_256.png"
-                                         alt="Upload" width="170" height="200">
-                                </div>
-                            </div>
+                            <!--<div class="uk-margin uk-text-left@m uk-text-center uk-grid-match uk-child-width-1-1 uk-grid-large uk-grid-divider uk-grid uk-grid-stack uk-scrollspy-inview uk-animation-slide-bottom-small">-->
+
+
+                                <!--<div class="uk-width-1-2@m uk-first-column">-->
+                                    <!--<div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-bottom-small" style="">-->
+                                        <!--<div class="uk-child-width-expand uk-grid-large uk-grid" uk-grid="">-->
+                                            <!--&lt;!&ndash;<div class="uk-width-1-4@m">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;&lt;!&ndash;<img src="http://dl119.madgik.di.uoa.gr/templates/yootheme/cache/destination-scandinavia-blog-01-1502bf0b.jpg" srcset="/templates/yootheme/cache/destination-scandinavia-blog-01-c1b3d866.jpg 192w, /templates/yootheme/cache/destination-scandinavia-blog-01-c07ab576.jpg 480w, /templates/yootheme/cache/destination-scandinavia-blog-01-1502bf0b.jpg 240w" sizes="(min-width: 240px) 240px, 100vw" class="el-image uk-border-rounded" alt="">&ndash;&gt;&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<img src="https://id.kickfire.com/img/icon-form.png" class="el-image uk-border-rounded"&ndash;&gt;-->
+                                                     <!--&lt;!&ndash;alt="Form" width="170" height="200">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                            <!--<div class="uk-first-column">-->
+
+                                                <!--<h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">-->
+                                                    <!--Do you want to search for publications to create a new corpus?-->
+                                                <!--</h3>-->
+                                                <!--&lt;!&ndash;<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>&ndash;&gt;-->
+                                                <!--<div class="el-content uk-margin">We have created a corpus builder for you, where you can search for publications in a number of-->
+                                                    <!--aggregators, filter your results and combine them to create a new corpus!</div>-->
+                                                <!--<p><a class="el-link uk-button uk-button-primary" (click)="corpusBuilder()">I want to build a new corpus!</a></p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="uk-width-1-2@m uk-grid-margin uk-first-column">-->
+                                    <!--<div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-bottom-small" style="">-->
+                                        <!--<div class="uk-child-width-expand uk-grid-large uk-grid" uk-grid="">-->
+                                            <!--&lt;!&ndash;<div class="uk-width-1-4@m">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<img src="http://0.tqn.com/d/pcsupport/1/0/h/Y/-/-/xml-file.png" class="el-image uk-border-rounded"&ndash;&gt;-->
+                                                     <!--&lt;!&ndash;alt="XML" width="170" height="200">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                            <!--<div class="uk-first-column">-->
+
+                                                <!--<h3 class="el-title uk-margin uk-h4 uk-margin-remove-adjacent">-->
+                                                    <!--Do you have a corpus already?-->
+                                                <!--</h3>-->
+                                                <!--&lt;!&ndash;<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>&ndash;&gt;-->
+                                                <!--<div class="el-content uk-margin">You can directly upload your corpus to OpenMinTeD!</div>-->
+                                                <!--<p><a class="el-link uk-button uk-button-primary" (click)="uploadCorpus()">I want to upload my corpus!</a></p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
 
                         </div>
 
+
+                        <!-- RIGHT HELP CONTENT -->
+                        <aside-help-content #rightHelperContent [position]="'right'"
+                                            [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
                     </div>
-                </main>
+                </div>
+
+
+                <!-- BOTTOM HELP CONTENT -->
+                <help-content #bottomHelperContent [position]="'bottom'"
+                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+
             </div>
         </div>
     </div>

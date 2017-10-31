@@ -14,9 +14,6 @@ const corpusRegistrationRoutes: Routes = [
     {
         path: 'resourceRegistration/corpus',
         component: CorpusRegistrationComponent,
-        canActivate: [
-            CanActivateViaAuthGuard
-        ]
     },
     {
         path: 'resourceRegistration/corpus/searchForPublications',

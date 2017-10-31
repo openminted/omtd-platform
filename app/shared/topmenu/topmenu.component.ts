@@ -8,7 +8,12 @@ import { AuthenticationService } from "../../services/authentication.service";
 @Component({
     selector: 'top-menu',
     templateUrl: './topmenu.component.html',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    styles: [`
+        .uk-navbar-nav > li > a.loginLink {
+            color: #2c4eac;
+        }
+    `]
 })
 
 export class TopMenuComponent {
