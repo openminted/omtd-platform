@@ -28,7 +28,7 @@ import { WorkflowService } from "../../services/workflow.service";
         ReusableComponentsModule
     ],
     declarations: [
-        BuildAWorkflowComponent,
+        // BuildAWorkflowComponent,
         RunApplicationComponent,
         BrowseCorporaComponent,
         BrowseApplicationsComponent
