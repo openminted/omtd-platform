@@ -18,11 +18,13 @@ import {MyGroup} from "../myform/my-group.interface";
 export class LanguageTypeForm extends MyGroup {
 
     readonly groupDefinition = {
-        languageTag : ['', Validators.required],
-        languageId : ['', Validators.required],
-        scriptId : '',
-        regiontId : '',
-        variantId: ''
+        language : this._fb.group({
+            languageTag: ['', Validators.required],
+            languageId: ['', Validators.required],
+            scriptId: '',
+            regiontId: '',
+            variantId: ''
+        })
     };
 
     languageTagDesc : Description;
@@ -40,7 +42,7 @@ export class LanguageTypeForm extends MyGroup {
 
     setLanguageId($event : any) : void {
         this.compositionObject.languageId = <string>$event.item.key.toLowerCase();
-        this.getMyControl('languageId').setValue($event.item.key.toLowerCase());
+        this.getMyControl('language.languageId').setValue($event.item.key.toLowerCase());
     }
 
     get languageTag() {
@@ -56,9 +58,9 @@ export class LanguageTypeForm extends MyGroup {
     ngOnInit() {
         super.ngOnInit();
         for(let type of ['languageId','scriptId','regiontId','variantId']) {
-            this.group.controls[type].valueChanges.subscribe(_ => {
-                this.compositionObject[type] =   this.group.controls[type].value;
-                this.getMyControl('languageTag').setValue(this.languageTag);
+            this.group.get(`language.${type}`).valueChanges.subscribe(_ => {
+                this.compositionObject[type] =  this.group.get(`language.${type}`).value;
+                this.getMyControl('language.languageTag').setValue(this.languageTag);
             });
         }
     }

@@ -6,21 +6,24 @@ import { MyGroup } from "../myform/my-group.interface";
 import {SizeInfoFormControl} from "./sizeInfo.component";
 import {Description, sizeInfoDesc, languageDesc} from "../../../domain/omtd.description";
 import {LanguageInfoFormControl} from "./languageInfo.component";
+import {FormArray} from "@angular/forms";
+import {LanguageTypeForm} from "./language-type-form.component";
 
 @Component({
     selector: 'corpusTextPartInfo-form',
     template : `
 <div [formGroup]="group">
     <div class="form-group">
-        <lingualityInfo-form [parentGroup]="group" [name]="'lingualityInfo'"></lingualityInfo-form>
+        <lingualityInfo-form [parentGroup]="group" [name]="'lingualityInfo'" 
+                             [languageCount]="this.parentGroup.controls['languages']?.controls.length"></lingualityInfo-form>
     </div>
 
     <div class="form-group-divider"></div>
 
-    <form-repeat [component]="languageInfoType" [parentGroup]="group"
+    <form-repeat-inline [component]="languageInfoType" [parentGroup]="group"
                         [name]="'languages'" [required]="true" [description]="languageDesc">
 
-    </form-repeat>
+    </form-repeat-inline>
 
 
     <div class="form-group-divider"></div>
@@ -40,8 +43,13 @@ export class CorpusTextPartInfoFormControl extends MyGroup {
     };
 
     sizeInfoType : Type<any> = SizeInfoFormControl;
-    languageInfoType : Type<any> = LanguageInfoFormControl;
+    languageInfoType : Type<any> = LanguageTypeForm;
 
     sizeInfoDesc : Description = sizeInfoDesc;
-    languageDesc : Description = languageDesc;
+    languageDesc : Description = Object.assign({},languageDesc);
+
+    ngOnInit() {
+        super.ngOnInit();
+        this.languageDesc.desc = null;
+    }
 }

@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 1/19/17.
  */
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { EnumValues, multilingualityTypeEnum, lingualityTypeEnum } from "../../../domain/omtd.enum";
 import {MyGroup} from "../myform/my-group.interface";
@@ -13,7 +13,7 @@ import {Description, lingualityInfoDesc} from "../../../domain/omtd.description"
     <div [formGroup]="group" >
         <form-inline [description]="lingualityInfoDesc">
             <div class="col-sm-3 col-md-3" [ngClass]="{'has-error':!getMyControl('lingualityType').valid}">
-                <select name="role" class="form-control" formControlName="lingualityType">
+                <select name="role" class="form-control" formControlName="lingualityType" [attr.disabled]="true">
                     <option *ngFor="let value of lingualityTypes" [value]="value.key" [selected]="value.key == ''">
                         {{value.value}}
                     </option>
@@ -37,7 +37,9 @@ import {Description, lingualityInfoDesc} from "../../../domain/omtd.description"
     styleUrls : ['./templates/common.css']
 })
 
-export class LingualityInfoFormControl extends MyGroup {
+export class LingualityInfoFormControl extends MyGroup implements OnChanges{
+
+    @Input() languageCount : number = 1;
 
     groupDefinition = {
         multilingualityTypeDetails : '',
@@ -64,4 +66,23 @@ export class LingualityInfoFormControl extends MyGroup {
         });
     }
 
+    ngOnChanges(changes: SimpleChanges): void {
+        let lingualityType : string = null;
+        if(changes['languageCount'].previousValue != null) {
+            switch (changes['languageCount'].currentValue as number) {
+                case 1 :
+                    lingualityType = "MONOLINGUAL";
+                    break;
+                case 2 :
+                    lingualityType = "BILINGUAL";
+                    break;
+                case 3 :
+                    lingualityType = "MULTILINGUAL";
+                    break;
+                default :
+                    lingualityType = "MULTILINGUAL";
+            }
+            this.getMyControl('lingualityType').setValue(lingualityType);
+        }
+    }
 }

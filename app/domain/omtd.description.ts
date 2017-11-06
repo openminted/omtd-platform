@@ -151,7 +151,7 @@ export var multiValueDesc = {
 
 export var resourceNameDesc = {
     desc : "Specifies the name (full title) by which the resource is known",
-    label : "Resource Name",
+    label : "Name",
     mandatory : true,
     recommended : false
 };
@@ -389,7 +389,7 @@ export var validationExtentDetailsDesc = {
 
 export var resourceShortNameDesc = {
     desc : "A short form (e.g. abbreviation, acronym etc.) used to identify the resource.",
-    label : "Resource short name",
+    label : "Short Name",
     mandatory : false,
     recommended : true
 };
