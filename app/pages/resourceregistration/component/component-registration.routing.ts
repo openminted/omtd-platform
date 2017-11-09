@@ -10,6 +10,7 @@ import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-gua
 import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
 import { TestComponent } from "./test.component";
 import { BuildAWorkflowComponent } from "../../actions/buildworkflow/build-a-workflow.component";
+import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component-registration-using-maven-coordinates.component";
 
 const componentRegistrationRoutes: Routes = [
     {
@@ -29,6 +30,13 @@ const componentRegistrationRoutes: Routes = [
     {
         path: 'resourceRegistration/component/form',
         component: ComponentRegistrationUsingFormComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ]
+    },
+    {
+        path: 'resourceRegistration/component/mavenCoordinates',
+        component: ComponentRegistrationUsingMavenCoordinatesComponent,
         canActivate: [
             CanActivateViaAuthGuard
         ]

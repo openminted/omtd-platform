@@ -51,17 +51,17 @@
                                             <div class="el-content uk-margin">Provide us with the artifactId and groupId and we will try to pre-fill as much information as we can for you!</div>
 
 
-                                            <form role="form" class="m-t mavenCoordinatesForm">
+                                            <form role="form" class="m-t mavenCoordinatesForm" [formGroup]="mavenForm">
                                                 <div class="form-group">
-                                                    <input name="artifactId" required="" placeholder="ArtifactId" class="form-control" type="text">
+                                                    <input name="artifactId" required="" placeholder="ArtifactId" class="form-control" type="text" formControlName="artifactId">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input name="groupId" required="" placeholder="GroupId" class="form-control" type="text">
+                                                    <input name="groupId" required="" placeholder="GroupId" class="form-control" type="text" formControlName="groupId">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input name="version" required="" placeholder="Version" class="form-control" type="text">
+                                                    <input name="version" required="" placeholder="Version" class="form-control" type="text" formControlName="version">
                                                 </div>
-                                                <a class="el-link uk-button uk-button-primary uk-disabled">Resolve maven coordinates (coming soon)!</a>
+                                                <a class="el-link uk-button uk-button-primary" (click)="resolveMavenCoordinates()">Resolve maven coordinates</a>
                                             </form>
                                         </div>
 

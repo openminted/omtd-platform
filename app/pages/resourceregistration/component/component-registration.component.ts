@@ -3,6 +3,7 @@
  */
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
     selector: 'component-registration-options',
@@ -12,7 +13,16 @@ import { Router } from '@angular/router';
 
 export class ComponentRegistrationComponent {
 
-    constructor(private router: Router) {}
+    mavenForm : FormGroup;
+
+    constructor(private router: Router, private _fb : FormBuilder) {
+        this.mavenForm = _fb.group({
+            artifactId : ["",Validators.required],
+            groupId : ["",Validators.required],
+            version : ["",Validators.required],
+        });
+    }
+
 
     registerUsingXML() {
         this.router.navigate(['/resourceRegistration/component/xml']);
@@ -20,6 +30,14 @@ export class ComponentRegistrationComponent {
 
     registerUsingForm() {
         this.router.navigate(['/resourceRegistration/component/form']);
+    }
+
+    resolveMavenCoordinates() {
+        if(this.mavenForm.valid) {
+            this.router.navigate(['/resourceRegistration/component/mavenCoordinates',this.mavenForm.value]);
+        } else {
+            console.error("form invalid");
+        }
     }
 
     buildWorkflow() {
