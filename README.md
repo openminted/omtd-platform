@@ -1,5 +1,10 @@
 # omtd-platform
 
+## Requirements
+
+- nodejs (recommended: version >= 7)
+- npm (recommended: version >= 3)
+
 ## First time
 `npm intall` for all the dependencies.
 
