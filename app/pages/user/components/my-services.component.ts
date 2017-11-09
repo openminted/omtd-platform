@@ -3,7 +3,7 @@
  */
 import { Component, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {BaseMetadataRecord, Component as OMTDComponent} from "../../../domain/openminted-model";
+import { BaseMetadataRecord, Component as OMTDComponent} from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { SearchResults } from "../../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog.component";
