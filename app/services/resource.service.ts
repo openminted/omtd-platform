@@ -28,34 +28,21 @@ export class ResourceService {
     private _uploadUrl = this.endpoint + '/resources/';
     private _uploadZip = this.endpoint + "/request/corpus/upload";
     
-    search(urlParameters: URLParameter[]) {
+    search(urlParameters: URLSearchParams) {
 
-        var searchQuery = '';
-        var counter = 0;
-        for (let urlParameter of urlParameters) {
-            
-            if(counter === 0) 
-                searchQuery += '?';
-            
-            if(urlParameter.key === 'query') {
-                searchQuery += 'keyword=' + urlParameter.values[0];
-            } else {
-                var valuesCounter = 0;
-                for(let value of urlParameter.values) {
-                    if(valuesCounter!=0)
-                        searchQuery += '&';
-                    searchQuery += urlParameter.key + '=' + value;
-                    valuesCounter++;
-                }
-            }
-            
-            if(counter != urlParameters.length-1) 
-                searchQuery += '&';
-            
-            counter++;
+        if(urlParameters.has('query')) {
+            urlParameters.set('keyword',urlParameters.get('query'));
+            urlParameters.delete('query');
         }
-        
-        return this.http.get(this._searchUrl + searchQuery)
+        let resourceType="";
+        if(urlParameters.has('resourceType')) {
+            resourceType = urlParameters.get('resourceType');
+        }
+        let searchUrl = this._searchUrl;
+        if(["component","corpus"].includes(resourceType)) {
+            searchUrl = `${this._searchUrl}${resourceType}/all`;
+        }
+        return this.http.get(searchUrl +'?' + urlParameters.toString())
             .map(res => <SearchResults<BaseMetadataRecord>> res.json())
             .catch(this.handleError);
     }

@@ -52,26 +52,24 @@ export class SearchComponent {
     ngOnInit() {
 
         this.sub = this.activatedRoute
-            .params
-            .subscribe(params => {
-                
+            .params.subscribe(params => {
                 this.urlParameters.splice(0,this.urlParameters.length);
                 this.foundResults = true;
-
+                let searchParams : URLSearchParams = new URLSearchParams();
                 for (var obj in params) {
                     if (params.hasOwnProperty(obj)) {
                         var urlParameter: URLParameter = {
                             key: obj,
                             values: params[obj].split(',')
                         };
+                        
+                        searchParams.set(urlParameter.key,urlParameter.values[0]);
                         this.urlParameters.push(urlParameter);
                         // console.log(urlParameter);
                     }
                 }
-
-                // console.log(this.urlParameters);
                 //request results from the registry
-                this.resourceService.search(this.urlParameters).subscribe(
+                this.resourceService.search(searchParams).subscribe(
                     searchResults => this.updateSearchResults(searchResults),
                     error => this.handleError(<any>error));
             });
@@ -137,11 +135,6 @@ export class SearchComponent {
         for (let urlParameter of this.urlParameters) {
             if(urlParameter.key === 'query') {
                 this.searchForm.get('query').setValue(urlParameter.values[0]);
-            } else if(urlParameter.key === 'advanced') {
-                if(urlParameter.values[0]=='true')
-                    this.advanced = true;
-                else
-                    this.advanced = false;
             } else {
                 for(let facet of this.searchResults.facets) {
                     if(facet.field === urlParameter.key) {
@@ -172,46 +165,46 @@ export class SearchComponent {
         }
     }
 
-    advancedView() {
-        
-        this.advanced = true;
-        
-        var foundAdvancedParameter = false;
-        for (let urlParameter of this.urlParameters) {
-            if(urlParameter.key === 'advanced') {
-                foundAdvancedParameter = true;
-                if(urlParameter.values[0] === 'false') {
-                    urlParameter.values.splice(0,urlParameter.values.length);
-                    urlParameter.values.push('true')
-                }
-            }
-        }
-        
-        if(!foundAdvancedParameter) {
-            var newParameter: URLParameter = {
-                key: 'advanced',
-                values: ['true']
-            };
-            this.urlParameters.push(newParameter);
-        }
-        
-        this.navigateUsingParameters();
-    }
+    // advancedView() {
+    //
+    //     this.advanced = true;
+    //
+    //     var foundAdvancedParameter = false;
+    //     for (let urlParameter of this.urlParameters) {
+    //         if(urlParameter.key === 'advanced') {
+    //             foundAdvancedParameter = true;
+    //             if(urlParameter.values[0] === 'false') {
+    //                 urlParameter.values.splice(0,urlParameter.values.length);
+    //                 urlParameter.values.push('true')
+    //             }
+    //         }
+    //     }
+    //
+    //     if(!foundAdvancedParameter) {
+    //         var newParameter: URLParameter = {
+    //             key: 'advanced',
+    //             values: ['true']
+    //         };
+    //         this.urlParameters.push(newParameter);
+    //     }
+    //
+    //     this.navigateUsingParameters();
+    // }
 
-    simpleView() {
-
-        this.advanced = false;
-
-        var categoryIndex = 0;
-        for (let urlParameter of this.urlParameters) {
-            if(urlParameter.key === 'advanced') {
-                this.urlParameters.splice(categoryIndex, 1);
-            }
-            categoryIndex ++;
-        }
-
-        this.navigateUsingParameters();
-    }
+    // simpleView() {
+    //
+    //     this.advanced = false;
+    //
+    //     var categoryIndex = 0;
+    //     for (let urlParameter of this.urlParameters) {
+    //         if(urlParameter.key === 'advanced') {
+    //             this.urlParameters.splice(categoryIndex, 1);
+    //         }
+    //         categoryIndex ++;
+    //     }
+    //
+    //     this.navigateUsingParameters();
+    // }
 
     ngOnDestroy() {
         this.sub.unsubscribe();
