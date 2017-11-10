@@ -7,7 +7,9 @@ import '@angular/common';
 import '@angular/http';
 import '@angular/router';
 import 'rxjs';
-import "ace-builds/src-noconflict/ace.js"
-import "ng2-ace-editor";
-import 'brace/theme/eclipse';
+// import "ace-builds/src-noconflict/ace.js"
+//import "ng2-ace-editor";
+import 'brace/index'
+import 'brace/theme/chrome';
+import 'brace/mode/xml';
 import 'ngx-bootstrap';

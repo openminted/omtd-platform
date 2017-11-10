@@ -19,12 +19,31 @@
                                             [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
                         </aside-help-content>
 
-
                         <!-- MIDDLE -->
                         <div class=" uk-width-expand@m">
-
-                            Coming soon....
-
+                            <div *ngIf="errorMessage">
+                                {{errorMessage}}
+                            </div>
+                            <div *ngIf="!errorMessage">
+                                <div *ngIf="!editMode">
+                                    <div *ngFor="let component of mavenComponents; let i=index">
+                                        {{i}}. {{component.component.componentInfo.identificationInfo.resourceNames[0].value}}
+                                        <div *ngIf="component.inserted">
+                                            <h2 style="color:red">YOU HAVE ALREADY ADDED ME MAN</h2>
+                                        </div>
+                                        <div *ngIf="!component.inserted">
+                                            <a (click)="editXMLComponent(component.xml,i)">CLICK HERE TO INSERT ME</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="editMode">
+                                    <form role="form" class="m-t componentXMLForm">
+                                        <!--[theme]="'eclipse'"-->
+                                        <ace-editor [(text)]="componentXML" [theme]="'chrome'" [mode]="'xml'" style="min-height: 500px; width:100%; overflow: auto;"></ace-editor>
+                                    </form>
+                                    <button class="uk-button uk-button-primary registerButton" type="submit" (click)="onSubmit()">Register!</button>
+                                </div>
+                            </div>
                         </div>
 
 
