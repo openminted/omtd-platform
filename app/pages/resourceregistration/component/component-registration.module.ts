@@ -30,6 +30,7 @@ import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component
         AccordionModule.forRoot(),
         TypeaheadModule.forRoot(),
         ResourceRegistrationModule,
+        AceEditorModule,
         ReusableComponentsModule,
         AceEditorModule,
     ],

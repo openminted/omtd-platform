@@ -13,6 +13,7 @@ import { SearchResults } from "../domain/search-results";
 import { Resource } from "../domain/resource";
 import {EnrichedOperation, Operation} from "../domain/operation";
 import {CorpusBuildingState} from "../domain/corpus-building-state";
+import {MavenComponent} from "../domain/maven-component";
 
 @Injectable()
 export class ResourceService {
@@ -141,6 +142,16 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
+    getMavenComponents(artifactId : string, groupId : string, version : string) {
+        let search : URLSearchParams = new URLSearchParams();
+        search.set('artifactID',artifactId);
+        search.set('groupID',groupId);
+        search.set('version',version);
+        return this.http.get(this._resourcesUrl + "maven?" + search)
+            .map(res => <MavenComponent[]> res.json())
+            .catch(this.handleError);
+    }
+
     getLanguageDescription(id: string) {
         return this.http.get(this._resourcesUrl + "language/" + id)
             .map(res => <LanguageDescription> res.json())
@@ -227,6 +238,16 @@ export class ResourceService {
         let options = new RequestOptions({headers: headers, withCredentials : true});
         ResourceService.removeNulls(component);
         return this.http.post(this._searchUrl + 'component', JSON.stringify(component), options)
+            .map(res => res.status)
+            .catch(this.handleError);
+    }
+
+    uploadXMLComponent(component: string) {
+
+        let headers = new Headers({'Content-Type': 'application/xml'});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        ResourceService.removeNulls(component);
+        return this.http.post(this._searchUrl + 'component', component, options)
             .map(res => res.status)
             .catch(this.handleError);
     }
