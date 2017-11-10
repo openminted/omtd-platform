@@ -11,7 +11,7 @@ import {
 import { URLParameter } from "../domain/url-parameter";
 import { SearchResults } from "../domain/search-results";
 import { Resource } from "../domain/resource";
-import { Operation } from "../domain/operation";
+import {EnrichedOperation, Operation} from "../domain/operation";
 import {CorpusBuildingState} from "../domain/corpus-building-state";
 
 @Injectable()
@@ -275,13 +275,7 @@ export class ResourceService {
 
     getMyOperations() {
         return this.http.get(this._resourcesUrl + "operation/my", { withCredentials: true })
-            .map(res => <SearchResults<Operation>> res.json())
-            .catch(this.handleError);
-    }
-
-    getMyCorpusBuildingStates() {
-        return this.http.get(this._resourcesUrl + "operation/my", { withCredentials: true })
-            .map(res => <SearchResults<CorpusBuildingState>> res.json())
+            .map(res => <SearchResults<EnrichedOperation>> res.json())
             .catch(this.handleError);
     }
 

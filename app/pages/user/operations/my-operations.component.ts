@@ -3,11 +3,11 @@
  */
 import { Component, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Corpus as OMTDCorpus } from "../../../domain/openminted-model";
+import { BaseMetadataRecord, Corpus as OMTDCorpus, Component as OMTDComponent } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
-import { SearchResults } from "../../../domain/search-results";
+import { SearchResults, SearchResultsNew } from "../../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog.component";
-import { Operation } from "../../../domain/operation";
+import { EnrichedOperation } from "../../../domain/operation";
 
 @Component({
     selector: 'my-operations',
@@ -20,8 +20,8 @@ export class MyOperationsComponent {
     @ViewChild('deleteConfirmationModal')
     public deleteConfirmationModal : ConfirmationDialogComponent;
 
-    public searchResults: SearchResults<Operation>;
-    public operations: Operation[] = [];
+    public searchResults: SearchResultsNew<EnrichedOperation>;
+    public operations: EnrichedOperation[] = [];
     public errorMessage: string;
     public successMessage: string;
 
@@ -46,12 +46,12 @@ export class MyOperationsComponent {
         this.errorMessage = null;
         this.successMessage = null;
 
-        this.resourceService.getMyCorpora().subscribe(
+        this.resourceService.getMyOperations().subscribe(
             searchResults => this.updateMyOperations(searchResults),
             error => this.handleError('System error retrieving user operations', <any>error));
     }
 
-    updateMyOperations(searchResults: SearchResults<Operation>) {
+    updateMyOperations(searchResults: SearchResultsNew<EnrichedOperation>) {
 
         //INITIALISATIONS
         this.errorMessage = null;
@@ -66,7 +66,7 @@ export class MyOperationsComponent {
         this.operations.length = 0;
 
         for (let operation of this.searchResults.results) {
-            this.operations.push(<Operation> operation.resource);
+            this.operations.push(<EnrichedOperation> operation);
         }
 
         this.pageSize = 10;
@@ -88,59 +88,15 @@ export class MyOperationsComponent {
         this.errorMessage = message + ' (Server responded: ' + error + ')';
     }
 
-    goToDetails(corpus: OMTDCorpus) {
-        this.router.navigate(['/landingPage/corpus/', corpus.metadataHeaderInfo.metadataRecordIdentifier.value]);
+    gotoDetail(resourceType: string, id: string) {
+        this.router.navigate(['/landingPage/' + resourceType + '/', id]);
     }
 
-    editCorpus(corpus: OMTDCorpus) {
-
+    toCorpus(data : BaseMetadataRecord) : OMTDCorpus {
+        return data as OMTDCorpus;
     }
 
-    deleteConfirmationCorpus(corpus: OMTDCorpus) {
-
-        this.errorMessage = null;
-        this.successMessage = null;
-
-        this.deleteConfirmationModal.ids = [corpus.metadataHeaderInfo.metadataRecordIdentifier.value];
-        this.deleteConfirmationModal.showModal();
+    toComponent(data : BaseMetadataRecord) : OMTDComponent {
+        return data as OMTDComponent;
     }
-
-    confirmedDeleteComponent(event : any) {
-        throw new Error("Stefaniaaa you forgot a method!");
-    }
-
-    // confirmedDeleteCorpus(ids: string[]) {
-    //
-    //     let id = ids[0];
-    //     let operations = this.operations.filter(corpus => corpus.metadataHeaderInfo.metadataRecordIdentifier.value === id);
-    //
-    //     if(corpora && corpora.length == 1) {
-    //
-    //         let corpus = corpora[0];
-    //
-    //         this.resourceService.deleteCorpus(corpus).subscribe(
-    //             _ => this.deleteCorpus(id),
-    //             error => this.handleError('System error deleting the selected corpus', <any>error)
-    //         );
-    //
-    //     } else {
-    //         this.errorMessage = 'Error finding the corpus to delete';
-    //     }
-    // }
-
-    // deleteCorpus(id: string) {
-    //
-    //     let i : number = this.corpora.findIndex(_ => _.metadataHeaderInfo.metadataRecordIdentifier.value == id);
-    //     this.corpora.splice(i, 1);
-    //
-    //     this.successMessage = `Corpus was deleted successfully`;
-    // }
-
-    // updateCorpus(corpus: OMTDCorpus) {
-    //
-    //     let i : number = this.corpora.findIndex(_ => _.metadataHeaderInfo.metadataRecordIdentifier.value == corpus.metadataHeaderInfo.metadataRecordIdentifier.value);
-    //     this.corpora[i] = corpus;
-    //
-    //     this.successMessage = `Corpus made public successfully`;
-    // }
 }

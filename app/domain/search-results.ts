@@ -13,3 +13,13 @@ export class SearchResults<T> {
     results: Order<T>[];
     facets: Facet[];
 }
+
+export class SearchResultsNew<T> {
+
+    from: number;
+    to: number;
+    total: number;
+
+    results: T[];
+    facets: Facet[];
+}

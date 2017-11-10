@@ -1,6 +1,8 @@
 /**
  * Created by stefania on 8/31/17.
  */
+import {BaseMetadataRecord} from "./openminted-model";
+
 export class Corpus {
     input: string;
     output: string;
@@ -20,7 +22,12 @@ export class Operation {
     component: string;
     corpus: Corpus;
     errors: Errors;
-    job: string;
     person: string;
     date: Date;
+    status: string;
+}
+
+export class EnrichedOperation {
+    operation : Operation;
+    resources : {[key : string]: BaseMetadataRecord };
 }

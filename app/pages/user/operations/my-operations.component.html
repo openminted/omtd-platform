@@ -65,53 +65,98 @@
                                         <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
                                     </div>
 
-                                    <!--<div class="uk-grid-margin">-->
+                                    <div class="uk-grid-margin">
 
-                                        <!--<div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">-->
-                                            <!--<div class="uk-width-1-1@m uk-first-column">-->
-                                                <!--<div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">-->
-                                                    <!--<table class="uk-table uk-table-striped uk-table-middle">-->
-                                                        <!--<thead>-->
-                                                        <!--<tr>-->
-                                                            <!--<th class="">Name</th>-->
-                                                            <!--<th class="">Date</th>-->
-                                                            <!--<th class="">Description</th>-->
-                                                            <!--<th class="">Public</th>-->
-                                                            <!--<th class="">Views</th>-->
-                                                            <!--<th class="">Downloads</th>-->
-                                                            <!--<th class="">Actions</th>-->
-                                                        <!--</tr>-->
-                                                        <!--</thead>-->
-                                                        <!--<tbody>-->
-                                                        <!--<tr *ngFor="let corpus of corpora" class="el-item">-->
-                                                            <!--<td class=""><div class="el-title">{{corpus.corpusInfo.identificationInfo.resourceNames[0].value}}</div></td>-->
-                                                            <!--<td class=""><div class="el-title">{{corpus.metadataHeaderInfo.metadataCreationDate | date:'shortDate'}}</div></td>-->
-                                                            <!--<td class=""><div class="el-title">{{corpus.corpusInfo.identificationInfo.descriptions[0].value}}</div></td>-->
-                                                            <!--<td class="">-->
-                                                                <!--<div *ngIf="corpus.corpusInfo.identificationInfo.public" class="el-title">yes</div>-->
-                                                                <!--<div *ngIf="!corpus.corpusInfo.identificationInfo.public" class="el-title">no</div>-->
-                                                            <!--</td>-->
-                                                            <!--<td class=""><div class="el-title">&#45;&#45;</div></td>-->
-                                                            <!--<td class=""><div class="el-title">&#45;&#45;</div></td>-->
-                                                            <!--<td class="uk-text-nowrap">-->
-                                                                <!--<div *ngIf="!corpus.corpusInfo.identificationInfo.public" class="el-title">-->
-                                                                    <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                                    <!--<a (click)="editCorpus(corpus)"><i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                                    <!--<a (click)="deleteConfirmationCorpus(corpus)"><i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                                    <!--<a (click)="makePublicConfirmation(corpus)" class=""><i class="fa fa-share-alt" aria-hidden="true"></i></a>-->
-                                                                <!--</div>-->
-                                                                <!--<div *ngIf="corpus.corpusInfo.identificationInfo.public" class="el-title">-->
-                                                                    <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info" aria-hidden="true"></i></a>-->
-                                                                <!--</div>-->
-                                                            <!--</td>-->
-                                                        <!--</tr>-->
-                                                        <!--</tbody>-->
-                                                    <!--</table>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
+                                        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+                                            <div class="uk-width-1-1@m uk-first-column">
+                                                <div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
+                                                    <table class="uk-table uk-table-striped uk-table-middle">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="">Input</th>
+                                                                <th class="">Application</th>
+                                                                <th class="">Output</th>
+                                                                <th class="">Date</th>
+                                                                <th class="">Status</th>
+                                                                <th class="">Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let myOperation of operations" class="el-item">
+                                                                <td class="">
+                                                                    <div class="el-title" *ngIf="myOperation.operation && myOperation.operation.corpus && myOperation.operation.corpus.input
+                                                                    && myOperation.resources[myOperation.operation.corpus.input]">
+                                                                        <span><strong>{{toCorpus(myOperation.resources[myOperation.operation.corpus.input]).corpusInfo.identificationInfo.resourceNames[0].value}}</strong></span><br>
+                                                                        <span style="text-align: justify;">{{toCorpus(myOperation.resources[myOperation.operation.corpus.input]).corpusInfo.identificationInfo.descriptions[0].value}}</span><br>
+                                                                        <a (click)="gotoDetail('corpus', myOperation.operation.corpus.input)">
+                                                                            View details
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="el-title" *ngIf="!myOperation.operation || !myOperation.operation.corpus || !myOperation.operation.corpus.input
+                                                                    || !myOperation.resources[myOperation.operation.corpus.input]">
+                                                                        not available
+                                                                    </div>
+                                                                </td>
+                                                                <td class="">
+                                                                    <div class="el-title" *ngIf="myOperation?.operation?.component
+                                                                    && myOperation.resources[myOperation.operation.component]">
+                                                                        <span><strong>{{toComponent(myOperation.resources[myOperation.operation.component]).componentInfo.identificationInfo.resourceNames[0].value}}</strong></span><br>
+                                                                        <span style="text-align: justify;">{{toComponent(myOperation.resources[myOperation.operation.component]).componentInfo.identificationInfo.descriptions[0].value}}</span><br>
+                                                                        <a (click)="gotoDetail('component', myOperation.operation.component)">
+                                                                            View details
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="el-title" *ngIf="!myOperation?.operation?.component
+                                                                    || !myOperation.resources[myOperation.operation.component]">
+                                                                        not available
+                                                                    </div>
+                                                                </td>
+                                                                <td class="">
+                                                                    <div class="el-title" *ngIf="myOperation?.operation?.corpus?.output
+                                                                    && myOperation.resources[myOperation.operation.corpus.output]">
+                                                                        <span><strong>{{toCorpus(myOperation.resources[myOperation.operation.corpus.output]).corpusInfo.identificationInfo.resourceNames[0].value}}</strong></span><br>
+                                                                        <span style="text-align: justify;">{{toCorpus(myOperation.resources[myOperation.operation.corpus.output]).corpusInfo.identificationInfo.descriptions[0].value}}</span><br>
+                                                                        <a (click)="gotoDetail('corpus', myOperation.operation.corpus.output)">
+                                                                            View details
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="el-title" *ngIf="!myOperation?.operation?.corpus?.output
+                                                                    || !myOperation.resources[myOperation.operation.corpus.output]">
+                                                                        not available
+                                                                    </div>
+                                                                </td>
+                                                                <td class="">
+                                                                    <div class="el-title" *ngIf="myOperation?.operation?.date?.submitted">
+                                                                        {{myOperation.operation.date.submitted | date:'shortDate'}}
+                                                                    </div>
+                                                                    <div class="el-title" *ngIf="!myOperation?.operation?.date?.submitted">
+                                                                        not available
+                                                                    </div>
+                                                                </td>
+                                                                <td class="">
+                                                                    <div class="el-title" *ngIf="myOperation?.operation?.status">
+                                                                        {{myOperation.operation.status}}
+                                                                    </div>
+                                                                    <div class="el-title" *ngIf="!myOperation?.operation?.status">
+                                                                        not available
+                                                                    </div>
+                                                                </td>
 
-                                    <!--</div>-->
+                                                                <td class="uk-text-nowrap">
+                                                                    <div class="el-title">
+                                                                        <!--<a (click)="pause(operation)" class=""><i class="fa fa-pause uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                                                        <!--<a (click)="stop(operation)"><i class="fa fa-stop uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                                                        <!--<a (click)="start(operation)" class=""><i class="fa fa-play uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
 
                                     <div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top">
                                         <ul class="uk-pagination">
