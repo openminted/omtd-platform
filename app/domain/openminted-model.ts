@@ -1,728 +1,652 @@
-export class MyString  {
-    value : string;
-    lang : string;
-}
+// Generated using typescript-generator version 1.29.366 on 2017-11-23 18:11:23.
 
-export class Cloneable  {
-}
-
-export class Comparable<T>  {
+export class MyString {
+    value: string;
+    lang: string;
 }
 
 export class Abstract extends MyString {
 }
 
-export class ActorInfo  {
-    relatedPerson : PersonInfo;
-    relatedGroup : GroupInfo;
-    relatedOrganization : OrganizationInfo;
+export class ActorInfo {
+    relatedPerson: PersonInfo;
+    relatedGroup: GroupInfo;
+    relatedOrganization: OrganizationInfo;
 }
 
-export class ActualUseInfo  {
-    applicationsInvolved : ApplicationType[];
-    usageReports : RelatedDocumentInfo[];
-    derivedResources : RelatedResource[];
-    usageProjects : ProjectInfo[];
-    actualUseDetails : string;
+export class ActualUseInfo {
+    applicationsInvolved: ApplicationType[];
+    applicationOther: string;
+    usageReports: RelatedDocumentInfo[];
+    derivedResources: RelatedResource[];
+    usageProjects: ProjectInfo[];
+    actualUseDetails: string;
 }
 
-export class Affiliation  {
-    position : string;
-    affiliatedOrganization : OrganizationInfo;
+export class Affiliation {
+    position: string;
+    affiliatedOrganization: OrganizationInfo;
 }
 
-export class AnnotatedCorpusInfo  {
-    corpusSubtype : string;
-    corpusMediaParts : CorpusMediaParts;
+export class AnnotatedCorpusInfo {
+    corpusSubtype: string;
+    mediaType: string;
+    lingualityInfo: LingualityInfo;
+    languages: LanguageInfo[];
+    sizes: SizeInfo[];
+    dataFormats: DataFormatInfo[];
+    annotations: AnnotationInfo[];
+    characterEncoding: CharacterEncodingEnum;
+    textClassifications: TextClassificationInfo[];
+    domains: DomainInfo[];
+    timeClassifications: TimeCoverageInfo[];
+    geographicClassifications: GeographicCoverageInfo[];
 }
 
-export class AnnotatedDocumentInfo  {
-    rawPublication : RelatedDocumentInfo;
-    annotationInfo : AnnotationInfo;
+export class AnnotatedDocumentInfo {
+    rawPublication: RelatedDocumentInfo;
+    dataFormatInfo: DataFormatInfo;
+    annotations: AnnotationInfo[];
 }
 
-export class AnnotationInfo  {
-    annotationLevel : AnnotationLevelEnum;
-    annotationStandoff : boolean;
-    dataFormatInfo : DataFormatInfo;
-    typesystem : RelatedResource;
-    annotationSchema : RelatedResource;
-    annotationResource : RelatedResource;
-    theoreticModel : string;
-    guidelinesDocumentedIn : RelatedDocumentInfo[];
-    annotationMode : ProcessMode;
-    annotationModeDetails : string;
-    isAnnotatedBy : RelatedResource[];
-    annotationDate : DateCombination;
-    sizePerAnnotation : SizeInfo;
-    interannotatorAgreement : string;
-    intraannotatorAgreement : string;
-    annotators : ActorInfo[];
+export class AnnotationInfo {
+    annotationTypes: AnnotationTypeInfo[];
+    typesystem: RelatedResource;
+    annotationSchema: RelatedResource;
+    annotationResource: RelatedResource;
+    guidelinesDocumentedIn: RelatedDocumentInfo[];
+    annotationMode: ProcessMode;
+    annotationModeDetails: string;
+    isAnnotatedBy: RelatedResource[];
+    annotationDate: DateCombination;
+    interannotatorAgreement: string;
+    intraannotatorAgreement: string;
+    annotators: ActorInfo[];
 }
 
-export class AnnotationsInfo  {
-    corpusSubtype : string;
-    rawCorpus : RelatedResource;
-    annotationInfo : AnnotationInfo;
+export class AnnotationTypeInfo {
+    annotationType: AnnotationTypeType;
+    annotationTypeOther: string;
 }
 
-export class AttributionText extends MyString {
+export class AnnotationsInfo {
+    corpusSubtype: string;
+    rawCorpus: RelatedResource;
+    annotationInfo: AnnotationInfo;
 }
 
-export class BaseMetadataRecord  {
-    metadataHeaderInfo : MetadataHeaderInfo;
+export class BaseMetadataRecord {
+    metadataHeaderInfo: MetadataHeaderInfo;
 }
 
-export class Browsing<T>  {
-    total : number;
-    from : number;
-    to : number;
-    results : Order<T>[];
-    facets : Facet[];
+export class CharacterEncodingInfo {
+    characterEncoding: CharacterEncodingEnum;
+    sizePerCharacterEncoding: SizeInfo;
 }
 
-export class CharacterEncodingInfo  {
-    characterEncoding : CharacterEncodingEnum;
-    sizePerCharacterEncoding : SizeInfo;
-}
-
-export class CommunicationInfo  {
-    emails : string[];
-    homepages : string[];
-    postalAddress : PostalAddress;
-    telephoneNumbers : string[];
-    faxNumbers : string[];
+export class CommunicationInfo {
+    emails: string[];
+    homepages: string[];
+    postalAddress: PostalAddress;
+    telephoneNumbers: string[];
 }
 
 export class Component extends BaseMetadataRecord {
-    componentInfo : ComponentInfo;
+    componentInfo: ComponentInfo;
 }
 
-export class ComponentCreationInfo  {
-    framework : FrameworkEnum;
-    formalism : string;
-    implementationLanguage : string;
-    hasOriginalSource : ResourceIdentifier[];
-    creationDetails : string;
-    tdmmethod : TDMMethodEnum;
+export class ComponentCreationInfo {
+    framework: FrameworkEnum;
+    formalism: string;
+    implementationLanguage: string;
+    hasOriginalSource: ResourceIdentifier[];
+    creationDetails: string;
+    tdmmethod: TDMMethodType;
 }
 
-export class ComponentDependencies  {
-    typesystem : RelatedResource;
-    annotationSchema : RelatedResource;
-    annotationResources : RelatedResource[];
-    softwareLibraries : string[];
+export class ComponentDependencies {
+    typesystem: RelatedResource;
+    annotationSchema: RelatedResource;
+    annotationResources: RelatedResource[];
+    mlModel: RelatedResource;
+    softwareLibraries: string[];
 }
 
-export class ComponentDistributionInfo  {
-    componentLoc : ComponentLoc;
-    webServiceType : WebServiceTypeEnum;
-    operatingSystems : OperatingSystemEnum[];
-    rightsInfo : RightsInfo;
-    copyrightStatements : CopyrightStatement[];
-    attributionTexts : AttributionText[];
-    rightsHolders : ActorInfo[];
-    availabilityStartDate : CustomDate;
-    availabilityEndDate : CustomDate;
-    fee : string;
-    userTypes : UserTypeEnum[];
+export class ComponentDistributionInfo {
+    componentDistributionForm: ComponentDistributionFormEnum;
+    distributionLocation: string;
+    command: string;
+    webServiceType: WebServiceTypeEnum;
+    operatingSystems: OperatingSystemEnum[];
 }
 
-export class ComponentEvaluationInfo  {
-    evaluated : boolean;
-    evaluationLevels : EvaluationLevelEnum[];
-    evaluationTypes : EvaluationTypeEnum[];
-    evaluationCriteria : EvaluationCriterionEnum[];
-    evaluationMeasures : EvaluationMeasureEnum[];
-    goldStandardLocation : string;
-    performanceIndicators : PerformanceIndicatorInfo[];
-    evaluationReports : RelatedDocumentInfo[];
-    evaluationSwComponents : RelatedResource[];
-    evaluationDetails : string;
-    evaluators : ActorInfo[];
+export class ComponentEvaluationInfo {
+    evaluated: boolean;
+    evaluationLevels: EvaluationLevelEnum[];
+    evaluationTypes: EvaluationTypeEnum[];
+    evaluationCriteria: EvaluationCriterionEnum[];
+    evaluationMeasures: EvaluationMeasureEnum[];
+    goldStandardLocation: string;
+    performanceIndicators: PerformanceIndicatorInfo[];
+    evaluationReports: RelatedDocumentInfo[];
+    evaluationSwComponents: RelatedResource[];
+    evaluationDetails: string;
+    evaluators: ActorInfo[];
 }
 
-export class ComponentInfo  {
-    resourceType : ResourceTypeEnum;
-    identificationInfo : IdentificationInfo;
-    versionInfo : VersionInfo;
-    contactInfo : ContactInfo;
-    validationInfos : ValidationInfo[];
-    usageInfo : UsageInfo;
-    resourceDocumentationInfo : ResourceDocumentationInfo;
-    resourceCreationInfo : ResourceCreationInfo;
-    componentType : ComponentTypeEnum;
-    application : boolean;
-    applicationFunction : ApplicationType;
-    workflow : boolean;
-    workflowDescription : string;
-    distributionInfos : ComponentDistributionInfo[];
-    inputContentResourceInfo : ProcessingResourceInfo;
-    outputResourceInfo : ProcessingResourceInfo;
-    componentDependencies : ComponentDependencies;
-    componentCreationInfo : ComponentCreationInfo;
-    scmInfo : ScmInfo;
-    issueManagementInfo : IssueManagementInfo;
-    relations : RelationInfo[];
-    componentEvaluationInfo : ComponentEvaluationInfo;
+export class ComponentInfo {
+    resourceType: ResourceTypeEnum;
+    identificationInfo: IdentificationInfo;
+    versionInfo: VersionInfo;
+    contactInfo: ContactInfo;
+    resourceDocumentationInfo: ResourceDocumentationInfo;
+    resourceCreationInfo: ResourceCreationInfo;
+    validationInfos: ValidationInfo[];
+    usageInfo: UsageInfo;
+    application: boolean;
+    functionInfo: FunctionInfo;
+    distributionInfos: ComponentDistributionInfo[];
+    rightsInfo: RightsInfo;
+    parameterInfos: ParameterInfo[];
+    inputContentResourceInfo: ProcessingResourceInfo;
+    outputResourceInfo: ProcessingResourceInfo;
+    previousAnnotationTypesPolicy: PreviousAnnotationTypesPolicyEnum;
+    componentDependencies: ComponentDependencies;
+    componentCreationInfo: ComponentCreationInfo;
+    keywords: string[];
+    domains: Domain[];
+    scmInfo: ScmInfo;
+    issueManagementInfo: IssueManagementInfo;
+    relations: RelationInfo[];
+    componentEvaluationInfo: ComponentEvaluationInfo;
 }
 
-export class ComponentLoc  {
-    componentDistributionForm : ComponentDistributionFormEnum;
-    distributionLocation : string;
-    command : string;
+export class ComponentOperationInfo {
+    runningEnvironmentInfo: RunningEnvironmentInfo;
+    runningTime: string;
 }
 
-export class ComponentOperationInfo  {
-    runningEnvironmentInfo : RunningEnvironmentInfo;
-    runningTime : string;
-}
-
-export class ContactInfo  {
-    contactPersons : PersonInfo[];
-    landingPage : string;
-    contactEmail : string;
-    contactGroups : GroupInfo[];
-    mailingLists : MailingListInfo[];
-}
-
-export class CopyrightStatement extends MyString {
+export class ContactInfo {
+    contactPoint: string;
+    contactType: ContactTypeEnum;
+    contactPersons: PersonInfo[];
+    contactGroups: GroupInfo[];
+    mailingLists: MailingListInfo[];
 }
 
 export class Corpus extends BaseMetadataRecord {
-    corpusInfo : CorpusInfo;
+    corpusInfo: CorpusInfo;
 }
 
-export class CorpusInfo  {
-    resourceType : string;
-    identificationInfo : IdentificationInfo;
-    contactInfo : ContactInfo;
-    versionInfo : VersionInfo;
-    validationInfos : ValidationInfo[];
-    usageInfo : UsageInfo;
-    resourceDocumentationInfo : ResourceDocumentationInfo;
-    resourceCreationInfo : ResourceCreationInfo;
-    relations : RelationInfo[];
-    distributionInfos : DatasetDistributionInfo[];
-    corpusSubtypeSpecificInfo : CorpusSubtypeSpecificInfo;
+export class CorpusInfo {
+    resourceType: string;
+    identificationInfo: IdentificationInfo;
+    versionInfo: VersionInfo;
+    contactInfo: ContactInfo;
+    validationInfos: ValidationInfo[];
+    usageInfo: UsageInfo;
+    resourceDocumentationInfo: ResourceDocumentationInfo;
+    resourceCreationInfo: ResourceCreationInfo;
+    distributionInfos: DatasetDistributionInfo[];
+    rightsInfo: RightsInfo;
+    relations: RelationInfo[];
+    corpusSubtypeSpecificInfo: CorpusSubtypeSpecificInfo;
 }
 
-export class CorpusMediaParts  {
-    corpusTextParts : CorpusTextPartInfo[];
-    annotations : AnnotationInfo[];
+export class CorpusSubtypeSpecificInfo {
+    rawCorpusInfo: RawCorpusInfo;
+    annotatedCorpusInfo: AnnotatedCorpusInfo;
 }
 
-export class CorpusMediaPartsType  {
-    corpusTextParts : CorpusTextPartInfo[];
+export class CorpusTextPartInfo {
 }
 
-export class CorpusSubtypeSpecificInfo  {
-    rawCorpusInfo : RawCorpusInfo;
-    annotatedCorpusInfo : AnnotatedCorpusInfo;
-    annotationsInfo : AnnotationsInfo;
+export class CreationInfo {
+    originalSources: RelatedResource[];
+    creationMode: ProcessMode;
+    creationModeDetails: string;
+    creationSwComponents: RelatedResource[];
 }
 
-export class CorpusTextPartInfo  {
-    mediaType : string;
-    lingualityInfo : LingualityInfo;
-    languages : LanguageInfo[];
-    sizes : SizeInfo[];
-    textFormats : TextFormatInfo[];
-    characterEncodings : CharacterEncodingInfo[];
-    domains : DomainInfo[];
-    textClassifications : TextClassificationInfo[];
-    timeClassifications : TimeCoverageInfo[];
-    geographicClassifications : GeographicCoverageInfo[];
-    creationInfo : CreationInfo;
+export class DataFormatInfo {
+    dataFormat: DataFormatType;
+    dataFormatOther: string;
 }
 
-export class CreationInfo  {
-    originalSources : RelatedResource[];
-    creationMode : ProcessMode;
-    creationModeDetails : string;
-    creationSwComponents : RelatedResource[];
+export class DatasetDistributionInfo {
+    distributionMedium: DistributionMediumEnum;
+    distributionLocation: string;
+    textFormats: TextFormatInfo[];
+    characterEncodings: CharacterEncodingInfo[];
 }
 
-export class DataFormatInfo  {
-    dataFormat : DataFormatEnum;
-    mimeType : MimeTypeEnum;
-    fileExtension : string;
-    dataFormatDescription : string;
-    documentationURL : string;
+export class OMTDDate {
+    day: number;
+    month: number;
+    year: number;
 }
 
-export class DatasetDistributionInfo  {
-    distributionLoc : DistributionLoc[];
-    textFormats : TextFormatInfo[];
-    characterEncodings : CharacterEncodingInfo[];
-    sizes : SizeInfo[];
-    rightsInfo : RightsInfo;
-    copyrightStatements : CopyrightStatement[];
-    attributionTexts : AttributionText[];
-    rightsHolders : ActorInfo[];
-    availabilityStartDate : CustomDate;
-    availabilityEndDate : CustomDate;
-    fee : string;
-    userTypes : UserTypeEnum[];
+export class DateCombination {
+    date: OMTDDate;
+    dateRange: DateRange;
 }
 
-export class CustomDate  {
-    day : number;
-    month : number;
-    year : number;
-}
-
-export class DateCombination  {
-    date : CustomDate;
-    dateRange : DateRange;
-}
-
-export class DateRange  {
-    startDate : CustomDate;
-    endDate : CustomDate;
+export class DateRange {
+    startDate: OMTDDate;
+    endDate: OMTDDate;
 }
 
 export class DepartmentName extends MyString {
-    nameType : NameTypeEnum;
+    nameType: NameTypeEnum;
 }
 
 export class Description extends MyString {
 }
 
-export class DistributionLoc  {
-    distributionMedium : DistributionMediumEnum;
-    distributionLocation : string;
+export class DistributionLoc {
 }
 
-export class Document  {
-    publication : DocumentInfo;
-    annotatedPublication : AnnotatedDocumentInfo;
+export class Document {
+    publication: DocumentInfo;
+    annotatedPublication: AnnotatedDocumentInfo;
 }
 
-export class DocumentDistributionInfo  {
-    distributionLoc : DistributionLoc;
-    hashkey : string;
-    fullText : FullText2;
-    dataFormatInfo : DataFormatInfo;
-    characterEncoding : CharacterEncodingEnum;
-    sizes : SizeInfo[];
-    rightsInfo : RightsInfo;
-    copyrightStatements : CopyrightStatement[];
-    attributionTexts : AttributionText[];
-    rightsHolders : ActorInfo[];
-    availabilityStartDate : CustomDate;
-    availabilityEndDate : CustomDate;
-    fee : string;
-    userTypes : UserTypeEnum[];
+export class DocumentDistributionInfo {
+    distributionLocation: string;
+    hashkey: string;
+    dataFormatInfo: DataFormatInfo;
+    characterEncoding: CharacterEncodingEnum;
+    sizes: SizeInfo[];
 }
 
-export class DocumentInfo  {
-    documentType : DocumentTypeEnum;
-    publicationType : PublicationTypeEnum;
-    identifiers : PublicationIdentifier[];
-    titles : Title[];
-    authors : PersonInfo[];
-    contributors : ActorInfo[];
-    publicationDate : CustomDate;
-    publisher : OrganizationInfo;
-    journal : JournalInfo;
-    inBook : RelatedDocumentInfo;
-    volume : string;
-    series : string;
-    pages : string;
-    edition : string;
-    conference : string;
-    distributions : DocumentDistributionInfo[];
-    documentLanguages : Language[];
-    subjects : Subject[];
-    keywords : string[];
-    fullText : FullText;
-    abstracts : Abstract[];
-    fundingProjects : ProjectInfo[];
-    sizes : SizeInfo[];
-    relations : RelationInfo[];
+export class DocumentInfo {
+    documentType: DocumentTypeEnum;
+    publicationType: PublicationTypeEnum;
+    identifiers: PublicationIdentifier[];
+    titles: Title[];
+    authors: PersonInfo[];
+    contributors: ActorInfo[];
+    publicationDate: OMTDDate;
+    publisher: OrganizationInfo;
+    journal: JournalInfo;
+    inBook: RelatedDocumentInfo;
+    volume: string;
+    series: string;
+    pages: string;
+    edition: string;
+    conference: string;
+    distributions: DocumentDistributionInfo[];
+    rightsInfo: RightsInfo;
+    documentLanguages: string[];
+    keywords: string[];
+    subjects: Subject[];
+    fullText: FullText;
+    abstracts: Abstract[];
+    fundingProjects: ProjectInfo[];
+    sizes: SizeInfo[];
+    relations: RelationInfo[];
 }
 
 export class DocumentMetadataRecord extends BaseMetadataRecord {
-    document : Document;
+    document: Document;
 }
 
-export class Domain  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
+export class Domain {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-export class DomainInfo  {
-    domain : Domain;
-    sizePerDomain : SizeInfo;
+export class DomainInfo {
+    domain: Domain;
+    sizePerDomain: SizeInfo;
 }
 
-export class Facet  {
-    field : string;
-    label : string;
-    values : Value[];
-}
-
-export class Formalisms  {
-    formalism : string;
+export class Formalisms {
+    formalism: string;
 }
 
 export class FullText extends MyString {
 }
 
-export class FullText2 extends MyString {
+export class FunctionInfo {
+    function: OperationType;
+    functionOther: string;
 }
 
-export class GeographicCoverageInfo  {
-    geographicCoverage : string;
-    sizePerGeographicCoverage : SizeInfo;
+export class GeographicCoverageInfo {
+    geographicCoverage: string;
+    sizePerGeographicCoverage: SizeInfo;
 }
 
-export class GivenName extends MyString {
+export class GrammaticalPhenomenaCoverages {
+    grammaticalPhenomenaCoverage: GrammaticalPhenomenaCoverageEnum[];
+    weightedGrammar: boolean;
 }
 
-export class GrammaticalPhenomenaCoverages  {
-    grammaticalPhenomenaCoverage : GrammaticalPhenomenaCoverageEnum[];
-    weightedGrammar : boolean;
-}
-
-export class GroupInfo  {
-    groupNames : GroupName[];
-    affiliatedOrganization : OrganizationInfo;
+export class GroupInfo {
+    groupNames: GroupName[];
+    affiliatedOrganization: OrganizationInfo;
 }
 
 export class GroupName extends MyString {
 }
 
-export class IdentificationInfo  {
-    resourceNames : ResourceName[];
-    descriptions : Description[];
-    resourceShortNames : ResourceShortName[];
-    resourceIdentifiers : ResourceIdentifier[];
-    public : boolean;
+export class IdentificationInfo {
+    resourceNames: ResourceName[];
+    descriptions: Description[];
+    resourceShortName: string;
+    resourceIdentifiers: ResourceIdentifier[];
+    public: boolean;
 }
 
-export class IssueManagementInfo  {
-    system : string;
-    url : string;
+export class IntendedApplications {
+    intendedApplication: ApplicationType[];
+    applicationOther: string;
 }
 
-export class JournalIdentifier  {
-    value : string;
-    journalIdentifierSchemeName : JournalIdentifierSchemeNameEnum;
-    schemeURI : string;
+export class IssueManagementInfo {
+    system: string;
+    url: string;
 }
 
-export class JournalInfo  {
-    journalTitles : JournalTitle[];
-    identifiers : JournalIdentifier[];
-    publisher : OrganizationInfo;
-    languages : Language[];
-    subjects : Subject[];
-    rights : RightsInfo[];
+export class JournalIdentifier {
+    value: string;
+    journalIdentifierSchemeName: JournalIdentifierSchemeNameEnum;
+    schemeURI: string;
+}
+
+export class JournalInfo {
+    journalTitles: JournalTitle[];
+    identifiers: JournalIdentifier[];
+    publisher: OrganizationInfo;
+    languages: string[];
+    subjects: Subject[];
+    rights: RightsInfo[];
 }
 
 export class JournalTitle extends MyString {
 }
 
-export class Language  {
-    languageTag : string;
-    languageId : string;
-    scriptId : ScriptIdType;
-    regiontId : RegionIdType;
-    variantId : VariantIdType;
-}
-
 export class LanguageDescription extends BaseMetadataRecord {
-    languageDescriptionInfo : LanguageDescriptionInfo;
+    languageDescriptionInfo: LanguageDescriptionInfo;
 }
 
-export class LanguageDescriptionEncodingInfo  {
-    encodingLevels : EncodingLevelEnum[];
-    standardsBestPractices : ConformanceToStandardsBestPractices[];
-    theoreticModels : string[];
-    formalisms : Formalisms;
-    tasks : TaskEnum[];
-    grammaticalPhenomenaCoverages : GrammaticalPhenomenaCoverages;
+export class LanguageDescriptionEncodingInfo {
+    encodingLevels: EncodingLevelEnum[];
+    standardsBestPractices: ConformanceToStandardsBestPractices[];
+    theoreticModels: string[];
+    formalisms: Formalisms;
+    tasks: TaskEnum[];
+    grammaticalPhenomenaCoverages: GrammaticalPhenomenaCoverages;
 }
 
-export class LanguageDescriptionInfo  {
-    resourceType : string;
-    identificationInfo : IdentificationInfo;
-    contactInfo : ContactInfo;
-    versionInfo : VersionInfo;
-    validationInfos : ValidationInfo[];
-    usageInfo : UsageInfo;
-    resourceDocumentationInfo : ResourceDocumentationInfo;
-    resourceCreationInfo : ResourceCreationInfo;
-    distributionInfos : DatasetDistributionInfo[];
-    languageDescriptionType : LanguageDescriptionTypeEnum;
-    modelOperationInfo : ModelOperationInfo;
-    languageDescriptionEncodingInfo : LanguageDescriptionEncodingInfo;
-    languageDescriptionOperationInfo : LanguageDescriptionOperationInfo;
-    languageDescriptionPerformanceInfo : LanguageDescriptionPerformanceInfo;
-    relations : RelationInfo[];
-    languageDescriptionMediaType : LanguageDescriptionMediaType;
+export class LanguageDescriptionInfo {
+    resourceType: string;
+    identificationInfo: IdentificationInfo;
+    contactInfo: ContactInfo;
+    versionInfo: VersionInfo;
+    validationInfos: ValidationInfo[];
+    usageInfo: UsageInfo;
+    resourceDocumentationInfo: ResourceDocumentationInfo;
+    resourceCreationInfo: ResourceCreationInfo;
+    distributionInfos: DatasetDistributionInfo[];
+    languageDescriptionType: LanguageDescriptionTypeEnum;
+    modelOperationInfo: ModelOperationInfo;
+    languageDescriptionEncodingInfo: LanguageDescriptionEncodingInfo;
+    languageDescriptionOperationInfo: LanguageDescriptionOperationInfo;
+    languageDescriptionPerformanceInfo: LanguageDescriptionPerformanceInfo;
+    relations: RelationInfo[];
+    languageDescriptionMediaType: LanguageDescriptionMediaType;
 }
 
-export class LanguageDescriptionMediaType  {
-    languageDescriptionTextInfo : LanguageDescriptionTextInfo;
+export class LanguageDescriptionMediaType {
+    languageDescriptionTextInfo: LanguageDescriptionTextInfo;
 }
 
-export class LanguageDescriptionOperationInfo  {
-    runningEnvironmentInfo : RunningEnvironmentInfo;
-    relatedLexiconInfo : RelatedLexiconInfo;
+export class LanguageDescriptionOperationInfo {
+    runningEnvironmentInfo: RunningEnvironmentInfo;
+    relatedLexiconInfo: RelatedLexiconInfo;
 }
 
-export class LanguageDescriptionPerformanceInfo  {
-    robustness : string;
-    shallowness : string;
-    output : string;
+export class LanguageDescriptionPerformanceInfo {
+    robustness: string;
+    shallowness: string;
+    output: string;
 }
 
-export class LanguageDescriptionTextInfo  {
-    mediaType : string;
-    lingualityInfo : LingualityInfo;
-    languages : LanguageInfo[];
-    metalanguages : LanguageInfo[];
-    sizes : SizeInfo[];
-    domains : DomainInfo[];
-    timeClassifications : TimeCoverageInfo[];
-    geographicClassifications : GeographicCoverageInfo[];
-    creationInfo : CreationInfo;
+export class LanguageDescriptionTextInfo {
+    mediaType: string;
+    lingualityInfo: LingualityInfo;
+    languages: LanguageInfo[];
+    metalanguages: LanguageInfo[];
+    dataFormatInfo: DataFormatInfo;
+    characterEncoding: CharacterEncodingEnum;
+    sizes: SizeInfo[];
+    domains: Domain[];
+    keywords: string[];
+    timeCoverage: string;
+    geographicCoverage: string;
+    creationInfo: CreationInfo;
 }
 
-export class LanguageInfo  {
-    language : Language;
-    sizePerLanguage : SizeInfo;
-    languageVarieties : LanguageVarietyInfo[];
+export class LanguageInfo {
+    language: string;
+    sizePerLanguage: SizeInfo;
+    languageVarieties: LanguageVarietyInfo[];
 }
 
-export class LanguageVarietyInfo  {
-    languageVarietyType : LanguageVarietyTypeEnum;
-    languageVarietyName : string;
-    sizePerLanguageVariety : SizeInfo;
+export class LanguageVarietyInfo {
+    languageVarietyType: LanguageVarietyTypeEnum;
+    languageVarietyName: string;
+    sizePerLanguageVariety: SizeInfo;
 }
 
 export class Lexical extends BaseMetadataRecord {
-    lexicalConceptualResourceInfo : LexicalConceptualResourceInfo;
+    lexicalConceptualResourceInfo: LexicalConceptualResourceInfo;
 }
 
-export class LexicalConceptualResourceEncodingInfo  {
-    contentTypes : ContentTypesEnum[];
-    conformanceToStandardsBestPractices : ConformanceToStandardsBestPractices[];
-    theoreticModel : string[];
-    externalRef : string[];
+export class LexicalConceptualResourceEncodingInfo {
+    contentTypes: ContentTypesEnum[];
+    conformanceToStandardsBestPractices: ConformanceToStandardsBestPractices[];
+    theoreticModel: string[];
+    externalRef: string[];
 }
 
-export class LexicalConceptualResourceInfo  {
-    resourceType : string;
-    identificationInfo : IdentificationInfo;
-    contactInfo : ContactInfo;
-    versionInfo : VersionInfo;
-    distributionInfos : DatasetDistributionInfo[];
-    validationInfos : ValidationInfo[];
-    usageInfo : UsageInfo;
-    resourceDocumentationInfo : ResourceDocumentationInfo;
-    resourceCreationInfo : ResourceCreationInfo;
-    lexicalConceptualResourceType : LexicalConceptualResourceTypeEnum;
-    lexicalConceptualResourceEncodingInfo : LexicalConceptualResourceEncodingInfo;
-    lexicalConceptualResourceMediaType : LexicalConceptualResourceMediaType;
-    relations : RelationInfo[];
+export class LexicalConceptualResourceInfo {
+    resourceType: string;
+    identificationInfo: IdentificationInfo;
+    contactInfo: ContactInfo;
+    versionInfo: VersionInfo;
+    distributionInfos: DatasetDistributionInfo[];
+    validationInfos: ValidationInfo[];
+    usageInfo: UsageInfo;
+    resourceDocumentationInfo: ResourceDocumentationInfo;
+    resourceCreationInfo: ResourceCreationInfo;
+    lexicalConceptualResourceType: LexicalConceptualResourceTypeEnum;
+    lexicalConceptualResourceEncodingInfo: LexicalConceptualResourceEncodingInfo;
+    relations: RelationInfo[];
+    lexicalConceptualResourceMediaType: LexicalConceptualResourceMediaType;
 }
 
-export class LexicalConceptualResourceMediaType  {
-    lexicalConceptualResourceTextInfo : LexicalConceptualResourceTextInfo;
+export class LexicalConceptualResourceMediaType {
+    lexicalConceptualResourceTextInfo: LexicalConceptualResourceTextInfo;
 }
 
-export class LexicalConceptualResourceTextInfo  {
-    mediaType : string;
-    lingualityInfo : LingualityInfo;
-    languages : LanguageInfo[];
-    metalanguages : LanguageInfo[];
-    sizes : SizeInfo[];
-    domains : DomainInfo[];
-    timeClassifications : TimeCoverageInfo[];
-    geographicClassifications : GeographicCoverageInfo[];
-    creationInfo : CreationInfo;
+export class LexicalConceptualResourceTextInfo {
+    mediaType: string;
+    lingualityInfo: LingualityInfo;
+    languages: LanguageInfo[];
+    metalanguages: LanguageInfo[];
+    sizes: SizeInfo[];
+    dataFormatInfo: DataFormatInfo;
+    characterEncoding: CharacterEncodingEnum;
+    domains: Domain[];
+    keywords: string[];
+    timeCoverage: string;
+    geographicCoverage: string;
+    creationInfo: CreationInfo;
 }
 
-export class LicenceInfo  {
-    licence : LicenceEnum;
-    nonStandardLicenceName : NonStandardLicenceName[];
-    nonStandardLicenceTermsURL : string;
-    nonStandaradLicenceTermsText : NonStandaradLicenceTermsText[];
-    conditionOfUse : ConditionOfUseEnum[];
+export class LicenceInfo {
+    licence: LicenceEnum;
+    nonStandardLicenceName: string;
+    nonStandardLicenceTermsURL: string;
+    nonStandaradLicenceTermsText: NonStandaradLicenceTermsText[];
+    conditionOfUse: ConditionOfUseEnum[];
 }
 
-export class LicenceInfos  {
-    licenceInfo : LicenceInfo[];
+export class LingualityInfo {
+    lingualityType: LingualityTypeEnum;
+    multilingualityType: MultilingualityTypeEnum;
+    multilingualityTypeDetails: string;
 }
 
-export class LingualityInfo  {
-    lingualityType : LingualityTypeEnum;
-    multilingualityType : MultilingualityTypeEnum;
-    multilingualityTypeDetails : string;
+export class MailingListInfo {
+    mailingListName: string;
+    subscribe: string;
+    unsubscribe: string;
+    post: string;
+    archive: string;
+    otherArchives: string[];
 }
 
-export class MailingListInfo  {
-    mailingListName : string;
-    subscribe : string;
-    unsubscribe : string;
-    post : string;
-    archive : string;
-    otherArchives : string[];
+export class MetadataHeaderInfo {
+    metadataRecordIdentifier: MetadataIdentifier;
+    metadataCreationDate: Date;
+    metadataCreators: PersonInfo[];
+    sourceOfMetadataRecord: SourceOfMetadataRecord;
+    userQuery: string;
+    metadataLastDateUpdated: Date;
+    revision: string;
 }
 
-export class MetadataHeaderInfo  {
-    metadataRecordIdentifier : MetadataIdentifier;
-    metadataCreationDate : Date;
-    metadataCreators : PersonInfo[];
-    sourceOfMetadataRecord : SourceOfMetadataRecord;
-    userQuery : string;
-    metadataLastDateUpdated : CustomDate;
-    revision : string;
+export class MetadataIdentifier {
+    value: string;
+    metadataIdentifierSchemeName: MetadataIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-export class MetadataIdentifier  {
-    value : string;
-    metadataIdentifierSchemeName : MetadataIdentifierSchemeNameEnum;
-    schemeURI : string;
+export class ModalityInfo {
+    modalityType: ModalityTypeEnum[];
+    modalityTypeDetails: string;
+    sizePerModality: SizeInfo;
 }
 
-export class ModalityInfo  {
-    modalityType : ModalityTypeEnum[];
-    modalityTypeDetails : string;
-    sizePerModality : SizeInfo;
-}
-
-export class ModelOperationInfo  {
-    variant : string;
-    typesystem : RelatedResource;
-    annotationSchema : RelatedResource;
-    algorithm : string;
-    algorithmDetails : string;
-    trainingCorpusDetails : string;
-    tdmmethod : TDMMethodEnum;
-}
-
-export class Name extends MyString {
+export class ModelOperationInfo {
+    variant: string;
+    typesystem: RelatedResource;
+    annotationSchema: RelatedResource;
+    annotationResource: RelatedResource;
+    tagset: RelatedResource;
+    algorithm: string;
+    algorithmDetails: string;
+    trainingCorpusDetails: string;
+    tdmmethod: TDMMethodType;
 }
 
 export class NonStandaradLicenceTermsText extends MyString {
 }
 
-export class NonStandardLicenceName extends MyString {
-}
-
-export class ObjectFactory  {
-}
-
-export class Order<T>  {
-    order : number;
-    resource : T;
+export class ObjectFactory {
 }
 
 export class OrganizationAlternativeName extends MyString {
-    nameType : NameTypeEnum;
+    nameType: NameTypeEnum;
 }
 
-export class OrganizationIdentifier  {
-    value : string;
-    organizationIdentifierSchemeName : OrganizationIdentifierSchemeNameEnum;
-    schemeURI : string;
+export class OrganizationIdentifier {
+    value: string;
+    organizationIdentifierSchemeName: OrganizationIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-export class OrganizationInfo  {
-    organizationNames : OrganizationName[];
-    organizationAlternativeNames : OrganizationAlternativeName[];
-    organizationIdentifiers : OrganizationIdentifier[];
-    departmentNames : DepartmentName[];
-    communicationInfo : CommunicationInfo;
+export class OrganizationInfo {
+    organizationNames: OrganizationName[];
+    organizationAlternativeNames: OrganizationAlternativeName[];
+    organizationIdentifiers: OrganizationIdentifier[];
+    departmentNames: DepartmentName[];
+    communicationInfo: CommunicationInfo;
 }
 
 export class OrganizationName extends MyString {
 }
 
-export class OriginalDataProviderInfo  {
-    originalDataProviderType : OriginalDataProviderTypeEnum;
-    originalDataProviderRepository : RepositoryInfo;
-    originalDataProviderJournal : JournalInfo;
-    originalDataProviderPublisher : OrganizationInfo;
+export class OriginalDataProviderInfo {
+    originalDataProviderType: OriginalDataProviderTypeEnum;
+    originalDataProviderRepository: RepositoryInfo;
+    originalDataProviderJournal: JournalInfo;
+    originalDataProviderPublisher: OrganizationInfo;
 }
 
-export class ParameterInfo  {
-    parameterName : string;
-    parameterLabel : string;
-    parameterDescription : string;
-    parameterType : ParameterTypeEnum;
-    optional : boolean;
-    multiValue : boolean;
-    defaultValue : string[];
+export class ParameterInfo {
+    parameterName: string;
+    parameterLabel: string;
+    parameterDescription: string;
+    parameterType: ParameterTypeEnum;
+    optional: boolean;
+    multiValue: boolean;
+    defaultValue: string[];
+    dataFormats: DataFormatInfo[];
 }
 
-export class PerformanceIndicatorInfo  {
-    metric : MetricEnum;
-    measure : number;
-    unit : string;
+export class PerformanceIndicatorInfo {
+    metric: MetricEnum;
+    measure: number;
+    unit: string;
 }
 
-export class PersonIdentifier  {
-    value : string;
-    personIdentifierSchemeName : PersonIdentifierSchemeNameEnum;
-    schemeURI : string;
+export class PersonIdentifier {
+    value: string;
+    personIdentifierSchemeName: PersonIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-export class PersonInfo  {
-    separateNames : SeparateNames;
-    names : Name[];
-    personIdentifiers : PersonIdentifier[];
-    sex : SexEnum;
-    communicationInfo : CommunicationInfo;
-    affiliations : Affiliation[];
+export class PersonInfo {
+    surname: string;
+    givenName: string;
+    personIdentifiers: PersonIdentifier[];
+    communicationInfo: CommunicationInfo;
+    affiliation: Affiliation;
 }
 
-export class PostalAddress  {
-    address : string;
-    zipCode : string;
-    city : string;
-    region : string;
-    country : RegionIdType;
+export class PostalAddress {
+    address: string;
+    zipCode: string;
+    city: string;
+    region: string;
+    country: RegionIdType;
 }
 
-export class ProcessingResourceInfo  {
-    processingResourceTypes : ProcessingResourceTypeEnum[];
-    dataFormats : DataFormatInfo[];
-    characterEncodings : CharacterEncodingEnum[];
-    languages : Language[];
-    typesystem : RelatedResource;
-    annotationSchema : RelatedResource;
-    annotationLevels : AnnotationLevelEnum[];
-    annotationResource : RelatedResource;
-    parameterInfos : ParameterInfo[];
-    domains : Domain[];
-    keywords : string[];
-    samplesLocation : string;
+export class ProcessingResourceInfo {
+    processingResourceTypes: ProcessingResourceTypeEnum[];
+    dataFormats: DataFormatInfo[];
+    characterEncodings: CharacterEncodingEnum[];
+    languages: string[];
+    annotationTypes: AnnotationTypeInfo[];
+    typesystem: RelatedResource;
+    annotationSchema: RelatedResource;
+    annotationResource: RelatedResource;
+    samplesLocation: string;
 }
 
-export class ProjectIdentifier  {
-    value : string;
-    projectIdentifierSchemeName : string;
-    schemeURI : string;
+export class ProjectIdentifier {
+    value: string;
+    projectIdentifierSchemeName: string;
+    schemeURI: string;
 }
 
-export class ProjectInfo  {
-    projectNames : ProjectName[];
-    projectShortNames : ProjectShortName[];
-    projectIdentifiers : ProjectIdentifier[];
-    webpages : string[];
-    funders : OrganizationInfo[];
-    fundingTypes : FundingTypeEnum[];
-    fundingProgramme : string;
-    jurisdiction : string;
-    fundingCountries : RegionIdType[];
-    projectDates : DateCombination;
+export class ProjectInfo {
+    projectNames: ProjectName[];
+    projectShortNames: ProjectShortName[];
+    projectIdentifiers: ProjectIdentifier[];
+    webpages: string[];
+    funders: OrganizationInfo[];
+    fundingTypes: FundingTypeEnum[];
+    fundingProgramme: string;
+    jurisdiction: string;
+    fundingCountries: RegionIdType[];
+    projectDates: DateCombination;
 }
 
 export class ProjectName extends MyString {
@@ -731,251 +655,206 @@ export class ProjectName extends MyString {
 export class ProjectShortName extends MyString {
 }
 
-export class PublicationIdentifier  {
-    value : string;
-    publicationIdentifierSchemeName : PublicationIdentifierSchemeNameEnum;
-    schemeURI : string;
+export class PublicationIdentifier {
+    value: string;
+    publicationIdentifierSchemeName: PublicationIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-export class RawCorpusInfo  {
-    corpusSubtype : string;
-    corpusMediaPartsType : CorpusMediaPartsType;
+export class RawCorpusInfo {
+    corpusSubtype: string;
+    mediaType: string;
+    lingualityInfo: LingualityInfo;
+    languages: LanguageInfo[];
+    sizes: SizeInfo[];
+    dataFormats: DataFormatInfo[];
+    characterEncodings: CharacterEncodingInfo[];
+    textClassifications: TextClassificationInfo[];
+    domains: DomainInfo[];
+    timeClassifications: TimeCoverageInfo[];
+    geographicClassifications: GeographicCoverageInfo[];
+    creationInfo: CreationInfo;
 }
 
-export class Register  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
+export class Register {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-export class RelatedDocumentInfo  {
-    publicationIdentifiers : PublicationIdentifier[];
-    documentUnstructured : string;
+export class RelatedDocumentInfo {
+    documentUnstructured: string;
+    publicationIdentifiers: PublicationIdentifier[];
 }
 
-export class RelatedLexiconInfo  {
-    relatedLexiconType : RelatedLexiconTypeEnum;
-    attachedLexiconPosition : string;
-    compatibleLexiconType : CompatibleLexiconTypeEnum[];
+export class RelatedLexiconInfo {
+    relatedLexiconType: RelatedLexiconTypeEnum;
+    attachedLexiconPosition: string;
+    compatibleLexiconType: CompatibleLexiconTypeEnum[];
 }
 
-export class RelatedResource  {
-    resourceNames : ResourceName[];
-    resourceIdentifiers : ResourceIdentifier[];
+export class RelatedResource {
+    resourceNames: ResourceName[];
+    resourceIdentifiers: ResourceIdentifier[];
 }
 
-export class RelationInfo  {
-    relationType : RelationTypeEnum;
-    relatedResource : RelatedResource;
+export class RelationInfo {
+    relationType: RelationTypeEnum;
+    relatedResource: RelatedResource;
 }
 
-export class RepositoryIdentifier  {
-    value : string;
-    repositoryIdentifierSchemeName : RepositoryIdentifierSchemeNameEnum;
-    schemeURI : string;
+export class RepositoryIdentifier {
+    value: string;
+    repositoryIdentifierSchemeName: RepositoryIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-export class RepositoryInfo  {
-    repositoryNames : RepositoryName[];
-    repositoryIdentifiers : RepositoryIdentifier[];
+export class RepositoryInfo {
+    repositoryNames: RepositoryName[];
+    repositoryIdentifiers: RepositoryIdentifier[];
 }
 
 export class RepositoryName extends MyString {
 }
 
-export class ResourceCreationInfo  {
-    resourceCreators : ActorInfo[];
-    fundingProjects : ProjectInfo[];
-    creationDate : DateCombination;
+export class ResourceCreationInfo {
+    resourceCreators: ActorInfo[];
+    fundingProjects: ProjectInfo[];
+    creationDate: DateCombination;
 }
 
-export class ResourceDocumentationInfo  {
-    citations : RelatedDocumentInfo[];
-    documentationPublications : RelatedDocumentInfo[];
-    onLineHelpURL : string;
-    samplesLocations : string[];
-    issueTracker : string;
+export class ResourceDocumentationInfo {
+    documentationDescription: string;
+    documentationType: DocumentationTypeEnum;
+    publicationIdentifiers: PublicationIdentifier[];
 }
 
-export class ResourceIdentifier  {
-    value : string;
-    resourceIdentifierSchemeName : ResourceIdentifierSchemeNameEnum;
-    schemeURI : string;
+export class ResourceIdentifier {
+    value: string;
+    resourceIdentifierSchemeName: ResourceIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
 export class ResourceName extends MyString {
 }
 
-export class ResourceShortName extends MyString {
+export class RightsInfo {
+    availabilityStartDate: Date;
+    copyrightStatement: string;
+    availabilityEndDate: Date;
+    licenceInfos: LicenceInfo[];
+    rightsHolders: ActorInfo[];
+    rightsStatement: RightsStatementEnum;
+    attributionText: string;
 }
 
-export class RightsInfo  {
-    licenceInfos : LicenceInfos[];
-    rightsStatement : RightsStatementEnum[];
+export class RunningEnvironmentInfo {
+    requiresSoftware: RelatedResource[];
+    requiresLRs: RelatedResource[];
+    runningEnvironmentDetails: string;
 }
 
-export class RunningEnvironmentInfo  {
-    requiresSoftware : RelatedResource[];
-    requiresLRs : RelatedResource[];
-    runningEnvironmentDetails : string;
+export class ScmInfo {
+    connection: string;
+    developerConnection: string;
+    tag: string;
+    url: string;
 }
 
-export class ScmInfo  {
-    connection : string;
-    developerConnection : string;
-    tag : string;
-    url : string;
+export class SizeInfo {
+    size: string;
+    sizeUnit: SizeUnitEnum;
 }
 
-export class SeparateNames  {
-    surnames : Surname[];
-    givenNames : GivenName[];
+export class SourceOfMetadataRecord {
+    collectedFrom: RepositoryInfo;
+    sourceMetadataLink: string;
+    relatedMetadataScheme: string;
+    originalDataProviderInfo: OriginalDataProviderInfo;
 }
 
-export class SizeInfo  {
-    size : string;
-    sizeUnit : SizeUnitEnum;
+export class StructuralEncoding {
+    value: string;
+    schemeName: SchemeNameEnum;
+    schemeURI: string;
 }
 
-export class SourceOfMetadataRecord  {
-    collectedFrom : RepositoryInfo;
-    sourceMetadataLink : string;
-    relatedMetadataScheme : string;
-    originalDataProviderInfo : OriginalDataProviderInfo;
+export class StructuralEncodingInfo {
+    structuralEncoding: StructuralEncoding;
+    sizePerStructuralEncoding: SizeInfo;
 }
 
-export class StructuralEncoding  {
-    value : string;
-    schemeName : SchemeNameEnum;
-    schemeURI : string;
+export class Subject {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-export class StructuralEncodingInfo  {
-    structuralEncoding : StructuralEncoding;
-    sizePerStructuralEncoding : SizeInfo;
+export class TextClassificationInfo {
+    keywords: string[];
+    textGenre: TextGenre;
+    textType: TextType;
+    register: Register;
+    subject: Subject;
+    sizePerTextClassification: SizeInfo;
 }
 
-export class Subject  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
+export class TextFormatInfo {
+    dataFormatInfo: DataFormatInfo;
+    sizePerTextFormat: SizeInfo;
 }
 
-export class Surname extends MyString {
+export class TextGenre {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-export class TextClassificationInfo  {
-    textGenre : TextGenre;
-    textType : TextType;
-    register : Register;
-    subject : Subject;
-    keywords : string[];
-    sizePerTextClassification : SizeInfo;
+export class TextType {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-export class TextFormatInfo  {
-    dataFormatInfo : DataFormatInfo;
-    sizePerTextFormat : SizeInfo;
-}
-
-export class TextGenre  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
-}
-
-export class TextType  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
-}
-
-export class TimeCoverageInfo  {
-    timeCoverage : string;
-    sizePerTimeCoverage : SizeInfo;
+export class TimeCoverageInfo {
+    timeCoverage: string;
+    sizePerTimeCoverage: SizeInfo;
 }
 
 export class Title extends MyString {
-    titleType : TitleTypeEnum;
+    titleType: TitleTypeEnum;
 }
 
-export class UsageInfo  {
-    intendedApplications : ApplicationType[];
-    actualUseInfos : ActualUseInfo[];
+export class UsageInfo {
+    intendedApplications: IntendedApplications;
+    actualUseInfos: ActualUseInfo[];
 }
 
-export class User  {
-    id : number;
-    name : string;
-    surname : string;
-    username : string;
-    email : string;
-    password : string;
-    join_date : string;
-    affiliation : string;
-    roles : string[];
+export class ValidationInfo {
+    validated: boolean;
+    validationType: ValidationTypeEnum;
+    validationMode: ProcessMode;
+    validationModeDetails: string;
+    validationExtent: ValidationExtentEnum;
+    validationExtentDetails: string;
+    validationReports: RelatedDocumentInfo[];
+    validationSwComponents: RelatedResource[];
+    validators: ActorInfo[];
 }
 
-export class ValidationInfo  {
-    validated : boolean;
-    validationType : ValidationTypeEnum;
-    validationMode : ProcessMode;
-    validationModeDetails : string;
-    validationExtent : ValidationExtentEnum;
-    validationExtentDetails : string;
-    sizePerValidation : SizeInfo;
-    validationReports : RelatedDocumentInfo[];
-    validationSwComponents : RelatedResource[];
-    validators : ActorInfo[];
+export class VersionInfo {
+    version: string;
+    versionDate: string;
+    versionType: VersionTypeEnum;
+    revision: string;
 }
 
-export class Value extends Comparable<Value> {
-    value : string;
-    count : number;
+export const enum AnnotationTypeType {
+    LEMMA,
+    TOKEN,
 }
 
-export class VersionInfo  {
-    version : string;
-    versionDate : string;
-    versionType : VersionTypeEnum;
-    revision : string;
-    lastDateUpdated : CustomDate;
-    updateFrequency : string;
-}
-
-export enum AnnotationLevelEnum {
-    ALIGNMENT,
-    DISCOURSE_ANNOTATION,
-    DISCOURSE_ANNOTATION_ARGUMENTATION,
-    DISCOURSE_ANNOTATION_AUDIENCE_REACTIONS,
-    DISCOURSE_ANNOTATION_COREFERENCE,
-    DISCOURSE_ANNOTATION_DIALOGUE_ACTS,
-    DISCOURSE_ANNOTATION_DISCOURSE_RELATIONS,
-    LEMMATIZATION,
-    MORPHOSYNTACTIC_ANNOTATION_B_POS_TAGGING,
-    MORPHOSYNTACTIC_ANNOTATION_POS_TAGGING,
-    SEGMENTATION,
-    SEMANTIC_ANNOTATION,
-    SEMANTIC_ANNOTATION_CERTAINTY_LEVEL,
-    SEMANTIC_ANNOTATION_EMOTIONS,
-    SEMANTIC_ANNOTATION_EVENTS,
-    SEMANTIC_ANNOTATION_NAMED_ENTITIES,
-    SEMANTIC_ANNOTATION_POLARITY,
-    SEMANTIC_ANNOTATION_QUESTION_TOPICAL_TARGET,
-    SEMANTIC_ANNOTATION_READABILTY,
-    SEMANTIC_ANNOTATION_SEMANTIC_CLASSES,
-    SEMANTIC_ANNOTATION_SEMANTIC_RELATIONS,
-    SEMANTIC_ANNOTATION_SEMANTIC_ROLES,
-    SEMANTIC_ANNOTATION_SPEECH_ACTS,
-    SEMANTIC_ANNOTATION_SUBJECTIVITY,
-    SEMANTIC_ANNOTATION_TEMPORAL_EXPRESSIONS,
-    SEMANTIC_ANNOTATION_TEXTUAL_ENTAILMENT,
-    SEMANTIC_ANNOTATION_WORD_SENSES,
-    SYNTACTIC_ANNOTATION_SEMANTIC_FRAMES,
-    OTHER
-}
-
-export enum ApplicationType {
+export const enum ApplicationType {
     ANNOTATION,
     BILINGUAL_LEXICON_INDUCTION,
     CONTRADICTION_DETECTION,
@@ -1037,6 +916,7 @@ export enum ApplicationType {
     KNOWLEDGE_DISCOVERY_AND_INFORMATION_EXTRACTION,
     KNOWLEDGE_REPRESENTATION,
     RELATION_EXTRACTION,
+    HTTP___WWW_META_SHARE_ORG_ONTOLOGIES_OMTD_TDMONTOLOGY_ACCESSCOMPONENT,
     COREFERENCE_RESOLUTION,
     TEXT_CATEGORISATION,
     SUMMARISATION,
@@ -1049,10 +929,10 @@ export enum ApplicationType {
     INFORMATION_FILTERING,
     RECOMMENDER_SYSTEM,
     RECOGNIZING_TEXTUAL_ENTAILMENT,
-    PARAPHRASING
+    PARAPHRASING,
 }
 
-export enum CharacterEncodingEnum {
+export const enum CharacterEncodingEnum {
     US_ASCII,
     WINDOWS_1250,
     WINDOWS_1251,
@@ -1192,10 +1072,10 @@ export enum CharacterEncodingEnum {
     MAC_SYMBOL,
     MAC_THAI,
     MAC_TURKISH,
-    MAC_UKRAINE
+    MAC_UKRAINE,
 }
 
-export enum ClassificationSchemeName {
+export const enum ClassificationSchemeName {
     DDC,
     UDC,
     EURO_VOC,
@@ -1207,28 +1087,492 @@ export enum ClassificationSchemeName {
     NLK_CLASSIFICATION,
     PAROLE_TOPIC_CLASSIFICATION,
     PAROLE_GENRE_CLASSIFICATION,
-    OTHER
+    OTHER,
 }
 
-export enum CompatibleLexiconTypeEnum {
+export const enum CompatibleLexiconTypeEnum {
     WORDNET,
     WORDLIST,
     MORPHOLOGICAL_LEXICON,
-    OTHER
+    OTHER,
 }
 
-export enum ComponentDistributionFormEnum {
+export const enum ComponentDistributionFormEnum {
     WEB_SERVICE,
     SOURCE_CODE,
     EXECUTABLE_CODE,
     SOURCE_AND_EXECUTABLE_CODE,
     DOCKER_IMAGE,
-    WRAPPED_IN_GALAXY,
+    GALAXY_WORKFLOW,
     WORKFLOW_FILE,
-    OTHER
 }
 
-export enum ComponentTypeEnum {
+export const enum ConditionOfUseEnum {
+    ATTRIBUTION,
+    NON_COMMERCIAL_USE,
+    COMMERCIAL_USE,
+    SHARE_ALIKE,
+    NO_DERIVATIVES,
+    NO_REDISTRIBUTION,
+    EVALUATION_USE,
+    RESEARCH,
+    LANGUAGE_ENGINEERING_RESEARCH,
+    EDUCATION,
+    INFORM_LICENSOR,
+    REDEPOSIT,
+    COMPENSATE,
+    PERSONAL_DATA_INCLUDED,
+    SENSITIVE_DATA_INCLUDED,
+    REQUEST_PLAN,
+    SPATIAL_CONSTRAINT,
+    USER_IDENTIFIED,
+    ACADEMIC_USERS,
+    COMMERCIAL_USERS,
+    MEMBERS_OF_GROUP,
+    OTHER,
+}
+
+export const enum ConformanceToStandardsBestPractices {
+    AGRO_VOC,
+    ALVIS,
+    ARGO,
+    BML,
+    CES,
+    DK_PRO_CORE,
+    EAGLES,
+    EDA_MONTOLOGY,
+    ELSST,
+    EML,
+    EMMA,
+    GATE,
+    GESIS,
+    GMX,
+    GR_AF,
+    HAM_NO_SYS,
+    HASSET,
+    INK_ML,
+    ILSP_NLP,
+    ISO_12620,
+    ISO_16642,
+    ISO_1987,
+    ISO_26162,
+    ISO_30042,
+    ISO_704,
+    JATS,
+    LAF,
+    LAPPS,
+    LEMON,
+    LMF,
+    MAF,
+    MLIF,
+    MOSES,
+    MULTEXT,
+    MUMIN,
+    MULTIMODAL_INTERACTION_FRAMEWORK,
+    OAXAL,
+    OLIA,
+    OWL,
+    PANACEA,
+    PENN_TREE_BANK,
+    PRAGUE_TREEBANK,
+    RDF,
+    SEM_AF,
+    SEM_AF_DA,
+    SEM_AF_NE,
+    SEM_AF_SRL,
+    SEM_AF_DS,
+    SKOS,
+    SRX,
+    SYN_AF,
+    TBX,
+    TMX,
+    TEI,
+    TEI_P_3,
+    TEI_P_4,
+    TEI_P_5,
+    TIME_ML,
+    XCES,
+    XLIFF,
+    UD,
+    WORD_NET,
+    OTHER,
+}
+
+export const enum ContactTypeEnum {
+    LANDING_PAGE,
+    CONTACT_EMAIL,
+}
+
+export const enum ContentTypesEnum {
+    ACCENTUATION,
+    LEMMA,
+    LEMMA_MULTI_WORD_UNITS,
+    LEMMA_VARIANTS,
+    LEMMA_ABBREVIATIONS,
+    LEMMA_COMPOUNDS,
+    LEMMA_CLITIC_FORMS,
+    PART_OF_SPEECH,
+    MORPHO_FEATURES,
+    MORPHO_CASE,
+    MORPHO_GENDER,
+    MORPHO_NUMBER,
+    MORPHO_DEGREE,
+    MORPHO_IRREGULAR_FORMS,
+    MORPHO_MOOD,
+    MORPHO_TENSE,
+    MORPHO_PERSON,
+    MORPHO_ASPECT,
+    MORPHO_VOICE,
+    MORPHO_AUXILIARY,
+    MORPHO_INFLECTION,
+    MORPHO_REFLEXIVITY,
+    SYNTAX_SUBCAT_FRAME,
+    SEMANTICS_TRAITS,
+    SEMANTICS_SEMANTIC_CLASS,
+    SEMANTICS_CROSS_REFERENCES,
+    SEMANTICS_RELATIONS,
+    SEMANTICS_RELATIONS_HYPONYMS,
+    SEMANTICS_RELATIONS_HYPERONYMS,
+    SEMANTICS_RELATIONS_SYNONYMS,
+    SEMANTICS_RELATIONS_ANTONYMS,
+    SEMANTICS_RELATIONS_TROPONYMS,
+    SEMANTICS_RELATIONS_MERONYMS,
+    USAGE_FREQUENCY,
+    USAGE_REGISTER,
+    USAGE_COLLOCATIONS,
+    USAGE_EXAMPLES,
+    USAGE_NOTES,
+    DEFINITION_GLOSS,
+    TRANSLATION_EQUIVALENT,
+    SEMANTICS_DOMAIN,
+    SEMANTICS_EVENT_TYPE,
+    SEMANTICS_SEMANTIC_ROLES,
+    STATISTICAL_PROPERTIES,
+    MORPHO_DERIVATION,
+    SEMANTICS_QUALIA_STRUCTURE,
+    SYNTACTICO_SEMANTIC_LINKS,
+    OTHER,
+}
+
+export const enum DataFormatType {
+    TEXT_PLAIN,
+    APPLICATION_VND_XMI_XML,
+    APPLICATION_XML,
+    APPLICATION_X_XCES_XML,
+    APPLICATION_TEI_XML,
+    APPLICATION_RDF_XML,
+    APPLICATION_XHTML_XML,
+    APPLICATION_EMMA_XML,
+    APPLICATION_PLS_XML,
+    APPLICATION_POSTSCRIPT,
+    TEXT_SGML,
+    TEXT_HTML,
+    APPLICATION_X_TEX,
+    APPLICATION_RTF,
+    APPLICATION_JSON_LD,
+    APPLICATION_X_LATEX,
+    TEXT_CSV,
+    TEXT_TAB_SEPARATED_VALUES,
+    APPLICATION_PDF,
+    APPLICATION_X_MSACCESS,
+    APPLICATION_MSWORD,
+    APPLICATION_VND_MS_EXCEL,
+    TEXT_TURTLE,
+    ACL_ANTHOLOGY,
+    ALVIS_ENRICHED_DOCUMENT,
+    BNC,
+    BIO_NLP,
+    BIONLP_FORMAT_VARIANT_ST2013A1_A2,
+    CADIXE_JSON,
+    CONLL_2000,
+    CONLL_2002,
+    CONLL_2006,
+    CONLL_2007,
+    CONLL_2009,
+    CONLL_2012,
+    DATA_SIFT,
+    FACTORED_TAG_LEM,
+    GATE,
+    GENIA,
+    GRAF,
+    HTML_5_MICRODATA,
+    I_2_B_2,
+    IMS_CWB,
+    JDBC,
+    KEA_CORPUS,
+    LLL,
+    NEGRA_EXPORT,
+    PTB_FORMAT_VARIANT_CHUNKED,
+    PTB_FORMAT_VARIANT_COMBINED,
+    PML,
+    RELP,
+    AIMED_CORPUS,
+    TIGER,
+    TUPP_DZ,
+    TWITTER,
+    XCES_FORMAT_VARIANT_ILSP,
+    WEB_1_T,
+    UIMA_CAS_DUMP,
+    UIMA_BINARY_CAS,
+}
+
+export const enum DistributionMediumEnum {
+    WEB_EXECUTABLE,
+    DOWNLOADABLE,
+    ACCESSIBLE_THROUGH_INTERFACE,
+    OTHER,
+}
+
+export const enum DocumentTypeEnum {
+    BIBLIOGRAPHIC_RECORD_ONLY,
+    WITH_ABSTRACT_ONLY,
+    WITH_FULL_TEXT,
+}
+
+export const enum DocumentationTypeEnum {
+    PUBLICATION_FOR_CITATION,
+    PUBLICATION,
+    MANUAL,
+    ON_LINE_HELP_URL,
+    ISSUE_TRACKER,
+    SAMPLES_LOCATION,
+    TRAINING_RESOURCE,
+    DEMO_RESOURCE,
+    OTHER,
+}
+
+export const enum EncodingLevelEnum {
+    PHONETICS,
+    PHONOLOGY,
+    SEMANTICS,
+    MORPHOLOGY,
+    SYNTAX,
+    PRAGMATICS,
+    OTHER,
+}
+
+export const enum EvaluationCriterionEnum {
+    EXTRINSIC,
+    INTRINSIC,
+}
+
+export const enum EvaluationLevelEnum {
+    TECHNOLOGICAL,
+    USAGE,
+    IMPACT,
+    DIAGNOSTIC,
+}
+
+export const enum EvaluationMeasureEnum {
+    HUMAN,
+    AUTOMATIC,
+}
+
+export const enum EvaluationTypeEnum {
+    GLASS_BOX,
+    BLACK_BOX,
+}
+
+export const enum FrameworkEnum {
+    UIMA,
+    GATE,
+    ALVIS_NLP,
+    GALAXY,
+    OTHER,
+}
+
+export const enum FundingTypeEnum {
+    OTHER,
+    OWN_FUNDS,
+    NATIONAL_FUNDS,
+    EU_FUNDS,
+}
+
+export const enum GrammaticalPhenomenaCoverageEnum {
+    CLAUSE_STRUCTURE,
+    PP_ATTACHMENT,
+    NP_STRUCTURE,
+    COORDINATION,
+    ANAPHORA,
+    OTHER,
+}
+
+export const enum JournalIdentifierSchemeNameEnum {
+    DOI,
+    HANDLE,
+    ISSN,
+    OTHER,
+}
+
+export const enum LanguageDescriptionTypeEnum {
+    ML_MODEL,
+    GRAMMAR,
+    OTHER,
+}
+
+export const enum LanguageVarietyTypeEnum {
+    DIALECT,
+    JARGON,
+    OTHER,
+}
+
+export const enum LexicalConceptualResourceTypeEnum {
+    WORD_LIST,
+    COMPUTATIONAL_LEXICON,
+    ONTOLOGY,
+    WORDNET,
+    THESAURUS,
+    FRAMENET,
+    TERMINOLOGICAL_RESOURCE,
+    MACHINE_READABLE_DICTIONARY,
+    LEXICON,
+    TYPESYSTEM,
+    TAGSET,
+    ANNOTATION_SCHEME,
+    MAPPING_OF_RESOURCES,
+    OTHER,
+}
+
+export const enum LicenceEnum {
+    CC_BY_4_0,
+    CC_BY_NC_4_0,
+    CC_BY_NC_ND_4_0,
+    CC_BY_NC_SA_4_0,
+    CC_BY_ND_4_0,
+    CC_BY_SA_4_0,
+    CC0_1_0,
+    CC_BY_3_0,
+    CC_BY_NC_3_0,
+    CC_BY_NC_ND_3_0,
+    CC_BY_NC_SA_3_0,
+    CC_BY_ND_3_0,
+    CC_BY_SA_3_0,
+    PDDL,
+    ODC_BY_1_0,
+    ODBL_1_0,
+    AGPL_1_0,
+    APACHE_2_0,
+    BSD_4_CLAUSE,
+    BSD_3_CLAUSE,
+    BSD_2_CLAUSE,
+    GFDL_1_3,
+    GPL_3_0,
+    LGPL_3_0,
+    MIT,
+    PRINCETON_WORD_NET,
+    EPL_1_0,
+    NLM,
+    F_DPPL_3_0,
+    M_DPPL_3_0,
+    PROPRIETARY,
+    UNDER_NEGOTIATION,
+    NOT_AVAILABLE,
+    NON_STANDARD_LICENCE_TERMS,
+}
+
+export const enum LingualityTypeEnum {
+    MONOLINGUAL,
+    BILINGUAL,
+    MULTILINGUAL,
+}
+
+export const enum MediaTypeEnum {
+    TEXT,
+    AUDIO,
+    VIDEO,
+    IMAGE,
+    TEXT_NUMERICAL,
+}
+
+export const enum MetadataIdentifierSchemeNameEnum {
+    HANDLE,
+    PURL,
+    URL,
+    URN,
+    OMTD,
+    OPEN_AIRE,
+    CORE,
+    OTHER,
+}
+
+export const enum MetricEnum {
+    MAD,
+    MTDV,
+    MTSA,
+    ART,
+    MTBF,
+    MTTR,
+    OTHER,
+}
+
+export const enum MimeTypeEnum {
+    TEXT_PLAIN,
+    APPLICATION_VND_XMI_XML,
+    TEXT_XML,
+    APPLICATION_XML,
+    APPLICATION_X_XCES_XML,
+    APPLICATION_TEI_XML,
+    APPLICATION_RDF_XML,
+    APPLICATION_XHTML_XML,
+    APPLICATION_EMMA_XML,
+    APPLICATION_PLS_XML,
+    APPLICATION_POSTSCRIPT,
+    TEXT_SGML,
+    TEXT_HTML,
+    APPLICATION_X_TEX,
+    APPLICATION_RTF,
+    APPLICATION_JSON_LD,
+    APPLICATION_X_LATEX,
+    TEXT_CSV,
+    TEXT_TAB_SEPARATED_VALUES,
+    APPLICATION_PDF,
+    APPLICATION_X_MSACCESS,
+    APPLICATION_MSWORD,
+    APPLICATION_VND_MS_EXCEL,
+    TEXT_TURTLE,
+    TEXT_RTF,
+    TEXT_TCF_XML,
+    OTHER,
+}
+
+export const enum ModalityTypeEnum {
+    BODY_GESTURE,
+    FACIAL_EXPRESSION,
+    VOICE,
+    COMBINATION_OF_MODALITIES,
+    SIGN_LANGUAGE,
+    SPOKEN_LANGUAGE,
+    WRITTEN_LANGUAGE,
+    OTHER,
+}
+
+export const enum MultilingualityTypeEnum {
+    PARALLEL,
+    COMPARABLE,
+    MULTILINGUAL_SINGLE_TEXT,
+    ORIGINAL_TRANSLATIONS_IN_SAME_TEXT,
+    OTHER,
+}
+
+export const enum NameTypeEnum {
+    SHORT_NAME,
+    ALTERNATIVE_NAME,
+    TRANSLATED_NAME,
+}
+
+export const enum OperatingSystemEnum {
+    OS_INDEPENDENT,
+    WINDOWS,
+    LINUX,
+    UNIX,
+    MAC_OS,
+    GOOGLE_CHROME_OS,
+    I_OS,
+    ANDROID,
+    OTHER,
+}
+
+export const enum OperationType {
     ACCESS_COMPONENT,
     READER,
     WRITER,
@@ -1294,495 +1638,65 @@ export enum ComponentTypeEnum {
     LEXICON_EXTRACTOR_FROM_CORPORA,
     LEXICON_EXTRACTOR_FROM_LEXICA,
     WORD_SENSE_DISAMBIGUATOR,
-    OTHER
-}
-
-export enum ConditionOfUseEnum {
-    ATTRIBUTION,
-    NON_COMMERCIAL_USE,
-    COMMERCIAL_USE,
-    SHARE_ALIKE,
-    NO_DERIVATIVES,
-    NO_REDISTRIBUTION,
-    EVALUATION_USE,
-    RESEARCH,
-    LANGUAGE_ENGINEERING_RESEARCH,
-    EDUCATION,
-    INFORM_LICENSOR,
-    REDEPOSIT,
-    COMPENSATE,
-    PERSONAL_DATA_INCLUDED,
-    SENSITIVE_DATA_INCLUDED,
-    REQUEST_PLAN,
-    SPATIAL_CONSTRAINT,
-    USER_IDENTIFIED,
-    ACADEMIC_USERS,
-    COMMERCIAL_USERS,
-    MEMBERS_OF_GROUP,
-    OTHER
-}
-
-export enum ConformanceToStandardsBestPractices {
-    AGRO_VOC,
-    ALVIS,
-    ARGO,
-    BML,
-    CES,
-    DK_PRO_CORE,
-    EAGLES,
-    EDA_MONTOLOGY,
-    ELSST,
-    EML,
-    EMMA,
-    GATE,
-    GESIS,
-    GMX,
-    GR_AF,
-    HAM_NO_SYS,
-    HASSET,
-    INK_ML,
-    ILSP_NLP,
-    ISO_12620,
-    ISO_16642,
-    ISO_1987,
-    ISO_26162,
-    ISO_30042,
-    ISO_704,
-    JATS,
-    LAF,
-    LAPPS,
-    LEMON,
-    LMF,
-    MAF,
-    MLIF,
-    MOSES,
-    MULTEXT,
-    MUMIN,
-    MULTIMODAL_INTERACTION_FRAMEWORK,
-    OAXAL,
-    OLIA,
-    OWL,
-    PANACEA,
-    PENN_TREE_BANK,
-    PRAGUE_TREEBANK,
-    RDF,
-    SEM_AF,
-    SEM_AF_DA,
-    SEM_AF_NE,
-    SEM_AF_SRL,
-    SEM_AF_DS,
-    SKOS,
-    SRX,
-    SYN_AF,
-    TBX,
-    TMX,
-    TEI,
-    TEI_P_3,
-    TEI_P_4,
-    TEI_P_5,
-    TIME_ML,
-    XCES,
-    XLIFF,
-    UD,
-    WORD_NET,
-    OTHER
-}
-
-export enum ContentTypesEnum {
-    ACCENTUATION,
-    LEMMA,
-    LEMMA_MULTI_WORD_UNITS,
-    LEMMA_VARIANTS,
-    LEMMA_ABBREVIATIONS,
-    LEMMA_COMPOUNDS,
-    LEMMA_CLITIC_FORMS,
-    PART_OF_SPEECH,
-    MORPHO_FEATURES,
-    MORPHO_CASE,
-    MORPHO_GENDER,
-    MORPHO_NUMBER,
-    MORPHO_DEGREE,
-    MORPHO_IRREGULAR_FORMS,
-    MORPHO_MOOD,
-    MORPHO_TENSE,
-    MORPHO_PERSON,
-    MORPHO_ASPECT,
-    MORPHO_VOICE,
-    MORPHO_AUXILIARY,
-    MORPHO_INFLECTION,
-    MORPHO_REFLEXIVITY,
-    SYNTAX_SUBCAT_FRAME,
-    SEMANTICS_TRAITS,
-    SEMANTICS_SEMANTIC_CLASS,
-    SEMANTICS_CROSS_REFERENCES,
-    SEMANTICS_RELATIONS,
-    SEMANTICS_RELATIONS_HYPONYMS,
-    SEMANTICS_RELATIONS_HYPERONYMS,
-    SEMANTICS_RELATIONS_SYNONYMS,
-    SEMANTICS_RELATIONS_ANTONYMS,
-    SEMANTICS_RELATIONS_TROPONYMS,
-    SEMANTICS_RELATIONS_MERONYMS,
-    USAGE_FREQUENCY,
-    USAGE_REGISTER,
-    USAGE_COLLOCATIONS,
-    USAGE_EXAMPLES,
-    USAGE_NOTES,
-    DEFINITION_GLOSS,
-    TRANSLATION_EQUIVALENT,
-    SEMANTICS_DOMAIN,
-    SEMANTICS_EVENT_TYPE,
-    SEMANTICS_SEMANTIC_ROLES,
-    STATISTICAL_PROPERTIES,
-    MORPHO_DERIVATION,
-    SEMANTICS_QUALIA_STRUCTURE,
-    SYNTACTICO_SEMANTIC_LINKS,
-    OTHER
-}
-
-export enum DataFormatEnum {
-    TEXT_PLAIN,
-    APPLICATION_VND_XMI_XML,
-    APPLICATION_XML,
-    APPLICATION_X_XCES_XML,
-    APPLICATION_TEI_XML,
-    APPLICATION_RDF_XML,
-    APPLICATION_XHTML_XML,
-    APPLICATION_EMMA_XML,
-    APPLICATION_PLS_XML,
-    APPLICATION_POSTSCRIPT,
-    TEXT_SGML,
-    TEXT_HTML,
-    APPLICATION_X_TEX,
-    APPLICATION_RTF,
-    APPLICATION_JSON_LD,
-    APPLICATION_X_LATEX,
-    TEXT_CSV,
-    TEXT_TAB_SEPARATED_VALUES,
-    APPLICATION_PDF,
-    APPLICATION_X_MSACCESS,
-    APPLICATION_MSWORD,
-    APPLICATION_VND_MS_EXCEL,
-    TEXT_TURTLE,
-    ACL_ANTHOLOGY,
-    ALVIS_ENRICHED_DOCUMENT,
-    BNC,
-    BIO_NLP,
-    BIONLP_FORMAT_VARIANT_ST2013A1_A2,
-    CADIXE_JSON,
-    CONLL_2000,
-    CONLL_2002,
-    CONLL_2006,
-    CONLL_2007,
-    CONLL_2009,
-    CONLL_2012,
-    DATA_SIFT,
-    FACTORED_TAG_LEM,
-    GATE,
-    GENIA,
-    GRAF,
-    HTML_5_MICRODATA,
-    I_2_B_2,
-    IMS_CWB,
-    JDBC,
-    KEA_CORPUS,
-    LLL,
-    NEGRA_EXPORT,
-    PTB_FORMAT_VARIANT_CHUNKED,
-    PTB_FORMAT_VARIANT_COMBINED,
-    PML,
-    RELP,
-    AIMED_CORPUS,
-    TIGER,
-    TUPP_DZ,
-    TWITTER,
-    XCES_FORMAT_VARIANT_ILSP,
-    WEB_1_T,
-    UIMA_CAS_DUMP,
-    UIMA_BINARY_CAS
-}
-
-export enum DistributionMediumEnum {
-    WEB_EXECUTABLE,
-    DOWNLOADABLE,
-    ACCESSIBLE_THROUGH_INTERFACE,
-    OTHER
-}
-
-export enum DocumentTypeEnum {
-    BIBLIOGRAPHIC_RECORD_ONLY,
-    WITH_ABSTRACT_ONLY,
-    WITH_FULL_TEXT
-}
-
-export enum EncodingLevelEnum {
-    PHONETICS,
-    PHONOLOGY,
-    SEMANTICS,
-    MORPHOLOGY,
-    SYNTAX,
-    PRAGMATICS,
-    OTHER
-}
-
-export enum EvaluationCriterionEnum {
-    EXTRINSIC,
-    INTRINSIC
-}
-
-export enum EvaluationLevelEnum {
-    TECHNOLOGICAL,
-    USAGE,
-    IMPACT,
-    DIAGNOSTIC
-}
-
-export enum EvaluationMeasureEnum {
-    HUMAN,
-    AUTOMATIC
-}
-
-export enum EvaluationTypeEnum {
-    GLASS_BOX,
-    BLACK_BOX
-}
-
-export enum FrameworkEnum {
-    UIMA,
-    GATE,
-    ALVIS_NLP,
-    OTHER
-}
-
-export enum FundingTypeEnum {
     OTHER,
-    OWN_FUNDS,
-    NATIONAL_FUNDS,
-    EU_FUNDS
 }
 
-export enum GrammaticalPhenomenaCoverageEnum {
-    CLAUSE_STRUCTURE,
-    PP_ATTACHMENT,
-    NP_STRUCTURE,
-    COORDINATION,
-    ANAPHORA,
-    OTHER
-}
-
-export enum JournalIdentifierSchemeNameEnum {
-    DOI,
-    HANDLE,
-    ISSN,
-    OTHER
-}
-
-export enum LanguageDescriptionTypeEnum {
-    ML_MODEL,
-    GRAMMAR,
-    OTHER
-}
-
-export enum LanguageVarietyTypeEnum {
-    DIALECT,
-    JARGON,
-    OTHER
-}
-
-export enum LexicalConceptualResourceTypeEnum {
-    WORD_LIST,
-    COMPUTATIONAL_LEXICON,
-    ONTOLOGY,
-    WORDNET,
-    THESAURUS,
-    FRAMENET,
-    TERMINOLOGICAL_RESOURCE,
-    MACHINE_READABLE_DICTIONARY,
-    LEXICON,
-    TYPESYSTEM,
-    TAGSET,
-    ANNOTATION_SCHEME,
-    MAPPING_OF_RESOURCES,
-    OTHER
-}
-
-export enum LicenceEnum {
-    CC_BY_4_0,
-    CC_BY_NC_4_0,
-    CC_BY_NC_ND_4_0,
-    CC_BY_NC_SA_4_0,
-    CC_BY_ND_4_0,
-    CC_BY_SA_4_0,
-    CC0_1_0,
-    CC_BY_3_0,
-    CC_BY_NC_3_0,
-    CC_BY_NC_ND_3_0,
-    CC_BY_NC_SA_3_0,
-    CC_BY_ND_3_0,
-    CC_BY_SA_3_0,
-    PDDL,
-    ODC_BY_1_0,
-    ODBL_1_0,
-    AGPL_1_0,
-    APACHE_2_0,
-    BSD_4_CLAUSE,
-    BSD_3_CLAUSE,
-    BSD_2_CLAUSE,
-    GFDL_1_3,
-    GPL_3_0,
-    LGPL_3_0,
-    MIT,
-    PRINCETON_WORD_NET,
-    EPL_1_0,
-    NLM,
-    F_DPPL_3_0,
-    M_DPPL_3_0,
-    PROPRIETARY,
-    UNDER_NEGOTIATION,
-    NON_STANDARD_LICENCE_TERMS
-}
-
-export enum LingualityTypeEnum {
-    MONOLINGUAL,
-    BILINGUAL,
-    MULTILINGUAL
-}
-
-export enum MediaTypeEnum {
-    TEXT,
-    AUDIO,
-    VIDEO,
-    IMAGE,
-    TEXT_NUMERICAL
-}
-
-export enum MetadataIdentifierSchemeNameEnum {
-    HANDLE,
-    PURL,
-    URL,
-    URN,
-    OTHER
-}
-
-export enum MetricEnum {
-    MAD,
-    MTDV,
-    MTSA,
-    ART,
-    MTBF,
-    MTTR,
-    OTHER
-}
-
-export enum MimeTypeEnum {
-    TEXT_PLAIN,
-    APPLICATION_VND_XMI_XML,
-    TEXT_XML,
-    APPLICATION_X_XCES_XML,
-    APPLICATION_TEI_XML,
-    APPLICATION_RDF_XML,
-    APPLICATION_XHTML_XML,
-    APPLICATION_EMMA_XML,
-    APPLICATION_PLS_XML,
-    APPLICATION_POSTSCRIPT,
-    TEXT_SGML,
-    TEXT_HTML,
-    APPLICATION_X_TEX,
-    APPLICATION_RTF,
-    APPLICATION_JSON_LD,
-    APPLICATION_X_LATEX,
-    TEXT_CSV,
-    TEXT_TAB_SEPARATED_VALUES,
-    APPLICATION_PDF,
-    APPLICATION_X_MSACCESS,
-    APPLICATION_MSWORD,
-    APPLICATION_VND_MS_EXCEL,
-    TEXT_TURTLE,
-    OTHER
-}
-
-export enum ModalityTypeEnum {
-    BODY_GESTURE,
-    FACIAL_EXPRESSION,
-    VOICE,
-    COMBINATION_OF_MODALITIES,
-    SIGN_LANGUAGE,
-    SPOKEN_LANGUAGE,
-    WRITTEN_LANGUAGE,
-    OTHER
-}
-
-export enum MultilingualityTypeEnum {
-    PARALLEL,
-    COMPARABLE,
-    MULTILINGUAL_SINGLE_TEXT,
-    ORIGINAL_TRANSLATIONS_IN_SAME_TEXT,
-    OTHER
-}
-
-export enum NameTypeEnum {
-    SHORT_NAME,
-    ALTERNATIVE_NAME,
-    TRANSLATED_NAME
-}
-
-export enum OperatingSystemEnum {
-    OS_INDEPENDENT,
-    WINDOWS,
-    LINUX,
-    UNIX,
-    MAC_OS,
-    GOOGLE_CHROME_OS,
-    I_OS,
-    ANDROID,
-    OTHER
-}
-
-export enum OrganizationIdentifierSchemeNameEnum {
+export const enum OrganizationIdentifierSchemeNameEnum {
     ISNI,
     GRID,
     FUND_REF,
-    OTHER
+    OTHER,
 }
 
-export enum OriginalDataProviderTypeEnum {
+export const enum OriginalDataProviderTypeEnum {
     REPOSITORY,
     JOURNAL,
-    PUBLISHER
+    PUBLISHER,
 }
 
-export enum ParameterTypeEnum {
+export const enum ParameterTypeEnum {
     DATA,
     STRING,
     INTEGER,
     BOOLEAN,
     FLOAT,
-    OTHER
+    OTHER,
+    URL,
+    DOCUMENT,
+    CORPORA,
+    COMPONENT,
 }
 
-export enum PersonIdentifierSchemeNameEnum {
+export const enum PersonIdentifierSchemeNameEnum {
     ORCID,
     ISNI,
     RESEARCHER_ID,
     SCOPUS_ID,
-    OTHER
+    OTHER,
 }
 
-export enum ProcessMode {
+export const enum PreviousAnnotationTypesPolicyEnum {
+    KEEP,
+    MODIFY,
+    DROP,
+}
+
+export const enum ProcessMode {
     MANUAL,
     AUTOMATIC,
     MIXED,
-    INTERACTIVE
+    INTERACTIVE,
 }
 
-export enum ProcessingResourceTypeEnum {
+export const enum ProcessingResourceTypeEnum {
     CORPUS,
     DOCUMENT,
     USER_INPUT_TEXT,
     LEXICAL_CONCEPTUAL_RESOURCE,
-    LANGUAGE_DESCRIPTION
+    LANGUAGE_DESCRIPTION,
 }
 
-export enum PublicationIdentifierSchemeNameEnum {
+export const enum PublicationIdentifierSchemeNameEnum {
     DOI,
     HANDLE,
     ARK,
@@ -1802,10 +1716,12 @@ export enum PublicationIdentifierSchemeNameEnum {
     OAI,
     PMCID,
     PMID,
-    OTHER
+    OPEN_AIRE,
+    CORE,
+    OTHER,
 }
 
-export enum PublicationTypeEnum {
+export const enum PublicationTypeEnum {
     JOURNAL_ARTICLE,
     BACHELOR_THESIS,
     MASTER_THESIS,
@@ -1847,10 +1763,10 @@ export enum PublicationTypeEnum {
     RESEARCH_REPORT,
     BOOK_REVIEW,
     THESIS,
-    OTHER
+    OTHER,
 }
 
-export enum RegionIdType {
+export const enum RegionIdType {
     AA,
     AC,
     AD,
@@ -2140,17 +2056,17 @@ export enum RegionIdType {
     V151,
     V154,
     V155,
-    V419
+    V419,
 }
 
-export enum RelatedLexiconTypeEnum {
+export const enum RelatedLexiconTypeEnum {
     INCLUDED,
     ATTACHED,
     COMPATIBLE,
-    NONE
+    NONE,
 }
 
-export enum RelationTypeEnum {
+export const enum RelationTypeEnum {
     IS_PART_OF,
     IS_PART_WITH,
     HAS_PART,
@@ -2174,10 +2090,12 @@ export enum RelationTypeEnum {
     IS_ACCESSED_BY,
     IS_ARCHIVED_BY,
     IS_DISPLAYED_BY,
-    IS_COMPATIBLE_WITH
+    IS_COMPATIBLE_WITH,
+    IS_ANNOTATED_VERSION_OF,
+    HAS_ANNOTATED_VERSION,
 }
 
-export enum RepositoryIdentifierSchemeNameEnum {
+export const enum RepositoryIdentifierSchemeNameEnum {
     DOI,
     HANDLE,
     URL,
@@ -2185,10 +2103,10 @@ export enum RepositoryIdentifierSchemeNameEnum {
     OPEN_DOAR,
     RE_3_DATA,
     ROAR,
-    OTHER
+    OTHER,
 }
 
-export enum ResourceIdentifierSchemeNameEnum {
+export const enum ResourceIdentifierSchemeNameEnum {
     DOI,
     ISLRN,
     HANDLE,
@@ -2211,25 +2129,27 @@ export enum ResourceIdentifierSchemeNameEnum {
     PMID,
     MAVEN,
     DOCKER,
-    OTHER
+    OMTD_DOCKER,
+    OMTD,
+    OTHER,
 }
 
-export enum ResourceTypeEnum {
-    COMPONENT
+export const enum ResourceTypeEnum {
+    COMPONENT,
 }
 
-export enum RightsStatementEnum {
+export const enum RightsStatementEnum {
     OPEN_ACCESS,
-    RESTRICTED_ACCESS
+    RESTRICTED_ACCESS,
 }
 
-export enum SchemeNameEnum {
+export const enum SchemeNameEnum {
     JATS,
     TEI_P_5,
-    OTHER
+    OTHER,
 }
 
-export enum ScriptIdType {
+export const enum ScriptIdType {
     AFAK,
     AGHB,
     AHOM,
@@ -2397,16 +2317,16 @@ export enum ScriptIdType {
     ZSYM,
     ZXXX,
     ZYYY,
-    ZZZZ
+    ZZZZ,
 }
 
-export enum SexEnum {
+export const enum SexEnum {
     MALE,
     FEMALE,
-    UNKNOWN
+    UNKNOWN,
 }
 
-export enum SizeUnitEnum {
+export const enum SizeUnitEnum {
     TERMS,
     ENTRIES,
     ARTICLES,
@@ -2445,10 +2365,10 @@ export enum SizeUnitEnum {
     V4_GRAMS,
     V5_GRAMS,
     RULES,
-    OTHER
+    OTHER,
 }
 
-export enum TDMMethodEnum {
+export const enum TDMMethodType {
     RULE_BASED,
     MACHINE_LEARNING,
     STATISTICAL_LEARNING,
@@ -2464,10 +2384,10 @@ export enum TDMMethodEnum {
     ARTIFICIAL_NEURAL_NETWORK,
     DEEP_LEARNING,
     ENSEMBLE_METHOD,
-    DIMENSIONALITY_REDUCTION
+    DIMENSIONALITY_REDUCTION,
 }
 
-export enum TaskEnum {
+export const enum TaskEnum {
     ANAPHORA_RESOLUTION,
     CHUNKING,
     PARSING,
@@ -2476,33 +2396,33 @@ export enum TaskEnum {
     DEFINITIONS_PARSING,
     ANALYSIS,
     GENERATION,
-    OTHER
+    OTHER,
 }
 
-export enum TitleTypeEnum {
+export const enum TitleTypeEnum {
     ALTERNATIVE_TITLE,
     SUBTITLE,
     TRANSLATED_TITLE,
-    OTHER
+    OTHER,
 }
 
-export enum UserTypeEnum {
+export const enum UserTypeEnum {
     ACADEMIC,
     COMMERCIAL,
-    MEMBERS_OF_GROUP
+    MEMBERS_OF_GROUP,
 }
 
-export enum ValidationExtentEnum {
+export const enum ValidationExtentEnum {
     FULL,
-    PARTIAL
+    PARTIAL,
 }
 
-export enum ValidationTypeEnum {
+export const enum ValidationTypeEnum {
     FORMAL,
-    CONTENT
+    CONTENT,
 }
 
-export enum VariantIdType {
+export const enum VariantIdType {
     V1606NICT,
     ALALC_97,
     FONIPA,
@@ -2568,20 +2488,19 @@ export enum VariantIdType {
     VAIDIKA,
     VALENCIA,
     VALLADER,
-    WADEGILE
+    WADEGILE,
 }
 
-export enum VersionTypeEnum {
+export const enum VersionTypeEnum {
     ACCEPTED,
     PUBLISHED,
     DRAFT,
     SUBMITTED,
-    UPDATED
+    UPDATED,
 }
 
-export enum WebServiceTypeEnum {
-    SOAP,
+export const enum WebServiceTypeEnum {
     REST,
-    OTHER
+    SOAP,
+    OTHER,
 }
-

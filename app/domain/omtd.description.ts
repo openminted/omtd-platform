@@ -1,20 +1,14 @@
 
 /**
- * Generated at 30/May/2017
+ * Generated at 23/Nov/2017
  */
 
 export class Description {
     desc : string;
     label : string;
-    mandatory? : boolean;
-    recommended? : boolean;
-};
-export var sizePerValidationDesc = {
-    desc : "Specifies the size of the validated part of a resource",
-    label : "Size per validation",
-    mandatory : false,
-    recommended : false
-};
+    mandatory : boolean;
+    recommended : boolean;
+}
 
 export var monthDesc = {
     desc : "Optional month; to be used in two-digit format",
@@ -27,13 +21,6 @@ export var requiresSoftwareDesc = {
     desc : "Additional software required for running a s/w component and/or computational grammar",
     label : "Requires software",
     mandatory : false,
-    recommended : false
-};
-
-export var dataFormatDesc = {
-    desc : "Specifies the format that is used since often the mime type will not be sufficient for machine processing; NOTE: normally the format should be represented as a combination of the mimetype (e.g. application/xml) and some name and link to the documentation about the supplementary conventions used (e.g xces, alvisED etc.)",
-    label : "Plain text",
-    mandatory : true,
     recommended : false
 };
 
@@ -58,9 +45,9 @@ export var outputResourceInfoDesc = {
     recommended : false
 };
 
-export var processModeDesc = {
-    desc : "Base type for all modes of processing (e.g. annotation, conversion, creation etc.)",
-    label : "Manual",
+export var metalanguageInfoDesc = {
+    desc : "Groups information on the languages used for the description of the resource",
+    label : "Metalanguage",
     mandatory : true,
     recommended : false
 };
@@ -135,9 +122,9 @@ export var affiliationDesc = {
     recommended : true
 };
 
-export var compatibleLexiconTypeDesc = {
-    desc : "Type of (external) lexicon that can be used with the grammar",
-    label : "Compatible lexicon type",
+export var externalRefDesc = {
+    desc : "Another resource to which the lexicalConceptualResource is linked (e.g. link to a wordnet or ontology)",
+    label : "External reference",
     mandatory : false,
     recommended : false
 };
@@ -186,7 +173,7 @@ export var lexicalConceptualResourceTypeDesc = {
 
 export var publicDesc = {
     desc : "Declares whether the resource is meant for private use or can be publicly available through the registry",
-    label : "Public",
+    label : "public",
     mandatory : true,
     recommended : false
 };
@@ -263,7 +250,7 @@ export var repositoryInfoTypeDesc = {
 
 export var annotatedCorpusInfoTypeDesc = {
     desc : "Groups together all information related to annotated corpora",
-    label : "Media type parts of corpus",
+    label : "Media type",
     mandatory : true,
     recommended : true
 };
@@ -303,10 +290,38 @@ export var metadataRecordIdentifierDesc = {
     recommended : false
 };
 
+export var distributionLocationDesc = {
+    desc : "Any location (e.g. URL, repository, etc.) where the resource can be accessed from, either in a downloadable form or as a web executable command etc.",
+    label : "Location",
+    mandatory : true,
+    recommended : true
+};
+
 export var originalDataProviderTypeDesc = {
     desc : "Refers to the type of the original data provider (repository/journal/publisher/aggregator etc.)",
     label : "Original data provider type",
     mandatory : false,
+    recommended : false
+};
+
+export var contactPointDesc = {
+    desc : "An email or a URL (landing page) that provides more information on the resource",
+    label : "Contact point",
+    mandatory : true,
+    recommended : false
+};
+
+export var unitDesc = {
+    desc : "Unit of measure for the metric",
+    label : "Unit",
+    mandatory : false,
+    recommended : false
+};
+
+export var dataFormatTypeDesc = {
+    desc : "Specifies the format that is used since often the mime type will not be sufficient for machine processing; NOTE: normally the format should be represented as a combination of the mimetype (e.g. application/xml) and some name and link to the documentation about the supplementary conventions used (e.g xces, alvisED etc.)",
+    label : "Plain text",
+    mandatory : true,
     recommended : false
 };
 
@@ -320,13 +335,6 @@ export var feeDesc = {
 export var languageDescriptionEncodingInfoDesc = {
     desc : "Groups together information on the contents of the LanguageDescriptions",
     label : "Language description encoding",
-    mandatory : true,
-    recommended : false
-};
-
-export var applicationFunctionDesc = {
-    desc : "Specifies the type of an end-user application, in terms of the function/task it performs",
-    label : "Type of application",
     mandatory : true,
     recommended : false
 };
@@ -361,15 +369,15 @@ export var relationInfoDesc = {
 
 export var nonStandardLicenceNameDesc = {
     desc : "The name with which a licence is known; to be used for licences not included in the pre-defined list of licences",
-    label : "Name",
-    mandatory : true,
+    label : "Name (for non-standard licences / terms of use)",
+    mandatory : false,
     recommended : false
 };
 
 export var timeCoverageDesc = {
     desc : "The time period that the content of a resource is about",
     label : "Time coverage",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 
@@ -387,9 +395,16 @@ export var validationExtentDetailsDesc = {
     recommended : false
 };
 
+export var annotationTypeTypeDesc = {
+    desc : "Specifies the annotation type of the resource or what a s/w component consumes or produces as an output",
+    label : "Annotation type",
+    mandatory : true,
+    recommended : false
+};
+
 export var resourceShortNameDesc = {
     desc : "A short form (e.g. abbreviation, acronym etc.) used to identify the resource.",
-    label : "Short Name",
+    label : "Short name",
     mandatory : false,
     recommended : true
 };
@@ -424,8 +439,8 @@ export var mediaTypeDesc = {
 
 export var nonStandardLicenceTermsURLDesc = {
     desc : "Used to provide a hyperlink to a URL containing the text of a licence not included in the predefined list or describing the terms of use for a language resource or terms of service for web services",
-    label : "URL",
-    mandatory : true,
+    label : "URL for non-standard licences / terms of use / terms of service",
+    mandatory : false,
     recommended : false
 };
 
@@ -467,15 +482,8 @@ export var otherArchiveDesc = {
 export var descriptionDesc = {
     desc : "A short free-text account that provides information about the resource (e.g. function, contents, technical information etc.)",
     label : "Description",
-    mandatory : true,
-    recommended : false
-};
-
-export var mustBeCitedWithDesc = {
-    desc : "Specifies one or more publication that must be used for citation purposes as requested by the resource provider (usually a scientific article that describes the resource)",
-    label : "Publlication to be used for citation purposes",
     mandatory : false,
-    recommended : true
+    recommended : false
 };
 
 export var annotationInfoDesc = {
@@ -553,13 +561,6 @@ export var relatedLexiconTypeDesc = {
     label : "Related lexicon type",
     mandatory : true,
     recommended : false
-};
-
-export var corpusMediaPartsDesc = {
-    desc : "Used to specify the media type specific to corpora and group together the relevant information",
-    label : "Media type parts of corpus",
-    mandatory : true,
-    recommended : true
 };
 
 export var sizePerLanguageDesc = {
@@ -681,16 +682,9 @@ export var evaluationDetailsDesc = {
     recommended : true
 };
 
-export var scriptIdDesc = {
-    desc : "The identifier of the script subelement according to the IETF BCP47 guidelines (i.e. ISO 15924 codes)",
-    label : "Script identifier",
-    mandatory : false,
-    recommended : false
-};
-
 export var inBookDesc = {
     desc : "The title or identifier of a book in which a publication appears (e.g. as a chapter, as article in a collection of articles, conference proceedings etc.)",
-    label : "In book",
+    label : "inBook",
     mandatory : false,
     recommended : false
 };
@@ -737,13 +731,6 @@ export var organizationNameDesc = {
     recommended : false
 };
 
-export var nameDesc = {
-    desc : "The full name of a person; the preferred format is \"family name, given name\"",
-    label : "Name",
-    mandatory : true,
-    recommended : false
-};
-
 export var dateRangeDesc = {
     desc : "Basic format for date ranges, allowing combinations of years and full dates",
     label : "Date range",
@@ -760,7 +747,7 @@ export var domainDesc = {
 
 export var seriesDesc = {
     desc : "The name of a series or set of books. When citing an entire book, the title field gives its title and an optional series field gives the name of a series or multi-volume set in which the book is published",
-    label : "Series",
+    label : "series",
     mandatory : false,
     recommended : false
 };
@@ -786,9 +773,9 @@ export var publicationIdentifierTypeDesc = {
     recommended : false
 };
 
-export var languageVarietyNameDesc = {
-    desc : "The name of the language variety that occurs in the resource or is supported by a tool/service",
-    label : "Language variety name",
+export var documentationDescriptionDesc = {
+    desc : "A free text field used for any kind of documentation relating to a resoure; it can be a bibliographic record (preferrably in the form of a bibtex record), a URL for online help, for training material etc.",
+    label : "Documentation description",
     mandatory : true,
     recommended : false
 };
@@ -809,7 +796,7 @@ export var parameterInfoDesc = {
 
 export var rawCorpusInfoTypeDesc = {
     desc : "Groups together all information related to raw corpora",
-    label : "Media type component of corpus",
+    label : "Media type",
     mandatory : true,
     recommended : true
 };
@@ -821,17 +808,24 @@ export var validationInfoDesc = {
     recommended : false
 };
 
-export var metalanguageInfoDesc = {
-    desc : "Groups information on the languages used for the description of the resource",
-    label : "Metalanguage",
+export var processModeDesc = {
+    desc : "Base type for all modes of processing (e.g. annotation, conversion, creation etc.)",
+    label : "Manual",
     mandatory : true,
     recommended : false
 };
 
-export var workflowDesc = {
-    desc : "Indicates whether the component is a workflow, i.e. consists of other components in a linear or branching execution",
-    label : "Workflow",
-    mandatory : false,
+export var operationTypeDesc = {
+    desc : "Specifies the function/task the component/application performs",
+    label : "Type of operation",
+    mandatory : true,
+    recommended : false
+};
+
+export var datasetDistributionInfoDesc = {
+    desc : "Groups information on the distribution of a dataset resource (multiple files)",
+    label : "Dataset distribution",
+    mandatory : true,
     recommended : false
 };
 
@@ -879,7 +873,7 @@ export var textGenreDesc = {
 
 export var publicationTypeDesc = {
     desc : "Specifies the type of the publication; the list takes values from the COAR Controlled Vocabulary for Resource Type Genres (restricted to concepts under \"text\" that can be used for publications)",
-    label : "Publication type",
+    label : "publicationType",
     mandatory : true,
     recommended : false
 };
@@ -892,7 +886,7 @@ export var lexicalConceptualResourceMediaTypeDesc = {
 };
 
 export var languageDesc = {
-    desc : "The language that is used in the resource or supported by the component, as specified in the BCP47 guidelines (https://tools.ietf.org/html/bcp47); the language tag is built upon (a) language tag according to ISO 639-1 and for languages not covered by this, the ISO 639-3; (b) the script tag according to ISO 15924; (c) the region tag according to ISO 3166-1;  (d) the variant subtag",
+    desc : "The language that is used in the resource or supported by the component; corresponds to language tag according to ISO 639-1 and for languages not covered by this, the ISO 639-3",
     label : "Language",
     mandatory : true,
     recommended : false
@@ -902,13 +896,6 @@ export var startDateDesc = {
     desc : "Basic format for start dates, with optional day and month and obligatory year",
     label : "Start date",
     mandatory : true,
-    recommended : false
-};
-
-export var faxNumberDesc = {
-    desc : "The fax number of a person or an organization; recommended format: +_international code_city code_number",
-    label : "Fax number",
-    mandatory : false,
     recommended : false
 };
 
@@ -942,7 +929,7 @@ export var sizePerCharacterEncodingDesc = {
 
 export var publicationDesc = {
     desc : "Groups information on a document in a structured format; it can be used both for published or unpublished documents",
-    label : "Publication",
+    label : "publication",
     mandatory : true,
     recommended : false
 };
@@ -989,9 +976,9 @@ export var encodingLevelDesc = {
     recommended : false
 };
 
-export var lastDateUpdatedDesc = {
-    desc : "Date when the version of the resource being described was last updated",
-    label : "Last date updated",
+export var shallownessDesc = {
+    desc : "Free text statement on the shallowness of the grammar (how deep the syntactic analysis performed by the grammar can be)",
+    label : "Shallowness",
     mandatory : false,
     recommended : false
 };
@@ -1005,9 +992,9 @@ export var timeCoverageInfoDesc = {
 
 export var documentInfoTypeDesc = {
     desc : "Base type for documents (single files) mainly intended for publications",
-    label : "Document type",
+    label : "documentInfoType",
     mandatory : true,
-    recommended : true
+    recommended : false
 };
 
 export var regionIdTypeDesc = {
@@ -1059,16 +1046,9 @@ export var rightsInfoDesc = {
     recommended : false
 };
 
-export var workflowDescriptionDesc = {
-    desc : "Reserved for the description of workflow (most probably in Galaxy); provides information on the components that the workflow consists of and how it should be executed",
-    label : "Workflow description",
-    mandatory : false,
-    recommended : false
-};
-
-export var externalRefDesc = {
-    desc : "Another resource to which the lexicalConceptualResource is linked (e.g. link to a wordnet or ontology)",
-    label : "External reference",
+export var compatibleLexiconTypeDesc = {
+    desc : "Type of (external) lexicon that can be used with the grammar",
+    label : "Compatible lexicon type",
     mandatory : false,
     recommended : false
 };
@@ -1077,13 +1057,6 @@ export var languageDescriptionPerformanceInfoDesc = {
     desc : "Groups together information on the performance of the Language Descriptions",
     label : "Language description performance",
     mandatory : true,
-    recommended : false
-};
-
-export var shallownessDesc = {
-    desc : "Free text statement on the shallowness of the grammar (how deep the syntactic analysis performed by the grammar can be)",
-    label : "Shallowness",
-    mandatory : false,
     recommended : false
 };
 
@@ -1129,11 +1102,11 @@ export var lexicalConceptualResourceInfoDesc = {
     recommended : false
 };
 
-export var publicationDateDesc = {
-    desc : "The publication date or, for an unpublished work, the date it was written",
-    label : "Publication date",
+export var performanceIndicatorInfoDesc = {
+    desc : "Information on metrics that can be used as performance indicators of the component",
+    label : "Performance indicator",
     mandatory : false,
-    recommended : true
+    recommended : false
 };
 
 export var resourceIdentifierSchemeNameDesc = {
@@ -1145,9 +1118,9 @@ export var resourceIdentifierSchemeNameDesc = {
 
 export var fullTextDesc = {
     desc : "The full text of the publication in simple text format",
-    label : "Full text",
+    label : "fullText",
     mandatory : false,
-    recommended : true
+    recommended : false
 };
 
 export var languageDescriptionMediaTypeDesc = {
@@ -1155,13 +1128,6 @@ export var languageDescriptionMediaTypeDesc = {
     label : "Media type component of language description",
     mandatory : true,
     recommended : false
-};
-
-export var distributionURLDesc = {
-    desc : "Any url where the resource can be accessed from, either in a downloadable form or as a web executable command etc.",
-    label : "Download URL",
-    mandatory : true,
-    recommended : true
 };
 
 export var sizePerDomainDesc = {
@@ -1206,13 +1172,6 @@ export var lexicalConceptualResourceEncodingInfoDesc = {
     recommended : false
 };
 
-export var isDocumentedInDesc = {
-    desc : "Links a resource to publications, research articles, manuals, reports etc. that describe it",
-    label : "Is documented in",
-    mandatory : false,
-    recommended : false
-};
-
 export var metadataCreationDateDesc = {
     desc : "The date of creation of this metadata description",
     label : "Metadata creation date",
@@ -1236,7 +1195,7 @@ export var evaluatorDesc = {
 
 export var pagesDesc = {
     desc : "One or more page numbers or range of page numbers",
-    label : "Pages",
+    label : "pages",
     mandatory : false,
     recommended : false
 };
@@ -1248,10 +1207,10 @@ export var sizePerTimeCoverageDesc = {
     recommended : false
 };
 
-export var updateFrequencyDesc = {
-    desc : "Specifies the frequency with which a new updated version of the resource is released (e.g. every 6 months or two years)",
-    label : "Update frequency",
-    mandatory : false,
+export var originalDataProviderJournalDesc = {
+    desc : "Information about the journal that has originally provided the metadata record",
+    label : "Original data provider (journal)",
+    mandatory : true,
     recommended : false
 };
 
@@ -1265,7 +1224,7 @@ export var urlDesc = {
 export var geographicCoverageDesc = {
     desc : "The geographic region that the content of a resource is about; for countries, recommended use of ISO-3166",
     label : "Geographic coverage",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 
@@ -1290,23 +1249,16 @@ export var relatedLexiconInfoDesc = {
     recommended : false
 };
 
-export var regiontIdDesc = {
-    desc : "The identifier of the region subelement according to the IETF BCP47 guidelines (i.e. ISO 3166 codes)",
-    label : "Region identifier",
-    mandatory : false,
-    recommended : false
-};
-
 export var titleDesc = {
     desc : "The title of the publication",
-    label : "Title",
+    label : "title",
     mandatory : true,
     recommended : false
 };
 
 export var typesystemDesc = {
     desc : "A name or an identifier (e.g. url reference) to the typesystem used in the annotation of the resource or used by the component",
-    label : "Tagset",
+    label : "Typesystem",
     mandatory : true,
     recommended : false
 };
@@ -1353,10 +1305,10 @@ export var emailAddressDesc = {
     recommended : false
 };
 
-export var dateCombinationTypeDesc = {
-    desc : "Base type to be used for choice betwwen range of dates and exact date",
-    label : "dateCombinationType",
-    mandatory : true,
+export var postalAddressDesc = {
+    desc : "The postal address of a person, group or organization",
+    label : "Postal address",
+    mandatory : false,
     recommended : false
 };
 
@@ -1369,7 +1321,7 @@ export var annotationsInfoDesc = {
 
 export var documentMetadataRecordDesc = {
     desc : "Root element for metadata records of single files (documents); groups metadata header and information about the document itself",
-    label : "Document metadata record",
+    label : "documentMetadataRecord",
     mandatory : true,
     recommended : false
 };
@@ -1402,17 +1354,17 @@ export var hasValidationReportDesc = {
     recommended : false
 };
 
-export var corpusMediaPartsTypeDesc = {
-    desc : "Used to specify the media type specific to corpora and group together the relevant information",
-    label : "Media type component of corpus",
-    mandatory : true,
-    recommended : true
-};
-
 export var versionDateDesc = {
     desc : "Associates a resource with the last modification date (or creation date if it hasn't been modified); the preferred format is YYYYMMDD",
     label : "Version",
-    mandatory : true,
+    mandatory : false,
+    recommended : false
+};
+
+export var goldStandardLocationDesc = {
+    desc : "Link to the location of a Gold Standard dataset that can be used for evaluating the component",
+    label : "Gold Standard Location",
+    mandatory : false,
     recommended : false
 };
 
@@ -1425,7 +1377,7 @@ export var sexDesc = {
 
 export var editionDesc = {
     desc : "The edition of a book",
-    label : "Edition",
+    label : "edition",
     mandatory : false,
     recommended : false
 };
@@ -1433,7 +1385,7 @@ export var editionDesc = {
 export var samplesLocationDesc = {
     desc : "Links a resource to a url (or url's) with samples of the resource or, in the case of tools, of samples of input and/or output processes",
     label : "Samples location",
-    mandatory : false,
+    mandatory : true,
     recommended : false
 };
 
@@ -1446,7 +1398,7 @@ export var parameterDescriptionDesc = {
 
 export var documentTypeDesc = {
     desc : "Specifies whether the record includes direct access to the full text, the abstract in txt format (inside the record) or serves only as a bibliographic record (includes only metadata)",
-    label : "Document type",
+    label : "documentType",
     mandatory : true,
     recommended : false
 };
@@ -1500,10 +1452,10 @@ export var fundingProgrammeDesc = {
     recommended : true
 };
 
-export var postalAddressDesc = {
-    desc : "The postal address of a person, group or organization",
-    label : "Postal address",
-    mandatory : false,
+export var dateCombinationTypeDesc = {
+    desc : "Base type to be used for choice betwwen range of dates and exact date",
+    label : "dateCombinationType",
+    mandatory : true,
     recommended : false
 };
 
@@ -1525,6 +1477,13 @@ export var applicationInvolvedDesc = {
     desc : "Specifies an application where the resource has actually been involved and used",
     label : "Application where the resource was used",
     mandatory : false,
+    recommended : false
+};
+
+export var annotationSchemaDesc = {
+    desc : "A set of elements and values designed to annotate data",
+    label : "Annotation Schema",
+    mandatory : true,
     recommended : false
 };
 
@@ -1619,25 +1578,32 @@ export var subscribeDesc = {
     recommended : false
 };
 
+export var contactTypeDesc = {
+    desc : "The type of the contact point (email or URL)",
+    label : "Contact type",
+    mandatory : true,
+    recommended : false
+};
+
 export var annotatedPublicationDesc = {
     desc : "Groups information on annotated documents (publications), with a link to the record of the raw publication and information about the annotation",
-    label : "Annotated publication",
+    label : "annotatedPublication",
     mandatory : true,
     recommended : false
 };
 
 export var conferenceDesc = {
     desc : "The name of the conference in which the document has been presented",
-    label : "Conference",
+    label : "conference",
     mandatory : false,
     recommended : false
 };
 
-export var onLineHelpURLDesc = {
-    desc : "URL link to an online manual or help pages",
-    label : "On line help URL",
-    mandatory : false,
-    recommended : true
+export var annotationTypeDesc = {
+    desc : "Specifies the annotation type of the resource or what a s/w component consumes or produces as an output",
+    label : "Annotation type",
+    mandatory : true,
+    recommended : false
 };
 
 export var groupNameDesc = {
@@ -1670,7 +1636,7 @@ export var sizePerTextFormatDesc = {
 
 export var componentDistributionInfoDesc = {
     desc : "Groups information on the distributable form of a component (e.g. as a software code, an executable programme, a web service etc.)",
-    label : "Document distribution",
+    label : "Component distribution",
     mandatory : true,
     recommended : false
 };
@@ -1710,23 +1676,9 @@ export var isAnnotatedByDesc = {
     recommended : true
 };
 
-export var variantIdDesc = {
-    desc : "The identifier of the variant subelement according to the IETF BCP47 guidelines",
-    label : "Variant identifier",
-    mandatory : false,
-    recommended : false
-};
-
 export var lexicalConceptualResourceTextInfoDesc = {
     desc : "Groups information on the textual part of the lexical/conceptual resource",
     label : "Lexical / Conceptual resource text",
-    mandatory : true,
-    recommended : false
-};
-
-export var landingPageDesc = {
-    desc : "A URL used as the landing page of a resource providing general information; for instance, it may present a description of the resource, its creators and possibly include links to the URL where it can be accessed from",
-    label : "Landing page",
     mandatory : true,
     recommended : false
 };
@@ -1759,13 +1711,6 @@ export var evaluatedDesc = {
     recommended : false
 };
 
-export var documentationURLDesc = {
-    desc : "Link to the documentation for the specific data format (explanations and examples)",
-    label : "documentationURL",
-    mandatory : false,
-    recommended : false
-};
-
 export var languageDescriptionTextInfoDesc = {
     desc : "Groups together all information relevant to the text module of a language description (e.g. format, languages, size etc.); it is obligatory for all language descriptions",
     label : "Language description text component",
@@ -1773,16 +1718,16 @@ export var languageDescriptionTextInfoDesc = {
     recommended : false
 };
 
-export var rightsHolderDesc = {
-    desc : "Groups information on a person or an organization who holds the Copyright and SGDB rights that subsist in the resource. The rights holder could be different from the creator that may have assigned the rights to another person or organization (e.g. an author as a creator assigns her rights to the publisher who is the rights holder) and the distributor that holds a specific licence (i.e. a permission) to distribute the work.",
-    label : "Rights holder",
-    mandatory : true,
+export var publicationDateDesc = {
+    desc : "The publication date or, for an unpublished work, the date it was written",
+    label : "publicationDate",
+    mandatory : false,
     recommended : false
 };
 
-export var contactEmailDesc = {
-    desc : "A general email address that can be used as contact point for a resource (e.g. resource@example.com)",
-    label : "Contact email",
+export var rightsHolderDesc = {
+    desc : "Groups information on a person or an organization who holds the Copyright and SGDB rights that subsist in the resource. The rights holder could be different from the creator that may have assigned the rights to another person or organization (e.g. an author as a creator assigns her rights to the publisher who is the rights holder) and the distributor that holds a specific licence (i.e. a permission) to distribute the work.",
+    label : "Rights holder",
     mandatory : true,
     recommended : false
 };
@@ -1796,9 +1741,9 @@ export var userTypeDesc = {
 
 export var documentLanguageDesc = {
     desc : "The language the document is written in (according to the IETF BCP47 guidelines)",
-    label : "Language of the document",
+    label : "documentLanguage",
     mandatory : false,
-    recommended : true
+    recommended : false
 };
 
 export var issueManagementInfoDesc = {
@@ -1811,20 +1756,6 @@ export var issueManagementInfoDesc = {
 export var originalDataProviderPublisherDesc = {
     desc : "Information about the publisher (organization) that has originally provided the metadata record",
     label : "Original data provider (publisher)",
-    mandatory : true,
-    recommended : false
-};
-
-export var annotationLevelDesc = {
-    desc : "Specifies the annotation level of the resource or what a s/w component consumes or produces as an output",
-    label : "Annotation level",
-    mandatory : true,
-    recommended : false
-};
-
-export var languageTypeDesc = {
-    desc : "The container for the language elements (i.e. identifier according to BCP47 guidelines and all the elements that produce this id)",
-    label : "Language",
     mandatory : true,
     recommended : false
 };
@@ -1845,9 +1776,9 @@ export var creationDetailsDesc = {
 
 export var authorDesc = {
     desc : "The name(s) of the author(s), preferrably in the format: surname, initials (first name) prefix with optional identifier for persons",
-    label : "Author",
+    label : "author",
     mandatory : false,
-    recommended : true
+    recommended : false
 };
 
 export var usageInfoDesc = {
@@ -1860,13 +1791,6 @@ export var usageInfoDesc = {
 export var domainInfoDesc = {
     desc : "Groups together information on domains represented in the resource; can be repeated for parts of the resource with distinct domain",
     label : "Domain",
-    mandatory : true,
-    recommended : false
-};
-
-export var archiveDesc = {
-    desc : "The URL where the mailing list messages are archived",
-    label : "Archive",
     mandatory : true,
     recommended : false
 };
@@ -1887,14 +1811,7 @@ export var personIdentifierDesc = {
 
 export var documentDesc = {
     desc : "Root element for documents (single files); choice among raw publications and annotated publications",
-    label : "Document",
-    mandatory : true,
-    recommended : false
-};
-
-export var datasetDistributionInfoDesc = {
-    desc : "Groups information on the distribution of a dataset resource (multiple files)",
-    label : "Document distribution",
+    label : "document",
     mandatory : true,
     recommended : false
 };
@@ -1929,7 +1846,7 @@ export var taskDesc = {
 
 export var frameworkDesc = {
     desc : "The framework used for developing and deploying the component",
-    label : "Framework",
+    label : "framework",
     mandatory : true,
     recommended : false
 };
@@ -1942,9 +1859,9 @@ export var journalTitleDesc = {
 };
 
 export var commandDesc = {
-    desc : "A command line used for the execution of a component",
+    desc : "A command line used to invoke a component",
     label : "Command",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 
@@ -1978,7 +1895,7 @@ export var inputContentResourceInfoDesc = {
 
 export var componentDistributionFormDesc = {
     desc : "Specifies the form of distribution of the component (e.g. as source code, executable programme etc.)",
-    label : "web service",
+    label : "Distribution form",
     mandatory : true,
     recommended : false
 };
@@ -2046,13 +1963,6 @@ export var languageInfoDesc = {
     recommended : false
 };
 
-export var sizePerAnnotationDesc = {
-    desc : "Provides information on size for the annotated parts of the resource",
-    label : "Size per annotation",
-    mandatory : false,
-    recommended : false
-};
-
 export var metadataLastDateUpdatedDesc = {
     desc : "The date of the last updating of the metadata record",
     label : "Metadata last date updated",
@@ -2065,13 +1975,6 @@ export var resourceCreationInfoDesc = {
     label : "Resource creation",
     mandatory : true,
     recommended : true
-};
-
-export var componentTypeDesc = {
-    desc : "Specifies the type of a component, in terms of the function/task it performs; please, note that the ontology is under revision",
-    label : "Type of component",
-    mandatory : true,
-    recommended : false
 };
 
 export var parameterLabelDesc = {
@@ -2202,14 +2105,14 @@ export var conformanceToStandardsBestPracticesDesc = {
 
 export var repositoryDesc = {
     desc : "Information about the repository where the publication is deposited",
-    label : "Repository",
+    label : "repository",
     mandatory : true,
     recommended : false
 };
 
 export var journalDesc = {
     desc : "Information about the journal where the publication has appeared",
-    label : "Journal",
+    label : "journal",
     mandatory : true,
     recommended : false
 };
@@ -2293,7 +2196,7 @@ export var availabilityStartDateDesc = {
 
 export var contributorDesc = {
     desc : "The identifier of the contributor, preferrably in the format: surname, initials (first name) prefix or the unique identifier of the author",
-    label : "Contributor",
+    label : "contributor",
     mandatory : false,
     recommended : false
 };
@@ -2340,9 +2243,9 @@ export var projectIdentifierDesc = {
     recommended : false
 };
 
-export var originalDataProviderJournalDesc = {
-    desc : "Information about the journal that has originally provided the metadata record",
-    label : "Original data provider (journal)",
+export var functionDesc = {
+    desc : "Specifies the operation/function/task the component/application performs",
+    label : "Type of operation",
     mandatory : true,
     recommended : false
 };
@@ -2361,16 +2264,9 @@ export var relatedMetadataSchemeDesc = {
     recommended : false
 };
 
-export var metadataCreatorDesc = {
-    desc : "Groups information on the person that has created the metadata record (for records manually edited)",
-    label : "Metadata creator",
-    mandatory : false,
-    recommended : false
-};
-
 export var volumeDesc = {
     desc : "Specifies the volume of a journal or multivolume book",
-    label : "Volume",
+    label : "volume",
     mandatory : false,
     recommended : false
 };
@@ -2431,6 +2327,13 @@ export var journalInfoTypeDesc = {
     recommended : true
 };
 
+export var languageVarietyNameDesc = {
+    desc : "The name of the language variety that occurs in the resource or is supported by a tool/service",
+    label : "Language variety name",
+    mandatory : true,
+    recommended : false
+};
+
 export var attachedLexiconPositionDesc = {
     desc : "Indicates the position of the lexicon, if attached to the grammar",
     label : "Attached lexicon position",
@@ -2447,8 +2350,15 @@ export var identificationInfoDesc = {
 
 export var abstractDesc = {
     desc : "The abstract of the document in plain text format; the element can be repeated for the different language versions using the \"lang\" attribute to specify the language.",
-    label : "Abstract",
+    label : "abstract",
     mandatory : false,
+    recommended : false
+};
+
+export var measureDesc = {
+    desc : "The measure calculated for the metric",
+    label : "Measure",
+    mandatory : true,
     recommended : false
 };
 
@@ -2466,9 +2376,9 @@ export var contactInfoDesc = {
     recommended : false
 };
 
-export var languageTagDesc = {
-    desc : "The identifier of the language that is included in the resource or supported by the component, according to the IETF BCP47 guidelines",
-    label : "Language",
+export var archiveDesc = {
+    desc : "The URL where the mailing list messages are archived",
+    label : "Archive",
     mandatory : true,
     recommended : false
 };
@@ -2504,7 +2414,7 @@ export var lingualityInfoDesc = {
 export var affiliatedOrganizationDesc = {
     desc : "The organization to which the group is affiliated",
     label : "Affiliated organization",
-    mandatory : true,
+    mandatory : false,
     recommended : true
 };
 
@@ -2543,11 +2453,11 @@ export var telephoneNumberDesc = {
     recommended : false
 };
 
-export var annotationStandoffDesc = {
-    desc : "Indicates whether the annotation is created inline or in a stand-off fashion",
-    label : "Annotation standoff",
+export var metadataCreatorDesc = {
+    desc : "Groups information on the person that has created the metadata record (for records manually edited)",
+    label : "Metadata creator",
     mandatory : false,
-    recommended : true
+    recommended : false
 };
 
 export var algorithmDesc = {

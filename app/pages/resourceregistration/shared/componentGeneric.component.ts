@@ -1,10 +1,10 @@
-import {Component, Injector, ViewChild, ElementRef} from "@angular/core";
+import {Component, ViewChild, ElementRef} from "@angular/core";
 import {MyGroup} from "../myform/my-group.interface";
 import {Validators} from "@angular/forms";
-import {EnumValues, componentTypeEnum, applicationTypeEnum} from "../../../domain/omtd.enum";
+import {EnumValues, operationTypeEnum} from "../../../domain/omtd.enum";
 import {
-    Description, revisionDesc, componentTypeDesc, applicationTypeDesc,
-    applicationDesc, applicationFunctionDesc
+    Description,
+    applicationDesc, functionDesc
 } from "../../../domain/omtd.description";
 /**
  * Created by stefanos on 24/5/2017.
@@ -12,43 +12,44 @@ import {
 @Component({
     selector: 'componentGeneric-form',
     template : `
-    <div [formGroup]="group">
-        <!--<div formGroupName="{{name}}">-->
-            
-            <form-inline [description]="componentDesc" [valid]="getMyControl('componentType').valid">
-                <select name="role" class="form-control" formControlName="componentType">
-                    <option *ngFor="let value of componentType" [value]="value.key" [selected]="value.key == ''">
-                    {{value.value}}
-                    </option>
-                </select>
-            </form-inline>
-            
-            <div class="form-group-divider"></div>
+    <div [formGroup]="parentGroup">
+        <div formGroupName="{{name}}">
             
             <form-inline [description]="applicationCDesc">
                 <label class="radio-label">
-                    <input type="checkbox" formControlName="application" #idapplication>
+                    <input type="checkbox" formControlName="application">
                     Check if component can be used as an integrated end-user application
                 </label>
             </form-inline>
                      
             <div class="form-group-divider"></div>
             
-            <form-inline [description]="applicationFunctionType"
-                         [valid]="getMyControl('applicationFunction').valid" 
-                         [hidden]="!idapplication.checked">
-                <select name="role" class="form-control" formControlName="applicationFunction">
-                    <option *ngFor="let value of applicationType" [value]="value.key" [selected]="value.key == ''">
-                    {{value.value}}
-                    </option>
-                </select>
-            </form-inline>
+            <div formGroupName="functionInfo">
+        
+                <form-inline [description]="functionDesc">
+                    <!--[valid]="getMyControl('functionInfo.function').valid"-->
+                    <select name="role" class="form-control" formControlName="function">
+                        <option *ngFor="let value of operationType" [value]="value.key" [selected]="value.key == ''">
+                        {{value.value}}
+                        </option>
+                    </select>
 
-            <div class="form-group-divider"></div>
+                    <div class="form-group-divider"></div>
+
+                    <form-inline [description]="functionDescOther" [hidden]="this.getMyControl('functionInfo.function')?.value!=='OTHER'">
+                        <input type="text" class="uk-input" formControlName="functionOther" placeholder="Other type of operation(*)"/>
+                    </form-inline>
+                    
+                </form-inline>
+                
+                
+                    
+                
+            </div>
         
             <componentCreationInfo-form [parentGroup]="group" [required]="true"></componentCreationInfo-form>
             
-        <!--</div>-->
+        </div>
     </div>
 `,
     styleUrls : ['./templates/common.css']
@@ -57,19 +58,17 @@ import {
 export class ComponentGenericFormControl extends MyGroup {
 
     readonly groupDefinition = {
-        componentType : ['', Validators.required],
         application : false,
-        applicationFunction : ['', Validators.required]
+        functionInfo : this._fb.group({
+            function : ['',Validators.required],
+            functionOther : ['',Validators.required]
+        })
     };
 
-    @ViewChild('idapplication')  applicationCheckBoc : ElementRef;
-
-    componentType :  EnumValues[] = componentTypeEnum;
-    applicationType : EnumValues[] = applicationTypeEnum;
-    applicationFunctionType : Description = applicationFunctionDesc;
-    componentDesc : Description = componentTypeDesc;
-    applicationDesc : Description = applicationTypeDesc;
+    operationType : EnumValues[] = operationTypeEnum;
     applicationCDesc : Description = applicationDesc;
+    functionDesc : Description = functionDesc;
+    functionDescOther : Description = Object.assign({},functionDesc);
 
     required = true;
 
@@ -77,14 +76,18 @@ export class ComponentGenericFormControl extends MyGroup {
 
     label = 'Component General Info';
 
-    ngOnInit(){
+    ngOnInit() {
+        this.functionDescOther.label=null;
+        this.functionDescOther.desc=null;
+        // this.getMyControl('functionInfo.functionOther').disable();
         super.ngOnInit();
-        this.getMyControl('application').valueChanges.subscribe(_ => {
-            let applicationFunction = this.getMyControl('applicationFunction');
-            if (!_) applicationFunction.disable();
-            else applicationFunction.enable();
+        this.getMyControl('functionInfo.function').valueChanges.subscribe(_ => {
+           console.log(_);
+           if (_ === 'OTHER') {
+               this.getMyControl('functionInfo.functionOther').enable();
+           } else {
+               this.getMyControl('functionInfo.functionOther').disable();
+           }
         });
-        this.getMyControl('applicationFunction').disable();
     }
-
 }

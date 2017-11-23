@@ -1,11 +1,8 @@
-import {Component, Injector} from "@angular/core";
-import {MyGroup} from "../myform/my-group.interface";
-import {Validators} from "@angular/forms";
-import {EnumValues, componentTypeEnum, applicationTypeEnum, frameworkEnum} from "../../../domain/omtd.enum";
-import {
-    Description, revisionDesc, componentTypeDesc, applicationTypeDesc,
-    applicationDesc, frameworkDesc
-} from "../../../domain/omtd.description";
+import { Component } from "@angular/core";
+import { MyGroup } from "../myform/my-group.interface";
+import { Validators } from "@angular/forms";
+import { EnumValues, frameworkEnum} from "../../../domain/omtd.enum";
+import { Description, frameworkDesc } from "../../../domain/omtd.description";
 /**
  * Created by stefanos on 24/5/2017.
  */
@@ -42,5 +39,10 @@ export class ComponentCreationInfoFormControl extends MyGroup {
     name = 'componentCreationInfo';
 
     label = 'Component General Info';
+
+    // ngOnInit() {
+    //     super.ngOnInit();
+    //     console.log("ComponentCreationInfoFormControl",this.parentGroup);
+    // }
 
 }

@@ -1,17 +1,19 @@
 
 /**
- * Generated at 23/May/2017
+ * Generated at 23/Nov/2017
  */
 
 export class EnumValues {
     key : string;
     value : string;
-};
+}
+
 export var mimeTypeEnum = [
-    {key : "", value : "--mimeType--"},
+    {key : "", value : "--Mime type--"},
     {key : "TEXT_PLAIN", value : "Plain text"},
     {key : "APPLICATION_VND_XMI_XML", value : "XMI"},
-    {key : "TEXT_XML", value : "XML"},
+    {key : "TEXT_XML", value : "XML (text)"},
+    {key : "APPLICATION_XML", value : "XML (application)"},
     {key : "APPLICATION_X_XCES_XML", value : "XCES"},
     {key : "APPLICATION_TEI_XML", value : "TEI"},
     {key : "APPLICATION_RDF_XML", value : "RDF"},
@@ -32,6 +34,8 @@ export var mimeTypeEnum = [
     {key : "APPLICATION_MSWORD", value : "MS-Word"},
     {key : "APPLICATION_VND_MS_EXCEL", value : "MS-Excel"},
     {key : "TEXT_TURTLE", value : "Turtle"},
+    {key : "TEXT_RTF", value : "RTF (Rich Text Format)"},
+    {key : "TEXT_TCF_XML", value : "TCF (Text Corpus Format)"},
     {key : "OTHER", value : "other"}
 ];
 
@@ -40,6 +44,76 @@ export var nameTypeEnum = [
     {key : "SHORT_NAME", value : "Short name"},
     {key : "ALTERNATIVE_NAME", value : "Alternative name"},
     {key : "TRANSLATED_NAME", value : "Translated name"}
+];
+
+export var operationTypeEnum = [
+    {key : "", value : "--Type of operation--"},
+    {key : "ACCESS_COMPONENT", value : "Access component"},
+    {key : "READER", value : "Reader"},
+    {key : "WRITER", value : "Writer"},
+    {key : "SUPPORT_COMPONENT", value : "Support component"},
+    {key : "VISUALISER", value : "Visualiser"},
+    {key : "DEBUGGER", value : "Debugger"},
+    {key : "VALIDATOR", value : "Validator"},
+    {key : "VIEWER", value : "Viewer"},
+    {key : "CORPUS_VIEWER", value : "Corpus viewer"},
+    {key : "LEXICON_VIEWER", value : "Lexicon viewer"},
+    {key : "EDITOR", value : "Editor"},
+    {key : "ML_TRAINER", value : "Trainer of Machine Learning models"},
+    {key : "ML_PREDICTOR", value : "Machine Learning Predictor"},
+    {key : "FEATURE_EXTRACTOR", value : "Feature extractor"},
+    {key : "DATA_SPLITTER", value : "Data splitter"},
+    {key : "DATA_MERGER", value : "Data merger"},
+    {key : "CONVERTER", value : "Converter"},
+    {key : "DEPENDENCY_CONVERTER", value : "Dependency converter"},
+    {key : "DEPENDENCY_PARSER", value : "Dependency parser"},
+    {key : "CONSTITUENCY_PARSER", value : "Constituency parser"},
+    {key : "EVALUATOR", value : "Evaluator"},
+    {key : "FLOW_CONTROLLER", value : "Flow controller"},
+    {key : "SCRIPT_BASED_ANALYSER", value : "Script-based analyser"},
+    {key : "MATCHER", value : "Matcher"},
+    {key : "GAZETEER_BASED_MATCHER", value : "Gazeteer based matcher"},
+    {key : "CROWD_SOURCING_COMPONENT", value : "Crowdsourcing component"},
+    {key : "DATA_COLLECTOR", value : "Data collector"},
+    {key : "CRAWLER", value : "Crawler"},
+    {key : "PROCESSOR", value : "Processor"},
+    {key : "ANNOTATOR", value : "Annotator"},
+    {key : "SEGMENTER", value : "Segmenter"},
+    {key : "STEMMER", value : "Stemmer"},
+    {key : "LEMMATIZER", value : "Lemmatizer"},
+    {key : "MORPHOLOGICAL_TAGGER", value : "Morphological tagger"},
+    {key : "CHUNKER", value : "Chunker"},
+    {key : "PARSER", value : "Parser"},
+    {key : "COREFERENCE_ANNOTATOR", value : "Co-reference annotator"},
+    {key : "NAMED_ENTITY_RECOGNIZER", value : "Named entitity recognizer"},
+    {key : "SEMANTICS_ANNOTATOR", value : "Semantics annotator"},
+    {key : "SRL_ANNOTATOR", value : "Annotator of semantic role labels"},
+    {key : "READABILITY_ANNOTATOR", value : "Readability annotator"},
+    {key : "ALIGNER", value : "Aligner"},
+    {key : "GENERATOR", value : "Generator"},
+    {key : "SUMMARIZER", value : "Summarizer"},
+    {key : "SIMPLIFIER", value : "Simplifier"},
+    {key : "PRE_OR_POST_PROCESSING_COMPONENT", value : "Pre- or post-processing component"},
+    {key : "SPELLING_CHECKER", value : "Spelling checker"},
+    {key : "GRAMMAR_CHECKER", value : "Grammar checker"},
+    {key : "NORMALIZER", value : "Normalizer"},
+    {key : "FILTERS", value : "Filters"},
+    {key : "ANALYZER", value : "Analyzer"},
+    {key : "TOPIC_EXTRACTOR", value : "Topic extractor"},
+    {key : "DOCUMENT_CLASSIFIER", value : "Document classifier"},
+    {key : "LANGUAGE_IDENTIFIER", value : "Language identifier"},
+    {key : "SENTIMENT_ANALYZER", value : "Sentiment analyzer"},
+    {key : "EMOTION_RECOGNIZER", value : "Emotion recognizer"},
+    {key : "KEYWORDS_EXTRACTOR", value : "Keyword extractor"},
+    {key : "TERM_EXTRACTOR", value : "Term extractor"},
+    {key : "CONTRADICTION_DETECTOR", value : "Contradiction detector"},
+    {key : "EVENT_EXTRACTOR", value : "Event extractor"},
+    {key : "PERSUASIVE_EXPRESSION_MINER", value : "Persuasive expression miner"},
+    {key : "INFORMATION_EXTRACTOR", value : "Information extractor"},
+    {key : "LEXICON_EXTRACTOR_FROM_CORPORA", value : "Lexicon extractor from corpora"},
+    {key : "LEXICON_EXTRACTOR_FROM_LEXICA", value : "Lexicon extractor from lexica"},
+    {key : "WORD_SENSE_DISAMBIGUATOR", value : "Word sense disambiguator"},
+    {key : "OTHER", value : "Other"}
 ];
 
 export var scriptIdTypeEnum = [
@@ -214,59 +288,6 @@ export var scriptIdTypeEnum = [
     {key : "ZZZZ", value : "Code for uncoded script"}
 ];
 
-export var linguisticInformationEnum = [
-    {key : "", value : "--Linguistic information--"},
-    {key : "ACCENTUATION", value : "accentuation"},
-    {key : "LEMMA", value : "lemma"},
-    {key : "LEMMA_MULTIWORDUNITS", value : "lemma-MultiWordUnits"},
-    {key : "LEMMA_VARIANTS", value : "lemma-Variants"},
-    {key : "LEMMA_ABBREVIATIONS", value : "lemma-Abbreviations"},
-    {key : "LEMMA_COMPOUNDS", value : "lemma-Compounds"},
-    {key : "LEMMA_CLITICFORMS", value : "lemma-CliticForms"},
-    {key : "PART_OF_SPEECH", value : "partOfSpeech"},
-    {key : "MORPHO_FEATURES", value : "morpho-Features"},
-    {key : "MORPHO_CASE", value : "morpho-Case"},
-    {key : "MORPHO_GENDER", value : "morpho-Gender"},
-    {key : "MORPHO_NUMBER", value : "morpho-Number"},
-    {key : "MORPHO_DEGREE", value : "morpho-Degree"},
-    {key : "MORPHO_IRREGULARFORMS", value : "morpho-IrregularForms"},
-    {key : "MORPHO_MOOD", value : "morpho-Mood"},
-    {key : "MORPHO_TENSE", value : "morpho-Tense"},
-    {key : "MORPHO_PERSON", value : "morpho-Person"},
-    {key : "MORPHO_ASPECT", value : "morpho-Aspect"},
-    {key : "MORPHO_VOICE", value : "morpho-Voice"},
-    {key : "MORPHO_AUXILIARY", value : "morpho-Auxiliary"},
-    {key : "MORPHO_INFLECTION", value : "morpho-Inflection"},
-    {key : "MORPHO_REFLEXIVITY", value : "morpho-Reflexivity"},
-    {key : "SYNTAX_SUBCATFRAME", value : "syntax-SubcatFrame"},
-    {key : "SEMANTICS_TRAITS", value : "semantics-Traits"},
-    {key : "SEMANTICS_SEMANTICCLASS", value : "semantics-SemanticClass"},
-    {key : "SEMANTICS_CROSSREFERENCES", value : "semantics-CrossReferences"},
-    {key : "SEMANTICS_RELATIONS", value : "semantics-Relations"},
-    {key : "SEMANTICS_RELATIONS_HYPONYMS", value : "semantics-Relations-Hyponyms"},
-    {key : "SEMANTICS_RELATIONS_HYPERONYMS", value : "semantics-Relations-Hyperonyms"},
-    {key : "SEMANTICS_RELATIONS_SYNONYMS", value : "semantics-Relations-Synonyms"},
-    {key : "SEMANTICS_RELATIONS_ANTONYMS", value : "semantics-Relations-Antonyms"},
-    {key : "SEMANTICS_RELATIONS_TROPONYMS", value : "semantics-Relations-Troponyms"},
-    {key : "SEMANTICS_RELATIONS_MERONYMS", value : "semantics-Relations-Meronyms"},
-    {key : "USAGE_FREQUENCY", value : "usage-Frequency"},
-    {key : "USAGE_REGISTER", value : "usage-Register"},
-    {key : "USAGE_COLLOCATIONS", value : "usage-Collocations"},
-    {key : "USAGE_EXAMPLES", value : "usage-Examples"},
-    {key : "USAGE_NOTES", value : "usage-Notes"},
-    {key : "DEFINITION_GLOSS", value : "definition/gloss"},
-    {key : "TRANSLATION_EQUIVALENT", value : "translationEquivalent"},
-    {key : "PHONETICS_TRANSCRIPTION", value : "phonetics-Transcription"},
-    {key : "SEMANTICS_DOMAIN", value : "semantics-Domain"},
-    {key : "SEMANTICS_EVENTTYPE", value : "semantics-EventType"},
-    {key : "SEMANTICS_SEMANTICROLES", value : "semantics-SemanticRoles"},
-    {key : "STATISTICAL_PROPERTIES", value : "statisticalProperties"},
-    {key : "MORPHO_DERIVATION", value : "morpho-Derivation"},
-    {key : "SEMANTICS_QUALIASTRUCTURE", value : "semantics-QualiaStructure"},
-    {key : "SYNTACTICO_SEMANTIC_LINKS", value : "syntacticoSemanticLinks"},
-    {key : "OTHER", value : "other"}
-];
-
 export var modalityTypeEnum = [
     {key : "", value : "--Modality type--"},
     {key : "BODY_GESTURE", value : "bodyGesture"},
@@ -285,17 +306,25 @@ export var evaluationTypeEnum = [
     {key : "BLACK_BOX", value : "blackBox"}
 ];
 
-export var versionTypeEnum = [
-    {key : "", value : "--versionType--"},
-    {key : "ACCEPTED", value : "Accepted"},
-    {key : "PUBLISHED", value : "Published"},
-    {key : "DRAFT", value : "Draft"},
-    {key : "SUBMITTED", value : "Submitted"},
-    {key : "UPDATED", value : "Updated"}
+export var metricEnum = [
+    {key : "", value : "--metric--"},
+    {key : "MAD", value : "Mean annotations per document"},
+    {key : "MTDV", value : "Mean time per document volume"},
+    {key : "MTSA", value : "Mean time seek annotations"},
+    {key : "ART", value : "Average response time"},
+    {key : "MTBF", value : "Mean time between failures"},
+    {key : "MTTR", value : "Mean time to repair"},
+    {key : "OTHER", value : "Other"}
+];
+
+export var contactTypeEnum = [
+    {key : "", value : "--Contact type--"},
+    {key : "LANDING_PAGE", value : "Landing page"},
+    {key : "CONTACT_EMAIL", value : "Contact email"}
 ];
 
 export var organizationIdentifierSchemeNameEnum = [
-    {key : "", value : "--organizationIdentifierSchemeName--"},
+    {key : "", value : "--Organization identifier scheme name--"},
     {key : "ISNI", value : "ISNI (International Standard Name Identifier)"},
     {key : "GRID", value : "GRID (Global Research Identifier Database)"},
     {key : "FUND_REF", value : "CrossRef Funder ID"},
@@ -303,14 +332,14 @@ export var organizationIdentifierSchemeNameEnum = [
 ];
 
 export var sexEnum = [
-    {key : "", value : "--sex--"},
+    {key : "", value : "--Sex--"},
     {key : "MALE", value : "Male"},
     {key : "FEMALE", value : "Female"},
     {key : "UNKNOWN", value : "Unknown"}
 ];
 
 export var publicationIdentifierSchemeNameEnum = [
-    {key : "", value : "--publicationIdentifierSchemeName--"},
+    {key : "", value : "--Publication identifier scheme name--"},
     {key : "DOI", value : "DOI (Digital Object Identifier)"},
     {key : "HANDLE", value : "Handle identifier"},
     {key : "ARK", value : "ARK (Archival Resource Key)"},
@@ -330,11 +359,13 @@ export var publicationIdentifierSchemeNameEnum = [
     {key : "OAI", value : "OAI identifier"},
     {key : "PMCID", value : "PMCID (PubMed Central Identifier)"},
     {key : "PMID", value : "PMID (PubMed Identifier)"},
+    {key : "OPEN_AIRE", value : "OpenAIRE Identifier"},
+    {key : "CORE", value : "CORE Identifier"},
     {key : "OTHER", value : "Other"}
 ];
 
 export var userTypeEnum = [
-    {key : "", value : "--userType--"},
+    {key : "", value : "--User type--"},
     {key : "ACADEMIC", value : "Academic"},
     {key : "COMMERCIAL", value : "Commercial"},
     {key : "MEMBERS_OF_GROUP", value : "Members of group"}
@@ -361,14 +392,14 @@ export var repositoryIdentifierSchemeNameEnum = [
 ];
 
 export var documentTypeEnum = [
-    {key : "", value : "--documentType--"},
+    {key : "", value : "--Document type--"},
     {key : "BIBLIOGRAPHIC_RECORD_ONLY", value : "Bibliographic record"},
     {key : "WITH_ABSTRACT_ONLY", value : "With abstract only"},
     {key : "WITH_FULL_TEXT", value : "With full text"}
 ];
 
 export var resourceIdentifierSchemeNameEnum = [
-    {key : "", value : "--resourceIdentifierSchemeName--"},
+    {key : "", value : "--Resource identifier scheme name--"},
     {key : "DOI", value : "DOI (Digital Object Identifier)"},
     {key : "ISLRN", value : "ISLRN (International Standard Language Resource Number)"},
     {key : "HANDLE", value : "Handle identifier"},
@@ -391,6 +422,8 @@ export var resourceIdentifierSchemeNameEnum = [
     {key : "PMID", value : "PMID (PubMed Identifier)"},
     {key : "MAVEN", value : "Maven id"},
     {key : "DOCKER", value : "Docker id"},
+    {key : "OMTD_DOCKER", value : "OMTD-docker"},
+    {key : "OMTD", value : "OpenMinTeD id"},
     {key : "OTHER", value : "Other"}
 ];
 
@@ -403,16 +436,81 @@ export var originalDataProviderTypeEnum = [
 
 export var languageDescriptionTypeEnum = [
     {key : "", value : "--Language description type--"},
-    {key : "GRAMMAR", value : "grammar"},
-    {key : "OTHER", value : "other"}
+    {key : "ML_MODEL", value : "Machine learning model"},
+    {key : "GRAMMAR", value : "Grammar"},
+    {key : "OTHER", value : "Other"}
 ];
 
-export var extratextualInformationEnum = [
-    {key : "", value : "--Extratextual information--"},
-    {key : "IMAGES", value : "images"},
-    {key : "VIDEOS", value : "videos"},
-    {key : "SOUND_RECORDINGS", value : "soundRecordings"},
-    {key : "OTHER", value : "other"}
+export var versionTypeEnum = [
+    {key : "", value : "--Version type--"},
+    {key : "ACCEPTED", value : "Accepted"},
+    {key : "PUBLISHED", value : "Published"},
+    {key : "DRAFT", value : "Draft"},
+    {key : "SUBMITTED", value : "Submitted"},
+    {key : "UPDATED", value : "Updated"}
+];
+
+export var dataFormatTypeEnum = [
+    {key : "", value : "--Data format--"},
+    {key : "TEXT_PLAIN", value : "Plain text"},
+    {key : "APPLICATION_VND_XMI_XML", value : "XMI"},
+    {key : "APPLICATION_XML", value : "XML"},
+    {key : "APPLICATION_X_XCES_XML", value : "XCES"},
+    {key : "APPLICATION_TEI_XML", value : "TEI"},
+    {key : "APPLICATION_RDF_XML", value : "RDF"},
+    {key : "APPLICATION_XHTML_XML", value : "XHTML"},
+    {key : "APPLICATION_EMMA_XML", value : "EMMA"},
+    {key : "APPLICATION_PLS_XML", value : "PLS"},
+    {key : "APPLICATION_POSTSCRIPT", value : "postscript"},
+    {key : "TEXT_SGML", value : "SGML"},
+    {key : "TEXT_HTML", value : "HTML"},
+    {key : "APPLICATION_X_TEX", value : "TEX"},
+    {key : "APPLICATION_RTF", value : "RTF"},
+    {key : "APPLICATION_JSON_LD", value : "JSON/LD"},
+    {key : "APPLICATION_X_LATEX", value : "LATEX"},
+    {key : "TEXT_CSV", value : "CSV (Comma Separated Values)"},
+    {key : "TEXT_TAB_SEPARATED_VALUES", value : "TSV (Tab Separated Values)"},
+    {key : "APPLICATION_PDF", value : "PDF"},
+    {key : "APPLICATION_X_MSACCESS", value : "MS-Access database"},
+    {key : "APPLICATION_MSWORD", value : "MS-Word"},
+    {key : "APPLICATION_VND_MS_EXCEL", value : "MS-Excel"},
+    {key : "TEXT_TURTLE", value : "Turtle"},
+    {key : "ACL_ANTHOLOGY", value : "ACL anthology"},
+    {key : "ALVIS_ENRICHED_DOCUMENT", value : "ALVIS Enriched Document"},
+    {key : "BNC", value : "BNC"},
+    {key : "BIO_NLP", value : "BioNLP Shared Task"},
+    {key : "BIONLP__FORMAT_VARIANT_ST2013A1_A2", value : "BioNLP Shared Task 2013 a1/a2"},
+    {key : "CADIXE_JSON", value : "Cadixe"},
+    {key : "CONLL2000", value : "CoNLL 2000"},
+    {key : "CONLL2002", value : "CoNLL 2002"},
+    {key : "CONLL2006", value : "CoNLL 2006"},
+    {key : "CONLL2007", value : "CoNLL 2007"},
+    {key : "CONLL2009", value : "CoNLL 2009"},
+    {key : "CONLL2012", value : "CoNLL 2012"},
+    {key : "DATA_SIFT", value : "DataSift"},
+    {key : "FACTORED_TAG_LEM", value : "Factored Tag Lemma"},
+    {key : "GATE", value : "GATE"},
+    {key : "GENIA", value : "Genia"},
+    {key : "GRAF", value : "GrAF"},
+    {key : "HTML5MICRODATA", value : "HTML5 Microdata"},
+    {key : "I2B2", value : "I2B2"},
+    {key : "IMS_CWB", value : "IMS CorpusWorkBench"},
+    {key : "JDBC", value : "JAVA Database Connectivity"},
+    {key : "KEA_CORPUS", value : "KEA corpus"},
+    {key : "LLL", value : "LLL"},
+    {key : "NEGRA_EXPORT", value : "NEGRA export"},
+    {key : "PTB__FORMAT_VARIANT_CHUNKED", value : "Penn Treebank Chunked"},
+    {key : "PTB__FORMAT_VARIANT_COMBINED", value : "Penn Treebank Combined"},
+    {key : "PML", value : "Prague Markup Language"},
+    {key : "RELP", value : "RELP"},
+    {key : "AIMED_CORPUS", value : "AIMED Corpus"},
+    {key : "TIGER", value : "Tiger"},
+    {key : "TUPP_DZ", value : "TüPP-D/Z corpus"},
+    {key : "TWITTER", value : "Twitter"},
+    {key : "XCES__FORMAT_VARIANT_ILSP", value : "XCES - ILSP Variant"},
+    {key : "WEB1T", value : "Web1T corpus"},
+    {key : "UIMA_CASDUMP", value : "UIMA CAS Dump"},
+    {key : "UIMA_BINARY_CAS", value : "UIMA Binary CAS"}
 ];
 
 export var fundingTypeEnum = [
@@ -424,12 +522,147 @@ export var fundingTypeEnum = [
 ];
 
 export var processingResourceTypeEnum = [
-    {key : "", value : "--processingResourceType--"},
+    {key : "", value : "--Processing resource type--"},
     {key : "CORPUS", value : "Corpus"},
     {key : "DOCUMENT", value : "Document"},
     {key : "USER_INPUT_TEXT", value : "User input text"},
     {key : "LEXICAL_CONCEPTUAL_RESOURCE", value : "Lexical/Conceptual resource"},
     {key : "LANGUAGE_DESCRIPTION", value : "Language description"}
+];
+
+export var languageVarietyTypeEnum = [
+    {key : "", value : "--Language variety type--"},
+    {key : "DIALECT", value : "dialect"},
+    {key : "JARGON", value : "jargon"},
+    {key : "OTHER", value : "other"}
+];
+
+export var annotationTypeTypeEnum = [
+    {key : "", value : "--Annotation type--"},
+    {key : "LEMMA", value : "lemma"},
+    {key : "TOKEN", value : "token"}
+];
+
+export var validationExtentEnum = [
+    {key : "", value : "--Validation extent--"},
+    {key : "FULL", value : "full"},
+    {key : "PARTIAL", value : "partial"}
+];
+
+export var documentationTypeEnum = [
+    {key : "", value : "--documentationType--"},
+    {key : "PUBLICATION_FOR_CITATION", value : "publicationForCitation"},
+    {key : "PUBLICATION", value : "publication"},
+    {key : "MANUAL", value : "manual"},
+    {key : "ON_LINE_HELP_URL", value : "onLineHelpURL"},
+    {key : "ISSUE_TRACKER", value : "issueTracker"},
+    {key : "SAMPLES_LOCATION", value : "samplesLocation"},
+    {key : "TRAINING_RESOURCE", value : "trainingResource"},
+    {key : "DEMO_RESOURCE", value : "demoResource"},
+    {key : "OTHER", value : "other"}
+];
+
+export var mediaTypeEnum = [
+    {key : "", value : "--Media type--"},
+    {key : "TEXT", value : "text"},
+    {key : "AUDIO", value : "audio"},
+    {key : "VIDEO", value : "video"},
+    {key : "IMAGE", value : "image"},
+    {key : "TEXT_NUMERICAL", value : "textNumerical"}
+];
+
+export var metadataIdentifierSchemeNameEnum = [
+    {key : "", value : "--Metadata identifier scheme name--"},
+    {key : "HANDLE", value : "Handle identifier"},
+    {key : "PURL", value : "PURL (Persistent URL)"},
+    {key : "URL", value : "URL (Uniform Resource Locator)"},
+    {key : "URN", value : "URN (Uniform Resource Name)"},
+    {key : "OMTD", value : "OMTD"},
+    {key : "OPEN_AIRE", value : "OpenAIRE"},
+    {key : "CORE", value : "CORE"},
+    {key : "OTHER", value : "Other"}
+];
+
+export var contributorTypeEnum = [
+    {key : "", value : "--contributorType--"},
+    {key : "EDITOR", value : "editor"},
+    {key : "TRANSLATOR", value : "translator"},
+    {key : "OTHER", value : "other"}
+];
+
+export var processModeEnum = [
+    {key : "", value : "--processMode--"},
+    {key : "MANUAL", value : "Manual"},
+    {key : "AUTOMATIC", value : "Automatic"},
+    {key : "MIXED", value : "Mixed"},
+    {key : "INTERACTIVE", value : "Interactive"}
+];
+
+export var evaluationMeasureEnum = [
+    {key : "", value : "--Evaluation measure--"},
+    {key : "HUMAN", value : "human"},
+    {key : "AUTOMATIC", value : "automatic"}
+];
+
+export var sizeUnitEnum = [
+    {key : "", value : "--Size unit--"},
+    {key : "TERMS", value : "terms"},
+    {key : "ENTRIES", value : "entries"},
+    {key : "ARTICLES", value : "articles"},
+    {key : "FILES", value : "files"},
+    {key : "ITEMS", value : "items"},
+    {key : "ELEMENTS", value : "elements"},
+    {key : "UNITS", value : "units"},
+    {key : "TEXTS", value : "texts"},
+    {key : "SENTENCES", value : "sentences"},
+    {key : "BYTES", value : "bytes"},
+    {key : "TOKENS", value : "tokens"},
+    {key : "WORDS", value : "words"},
+    {key : "KEYWORDS", value : "keywords"},
+    {key : "IDIOMATIC_EXPRESSIONS", value : "idiomatic expressions"},
+    {key : "TRIPLES", value : "triples"},
+    {key : "NEOLOGISMS", value : "neologisms"},
+    {key : "MULTI_WORD_UNITS", value : "multi-word units"},
+    {key : "EXPRESSIONS", value : "expressions"},
+    {key : "SYNSETS", value : "synsets"},
+    {key : "CLASSES", value : "classes"},
+    {key : "CONCEPTS", value : "concepts"},
+    {key : "LEXICAL_TYPES", value : "lexical types"},
+    {key : "PHONETIC_UNITS", value : "phonetic units"},
+    {key : "MORPHOLOGICAL_UNITS", value : "morphological units"},
+    {key : "SYNTACTIC_UNITS", value : "syntactic units"},
+    {key : "SEMANTIC_UNITS", value : "semantic units"},
+    {key : "PREDICATES", value : "predicates"},
+    {key : "FRAMES", value : "frames"},
+    {key : "KB", value : "kiloBytes"},
+    {key : "MB", value : "megabytes"},
+    {key : "GB", value : "gigabytes"},
+    {key : "TB", value : "terabytes"},
+    {key : "UNIGRAMS", value : "unigrams"},
+    {key : "BIGRAMS", value : "bigrams"},
+    {key : "TRIGRAMS", value : "trigrams"},
+    {key : "V4_GRAMS", value : "four-grams"},
+    {key : "V5_GRAMS", value : "five-grams"},
+    {key : "RULES", value : "rules"},
+    {key : "OTHER", value : "other"}
+];
+
+export var webServiceTypeEnum = [
+    {key : "", value : "--web service type--"},
+    {key : "REST", value : "REST"},
+    {key : "SOAP", value : "SOAP"},
+    {key : "OTHER", value : "other"}
+];
+
+export var encodingLevelEnum = [
+    {key : "", value : "--Encoding level--"},
+    {key : "PHONETICS", value : "phonetics"},
+    {key : "PHONOLOGY", value : "phonology"},
+    {key : "SEMANTICS", value : "semantics"},
+    {key : "MORPHOLOGY", value : "morphology"},
+    {key : "SYNTAX", value : "syntax"},
+    {key : "PRAGMATICS", value : "pragmatics"},
+    {key : "OTHER", value : "other"}
 ];
 
 export var languageIdTypeEnum = [
@@ -579,7 +812,7 @@ export var languageIdTypeEnum = [
     {key : "SD", value : "Sindhi"},
     {key : "SE", value : "Northern Sami"},
     {key : "SG", value : "Sango"},
-    {key : "SH", value : "Serbo-Croatian"},
+    {key : "HBS", value : "Serbo-Croatian"},
     {key : "SI", value : "Sinhala; Sinhalese"},
     {key : "SM", value : "Samoan"},
     {key : "SN", value : "Shona"},
@@ -8432,272 +8665,18 @@ export var languageIdTypeEnum = [
     {key : "ZZJ", value : "Zuojiang Zhuang"}
 ];
 
-export var languageVarietyTypeEnum = [
-    {key : "", value : "--Language variety type--"},
-    {key : "DIALECT", value : "dialect"},
-    {key : "JARGON", value : "jargon"},
-    {key : "OTHER", value : "other"}
-];
-
-export var validationExtentEnum = [
-    {key : "", value : "--Validation extent--"},
-    {key : "FULL", value : "full"},
-    {key : "PARTIAL", value : "partial"}
-];
-
-export var mediaTypeEnum = [
-    {key : "", value : "--Media type--"},
-    {key : "TEXT", value : "text"},
-    {key : "AUDIO", value : "audio"},
-    {key : "VIDEO", value : "video"},
-    {key : "IMAGE", value : "image"},
-    {key : "TEXT_NUMERICAL", value : "textNumerical"}
-];
-
-export var metadataIdentifierSchemeNameEnum = [
-    {key : "", value : "--metadataIdentifierSchemeName--"},
-    {key : "HANDLE", value : "Handle identifier"},
-    {key : "PURL", value : "PURL (Persistent URL)"},
-    {key : "URL", value : "URL (Uniform Resource Locator)"},
-    {key : "URN", value : "URN (Uniform Resource Name)"},
-    {key : "OTHER", value : "Other"}
-];
-
-export var dataFormatEnum = [
-    {key : "", value : "--dataFormat--"},
-    {key : "TEXT_PLAIN", value : "Plain text"},
-    {key : "APPLICATION_VND_XMI_XML", value : "XMI"},
-    {key : "TEXT_XML", value : "XML"},
-    {key : "APPLICATION_X_XCES_XML", value : "XCES"},
-    {key : "APPLICATION_TEI_XML", value : "TEI"},
-    {key : "APPLICATION_RDF_XML", value : "RDF"},
-    {key : "APPLICATION_XHTML_XML", value : "XHTML"},
-    {key : "APPLICATION_EMMA_XML", value : "EMMA"},
-    {key : "APPLICATION_PLS_XML", value : "PLS"},
-    {key : "APPLICATION_POSTSCRIPT", value : "postscript"},
-    {key : "TEXT_SGML", value : "SGML"},
-    {key : "TEXT_HTML", value : "HTML"},
-    {key : "APPLICATION_X_TEX", value : "TEX"},
-    {key : "APPLICATION_RTF", value : "RTF"},
-    {key : "APPLICATION_JSON_LD", value : "JSON/LD"},
-    {key : "APPLICATION_X_LATEX", value : "LATEX"},
-    {key : "TEXT_CSV", value : "CSV (Comma Separated Values)"},
-    {key : "TEXT_TAB_SEPARATED_VALUES", value : "TSV (Tab Separated Values)"},
-    {key : "APPLICATION_PDF", value : "PDF"},
-    {key : "APPLICATION_X_MSACCESS", value : "MS-Access database"},
-    {key : "APPLICATION_MSWORD", value : "MS-Word"},
-    {key : "APPLICATION_VND_MS_EXCEL", value : "MS-Excel"},
-    {key : "TEXT_TURTLE", value : "Turtle"},
-    {key : "ACL_ANTHOLOGY", value : "ACL anthology"},
-    {key : "ALVIS_ENRICHED_DOCUMENT", value : "ALVIS Enriched Document"},
-    {key : "BNC", value : "BNC"},
-    {key : "BIO_NLP", value : "BioNLP Shared Task"},
-    {key : "BIONLP__FORMAT_VARIANT_ST2013A1_A2", value : "BioNLP Shared Task 2013 a1/a2"},
-    {key : "CADIXE_JSON", value : "Cadixe"},
-    {key : "CONLL2000", value : "CoNLL 2000"},
-    {key : "CONLL2002", value : "CoNLL 2002"},
-    {key : "CONLL2006", value : "CoNLL 2006"},
-    {key : "CONLL2007", value : "CoNLL 2007"},
-    {key : "CONLL2009", value : "CoNLL 2009"},
-    {key : "CONLL2012", value : "CoNLL 2012"},
-    {key : "DATA_SIFT", value : "DataSift"},
-    {key : "FACTORED_TAG_LEM", value : "Factored Tag Lemma"},
-    {key : "GATE", value : "GATE"},
-    {key : "GENIA", value : "Genia"},
-    {key : "GRAF", value : "GrAF"},
-    {key : "HTML5MICRODATA", value : "HTML5 Microdata"},
-    {key : "I2B2", value : "I2B2"},
-    {key : "IMS_CWB", value : "IMS CorpusWorkBench"},
-    {key : "JDBC", value : "JAVA Database Connectivity"},
-    {key : "KEA_CORPUS", value : "KEA corpus"},
-    {key : "LLL", value : "LLL"},
-    {key : "NEGRA_EXPORT", value : "NEGRA export"},
-    {key : "PTB__FORMAT_VARIANT_CHUNKED", value : "Penn Treebank Chunked"},
-    {key : "PTB__FORMAT_VARIANT_COMBINED", value : "Penn Treebank Combined"},
-    {key : "PML", value : "Prague Markup Language"},
-    {key : "RELP", value : "RELP"},
-    {key : "AIMED_CORPUS", value : "AIMED Corpus"},
-    {key : "TIGER", value : "Tiger"},
-    {key : "TUPP_DZ", value : "TüPP-D/Z corpus"},
-    {key : "TWITTER", value : "Twitter"},
-    {key : "XCES__FORMAT_VARIANT_ILSP", value : "XCES - ILSP Variant"},
-    {key : "WEB1T", value : "Web1T corpus"},
-    {key : "UIMA_CASDUMP", value : "UIMA CAS Dump"},
-    {key : "UIMA_BINARY_CAS", value : "UIMA Binary CAS"}
-];
-
-export var contributorTypeEnum = [
-    {key : "", value : "--contributorType--"},
-    {key : "EDITOR", value : "editor"},
-    {key : "TRANSLATOR", value : "translator"},
-    {key : "OTHER", value : "other"}
-];
-
-export var processModeEnum = [
-    {key : "", value : "--processMode--"},
-    {key : "MANUAL", value : "Manual"},
-    {key : "AUTOMATIC", value : "Automatic"},
-    {key : "MIXED", value : "Mixed"},
-    {key : "INTERACTIVE", value : "Interactive"}
-];
-
-export var evaluationMeasureEnum = [
-    {key : "", value : "--Evaluation measure--"},
-    {key : "HUMAN", value : "human"},
-    {key : "AUTOMATIC", value : "automatic"}
-];
-
-export var relationTypeEnum = [
-    {key : "", value : "--Relation type--"},
-    {key : "IS_PART_OF", value : "isPartOf"},
-    {key : "IS_PART_WITH", value : "isPartWith"},
-    {key : "HAS_PART", value : "hasPart"},
-    {key : "HAS_OUTCOME", value : "hasOutcome"},
-    {key : "IS_COMBINED_WITH", value : "isCombinedWith"},
-    {key : "REQUIRES_LR", value : "requiresLR"},
-    {key : "REQUIRES_SOFTWARE", value : "requiresSoftware"},
-    {key : "ISEXACT_MATCH", value : "isexactMatch"},
-    {key : "IS_SIMILAR_TO", value : "isSimilarTo"},
-    {key : "IS_CONTINUATION_OF", value : "isContinuationOf"},
-    {key : "IS_VERSION_OF", value : "isVersionOf"},
-    {key : "IS_SIMILAR_TO", value : "isSimilarTo"},
-    {key : "REPLACES", value : "replaces"},
-    {key : "IS_REPLACED_WITH", value : "isReplacedWith"},
-    {key : "IS_CREATED_BY", value : "isCreatedBy"},
-    {key : "IS_ELICITED_BY", value : "isElicitedBy"},
-    {key : "IS_RECORDED_BY", value : "isRecordedBy"},
-    {key : "IS_EDITED_BY", value : "isEditedBy"},
-    {key : "IS_ANALYSED_BY", value : "isAnalysedBy"},
-    {key : "IS_EVALUATED_BY", value : "isEvaluatedBy"},
-    {key : "IS_QUERIED_BY", value : "isQueriedBy"},
-    {key : "IS_ACCESSED_BY", value : "isAccessedBy"},
-    {key : "IS_ARCHIVED_BY", value : "isArchivedBy"},
-    {key : "IS_DISPLAYED_BY", value : "isDisplayedBy"},
-    {key : "IS_COMPATIBLE_WITH", value : "isCompatibleWith"}
-];
-
-export var webServiceTypeEnum = [
-    {key : "", value : "--webServiceType--"},
-    {key : "SOAP", value : "SOAP"},
-    {key : "REST", value : "REST"},
-    {key : "OTHER", value : "other"}
-];
-
-export var encodingLevelEnum = [
-    {key : "", value : "--Encoding level--"},
-    {key : "PHONETICS", value : "phonetics"},
-    {key : "PHONOLOGY", value : "phonology"},
-    {key : "SEMANTICS", value : "semantics"},
-    {key : "MORPHOLOGY", value : "morphology"},
-    {key : "SYNTAX", value : "syntax"},
-    {key : "PRAGMATICS", value : "pragmatics"},
-    {key : "OTHER", value : "other"}
-];
-
-export var TDMMethodEnum = [
-    {key : "", value : "--TDMMethod--"},
-    {key : "RULE_BASED", value : "Rule-based"},
-    {key : "MACHINE_LEARNING", value : "Machine Learning"},
-    {key : "STATISTICAL_LEARNING", value : "Statistical Learning"},
-    {key : "MACHINE_AND_STATISTICAL_LEARNING", value : "Machine and Statistical Learning"},
-    {key : "REGRESSION_ANALYSIS", value : "Regression Analysis"},
-    {key : "REGULARISATION", value : "Regularisation"},
-    {key : "INSTANCE_BASED_LEARNING", value : "Instance-based Learning"},
-    {key : "DECISION_TREES", value : "Decision Trees"},
-    {key : "BAYESIAN", value : "Bayesian"},
-    {key : "KERNEL_METHOD", value : "Kernel Method"},
-    {key : "CLUSTERING_METHOD", value : "Clustering Method"},
-    {key : "ASSOCIATION_RULE_LEARNING", value : "Association Rule Learning"},
-    {key : "ARTIFICIAL_NEURAL_NETWORK", value : "Artificial Neural Network"},
-    {key : "DEEP_LEARNING", value : "Deep Learning"},
-    {key : "ENSEMBLE_METHOD", value : "Ensemble Method"},
-    {key : "DIMENSIONALITY_REDUCTION", value : "Dimensionality Reduction"}
-];
-
-export var sizeUnitEnum = [
-    {key : "", value : "--sizeUnit--"},
-    {key : "TERMS", value : "terms"},
-    {key : "ENTRIES", value : "entries"},
-    {key : "ARTICLES", value : "articles"},
-    {key : "FILES", value : "files"},
-    {key : "ITEMS", value : "items"},
-    {key : "ELEMENTS", value : "elements"},
-    {key : "UNITS", value : "units"},
-    {key : "TEXTS", value : "texts"},
-    {key : "SENTENCES", value : "sentences"},
-    {key : "BYTES", value : "bytes"},
-    {key : "TOKENS", value : "tokens"},
-    {key : "WORDS", value : "words"},
-    {key : "KEYWORDS", value : "keywords"},
-    {key : "IDIOMATIC_EXPRESSIONS", value : "idiomatic expressions"},
-    {key : "TRIPLES", value : "triples"},
-    {key : "NEOLOGISMS", value : "neologisms"},
-    {key : "MULTI_WORD_UNITS", value : "multi-word units"},
-    {key : "EXPRESSIONS", value : "expressions"},
-    {key : "SYNSETS", value : "synsets"},
-    {key : "CLASSES", value : "classes"},
-    {key : "CONCEPTS", value : "concepts"},
-    {key : "LEXICAL_TYPES", value : "lexical types"},
-    {key : "PHONETIC_UNITS", value : "phonetic units"},
-    {key : "MORPHOLOGICAL_UNITS", value : "morphological units"},
-    {key : "SYNTACTIC_UNITS", value : "syntactic units"},
-    {key : "SEMANTIC_UNITS", value : "semantic units"},
-    {key : "PREDICATES", value : "predicates"},
-    {key : "FRAMES", value : "frames"},
-    {key : "KB", value : "kiloBytes"},
-    {key : "MB", value : "megabytes"},
-    {key : "GB", value : "gigabytes"},
-    {key : "TB", value : "terabytes"},
-    {key : "UNIGRAMS", value : "unigrams"},
-    {key : "BIGRAMS", value : "bigrams"},
-    {key : "TRIGRAMS", value : "trigrams"},
-    {key : "V4_GRAMS", value : "four-grams"},
-    {key : "V5_GRAMS", value : "five-grams"},
-    {key : "RULES", value : "rules"},
-    {key : "OTHER", value : "other"}
-];
-
 export var parameterTypeEnum = [
-    {key : "", value : "--parameterType--"},
+    {key : "", value : "--Parameter type--"},
     {key : "DATA", value : "data"},
     {key : "STRING", value : "string"},
     {key : "INTEGER", value : "integer"},
     {key : "BOOLEAN", value : "boolean"},
     {key : "FLOAT", value : "float"},
-    {key : "OTHER", value : "other"}
-];
-
-export var annotationLevelEnum = [
-    {key : "", value : "--Annotation level--"},
-    {key : "ALIGNMENT", value : "alignment"},
-    {key : "DISCOURSE_ANNOTATION", value : "discourseAnnotation"},
-    {key : "DISCOURSEANNOTATION_ARGUMENTATION", value : "discourseAnnotation-argumentation"},
-    {key : "DISCOURSEANNOTATION_AUDIENCEREACTIONS", value : "discourseAnnotation-audienceReactions"},
-    {key : "DISCOURSEANNOTATION_COREFERENCE", value : "discourseAnnotation-coreference"},
-    {key : "DISCOURSEANNOTATION_DIALOGUEACTS", value : "discourseAnnotation-dialogueActs"},
-    {key : "DISCOURSEANNOTATION_DISCOURSERELATIONS", value : "discourseAnnotation-discourseRelations"},
-    {key : "LEMMATIZATION", value : "lemmatization"},
-    {key : "MORPHOSYNTACTICANNOTATION_BPOSTAGGING", value : "morphosyntacticAnnotation-bPosTagging"},
-    {key : "MORPHOSYNTACTICANNOTATION_POSTAGGING", value : "morphosyntacticAnnotation-posTagging"},
-    {key : "SEGMENTATION", value : "segmentation"},
-    {key : "SEMANTIC_ANNOTATION", value : "semanticAnnotation"},
-    {key : "SEMANTICANNOTATION_CERTAINTYLEVEL", value : "semanticAnnotation-certaintyLevel"},
-    {key : "SEMANTICANNOTATION_EMOTIONS", value : "semanticAnnotation-emotions"},
-    {key : "SEMANTICANNOTATION_EVENTS", value : "semanticAnnotation-events"},
-    {key : "SEMANTICANNOTATION_NAMEDENTITIES", value : "semanticAnnotation-namedEntities"},
-    {key : "SEMANTICANNOTATION_POLARITY", value : "semanticAnnotation-polarity"},
-    {key : "SEMANTICANNOTATION_QUESTIONTOPICALTARGET", value : "semanticAnnotation-questionTopicalTarget"},
-    {key : "SEMANTICANNOTATION_READABILTY", value : "semanticAnnotation-readabilty"},
-    {key : "SEMANTICANNOTATION_SEMANTICCLASSES", value : "semanticAnnotation-semanticClasses"},
-    {key : "SEMANTICANNOTATION_SEMANTICRELATIONS", value : "semanticAnnotation-semanticRelations"},
-    {key : "SEMANTICANNOTATION_SEMANTICROLES", value : "semanticAnnotation-semanticRoles"},
-    {key : "SEMANTICANNOTATION_SPEECHACTS", value : "semanticAnnotation-speechActs"},
-    {key : "SEMANTICANNOTATION_SUBJECTIVITY", value : "semanticAnnotation-subjectivity"},
-    {key : "SEMANTICANNOTATION_TEMPORALEXPRESSIONS", value : "semanticAnnotation-temporalExpressions"},
-    {key : "SEMANTICANNOTATION_TEXTUALENTAILMENT", value : "semanticAnnotation-textualEntailment"},
-    {key : "SEMANTICANNOTATION_WORDSENSES", value : "semanticAnnotation-wordSenses"},
-    {key : "SYNTACTICANNOTATION_SEMANTICFRAMES", value : "syntacticAnnotation-semanticFrames"},
-    {key : "OTHER", value : "other"}
+    {key : "OTHER", value : "other"},
+    {key : "URL", value : "url"},
+    {key : "DOCUMENT", value : "document"},
+    {key : "CORPORA", value : "corpora"},
+    {key : "COMPONENT", value : "component"}
 ];
 
 export var multilingualityTypeEnum = [
@@ -8854,10 +8833,10 @@ export var characterEncodingEnum = [
 ];
 
 export var lingualityTypeEnum = [
-    {key : "", value : "--lingualityType--"},
-    {key : "MONOLINGUAL", value : "Monolingual"},
-    {key : "BILINGUAL", value : "Bilingual"},
-    {key : "MULTILINGUAL", value : "Multilingual"}
+    {key : "", value : "--Linguality type--"},
+    {key : "MONOLINGUAL", value : "Linguality type"},
+    {key : "BILINGUAL", value : "Linguality type"},
+    {key : "MULTILINGUAL", value : "Linguality type"}
 ];
 
 export var conformanceToStandardsBestPracticesEnum = [
@@ -9222,7 +9201,7 @@ export var regionIdTypeEnum = [
 ];
 
 export var journalIdentifierSchemeNameEnum = [
-    {key : "", value : "--journalIdentifierSchemeName--"},
+    {key : "", value : "--Journal identifier scheme name--"},
     {key : "DOI", value : "DOI (Digital Object Identifier)"},
     {key : "HANDLE", value : "Handle identifier"},
     {key : "ISSN", value : "ISSN (International Standard Serial Number)"},
@@ -9244,28 +9223,82 @@ export var frameworkEnum = [
     {key : "UIMA", value : "UIMA"},
     {key : "GATE", value : "GATE"},
     {key : "ALVIS_NLP", value : "AlvisNLP"},
+    {key : "GALAXY", value : "Galaxy"},
+    {key : "OTHER", value : "other"}
+];
+
+export var contentTypesEnum = [
+    {key : "", value : "--Linguistic information--"},
+    {key : "ACCENTUATION", value : "accentuation"},
+    {key : "LEMMA", value : "lemma"},
+    {key : "LEMMA_MULTIWORDUNITS", value : "lemma-MultiWordUnits"},
+    {key : "LEMMA_VARIANTS", value : "lemma-Variants"},
+    {key : "LEMMA_ABBREVIATIONS", value : "lemma-Abbreviations"},
+    {key : "LEMMA_COMPOUNDS", value : "lemma-Compounds"},
+    {key : "LEMMA_CLITICFORMS", value : "lemma-CliticForms"},
+    {key : "PART_OF_SPEECH", value : "partOfSpeech"},
+    {key : "MORPHO_FEATURES", value : "morpho-Features"},
+    {key : "MORPHO_CASE", value : "morpho-Case"},
+    {key : "MORPHO_GENDER", value : "morpho-Gender"},
+    {key : "MORPHO_NUMBER", value : "morpho-Number"},
+    {key : "MORPHO_DEGREE", value : "morpho-Degree"},
+    {key : "MORPHO_IRREGULARFORMS", value : "morpho-IrregularForms"},
+    {key : "MORPHO_MOOD", value : "morpho-Mood"},
+    {key : "MORPHO_TENSE", value : "morpho-Tense"},
+    {key : "MORPHO_PERSON", value : "morpho-Person"},
+    {key : "MORPHO_ASPECT", value : "morpho-Aspect"},
+    {key : "MORPHO_VOICE", value : "morpho-Voice"},
+    {key : "MORPHO_AUXILIARY", value : "morpho-Auxiliary"},
+    {key : "MORPHO_INFLECTION", value : "morpho-Inflection"},
+    {key : "MORPHO_REFLEXIVITY", value : "morpho-Reflexivity"},
+    {key : "SYNTAX_SUBCATFRAME", value : "syntax-SubcatFrame"},
+    {key : "SEMANTICS_TRAITS", value : "semantics-Traits"},
+    {key : "SEMANTICS_SEMANTICCLASS", value : "semantics-SemanticClass"},
+    {key : "SEMANTICS_CROSSREFERENCES", value : "semantics-CrossReferences"},
+    {key : "SEMANTICS_RELATIONS", value : "semantics-Relations"},
+    {key : "SEMANTICS_RELATIONS_HYPONYMS", value : "semantics-Relations-Hyponyms"},
+    {key : "SEMANTICS_RELATIONS_HYPERONYMS", value : "semantics-Relations-Hyperonyms"},
+    {key : "SEMANTICS_RELATIONS_SYNONYMS", value : "semantics-Relations-Synonyms"},
+    {key : "SEMANTICS_RELATIONS_ANTONYMS", value : "semantics-Relations-Antonyms"},
+    {key : "SEMANTICS_RELATIONS_TROPONYMS", value : "semantics-Relations-Troponyms"},
+    {key : "SEMANTICS_RELATIONS_MERONYMS", value : "semantics-Relations-Meronyms"},
+    {key : "USAGE_FREQUENCY", value : "usage-Frequency"},
+    {key : "USAGE_REGISTER", value : "usage-Register"},
+    {key : "USAGE_COLLOCATIONS", value : "usage-Collocations"},
+    {key : "USAGE_EXAMPLES", value : "usage-Examples"},
+    {key : "USAGE_NOTES", value : "usage-Notes"},
+    {key : "DEFINITION_GLOSS", value : "definition/gloss"},
+    {key : "TRANSLATION_EQUIVALENT", value : "translationEquivalent"},
+    {key : "SEMANTICS_DOMAIN", value : "semantics-Domain"},
+    {key : "SEMANTICS_EVENTTYPE", value : "semantics-EventType"},
+    {key : "SEMANTICS_SEMANTICROLES", value : "semantics-SemanticRoles"},
+    {key : "STATISTICAL_PROPERTIES", value : "statisticalProperties"},
+    {key : "MORPHO_DERIVATION", value : "morpho-Derivation"},
+    {key : "SEMANTICS_QUALIASTRUCTURE", value : "semantics-QualiaStructure"},
+    {key : "SYNTACTICO_SEMANTIC_LINKS", value : "syntacticoSemanticLinks"},
     {key : "OTHER", value : "other"}
 ];
 
 export var lexicalConceptualResourceTypeEnum = [
     {key : "", value : "--Lexical conceptual resource type--"},
-    {key : "WORD_LIST", value : "wordList"},
-    {key : "COMPUTATIONAL_LEXICON", value : "computationalLexicon"},
-    {key : "ONTOLOGY", value : "ontology"},
-    {key : "WORDNET", value : "wordnet"},
-    {key : "THESAURUS", value : "thesaurus"},
-    {key : "FRAMENET", value : "framenet"},
-    {key : "TERMINOLOGICAL_RESOURCE", value : "terminologicalResource"},
-    {key : "MACHINE_READABLE_DICTIONARY", value : "machineReadableDictionary"},
-    {key : "LEXICON", value : "lexicon"},
-    {key : "TYPESYSTEM", value : "typesystem"},
-    {key : "TAGSET", value : "tagset"},
-    {key : "MAPPING_OF_RESOURCES", value : "mappingOfResources"},
-    {key : "OTHER", value : "other"}
+    {key : "WORD_LIST", value : "Word list"},
+    {key : "COMPUTATIONAL_LEXICON", value : "Computational lexicon"},
+    {key : "ONTOLOGY", value : "Ontology"},
+    {key : "WORDNET", value : "Wordnet"},
+    {key : "THESAURUS", value : "Thesaurus"},
+    {key : "FRAMENET", value : "Framenet"},
+    {key : "TERMINOLOGICAL_RESOURCE", value : "Terminological dictionary"},
+    {key : "MACHINE_READABLE_DICTIONARY", value : "Machine Readable Dictionary"},
+    {key : "LEXICON", value : "Lexicon"},
+    {key : "TYPESYSTEM", value : "Typesystem"},
+    {key : "TAGSET", value : "Tagset"},
+    {key : "ANNOTATION_SCHEME", value : "Annotation scheme"},
+    {key : "MAPPING_OF_RESOURCES", value : "Mapping of resources"},
+    {key : "OTHER", value : "Other"}
 ];
 
 export var licenceEnum = [
-    {key : "", value : "--licence--"},
+    {key : "", value : "--Licence--"},
     {key : "CC_BY_4_0", value : "Creative Commons Attribution 4.0"},
     {key : "CC_BY_NC_4_0", value : "Creative Commons Attribution Non Commercial 4.0"},
     {key : "CC_BY_NC_ND_4_0", value : "Creative Commons Attribution Non Commercial No Derivatives 4.0"},
@@ -9298,6 +9331,7 @@ export var licenceEnum = [
     {key : "M_DPPL_3_0", value : "Modular Digital Peer Publishing Licence (v3)"},
     {key : "PROPRIETARY", value : "Proprietary"},
     {key : "UNDER_NEGOTIATION", value : "Under negotiation"},
+    {key : "NOT_AVAILABLE", value : "Under negotiation"},
     {key : "NON_STANDARD_LICENCE_TERMS", value : "Non standard Licence or Terms of use"}
 ];
 
@@ -9310,11 +9344,14 @@ export var relatedLexiconTypeEnum = [
 ];
 
 export var componentDistributionFormEnum = [
-    {key : "", value : "--componentDistributionForm--"},
+    {key : "", value : "--Component distribution form--"},
     {key : "WEB_SERVICE", value : "web service"},
     {key : "SOURCE_CODE", value : "source code"},
     {key : "EXECUTABLE_CODE", value : "executable code"},
-    {key : "SOURCE_AND_EXECUTABLE_CODE", value : "source and executable code"}
+    {key : "SOURCE_AND_EXECUTABLE_CODE", value : "source and executable code"},
+    {key : "DOCKER_IMAGE", value : "Docker image"},
+    {key : "GALAXY_WORKFLOW", value : "Galaxy workflow"},
+    {key : "WORKFLOW_FILE", value : "Workflow file"}
 ];
 
 export var variantIdTypeEnum = [
@@ -9411,17 +9448,6 @@ export var classificationSchemeNameEnum = [
     {key : "OTHER", value : "Other"}
 ];
 
-export var extraTextualInformationUnitEnum = [
-    {key : "", value : "--Extratextual information unit--"},
-    {key : "WORD", value : "word"},
-    {key : "LEMMA", value : "lemma"},
-    {key : "SEMANTICS", value : "semantics"},
-    {key : "EXAMPLE", value : "example"},
-    {key : "SYNTAX", value : "syntax"},
-    {key : "LEXICAL_UNIT", value : "lexicalUnit"},
-    {key : "OTHER", value : "other"}
-];
-
 export var evaluationLevelEnum = [
     {key : "", value : "--Evaluation level--"},
     {key : "TECHNOLOGICAL", value : "technological"},
@@ -9437,8 +9463,8 @@ export var evaluationCriterionEnum = [
 ];
 
 export var publicationTypeEnum = [
-    {key : "", value : "--publicationType--"},
-    {key : "JOURAL_ARTICLE", value : "Journal article"},
+    {key : "", value : "--Publication type--"},
+    {key : "JOURNAL_ARTICLE", value : "Journal article"},
     {key : "BACHELOR_THESIS", value : "Bachelor thesis"},
     {key : "MASTER_THESIS", value : "Master's thesis"},
     {key : "DOCTORAL_THESIS", value : "Doctoral thesis"},
@@ -9523,86 +9549,70 @@ export var conditionOfUseEnum = [
 ];
 
 export var resourceTypeEnum = [
-    {key : "", value : "--resourceType--"},
+    {key : "", value : "--Resource type--"},
     {key : "COMPONENT", value : "Component"}
 ];
 
-export var componentTypeEnum = [
-    {key : "", value : "--componentType--"},
-    {key : "ACCESS_COMPONENT", value : "Access component"},
-    {key : "READER", value : "Reader"},
-    {key : "WRITER", value : "Writer"},
-    {key : "SUPPORT_COMPONENT", value : "Support component"},
-    {key : "VISUALISER", value : "Visualiser"},
-    {key : "DEBUGGER", value : "Debugger"},
-    {key : "VALIDATOR", value : "Validator"},
-    {key : "VIEWER", value : "Viewer"},
-    {key : "CORPUS_VIEWER", value : "Corpus viewer"},
-    {key : "LEXICON_VIEWER", value : "Lexicon viewer"},
-    {key : "EDITOR", value : "Editor"},
-    {key : "ML_TRAINER", value : "Trainer of Machine Learning models"},
-    {key : "ML_PREDICTOR", value : "Machine Learning Predictor"},
-    {key : "FEATURE_EXTRACTOR", value : "Feature extractor"},
-    {key : "DATA_SPLITTER", value : "Data splitter"},
-    {key : "DATA_MERGER", value : "Data merger"},
-    {key : "CONVERTER", value : "Converter"},
-    {key : "DEPENDENCY_CONVERTER", value : "Dependency converter"},
-    {key : "DEPENDENCY_PARSER", value : "Dependency parser"},
-    {key : "CONSTITUENCY_PARSER", value : "Constituency parser"},
-    {key : "EVALUATOR", value : "Evaluator"},
-    {key : "FLOW_CONTROLLER", value : "Flow controller"},
-    {key : "SCRIPT_BASED_ANALYSER", value : "Script-based analyser"},
-    {key : "MATCHER", value : "Matcher"},
-    {key : "GAZETEER_BASED_MATCHER", value : "Gazeteer based matcher"},
-    {key : "CROWD_SOURCING_COMPONENT", value : "Crowdsourcing component"},
-    {key : "DATA_COLLECTOR", value : "Data collector"},
-    {key : "CRAWLER", value : "Crawler"},
-    {key : "PROCESSOR", value : "Processor"},
-    {key : "ANNOTATOR", value : "Annotator"},
-    {key : "SEGMENTER", value : "Segmenter"},
-    {key : "STEMMER", value : "Stemmer"},
-    {key : "LEMMATIZER", value : "Lemmatizer"},
-    {key : "MORPHOLOGICAL_TAGGER", value : "Morphological tagger"},
-    {key : "CHUNKER", value : "Chunker"},
-    {key : "PARSER", value : "Parser"},
-    {key : "COREFERENCE_ANNOTATOR", value : "Co-reference annotator"},
-    {key : "NAMED_ENTITY_RECOGNIZER", value : "Named entitity recognizer"},
-    {key : "SEMANTICS_ANNOTATOR", value : "Semantics annotator"},
-    {key : "SRL_ANNOTATOR", value : "Annotator of semantic role labels"},
-    {key : "READABILITY_ANNOTATOR", value : "Readability annotator"},
-    {key : "ALIGNER", value : "Aligner"},
-    {key : "GENERATOR", value : "Generator"},
-    {key : "SUMMARIZER", value : "Summarizer"},
-    {key : "SIMPLIFIER", value : "Simplifier"},
-    {key : "PRE_OR_POST_PROCESSING_COMPONENT", value : "Pre- or post-processing component"},
-    {key : "SPELLING_CHECKER", value : "Spelling checker"},
-    {key : "GRAMMAR_CHECKER", value : "Grammar checker"},
-    {key : "NORMALIZER", value : "Normalizer"},
-    {key : "FILTERS", value : "Filters"},
-    {key : "ANALYZER", value : "Analyzer"},
-    {key : "TOPIC_EXTRACTOR", value : "Topic extractor"},
-    {key : "DOCUMENT_CLASSIFIER", value : "Document classifier"},
-    {key : "LANGUAGE_IDENTIFIER", value : "Language identifier"},
-    {key : "SENTIMENT_ANALYZER", value : "Sentiment analyzer"},
-    {key : "EMOTION_RECOGNIZER", value : "Emotion recognizer"},
-    {key : "KEYWORDS_EXTRACTOR", value : "Keyword extractor"},
-    {key : "TERM_EXTRACTOR", value : "Term extractor"},
-    {key : "CONTRADICTION_DETECTOR", value : "Contradiction detector"},
-    {key : "EVENT_EXTRACTOR", value : "Event extractor"},
-    {key : "PERSUASIVE_EXPRESSION_MINER", value : "Persuasive expression miner"},
-    {key : "INFORMATION_EXTRACTOR", value : "Information extractor"},
-    {key : "LEXICON_EXTRACTOR_FROM_CORPORA", value : "Lexicon extractor from corpora"},
-    {key : "LEXICON_EXTRACTOR_FROM_LEXICA", value : "Lexicon extractor from lexica"},
-    {key : "WORD_SENSE_DISAMBIGUATOR", value : "Word sense disambiguator"},
-    {key : "PLATFORM", value : "Platform"},
-    {key : "INFRASTRUCTURE", value : "Infrastructure"},
-    {key : "ARCHITECTURE", value : "Architecture"},
-    {key : "NLP_DEVELOPMENT_ENVIRONMENT", value : "NLP development environment"},
-    {key : "OTHER", value : "Other"}
+export var previousAnnotationTypesPolicyEnum = [
+    {key : "", value : "--previousAnnotationTypesPolicy--"},
+    {key : "KEEP", value : "keep"},
+    {key : "MODIFY", value : "modify"},
+    {key : "DROP", value : "drop"}
+];
+
+export var relationTypeEnum = [
+    {key : "", value : "--Relation type--"},
+    {key : "IS_PART_OF", value : "isPartOf"},
+    {key : "IS_PART_WITH", value : "isPartWith"},
+    {key : "HAS_PART", value : "hasPart"},
+    {key : "HAS_OUTCOME", value : "hasOutcome"},
+    {key : "IS_COMBINED_WITH", value : "isCombinedWith"},
+    {key : "REQUIRES_LR", value : "requiresLR"},
+    {key : "REQUIRES_SOFTWARE", value : "requiresSoftware"},
+    {key : "IS_EXACT_MATCH", value : "isExactMatch"},
+    {key : "IS_SIMILAR_TO", value : "isSimilarTo"},
+    {key : "IS_CONTINUATION_OF", value : "isContinuationOf"},
+    {key : "IS_VERSION_OF", value : "isVersionOf"},
+    {key : "IS_SIMILAR_TO", value : "isSimilarTo"},
+    {key : "REPLACES", value : "replaces"},
+    {key : "IS_REPLACED_WITH", value : "isReplacedWith"},
+    {key : "IS_CREATED_BY", value : "isCreatedBy"},
+    {key : "IS_ELICITED_BY", value : "isElicitedBy"},
+    {key : "IS_RECORDED_BY", value : "isRecordedBy"},
+    {key : "IS_EDITED_BY", value : "isEditedBy"},
+    {key : "IS_ANALYSED_BY", value : "isAnalysedBy"},
+    {key : "IS_EVALUATED_BY", value : "isEvaluatedBy"},
+    {key : "IS_QUERIED_BY", value : "isQueriedBy"},
+    {key : "IS_ACCESSED_BY", value : "isAccessedBy"},
+    {key : "IS_ARCHIVED_BY", value : "isArchivedBy"},
+    {key : "IS_DISPLAYED_BY", value : "isDisplayedBy"},
+    {key : "IS_COMPATIBLE_WITH", value : "isCompatibleWith"},
+    {key : "IS_ANNOTATED_VERSION_OF", value : "isAnnotatedVersionOf"},
+    {key : "HAS_ANNOTATED_VERSION", value : "hasAnnotatedVersion"}
+];
+
+export var TDMMethodTypeEnum = [
+    {key : "", value : "--TDMMethodType--"},
+    {key : "RULE_BASED", value : "Rule-based"},
+    {key : "MACHINE_LEARNING", value : "Machine Learning"},
+    {key : "STATISTICAL_LEARNING", value : "Statistical Learning"},
+    {key : "MACHINE_AND_STATISTICAL_LEARNING", value : "Machine and Statistical Learning"},
+    {key : "REGRESSION_ANALYSIS", value : "Regression Analysis"},
+    {key : "REGULARISATION", value : "Regularisation"},
+    {key : "INSTANCE_BASED_LEARNING", value : "Instance-based Learning"},
+    {key : "DECISION_TREES", value : "Decision Trees"},
+    {key : "BAYESIAN", value : "Bayesian"},
+    {key : "KERNEL_METHOD", value : "Kernel Method"},
+    {key : "CLUSTERING_METHOD", value : "Clustering Method"},
+    {key : "ASSOCIATION_RULE_LEARNING", value : "Association Rule Learning"},
+    {key : "ARTIFICIAL_NEURAL_NETWORK", value : "Artificial Neural Network"},
+    {key : "DEEP_LEARNING", value : "Deep Learning"},
+    {key : "ENSEMBLE_METHOD", value : "Ensemble Method"},
+    {key : "DIMENSIONALITY_REDUCTION", value : "Dimensionality Reduction"}
 ];
 
 export var personIdentifierSchemeNameEnum = [
-    {key : "", value : "--personIdentifierSchemeName--"},
+    {key : "", value : "--Person identifier scheme name--"},
     {key : "ORCID", value : "ORCID"},
     {key : "ISNI", value : "ISNI (International Standard Name Identifier)"},
     {key : "RESEARCHER_ID", value : "ResearcherID"},
@@ -9611,10 +9621,8 @@ export var personIdentifierSchemeNameEnum = [
 ];
 
 export var applicationTypeEnum = [
-    {key : "", value : "--applicationType--"},
-    {key : "ALIGNMENT", value : "alignment"},
+    {key : "", value : "--Application type--"},
     {key : "ANNOTATION", value : "annotation"},
-    {key : "AVATAR_SYNTHESIS", value : "avatar synthesis"},
     {key : "BILINGUAL_LEXICON_INDUCTION", value : "bilingual lexicon induction"},
     {key : "CONTRADICTION_DETECTION", value : "contradiction detection"},
     {key : "DEPENDENCY_PARSING", value : "dependency parsing"},
@@ -9626,6 +9634,7 @@ export var applicationTypeEnum = [
     {key : "ENTITY_MENTION_RECOGNITION", value : "entity mention recognition"},
     {key : "EVENT_EXTRACTION", value : "event extraction"},
     {key : "EXPRESSION_RECOGNITION", value : "expression recognition"},
+    {key : "EXTRACTION_OF_FUNDING_INFORMATION", value : "extraction of funding information"},
     {key : "INTRA_DOCUMENTCOREFERENCERESOLUTION", value : "intra-document coreference resolution"},
     {key : "LANGUAGE_IDENTIFICATION", value : "language identification"},
     {key : "LANGUAGE_MODELLING", value : "language modelling"},
@@ -9638,7 +9647,6 @@ export var applicationTypeEnum = [
     {key : "LEXICON_FORMAT_CONVERSION", value : "lexicon format conversion"},
     {key : "LEXICON_MERGING", value : "lexicon merging"},
     {key : "LEXICON_VISUALIZATION", value : "lexicon visualization"},
-    {key : "LINGUISTIC_RESEARCH", value : "linguistic research"},
     {key : "MACHINE_TRANSLATION", value : "machineTranslation"},
     {key : "MORPHOLOGICAL_ANALYSIS", value : "morphological analysis"},
     {key : "MORPHOSYNTACTICANNOTATION_BPOSTAGGING", value : "morphosyntactic annotation - below Part-of-Speech tagging"},
@@ -9648,11 +9656,9 @@ export var applicationTypeEnum = [
     {key : "OPINION_MINING", value : "opinion mining"},
     {key : "OTHER", value : "other"},
     {key : "PERSUASIVE_EXPRESSION_MINING", value : "persuasive expression mining"},
-    {key : "PHRASE_ALIGNMENT", value : "phrase alignment"},
     {key : "QUALITATIVE_ANALYSIS", value : "qualitative analysis"},
     {key : "QUESTION_ANSWERING", value : "question answering"},
     {key : "SEMANTIC_ROLE_LABELLING", value : "Semantic Role Labelling"},
-    {key : "SENTENCE_ALIGNMENT", value : "sentence alignment"},
     {key : "SENTENCE_SPLITTING", value : "sentence splitting"},
     {key : "SHALLOW_PARSING", value : "shallow parsing"},
     {key : "SPELL_CHECKING", value : "spell checking"},
@@ -9662,8 +9668,9 @@ export var applicationTypeEnum = [
     {key : "TEXT_MINING", value : "text mining"},
     {key : "TOKENIZATION", value : "tokenization"},
     {key : "TOKENIZATION_AND_SENTENCE_SPLITTING", value : "tokenization and sentence splitting"},
-    {key : "TOPIC_DETECTION_TRACKING", value : "topic detection tracking"},
-    {key : "WORD_ALIGNMENT", value : "word alignment"},
+    {key : "TOPIC_DETECTION", value : "topic detection"},
+    {key : "TOPIC_DETECTION_AND_TRACKING", value : "topic detection and tracking"},
+    {key : "TOPIC_MODELLING", value : "topic modelling"},
     {key : "TEXT_AND_DATA_MINING", value : "Text and Data Mining"},
     {key : "CONTENT_MINING", value : "Content Mining"},
     {key : "TEXT_AND_DATA_ANALYTICS", value : "Content Mining"},
@@ -9676,6 +9683,7 @@ export var applicationTypeEnum = [
     {key : "KNOWLEDGE_DISCOVERY_AND_INFORMATION_EXTRACTION", value : "Knowledge Discovery  and Information Extraction"},
     {key : "KNOWLEDGE_REPRESENTATION", value : "Knowledge Representation"},
     {key : "RELATION_EXTRACTION", value : "Relation Extraction"},
+    {key : "HTTP___WWW_META_SHARE_ORG_ONTOLOGIES_OMTD_TDMONTOLOGY_ACCESSCOMPONENT", value : "Access Component"},
     {key : "COREFERENCE_RESOLUTION", value : "Co-reference Resolution"},
     {key : "TEXT_CATEGORISATION", value : "Text Categorisation"},
     {key : "SUMMARISATION", value : "Summarisation"},
@@ -9700,14 +9708,13 @@ export var schemeNameEnum = [
 ];
 
 export var rightsStatementEnum = [
-    {key : "", value : "--rightsStatement--"},
+    {key : "", value : "--Rights statement--"},
     {key : "OPEN_ACCESS", value : "Open Access"},
-    {key : "EMBARGOED_ACCESS", value : "Embargoed Access"},
     {key : "RESTRICTED_ACCESS", value : "Restricted Access"}
 ];
 
 export var distributionMediumEnum = [
-    {key : "", value : "--distributionMedium--"},
+    {key : "", value : "--Distribution medium--"},
     {key : "WEB_EXECUTABLE", value : "Web executable"},
     {key : "DOWNLOADABLE", value : "Downloadable"},
     {key : "ACCESSIBLE_THROUGH_INTERFACE", value : "Acessible through interface"},
@@ -9715,13 +9722,13 @@ export var distributionMediumEnum = [
 ];
 
 export var validationTypeEnum = [
-    {key : "", value : "--validationType--"},
+    {key : "", value : "--Validation type--"},
     {key : "FORMAL", value : "Formal"},
     {key : "CONTENT", value : "Content"}
 ];
 
 export var operatingSystemEnum = [
-    {key : "", value : "--operatingSystem--"},
+    {key : "", value : "--Operating system--"},
     {key : "OS_INDEPENDENT", value : "Independent of operating systems"},
     {key : "WINDOWS", value : "Windows OS"},
     {key : "LINUX", value : "Linux OS"},

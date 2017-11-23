@@ -2,19 +2,16 @@
  * Created by stefania on 1/20/17.
  */
 import {Component, OnDestroy} from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from "rxjs/Subscription";
 import { URLParameter } from "../../../domain/url-parameter";
 import { ContentConnectorService } from "../../../services/content-connector.service";
 import {
-    Corpus as OMTDCorpus, MetadataHeaderInfo, PersonInfo, Name,
-    MetadataIdentifier, ResourceIdentifier, ResourceIdentifierSchemeNameEnum,
-    RightsInfo, RightsStatementEnum, Corpus
+    Corpus as OMTDCorpus, ResourceIdentifier, ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
 import { Observable } from 'rxjs/Rx';
 import { ResourceService } from "../../../services/resource.service";
-import { error } from "util";
 import { AuthenticationService } from "../../../services/authentication.service";
 import { CorpusBuildingState } from "../../../domain/corpus-building-state";
 import { ContentConnectorStatus } from "../../../domain/content-connector-status";
@@ -149,11 +146,10 @@ export class CorpusBuilderComponent implements OnDestroy {
             // corpusFilled.metadataHeaderInfo.metadataRecordIdentifier.metadataIdentifierSchemeName = this.corpus.metadataHeaderInfo.metadataRecordIdentifier.metadataIdentifierSchemeName;
             corpusFilled.metadataHeaderInfo = this.corpus.metadataHeaderInfo;
             corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers = [new ResourceIdentifier()];
-            corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].value= corpusFilled.corpusInfo.distributionInfos[0].distributionLoc[0].distributionLocation;
+            corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].value= corpusFilled.corpusInfo.distributionInfos[0].distributionLocation;
             corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
             corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype="rawCorpus";
-            corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusMediaPartsType.corpusTextParts[0].mediaType='text';
-
+            corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.mediaType='text'
             // corpusFilled.corpusInfo.distributionInfos[0].rightsInfo = new RightsInfo();
             // corpusFilled.corpusInfo.distributionInfos[0].rightsInfo.rightsStatement = [RightsStatementEnum.OPEN_ACCESS]
 

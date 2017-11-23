@@ -3,7 +3,7 @@ import {MyGroup} from "../myform/my-group.interface";
 import {Validators} from "@angular/forms";
 import {EnumValues, versionTypeEnum} from "../../../domain/omtd.enum";
 import {
-    Description, revisionDesc, versionTypeDesc, updateFrequencyDesc,
+    Description, revisionDesc, versionTypeDesc,
     versionDesc
 } from "../../../domain/omtd.description";
 /**
@@ -35,11 +35,11 @@ import {
                 <textarea type="text" class="form-control" formControlName="revision" placeholder="Revision Text"></textarea>
             </form-inline>
             
-            <div class="form-group-divider"></div>
-            
-            <form-inline *ngIf="data?.update == true" [description]="updateFrequencyDesc">
-                <input type="text" class="form-control" formControlName="updateFrequency" placeholder="Update Frequency">
-            </form-inline>
+            <!--<div class="form-group-divider"></div>-->
+            <!---->
+            <!--<form-inline *ngIf="data?.update == true" [description]="updateFrequencyDesc">-->
+                <!--<input type="text" class="form-control" formControlName="updateFrequency" placeholder="Update Frequency">-->
+            <!--</form-inline>-->
         </div>
     </div>
 `,
@@ -54,14 +54,14 @@ export class VersionFormControl extends MyGroup {
         version : ['1.0.0', Validators.compose([Validators.required,Validators.pattern(/^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,3}$/)])],
         revision : '',
         // versionType : '',
-        updateFrequency : ''
+        // updateFrequency : ''
     };
 
     versionType :  EnumValues[] = versionTypeEnum;
 
     revisionDesc : Description = revisionDesc;
     versionTypeDesc : Description = versionTypeDesc;
-    updateFrequencyDesc : Description = updateFrequencyDesc;
+    // updateFrequencyDesc : Description = updateFrequencyDesc;
     versionDesc : Description = versionDesc;
 
 

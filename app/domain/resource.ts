@@ -15,3 +15,8 @@ export class Resource {
     modificationDate: Date;
     indexedFields: IndexedFields[];
 }
+
+export class Order<T> {
+    order : number;
+    resource : T;
+}

@@ -1,20 +1,21 @@
 <h4>Contact</h4>
 <ul class="uk-list">
-    <li *ngIf="contactInfo.contactEmail">
-        <strong>Contact: </strong><a href="mailto:{{contactInfo.contactEmail}}">
-        {{contactInfo.contactEmail}}</a>
-    </li>
-    <li *ngIf="contactInfo.landingPage">
-        <strong>Landing Page: </strong>{{contactInfo.landingPage}}
-    </li>
-    <li *ngIf="contactInfo.contactPersons
-        && contactInfo.contactPersons.length>0">
-        <strong>Contact Persons: </strong>
-        <span *ngFor="let contactPerson of personNames; let isLast = last">
-            <span>
-                {{contactPerson}}
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </li>
+    <!--<li *ngIf="contactInfo.contactEmail">-->
+        <!--<strong>Contact: </strong><a href="mailto:{{contactInfo.contactEmail}}">-->
+        <!--{{contactInfo.contactEmail}}</a>-->
+    <!--</li>-->
+    <!--<li *ngIf="contactInfo.landingPage">-->
+        <!--<strong>Landing Page: </strong>{{contactInfo.landingPage}}-->
+    <!--</li>-->
+    <!--<li *ngIf="contactInfo.contactPersons-->
+        <!--&& contactInfo.contactPersons.length>0">-->
+        <!--<strong>Contact Persons: </strong>-->
+        <!--<span *ngFor="let contactPerson of personNames; let isLast = last">-->
+            <!--<span>-->
+                <!--{{contactPerson}}-->
+            <!--</span>-->
+            <!--{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</li>-->
+    <h2>REDO</h2>
 </ul>

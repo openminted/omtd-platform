@@ -93,6 +93,7 @@ module.exports = function(env) {
                 new webpack.DefinePlugin({"process.env" : {
                     PRODUCTION: JSON.stringify(false),
                     API_ENDPOINT : JSON.stringify(process.env.API_ENDPOINT || "http://localhost:8080/omtd-registry"),
+                    GALAXY_ENDPOINT : JSON.stringify(process.env.GALAXY_ENDPOINT || "http://localhost:6060"),
                     FAQ_ENDPOINT : JSON.stringify(process.env.FAQ_ENDPOINT || "http://83.212.101.85:5555/api/"),
                     CONNECTOR_API_ENDPOINT : JSON.stringify(process.env.CONNECTOR_API_ENDPOINT || "http://localhost:8888/content-connector-service"),
                     WORKFLOW_API_ENDPOINT : JSON.stringify(process.env.WORKFLOW_API_ENDPOINT || "https://dev.openminted.eu:8881"),
@@ -122,6 +123,7 @@ module.exports = function(env) {
                     PRODUCTION: JSON.stringify(true),
                     API_ENDPOINT : JSON.stringify("/api"),
                     FAQ_ENDPOINT : JSON.stringify("/faq"),
+                    GALAXY_ENDPOINT : JSON.stringify(process.env.GALAXY_ENDPOINT || "/galaxy"),
                     CONNECTOR_API_ENDPOINT : JSON.stringify("/connector"),
                     WORKFLOW_API_ENDPOINT : JSON.stringify("/workflow"),
                     OIDC_ENDPOINT : JSON.stringify("/api/openid_connect_login"),

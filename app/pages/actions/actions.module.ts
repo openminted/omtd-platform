@@ -15,6 +15,7 @@ import { BrowseCorporaComponent } from "./utils/browse-corpora.component";
 import { BrowseApplicationsComponent } from "./utils/browse-applications.component";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
 import { WorkflowService } from "../../services/workflow.service";
+import {GalaxyService} from "../../services/galaxy.service";
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { WorkflowService } from "../../services/workflow.service";
         BrowseApplicationsComponent
     ],
     providers: [
-        ResourceService, WorkflowService
+        ResourceService, WorkflowService, GalaxyService
     ],
 })
 

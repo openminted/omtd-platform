@@ -11,25 +11,26 @@
             {{resourceCreationInfo.creationDate.dateRange.endDate.month}}/{{resourceCreationInfo.creationDate.dateRange.endDate.day}}/{{resourceCreationInfo.creationDate.dateRange.endDate.year}}
         </span>
     </li>
-    <li *ngIf="resourceCreationInfo.resourceCreators
-        && resourceCreationInfo.resourceCreators.length>0">
-        <strong>Creators: </strong>
-        <span *ngFor="let creator of resourceCreationInfo.resourceCreators; let isLast = last;">
-            <span *ngIf="personName(creator.relatedPerson)">
-                {{personName(creator.relatedPerson)}}
-            </span>
-            <span *ngIf="creator.relatedPerson && creator.relatedPerson.personIdentifiers && creator.relatedPerson.personIdentifiers.length>0">
-                {{creator.relatedPerson.personIdentifiers[0].value}}
-            </span>
-            <span *ngIf="creator.relatedOrganization && creator.relatedOrganization.organizationNames && creator.relatedOrganization.organizationNames.length>0">
-                {{creator.relatedOrganization.organizationNames[0].value}}
-            </span>
-            <span *ngIf="creator.relatedOrganization && creator.relatedOrganization.organizationIdentifiers && creator.relatedOrganization.organizationIdentifiers.length>0">
-                {{creator.relatedOrganization.organizationIdentifiers[0].value}}
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </li>
+    <h2>REDO</h2>
+    <!--<li *ngIf="resourceCreationInfo.resourceCreators-->
+        <!--&& resourceCreationInfo.resourceCreators.length>0">-->
+        <!--<strong>Creators: </strong>-->
+        <!--<span *ngFor="let creator of resourceCreationInfo.resourceCreators; let isLast = last;">-->
+            <!--<span *ngIf="personName(creator.relatedPerson)">-->
+                <!--{{personName(creator.relatedPerson)}}-->
+            <!--</span>-->
+            <!--<span *ngIf="creator.relatedPerson && creator.relatedPerson.personIdentifiers && creator.relatedPerson.personIdentifiers.length>0">-->
+                <!--{{creator.relatedPerson.personIdentifiers[0].value}}-->
+            <!--</span>-->
+            <!--<span *ngIf="creator.relatedOrganization && creator.relatedOrganization.organizationNames && creator.relatedOrganization.organizationNames.length>0">-->
+                <!--{{creator.relatedOrganization.organizationNames[0].value}}-->
+            <!--</span>-->
+            <!--<span *ngIf="creator.relatedOrganization && creator.relatedOrganization.organizationIdentifiers && creator.relatedOrganization.organizationIdentifiers.length>0">-->
+                <!--{{creator.relatedOrganization.organizationIdentifiers[0].value}}-->
+            <!--</span>-->
+            <!--{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</li>-->
     <li *ngIf="resourceCreationInfo.fundingProjects
         && resourceCreationInfo.fundingProjects.length>0">
         <strong>Funded by: </strong>

@@ -6,12 +6,9 @@ import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { AccordionModule, TypeaheadModule, TooltipModule } from "ngx-bootstrap";
-import { MetadataIdentifierFormControl } from "./shared/metadata-identifier-form.component";
 import { MetadataHeaderInfoFormControl } from "./shared/metadata-header-info-form.component";
 import { ValuesPipe } from "./shared/values-pipe";
-import { RelatedCommonsForm, RelatedCommonForm } from "./shared/related-common-form.component";
 import { LanguageTypeForm } from "./shared/language-type-form.component";
-import { IdentifierFormControl } from "./shared/identifier-common-form.component";
 import {
     MySimpleStringControl,
     MyStringAreaFormGroup, MyStringArrayFormGroup, MyStringDescFormGroup, MyStringFormControl,
@@ -37,7 +34,7 @@ import { MyFormDirective } from "./myform/my-form.directive";
 import { VersionFormControl } from "./shared/versionInfo.component";
 import { ComponentGenericFormControl } from "./shared/componentGeneric.component";
 import {InlineFormWrapper, MyGroup} from "./myform/my-group.interface";
-import {ContactPersonFormControl, SurnameGivenNameFormGroup} from "./shared/contactPerson.component";
+import {ContactPersonFormControl} from "./shared/contactPerson.component";
 import { IdentifierCommonFormControl } from "./shared/identifierCommon.component";
 import { ComponentCreationInfoFormControl } from "./shared/componentCreationInfo.component";
 import { CorpusTextPartInfoFormControl } from "./shared/corpusTextPartInfo.component";
@@ -97,23 +94,18 @@ import {DistributionMedium, DistributionMediums} from "./shared/distribution-med
         ComponentCreationInfoFormControl,
         MyFormDirective,
         ExampleFormControl,
-        SurnameGivenNameFormGroup,
         RawCorpusInfoFormControl,
         DistributionMediums,
         DistributionMedium,
         MyStringArrayFormGroup,
         MySimpleStringControl,
-        MetadataIdentifierFormControl,
         MetadataHeaderInfoFormControl,
         VersionFormControl,
         ValuesPipe,
         MyStringDescFormGroup,
         IdentifierCommonFormControl,
         ComponentGenericFormControl,
-        RelatedCommonsForm,
-        RelatedCommonForm,
         LanguageTypeForm,
-        IdentifierFormControl,
         DatasetDistributionInfoFormControl,
         DatasetDistributionsInfoFormControl,
         MyStringFormControl,
@@ -154,15 +146,11 @@ import {DistributionMedium, DistributionMediums} from "./shared/distribution-med
         CorpusTextPartInfoFormControl,
         MyFormDirective,
         ExampleFormControl,
-        MetadataIdentifierFormControl,
         MetadataHeaderInfoFormControl,
         ValuesPipe,
-        RelatedCommonsForm,
         CorpusSubtypeSpecificInfoForm,
-        RelatedCommonForm,
         LanguageTypeForm,
         MySimpleStringControl,
-        IdentifierFormControl,
         DatasetDistributionInfoFormControl,
         DatasetDistributionsInfoFormControl,
         MyStringFormControl,

@@ -19,16 +19,15 @@ import {MyGroup} from "../myform/my-group.interface";
             </form-repeat-inline>
 
             <div class="form-group-divider"></div>
-
-            <div formArrayName="rightsStatement">
-                <form-inline [description]="rightsStatementDesc" [valid]="getMyControl('rightsStatement').valid">
-                    <select name="role" class="uk-select" formControlName="0">
-                        <option *ngFor="let value of rightsStatementEnum" [value]="value.key" [selected]="value.key == ''">
-                            {{value.value}}
-                        </option>
-                    </select>
-                </form-inline>
-            </div>
+            
+            <form-inline [description]="rightsStatementDesc" [valid]="getMyControl('rightsStatement').valid">
+                <select name="role" class="uk-select" formControlName="rightsStatement">
+                    <option *ngFor="let value of rightsStatementEnum" [value]="value.key" [selected]="value.key == ''">
+                        {{value.value}}
+                    </option>
+                </select>
+            </form-inline>
+        
         </div>
 
 `,
@@ -37,7 +36,7 @@ import {MyGroup} from "../myform/my-group.interface";
 export class RightsInfoForm extends MyGroup {
 
     readonly groupDefinition = {
-        rightsStatement : this._fb.array(["OPEN_ACCESS"])
+        rightsStatement : "OPEN_ACCESS"
     };
 
     constructor(private injector : Injector) {
@@ -57,30 +56,26 @@ export class RightsInfoForm extends MyGroup {
     selector: 'license-info',
     template: `
 <div [formGroup]="group">
-    <div formArrayName="licenceInfo">
-        <div formGroupName="0">
-            <form-inline [description]="licenceDesc" [valid]="getMyControl('licenceInfo.0.licence').valid" [params]="null">
-                <select name="role" class="uk-select" formControlName="licence">
-                    <option *ngFor="let value of licenceEnum" [value]="value.key" [selected]="value.key == ''">
-                        {{value.value}}
-                    </option>
-                </select>
-            </form-inline>
-        
-            <div [hidden]="getMyControl('licenceInfo.0.licence').value !== 'NON_STANDARD_LICENCE_TERMS'">
-                <div class="form-group-divider"></div>
-            
-                <form-inline [description]="nonStandardLicenceNameDesc" [valid]="getMyControl('licenceInfo.0.nonStandardLicenceName').valid">
-                    <input type="text" class="uk-input" formControlName="nonStandardLicenceName" placeholder="Name (*)">
-                </form-inline>
-            
-                <div class="form-group-divider"></div>
-            
-                <form-inline [description]="nonStandardLicenceTermsURLDesc" [valid]="getMyControl('licenceInfo.0.nonStandardLicenceTermsURL').valid">
-                    <input type="text" class="uk-input" formControlName="nonStandardLicenceTermsURL" placeholder="URL (*)">
-                </form-inline>
-            </div>
-        </div>
+    <form-inline [description]="licenceDesc" [valid]="getMyControl('licence').valid" [params]="null">
+        <select name="role" class="uk-select" formControlName="licence">
+            <option *ngFor="let value of licenceEnum" [value]="value.key" [selected]="value.key == ''">
+                {{value.value}}
+            </option>
+        </select>
+    </form-inline>
+    
+    <div [hidden]="getMyControl('licence').value !== 'NON_STANDARD_LICENCE_TERMS'">
+        <div class="form-group-divider"></div>
+    
+        <form-inline [description]="nonStandardLicenceNameDesc" [valid]="getMyControl('nonStandardLicenceName').valid">
+            <input type="text" class="uk-input" formControlName="nonStandardLicenceName" placeholder="Name (*)">
+        </form-inline>
+    
+        <div class="form-group-divider"></div>
+    
+        <form-inline [description]="nonStandardLicenceTermsURLDesc" [valid]="getMyControl('nonStandardLicenceTermsURL').valid">
+            <input type="text" class="uk-input" formControlName="nonStandardLicenceTermsURL" placeholder="URL (*)">
+        </form-inline>
     </div>
 </div>
 `,
@@ -89,13 +84,13 @@ export class RightsInfoForm extends MyGroup {
 export class LicenseInfoForm extends MyGroup {
 
     readonly groupDefinition = {
-        licenceInfo : this._fb.array([
-            this._fb.group({
-                licence : ['', Validators.required],
-                nonStandardLicenceName : ['',Validators.required],
-                nonStandardLicenceTermsURL : ['',Validators.required]
-            })
-        ])
+        // licenceInfo : this._fb.array([
+        //     this._fb.group({
+        licence : ['', Validators.required],
+        nonStandardLicenceName : ['',Validators.required],
+        nonStandardLicenceTermsURL : ['',Validators.required]
+        //     })
+        // ])
     };
 
     constructor(private injector : Injector) {
@@ -113,9 +108,9 @@ export class LicenseInfoForm extends MyGroup {
 
     ngOnInit() {
         super.ngOnInit();
-        this.getMyControl('licenceInfo.0.licence').valueChanges.subscribe(_ => {
-            let nonStandardLicenceName = this.getMyControl('licenceInfo.0.nonStandardLicenceName');
-            let nonStandardLicenceTermsURL = this.getMyControl('licenceInfo.0.nonStandardLicenceTermsURL');
+        this.getMyControl('licence').valueChanges.subscribe(_ => {
+            let nonStandardLicenceName = this.getMyControl('nonStandardLicenceName');
+            let nonStandardLicenceTermsURL = this.getMyControl('nonStandardLicenceTermsURL');
             if (_ !== 'NON_STANDARD_LICENCE_TERMS') {
                 nonStandardLicenceName.disable();
                 nonStandardLicenceTermsURL.disable();
@@ -147,8 +142,8 @@ export class LicenseInfoForm extends MyGroup {
         //     }
         // });
 
-        let nonStandardLicenceName = this.getMyControl('licenceInfo.0.nonStandardLicenceName');
-        let nonStandardLicenceTermsURL = this.getMyControl('licenceInfo.0.nonStandardLicenceTermsURL');
+        let nonStandardLicenceName = this.getMyControl('nonStandardLicenceName');
+        let nonStandardLicenceTermsURL = this.getMyControl('nonStandardLicenceTermsURL');
         nonStandardLicenceName.disable();
         nonStandardLicenceTermsURL.disable();
     }

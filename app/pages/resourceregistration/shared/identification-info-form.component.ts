@@ -1,11 +1,8 @@
 /**
  * Created by stefania on 1/17/17.
  */
-import {Component, Injector, Input, OnInit, Type} from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import {MyStringAreaFormGroup, MyStringFormControl, MyStringFormGroup} from "./my-string-form.component";
-import {EnumValues, resourceIdentifierSchemeNameEnum} from "../../../domain/omtd.enum";
-import {IdentifierFormControl} from "./identifier-common-form.component";
+import {Component, Injector, Type} from '@angular/core';
+import {MyStringAreaFormGroup, MyStringFormGroup} from "./my-string-form.component";
 import {
     Description, resourceNameDesc, descriptionDesc, resourceShortNameDesc,
     publicDesc
@@ -37,6 +34,7 @@ export class IdentificationInfoFormControl extends MyGroup {
     myStringAreaType : Type<any> = MyStringAreaFormGroup;
 
     public groupDefinition = {
-        "public" : false
+        "public" : false,
+        resourceShortName : ''
     }
 }

@@ -92,12 +92,8 @@ export class CorpusUploadComponent implements OnInit {
             this.resourceService.uploadZip(this.zipFile.name,this.zipFile).subscribe(id => {
                 let corpusBody : OMTDCorpus = this.corpusForm.value;
                 let distributionInfo : DatasetDistributionInfo = new DatasetDistributionInfo();
-                distributionInfo.distributionLoc = [new DistributionLoc()];
-                distributionInfo.rightsInfo = corpusBody.corpusInfo.distributionInfos[0].rightsInfo;
-                // distributionInfo.rightsInfo = new RightsInfo();
-                // distributionInfo.rightsInfo.rightsStatement = [RightsStatementEnum.OPEN_ACCESS]
-                distributionInfo.distributionLoc[0].distributionMedium = DistributionMediumEnum.DOWNLOADABLE;
-                distributionInfo.distributionLoc[0].distributionLocation = id;
+                distributionInfo.distributionLocation = id;
+                distributionInfo.distributionMedium = DistributionMediumEnum.DOWNLOADABLE;
                 corpusBody.corpusInfo.identificationInfo.resourceIdentifiers = [new ResourceIdentifier()];
                 corpusBody.corpusInfo.identificationInfo.resourceIdentifiers[0].value=id;
                 corpusBody.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;

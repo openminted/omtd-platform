@@ -16,7 +16,6 @@ import { ComponentRegistrationUsingFormComponent } from "./component-registratio
 import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reusable-components.module";
 import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
 import { AceEditorModule } from "ng2-ace-editor"
-import { TestComponent } from "./test.component";
 import { BuildAWorkflowComponent } from "../../actions/buildworkflow/build-a-workflow.component";
 import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component-registration-using-maven-coordinates.component";
 
@@ -35,7 +34,6 @@ import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component
         AceEditorModule,
     ],
     declarations: [
-        TestComponent,
         ComponentRegistrationComponent,
         ComponentRegistrationXMLComponent, 
         ComponentRegistrationFormComponent,

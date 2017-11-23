@@ -10,7 +10,7 @@ import { URLParameter } from "./../../domain/url-parameter";
 import { ResourceService } from "../../services/resource.service";
 import { SearchResults } from "../../domain/search-results";
 import { ShortResultInfo } from "../../domain/short-resource-info";
-import { BaseMetadataRecord, ComponentInfo, CorpusInfo, Order } from "../../domain/openminted-model";
+import { BaseMetadataRecord, ComponentInfo, CorpusInfo } from "../../domain/openminted-model";
 
 @Component({
     selector: 'search',

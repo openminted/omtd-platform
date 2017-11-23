@@ -4,7 +4,7 @@ import {EnumValues, distributionMediumEnum} from "../../../domain/omtd.enum";
 import {MyGroup} from "../myform/my-group.interface";
 import {
     Description, datasetDistributionInfoDesc, distributionMediumDesc,
-    distributionURLDesc
+    distributionLocationDesc
 } from "../../../domain/omtd.description";
 /**
  * Created by stefanos on 16/1/2017.
@@ -88,7 +88,7 @@ export class DatasetDistributionLocInfoFormControl extends MyGroup {
 
     readonly distributionMediumEnum : EnumValues[] = distributionMediumEnum;
     readonly distributionMediumDesc : Description = distributionMediumDesc;
-    readonly distributionURLDesc : Description = distributionURLDesc;
+    readonly distributionURLDesc : Description = distributionLocationDesc;
 
 
     readonly groupDefinition = {
