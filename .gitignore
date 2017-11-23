@@ -6,3 +6,4 @@ app/**/*.js
 app/**/*.js.map
 package-lock.json
 stats.json
+.DS_Store
