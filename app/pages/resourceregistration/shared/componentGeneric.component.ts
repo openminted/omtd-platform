@@ -25,7 +25,6 @@ import {
             <div class="form-group-divider"></div>
             
             <div formGroupName="functionInfo">
-        
                 <form-inline [description]="functionDesc">
                     <!--[valid]="getMyControl('functionInfo.function').valid"-->
                     <select name="role" class="form-control" formControlName="function">
@@ -39,12 +38,7 @@ import {
                     <form-inline [description]="functionDescOther" [hidden]="this.getMyControl('functionInfo.function')?.value!=='OTHER'">
                         <input type="text" class="uk-input" formControlName="functionOther" placeholder="Other type of operation(*)"/>
                     </form-inline>
-                    
                 </form-inline>
-                
-                
-                    
-                
             </div>
         
             <componentCreationInfo-form [parentGroup]="group" [required]="true"></componentCreationInfo-form>

@@ -62,7 +62,7 @@ export var hasOriginalSourceDesc = {
 export var characterEncodingDesc = {
     desc : "The name of the character encoding used in the resource or supported by the component",
     label : "Character encoding set",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 
@@ -321,7 +321,7 @@ export var unitDesc = {
 export var dataFormatTypeDesc = {
     desc : "Specifies the format that is used since often the mime type will not be sufficient for machine processing; NOTE: normally the format should be represented as a combination of the mimetype (e.g. application/xml) and some name and link to the documentation about the supplementary conventions used (e.g xces, alvisED etc.)",
     label : "Plain text",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 
@@ -482,7 +482,7 @@ export var otherArchiveDesc = {
 export var descriptionDesc = {
     desc : "A short free-text account that provides information about the resource (e.g. function, contents, technical information etc.)",
     label : "Description",
-    mandatory : false,
+    mandatory : true,
     recommended : false
 };
 
@@ -888,7 +888,7 @@ export var lexicalConceptualResourceMediaTypeDesc = {
 export var languageDesc = {
     desc : "The language that is used in the resource or supported by the component; corresponds to language tag according to ISO 639-1 and for languages not covered by this, the ISO 639-3",
     label : "Language",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 
@@ -1938,7 +1938,7 @@ export var projectShortNameDesc = {
 export var TDMMethodDesc = {
     desc : "Description not available",
     label : "TDM method",
-    mandatory : true,
+    mandatory : false,
     recommended : true
 };
 
@@ -2386,7 +2386,7 @@ export var archiveDesc = {
 export var processingResourceTypeDesc = {
     desc : "The type of the resource that a component takes as input or produces as output",
     label : "Processing resource type",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 

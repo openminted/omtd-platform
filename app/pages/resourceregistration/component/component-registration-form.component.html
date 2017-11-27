@@ -73,6 +73,20 @@
 
             </li>
             <li class="uk-open uk-margin-large-bottom">
+            <h3 class="uk-accordion-title">
+                    <span>
+                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
+                        Input/Output
+                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
+                    </span>
+            </h3>
+            <div class="uk-accordion-content">
+                <processing-resource-info-form [parentGroup]="myForm.controls.componentInfo" [name]="'inputContentResourceInfo'"></processing-resource-info-form>
+            </div>
+
+            </li>
+
+            <li class="uk-open uk-margin-large-bottom">
                 <h3 class="uk-accordion-title">
                     <span>
                         <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->

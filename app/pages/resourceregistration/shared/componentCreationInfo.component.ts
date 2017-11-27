@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { Validators } from "@angular/forms";
-import { EnumValues, frameworkEnum} from "../../../domain/omtd.enum";
-import { Description, frameworkDesc } from "../../../domain/omtd.description";
+import {EnumValues, frameworkEnum, TDMMethodTypeEnum} from "../../../domain/omtd.enum";
+import {Description, frameworkDesc, TDMMethodDesc} from "../../../domain/omtd.description";
 /**
  * Created by stefanos on 24/5/2017.
  */
@@ -19,6 +19,17 @@ import { Description, frameworkDesc } from "../../../domain/omtd.description";
             </option>
         </select>
     </form-inline>
+
+    <div class="form-group-divider"></div>
+
+    <form-inline [description]="tdmDesc"
+                 [valid]="getMyControl('tdmMethod').valid">
+        <select name="role" class="form-control" formControlName="tdmMethod">
+            <option *ngFor="let value of tdmMethodEnum" [value]="value.key" [selected]="value.key == ''">
+                {{value.value}}
+            </option>
+        </select>
+    </form-inline>
     
 </div>
 `,
@@ -28,11 +39,14 @@ import { Description, frameworkDesc } from "../../../domain/omtd.description";
 export class ComponentCreationInfoFormControl extends MyGroup {
 
     readonly groupDefinition = {
-        framework : ['', Validators.required]
+        framework : ['', Validators.required],
+        tdmMethod : ''
     };
 
     frameworkEnum :  EnumValues[] = frameworkEnum;
+    tdmMethodEnum :  EnumValues[] = TDMMethodTypeEnum;
     frameworkDesc : Description = frameworkDesc;
+    tdmDesc : Description = TDMMethodDesc;
 
     required = true;
 
@@ -40,9 +54,11 @@ export class ComponentCreationInfoFormControl extends MyGroup {
 
     label = 'Component General Info';
 
-    // ngOnInit() {
-    //     super.ngOnInit();
-    //     console.log("ComponentCreationInfoFormControl",this.parentGroup);
-    // }
+    ngOnInit() {
+        super.ngOnInit();
+        this.tdmDesc.label = 'TDM Method';
+        this.tdmDesc.desc = null;
+        this.tdmDesc.mandatory = false;
+    }
 
 }

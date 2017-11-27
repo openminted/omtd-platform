@@ -9,6 +9,7 @@ import {MyGroup} from "../myform/my-group.interface";
 import {MyChoiceComponents} from "../myform/my-choice.interface";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {Validators} from "@angular/forms";
+import {ContactTypeEnum} from "../../../domain/openminted-model";
 
 @Component({
     selector: 'contact-info-form',
@@ -37,7 +38,7 @@ export class ContactInfoFormControl extends MyGroup {
 
     public groupDefinition = {
         contactPoint : ["",Validators.required],
-        contactType : 'contactEmail'
+        contactType : ContactTypeEnum.CONTACT_EMAIL
     };
 
     constructor(private injector : Injector){
@@ -52,13 +53,12 @@ export class ContactInfoFormControl extends MyGroup {
 
     ngOnInit() {
         super.ngOnInit();
-        Validators.email()
         this.getMyControl('contactPoint').setValue(this.authenticationService.email);
         this.getMyControl('contactPoint').valueChanges.subscribe(_ => {
            if(this.validateEmail(_)) {
-               this.getMyControl('contactType').setValue('contactEmail');
+               this.getMyControl('contactType').setValue(ContactTypeEnum.CONTACT_EMAIL);
            } else {
-               this.getMyControl('contactType').setValue('landingPage');
+               this.getMyControl('contactType').setValue(ContactTypeEnum.LANDING_PAGE);
            }
         });
         // this.parentGroup.get('contactEmail').setValue(this.authenticationService.email);

@@ -43,6 +43,7 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
 import {MyChoice, MyChoiceWrapper} from "./myform/my-choice.interface";
 import {RawCorpusInfoFormControl} from "./shared/raw-corpus-info-form.component";
 import {DistributionMedium, DistributionMediums} from "./shared/distribution-mediums.component";
+import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-info-form.component";
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import {DistributionMedium, DistributionMediums} from "./shared/distribution-med
         MyArrayWrapper,
         MyStringFormGroup,
         MyStringAreaFormGroup,
+        ProcessingResourceInfoFormComponent,
         DatasetDistributionLocInfoFormControl,
         InlineFormWrapper,
         CorpusSubtypeSpecificInfoForm,
@@ -141,6 +143,7 @@ import {DistributionMedium, DistributionMediums} from "./shared/distribution-med
         DatasetDistributionLocInfoFormControl,
         ComponentCreationInfoFormControl,
         ContactPersonFormControl,
+        ProcessingResourceInfoFormComponent,
         ComponentGenericFormControl,
         IdentifierCommonFormControl,
         CorpusTextPartInfoFormControl,

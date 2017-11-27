@@ -14,12 +14,7 @@ import {MyGroup} from "../myform/my-group.interface";
     selector: 'rightsInfo-form',
     template: `        
         <div [formGroup]="group">
-            <form-repeat-inline [component]="licenseType" [parentGroup]="group"
-                         [name]="'licenceInfos'" [required]="true" [description]="licenseInfoDesc">
-            </form-repeat-inline>
 
-            <div class="form-group-divider"></div>
-            
             <form-inline [description]="rightsStatementDesc" [valid]="getMyControl('rightsStatement').valid">
                 <select name="role" class="uk-select" formControlName="rightsStatement">
                     <option *ngFor="let value of rightsStatementEnum" [value]="value.key" [selected]="value.key == ''">
@@ -27,6 +22,12 @@ import {MyGroup} from "../myform/my-group.interface";
                     </option>
                 </select>
             </form-inline>
+
+            <div class="form-group-divider"></div>
+            
+            <form-repeat-inline [component]="licenseType" [parentGroup]="group"
+                         [name]="'licenceInfos'" [required]="true" [description]="licenseInfoDesc">
+            </form-repeat-inline>
         
         </div>
 
