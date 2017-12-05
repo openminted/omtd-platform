@@ -40,8 +40,6 @@ export class SearchComponent {
 
     private foundResults = true;
 
-    advanced: boolean = false;
-
     constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
                 private resourceService: ResourceService) {
         this.searchForm = fb.group({
@@ -107,7 +105,7 @@ export class SearchComponent {
                 componentInfo = componentBody['componentInfo'];
                 title = componentInfo.identificationInfo.resourceNames[0].value;
                 description = componentInfo.identificationInfo.descriptions[0].value;
-                resourceType = 'component';
+                resourceType = componentInfo.application ? 'application' :'component';
                 creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
             }
             let shortResultInfo: ShortResultInfo = {
@@ -164,47 +162,6 @@ export class SearchComponent {
             this.isNextPageDisabled = true;
         }
     }
-
-    // advancedView() {
-    //
-    //     this.advanced = true;
-    //
-    //     var foundAdvancedParameter = false;
-    //     for (let urlParameter of this.urlParameters) {
-    //         if(urlParameter.key === 'advanced') {
-    //             foundAdvancedParameter = true;
-    //             if(urlParameter.values[0] === 'false') {
-    //                 urlParameter.values.splice(0,urlParameter.values.length);
-    //                 urlParameter.values.push('true')
-    //             }
-    //         }
-    //     }
-    //
-    //     if(!foundAdvancedParameter) {
-    //         var newParameter: URLParameter = {
-    //             key: 'advanced',
-    //             values: ['true']
-    //         };
-    //         this.urlParameters.push(newParameter);
-    //     }
-    //
-    //     this.navigateUsingParameters();
-    // }
-
-    // simpleView() {
-    //
-    //     this.advanced = false;
-    //
-    //     var categoryIndex = 0;
-    //     for (let urlParameter of this.urlParameters) {
-    //         if(urlParameter.key === 'advanced') {
-    //             this.urlParameters.splice(categoryIndex, 1);
-    //         }
-    //         categoryIndex ++;
-    //     }
-    //
-    //     this.navigateUsingParameters();
-    // }
 
     ngOnDestroy() {
         this.sub.unsubscribe();

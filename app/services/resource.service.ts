@@ -130,8 +130,8 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    getComponent(id: string) {
-        return this.http.get(this._resourcesUrl + "component/" + id)
+    getComponent(id: string, resourceType : string = 'component') {
+        return this.http.get(`${this._resourcesUrl}${resourceType}/${id}`)
             .map(res => <OMTDComponent> res.json())
             .catch(this.handleError);
     }
