@@ -13,8 +13,8 @@ import {Description, lingualityInfoDesc} from "../../../domain/omtd.description"
     <div [formGroup]="group" >
         <form-inline [description]="lingualityInfoDesc">
             <div class="col-sm-3 col-md-3" [ngClass]="{'has-error':!getMyControl('lingualityType').valid}">
-                <select name="role" class="form-control" formControlName="lingualityType" [attr.disabled]="true">
-                    <option *ngFor="let value of lingualityTypes" [value]="value.key" [selected]="value.key == ''">
+                <select name="role" class="form-control" formControlName="lingualityType" >
+                    <option *ngFor="let value of lingualityTypeEnum" [value]="value.key" [selected]="value.key == ''">
                         {{value.value}}
                     </option>
                 </select>
@@ -48,10 +48,11 @@ export class LingualityInfoFormControl extends MyGroup implements OnChanges{
     };
 
     lingualityInfoDesc : Description = lingualityInfoDesc;
-    lingualityTypes: EnumValues[] = lingualityTypeEnum;
+    lingualityTypeEnum: EnumValues[] = lingualityTypeEnum;
     multiLingualityTypes: EnumValues[] = multilingualityTypeEnum;
 
     ngOnInit() {
+        console.log(this.lingualityTypeEnum);
         super.ngOnInit();
         this.getMyControl('lingualityType').valueChanges.subscribe( _ => {
             let multilingualityType = this.getMyControl('multilingualityType');

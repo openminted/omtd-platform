@@ -68,7 +68,7 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
 
             for (let i = 0; i < 40; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
-            resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
+            resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
             resourceIdentifier.value = text;
             component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
             this.resourceService.uploadComponent(this.componentForm.value).subscribe(

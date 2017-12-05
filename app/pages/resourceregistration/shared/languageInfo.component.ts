@@ -13,7 +13,7 @@ import {Description, sizeInfoDesc} from "../../../domain/omtd.description";
     template : `
 
 <div [formGroup]="group">
-    <languageType-form [parentGroup]="group" [name]="'language'" [required]="true"></languageType-form>
+    <simplelanguageType-form [parentGroup]="group" [name]="'language'" [required]="true"></simplelanguageType-form>
     
     <div class="form-group-divider"></div>
     <form-inline [description]="sizeInfoDesc">

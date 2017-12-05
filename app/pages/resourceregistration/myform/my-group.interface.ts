@@ -1,4 +1,4 @@
-import {FormGroup, FormBuilder, FormArray, AbstractControl} from "@angular/forms";
+import {FormGroup, FormBuilder, FormArray, AbstractControl, FormControl} from "@angular/forms";
 import {
     Component, Input, OnInit, Injector, OnChanges, SimpleChanges, AfterContentInit, Type,
     EventEmitter
@@ -14,7 +14,7 @@ import {Subject} from "rxjs/Subject";
 })
 export class MyGroup implements OnInit, AfterContentInit {
 
-    @Input() public parentGroup: FormGroup | FormArray;
+    @Input() public parentGroup: AbstractControl;
 
     @Input() public name : string | number;
 
@@ -32,7 +32,7 @@ export class MyGroup implements OnInit, AfterContentInit {
 
     protected groupDefinition : { [key:string]:any };
 
-    public group : FormGroup | FormArray;
+    public group : AbstractControl;
 
     public createdEvent : EventEmitter<any> = new EventEmitter();
 

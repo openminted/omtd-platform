@@ -1,4 +1,4 @@
-// Generated using typescript-generator version 1.29.366 on 2017-11-23 18:11:23.
+// Generated using typescript-generator version 1.29.366 on 2017-12-05 16:27:47.
 
 export class MyString {
     value: string;
@@ -9,6 +9,7 @@ export class Abstract extends MyString {
 }
 
 export class ActorInfo {
+    actorType: ActorTypeEnum;
     relatedPerson: PersonInfo;
     relatedGroup: GroupInfo;
     relatedOrganization: OrganizationInfo;
@@ -33,10 +34,7 @@ export class AnnotatedCorpusInfo {
     mediaType: string;
     lingualityInfo: LingualityInfo;
     languages: LanguageInfo[];
-    sizes: SizeInfo[];
-    dataFormats: DataFormatInfo[];
     annotations: AnnotationInfo[];
-    characterEncoding: CharacterEncodingEnum;
     textClassifications: TextClassificationInfo[];
     domains: DomainInfo[];
     timeClassifications: TimeCoverageInfo[];
@@ -67,12 +65,6 @@ export class AnnotationInfo {
 export class AnnotationTypeInfo {
     annotationType: AnnotationTypeType;
     annotationTypeOther: string;
-}
-
-export class AnnotationsInfo {
-    corpusSubtype: string;
-    rawCorpus: RelatedResource;
-    annotationInfo: AnnotationInfo;
 }
 
 export class BaseMetadataRecord {
@@ -139,7 +131,7 @@ export class ComponentInfo {
     identificationInfo: IdentificationInfo;
     versionInfo: VersionInfo;
     contactInfo: ContactInfo;
-    resourceDocumentationInfo: ResourceDocumentationInfo;
+    resourceDocumentations: ResourceDocumentationInfo[];
     resourceCreationInfo: ResourceCreationInfo;
     validationInfos: ValidationInfo[];
     usageInfo: UsageInfo;
@@ -183,12 +175,12 @@ export class CorpusInfo {
     identificationInfo: IdentificationInfo;
     versionInfo: VersionInfo;
     contactInfo: ContactInfo;
+    datasetDistributionInfo: DatasetDistributionInfo;
+    rightsInfo: RightsInfo;
+    resourceDocumentations: ResourceDocumentationInfo[];
+    resourceCreationInfo: ResourceCreationInfo;
     validationInfos: ValidationInfo[];
     usageInfo: UsageInfo;
-    resourceDocumentationInfo: ResourceDocumentationInfo;
-    resourceCreationInfo: ResourceCreationInfo;
-    distributionInfos: DatasetDistributionInfo[];
-    rightsInfo: RightsInfo;
     relations: RelationInfo[];
     corpusSubtypeSpecificInfo: CorpusSubtypeSpecificInfo;
 }
@@ -216,6 +208,7 @@ export class DataFormatInfo {
 export class DatasetDistributionInfo {
     distributionMedium: DistributionMediumEnum;
     distributionLocation: string;
+    sizes: SizeInfo[];
     textFormats: TextFormatInfo[];
     characterEncodings: CharacterEncodingInfo[];
 }
@@ -280,7 +273,7 @@ export class DocumentInfo {
     documentLanguages: string[];
     keywords: string[];
     subjects: Subject[];
-    fullText: FullText;
+    fullTexts: FullText[];
     abstracts: Abstract[];
     fundingProjects: ProjectInfo[];
     sizes: SizeInfo[];
@@ -384,23 +377,20 @@ export class LanguageDescriptionEncodingInfo {
 export class LanguageDescriptionInfo {
     resourceType: string;
     identificationInfo: IdentificationInfo;
-    contactInfo: ContactInfo;
     versionInfo: VersionInfo;
+    contactInfo: ContactInfo;
+    distributionInfos: DatasetDistributionInfo[];
+    rightsInfo: RightsInfo;
+    resourceDocumentations: ResourceDocumentationInfo[];
+    resourceCreationInfo: ResourceCreationInfo;
     validationInfos: ValidationInfo[];
     usageInfo: UsageInfo;
-    resourceDocumentationInfo: ResourceDocumentationInfo;
-    resourceCreationInfo: ResourceCreationInfo;
-    distributionInfos: DatasetDistributionInfo[];
     languageDescriptionType: LanguageDescriptionTypeEnum;
     modelOperationInfo: ModelOperationInfo;
     languageDescriptionEncodingInfo: LanguageDescriptionEncodingInfo;
     languageDescriptionOperationInfo: LanguageDescriptionOperationInfo;
     languageDescriptionPerformanceInfo: LanguageDescriptionPerformanceInfo;
     relations: RelationInfo[];
-    languageDescriptionMediaType: LanguageDescriptionMediaType;
-}
-
-export class LanguageDescriptionMediaType {
     languageDescriptionTextInfo: LanguageDescriptionTextInfo;
 }
 
@@ -420,9 +410,6 @@ export class LanguageDescriptionTextInfo {
     lingualityInfo: LingualityInfo;
     languages: LanguageInfo[];
     metalanguages: LanguageInfo[];
-    dataFormatInfo: DataFormatInfo;
-    characterEncoding: CharacterEncodingEnum;
-    sizes: SizeInfo[];
     domains: Domain[];
     keywords: string[];
     timeCoverage: string;
@@ -456,20 +443,17 @@ export class LexicalConceptualResourceEncodingInfo {
 export class LexicalConceptualResourceInfo {
     resourceType: string;
     identificationInfo: IdentificationInfo;
-    contactInfo: ContactInfo;
     versionInfo: VersionInfo;
+    contactInfo: ContactInfo;
     distributionInfos: DatasetDistributionInfo[];
+    rightsInfo: RightsInfo;
+    resourceDocumentations: ResourceDocumentationInfo[];
+    resourceCreationInfo: ResourceCreationInfo;
     validationInfos: ValidationInfo[];
     usageInfo: UsageInfo;
-    resourceDocumentationInfo: ResourceDocumentationInfo;
-    resourceCreationInfo: ResourceCreationInfo;
     lexicalConceptualResourceType: LexicalConceptualResourceTypeEnum;
     lexicalConceptualResourceEncodingInfo: LexicalConceptualResourceEncodingInfo;
     relations: RelationInfo[];
-    lexicalConceptualResourceMediaType: LexicalConceptualResourceMediaType;
-}
-
-export class LexicalConceptualResourceMediaType {
     lexicalConceptualResourceTextInfo: LexicalConceptualResourceTextInfo;
 }
 
@@ -478,9 +462,6 @@ export class LexicalConceptualResourceTextInfo {
     lingualityInfo: LingualityInfo;
     languages: LanguageInfo[];
     metalanguages: LanguageInfo[];
-    sizes: SizeInfo[];
-    dataFormatInfo: DataFormatInfo;
-    characterEncoding: CharacterEncodingEnum;
     domains: Domain[];
     keywords: string[];
     timeCoverage: string;
@@ -537,8 +518,8 @@ export class ModelOperationInfo {
     variant: string;
     typesystem: RelatedResource;
     annotationSchema: RelatedResource;
-    annotationResource: RelatedResource;
-    tagset: RelatedResource;
+    annotationResources: RelatedResource[];
+    tagsets: RelatedResource[];
     algorithm: string;
     algorithmDetails: string;
     trainingCorpusDetails: string;
@@ -619,7 +600,7 @@ export class PostalAddress {
 }
 
 export class ProcessingResourceInfo {
-    processingResourceTypes: ProcessingResourceTypeEnum[];
+    processingResourceType: ProcessingResourceTypeEnum;
     dataFormats: DataFormatInfo[];
     characterEncodings: CharacterEncodingEnum[];
     languages: string[];
@@ -666,9 +647,6 @@ export class RawCorpusInfo {
     mediaType: string;
     lingualityInfo: LingualityInfo;
     languages: LanguageInfo[];
-    sizes: SizeInfo[];
-    dataFormats: DataFormatInfo[];
-    characterEncodings: CharacterEncodingInfo[];
     textClassifications: TextClassificationInfo[];
     domains: DomainInfo[];
     timeClassifications: TimeCoverageInfo[];
@@ -739,13 +717,13 @@ export class ResourceName extends MyString {
 }
 
 export class RightsInfo {
-    availabilityStartDate: Date;
-    copyrightStatement: string;
-    availabilityEndDate: Date;
     licenceInfos: LicenceInfo[];
-    rightsHolders: ActorInfo[];
     rightsStatement: RightsStatementEnum;
     attributionText: string;
+    copyrightStatement: string;
+    availabilityStartDate: Date;
+    availabilityEndDate: Date;
+    rightsHolders: ActorInfo[];
 }
 
 export class RunningEnvironmentInfo {
@@ -847,6 +825,12 @@ export class VersionInfo {
     versionDate: string;
     versionType: VersionTypeEnum;
     revision: string;
+}
+
+export const enum ActorTypeEnum {
+    PERSON,
+    GROUP,
+    ORGANIZATION,
 }
 
 export const enum AnnotationTypeType {
@@ -1466,7 +1450,8 @@ export const enum LicenceEnum {
     M_DPPL_3_0,
     PROPRIETARY,
     UNDER_NEGOTIATION,
-    NOT_AVAILABLE,
+    OPEN_ACCESS_UNSPECIFIED,
+    RESTRICTED_ACCESS_UNSPECIFIED,
     NON_STANDARD_LICENCE_TERMS,
 }
 
@@ -2404,12 +2389,6 @@ export const enum TitleTypeEnum {
     SUBTITLE,
     TRANSLATED_TITLE,
     OTHER,
-}
-
-export const enum UserTypeEnum {
-    ACADEMIC,
-    COMMERCIAL,
-    MEMBERS_OF_GROUP,
 }
 
 export const enum ValidationExtentEnum {

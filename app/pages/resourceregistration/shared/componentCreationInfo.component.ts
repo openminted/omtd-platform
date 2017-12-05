@@ -23,8 +23,8 @@ import {Description, frameworkDesc, TDMMethodDesc} from "../../../domain/omtd.de
     <div class="form-group-divider"></div>
 
     <form-inline [description]="tdmDesc"
-                 [valid]="getMyControl('tdmMethod').valid">
-        <select name="role" class="form-control" formControlName="tdmMethod">
+                 [valid]="getMyControl('tdmmethod').valid">
+        <select name="role" class="form-control" formControlName="tdmmethod">
             <option *ngFor="let value of tdmMethodEnum" [value]="value.key" [selected]="value.key == ''">
                 {{value.value}}
             </option>
@@ -40,7 +40,7 @@ export class ComponentCreationInfoFormControl extends MyGroup {
 
     readonly groupDefinition = {
         framework : ['', Validators.required],
-        tdmMethod : ''
+        tdmmethod : ''
     };
 
     frameworkEnum :  EnumValues[] = frameworkEnum;

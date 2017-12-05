@@ -8834,9 +8834,9 @@ export var characterEncodingEnum = [
 
 export var lingualityTypeEnum = [
     {key : "", value : "--Linguality type--"},
-    {key : "MONOLINGUAL", value : "Linguality type"},
-    {key : "BILINGUAL", value : "Linguality type"},
-    {key : "MULTILINGUAL", value : "Linguality type"}
+    {key : "MONOLINGUAL", value : "Monolingual"},
+    {key : "BILINGUAL", value : "Bilingual"},
+    {key : "MULTILINGUAL", value : "Multilingual"}
 ];
 
 export var conformanceToStandardsBestPracticesEnum = [

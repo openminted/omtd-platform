@@ -36,8 +36,8 @@ export class CorpusUploadComponent implements OnInit {
 
     ngOnInit() {
         setTimeout( () => {
-            console.log("disable",this.corpusForm);
-            this.corpusForm.get("corpusInfo.distributionInfos.0.distributionLoc.0").disable();
+            // console.log("disable",this.corpusForm);
+            // this.corpusForm.get("corpusInfo.distributionInfos.0.distributionLoc.0").disable();
         },500)
 
     }
@@ -64,7 +64,7 @@ export class CorpusUploadComponent implements OnInit {
 
     onSubmit() {
 
-        this.setAsTouched(this.corpusForm);
+        //this.setAsTouched(this.corpusForm);
 
         this.successfulMessage = null;
         this.errorMessage = null;
@@ -91,15 +91,11 @@ export class CorpusUploadComponent implements OnInit {
 
             this.resourceService.uploadZip(this.zipFile.name,this.zipFile).subscribe(id => {
                 let corpusBody : OMTDCorpus = this.corpusForm.value;
-                let distributionInfo : DatasetDistributionInfo = new DatasetDistributionInfo();
-                distributionInfo.distributionLocation = id;
-                distributionInfo.distributionMedium = DistributionMediumEnum.DOWNLOADABLE;
                 corpusBody.corpusInfo.identificationInfo.resourceIdentifiers = [new ResourceIdentifier()];
                 corpusBody.corpusInfo.identificationInfo.resourceIdentifiers[0].value=id;
                 corpusBody.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
-
-                corpusBody.corpusInfo.distributionInfos  = [distributionInfo];
-
+                corpusBody.corpusInfo.datasetDistributionInfo.distributionMedium = DistributionMediumEnum.DOWNLOADABLE;
+                corpusBody.corpusInfo.datasetDistributionInfo.distributionLocation = id;
                 this.resourceService.uploadCorpus(this.corpusForm.value).subscribe(
                     res => {
                         this.uploadingCorpus = false;

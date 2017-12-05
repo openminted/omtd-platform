@@ -72,21 +72,22 @@ export class MyArray extends MyGroup {
         (<MyWrapper>wrapperView.instance).component = componentView.hostView;
         (<MyWrapper>wrapperView.instance).viewRef = wrapperView.hostView;
         (<MyWrapper>wrapperView.instance).description = this.description;
+
         (<MyWrapper>wrapperView.instance).first = this.viewContainerRef.length == 0;
         (<MyWrapper>wrapperView.instance).deleteNotifier.subscribe($event => {
             let index = this.viewContainerRef.indexOf($event);
             console.log(index);
             if( this.viewContainerRef.length == 1 && this.description.mandatory==true) {
                 console.log(this.viewContainerRef.get(0));
-                (<FormArray>this.parentGroup.controls[this.name].at(0).corpus((<MyGroup>componentView.instance).generate().value));
+                ((this.parentGroup as FormArray).controls[this.name].at(0).corpus((<MyGroup>componentView.instance).generate().value));
             } else {
                 this.remove(index);
-                <FormArray>this.parentGroup.controls[this.name].removeAt(index-1);
+                (this.parentGroup as FormArray).controls[this.name].removeAt(index-1);
                 this.arrayData_.splice(index-1,1);
             }
         });
 
-        (<FormArray>this.parentGroup.controls[this.name]).push(arrayGroup);
+        ((this.parentGroup as FormArray).controls[this.name]).push(arrayGroup);
 
         this.viewContainerRef.insert(wrapperView.hostView);
     }

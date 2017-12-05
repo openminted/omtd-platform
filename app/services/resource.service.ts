@@ -188,35 +188,60 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    static removeNulls(obj){
-        let isArray = obj instanceof Array;
-        for (let k in obj){
-            if (obj[k]===null || obj[k]==='' ) {console.log(k,obj[k]);isArray ? obj.splice(k,1) : delete obj[k];}
-            else if (typeof obj[k]=="object") {
-                if (typeof obj[k].value != 'undefined' && typeof obj[k].lang != 'undefined')
-                    if (obj[k].value == '' && obj[k].lang=='en')
-                        obj[k].lang = '';
-                ResourceService.removeNulls(obj[k]);
-            }
-            if(obj[k] instanceof Array) {
-                let tmp = obj[k] as Array<any>;
-                for (let a of obj[k]) {
-                    if (Object.keys(a).length == 0) tmp.splice(tmp.indexOf(a),1);
+    static removeNulls(obj) : any {
+        let aS = JSON.stringify(obj, ResourceService.toServer);
+        return JSON.parse(aS, ResourceService.removeNullParser);
+    }
+
+    public static toForms(service: any, obj : boolean = true) : any {
+        let ret = obj ? {} : [];
+        Object.entries(service).forEach(([name, values]) => {
+            let newValues = [];
+            if (Array.isArray(values)) {
+                if (values.length > 0 && typeof values[0] == 'string')
+                    values.forEach(entry => {
+                        newValues.push({
+                            entry: entry
+                        });
+                    });
+                else {
+                    newValues = ResourceService.toForms(values,false);
                 }
+            } else {
+                newValues = typeof values != 'object' ? values : ResourceService.toForms(values);
             }
-            // if(obj[k] instanceof Array && obj[k].length == 0) delete obj[k];
-            // if(obj[k] instanceof Object && Object.keys(obj[k]).length == 0 && typeof k == 'string') delete obj[k];
+            ret[name] = newValues;
+        });
+        return ret;
+    }
+
+    public static toServer(key,value) {
+        if (key.match(/^\d+$/)) {
+            if (typeof value.entry != 'undefined') {
+                return value.entry;
+            } else {
+                return value;
+            }
+        } else
+            return value
+    }
+
+    private static removeNullParser(key,value) {
+        if (typeof value == 'boolean' || typeof value == "number") return value;
+        if (value == "" || value.length == 0 || Object.values(value).length == 0) {
+            return undefined;
+        } else {
+            return value
         }
     }
 
     uploadCorpus(corpus: OMTDCorpus) {
 
-        console.log(JSON.stringify(corpus));
-
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        ResourceService.removeNulls(corpus);
-        return this.http.post(this._searchUrl + 'corpus', JSON.stringify(corpus), options)
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        let corpus_ = ResourceService.removeNulls(corpus);
+        console.log(JSON.stringify(corpus_,null,2));
+        return this.http.post(this._searchUrl + 'corpus', JSON.stringify(corpus_), options)
             .map(res => res.status)
             .catch(this.handleError);
     }
@@ -231,13 +256,11 @@ export class ResourceService {
     }
 
     uploadComponent(component: OMTDComponent) {
-
-        console.log(JSON.stringify(component));
-
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
-        ResourceService.removeNulls(component);
-        return this.http.post(this._searchUrl + 'component', JSON.stringify(component), options)
+        let component_ = ResourceService.removeNulls(component);
+        console.log(JSON.stringify(component_,null,2));
+        return this.http.post(this._searchUrl + 'component', JSON.stringify(component_), options)
             .map(res => res.status)
             .catch(this.handleError);
     }

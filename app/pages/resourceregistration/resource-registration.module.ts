@@ -8,9 +8,9 @@ import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { AccordionModule, TypeaheadModule, TooltipModule } from "ngx-bootstrap";
 import { MetadataHeaderInfoFormControl } from "./shared/metadata-header-info-form.component";
 import { ValuesPipe } from "./shared/values-pipe";
-import { LanguageTypeForm } from "./shared/language-type-form.component";
+import {LanguageTypeForm, SimpleLanguageTypeForm, SimpleLanguageTypeForm2} from "./shared/language-type-form.component";
 import {
-    MySimpleStringControl,
+    MySimpleStringControl, MySingleStringForm,
     MyStringAreaFormGroup, MyStringArrayFormGroup, MyStringDescFormGroup, MyStringFormControl,
     MyStringFormGroup
 } from "./shared/my-string-form.component";
@@ -44,6 +44,11 @@ import {MyChoice, MyChoiceWrapper} from "./myform/my-choice.interface";
 import {RawCorpusInfoFormControl} from "./shared/raw-corpus-info-form.component";
 import {DistributionMedium, DistributionMediums} from "./shared/distribution-mediums.component";
 import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-info-form.component";
+import {ParameterInfoFormComponent} from "./shared/parameter-info-form.component";
+import {AccordionComponent} from "./shared/accordion-section.component";
+import {DataFormatInfoFormControl} from "./shared/data-format-info-form.component";
+import {CharacterEncodingSetFormControl} from "./shared/character-encoding-form.component";
+import {TextFormatInfoFormControl} from "./shared/text-format-info-form.component";
 
 
 @NgModule({
@@ -57,11 +62,17 @@ import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-
         ReusableComponentsModule
     ],
     entryComponents: [
+        TextFormatInfoFormControl,
+        SimpleLanguageTypeForm,
+        SimpleLanguageTypeForm2,
+        CharacterEncodingSetFormControl,
+        DataFormatInfoFormControl,
         ExampleFormControl,
         MyArrayWrapper,
         MyChoice,
         MyChoiceWrapper,
         ContactPersonFormControl,
+        ParameterInfoFormComponent,
         MyInlineArrayWrapper,
         MyStringFormGroup,
         MyStringArrayFormGroup,
@@ -75,9 +86,15 @@ import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-
         SizeInfoFormControl,
         MyStringDescFormGroup,
         LanguageTypeForm,
-        LanguageInfoFormControl
+        LanguageInfoFormControl,
+        MySingleStringForm
     ],
     declarations: [
+        TextFormatInfoFormControl,
+        SimpleLanguageTypeForm,
+        SimpleLanguageTypeForm2,
+        CharacterEncodingSetFormControl,
+        MySingleStringForm,
         MyGroup,
         MyArrayWrapper,
         MyStringFormGroup,
@@ -85,6 +102,7 @@ import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-
         ProcessingResourceInfoFormComponent,
         DatasetDistributionLocInfoFormControl,
         InlineFormWrapper,
+        ParameterInfoFormComponent,
         CorpusSubtypeSpecificInfoForm,
         MyInlineArrayWrapper,
         ContactPersonFormControl,
@@ -93,6 +111,7 @@ import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-
         MyArrayInline,
         MyChoice,
         MyChoiceWrapper,
+        DataFormatInfoFormControl,
         ComponentCreationInfoFormControl,
         MyFormDirective,
         ExampleFormControl,
@@ -104,6 +123,7 @@ import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-
         MetadataHeaderInfoFormControl,
         VersionFormControl,
         ValuesPipe,
+        AccordionComponent,
         MyStringDescFormGroup,
         IdentifierCommonFormControl,
         ComponentGenericFormControl,
@@ -127,6 +147,10 @@ import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-
     ],
     
     exports: [
+        TextFormatInfoFormControl,
+        SimpleLanguageTypeForm,
+        SimpleLanguageTypeForm2,
+        CharacterEncodingSetFormControl,
         MyArrayWrapper,
         InlineFormWrapper,
         MyArray,
@@ -140,6 +164,8 @@ import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-
         MyStringAreaFormGroup,
         MyStringDescFormGroup,
         MyStringArrayFormGroup,
+        DataFormatInfoFormControl,
+        ParameterInfoFormComponent,
         DatasetDistributionLocInfoFormControl,
         ComponentCreationInfoFormControl,
         ContactPersonFormControl,
@@ -151,6 +177,7 @@ import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-
         ExampleFormControl,
         MetadataHeaderInfoFormControl,
         ValuesPipe,
+        AccordionComponent,
         CorpusSubtypeSpecificInfoForm,
         LanguageTypeForm,
         MySimpleStringControl,
@@ -169,7 +196,8 @@ import {ProcessingResourceInfoFormComponent} from "./shared/processing-resource-
         LanguageInfoFormControl, 
         ZipUploadComponent,
         ComponentDistributionInfoFormControl,
-        ComponentDistributionsInfoFormControl
+        ComponentDistributionsInfoFormControl,
+        MySingleStringForm
     ]
 })
 

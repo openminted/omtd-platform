@@ -3,110 +3,47 @@
     <form class="form-horizontal corpusForm" [formGroup]="myForm">
         <ul uk-accordion="multiple: true">
 
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Identification
-                        <i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.identificationInfo')?.valid , 'fa-times' : !myForm.get('corpusInfo.identificationInfo')?.valid }"></i>
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <identification-info-form [parentGroup]="myForm.controls.corpusInfo" [name]="'identificationInfo'"></identification-info-form>
-                </div>
-
-            </li>
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Contact
-                        <i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.contactInfo')?.valid , 'fa-times' : !myForm.get('corpusInfo.contactInfo')?.valid }"></i>
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <contact-info-form [required]="true" [parentGroup]="myForm.controls.corpusInfo" [name]="'contactInfo'"></contact-info-form>
-                </div>
-
-            </li>
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Version
-                        <i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.versionInfo')?.valid , 'fa-times' : !myForm.get('corpusInfo.versionInfo')?.valid }"></i>
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <versionInfo-form [parentGroup]="myForm.controls.corpusInfo" [name]="'versionInfo'"></versionInfo-form>
-                </div>
-
-            </li>
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Distribution
-                        <i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.distributionInfos')?.valid , 'fa-times' : !myForm.get('corpusInfo.distributionInfos')?.valid }"></i>
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <datasetDistributionsInfo-form [parentGroup]="myForm.controls.corpusInfo"></datasetDistributionsInfo-form>
-                </div>
-
-            </li>
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Corpus Content
-                        <!--<i *ngIf="production==false" class="fa" [ngClass]="{ 'fa-check' : myForm.get('corpusInfo.corpusSubtypeSpecificInfo')?.valid , 'fa-times' : !myForm.get('corpusInfo.corpusSubtypeSpecificInfo')?.valid }"></i>-->
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <corpusSubtypeSpecificInfo-form [parentGroup]="myForm.controls.corpusInfo"></corpusSubtypeSpecificInfo-form>
-                </div>
-
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Identification'">
+                <identification-info-form [parentGroup]="myForm.controls.corpusInfo"
+                                          [name]="'identificationInfo'"></identification-info-form>
             </li>
 
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Contact'">
+                <contact-info-form [required]="true" [parentGroup]="myForm.controls.corpusInfo"
+                                   [name]="'contactInfo'"></contact-info-form>
+            </li>
 
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Version'">
+                <versionInfo-form [parentGroup]="myForm.controls.corpusInfo" [name]="'versionInfo'"></versionInfo-form>
+            </li>
 
-            <!--<metadata-header-info-form [group]="myForm"></metadata-header-info-form>-->
-            <!--<div formGroupName="corpusInfo">-->
-            <!--<identification-info-form [parentGroup]="myForm.controls.corpusInfo" [name]="'identificationInfo'"></identification-info-form>-->
-            <!--<contact-info-form [required]="true" [parentGroup]="myForm.controls.corpusInfo" [name]="'contactInfo'"></contact-info-form>-->
-            <!--<versionInfo-form [parentGroup]="myForm.controls.corpusInfo" [name]="'versionInfo'"></versionInfo-form>-->
-            <!--<datasetDistributionsInfo-form [parentGroup]="myForm.controls.corpusInfo"></datasetDistributionsInfo-form>-->
-            <!--<corpusSubtypeSpecificInfo-form [parentGroup]="myForm.controls.corpusInfo"></corpusSubtypeSpecificInfo-form>-->
-            <!--</div>-->
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Distribution'">
+                <datasetDistributionsInfo-form
+                        [parentGroup]="myForm.controls.corpusInfo"></datasetDistributionsInfo-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Corpus Content'">
+                <corpusSubtypeSpecificInfo-form
+                        [parentGroup]="myForm.controls.corpusInfo"></corpusSubtypeSpecificInfo-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Rights Info'">
+                <rightsInfo-form [parentGroup]="myForm.controls.corpusInfo" [name]="'rightsInfo'"></rightsInfo-form>
+            </li>
         </ul>
-        <!--<accordion>-->
-            <!--<div data-uk-grid-margin="" class="uk-grid uk-grid-width-1-1">-->
-                <!--&lt;!&ndash;<metadata-header-info-form [group]="myForm"></metadata-header-info-form>&ndash;&gt;-->
-                <!--&lt;!&ndash;<div formGroupName="corpusInfo">&ndash;&gt;-->
-                <!--<identification-info-form [parentGroup]="myForm.controls.corpusInfo" [name]="'identificationInfo'"></identification-info-form>-->
-                <!--<contact-info-form [required]="true" [parentGroup]="myForm.controls.corpusInfo" [name]="'contactInfo'"></contact-info-form>-->
-                <!--<versionInfo-form [parentGroup]="myForm.controls.corpusInfo" [name]="'versionInfo'"></versionInfo-form>-->
-                <!--<datasetDistributionsInfo-form [parentGroup]="myForm.controls.corpusInfo"></datasetDistributionsInfo-form>-->
-                <!--<corpusSubtypeSpecificInfo-form [parentGroup]="myForm.controls.corpusInfo"></corpusSubtypeSpecificInfo-form>-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--</div>-->
-        <!--</accordion>-->
+
     </form>
     <form class="form-horizontal componentForm" [formGroup]="tocForm">
-        <form-inline [description]="{label : '', mandatory : false, description:''}" [params]="null" [valid]="tocForm.get('toc').valid">
+        <form-inline [description]="{label : '', mandatory : false, description:''}" [params]="null"
+                     [valid]="tocForm.get('toc').valid">
             <input type="checkbox" formControlName="toc" class="uk-checkbox">
-            I agree to the <a href="assets/files/OpenMinTeD_Terms_and_Conditions_v1.0.pdf" target="_blank">OpenMinTeD Terms and Conditions</a>
+            I agree to the <a href="assets/files/OpenMinTeD_Terms_and_Conditions_v1.0.pdf" target="_blank">OpenMinTeD
+            Terms and Conditions</a>
         </form-inline>
     </form>
 </div>
 <div *ngIf="production==false" class="margin-20">
     <div>myForm details:-</div>
     <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
-    <pre>form value: <br>{{removeNullValue | json}}</pre>
+    <pre>form value: <br>{{myForm.value | json}}</pre>
 </div>

@@ -320,7 +320,7 @@ export var unitDesc = {
 
 export var dataFormatTypeDesc = {
     desc : "Specifies the format that is used since often the mime type will not be sufficient for machine processing; NOTE: normally the format should be represented as a combination of the mimetype (e.g. application/xml) and some name and link to the documentation about the supplementary conventions used (e.g xces, alvisED etc.)",
-    label : "Plain text",
+    label : "Data Format",
     mandatory : false,
     recommended : false
 };

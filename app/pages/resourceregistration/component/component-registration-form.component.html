@@ -3,113 +3,62 @@
     <form class="form-horizontal componentForm" [formGroup]="myForm">
 
         <ul uk-accordion="multiple: true">
-            <!--<form-repeat-inline [component]="type" [group]="myForm" [name]="'example'" [required]="true" [description]="{label : 'Hello'}">-->
-            <!--</form-repeat-inline>-->
-            <!--<metadata-header-info-form [group]="myForm"></metadata-header-info-form>-->
-            <!--<componentGeneric-form [parentGroup]="myForm" [name]="'componentInfo'"></componentGeneric-form>-->
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Component Details
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <componentGeneric-form [parentGroup]="myForm" [name]="'componentInfo'"></componentGeneric-form>
-                </div>
-
-            </li>
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Identification
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <identification-info-form [parentGroup]="myForm.controls.componentInfo" [name]="'identificationInfo'"></identification-info-form>
-                </div>
-
-            </li>
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Contact
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <contact-info-form [required]="true" [parentGroup]="myForm.controls.componentInfo" [name]="'contactInfo'"></contact-info-form>
-                </div>
-
-            </li>
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Version
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <versionInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'versionInfo'" [data]="{update : true}"></versionInfo-form>
-                </div>
-
-            </li>
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Distribution
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <componentDistributionInfos-form [parentGroup]="myForm.controls.componentInfo"></componentDistributionInfos-form>
-                </div>
-
-            </li>
-            <li class="uk-open uk-margin-large-bottom">
-            <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Input/Output
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-            </h3>
-            <div class="uk-accordion-content">
-                <processing-resource-info-form [parentGroup]="myForm.controls.componentInfo" [name]="'inputContentResourceInfo'"></processing-resource-info-form>
-            </div>
-
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Component Details'">
+                <componentGeneric-form [parentGroup]="myForm" [name]="'componentInfo'"></componentGeneric-form>
             </li>
 
-            <li class="uk-open uk-margin-large-bottom">
-                <h3 class="uk-accordion-title">
-                    <span>
-                        <!--<i class="fa fa" [ngClass]="valid ? 'fa-check':'fa-exclamation'" aria-hidden="true"></i>-->
-                        Rights Info
-                        <!--<i class="fa" [ngClass]="{'fa-angle-down': !group1?._isOpen, 'fa-angle-up': group1?._isOpen}" aria-hidden="true"></i>-->
-                    </span>
-                </h3>
-                <div class="uk-accordion-content">
-                    <rightsInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'rightsInfo'"></rightsInfo-form>
-                </div>
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Identification'">
+                <identification-info-form [parentGroup]="myForm.controls.componentInfo"
+                                          [name]="'identificationInfo'"></identification-info-form>
+            </li>
 
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Contact'">
+                <contact-info-form [required]="true" [parentGroup]="myForm.controls.componentInfo"
+                                   [name]="'contactInfo'"></contact-info-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Version'">
+                <versionInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'versionInfo'"
+                                  [data]="{update : true}"></versionInfo-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Distribution'">
+                <componentDistributionInfos-form
+                        [parentGroup]="myForm.controls.componentInfo"></componentDistributionInfos-form>
+            </li>
+
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Input'">
+                <processing-resource-info-form [parentGroup]="myForm.controls.componentInfo"
+                                               [name]="'inputContentResourceInfo'"></processing-resource-info-form>
+            </li>
+
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Output'">
+                <processing-resource-info-form [parentGroup]="myForm.controls.componentInfo"
+                                               [name]="'outputResourceInfo'"></processing-resource-info-form>
+            </li>
+
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Parameters'">
+                <form-repeat [component]="parameterType" [parentGroup]="myForm.controls.componentInfo"
+                             [name]="'parameterInfos'" [required]="false" [description]="parameterInfoDesc">
+                </form-repeat>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Rights Info'">
+                <rightsInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'rightsInfo'"></rightsInfo-form>
             </li>
         </ul>
     </form>
     <form class="form-horizontal componentForm" [formGroup]="tocForm">
-        <form-inline [description]="{label : '', mandatory : false, description:''}" [params]="null" [valid]="tocForm.get('toc').valid">
+        <form-inline [description]="{label : '', mandatory : false, description:''}" [params]="null"
+                     [valid]="tocForm.get('toc').valid">
             <input type="checkbox" formControlName="toc" class="uk-checkbox">
-            I agree to the <a href="assets/files/OpenMinTeD_Terms_and_Conditions_v1.0.pdf" target="_blank">OpenMinTeD Terms and Conditions</a>
+            I agree to the <a href="assets/files/OpenMinTeD_Terms_and_Conditions_v1.0.pdf" target="_blank">OpenMinTeD
+            Terms and Conditions</a>
         </form-inline>
     </form>
 </div>
 <div *ngIf="production==false" class="margin-20">
     <div>myForm details:-</div>
     <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
-    <pre>form value: <br>{{myForm.value | json}}</pre>
+    <pre>form value: <br>{{debugValue | json}}</pre>
 </div>

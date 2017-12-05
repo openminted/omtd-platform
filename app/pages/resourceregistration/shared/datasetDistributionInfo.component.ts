@@ -4,8 +4,10 @@ import {EnumValues, distributionMediumEnum} from "../../../domain/omtd.enum";
 import {MyGroup} from "../myform/my-group.interface";
 import {
     Description, datasetDistributionInfoDesc, distributionMediumDesc,
-    distributionLocationDesc
+    distributionLocationDesc, sizeInfoDesc, textFormatInfoDesc
 } from "../../../domain/omtd.description";
+import {SizeInfoFormControl} from "./sizeInfo.component";
+import {TextFormatInfoFormControl} from "./text-format-info-form.component";
 /**
  * Created by stefanos on 16/1/2017.
  */
@@ -15,9 +17,10 @@ import {
     template : `    
     <div [formGroup]="parentGroup">
 
-        <form-repeat [component]="datasetDistributionType" [parentGroup]="parentGroup" 
-                            [name]="'distributionInfos'" [required]="true" [description]="datasetDistributionDesc">
-        </form-repeat>
+        <datasetDistributionInfo-form [parentGroup]="parentGroup" [name]="'datasetDistributionInfo'"></datasetDistributionInfo-form>
+        <!--<form-repeat [component]="datasetDistributionType" [parentGroup]="parentGroup" -->
+                            <!--[name]="'distributionInfos'" [required]="true" [description]="datasetDistributionDesc">-->
+        <!--</form-repeat>-->
         
     </div>
 `,
@@ -36,14 +39,23 @@ export class DatasetDistributionsInfoFormControl {
     selector: 'datasetDistributionInfo-form',
     template : `
 <div [formGroup]="group">
-    <form-repeat-inline [component]="datasetDistributionLocType" [parentGroup]="parentGroup" [hidden]="true"
-                        [name]="'distributionLoc'" [required]="true" [description]="datasetDistributionDesc">
-        
-    </form-repeat-inline>
+    <!--<form-repeat-inline [component]="datasetDistributionLocType" [parentGroup]="parentGroup" [hidden]="true"-->
+                        <!--[name]="'distributionLoc'" [required]="true" [description]="datasetDistributionDesc">-->
+        <!---->
+    <!--</form-repeat-inline>-->
 
+    <form-repeat-inline [component]="sizeInfoType" [parentGroup]="group"
+                        [name]="'sizes'" [required]="true" [description]="sizeInfoDesc">
+
+    </form-repeat-inline>
+    
     <div class="form-group-divider"></div>
-      
-    <rightsInfo-form [parentGroup]="group" [name]="'rightsInfo'"></rightsInfo-form>
+
+    <form-repeat-inline [component]="textFormatType" [parentGroup]="group"
+                        [name]="'textFormats'" [required]="true" [description]="textFormatDesc">
+
+    </form-repeat-inline>
+    <!--<rightsInfo-form [parentGroup]="group" [name]="'rightsInfo'"></rightsInfo-form>-->
     
 </div>  
     
@@ -55,7 +67,10 @@ export class DatasetDistributionInfoFormControl extends MyGroup {
 
     readonly datasetDistributionDesc : Description = datasetDistributionInfoDesc;
     datasetDistributionLocType : Type<any> = DatasetDistributionLocInfoFormControl;
-
+    sizeInfoType : Type<any> = SizeInfoFormControl;
+    textFormatType : Type<any> = TextFormatInfoFormControl;
+    textFormatDesc : Description = textFormatInfoDesc;
+    sizeInfoDesc : Description = sizeInfoDesc;
     readonly groupDefinition = {
 
     };

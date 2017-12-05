@@ -8,6 +8,9 @@ import {Observable} from 'rxjs/Rx';
 import {ExampleFormControl} from "../shared/example.component";
 import {ContactPersonFormControl} from "../shared/contactPerson.component";
 import {MyStringFormGroup} from "../shared/my-string-form.component";
+import {ParameterInfoFormComponent} from "../shared/parameter-info-form.component";
+import {Description, parameterInfoDesc} from "../../../domain/omtd.description";
+import {ResourceService} from "../../../services/resource.service";
 
 @Component({
     selector: 'component-registration-form',
@@ -31,289 +34,13 @@ export class ComponentRegistrationFormComponent implements OnInit {
     @Output()
     tocValid : EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    componentPatch: any = {
-        "metadataHeaderInfo": {
-            "metadataRecordIdentifier": {
-                "value": "stefTopicInferenceprivate1423",
-                "metadataIdentifierSchemeName": "HANDLE",
-                "schemeURI": "http://www.altova.com"
-            },
-            "metadataCreationDate": 1496782800000,
-            "metadataCreators": [{
-                "separateNames": {
-                    "surnames": [{"value": "Labropoulou", "lang": "en"}],
-                    "givenNames": [{"value": "Penny", "lang": "en"}]
-                },
-                "names": [],
-                "personIdentifiers": [{
-                    "value": "0931731331613278@openminted.eu",
-                    "personIdentifierSchemeName": "ORCID"
-                }],
-                "sex": "FEMALE",
-                "communicationInfo": {
-                    "emails": ["penny@ilsp.gr", ""],
-                    "homepages": [],
-                    "telephoneNumbers": [],
-                    "faxNumbers": []
-                },
-                "affiliations": [{
-                    "position": "Senior researcher",
-                    "affiliatedOrganization": {
-                        "organizationNames": [{"value": "Athena RC", "lang": "en"}],
-                        "organizationAlternativeNames": [],
-                        "organizationIdentifiers": [],
-                        "departmentNames": [{"value": "Institute for Language and Speech Processing", "lang": "en"}]
-                    }
-                }]
-            }]
-        },
-        "componentInfo": {
-            "resourceType": "COMPONENT",
-            "identificationInfo": {
-                "resourceNames": [
-                    {"value": "Stefania's amazing Component !", "lang": "en-us"},
-                    {"value": "Stefania's amazing Component ! 2", "lang": "en-us"}
-                    ],
-                "descriptions": [{
-                    "value": "A workflow of components that aim at topic extraction; it includes the DKProCore component MalletLdaTopicModelInferencer that infers the topic distribution over documents using a Mallet ParallelTopicModel.",
-                    "lang": "en-us"
-                }],
-                "resourceShortNames": [{"value": "Stefania's amazing Component 1!", "lang": "en-us"},
-                    {"value": "Stefania's amazing Component 2!", "lang": "en-us"}],
-                "resourceIdentifiers": [{"value": "TopicInference", "resourceIdentifierSchemeName": "OTHER"}],
-                "public": false
-            },
-            "versionInfo": {"version": "0.0.1"},
-            "contactInfo": {
-                "contactPersons": [{
-                    "separateNames": {
-                        "surnames": [{"value": "Galanis", "lang": "en"}],
-                        "givenNames": [{"value": "Dimitris", "lang": "en"}]
-                    },
-                    "names": [],
-                    "personIdentifiers": [],
-                    "sex": "MALE",
-                    "communicationInfo": {
-                        "emails": ["galanisd@ilsp.gr"],
-                        "homepages": [],
-                        "telephoneNumbers": [],
-                        "faxNumbers": []
-                    },
-                    "affiliations": [{
-                        "position": "Researcher",
-                        "affiliatedOrganization": {
-                            "organizationNames": [{
-                                "value": "Athena Research Center",
-                                "lang": "en"
-                            }],
-                            "organizationAlternativeNames": [],
-                            "organizationIdentifiers": [],
-                            "departmentNames": [{"value": "Institute for Language and Speech Processing", "lang": "en"}]
-                        }
-                    }]
-                }, {
-                    "separateNames": {
-                        "surnames": [{"value": "Gkirtzou", "lang": "en"}],
-                        "givenNames": [{"value": "Katerina", "lang": "en"}]
-                    },
-                    "names": [],
-                    "personIdentifiers": [{"value": "0000-0002-4725-3094", "personIdentifierSchemeName": "ORCID"}],
-                    "sex": "FEMALE",
-                    "communicationInfo": {
-                        "emails": ["katerina.gkirtzou@ilsp.gr"],
-                        "homepages": [],
-                        "telephoneNumbers": [],
-                        "faxNumbers": []
-                    },
-                    "affiliations": []
-                }], "contactGroups": [], "mailingLists": []
-            },
-            "validationInfos": [{
-                "validated": true,
-                "validationMode": "INTERACTIVE",
-                "validationModeDetails": "test validation",
-                "validationExtentDetails": "with OMTD- demo Dataset 1",
-                "validationReports": [],
-                "validationSwComponents": [],
-                "validators": []
-            }],
-            "resourceCreationInfo": {
-                "resourceCreators": [{
-                    "relatedPerson": {
-                        "separateNames": {
-                            "surnames": [{
-                                "value": "Galanis",
-                                "lang": "en"
-                            }], "givenNames": [{"value": "Dimitris", "lang": "en"}]
-                        },
-                        "names": [],
-                        "personIdentifiers": [],
-                        "sex": "MALE",
-                        "communicationInfo": {
-                            "emails": ["galanisd@ilsp.gr"],
-                            "homepages": [],
-                            "telephoneNumbers": [],
-                            "faxNumbers": []
-                        },
-                        "affiliations": [{
-                            "position": "Researcher",
-                            "affiliatedOrganization": {
-                                "organizationNames": [{
-                                    "value": "Athena Research Center",
-                                    "lang": "en"
-                                }],
-                                "organizationAlternativeNames": [],
-                                "organizationIdentifiers": [],
-                                "departmentNames": [{
-                                    "value": "Institute for Language and Speech Processing",
-                                    "lang": "en"
-                                }]
-                            }
-                        }]
-                    }
-                }, {
-                    "relatedPerson": {
-                        "separateNames": {
-                            "surnames": [{"value": "Gkirtzou", "lang": "en"}],
-                            "givenNames": [{"value": "Katerina", "lang": "en"}]
-                        },
-                        "names": [],
-                        "personIdentifiers": [{"value": "0000-0002-4725-3094", "personIdentifierSchemeName": "ORCID"}],
-                        "sex": "FEMALE",
-                        "communicationInfo": {
-                            "emails": ["katerina.gkirtzou@ilsp.gr"],
-                            "homepages": [],
-                            "telephoneNumbers": [],
-                            "faxNumbers": []
-                        },
-                        "affiliations": []
-                    }
-                }, {
-                    "relatedGroup": {
-                        "groupNames": [{"value": "DKPro Team", "lang": "en"}],
-                        "affiliatedOrganization": {
-                            "organizationNames": [{"value": "DKPro Core", "lang": "en"}],
-                            "organizationAlternativeNames": [],
-                            "organizationIdentifiers": [],
-                            "departmentNames": []
-                        }
-                    }
-                }],
-                "fundingProjects": [{
-                    "projectNames": [{
-                        "value": "Open Mining INfrastructure for TExt and Data",
-                        "lang": "en"
-                    }],
-                    "projectShortNames": [{"value": "OpenMinTeD", "lang": "en"}],
-                    "projectIdentifiers": [{"value": "654021", "projectIdentifierSchemeName": "EU-2020"}],
-                    "webpages": ["www.openminted.eu"],
-                    "funders": [{
-                        "organizationNames": [{"value": "EU", "lang": "en"}],
-                        "organizationAlternativeNames": [],
-                        "organizationIdentifiers": [],
-                        "departmentNames": []
-                    }],
-                    "fundingTypes": ["EU_FUNDS"],
-                    "fundingProgramme": "H2020",
-                    "fundingCountries": []
-                }],
-                "creationDate": {"date": {"day": 7, "month": 6, "year": 2017}}
-            },
-            "componentType": "TOPIC_EXTRACTOR",
-            "application": true,
-            "applicationFunction": "OTHER",
-            "workflow": true,
-            "distributionInfos": [{
-                "componentLoc": {
-                    "componentDistributionForm": "WEB_SERVICE",
-                    "distributionLocation": "http://github.com/galanisd/omtd-simple-workflows"
-                },
-                "command" : "command!",
-                "operatingSystems": [],
-                "rightsInfo": {
-                    "licenceInfos": [{
-                        "licenceInfo": [{
-                            "licence": "APACHE_2_0",
-                            "nonStandardLicenceName": [],
-                            "nonStandaradLicenceTermsText": [],
-                            "conditionOfUse": []
-                        }]
-                    }], "rightsStatement": ["OPEN_ACCESS","OPEN_ACCESS"]
-                },
-                "copyrightStatements": [],
-                "attributionTexts": [{
-                    "value": "Topic extractor based on the MalletLdaTopicModelInferencer licensed under Apache Licence 2.0",
-                    "lang": "en"
-                }],
-                "rightsHolders": [],
-                "userTypes": []
-            }],
-            "inputContentResourceInfo": {
-                "processingResourceTypes": ["DOCUMENT", "CORPUS"],
-                "dataFormats": [{
-                    "dataFormat": "APPLICATION_PDF",
-                    "mimeType": "APPLICATION_PDF",
-                    "fileExtension": "pdf"
-                }],
-                "characterEncodings": ["UTF_8"],
-                "languages": [{"languageTag": "en"}],
-                "annotationLevels": [],
-                "parameterInfos": [],
-                "domains": [],
-                "keywords": []
-            },
-            "outputResourceInfo": {
-                "processingResourceTypes": ["DOCUMENT"],
-                "dataFormats": [{"dataFormat": "APPLICATION_VND_XMI_XML", "mimeType": "APPLICATION_VND_XMI_XML"}],
-                "characterEncodings": ["UTF_8"],
-                "languages": [],
-                "typesystem": {
-                    "resourceNames": [{"value": "DKPro Core type system", "lang": "en"}],
-                    "resourceIdentifiers": []
-                },
-                "annotationLevels": ["SEMANTIC_ANNOTATION"],
-                "parameterInfos": [],
-                "domains": [],
-                "keywords": []
-            },
-            "componentDependencies": {
-                "typesystem": {
-                    "resourceNames": [{
-                        "value": "DKPro Core type system",
-                        "lang": "en"
-                    }], "resourceIdentifiers": []
-                },
-                "annotationResources": [{
-                    "resourceNames": [{
-                        "value": "MALLET LDA topic model trained on CORE abstracts (2015-09 dump)",
-                        "lang": "en"
-                    }], "resourceIdentifiers": []
-                }],
-                "softwareLibraries": []
-            },
-            "componentCreationInfo": {
-                "framework": "UIMA",
-                "implementationLanguage": "java",
-                "hasOriginalSource": [],
-                "tdmmethod": "MACHINE_AND_STATISTICAL_LEARNING"
-            },
-            "relations": [],
-            "componentEvaluationInfo": {
-                "evaluated": false,
-                "evaluationLevels": [],
-                "evaluationTypes": [],
-                "evaluationCriteria": [],
-                "evaluationMeasures": [],
-                "performanceIndicators": [],
-                "evaluationReports": [],
-                "evaluationSwComponents": [],
-                "evaluators": []
-            }
-        }
-    }
+    componentPatch: any = {"componentInfo":{"application":false,"functionInfo":{"function":"VIEWER"},"identificationInfo":{"public":false,"resourceShortName":"","resourceNames":[{"value":"Stefania's amazing Component !","lang":"en-us"},{"value":"Stefania's amazing Component ! 2","lang":"en-us"}],"descriptions":[{"value":"A workflow of components that aim at topic extraction; it includes the DKProCore component MalletLdaTopicModelInferencer that infers the topic distribution over documents using a Mallet ParallelTopicModel.","lang":"en-us"}],"resourceIdentifiers":[{"resourceIdentifierSchemeName":24,"value":"2wHbZG7kzlYlE6gknaqNWZKkDnzQOHqFIg2sJ0iL"}]},"contactInfo":{"contactPoint":"stevengatsios@gmail.com","contactType":1},"versionInfo":{"version":"0.0.1","revision":""},"inputContentResourceInfo":{"processingResourceType":"CORPUS","dataFormats":[{"dataFormat":"APPLICATION_XML"},{"dataFormat":"APPLICATION_XML"}],"characterEncodings":[{"entry":"WINDOWS_1253"},{"entry":"WINDOWS_1251"},{"entry":"MAC_ROMANIA"}],"languages":[{"entry":"en"},{"entry":"el"}]},"outputResourceInfo":{"processingResourceType":"","dataFormats":[{"dataFormat":""}],"characterEncodings":[{"entry":""}],"languages":[{"entry":""}]},"parameterInfos":[{"parameterName":"language","parameterLabel":"language","parameterDescription":"Use this language instead of the document language to resolve the model.","parameterType":"STRING","optional":true,"multiValue":false,"defaultValue":[{"entry":""}],"dataFormats":[{"dataFormat":""}]},{"parameterName":"dictVariant","parameterLabel":"dictVariant","parameterDescription":"Override the default variant used to locate the dictionary.","parameterType":"STRING","optional":true,"multiValue":false,"defaultValue":[{"entry":""}],"dataFormats":[{"dataFormat":""}]}],"rightsInfo":{"rightsStatement":"OPEN_ACCESS","licenceInfos":[{"licence":"CC_BY_3_0"}]},"componentCreationInfo":{"framework":"ALVIS_NLP","tdmmethod":"CLUSTERING_METHOD"},"distributionInfos":[{"componentDistributionForm":"EXECUTABLE_CODE","distributionLocation":"http://www.google.com"}]}};
 
     type: Type<any> = MyStringFormGroup;
 
+    parameterType: Type<any> = ParameterInfoFormComponent;
+    parameterInfoDesc : Description = parameterInfoDesc;
+    debugValue : any = {};
     production = process.env.PRODUCTION;
 
     constructor(private _fb: FormBuilder) {
@@ -327,11 +54,12 @@ export class ComponentRegistrationFormComponent implements OnInit {
             return (value == null) ? "" : value
         });
         component = JSON.parse(temp);
-        this.myForm.patchValue(component);
+        component.componentInfo.inputContentResourceInfo = ResourceService.toForms(component.componentInfo.inputContentResourceInfo);
+        console.log(ResourceService.toForms(component.componentInfo.inputContentResourceInfo));
+        this.myForm.patchValue(ResourceService.toForms(component));
     }
 
     ngOnInit() {
-
         this.myForm = this._fb.group({
             componentInfo: this._fb.group({
                 // resourceType : 'component'
@@ -340,6 +68,7 @@ export class ComponentRegistrationFormComponent implements OnInit {
         });
         this.myForm.valueChanges.subscribe(() => {
             this.componentForm.emit(this.myForm);
+            this.debugValue = ResourceService.removeNulls(this.myForm.value);
         });
 
         this.tocForm.valueChanges.subscribe( () => {

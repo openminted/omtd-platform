@@ -78,6 +78,23 @@ export class MyStringFormGroup extends MyGroup {
 }
 
 @Component({
+    selector: 'mySingleString',
+    template : `
+        <div [formGroup]="group">
+            <input type="text" class="uk-input" formControlName="entry" placeholder="{{description.label}}">
+        </div>
+    `,
+    styleUrls : ['./templates/common.css']
+})
+
+export class MySingleStringForm extends MyGroup {
+
+    public groupDefinition : any = {
+        entry : ['', Validators.required],
+    };
+}
+
+@Component({
     selector: 'myStringArea',
     template : `
         <div [formGroup]="group">

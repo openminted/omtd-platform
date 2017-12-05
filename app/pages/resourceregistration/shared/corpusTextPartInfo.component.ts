@@ -3,11 +3,8 @@
  */
 import {Component, Type} from '@angular/core';
 import { MyGroup } from "../myform/my-group.interface";
-import {SizeInfoFormControl} from "./sizeInfo.component";
-import {Description, sizeInfoDesc, languageDesc} from "../../../domain/omtd.description";
-import {LanguageInfoFormControl} from "./languageInfo.component";
-import {FormArray} from "@angular/forms";
-import {LanguageTypeForm} from "./language-type-form.component";
+import {Description, languageDesc} from "../../../domain/omtd.description";
+import { SimpleLanguageTypeForm2 } from "./language-type-form.component";
 
 @Component({
     selector: 'corpusTextPartInfo-form',
@@ -25,13 +22,6 @@ import {LanguageTypeForm} from "./language-type-form.component";
 
     </form-repeat-inline>
 
-
-    <div class="form-group-divider"></div>
-
-    <form-repeat-inline [component]="sizeInfoType" [parentGroup]="group"
-                        [name]="'sizes'" [required]="true" [description]="sizeInfoDesc">
-
-    </form-repeat-inline>
 </div>
 `,
     styleUrls : ['./templates/common.css']
@@ -42,10 +32,8 @@ export class CorpusTextPartInfoFormControl extends MyGroup {
         mediaType : 'text'
     };
 
-    sizeInfoType : Type<any> = SizeInfoFormControl;
-    languageInfoType : Type<any> = LanguageTypeForm;
+    languageInfoType : Type<any> = SimpleLanguageTypeForm2;
 
-    sizeInfoDesc : Description = sizeInfoDesc;
     languageDesc : Description = Object.assign({},languageDesc);
 
     ngOnInit() {

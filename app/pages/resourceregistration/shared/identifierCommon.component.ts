@@ -39,7 +39,7 @@ export class IdentifierCommonFormControl extends MyGroup {
 
     public generate() {
         this.init();
-        let ret = this._fb.group(this.groupDefinition);
+        let ret = this._fb.group(this.groupDefinition as { [key:string]:any });
         if (!this.required)
             Object.keys(ret.controls).forEach(item => ret.controls[item].clearValidators());
         return ret;
