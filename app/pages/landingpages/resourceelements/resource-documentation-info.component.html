@@ -9,5 +9,17 @@
         </span>
     </div>
 
-    <!--TODO add publicationIdentifiers-->
+    <div *ngIf="resourceDocumentationInfo.publicationIdentifiers && resourceDocumentationInfo.publicationIdentifiers.length>0"
+         class="uk-margin-top">
+        <div *ngFor="let publicationIdentifier of resourceDocumentationInfo.publicationIdentifiers">
+            <span *ngIf="publicationIdentifier.publicationIdentifierSchemeName=='URL' || publicationIdentifier.publicationIdentifierSchemeName=='PURL'
+            || publicationIdentifier.publicationIdentifierSchemeName=='HANDLE'">
+                {{publicationIdentifier.publicationIdentifierSchemeName}}: <a href="{{publicationIdentifier.value}}" target="_blank">{{publicationIdentifier.value}}</a>
+            </span>
+            <span *ngIf="publicationIdentifier.publicationIdentifierSchemeName!='URL' && publicationIdentifier.publicationIdentifierSchemeName!='PURL'
+            && publicationIdentifier.publicationIdentifierSchemeName!='HANDLE'">
+                {{publicationIdentifier.publicationIdentifierSchemeName}}: {{publicationIdentifier.value}}
+            </span>
+        </div>
+    </div>
 </div>

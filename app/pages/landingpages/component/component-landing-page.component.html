@@ -16,12 +16,14 @@
                     <h2 class="uk-h2 uk-inline" *ngIf="component.componentInfo.identificationInfo.resourceNames
                         && component.componentInfo.identificationInfo.resourceNames.length>0">
                         {{component.componentInfo.identificationInfo.resourceNames[0].value}}
-                        <span *ngIf="component.componentInfo.identificationInfo.resourceShortName" class="element element-text">
+                        <span *ngIf="component.componentInfo.identificationInfo.resourceShortName"
+                              class="element element-text uk-margin-small-left shortName">
                             | {{component.componentInfo.identificationInfo.resourceShortName}}
                         </span>
                     </h2>
 
-                    <button class="uk-button uk-button-primary uk-float-right" (click)="process()">
+                    <button *ngIf="component.componentInfo.application" class="uk-button uk-button-primary uk-float-right"
+                            (click)="process()">
                         Process <i class="fa fa-cogs" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -42,19 +44,19 @@
                         </ng-template>
                     </div>
 
-                    <!--<ul class="uk-subnav">-->
-                        <!--<li *ngIf="component.componentInfo.identificationInfo.resourceShortName"-->
-                            <!--class="element element-text">-->
-                            <!--<strong>{{component.componentInfo.identificationInfo.resourceShortName}} </strong> </li>-->
-                    <!--</ul>-->
-
-                    <!--TODO create link for resource identifiers that can be linked-->
-                    <!--<div class="resourceIdentifiers" *ngIf="component.componentInfo.identificationInfo.identifiers-->
-                        <!--&& component.componentInfo.identificationInfo.identifiers.length>0">-->
-                        <!--<div *ngFor="let identifier of component.componentInfo.identificationInfo.identifiers">-->
-                            <!--<a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <div class="resourceIdentifiers" *ngIf="component.componentInfo.identificationInfo.resourceIdentifiers
+                        && component.componentInfo.identificationInfo.resourceIdentifiers.length>0">
+                        <div *ngFor="let identifier of component.componentInfo.identificationInfo.resourceIdentifiers">
+                            <span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'
+                            || identifier.resourceIdentifierSchemeName=='HANDLE'">
+                                {{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>
+                            </span>
+                            <span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'
+                            && identifier.resourceIdentifierSchemeName!='HANDLE'">
+                                {{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}
+                            </span>
+                        </div>
+                    </div>
 
                     <version-info *ngIf="component.componentInfo.versionInfo"
                                   [versionInfo]="component.componentInfo.versionInfo">
@@ -73,7 +75,6 @@
                         </li>
                     </ul>
 
-
                     <div *ngIf="component.componentInfo.functionInfo || component.componentInfo.inputContentResourceInfo
                         || component.componentInfo.outputResourceInfo || component.componentInfo.componentDependencies
                         || (component.componentInfo.parameterInfos && component.componentInfo.parameterInfos.length>0)">
@@ -84,11 +85,6 @@
                                                   [componentDependencies]="component.componentInfo.componentDependencies"></component-execution-info>
                     </div>
 
-                    <!--<ul *ngIf="component.componentInfo.componentTypes" class="uk-subnav uk-subnav-line componentTypes">-->
-                        <!--<li *ngFor="let componentType of component.componentInfo.componentTypes" class="element element-text uk-margin-right">-->
-                            <!--<strong>{{componentType}} </strong> </li>-->
-                    <!--</ul>-->
-
                     <ul class="uk-list" *ngIf="component.componentInfo.resourceDocumentations
                         && component.componentInfo.resourceDocumentations.length>0">
                         <li *ngFor="let resourceDocumentationInfo of component.componentInfo.resourceDocumentations" class="uk-margin-top">
@@ -96,94 +92,16 @@
                         </li>
                     </ul>
 
+                    <div *ngIf="component.componentInfo.relations && component.componentInfo.relations.length>0"
+                         class="uk-card uk-card-body uk-card-secondary">
+                        <h4>Relations</h4>
+                        <ul class="uk-list">
+                            <li *ngFor="let relationInfo of component.componentInfo.relations">
+                                <relation-info [relationInfo]="relationInfo"></relation-info>
+                            </li>
+                        </ul>
+                    </div>
 
-
-
-                    <!--TABS-->
-                    <!--<ul class=" uk-tab uk-visible@m" uk-tab="connect: #infoTabs; animation: uk-animation-fade">-->
-                        <!--<li *ngIf="component.componentInfo.distributionInfos && component.componentInfo.distributionInfos.length>0">-->
-                            <!--<a>Distribution</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.validationInfos && component.componentInfo.validationInfos.length>0">-->
-                            <!--<a>Validations</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.usageInfo">-->
-                            <!--<a>Usage</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.inputContentResourceInfo || component.componentInfo.outputResourceInfo">-->
-                            <!--<a>Input/Output</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.componentDependencies">-->
-                            <!--<a>Dependencies</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.componentEvaluationInfo">-->
-                            <!--<a>Evaluation</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.componentCreationInfo">-->
-                            <!--<a>Creation</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-
-                    <!--<button class="uk-button uk-button-default uk-hidden@m" type="button">-->
-                        <!--<span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">{{activeTab}}</span>-->
-                    <!--</button>-->
-
-                    <!--<ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m" uk-switcher="{connect: #infoTabs; animation: uk-animation-fade}" uk-dropdown="mode: click" uk-toggle="target: #toggle-small-tabs">-->
-                        <!--<li *ngIf="component.componentInfo.distributionInfos && component.componentInfo.distributionInfos.length>0">-->
-                            <!--<a>Distribution</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.validationInfos && component.componentInfo.validationInfos.length>0">-->
-                            <!--<a>Validations</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.usageInfo">-->
-                            <!--<a>Usage</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.inputContentResourceInfo || component.componentInfo.outputResourceInfo">-->
-                            <!--<a>Input/Output</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.componentDependencies">-->
-                            <!--<a>Dependencies</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.componentEvaluationInfo">-->
-                            <!--<a>Evaluation</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.componentCreationInfo">-->
-                            <!--<a>Creation</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-
-                    <!--<ul id="infoTabs" class="uk-switcher  uk-width-1-1 uk-margin-top custom-tab-content-large">-->
-                        <!--<li *ngIf="component.componentInfo.distributionInfos && component.componentInfo.distributionInfos.length>0">-->
-                            <!--<component-distribution-info *ngFor="let distributionInfo of component.componentInfo.distributionInfos"-->
-                                                         <!--[componentDistributionInfo]="distributionInfo"></component-distribution-info>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.validationInfos && component.componentInfo.validationInfos.length>0">-->
-                            <!--<validation-info *ngFor="let validationInfo of component.componentInfo.validationInfos"-->
-                                             <!--[validationInfo]="validationInfo"></validation-info>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.usageInfo">-->
-                            <!--<usage-info [usageInfo]="component.componentInfo.usageInfo"></usage-info>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.inputContentResourceInfo || component.componentInfo.outputResourceInfo">-->
-                            <!--<div *ngIf="component.componentInfo.inputContentResourceInfo">-->
-                                <!--<h4>Input</h4>-->
-                                <!--<processing-resource-info [processingResourceInfo]="component.componentInfo.inputContentResourceInfo"></processing-resource-info>-->
-                            <!--</div>-->
-                            <!--<div *ngIf="component.componentInfo.outputResourceInfo" class="uk-margin-top">-->
-                                <!--<h4>Output</h4>-->
-                                <!--<processing-resource-info [processingResourceInfo]="component.componentInfo.outputResourceInfo"></processing-resource-info>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.componentDependencies">-->
-                            <!--<component-dependencies [componentDependencies]="component.componentInfo.componentDependencies"></component-dependencies>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.componentEvaluationInfo">-->
-                            <!--<component-evaluation-info [componentEvaluationInfo]="component.componentInfo.componentEvaluationInfo"></component-evaluation-info>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="component.componentInfo.componentCreationInfo">-->
-                            <!--<component-creation-info [componentCreationInfo]="component.componentInfo.componentCreationInfo"></component-creation-info>-->
-                        <!--</li>-->
-                    <!--</ul>-->
 
                 </div>
 

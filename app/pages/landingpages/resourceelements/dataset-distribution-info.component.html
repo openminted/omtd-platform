@@ -1,10 +1,10 @@
 <div class="uk-list datasetDistributionInfo">
-    <div *ngIf="datasetDistributionInfo.distributionLoc && datasetDistributionInfo.distributionLoc.length>0">
-        <strong>Distribution medium: </strong>
-        <span *ngFor="let distributionMedium of datasetDistributionInfo.distributionLoc; let isLast = last;">
-            {{distributionMedium.distributionMedium}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
+    <!--<div *ngIf="datasetDistributionInfo.distributionLocation">-->
+        <!--<strong>Distribution medium: </strong>-->
+        <!--<span *ngFor="let distributionMedium of datasetDistributionInfo.distributionLoc; let isLast = last;">-->
+            <!--{{distributionMedium.distributionMedium}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
 
     <!--TODO uncomment when we enable corpus download again-->
     <!--<div *ngIf="datasetDistributionInfo.distributionLoc && datasetDistributionInfo.distributionLoc.length>0">-->
@@ -51,61 +51,6 @@
             <span *ngIf="sizeItem.size">{{sizeItem.size}}</span>
             <span *ngIf="sizeItem.sizeUnit"> {{sizeItem.sizeUnit}}</span>
             {{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="datasetDistributionInfo.rightsInfo" class="uk-margin-top">
-        <h4>Rights</h4>
-        <rights-info [rightsInfo]="datasetDistributionInfo.rightsInfo"></rights-info>
-    </div>
-    <div *ngIf="datasetDistributionInfo.copyrightStatements && datasetDistributionInfo.copyrightStatements.length>0"
-         class="uk-margin-top">
-        <h4>Copyright Statements</h4>
-        <div *ngFor="let copyrightStatement of datasetDistributionInfo.copyrightStatements">
-            {{copyrightStatement.value}}
-        </div>
-    </div>
-    <div *ngIf="datasetDistributionInfo.attributionTexts && datasetDistributionInfo.attributionTexts.length>0"
-         class="uk-margin-top">
-        <h4>Attribution Texts</h4>
-        <div *ngFor="let attributionText of datasetDistributionInfo.attributionTexts">
-            {{attributionText.value}}
-        </div>
-    </div>
-    <div *ngIf="datasetDistributionInfo.rightsHolders && datasetDistributionInfo.rightsHolders.length>0" class="uk-margin-top">
-        <strong>Rights Holders: </strong>
-        <span *ngFor="let rightHolder of datasetDistributionInfo.rightsHolders; let isLast = last;">
-            <span *ngIf="rightHolder.relatedPerson && rightHolder.relatedPerson.personNames
-            && rightHolder.relatedPerson.personNames.length>0">
-                {{rightHolder.relatedPerson.personNames[0].value}}
-            </span>
-            <span *ngIf="rightHolder.relatedPerson && rightHolder.relatedPerson.personIdentifiers
-            && rightHolder.relatedPerson.personIdentifiers.length>0">
-                {{rightHolder.relatedPerson.personIdentifiers[0].value}}
-            </span>
-            <span *ngIf="rightHolder.relatedOrganization && rightHolder.relatedOrganization.organizationNames
-            && rightHolder.relatedOrganization.organizationNames.length>0">
-                {{rightHolder.relatedOrganization.organizationNames[0].value}}
-            </span>
-            <span *ngIf="rightHolder.relatedOrganization && rightHolder.relatedOrganization.organizationIdentifiers
-            && rightHolder.relatedOrganization.organizationIdentifiers.length>0">
-                {{rightHolder.relatedOrganization.organizationIdentifiers[0].value}}
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="datasetDistributionInfo.availabilityStartDate">
-        <strong>Availability from: </strong>{{datasetDistributionInfo.availabilityStartDate.month}}/{{datasetDistributionInfo.availabilityStartDate.day}}/{{datasetDistributionInfo.availabilityStartDate.year}}
-    </div>
-    <div *ngIf="datasetDistributionInfo.availabilityEndDate">
-        <strong>Availability to: </strong>{{datasetDistributionInfo.availabilityEndDate.month}}/{{datasetDistributionInfo.availabilityEndDate.day}}/{{datasetDistributionInfo.availabilityEndDate.year}}
-    </div>
-    <div *ngIf="datasetDistributionInfo.fee">
-        <strong>Fee: </strong>{{datasetDistributionInfo.fee}}
-    </div>
-    <div *ngIf="datasetDistributionInfo.userTypes && datasetDistributionInfo.userTypes.length>0">
-        <strong>User types: </strong>
-        <span *ngFor="let userType of datasetDistributionInfo.userTypes; let isLast = last;">
-            {{userType}}{{isLast ? '' : ', '}}
         </span>
     </div>
 </div>

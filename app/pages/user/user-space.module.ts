@@ -18,14 +18,12 @@ import { MyOperationsComponent } from "./operations/my-operations.component";
     imports: [
         CommonModule,
         userSpaceRouting,
-        // ModalModule.forRoot(),
         ReusableComponentsModule
     ],
     declarations: [
         MyCorporaComponent,
         MyServicesComponent,
         MyOperationsComponent,
-        // ConfirmationDialogComponent
     ],
     providers: [
         ResourceService

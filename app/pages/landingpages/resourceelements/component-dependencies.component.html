@@ -5,7 +5,7 @@
             {{componentDependencies.typesystem.resourceNames[0].value}}
         </span>
     </div>
-    <div *ngIf="componentDependencies.annotationSchema && componentDependencies.annotationSchema.length>0">
+    <div *ngIf="componentDependencies.annotationSchema">
         <strong>Annotation schema: </strong>
         <span *ngIf="componentDependencies.annotationSchema.resourceNames && componentDependencies.annotationSchema.resourceNames.length>0">
             {{componentDependencies.annotationSchema.resourceNames[0].value}}
@@ -20,7 +20,7 @@
             {{isLast ? '' : ', '}}
         </span>
     </div>
-    <div *ngIf="componentDependencies.mlModel && componentDependencies.mlModel.length>0">
+    <div *ngIf="componentDependencies.mlModel">
         <strong>ML model: </strong>
         <span *ngIf="componentDependencies.mlModel.resourceNames && componentDependencies.mlModel.resourceNames.length>0">
             {{componentDependencies.mlModel.resourceNames[0].value}}
