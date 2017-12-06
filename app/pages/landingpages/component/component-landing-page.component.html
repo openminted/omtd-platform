@@ -16,7 +16,8 @@
                     <h2 class="uk-h2 uk-inline" *ngIf="component.componentInfo.identificationInfo.resourceNames
                         && component.componentInfo.identificationInfo.resourceNames.length>0">
                         {{component.componentInfo.identificationInfo.resourceNames[0].value}}
-                        <span *ngIf="component.componentInfo.identificationInfo.resourceShortName" class="element element-text">
+                        <span *ngIf="component.componentInfo.identificationInfo.resourceShortName"
+                              class="element element-text uk-margin-small-left shortName">
                             | {{component.componentInfo.identificationInfo.resourceShortName}}
                         </span>
                     </h2>

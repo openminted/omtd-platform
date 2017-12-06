@@ -34,6 +34,10 @@
     letter-spacing: 1.5px;
 }
 
+.shortName {
+    font-size: 17px;
+}
+
 .resourceSideInfo {
     font-size: 12px;
 }
