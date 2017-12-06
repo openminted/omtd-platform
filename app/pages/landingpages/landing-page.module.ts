@@ -39,6 +39,7 @@ import { CommunicationInfoComponent } from "./resourceelements/communication-inf
 import { OrganizationInfoComponent } from "./resourceelements/organisation-info.component";
 import { ComponentExecutionInfoComponent } from "./resourceelements/component-execution-info.component";
 import { FunctionInfoComponent } from "./resourceelements/function-info.component";
+import { RelationInfoComponent } from "./resourceelements/relation-info.component";
 
 @NgModule({
     imports: [
@@ -78,7 +79,8 @@ import { FunctionInfoComponent } from "./resourceelements/function-info.componen
         CommunicationInfoComponent,
         OrganizationInfoComponent,
         ComponentExecutionInfoComponent,
-        FunctionInfoComponent
+        FunctionInfoComponent,
+        RelationInfoComponent
     ],
     providers: [
         ResourceService

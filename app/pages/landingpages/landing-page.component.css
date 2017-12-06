@@ -4,7 +4,8 @@
 }
 
 .groupInfo, .personInfo {
-    border-left: 2px solid #0055b9;
+    /*border-left: 2px solid #0055b9;*/
+    border-left: 2px solid #6fbbb6;
     font-size: 90%;
     padding-left: 10px;
 }
@@ -26,6 +27,11 @@
 .componentExecution h4 {
     margin: 0 0 5px 0;
     font-size: 15px;
+}
+
+.resourceIdentifiers {
+    margin-bottom: 10px;
+    letter-spacing: 1.5px;
 }
 
 .resourceSideInfo {
