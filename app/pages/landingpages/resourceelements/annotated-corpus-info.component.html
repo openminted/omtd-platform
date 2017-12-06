@@ -1,15 +1,15 @@
-<div *ngIf="annotatedCorpusInfo.corpusMediaParts">
-    <div *ngIf="annotatedCorpusInfo.corpusMediaParts.corpusTextParts && annotatedCorpusInfo.corpusMediaParts.corpusTextParts.length>0">
-        <h4>Corpus Text Parts</h4>
-        <corpus-text-part-info *ngFor="let corpusTextPartInfo of annotatedCorpusInfo.corpusMediaParts.corpusTextParts"
-                               [corpusTextPartInfo]="corpusTextPartInfo">
-        </corpus-text-part-info>
-    </div>
-    <div *ngIf="annotatedCorpusInfo.corpusMediaParts.annotations && annotatedCorpusInfo.corpusMediaParts.annotations.length>0"
-         class="uk-margin-top">
-        <h4>Annotations</h4>
-        <annotation-info *ngFor="let annotationInfo of annotatedCorpusInfo.corpusMediaParts.annotations"
-                         [annotationInfo]="annotationInfo">
-        </annotation-info>
-    </div>
-</div>
+<!--<div *ngIf="annotatedCorpusInfo.corpusMediaParts">-->
+    <!--<div *ngIf="annotatedCorpusInfo.corpusMediaParts.corpusTextParts && annotatedCorpusInfo.corpusMediaParts.corpusTextParts.length>0">-->
+        <!--<h4>Corpus Text Parts</h4>-->
+        <!--<corpus-text-part-info *ngFor="let corpusTextPartInfo of annotatedCorpusInfo.corpusMediaParts.corpusTextParts"-->
+                               <!--[corpusTextPartInfo]="corpusTextPartInfo">-->
+        <!--</corpus-text-part-info>-->
+    <!--</div>-->
+    <!--<div *ngIf="annotatedCorpusInfo.corpusMediaParts.annotations && annotatedCorpusInfo.corpusMediaParts.annotations.length>0"-->
+         <!--class="uk-margin-top">-->
+        <!--<h4>Annotations</h4>-->
+        <!--<annotation-info *ngFor="let annotationInfo of annotatedCorpusInfo.corpusMediaParts.annotations"-->
+                         <!--[annotationInfo]="annotationInfo">-->
+        <!--</annotation-info>-->
+    <!--</div>-->
+<!--</div>-->
