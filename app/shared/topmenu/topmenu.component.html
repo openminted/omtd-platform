@@ -38,7 +38,8 @@
                             </li>
                             <li class="uk-nav-header uk-parent" [routerLinkActive]="['uk-active']">Search
                                 <ul class="uk-nav-sub">
-                                    <li><a [routerLink]="['/search', { resourceType: 'component' }]" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Service/Tools</a></li>
+                                    <li><a [routerLink]="['/search', { resourceType: 'application' }]" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Applications</a></li>
+                                    <li><a [routerLink]="['/search', { resourceType: 'component' }]" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Components</a></li>
                                     <li><a [routerLink]="['/search', { resourceType: 'corpus' }]" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Corpora</a></li>
                                     <!--<li><a [routerLink]="['/search']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">...</a></li>-->
                                 </ul>
@@ -144,7 +145,8 @@
                                 <div class="uk-navbar-dropdown-grid uk-child-width-1-1 uk-grid uk-grid-stack" uk-grid="">
                                     <div class="uk-first-column">
                                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                                            <li><a [routerLink]="['/search', { resourceType: 'component' }]" routerLinkActive="uk-active">Service/Tools</a></li>
+                                            <li><a [routerLink]="['/search', { resourceType: 'application' }]" routerLinkActive="uk-active">Applications</a></li>
+                                            <li><a [routerLink]="['/search', { resourceType: 'component' }]" routerLinkActive="uk-active">Components</a></li>
                                             <li><a [routerLink]="['/search', { resourceType: 'corpus' }]" routerLinkActive="uk-active">Corpora</a></li>
                                             <!--<li><a [routerLink]="['/search']" routerLinkActive="uk-active">...</a></li>-->
                                         </ul>

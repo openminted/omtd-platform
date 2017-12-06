@@ -13,6 +13,12 @@ const landingPageRoutes: Routes = [
     {
         path: 'landingPage/component/:id',
         component: ComponentLandingPageComponent,
+        data : {resourceType : 'component' }
+    },
+    {
+        path: 'landingPage/application/:id',
+        component: ComponentLandingPageComponent,
+        data : {resourceType : 'application' }
     },
     {
         path: 'landingPage/corpus/:id',

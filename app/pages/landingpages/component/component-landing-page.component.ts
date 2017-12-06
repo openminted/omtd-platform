@@ -19,18 +19,20 @@ export class ComponentLandingPageComponent {
     public component: OMTDComponent;
     public errorMessage: string;
     private sub: Subscription;
-
+    private resourceType: string = '';
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private resourceService: ResourceService) {}
+        private resourceService: ResourceService) {
+        this.resourceType = route.snapshot.data['resourceType'];
+    }
 
     ngOnInit() {
 
         this.sub = this.route.params.subscribe(params => {
             let id = params['id'];
-            this.resourceService.getComponent(id).subscribe(
+            this.resourceService.getComponent(id, this.resourceType).subscribe(
                 component => {this.component = component; transform(this.component)},
                 error => this.handleError(<any>error));
         });
