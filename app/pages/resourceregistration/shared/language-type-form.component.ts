@@ -7,62 +7,6 @@ import { EnumValues, languageIdTypeEnum } from "../../../domain/omtd.enum";
 import { MyGroup } from "../myform/my-group.interface";
 
 @Component({
-    selector: 'languageType-form',
-    templateUrl : './templates/language-type-form.component.html',
-    styleUrls : ['./templates/common.css']
-})
-export class LanguageTypeForm extends MyGroup {
-
-    // readonly groupDefinition = {
-    //     language : this._fb.group({
-    //         languageTag: ['', Validators.required],
-    //         languageId: ['', Validators.required],
-    //         scriptId: '',
-    //         regiontId: '',
-    //         variantId: ''
-    //     })
-    // };
-    //
-    // languageTagDesc : Description;
-    // languageIdDesc : Description = languageIdDesc;
-    // scriptIdDesc : Description;
-    // regionIdDesc : Description;
-    // variantIdDesc : Description;
-    //
-    // languageIdEnum : EnumValues[] = languageIdTypeEnum;
-    // scriptIdEnum : EnumValues[] = scriptIdTypeEnum;
-    // regionIdEnum : EnumValues[] = regionIdTypeEnum;
-    // variantIdEnum : EnumValues[] = variantIdTypeEnum;
-    //
-    // // compositionObject : Language = new Language();
-    //
-    // setLanguageId($event : any) : void {
-    //     // this.compositionObject.languageId = <string>$event.item.key.toLowerCase();
-    //     this.getMyControl('language.languageId').setValue($event.item.key.toLowerCase());
-    // }
-    //
-    // get languageTag() {
-    //     let arr : string[] = [];
-    //     for(let type of ['languageId','scriptId','regiontId','variantId']) {
-    //         if (this.compositionObject[type]) {
-    //             arr.push(this.compositionObject[type])
-    //         }
-    //     }
-    //     return !this.compositionObject.languageId ? '' : arr.join('-');
-    // }
-    //
-    // ngOnInit() {
-    //     super.ngOnInit();
-    //     for(let type of ['languageId','scriptId','regiontId','variantId']) {
-    //         this.group.get(`language.${type}`).valueChanges.subscribe(_ => {
-    //             this.compositionObject[type] =  this.group.get(`language.${type}`).value;
-    //             this.getMyControl('language.languageTag').setValue(this.languageTag);
-    //         });
-    //     }
-    // }
-}
-
-@Component({
     selector: 'simplelanguageType-form',
     template : `
         <!--<ng-template #customItemTemplate let-model="item">-->

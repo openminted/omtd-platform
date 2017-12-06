@@ -1,13 +1,14 @@
 import { Component, Type } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
-import { CorpusTextPartInfoFormControl, TextClassificationInfoFormControl } from "./corpusTextPartInfo.component";
+import { TextClassificationInfoFormControl } from "./text-classification-info-form.component";
 import {
     corpusTextPartInfoDesc,
-    Description,
+    Description, domainInfoDesc,
     languageDesc,
     textClassificationInfoDesc
 } from "../../../domain/omtd.description";
 import { SimpleLanguageTypeForm2 } from "./language-type-form.component";
+import { DomainInfoFormControl } from "./domain-info-form";
 /**
  * Created by stefanos on 19/1/2017.
  */
@@ -26,6 +27,13 @@ import { SimpleLanguageTypeForm2 } from "./language-type-form.component";
 
         <form-repeat-inline [component]="languageInfoType" [parentGroup]="group.get('rawCorpusInfo')"
                             [name]="'languages'" [required]="true" [description]="languageDesc">
+
+        </form-repeat-inline>
+
+        <div class="form-group-divider"></div>
+
+        <form-repeat-inline [component]="domainInfoType" [parentGroup]="group.get('rawCorpusInfo')"
+                            [name]="'domains'" [description]="domainInfoDesc">
 
         </form-repeat-inline>
 
@@ -60,8 +68,8 @@ export class CorpusSubtypeSpecificInfoForm extends MyGroup {
     };
 
     readonly corpusTextPartInfoDesc : Description = corpusTextPartInfoDesc;
-    textPartType : Type<any> = CorpusTextPartInfoFormControl;
-
+    domainInfoType : Type<any> = DomainInfoFormControl;
+    domainInfoDesc : Description = domainInfoDesc;
     languageInfoType : Type<any> = SimpleLanguageTypeForm2;
 
     languageDesc : Description = Object.assign({},languageDesc);

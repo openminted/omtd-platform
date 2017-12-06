@@ -9,7 +9,6 @@ import { TooltipModule, TypeaheadModule } from "ngx-bootstrap";
 import { MetadataHeaderInfoFormControl } from "./shared/metadata-header-info-form.component";
 import { ValuesPipe } from "./shared/values-pipe";
 import {
-    LanguageTypeForm,
     SimpleLanguageTypeForm,
     SimpleLanguageTypeForm2
 } from "./shared/language-type-form.component";
@@ -50,9 +49,8 @@ import { ContactPersonFormControl } from "./shared/contactPerson.component";
 import { IdentifierCommonFormControl } from "./shared/identifierCommon.component";
 import { ComponentCreationInfoFormControl } from "./shared/componentCreationInfo.component";
 import {
-    CorpusTextPartInfoFormControl,
     TextClassificationInfoFormControl
-} from "./shared/corpusTextPartInfo.component";
+} from "./shared/text-classification-info-form.component";
 import { CorpusSubtypeSpecificInfoForm } from "./shared/corpus-subtype-specific-info-form.component";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
 import { MyChoice, MyChoiceWrapper } from "./myform/my-choice.interface";
@@ -64,8 +62,10 @@ import { AccordionComponent } from "./shared/accordion-section.component";
 import { DataFormatInfoFormControl } from "./shared/data-format-info-form.component";
 import { CharacterEncodingSetFormControl } from "./shared/character-encoding-form.component";
 import { TextFormatInfoFormControl } from "./shared/text-format-info-form.component";
+import { DomainInfoFormControl } from "./shared/domain-info-form";
 
 const entryComponents = [
+    DomainInfoFormControl,
     TextClassificationInfoFormControl,
     TextFormatInfoFormControl,
     SimpleLanguageTypeForm,
@@ -87,11 +87,9 @@ const entryComponents = [
     IdentifierCommonFormControl,
     ComponentDistributionInfoFormControl,
     DatasetDistributionInfoFormControl,
-    CorpusTextPartInfoFormControl,
     LicenseInfoForm,
     SizeInfoFormControl,
     MyStringDescFormGroup,
-    LanguageTypeForm,
     LanguageInfoFormControl,
     MySingleStringForm
 ];
