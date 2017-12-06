@@ -1,86 +1,15 @@
-<div class="uk-list componentDistributionInfo">
-    <div *ngIf="componentDistributionInfo.componentLoc.distributionLocation">
-        <strong>Component distribution medium: </strong>{{componentDistributionInfo.componentLoc.distributionLocation}}
-    </div>
-    <!--&& componentDistributionInfo.componentLoc.length>0-->
-    <div *ngIf="componentDistributionInfo.componentLoc">
-        <strong>Download from: </strong>
-        <!--*ngFor="let downloadURL of componentDistributionInfo.componentLoc; let isLast = last;"-->
-        <span>
-            <a href="{{componentDistributionInfo.componentLoc.distributionLocation}}" target="_blank">{{componentDistributionInfo.componentLoc.distributionLocation}}</a>{{isLast ? '' : ', '}}
+<div class="tags">
+    <ng-template ngFor let-componentDistributionInfo [ngForOf]="componentDistributionInfos">
+        <span *ngIf="componentDistributionInfo.componentDistributionForm" class="uk-label uk-label-primary">
+            {{componentDistributionForm(componentDistributionInfo.componentDistributionForm)}}
         </span>
-    </div>
-    <!--<div *ngIf="componentDistributionInfo.accessURLs && componentDistributionInfo.accessURLs.length>0">-->
-        <!--<strong>Access from: </strong>-->
-        <!--<span *ngFor="let accessURL of componentDistributionInfo.accessURLs; let isLast = last;">-->
-            <!--<a href="{{accessURL}}" target="_blank">{{accessURL}}</a>{{isLast ? '' : ', '}}-->
-        <!--</span>-->
-    <!--</div>-->
-    <!--<div *ngIf="componentDistributionInfo.mavenID">-->
-        <!--<strong>Maven ID: </strong>{{componentDistributionInfo.mavenID}}-->
-    <!--</div>-->
-    <div *ngIf="componentDistributionInfo.webServiceType">
-        <strong>Web service type: </strong>{{componentDistributionInfo.webServiceType}}
-    </div>
-    <!--<div *ngIf="componentDistributionInfo.operatingSystem && componentDistributionInfo.operatingSystem.length>0">-->
-        <!--<strong>Operating systems: </strong>-->
-        <!--<span *ngFor="let operatingSystem of componentDistributionInfo.operatingSystem; let isLast = last;">-->
-            <!--{{operatingSystem}}{{isLast ? '' : ', '}}-->
-        <!--</span>-->
-    <!--</div>-->
-    <div *ngIf="componentDistributionInfo.rightsInfo" class="uk-margin-top">
-        <h4>Rights</h4>
-        <rights-info [rightsInfo]="componentDistributionInfo.rightsInfo"></rights-info>
-    </div>
-    <div *ngIf="componentDistributionInfo.copyrightStatements && componentDistributionInfo.copyrightStatements.length>0"
-         class="uk-margin-top">
-        <h4>Copyright Statements</h4>
-        <div *ngFor="let copyrightStatement of componentDistributionInfo.copyrightStatements">
-            {{copyrightStatement.value}}
-        </div>
-    </div>
-    <div *ngIf="componentDistributionInfo.attributionTexts && componentDistributionInfo.attributionTexts.length>0"
-         class="uk-margin-top">
-        <h4>Attribution Texts</h4>
-        <div *ngFor="let attributionText of componentDistributionInfo.attributionTexts">
-            {{attributionText.value}}
-        </div>
-    </div>
-    <div *ngIf="componentDistributionInfo.rightsHolders && componentDistributionInfo.rightsHolders.length>0" class="uk-margin-top">
-        <strong>Rights Holders: </strong>
-        <span *ngFor="let rightHolder of componentDistributionInfo.rightsHolders; let isLast = last;">
-            <span *ngIf="rightHolder.relatedPerson && rightHolder.relatedPerson.personNames
-            && rightHolder.relatedPerson.personNames.length>0">
-                {{rightHolder.relatedPerson.personNames[0].value}}
-            </span>
-            <span *ngIf="rightHolder.relatedPerson && rightHolder.relatedPerson.personIdentifiers
-            && rightHolder.relatedPerson.personIdentifiers.length>0">
-                {{rightHolder.relatedPerson.personIdentifiers[0].value}}
-            </span>
-            <span *ngIf="rightHolder.relatedOrganization && rightHolder.relatedOrganization.organizationNames
-            && rightHolder.relatedOrganization.organizationNames.length>0">
-                {{rightHolder.relatedOrganization.organizationNames[0].value}}
-            </span>
-            <span *ngIf="rightHolder.relatedOrganization && rightHolder.relatedOrganization.organizationIdentifiers
-            && rightHolder.relatedOrganization.organizationIdentifiers.length>0">
-                {{rightHolder.relatedOrganization.organizationIdentifiers[0].value}}
-            </span>
-            {{isLast ? '' : ', '}}
+        <span *ngIf="componentDistributionInfo.webServiceType" class="uk-label uk-label-primary">
+            {{webServiceType(componentDistributionInfo.webServiceType)}}
         </span>
-    </div>
-    <div *ngIf="componentDistributionInfo.availabilityStartDate">
-        <strong>Availability from: </strong>{{componentDistributionInfo.availabilityStartDate.month}}/{{componentDistributionInfo.availabilityStartDate.day}}/{{componentDistributionInfo.availabilityStartDate.year}}
-    </div>
-    <div *ngIf="componentDistributionInfo.availabilityEndDate">
-        <strong>Availability to: </strong>{{componentDistributionInfo.availabilityEndDate.month}}/{{componentDistributionInfo.availabilityEndDate.day}}/{{componentDistributionInfo.availabilityEndDate.year}}
-    </div>
-    <div *ngIf="componentDistributionInfo.fee">
-        <strong>Fee: </strong>{{componentDistributionInfo.fee}}
-    </div>
-    <div *ngIf="componentDistributionInfo.userTypes && componentDistributionInfo.userTypes.length>0">
-        <strong>User types: </strong>
-        <span *ngFor="let userType of componentDistributionInfo.userTypes; let isLast = last;">
-            {{userType}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
+        <ng-template [ngIf]="componentDistributionInfo.operatingSystems && componentDistributionInfo.operatingSystems.length>0">
+            <span *ngFor="let os of componentDistributionInfo.operatingSystems" class="uk-label uk-label-primary">
+                {{operatingSystem(os)}}
+            </span>
+        </ng-template>
+    </ng-template>
 </div>

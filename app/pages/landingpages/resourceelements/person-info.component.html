@@ -1,0 +1,13 @@
+<div class="personInfo">
+    <div *ngIf="personInfo.givenName || personInfo.surname">
+        <span *ngIf="personInfo.givenName">{{personInfo.givenName}}</span>
+        <span *ngIf="personInfo.surname">{{personInfo.surname}}</span>
+    </div>
+    <div *ngIf="personInfo.affiliation && personInfo.affiliation.affiliatedOrganization &&
+    personInfo.affiliation.affiliatedOrganization.organizationNames &&
+    personInfo.affiliation.affiliatedOrganization.organizationNames.length>0">
+        {{personInfo.affiliation.affiliatedOrganization.organizationNames[0].value}}
+        <span *ngIf="personInfo.affiliation.position"> - {{personInfo.affiliation.position}}</span>
+    </div>
+    <communication-info *ngIf="personInfo.communicationInfo" [communicationInfo]="personInfo.communicationInfo"></communication-info>
+</div>

@@ -1,13 +1,12 @@
-<div *ngIf="rightsInfo.licenceInfos && rightsInfo.licenceInfos.length>0" class="rightsInfo">
-    <!--<h5>License Infos</h5>-->
-    <license-info *ngFor="let licenseInfo of rightsInfo.licenceInfos" [licenseInfo]="licenseInfo"></license-info>
-</div>
-<!--<div *ngIf="rightsInfo.rightsStatement">-->
-    <!--<a *ngIf="rightsInfo.rightsStatementInfo.rightsStmtURL" href="{{rightsInfo.rightsStatementInfo.rightsStmtURL}}" target="_blank">-->
-        <!--<span *ngIf="rightsInfo.rightsStatementInfo.rightsStmtName">{{rightsInfo.rightsStatementInfo.rightsStmtName}}</span>-->
-        <!--<span *ngIf="!rightsInfo.rightsStatementInfo.rightsStmtName">{{rightsInfo.rightsStatementInfo.rightsStmtURL}}</span>-->
-    <!--</a>-->
-    <!--<span *ngIf="!rightsInfo.rightsStatementInfo.rightsStmtURL && rightsInfo.rightsStatementInfo.rightsStmtName">-->
-        <!--{{rightsInfo.rightsStatementInfo.rightsStmtName}}-->
-    <!--</span>-->
-<!--</div>-->
+<h4>Rights</h4>
+<ul class="uk-list">
+    <li *ngIf="rightsInfo.licenceInfos && rightsInfo.licenceInfos.length>0" class="rightsInfo">
+        <license-info *ngFor="let licenseInfo of rightsInfo.licenceInfos" [licenseInfo]="licenseInfo"></license-info>
+    </li>
+    <li *ngIf="rightsInfo.rightsStatement" class="uk-margin-top">
+        {{rightsStatement(rightsInfo.rightsStatement)}}
+    </li>
+    <li *ngIf="rightsInfo.copyrightStatement" class="uk-margin-top">
+        <i><i class="fa fa-copyright" aria-hidden="true"></i> {{rightsInfo.copyrightStatement}}</i>
+    </li>
+</ul>

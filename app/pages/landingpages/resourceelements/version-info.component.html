@@ -1,15 +1,7 @@
 <!--<h4>Version</h4>-->
 <ul class="uk-list">
     <li *ngIf="versionInfo.version">
-        <strong>Version: </strong>{{versionInfo.version}}
-    </li>
-    <li *ngIf="versionInfo.revision">
-        <strong>Revision: </strong>{{versionInfo.revision}}
-    </li>
-    <li *ngIf="versionInfo.lastDateUpdated">
-        <strong>Last Updated: </strong>{{versionInfo.lastDateUpdated.month}}/{{versionInfo.lastDateUpdated.day}}/{{versionInfo.lastDateUpdated.year}}
-    </li>
-    <li *ngIf="versionInfo.updateFrequency">
-        <strong>Update Frequency: </strong>{{versionInfo.updateFrequency}}
+        {{versionInfo.version}}
+        <span *ngIf="versionInfo.versionDate"> ({{versionInfo.versionDate}})</span>
     </li>
 </ul>

@@ -2,7 +2,7 @@
  * Created by stefania on 11/17/16.
  */
 import { Component, Input } from '@angular/core';
-import { AnnotationsInfo } from "../../../domain/openminted-model";
+// import { AnnotationsInfo } from "../../../domain/openminted-model";
 
 
 @Component({
@@ -11,5 +11,5 @@ import { AnnotationsInfo } from "../../../domain/openminted-model";
 })
 
 export class AnnotationsInfoComponent {
-    @Input() annotationsInfo: AnnotationsInfo;
+    // @Input() annotationsInfo: AnnotationsInfo;
 }

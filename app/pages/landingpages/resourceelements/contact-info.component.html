@@ -1,21 +1,24 @@
 <h4>Contact</h4>
 <ul class="uk-list">
-    <!--<li *ngIf="contactInfo.contactEmail">-->
-        <!--<strong>Contact: </strong><a href="mailto:{{contactInfo.contactEmail}}">-->
-        <!--{{contactInfo.contactEmail}}</a>-->
-    <!--</li>-->
-    <!--<li *ngIf="contactInfo.landingPage">-->
-        <!--<strong>Landing Page: </strong>{{contactInfo.landingPage}}-->
-    <!--</li>-->
-    <!--<li *ngIf="contactInfo.contactPersons-->
-        <!--&& contactInfo.contactPersons.length>0">-->
-        <!--<strong>Contact Persons: </strong>-->
-        <!--<span *ngFor="let contactPerson of personNames; let isLast = last">-->
-            <!--<span>-->
-                <!--{{contactPerson}}-->
-            <!--</span>-->
-            <!--{{isLast ? '' : ', '}}-->
-        <!--</span>-->
-    <!--</li>-->
-    <h2>REDO</h2>
+    <li *ngIf="contactInfo.contactType">
+        <a *ngIf="contactInfo.contactType=='LANDING_PAGE' && contactInfo.contactPoint" target="_blank"
+           href="{{contactInfo.contactPoint}}">About us <i class="fa fa-external-link" style="margin-left: 5px" aria-hidden="true"></i></a>
+        <a *ngIf="contactInfo.contactType=='CONTACT_EMAIL' && contactInfo.contactPoint"
+           href="mailto:{{contactInfo.contactPoint}}">Email us</a>
+    </li>
+    <ng-template [ngIf]="contactInfo.contactPersons && contactInfo.contactPersons.length>0">
+        <li *ngFor="let contactPerson of contactInfo.contactPersons">
+            <div class="uk-margin-top">
+                <person-info [personInfo]="contactPerson"></person-info>
+            </div>
+        </li>
+    </ng-template>
+    <ng-template [ngIf]="contactInfo.contactGroups && contactInfo.contactGroups.length>0">
+        <li *ngFor="let contactGroup of contactInfo.contactGroups">
+            <div class="uk-margin-top">
+                <group-info [groupInfo]="contactGroup"></group-info>
+            </div>
+        </li>
+    </ng-template>
+    <!--TODO mailing lists!!! (modal)-->
 </ul>

@@ -3,6 +3,7 @@
  */
 import { Component, Input } from '@angular/core';
 import { RightsInfo } from "../../../domain/openminted-model";
+import { EnumValues, rightsStatementEnum } from "../../../domain/omtd.enum";
 
 @Component({
     selector: 'rights-info',
@@ -10,5 +11,12 @@ import { RightsInfo } from "../../../domain/openminted-model";
 })
 
 export class RightsInfoComponent {
+
+    rightsStatementValues : EnumValues[] = rightsStatementEnum;
     @Input() rightsInfo: RightsInfo;
+
+    private rightsStatement(l : string) {
+        let rightsStatement = this.rightsStatementValues.find(v => v.key === l);
+        return rightsStatement && rightsStatement.value;
+    }
 }

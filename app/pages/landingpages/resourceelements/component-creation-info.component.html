@@ -1,23 +1,11 @@
-<div>
-    <div *ngIf="componentCreationInfo.framework">
-        <strong>Framework: </strong> {{componentCreationInfo.framework}}
-    </div>
-    <div *ngIf="componentCreationInfo.implementationLanguage">
-        <strong>Implementation language: </strong>
-        <span>
-            {{implementationLanguage}}
-        </span>
-    </div>
-    <div *ngIf="componentCreationInfo.formalism">
-        <strong>Formalism: </strong>
-        <span>
-            {{formalism}}
-        </span>
-    </div>
-    <div *ngIf="componentCreationInfo.hasOriginalSource && componentCreationInfo.hasOriginalSource.length>0">
-        <strong>Has original source: </strong> {{componentCreationInfo.hasOriginalSource[0].value}}
-    </div>
-    <div *ngIf="componentCreationInfo.creationDetails">
-        <strong>Creation details: </strong> {{componentCreationInfo.creationDetails}}
-    </div>
+<div class="tags">
+    <span *ngIf="componentCreationInfo.framework" class="uk-label uk-label-primary">
+        {{framework(componentCreationInfo.framework)}}
+    </span>
+    <span *ngIf="componentCreationInfo.tdmmethod" class="uk-label uk-label-primary">
+        {{tdmMethodType(componentCreationInfo.tdmmethod)}}
+    </span>
+    <span *ngIf="componentCreationInfo.implementationLanguage" class="uk-label uk-label-primary">
+        {{componentCreationInfo.implementationLanguage}}
+    </span>
 </div>

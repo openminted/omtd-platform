@@ -1,47 +1,71 @@
-<h4 class="uk-margin-top-remove">Resource Creation </h4>
+<h4 class="uk-margin-top-remove">Resource Creation</h4>
 <ul class="uk-list">
     <li *ngIf="resourceCreationInfo.creationDate">
-        <strong>Creation Date: </strong>
+        <strong>Created on</strong><br>
         <span *ngIf="resourceCreationInfo.creationDate.date">
-            {{resourceCreationInfo.creationDate.date.month}}/{{resourceCreationInfo.creationDate.date.day}}/{{resourceCreationInfo.creationDate.date.year}}
+            <span *ngIf="resourceCreationInfo.creationDate.date.month">
+                {{resourceCreationInfo.creationDate.date.month}}/
+            </span>
+            <span *ngIf="resourceCreationInfo.creationDate.date.day">
+                {{resourceCreationInfo.creationDate.date.day}}/
+            </span>
+            <span *ngIf="resourceCreationInfo.creationDate.date.year">
+                {{resourceCreationInfo.creationDate.date.year}}
+            </span>
         </span>
         <span *ngIf="resourceCreationInfo.creationDate.dateRange">
-            {{resourceCreationInfo.creationDate.dateRange.startDate.month}}/{{resourceCreationInfo.creationDate.dateRange.startDate.day}}/{{resourceCreationInfo.creationDate.dateRange.startDate.year}}
+            <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate">
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate.month">
+                    {{resourceCreationInfo.creationDate.dateRange.startDate.month}}/
+                </span>
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate.day">
+                    {{resourceCreationInfo.creationDate.dateRange.startDate.day}}/
+                </span>
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate.year">
+                    {{resourceCreationInfo.creationDate.dateRange.startDate.year}}
+                </span>
+            </span>
             -
-            {{resourceCreationInfo.creationDate.dateRange.endDate.month}}/{{resourceCreationInfo.creationDate.dateRange.endDate.day}}/{{resourceCreationInfo.creationDate.dateRange.endDate.year}}
+            <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate">
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate.month">
+                    {{resourceCreationInfo.creationDate.dateRange.endDate.month}}/
+                </span>
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate.day">
+                    {{resourceCreationInfo.creationDate.dateRange.endDate.day}}/
+                </span>
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate.year">
+                    {{resourceCreationInfo.creationDate.dateRange.endDate.year}}
+                </span>
+            </span>
         </span>
     </li>
-    <h2>REDO</h2>
-    <!--<li *ngIf="resourceCreationInfo.resourceCreators-->
-        <!--&& resourceCreationInfo.resourceCreators.length>0">-->
-        <!--<strong>Creators: </strong>-->
-        <!--<span *ngFor="let creator of resourceCreationInfo.resourceCreators; let isLast = last;">-->
-            <!--<span *ngIf="personName(creator.relatedPerson)">-->
-                <!--{{personName(creator.relatedPerson)}}-->
+
+    <li *ngIf="resourceCreationInfo.resourceCreators && resourceCreationInfo.resourceCreators.length>0">
+        <ng-template ngFor let-resourceCreator [ngForOf]="resourceCreationInfo.resourceCreators">
+            <div *ngIf="resourceCreator.actorType=='PERSON' && resourceCreator.relatedPerson" class="uk-margin-top">
+                <person-info [personInfo]="resourceCreator.relatedPerson"></person-info>
+            </div>
+            <div *ngIf="resourceCreator.actorType=='GROUP' && resourceCreator.relatedGroup" class="uk-margin-top">
+                <group-info [groupInfo]="resourceCreator.relatedGroup"></group-info>
+            </div>
+            <div *ngIf="resourceCreator.actorType=='ORGANIZATION' && resourceCreator.relatedOrganization" class="uk-margin-top">
+                <organization-info [organizationInfo]="resourceCreator.relatedOrganization"></organization-info>
+            </div>
+        </ng-template>
+    </li>
+
+    <!--TODO Create a project-info component to display the funded by info..-->
+    <!--<li *ngIf="resourceCreationInfo.fundingProjects-->
+        <!--&& resourceCreationInfo.fundingProjects.length>0">-->
+        <!--<strong>Funded by: </strong>-->
+        <!--<span *ngFor="let fundingProject of resourceCreationInfo.fundingProjects; let isLast = last;">-->
+            <!--<span *ngIf="fundingProject.projectNames && fundingProject.projectNames.length>0">-->
+                <!--{{fundingProject.projectNames[0].value}}-->
             <!--</span>-->
-            <!--<span *ngIf="creator.relatedPerson && creator.relatedPerson.personIdentifiers && creator.relatedPerson.personIdentifiers.length>0">-->
-                <!--{{creator.relatedPerson.personIdentifiers[0].value}}-->
-            <!--</span>-->
-            <!--<span *ngIf="creator.relatedOrganization && creator.relatedOrganization.organizationNames && creator.relatedOrganization.organizationNames.length>0">-->
-                <!--{{creator.relatedOrganization.organizationNames[0].value}}-->
-            <!--</span>-->
-            <!--<span *ngIf="creator.relatedOrganization && creator.relatedOrganization.organizationIdentifiers && creator.relatedOrganization.organizationIdentifiers.length>0">-->
-                <!--{{creator.relatedOrganization.organizationIdentifiers[0].value}}-->
+            <!--<span *ngIf="fundingProject.projectIdentifiers && fundingProject.projectIdentifiers.length>0">-->
+                <!--{{fundingProject.projectIdentifiers[0].value}}-->
             <!--</span>-->
             <!--{{isLast ? '' : ', '}}-->
         <!--</span>-->
     <!--</li>-->
-    <li *ngIf="resourceCreationInfo.fundingProjects
-        && resourceCreationInfo.fundingProjects.length>0">
-        <strong>Funded by: </strong>
-        <span *ngFor="let fundingProject of resourceCreationInfo.fundingProjects; let isLast = last;">
-            <span *ngIf="fundingProject.projectNames && fundingProject.projectNames.length>0">
-                {{fundingProject.projectNames[0].value}}
-            </span>
-            <span *ngIf="fundingProject.projectIdentifiers && fundingProject.projectIdentifiers.length>0">
-                {{fundingProject.projectIdentifiers[0].value}}
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </li>
 </ul>

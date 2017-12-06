@@ -1,3 +1,33 @@
+.resourceLandingPage {
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.groupInfo, .personInfo {
+    border-left: 2px solid #0055b9;
+    font-size: 90%;
+    padding-left: 10px;
+}
+
+.resourceDocumentationInfo {
+    border-left: 8px solid #e5e5e5;
+    padding-left: 15px;
+}
+
+.componentExecution .uk-card-body {
+    padding: 15px 20px;
+    border-radius: 5px;
+}
+
+.uk-card-primary.uk-card-body a, .uk-card-primary.uk-card-body a:hover, .uk-card-primary.uk-card-body a:focus {
+    color: rgba(255,255,255,0.7);
+}
+
+.componentExecution h4 {
+    margin: 0 0 5px 0;
+    font-size: 15px;
+}
+
 .resourceSideInfo {
     font-size: 12px;
 }
@@ -64,14 +94,6 @@
 .uk-article-divider {
     border-color: #eeeeee;
     margin-bottom: 10px;
-}
-
-.componentDistributionInfo .rightsInfo {
-
-}
-
-.componentDistributionInfo .rightsInfo .licenseInfo {
-
 }
 
 .lingualityInfo {

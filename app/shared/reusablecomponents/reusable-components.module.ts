@@ -11,7 +11,16 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { ReadMoreComponent } from "./read-more.component";
 import { HelpContentComponent, AsideHelpContentComponent } from "./help-content.component";
 import { HelpContentService } from "../../services/help-content.service";
+import { ConfirmationDialogComponent } from "../confirmation-dialog.component";
+import { ModalModule } from "ngx-bootstrap";
 
+
+const modules = [
+    ReadMoreComponent,
+    HelpContentComponent,
+    AsideHelpContentComponent,
+    ConfirmationDialogComponent
+];
 
 @NgModule({
     imports: [
@@ -20,17 +29,14 @@ import { HelpContentService } from "../../services/help-content.service";
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        JsonpModule
+        JsonpModule,
+        ModalModule.forRoot(),
     ],
     declarations: [
-        ReadMoreComponent,
-        HelpContentComponent,
-        AsideHelpContentComponent
+        ...modules
     ],
     exports: [
-        ReadMoreComponent,
-        HelpContentComponent,
-        AsideHelpContentComponent
+        ...modules
     ],
     providers: [
         HelpContentService

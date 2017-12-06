@@ -33,6 +33,12 @@ import { LanguageDescriptionLandingPageComponent } from "./languagedescription/l
 import { LexicalConceptualLandingPageComponent } from "./lexicalconceptual/lexical-conceptual-landing-page.component";
 import { ModelLandingPageComponent } from "./model/model-landing-page.component";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
+import { PersonInfoComponent } from "./resourceelements/person-info.component";
+import { GroupInfoComponent } from "./resourceelements/group-info.component";
+import { CommunicationInfoComponent } from "./resourceelements/communication-info.component";
+import { OrganizationInfoComponent } from "./resourceelements/organisation-info.component";
+import { ComponentExecutionInfoComponent } from "./resourceelements/component-execution-info.component";
+import { FunctionInfoComponent } from "./resourceelements/function-info.component";
 
 @NgModule({
     imports: [
@@ -66,7 +72,13 @@ import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusab
         CorpusTextPartInfoComponent, 
         AnnotatedCorpusInfoComponent, 
         RawCorpusInfoComponent,
-        AnnotationsInfoComponent
+        AnnotationsInfoComponent,
+        PersonInfoComponent,
+        GroupInfoComponent,
+        CommunicationInfoComponent,
+        OrganizationInfoComponent,
+        ComponentExecutionInfoComponent,
+        FunctionInfoComponent
     ],
     providers: [
         ResourceService
