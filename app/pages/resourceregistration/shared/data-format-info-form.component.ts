@@ -1,10 +1,11 @@
 /**
  * Created by stefania on 1/19/17.
  */
-import {Component, Injector} from "@angular/core";
-import {dataFormatTypeEnum, EnumValues} from "../../../domain/omtd.enum";
-import {MyGroup} from "../myform/my-group.interface";
-import {dataFormatInfoDesc, Description} from "../../../domain/omtd.description";
+import { Component, Injector } from "@angular/core";
+import { dataFormatTypeEnum, EnumValues } from "../../../domain/omtd.enum";
+import { MyGroup } from "../myform/my-group.interface";
+import { dataFormatInfoDesc, Description } from "../../../domain/omtd.description";
+import { Validators } from "@angular/forms";
 
 @Component({
     selector: 'data-format-info-form',
@@ -29,7 +30,7 @@ import {dataFormatInfoDesc, Description} from "../../../domain/omtd.description"
 export class DataFormatInfoFormControl extends MyGroup {
 
     readonly groupDefinition = {
-        dataFormat: '',
+        dataFormat: ['',Validators.required],
         dataFormatOther: ''
     };
 

@@ -1,8 +1,8 @@
 /**
  * Created by stefania on 10/6/16.
  */
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({

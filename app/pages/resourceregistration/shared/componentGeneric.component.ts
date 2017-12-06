@@ -1,11 +1,8 @@
-import {Component, ViewChild, ElementRef} from "@angular/core";
-import {MyGroup} from "../myform/my-group.interface";
-import {Validators} from "@angular/forms";
-import {EnumValues, operationTypeEnum} from "../../../domain/omtd.enum";
-import {
-    Description,
-    applicationDesc, functionDesc
-} from "../../../domain/omtd.description";
+import { Component } from "@angular/core";
+import { MyGroup } from "../myform/my-group.interface";
+import { Validators } from "@angular/forms";
+import { EnumValues, operationTypeEnum } from "../../../domain/omtd.enum";
+import { applicationDesc, Description, functionDesc } from "../../../domain/omtd.description";
 /**
  * Created by stefanos on 24/5/2017.
  */

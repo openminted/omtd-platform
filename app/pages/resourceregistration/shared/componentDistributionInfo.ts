@@ -1,13 +1,15 @@
 /**
  * Created by stefania on 1/22/17.
  */
-import {Component, OnInit, Input, Type, Injector} from "@angular/core";
-import {FormGroup, FormBuilder, FormControl, FormArray, Validators} from "@angular/forms";
-import {EnumValues, distributionMediumEnum, componentDistributionFormEnum} from "../../../domain/omtd.enum";
-import {MyGroup} from "../myform/my-group.interface";
+import { Component, Input, Type } from "@angular/core";
+import { FormGroup, Validators } from "@angular/forms";
+import { componentDistributionFormEnum, EnumValues } from "../../../domain/omtd.enum";
+import { MyGroup } from "../myform/my-group.interface";
 import {
     commandDesc,
-    componentDistributionFormDesc, componentDistributionInfoDesc, Description,
+    componentDistributionFormDesc,
+    componentDistributionInfoDesc,
+    Description,
     distributionLocationDesc
 } from "../../../domain/omtd.description";
 

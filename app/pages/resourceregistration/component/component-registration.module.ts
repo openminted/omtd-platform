@@ -1,9 +1,9 @@
 /**
  * Created by stefania on 10/5/16.
  */
-import { NgModule }       from '@angular/core';
-import { CommonModule }   from '@angular/common';
-import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ResourceService } from "../../../services/resource.service";
 import { componentRegistrationRouting } from "./component-registration.routing";
@@ -15,7 +15,7 @@ import { ResourceRegistrationModule } from "../resource-registration.module";
 import { ComponentRegistrationUsingFormComponent } from "./component-registration-using-form.component";
 import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reusable-components.module";
 import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
-import { AceEditorModule } from "ng2-ace-editor"
+import { AceEditorModule } from "ng2-ace-editor";
 import { BuildAWorkflowComponent } from "../../actions/buildworkflow/build-a-workflow.component";
 import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component-registration-using-maven-coordinates.component";
 

@@ -1,14 +1,15 @@
 /**
  * Created by stefania on 1/19/17.
  */
-import {Component, OnInit, Input} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormArray, FormControl} from '@angular/forms'
+import { Component, OnInit } from "@angular/core";
+import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import {
-    Corpus as OMTDCorpus, DatasetDistributionInfo, DistributionLoc, DistributionMediumEnum,
-    RightsInfo, ResourceIdentifier, ResourceIdentifierSchemeNameEnum, RightsStatementEnum,
+    Corpus as OMTDCorpus,
+    DistributionMediumEnum,
+    ResourceIdentifier,
+    ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
-import {ResourceService} from "../../../services/resource.service";
-import {Observable} from "rxjs/Observable";
+import { ResourceService } from "../../../services/resource.service";
 
 @Component({
     selector: 'corpus-upload',

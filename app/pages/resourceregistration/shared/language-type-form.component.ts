@@ -1,14 +1,10 @@
 /**
  * Created by stefanos on 6/12/2016.
  */
-import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import {FormGroup, FormBuilder, FormArray, Validators, FormControl, AbstractControl} from '@angular/forms';
-// import {Description, languageIdDesc, scriptIdDesc, variantIdDesc,regiontIdDesc,languageTagDesc} from "../../../domain/omtd.description";
-import {
-    EnumValues, languageIdTypeEnum, scriptIdTypeEnum, regionIdTypeEnum, variantIdTypeEnum
-} from "../../../domain/omtd.enum";
-// import {Language} from "../../../domain/openminted-model";
-import {MyGroup} from "../myform/my-group.interface";
+import { Component } from "@angular/core";
+import { Validators } from "@angular/forms";
+import { EnumValues, languageIdTypeEnum } from "../../../domain/omtd.enum";
+import { MyGroup } from "../myform/my-group.interface";
 
 @Component({
     selector: 'languageType-form',
@@ -114,9 +110,11 @@ export class SimpleLanguageTypeForm extends MyGroup {
         <!--<h5>{{model.value}} - {{ model.key }}</h5>-->
         <!--</ng-template>-->
         <input type="text" class="uk-input" placeholder="Language"
+               [ngClass]="{'has-error':!group.valid}"
                [(ngModel)]="selected"
                [typeahead]="languageIdEnum"
                (typeaheadOnSelect)="setLanguageId($event)"
+               (typeaheadNoResults)="noResults($event)"
                [typeaheadOptionField]="'value'" />
         <div [formGroup]="group">
             <input type="hidden" formControlName="language" />
@@ -129,10 +127,15 @@ export class SimpleLanguageTypeForm2 extends MyGroup {
     readonly languageIdEnum : EnumValues[] = languageIdTypeEnum;
 
     selected : string = "";
+    required = true;
 
     groupDefinition = {
         language : ['', Validators.required],
     };
+
+    noResults($event : any) {
+        if(!$event && this.getMyControl('language').value!=='') this.getMyControl('language').setValue('');
+    }
 
     setLanguageId($event : any) : void {
         this.getMyControl('language').setValue($event.item.key.toLowerCase());
@@ -142,7 +145,13 @@ export class SimpleLanguageTypeForm2 extends MyGroup {
         super.ngOnInit();
         this.getMyControl('language').valueChanges.subscribe(_ => {
             let language = this.languageIdEnum.find(a => a.key == _.toUpperCase());
-            this.selected = language ? language.value : '';
+            console.log(language);
+            if(language.key == '') {
+                this.selected = '';
+            }
+            else {
+                this.selected = language ? language.value : '';
+            }
         });
     }
 

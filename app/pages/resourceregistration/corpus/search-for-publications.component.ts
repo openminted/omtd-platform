@@ -1,9 +1,9 @@
 /**
  * Created by stefania on 11/24/16.
  */
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { URLParameter } from "../../../domain/url-parameter";
 import { PublicationSearchResults } from "../../../domain/publications-search-results";

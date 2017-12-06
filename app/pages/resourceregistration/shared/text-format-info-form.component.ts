@@ -1,17 +1,15 @@
 /**
  * Created by stefania on 1/19/17.
  */
-import {Component, Injector} from "@angular/core";
-import {dataFormatTypeEnum, EnumValues} from "../../../domain/omtd.enum";
-import {MyGroup} from "../myform/my-group.interface";
-import {dataFormatInfoDesc, Description} from "../../../domain/omtd.description";
+import { Component } from "@angular/core";
+import { MyGroup } from "../myform/my-group.interface";
 
 @Component({
     selector: 'text-format-info-form',
     template : `
     <div [formGroup]="group">
         
-        <data-format-info-form [parentGroup]="group" [name]="'dataFormatInfo'"></data-format-info-form>
+        <data-format-info-form [parentGroup]="group" [name]="'dataFormatInfo'" [required]="true"></data-format-info-form>
         
         <!--<form-inline [description]="dataFormatTypeDesc" [valid]="getMyControl('dataFormat').valid">-->
             <!--<select name="role" class="uk-select" formControlName="dataFormat">-->

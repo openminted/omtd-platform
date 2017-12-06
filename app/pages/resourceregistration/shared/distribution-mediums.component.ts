@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from "@angular/core";
-import {FormGroup} from "@angular/forms";
+import { Component, Input, OnInit } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 /**
  * Created by stefanos on 17/1/2017.
  */

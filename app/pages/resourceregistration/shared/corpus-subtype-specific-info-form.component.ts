@@ -1,8 +1,13 @@
-import {Component, OnInit, Input, Type} from "@angular/core";
-import {MyGroup} from "../myform/my-group.interface";
-import {CorpusTextPartInfoFormControl} from "./corpusTextPartInfo.component";
-import {Description, corpusTextPartInfoDesc, languageDesc} from "../../../domain/omtd.description";
-import {SimpleLanguageTypeForm2} from "./language-type-form.component";
+import { Component, Type } from "@angular/core";
+import { MyGroup } from "../myform/my-group.interface";
+import { CorpusTextPartInfoFormControl, TextClassificationInfoFormControl } from "./corpusTextPartInfo.component";
+import {
+    corpusTextPartInfoDesc,
+    Description,
+    languageDesc,
+    textClassificationInfoDesc
+} from "../../../domain/omtd.description";
+import { SimpleLanguageTypeForm2 } from "./language-type-form.component";
 /**
  * Created by stefanos on 19/1/2017.
  */
@@ -23,6 +28,14 @@ import {SimpleLanguageTypeForm2} from "./language-type-form.component";
                             [name]="'languages'" [required]="true" [description]="languageDesc">
 
         </form-repeat-inline>
+
+        <div class="form-group-divider"></div>
+        
+        <form-repeat [component]="textClassificationInfoType" [parentGroup]="group.get('rawCorpusInfo')"
+                     [name]="'textClassifications'" [description]="textClassificationInfoDesc">
+
+        </form-repeat>
+        
         
         <!--<form-repeat [component]="textPartType" [parentGroup]="getMyControl('rawCorpusInfo.corpusMediaPartsType')" -->
                             <!--[name]="'corpusTextParts'" [required]="true" [description]="corpusTextPartInfoDesc">-->
@@ -53,10 +66,13 @@ export class CorpusSubtypeSpecificInfoForm extends MyGroup {
 
     languageDesc : Description = Object.assign({},languageDesc);
 
+    textClassificationInfoType : Type<any> = TextClassificationInfoFormControl;
+    textClassificationInfoDesc : Description = textClassificationInfoDesc;
+
     ngOnInit() {
         super.ngOnInit();
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",this.group);
         this.languageDesc.desc = null;
+        this.languageDesc.mandatory = true;
     }
 
 }

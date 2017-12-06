@@ -1,13 +1,11 @@
 /**
  * Created by stefania on 10/19/16.
  */
-import {Component, OnInit, Input, Output, EventEmitter, Type} from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms'
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Corpus as OMTDCorpus } from "../../../domain/openminted-model";
-import { Observable } from 'rxjs/Rx';
-import {ResourceService} from "../../../services/resource.service";
-import {Description, sizeInfoDesc} from "../../../domain/omtd.description";
-import {SizeInfoFormControl} from "../shared/sizeInfo.component";
+import { Observable } from "rxjs/Rx";
+import { ResourceService } from "../../../services/resource.service";
 
 @Component({
     selector: 'corpus-registration-form',
@@ -121,7 +119,7 @@ export class CorpusRegistrationFormComponent implements OnInit {
         this.myForm = this._fb.group({
             corpusInfo:this._fb.group({
                 resourceType : 'corpus',
-                distributionInfos : this._fb.array([this._fb.group({})])
+                // distributionInfos : this._fb.array([this._fb.group({})])
             })
 
         });

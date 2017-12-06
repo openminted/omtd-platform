@@ -1,14 +1,12 @@
 /**
  * Created by stefania on 9/12/17.
  */
-import { Component, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms'
-import {
-    Component as OMTDComponent
-} from "../../../domain/openminted-model";
+import { Component, OnInit } from "@angular/core";
+import { FormArray, FormControl, FormGroup } from "@angular/forms";
+import { Component as OMTDComponent } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Observable} from "rxjs/Observable";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Observable } from "rxjs/Observable";
 
 @Component({
     selector: 'component-update-using-form',

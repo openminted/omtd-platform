@@ -1,11 +1,11 @@
 /**
  * Created by stefania on 1/19/17.
  */
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Component } from "@angular/core";
+import { Validators } from "@angular/forms";
 import { EnumValues, sizeUnitEnum } from "../../../domain/omtd.enum";
-import {MyGroup} from "../myform/my-group.interface";
-import {Description, sizeDesc, sizeInfoDesc, sizeUnitDesc} from "../../../domain/omtd.description";
+import { MyGroup } from "../myform/my-group.interface";
+import { Description, sizeDesc, sizeInfoDesc, sizeUnitDesc } from "../../../domain/omtd.description";
 
 @Component({
     selector: 'sizeInfo-form',

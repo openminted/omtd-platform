@@ -1,7 +1,7 @@
 /**<div class="form-group-divider"></div>
  * Created by stefanos on 10/27/17.
  */
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector: '[accordionSection]',

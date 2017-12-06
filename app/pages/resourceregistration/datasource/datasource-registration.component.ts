@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 6/7/17.
  */
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
     selector: 'datasource-registration',

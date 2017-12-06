@@ -1,15 +1,13 @@
 /**
  * Created by stefania on 1/18/17.
  */
-import { Component, Injector } from '@angular/core';
-import {
-    Description, contactInfoDesc, contactPointDesc
-} from "../../../domain/omtd.description";
-import {MyGroup} from "../myform/my-group.interface";
-import {MyChoiceComponents} from "../myform/my-choice.interface";
-import {AuthenticationService} from "../../../services/authentication.service";
-import {Validators} from "@angular/forms";
-import {ContactTypeEnum} from "../../../domain/openminted-model";
+import { Component, Injector } from "@angular/core";
+import { contactInfoDesc, contactPointDesc, Description } from "../../../domain/omtd.description";
+import { MyGroup } from "../myform/my-group.interface";
+import { MyChoiceComponents } from "../myform/my-choice.interface";
+import { AuthenticationService } from "../../../services/authentication.service";
+import { Validators } from "@angular/forms";
+import { ContactTypeEnum } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'contact-info-form',

@@ -1,19 +1,21 @@
 /**
  * Created by stefania on 1/18/17.
  */
-import {Component, Injector, Type} from '@angular/core';
+import { Component, Type } from "@angular/core";
 import {
-    Description, contactInfoDesc, contactPointDesc, languageDesc, characterEncodingDesc, processingResourceTypeDesc,
-    dataFormatTypeDesc, parameterNameDesc, parameterLabelDesc, parameterDescriptionDesc, parameterTypeDesc,
-    optionalDesc, multiValueDesc, defaultValueDesc
+    dataFormatTypeDesc,
+    defaultValueDesc,
+    Description,
+    multiValueDesc,
+    optionalDesc,
+    parameterDescriptionDesc,
+    parameterLabelDesc,
+    parameterNameDesc,
+    parameterTypeDesc
 } from "../../../domain/omtd.description";
-import {MyGroup} from "../myform/my-group.interface";
-import {MyChoiceComponents} from "../myform/my-choice.interface";
-import {AuthenticationService} from "../../../services/authentication.service";
-import {Validators} from "@angular/forms";
-import {ContactTypeEnum} from "../../../domain/openminted-model";
-import {DataFormatInfoFormControl} from "./data-format-info-form.component";
-import {MySingleStringForm} from "./my-string-form.component";
+import { MyGroup } from "../myform/my-group.interface";
+import { DataFormatInfoFormControl } from "./data-format-info-form.component";
+import { MySingleStringForm } from "./my-string-form.component";
 
 @Component({
     selector: 'parameter-info-form',

@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { Validators } from "@angular/forms";
-import {EnumValues, frameworkEnum, TDMMethodTypeEnum} from "../../../domain/omtd.enum";
-import {Description, frameworkDesc, TDMMethodDesc} from "../../../domain/omtd.description";
+import { EnumValues, frameworkEnum, TDMMethodTypeEnum } from "../../../domain/omtd.enum";
+import { Description, frameworkDesc, TDMMethodDesc } from "../../../domain/omtd.description";
 /**
  * Created by stefanos on 24/5/2017.
  */

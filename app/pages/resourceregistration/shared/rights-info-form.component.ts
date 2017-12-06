@@ -1,11 +1,15 @@
-import {Component, OnInit, Input, Type, Injector} from "@angular/core";
-import {FormGroup, FormBuilder, FormArray, Validators} from "@angular/forms";
-import {EnumValues, licenceEnum, rightsStatementEnum} from "../../../domain/omtd.enum";
+import { Component, Injector, Type } from "@angular/core";
+import { Validators } from "@angular/forms";
+import { EnumValues, licenceEnum, rightsStatementEnum } from "../../../domain/omtd.enum";
 import {
-    Description, licenceDesc, licenceInfoDesc, nonStandardLicenceNameDesc,
-    nonStandardLicenceTermsURLDesc, rightsStatementDesc
+    Description,
+    licenceDesc,
+    licenceInfoDesc,
+    nonStandardLicenceNameDesc,
+    nonStandardLicenceTermsURLDesc,
+    rightsStatementDesc
 } from "../../../domain/omtd.description";
-import {MyGroup} from "../myform/my-group.interface";
+import { MyGroup } from "../myform/my-group.interface";
 /**
  * Created by stefanos on 19/1/2017.
  */

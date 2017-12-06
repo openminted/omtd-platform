@@ -1,16 +1,14 @@
 /**
  * Created by stefania on 10/19/16.
  */
-import {Component, OnInit, Input, Output, EventEmitter, Type} from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms'
-import {Component as OMTDComponent} from "../../../domain/openminted-model";
-import {Observable} from 'rxjs/Rx';
-import {ExampleFormControl} from "../shared/example.component";
-import {ContactPersonFormControl} from "../shared/contactPerson.component";
-import {MyStringFormGroup} from "../shared/my-string-form.component";
-import {ParameterInfoFormComponent} from "../shared/parameter-info-form.component";
-import {Description, parameterInfoDesc} from "../../../domain/omtd.description";
-import {ResourceService} from "../../../services/resource.service";
+import { Component, EventEmitter, Input, OnInit, Output, Type } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component as OMTDComponent } from "../../../domain/openminted-model";
+import { Observable } from "rxjs/Rx";
+import { MyStringFormGroup } from "../shared/my-string-form.component";
+import { ParameterInfoFormComponent } from "../shared/parameter-info-form.component";
+import { Description, parameterInfoDesc } from "../../../domain/omtd.description";
+import { ResourceService } from "../../../services/resource.service";
 
 @Component({
     selector: 'component-registration-form',

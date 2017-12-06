@@ -1,8 +1,8 @@
 /**
  * Created by stefania on 9/12/17.
  */
-import { Component, OnInit } from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms'
+import { Component, OnInit } from "@angular/core";
+import { FormArray, FormControl, FormGroup } from "@angular/forms";
 import { Corpus as OMTDCorpus } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { ActivatedRoute, Router } from "@angular/router";

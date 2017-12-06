@@ -1,8 +1,8 @@
 /**
  * Created by stefania on 11/24/16.
  */
-import { ModuleWithProviders }  from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 import { CorpusRegistrationComponent } from "./corpus-registration.component";
 import { SearchForPublicationsComponent } from "./search-for-publications.component";
 import { CorpusUploadComponent } from "./corpus-upload.component";

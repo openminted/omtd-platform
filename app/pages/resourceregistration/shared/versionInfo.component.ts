@@ -1,11 +1,8 @@
-import {OnInit, Component, Injector, Input} from "@angular/core";
-import {MyGroup} from "../myform/my-group.interface";
-import {Validators} from "@angular/forms";
-import {EnumValues, versionTypeEnum} from "../../../domain/omtd.enum";
-import {
-    Description, revisionDesc, versionTypeDesc,
-    versionDesc
-} from "../../../domain/omtd.description";
+import { Component, Input } from "@angular/core";
+import { MyGroup } from "../myform/my-group.interface";
+import { Validators } from "@angular/forms";
+import { EnumValues, versionTypeEnum } from "../../../domain/omtd.enum";
+import { Description, revisionDesc, versionDesc, versionTypeDesc } from "../../../domain/omtd.description";
 /**
  * Created by stefanos on 24/5/2017.
  */

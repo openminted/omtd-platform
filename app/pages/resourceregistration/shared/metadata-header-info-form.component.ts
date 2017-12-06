@@ -1,10 +1,10 @@
 /**
  * Created by stefanos on 21/11/2016.
  */
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {Description, revisionDesc} from "../../../domain/omtd.description";
-import {EnumValues, personIdentifierSchemeNameEnum} from "../../../domain/omtd.enum";
+import { Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Description, revisionDesc } from "../../../domain/omtd.description";
+import { EnumValues, personIdentifierSchemeNameEnum } from "../../../domain/omtd.enum";
 
 @Component({
     selector: 'metadata-header-info-form',

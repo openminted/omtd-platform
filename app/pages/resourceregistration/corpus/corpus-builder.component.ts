@@ -1,16 +1,18 @@
 /**
  * Created by stefania on 1/20/17.
  */
-import {Component, OnDestroy} from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { URLParameter } from "../../../domain/url-parameter";
 import { ContentConnectorService } from "../../../services/content-connector.service";
 import {
-    Corpus as OMTDCorpus, ResourceIdentifier, ResourceIdentifierSchemeNameEnum
+    Corpus as OMTDCorpus,
+    ResourceIdentifier,
+    ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
-import { Observable } from 'rxjs/Rx';
+import { Observable } from "rxjs/Rx";
 import { ResourceService } from "../../../services/resource.service";
 import { AuthenticationService } from "../../../services/authentication.service";
 import { CorpusBuildingState } from "../../../domain/corpus-building-state";

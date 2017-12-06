@@ -1,7 +1,7 @@
-import {Component, Injector, Input} from "@angular/core";
-import {MyGroup} from "../myform/my-group.interface";
-import {Validators, FormBuilder} from "@angular/forms";
-import {EnumValues, personIdentifierSchemeNameEnum} from "../../../domain/omtd.enum";
+import { Component } from "@angular/core";
+import { MyGroup } from "../myform/my-group.interface";
+import { Validators } from "@angular/forms";
+import { EnumValues } from "../../../domain/omtd.enum";
 /**
  * Created by stefanos on 24/5/2017.
  */

@@ -1,10 +1,10 @@
 /**
  * Created by stefania on 11/9/17.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { ResourceService } from "../../../services/resource.service";
-import {MavenComponent} from "../../../domain/maven-component";
-import {ActivatedRoute} from "@angular/router";
+import { MavenComponent } from "../../../domain/maven-component";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'component-registration-using-maven-coordinates',

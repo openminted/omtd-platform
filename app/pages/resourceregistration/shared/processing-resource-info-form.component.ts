@@ -1,21 +1,20 @@
 /**
  * Created by stefania on 1/18/17.
  */
-import {Component, Injector, Type} from '@angular/core';
+import { Component, Type } from "@angular/core";
 import {
-    Description, contactInfoDesc, contactPointDesc, languageDesc, characterEncodingDesc, processingResourceTypeDesc,
-    dataFormatTypeDesc
+    characterEncodingDesc,
+    dataFormatTypeDesc,
+    Description,
+    languageDesc,
+    processingResourceTypeDesc
 } from "../../../domain/omtd.description";
-import {MyGroup} from "../myform/my-group.interface";
-import {MyChoiceComponents} from "../myform/my-choice.interface";
-import {AuthenticationService} from "../../../services/authentication.service";
-import {Validators} from "@angular/forms";
-import {ContactTypeEnum} from "../../../domain/openminted-model";
-import {EnumValues, processingResourceTypeEnum} from "../../../domain/omtd.enum";
-import {DataFormatInfoFormControl} from "./data-format-info-form.component";
-import {MySingleStringForm} from "./my-string-form.component";
-import {CharacterEncodingSetFormControl} from "./character-encoding-form.component";
-import {SimpleLanguageTypeForm} from "./language-type-form.component";
+import { MyGroup } from "../myform/my-group.interface";
+import { EnumValues, processingResourceTypeEnum } from "../../../domain/omtd.enum";
+import { DataFormatInfoFormControl } from "./data-format-info-form.component";
+import { MySingleStringForm } from "./my-string-form.component";
+import { CharacterEncodingSetFormControl } from "./character-encoding-form.component";
+import { SimpleLanguageTypeForm } from "./language-type-form.component";
 
 @Component({
     selector: 'processing-resource-info-form',

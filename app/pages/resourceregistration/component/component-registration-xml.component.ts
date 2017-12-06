@@ -1,10 +1,10 @@
 /**
  * Created by stefania on 10/6/16.
  */
-import { Component } from '@angular/core';
-import {FormGroup, FormBuilder} from "@angular/forms";
-import {Router, ActivatedRoute} from "@angular/router";
-import {ResourceService} from "../../../services/resource.service";
+import { Component } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ResourceService } from "../../../services/resource.service";
 
 @Component({
     selector: 'component-registration-xml',

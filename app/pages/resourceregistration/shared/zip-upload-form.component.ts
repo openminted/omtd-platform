@@ -1,11 +1,11 @@
 /**
  * Created by stefania on 1/20/17.
  */
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {FormGroup, FormBuilder} from "@angular/forms";
-import {Router, ActivatedRoute} from "@angular/router";
-import {ResourceService} from "../../../services/resource.service";
-import {Resource} from "../../../domain/resource";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ResourceService } from "../../../services/resource.service";
+import { Resource } from "../../../domain/resource";
 
 @Component({
     selector: 'zip-upload',

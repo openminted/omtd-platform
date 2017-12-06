@@ -1,8 +1,8 @@
 /**
  * Created by stefania on 1/19/17.
  */
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Component, Input, OnInit } from "@angular/core";
+import { AbstractControl, FormBuilder, FormGroup } from "@angular/forms";
 import { EnumValues, languageVarietyTypeEnum } from "../../../domain/omtd.enum";
 
 @Component({

@@ -1,16 +1,18 @@
 /**
  * Created by stefanos on 25/5/2017.
  */
-import { Component, Type} from "@angular/core";
+import { Component, Type } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { personIdentifierSchemeNameEnum } from "../../../domain/omtd.enum";
 import {
-    Description, surnameDesc, givenNameDesc,
-    personIdentifierDesc, contactInfoDesc
+    contactInfoDesc,
+    Description,
+    givenNameDesc,
+    personIdentifierDesc,
+    surnameDesc
 } from "../../../domain/omtd.description";
 import { IdentifierCommonFormControl } from "./identifierCommon.component";
-import {MyChoiceComponents} from "../myform/my-choice.interface";
-import {Validators} from "@angular/forms";
+import { Validators } from "@angular/forms";
 
 @Component({
     selector: 'contactPerson-form',

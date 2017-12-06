@@ -1,13 +1,16 @@
 /**
  * Created by stefania on 1/17/17.
  */
-import {Component, Injector, Type} from '@angular/core';
-import {MyStringAreaFormGroup, MyStringFormGroup} from "./my-string-form.component";
+import { Component, Injector, Type } from "@angular/core";
+import { MyStringAreaFormGroup, MyStringFormGroup } from "./my-string-form.component";
 import {
-    Description, resourceNameDesc, descriptionDesc, resourceShortNameDesc,
-    publicDesc
+    Description,
+    descriptionDesc,
+    publicDesc,
+    resourceNameDesc,
+    resourceShortNameDesc
 } from "../../../domain/omtd.description";
-import {MyGroup} from "../myform/my-group.interface";
+import { MyGroup } from "../myform/my-group.interface";
 
 @Component({
     selector: 'identification-info-form',

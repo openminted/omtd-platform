@@ -1,11 +1,10 @@
 /**
  * Created by stefania on 1/17/17.
  */
-import {Component, Input, OnInit, Type} from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import {MyGroup} from "../myform/my-group.interface";
-import {characterEncodingEnum, EnumValues} from "../../../domain/omtd.enum";
-
+import { Component } from "@angular/core";
+import { Validators } from "@angular/forms";
+import { MyGroup } from "../myform/my-group.interface";
+import { characterEncodingEnum, EnumValues } from "../../../domain/omtd.enum";
 
 
 @Component({

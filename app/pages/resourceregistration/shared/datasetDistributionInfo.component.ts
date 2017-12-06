@@ -1,13 +1,17 @@
-import {Component, OnInit, Input, Type} from "@angular/core";
-import {FormGroup, FormBuilder, FormControl, FormArray, Validators} from "@angular/forms";
-import {EnumValues, distributionMediumEnum} from "../../../domain/omtd.enum";
-import {MyGroup} from "../myform/my-group.interface";
+import { Component, Input, Type } from "@angular/core";
+import { FormGroup, Validators } from "@angular/forms";
+import { distributionMediumEnum, EnumValues } from "../../../domain/omtd.enum";
+import { MyGroup } from "../myform/my-group.interface";
 import {
-    Description, datasetDistributionInfoDesc, distributionMediumDesc,
-    distributionLocationDesc, sizeInfoDesc, textFormatInfoDesc
+    datasetDistributionInfoDesc,
+    Description,
+    distributionLocationDesc,
+    distributionMediumDesc,
+    sizeInfoDesc,
+    textFormatInfoDesc
 } from "../../../domain/omtd.description";
-import {SizeInfoFormControl} from "./sizeInfo.component";
-import {TextFormatInfoFormControl} from "./text-format-info-form.component";
+import { SizeInfoFormControl } from "./sizeInfo.component";
+import { TextFormatInfoFormControl } from "./text-format-info-form.component";
 /**
  * Created by stefanos on 16/1/2017.
  */

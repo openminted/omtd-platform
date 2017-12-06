@@ -1,12 +1,9 @@
 /**
  * Created by stefania on 1/19/17.
  */
-import {Component, Injector, Input, OnInit} from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { LanguageTypeForm } from "./language-type-form.component";
-import { SizeInfoFormControl } from "./sizeInfo.component";
-import {MyGroup} from "../myform/my-group.interface";
-import {Description, sizeInfoDesc} from "../../../domain/omtd.description";
+import { Component, Injector } from "@angular/core";
+import { MyGroup } from "../myform/my-group.interface";
+import { Description, sizeInfoDesc } from "../../../domain/omtd.description";
 
 @Component({
     selector: 'languageInfo-form',

@@ -1,14 +1,14 @@
 /**
  * Created by stefania on 1/22/17.
  */
-import { Component, OnInit } from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms'
+import { Component, OnInit } from "@angular/core";
+import { FormArray, FormControl, FormGroup } from "@angular/forms";
 import {
-    Component as OMTDComponent, IdentificationInfo, ResourceIdentifier,
+    Component as OMTDComponent,
+    ResourceIdentifier,
     ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
-import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'component-registration-using-form',

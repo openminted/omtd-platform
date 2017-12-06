@@ -1,16 +1,13 @@
 /**
  * Created by stefanos on 15/5/2017.
  */
-import {FormGroup, FormBuilder, Validators, FormArray, FormControl} from "@angular/forms";
-import {
-    Component, Input, OnInit, Type, ComponentFactoryResolver,
-    AfterViewInit, ViewChild, ViewContainerRef, ComponentFactory, Injector, TemplateRef
-} from "@angular/core";
-import {MyFormDirective} from "./my-form.directive";
-import {MyGroup} from "./my-group.interface";
-import {MyWrapper} from "./my-wrapper.interface";
-import {Description} from "../../../domain/omtd.description";
-import {Subject} from "rxjs/Subject";
+import { FormArray, FormGroup } from "@angular/forms";
+import { Component, ComponentFactoryResolver, Injector, Input, Type, ViewChild, ViewContainerRef } from "@angular/core";
+import { MyFormDirective } from "./my-form.directive";
+import { MyGroup } from "./my-group.interface";
+import { MyWrapper } from "./my-wrapper.interface";
+import { Description } from "../../../domain/omtd.description";
+import { Subject } from "rxjs/Subject";
 
 
 @Component({
