@@ -40,7 +40,7 @@ export class ResourceService {
             resourceType = urlParameters.get('resourceType');
         }
         let searchUrl = this._searchUrl;
-        if(["component","corpus"].includes(resourceType)) {
+        if(["component","corpus","application"].includes(resourceType)) {
             searchUrl = `${this._searchUrl}${resourceType}/all`;
         }
         return this.http.get(searchUrl +'?' + urlParameters.toString())
@@ -136,8 +136,8 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    getComponents() {
-        return this.http.get(this._resourcesUrl + "component/all")
+    getComponents(resourceType : string = 'component') {
+        return this.http.get(`${this._resourcesUrl}${resourceType}/all`)
             .map(res => <OMTDComponent> res.json())
             .catch(this.handleError);
     }
