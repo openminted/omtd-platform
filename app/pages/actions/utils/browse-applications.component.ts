@@ -69,7 +69,7 @@ export class BrowseApplicationsComponent {
 
                 // console.log(this.urlParameters);
                 //request results from the registry
-                this.resourceService.getComponents().subscribe(
+                this.resourceService.getComponents('application').subscribe(
                     searchResults => this.updateSearchResults(searchResults),
                     error => this.handleError(<any>error));
             });
