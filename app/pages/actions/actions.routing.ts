@@ -19,7 +19,7 @@ const actionsRoutes: Routes = [
         ]
     },
     {
-        path: 'buildWorkflow',
+        path: 'buildWorkflow/:id',
         component: BuildAWorkflowComponent
     },
     {

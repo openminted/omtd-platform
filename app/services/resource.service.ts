@@ -195,6 +195,7 @@ export class ResourceService {
 
     public static toForms(service: any, obj : boolean = true) : any {
         let ret = obj ? {} : [];
+        if(service == null) return;
         Object.entries(service).forEach(([name, values]) => {
             let newValues = [];
             if (Array.isArray(values)) {
@@ -227,6 +228,7 @@ export class ResourceService {
     }
 
     private static removeNullParser(key,value) {
+        // if(!value) return null;
         if (typeof value == 'boolean' || typeof value == "number") return value;
         if (value == "" || value.length == 0 || Object.values(value).length == 0) {
             return undefined;

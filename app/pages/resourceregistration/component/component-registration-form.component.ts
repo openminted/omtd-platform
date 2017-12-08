@@ -47,12 +47,11 @@ export class ComponentRegistrationFormComponent implements OnInit {
         })
     }
 
-    loadComponent(component: OMTDComponent) {
+    loadComponent(component: any) {
         let temp = JSON.stringify(component, (key, value) => {
             return (value == null) ? "" : value
         });
         component = JSON.parse(temp);
-        component.componentInfo.inputContentResourceInfo = ResourceService.toForms(component.componentInfo.inputContentResourceInfo);
         console.log(ResourceService.toForms(component.componentInfo.inputContentResourceInfo));
         this.myForm.patchValue(ResourceService.toForms(component));
     }

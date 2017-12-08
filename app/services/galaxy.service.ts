@@ -4,6 +4,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import {WorkflowDefinition} from "../domain/galaxy-workflow";
 
 @Injectable()
 export class GalaxyService {
@@ -27,6 +28,18 @@ export class GalaxyService {
         let options = new RequestOptions({headers: headers, withCredentials : true});
         return this.http.get(`${this.registryHost}/request/workflow/create`, options)
             .map(res => <string> res.json())
+            .catch(this.handleError);
+    }
+
+    get workflowDefinitionURL() {
+        return `${this.registryHost}/request/workflow/`
+    }
+
+    public getWorkflowDefinition(id : string) : Observable<WorkflowDefinition> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        return this.http.get(`${this.registryHost}/request/workflow/${id}`, options)
+            .map(res => <WorkflowDefinition>res.json())
             .catch(this.handleError);
     }
 

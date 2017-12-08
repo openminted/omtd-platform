@@ -4,6 +4,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { GalaxyService } from "../../../services/galaxy.service";
 
 @Component({
     selector: 'component-registration-options',
@@ -15,7 +16,7 @@ export class ComponentRegistrationComponent {
 
     mavenForm : FormGroup;
 
-    constructor(private router: Router, private _fb : FormBuilder) {
+    constructor(private router: Router, private _fb : FormBuilder, private galaxyService : GalaxyService) {
         this.mavenForm = _fb.group({
             artifactId : ["",Validators.required],
             groupId : ["",Validators.required],
@@ -41,6 +42,11 @@ export class ComponentRegistrationComponent {
     }
 
     buildWorkflow() {
-        this.router.navigate(['/buildWorkflow']);
+
+        this.galaxyService.createWorkflow().subscribe(
+            id => this.router.navigate(['/buildWorkflow',id]),
+            console.log
+        );
+
     }
 }
