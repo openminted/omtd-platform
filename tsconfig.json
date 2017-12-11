@@ -1,24 +1,29 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module" : "es6",
+    "module": "commonjs",
     "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
+    "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "lib": [
+      "es6","dom","es2017.object","es2016.array.include"
+    ],
     "typeRoots": [
       "node_modules/@types"
+    ],
+    "types": [
+      // add node as an option
+      "node"
     ]
   },
   "exclude": [
     "node_modules",
     "dist"
   ],
-  "awesomeTypescriptLoaderOptions": {
-    "useWebpackText": true
-  },
   "angularCompilerOptions": {
     "debug": false,
     "skipMetadataEmit": true

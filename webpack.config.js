@@ -19,7 +19,7 @@ var webpackConfig = {
     plugins: [
         new webpack.ContextReplacementPlugin(
             // The (\\|\/) piece accounts for path separators in *nix and Windows
-            /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
+            /angular(\\|\/)core(\\|\/)@angular/,
             path.resolve(__dirname, './'),
             {
                 // your Angular Async Route paths relative to this root directory
@@ -87,7 +87,6 @@ var defaultConfig = {
 
 
 module.exports = function(env) {
-    console.log(env);
         if((typeof env == 'undefined') || (!env.release && env.release != true)) {
             webpackConfig.plugins.push(
                 new webpack.DefinePlugin({"process.env" : {
@@ -123,7 +122,7 @@ module.exports = function(env) {
                     PRODUCTION: JSON.stringify(true),
                     API_ENDPOINT : JSON.stringify("/api"),
                     FAQ_ENDPOINT : JSON.stringify("/faq"),
-                    GALAXY_ENDPOINT : JSON.stringify(process.env.GALAXY_ENDPOINT || "/galaxy"),
+                    GALAXY_ENDPOINT : JSON.stringify("/galaxy"),
                     CONNECTOR_API_ENDPOINT : JSON.stringify("/connector"),
                     WORKFLOW_API_ENDPOINT : JSON.stringify("/workflow"),
                     OIDC_ENDPOINT : JSON.stringify("/api/openid_connect_login"),
@@ -132,7 +131,7 @@ module.exports = function(env) {
             );
             webpackConfig.module.loaders.push(
                 {
-                    test: /\.ts$/,
+                    test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
                     loaders: [
                         '@ngtools/webpack'
                     ]
