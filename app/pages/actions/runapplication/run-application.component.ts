@@ -82,7 +82,7 @@ export class RunApplicationComponent {
                     }
                     if(urlParameter.key === 'application') {
                         sessionStorage.setItem(urlParameter.key, urlParameter.values[0]);
-                        this.resourceService.getComponent(urlParameter.values[0]).subscribe(
+                        this.resourceService.getComponent(urlParameter.values[0],'application').subscribe(
                             component => {this.component = component; transform(this.component)},
                             error => this.handleError('System error loading application', <any>error));
                     }
