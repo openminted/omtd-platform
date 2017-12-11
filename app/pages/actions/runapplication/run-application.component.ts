@@ -132,7 +132,7 @@ export class RunApplicationComponent {
             return;
         }
         this.workflowService.executeJob(archiveId[1],
-            this.component.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
+            this.component.componentInfo.identificationInfo.resourceIdentifiers[0].value).subscribe(
                 jobId => {
                     this.jobId = jobId;
                     console.log('jobId', jobId);
