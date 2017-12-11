@@ -122,7 +122,16 @@ export class RunApplicationComponent {
 
         this.isRunning = true;
 
-        this.workflowService.executeJob(this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value,
+        //TODO uncomment when we will use correctly the api
+        // this.workflowService.executeJob(this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value,
+        //     this.component.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
+
+        let archiveId = this.corpus.corpusInfo.datasetDistributionInfo.distributionLocation.match(/\?archiveId=([\d\w-]+)$/);
+        if(!archiveId) {
+            this.handleError('This corpus has no valid archiveId',{});
+            return;
+        }
+        this.workflowService.executeJob(archiveId[1],
             this.component.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
                 jobId => {
                     this.jobId = jobId;
