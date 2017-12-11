@@ -2,15 +2,15 @@
     <div class="uk-container resourceLandingPage">
         <div class="uk-grid" uk-grid="">
 
-            <template [ngIf]="errorMessage">
+            <ng-template [ngIf]="errorMessage">
                 <div class="uk-width-expand@m uk-first-column">
                     <div data-uk-alert="" class="uk-alert uk-alert-danger">
                         <p>{{errorMessage}}</p>
                     </div>
                 </div>
-            </template>
+            </ng-template>
 
-            <template [ngIf]="component && !errorMessage">
+            <ng-template [ngIf]="component && !errorMessage">
 
                 <div class="uk-width-1-1 uk-row-first uk-clearfix">
                     <h2 class="uk-h2 uk-inline" *ngIf="component.componentInfo.identificationInfo.resourceNames
@@ -131,7 +131,7 @@
                     <!--</div>-->
                 </div>
 
-            </template>
+            </ng-template>
 
 
 

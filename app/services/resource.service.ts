@@ -1,19 +1,21 @@
 /**
  * Created by stefania on 9/6/16.
  */
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Injectable } from "@angular/core";
+import { Headers, Http, RequestMethod, RequestOptions, Response } from "@angular/http";
+import { Observable } from "rxjs/Rx";
 import {
-    BaseMetadataRecord, Component as OMTDComponent, Corpus as OMTDCorpus, LanguageDescription,
+    BaseMetadataRecord,
+    Component as OMTDComponent,
+    Corpus as OMTDCorpus,
+    LanguageDescription,
     Lexical
 } from "../domain/openminted-model";
 import { URLParameter } from "../domain/url-parameter";
 import { SearchResults } from "../domain/search-results";
 import { Resource } from "../domain/resource";
-import {EnrichedOperation, Operation} from "../domain/operation";
-import {CorpusBuildingState} from "../domain/corpus-building-state";
-import {MavenComponent} from "../domain/maven-component";
+import { EnrichedOperation } from "../domain/operation";
+import { MavenComponent } from "../domain/maven-component";
 
 @Injectable()
 export class ResourceService {

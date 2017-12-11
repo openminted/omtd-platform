@@ -2,15 +2,15 @@
     <div class="uk-container">
         <div class="uk-grid" uk-grid="">
 
-            <template [ngIf]="errorMessage">
+            <ng-template [ngIf]="errorMessage">
                 <div class="uk-width-expand@m uk-first-column">
                     <div data-uk-alert="" class="uk-alert uk-alert-danger">
                         <p>{{errorMessage}}</p>
                     </div>
                 </div>
-            </template>
+            </ng-template>
 
-            <template [ngIf]="languageDescription && !errorMessage">
+            <ng-template [ngIf]="languageDescription && !errorMessage">
 
                 <div class="uk-width-1-1 uk-row-first uk-clearfix">
                     <h2 class="uk-h2" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.resourceNames
@@ -118,7 +118,7 @@
                     </div>
                 </div>
 
-            </template>
+            </ng-template>
 
 
 
