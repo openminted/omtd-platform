@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 6/7/17.
  */
-import {Component, OnInit, SecurityContext, ViewChild} from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2, SecurityContext, ViewChild } from '@angular/core';
 import { GalaxyService}  from "../../../services/galaxy.service";
 import { ActivatedRoute } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser"
@@ -18,12 +18,13 @@ import {ComponentRegistrationFormComponent} from "../../resourceregistration/com
     selector: 'build-a-workflow',
     templateUrl: './build-a-workflow.component.html',
 })
-export class BuildAWorkflowComponent implements OnInit {
+export class BuildAWorkflowComponent implements OnInit, OnDestroy {
 
     constructor(private _sanitizer : DomSanitizer,
                 private route : ActivatedRoute,
                 private galaxyService : GalaxyService,
-                private resourceService: ResourceService){}
+                private resourceService: ResourceService,
+                private renderer : Renderer2){}
 
     galaxyId = '';
     metadataFormPage = false;
@@ -34,7 +35,7 @@ export class BuildAWorkflowComponent implements OnInit {
     errorMessage: string = null;
     successfulMessage: string = null;
     workflowDefinition : WorkflowDefinition = null;
-
+    listener : any;
     defaultValues : any = {
         componentInfo: {
             application: true,
@@ -53,8 +54,12 @@ export class BuildAWorkflowComponent implements OnInit {
             this.galaxyId = params['id'];
         });
         this.galaxyService.getWorkflowDefinition(this.galaxyId).subscribe(_ => this.workflowDefinition = _);
+        this.listener = this.renderer.listen('window','message',this.fillMetadata);
     }
 
+    ngOnDestroy() {
+        this.listener && this.listener();
+    }
     get workflowURL() {
         console.log(this.galaxyId);
         let url = this._sanitizer.sanitize(SecurityContext.URL, this.galaxyService.getGalaxyUrl(this.galaxyId));
