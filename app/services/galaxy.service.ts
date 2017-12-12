@@ -34,7 +34,7 @@ export class GalaxyService {
     public updateWorkflow(workflowId : string) : Observable<any> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
-        return this.http.get(`${this.registryHost}/update/${workflowId}`, options)
+        return this.http.get(`${this.registryHost}/request/workflow/update/${workflowId}`, options)
             .catch(this.handleError);
     }
 
