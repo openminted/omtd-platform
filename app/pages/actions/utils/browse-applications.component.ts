@@ -100,7 +100,7 @@ export class BrowseApplicationsComponent {
                     id: componentBody.metadataHeaderInfo.metadataRecordIdentifier.value,
                     title: componentInfo.identificationInfo.resourceNames[0].value,
                     description: componentInfo.identificationInfo.descriptions[0].value,
-                    resourceType: 'component',
+                    resourceType: 'application',
                     creationDate: componentBody.metadataHeaderInfo.metadataCreationDate
                 };
                 this.shortResultsInfo.push(shortResultInfo);
