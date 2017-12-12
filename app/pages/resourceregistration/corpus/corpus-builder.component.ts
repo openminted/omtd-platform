@@ -104,6 +104,8 @@ export class CorpusBuilderComponent implements OnDestroy {
 
     loadCorpusMetadata(corpus: OMTDCorpus) {
         this.gettingCorpusMetadata = false;
+        let languages = corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.languages;
+        languages.forEach(l => l.language = l.language.toLowerCase());
         this.corpus = corpus;
         console.log('Corpus returned from connector: ', corpus);
     }
