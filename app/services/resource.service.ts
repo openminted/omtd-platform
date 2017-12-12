@@ -270,10 +270,8 @@ export class ResourceService {
     }
 
     uploadXMLComponent(component: string) {
-
         let headers = new Headers({'Content-Type': 'application/xml'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
-        ResourceService.removeNulls(component);
         return this.http.post(this._searchUrl + 'component', component, options)
             .map(res => res.status)
             .catch(this.handleError);
@@ -316,16 +314,15 @@ export class ResourceService {
 
     deleteComponent(component: OMTDComponent) {
 
-        ResourceService.removeNulls(component);
+        let component_ = ResourceService.removeNulls(component);
 
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({
             headers: headers,
             withCredentials: true,
             method: RequestMethod.Delete,
-            body: JSON.stringify(component)
+            body: JSON.stringify(component_)
         });
-
         return this.http.request(this._resourcesUrl + 'component', options)
             .catch(this.handleError);
     }
@@ -333,26 +330,25 @@ export class ResourceService {
     updateComponent(component: OMTDComponent) {
 
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        options.withCredentials = true;
+        let options = new RequestOptions({headers: headers, withCredentials : true});
 
-        ResourceService.removeNulls(component);
+        let component_ = ResourceService.removeNulls(component);
 
-        return this.http.put(this._resourcesUrl + 'component', JSON.stringify(component), options)
+        return this.http.put(this._resourcesUrl + 'component', JSON.stringify(component_), options)
             .map(res => <OMTDComponent> res.json())
             .catch(this.handleError);
     }
 
     deleteCorpus(corpus: OMTDCorpus) {
 
-        ResourceService.removeNulls(corpus);
+        let corpus_ = ResourceService.removeNulls(corpus);
 
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({
             headers: headers,
             withCredentials: true,
             method: RequestMethod.Delete,
-            body: JSON.stringify(corpus)
+            body: JSON.stringify(corpus_)
         });
 
         return this.http.request(this._resourcesUrl + 'corpus', options)
@@ -360,14 +356,10 @@ export class ResourceService {
     }
 
     updateCorpus(corpus: OMTDCorpus) {
-
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        options.withCredentials = true;
-
-        ResourceService.removeNulls(corpus);
-
-        return this.http.put(this._resourcesUrl + 'corpus', JSON.stringify(corpus), options)
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        let corpus_ = ResourceService.removeNulls(corpus);
+        return this.http.put(this._resourcesUrl + 'corpus', JSON.stringify(corpus_), options)
             .map(res => <OMTDCorpus> res.json())
             .catch(this.handleError);
     }
@@ -379,14 +371,11 @@ export class ResourceService {
     }
 
     registerIncompleteCorpus(corpus: OMTDCorpus) {
-
-        console.log(JSON.stringify(corpus));
-
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true });
-        ResourceService.removeNulls(corpus);
-        console.log(corpus);
-        return this.http.post(this._searchUrl + 'incompleteCorpus', JSON.stringify(corpus), options)
+        let corpus_ = ResourceService.removeNulls(corpus);
+        console.log(JSON.stringify(corpus_,null,2));
+        return this.http.post(this._searchUrl + 'incompleteCorpus', JSON.stringify(corpus_), options)
             .map(res => res.status)
             .catch(this.handleError);
     }
