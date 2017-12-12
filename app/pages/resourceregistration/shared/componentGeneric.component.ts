@@ -32,7 +32,7 @@ import { applicationDesc, Description, functionDesc } from "../../../domain/omtd
 
                     <div class="form-group-divider"></div>
 
-                    <form-inline [description]="functionDescOther" [hidden]="this.getMyControl('functionInfo.function')?.value!=='OTHER'">
+                    <form-inline [description]="functionDescOther" [hidden]="getMyControl('functionInfo.function')?.value!=='OTHER'">
                         <input type="text" class="uk-input" formControlName="functionOther" placeholder="Other type of operation(*)"/>
                     </form-inline>
                 </form-inline>

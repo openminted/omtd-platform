@@ -56,10 +56,9 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
         this.galaxyService.getWorkflowDefinition(this.galaxyId).subscribe(_ => this.workflowDefinition = _);
         this.listener = this.renderer.listen('window','message',data =>{
             setTimeout(()=>{
-                if(data['origin'] == location.origin) {
-                    console.log(data['data']);
+                if(data['origin'] == location.origin && data['data']=='workflowSaved') {
+                    this.fillMetadata();
                 }
-                this.fillMetadata();
             },500);
         });
     }
@@ -68,7 +67,6 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
         this.listener && this.listener();
     }
     get workflowURL() {
-        console.log(this.galaxyId);
         let url = this._sanitizer.sanitize(SecurityContext.URL, this.galaxyService.getGalaxyUrl(this.galaxyId));
         return this._sanitizer.bypassSecurityTrustResourceUrl(url);
     }
@@ -76,7 +74,7 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
     public fillMetadata() {
         this.metadataFormPage = true;
         setTimeout(() => {
-            this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = this.galaxyService.workflowDefinitionURL+this.galaxyId;
+            this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = location.origin + this.galaxyService.workflowDefinitionURL+this.galaxyId;
             this.componentRegistrationForm.loadComponent(this.defaultValues);
             this.componentRegistrationForm.myForm.get('componentInfo.application').disable();
             this.componentRegistrationForm.myForm.get('componentInfo.distributionInfos').disable();
@@ -106,6 +104,8 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
             this.componentFormErrorMessage = "Please accept the terms and conditions";
 
         if(this.componentForm.valid && this.tocValid) {
+            this.componentForm.get('componentInfo.application').enable();
+            this.componentForm.get('componentInfo.distributionInfos').enable();
             let component : OMTDComponent = Object.assign({},this.componentForm.value);
             let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
 
@@ -113,11 +113,15 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
 
             resourceIdentifier.value = this.workflowDefinition.workflowName;
             component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
-            this.resourceService.uploadComponent(this.componentForm.value).subscribe(
+            this.resourceService.uploadComponent(this.componentForm.value,'application').subscribe(
                 res => {
                     this.successfulMessage = 'Component registered successfully';
                     window.scrollTo(0,0);
-                }, error => this.handleError(error)
+                }, error => {
+                    this.componentForm.get('componentInfo.application').disable();
+                    this.componentForm.get('componentInfo.distributionInfos').disable();
+                    this.handleError(error);
+                }
             );
         } else {
             window.scrollTo(0,0);

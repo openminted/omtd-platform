@@ -71,7 +71,9 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
             resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
             resourceIdentifier.value = text;
             component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
-            this.resourceService.uploadComponent(this.componentForm.value).subscribe(
+            let application = this.componentForm.get('componentInfo.application').value;
+            let resourceType = application ? 'application' : 'component';
+            this.resourceService.uploadComponent(this.componentForm.value,resourceType).subscribe(
                 res => {
                     this.successfulMessage = 'Component registered successfully';
                     window.scrollTo(0,0);
