@@ -12,7 +12,20 @@ import { ResourceService } from "../../../services/resource.service";
 
 @Component({
     selector: 'component-registration-using-form',
-    templateUrl: './component-registration-using-form.component.html'
+    templateUrl: './component-registration-using-form.component.html',
+    styles : [
+        `.whiteFilm {
+            background: #ffffff none repeat scroll 0 0;
+            height: 100%;
+            left: 0;
+            opacity: 0.7;
+            position: fixed;
+            text-align: center;
+            top: 0;
+            width: 100%;
+            z-index: 5;
+        }`
+    ]
 })
 
 export class ComponentRegistrationUsingFormComponent implements OnInit {
@@ -23,6 +36,7 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
     tocValid : boolean;
     errorMessage: string = null;
     successfulMessage: string = null;
+    loading : boolean = false;
 
     constructor(private resourceService: ResourceService) {
     }
@@ -73,10 +87,12 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
             component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
             let application = this.componentForm.get('componentInfo.application').value;
             let resourceType = application ? 'application' : 'component';
+            this.loading = true;
             this.resourceService.uploadComponent(this.componentForm.value,resourceType).subscribe(
                 res => {
                     this.successfulMessage = 'Component registered successfully';
                     window.scrollTo(0,0);
+                    this.loading=false;
                 }, error => this.handleError(error)
             );
         } else {
@@ -86,6 +102,7 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
 
     handleError(error) {
         this.errorMessage = 'Component registration failed (Server responded: ' + error + ')';
+        this.loading = false;
         window.scrollTo(0,0);
     }
 

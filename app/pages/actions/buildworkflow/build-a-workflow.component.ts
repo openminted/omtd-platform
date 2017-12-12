@@ -17,6 +17,18 @@ import {ComponentRegistrationFormComponent} from "../../resourceregistration/com
 @Component({
     selector: 'build-a-workflow',
     templateUrl: './build-a-workflow.component.html',
+    styles : [
+            `.whiteFilm {
+            background: #ffffff none repeat scroll 0 0;
+            height: 100%;
+            left: 0;
+            opacity: 0.7;
+            position: fixed;
+            text-align: center;
+            top: 0;
+            width: 100%;
+            z-index: 5;
+        }`]
 })
 export class BuildAWorkflowComponent implements OnInit, OnDestroy {
 
@@ -26,6 +38,7 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
                 private resourceService: ResourceService,
                 private renderer : Renderer2){}
 
+    loading = false;
     galaxyId = '';
     metadataFormPage = false;
     componentForm: FormGroup;
@@ -83,6 +96,8 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
     }
 
     handleError(error : any) {
+        this.loading = false;
+        this.errorMessage = error;
         console.log(error);
     }
 
@@ -113,10 +128,12 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
 
             resourceIdentifier.value = this.workflowDefinition.workflowName;
             component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
+            this.loading = true;
             this.resourceService.uploadComponent(this.componentForm.value,'application').subscribe(
                 res => {
                     this.successfulMessage = 'Component registered successfully';
                     window.scrollTo(0,0);
+                    this.loading = false;
                 }, error => {
                     this.componentForm.get('componentInfo.application').disable();
                     this.componentForm.get('componentInfo.distributionInfos').disable();

@@ -259,12 +259,12 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    uploadComponent(component: OMTDComponent) {
+    uploadComponent(component: OMTDComponent, resourceType : string = 'component') {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
         let component_ = ResourceService.removeNulls(component);
         console.log(JSON.stringify(component_,null,2));
-        return this.http.post(this._searchUrl + 'component', JSON.stringify(component_), options)
+        return this.http.post(this._searchUrl + resourceType, JSON.stringify(component_), options)
             .map(res => res.status)
             .catch(this.handleError);
     }
