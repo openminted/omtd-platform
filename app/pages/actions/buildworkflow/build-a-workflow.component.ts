@@ -63,10 +63,15 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
     @ViewChild('componentForm') componentRegistrationForm : ComponentRegistrationFormComponent;
 
     ngOnInit() {
+        this.loading = true;
         this.route.params.subscribe(params => {
             this.galaxyId = params['id'];
         });
-        this.galaxyService.getWorkflowDefinition(this.galaxyId).subscribe(_ => this.workflowDefinition = _);
+        this.galaxyService.getWorkflowDefinition(this.galaxyId).subscribe(_ => {
+            this.workflowDefinition = _;
+            this.loading = false;
+        },this.handleError);
+
         this.listener = this.renderer.listen('window','message',data =>{
             setTimeout(()=>{
                 if(data['origin'] == location.origin && data['data']=='workflowSaved') {
@@ -86,12 +91,16 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
 
     public fillMetadata() {
         this.metadataFormPage = true;
+        this.loading = true;
         setTimeout(() => {
-            this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = location.origin + this.galaxyService.workflowDefinitionURL+this.galaxyId;
-            this.componentRegistrationForm.loadComponent(this.defaultValues);
-            this.componentRegistrationForm.myForm.get('componentInfo.application').disable();
-            this.componentRegistrationForm.myForm.get('componentInfo.distributionInfos').disable();
-
+            this.galaxyService.updateWorkflow(this.galaxyId).subscribe(_ => {
+                this.loading = false;
+                this.metadataFormPage = true;
+                this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = location.origin + this.galaxyService.workflowDefinitionURL+this.galaxyId;
+                this.componentRegistrationForm.loadComponent(this.defaultValues);
+                this.componentRegistrationForm.myForm.get('componentInfo.application').disable();
+                this.componentRegistrationForm.myForm.get('componentInfo.distributionInfos').disable();
+            },this.handleError);
         }, 500);
     }
 
