@@ -144,16 +144,14 @@ export class CorpusBuilderComponent implements OnDestroy {
             for (var i = 0; i < 40; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-            // corpusFilled.metadataHeaderInfo.metadataRecordIdentifier.value=this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value;
-            // corpusFilled.metadataHeaderInfo.metadataRecordIdentifier.metadataIdentifierSchemeName = this.corpus.metadataHeaderInfo.metadataRecordIdentifier.metadataIdentifierSchemeName;
             corpusFilled.metadataHeaderInfo = this.corpus.metadataHeaderInfo;
+            corpusFilled.corpusInfo.datasetDistributionInfo.distributionLocation = this.corpus.corpusInfo.datasetDistributionInfo.distributionLocation;
+            corpusFilled.corpusInfo.datasetDistributionInfo.distributionMedium = this.corpus.corpusInfo.datasetDistributionInfo.distributionMedium;
             corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers = [new ResourceIdentifier()];
             corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].value= corpusFilled.corpusInfo.datasetDistributionInfo.distributionLocation;
-            corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
+            corpusFilled.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
             corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype="rawCorpus";
-            corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.mediaType='text'
-            // corpusFilled.corpusInfo.distributionInfos[0].rightsInfo = new RightsInfo();
-            // corpusFilled.corpusInfo.distributionInfos[0].rightsInfo.rightsStatement = [RightsStatementEnum.OPEN_ACCESS]
+            corpusFilled.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.mediaType='text';
 
             console.log('Corpus Filled', corpusFilled);
             this.resourceService.registerIncompleteCorpus(corpusFilled).subscribe(
