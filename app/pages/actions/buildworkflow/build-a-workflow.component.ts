@@ -54,7 +54,14 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
             this.galaxyId = params['id'];
         });
         this.galaxyService.getWorkflowDefinition(this.galaxyId).subscribe(_ => this.workflowDefinition = _);
-        this.listener = this.renderer.listen('window','message',this.fillMetadata);
+        this.listener = this.renderer.listen('window','message',data =>{
+            setTimeout(()=>{
+                if(data['origin'] == location.origin) {
+                    console.log(data['data']);
+                }
+                this.fillMetadata();
+            },500);
+        });
     }
 
     ngOnDestroy() {
