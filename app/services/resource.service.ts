@@ -300,8 +300,8 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    getMyComponents() {
-        return this.http.get(this._resourcesUrl + "component/my", { withCredentials: true })
+    getMyComponents(resourceType : string = 'component') {
+        return this.http.get(`${this._resourcesUrl}${resourceType}/my`, { withCredentials: true })
             .map(res => <SearchResults<BaseMetadataRecord>> res.json())
             .catch(this.handleError);
     }
@@ -312,7 +312,7 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    deleteComponent(component: OMTDComponent) {
+    deleteComponent(component: OMTDComponent,resourceType : string = 'component') {
 
         let component_ = ResourceService.removeNulls(component);
 
@@ -323,18 +323,18 @@ export class ResourceService {
             method: RequestMethod.Delete,
             body: JSON.stringify(component_)
         });
-        return this.http.request(this._resourcesUrl + 'component', options)
+        return this.http.request(this._resourcesUrl + resourceType, options)
             .catch(this.handleError);
     }
 
-    updateComponent(component: OMTDComponent) {
+    updateComponent(component: OMTDComponent, resourceType : string = 'component') {
 
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
 
         let component_ = ResourceService.removeNulls(component);
 
-        return this.http.put(this._resourcesUrl + 'component', JSON.stringify(component_), options)
+        return this.http.put(this._resourcesUrl + resourceType, JSON.stringify(component_), options)
             .map(res => <OMTDComponent> res.json())
             .catch(this.handleError);
     }
