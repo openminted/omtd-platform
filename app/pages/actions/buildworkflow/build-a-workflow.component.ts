@@ -67,10 +67,7 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
         this.route.params.subscribe(params => {
             this.galaxyId = params['id'];
         });
-        this.galaxyService.getWorkflowDefinition(this.galaxyId).subscribe(_ => {
-            this.workflowDefinition = _;
-            this.loading = false;
-        },this.handleError);
+
 
         this.listener = this.renderer.listen('window','message',data =>{
             setTimeout(()=>{
@@ -134,21 +131,28 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
             let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
 
             resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
+            this.galaxyService.getWorkflowDefinition(this.galaxyId).subscribe(_ => {
+                this.loading = true;
+                this.workflowDefinition = _;
+                resourceIdentifier.value = this.workflowDefinition.workflowName;
+                component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
+                this.resourceService.uploadComponent(this.componentForm.value,'application').subscribe(
+                    res => {
+                        this.successfulMessage = 'Application registered successfully';
+                        window.scrollTo(0,0);
+                        this.loading = false;
+                    }, error => {
+                        this.componentForm.get('componentInfo.application').disable();
+                        this.componentForm.get('componentInfo.distributionInfos').disable();
+                        this.handleError(error);
+                    }
+                );
 
-            resourceIdentifier.value = this.workflowDefinition.workflowName;
-            component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
-            this.loading = true;
-            this.resourceService.uploadComponent(this.componentForm.value,'application').subscribe(
-                res => {
-                    this.successfulMessage = 'Component registered successfully';
-                    window.scrollTo(0,0);
-                    this.loading = false;
-                }, error => {
-                    this.componentForm.get('componentInfo.application').disable();
-                    this.componentForm.get('componentInfo.distributionInfos').disable();
-                    this.handleError(error);
-                }
-            );
+            },error => {
+                this.componentForm.get('componentInfo.application').disable();
+                this.componentForm.get('componentInfo.distributionInfos').disable();
+                this.handleError(error);
+            });
         } else {
             window.scrollTo(0,0);
         }

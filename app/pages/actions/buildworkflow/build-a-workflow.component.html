@@ -30,15 +30,17 @@
                         </div>
                         <div class=" uk-width-expand@m" *ngIf="metadataFormPage==true">
                             <div *ngIf="errorMessage" class="alert alert-danger uk-margin-top">{{errorMessage}}</div>
-                            <div *ngIf="componentFormErrorMessage" class="alert alert-danger uk-margin-top">{{componentFormErrorMessage}}</div>
-                            <component-registration-form #componentForm [group]="componentForm" (componentForm)="handleComponent($event)" (tocValid)="tocValid = $event"
-                                                         class="uk-margin-top"></component-registration-form>
+                            <div *ngIf="successfulMessage" class="alert alert-danger uk-margin-top">{{successfulMessage}}</div>
+                            <div *ngIf="!successfulMessage">
+                                <component-registration-form #componentForm [group]="componentForm" (componentForm)="handleComponent($event)" (tocValid)="tocValid = $event"
+                                                             class="uk-margin-top"></component-registration-form>
 
-                            <div class="uk-grid">
-                                <div class="uk-width-1-5"></div>
-                                <div class="uk-width-4-5">
-                                    <button (click)="onSubmit()" class="uk-button uk-button-large
-                                            uk-button-blue registerButton">Register!</button>
+                                <div class="uk-grid">
+                                    <div class="uk-width-1-5"></div>
+                                    <div class="uk-width-4-5">
+                                        <button (click)="onSubmit()" class="uk-button uk-button-large
+                                                uk-button-blue registerButton">Register!</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
