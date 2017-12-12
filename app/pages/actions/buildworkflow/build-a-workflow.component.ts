@@ -63,12 +63,9 @@ export class BuildAWorkflowComponent implements OnInit, OnDestroy {
     @ViewChild('componentForm') componentRegistrationForm : ComponentRegistrationFormComponent;
 
     ngOnInit() {
-        this.loading = true;
         this.route.params.subscribe(params => {
             this.galaxyId = params['id'];
         });
-
-
         this.listener = this.renderer.listen('window','message',data =>{
             setTimeout(()=>{
                 if(data['origin'] == location.origin && data['data']=='workflowSaved') {
