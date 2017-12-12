@@ -77,7 +77,12 @@ export class AuthenticationService {
                         sessionStorage.setItem('name',userInfo.json()['name'])
                         sessionStorage.setItem('email',userInfo.json()['email'])
                     },
-                    () => {sessionStorage.removeItem('name');sessionStorage.removeItem('email');deleteCookie('name');}
+                    () => {
+                        sessionStorage.removeItem('name');
+                        sessionStorage.removeItem('email');
+                        deleteCookie('name')
+                        this.router.navigateByUrl('/home');
+                    }
                 );
             }
             if(sessionStorage.getItem("state.location")) {
