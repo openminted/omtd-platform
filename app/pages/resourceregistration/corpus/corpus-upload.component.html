@@ -1,5 +1,5 @@
 <div>
-    <div *ngIf="uploadingCorpus" class="whiteFilm"><i class="fa fa-spinner fa-spin fa-5x loader" aria-hidden="true"></i></div>
+    <div *ngIf="loading" class="whiteFilm"><i class="fa fa-spinner fa-spin fa-5x loader" aria-hidden="true"></i></div>
 
 
     <div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
@@ -33,8 +33,8 @@
 
                         <article class="uk-article">
                             <h3 class="subtitle">Fill in the metadata for your corpus</h3>
-                            <div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>
-                            <corpus-registration-form #corpusForm [group]="corpusForm" (corpusForm)="handleCorpus($event)" (tocValid)="tocValid = $event"></corpus-registration-form>
+                            <!--<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>-->
+                            <corpus-registration-form #corpusForm></corpus-registration-form>
                             <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
 
                         </article>

@@ -1,10 +1,9 @@
 /**
  * Created by stefania on 10/19/16.
  */
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Corpus as OMTDCorpus } from "../../../domain/openminted-model";
-import { Observable } from "rxjs/Rx";
 import { ResourceService } from "../../../services/resource.service";
 
 @Component({
@@ -15,19 +14,10 @@ import { ResourceService } from "../../../services/resource.service";
 
 export class CorpusRegistrationFormComponent implements OnInit {
 
-    @Input('group')
     myForm: FormGroup;
 
     tocForm : FormGroup;
 
-    @Input('corpus')
-    corpus : Observable<OMTDCorpus> = null;
-
-    @Output('corpusForm')
-    corpusForm : EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
-
-    @Output()
-    tocValid : EventEmitter<boolean> = new EventEmitter<boolean>();
 
     production = process.env.PRODUCTION;
 
@@ -99,30 +89,10 @@ export class CorpusRegistrationFormComponent implements OnInit {
         }
     };
 
-    debugValue : any = {};
-
     constructor(private _fb: FormBuilder) {
         this.tocForm = _fb.group({
-            toc : [false,Validators.requiredTrue]
+            toc: [false, Validators.requiredTrue]
         })
-    }
-
-
-    private markFormGroupTouched(formGroup: FormGroup) {
-        (<any>Object).values(formGroup.controls).forEach(control => {
-            console.log(control);
-            control.markAsTouched();
-            control.updateValueAndValidity();
-            if (control.controls) {
-                control.controls.forEach(c => this.markFormGroupTouched(c));
-            }
-        });
-    }
-
-    public markAsTouched() {
-        this.markFormGroupTouched(this.myForm);
-        this.myForm.markAsTouched();
-        this.myForm.updateValueAndValidity();
     }
 
     loadCorpus(corpus : OMTDCorpus) {
@@ -137,41 +107,32 @@ export class CorpusRegistrationFormComponent implements OnInit {
         this.myForm = this._fb.group({
             corpusInfo:this._fb.group({
                 resourceType : 'corpus',
-                // distributionInfos : this._fb.array([this._fb.group({})])
             })
 
         });
-        this.myForm.valueChanges.subscribe(corpus => {
-            this.corpusForm.emit(this.myForm);
-            this.debugValue = ResourceService.removeNulls(this.myForm.value);
-        });
-
-        this.tocForm.valueChanges.subscribe(value => {
-            this.tocValid.emit(this.tocForm.valid);
-        });
-
-        // //TODO remove
-        // this.corpus = this.resourceService.getCorpus("rawCorpus_almostall");
-
-        if (this.corpus) {
-            this.corpus.subscribe(
-                corpus => this.loadCorpus(corpus),
-                error => console.log(error));
-        }
     }
 
-    testCorpusData : any;
-
-    testCorpus() {
-        let temp = JSON.stringify(this.testValue,(key,value)=>{return (value == null) ? "" : value});
-        this.testCorpusData = JSON.parse(temp);
-        console.log(this.testCorpusData);
-
-        this.myForm.patchValue(this.testCorpusData);
-        //setTimeout(this.myForm.patchValue,2000,this.testCorpusData);
+    public get debugValue() {
+        return ResourceService.removeNulls(this.myForm.value);
     }
 
-    get removeNullValue() {
-        return  ResourceService.removeNulls(this.myForm.value || {});
+    public get tocValid() : boolean{
+        return this.tocForm.valid;
+    }
+
+    public get formValid() : boolean {
+        return this.myForm.valid;
+    }
+
+    public get formValue() : any {
+        return this.myForm.value;
+    }
+
+    public setAsTouched() {
+        console.log("Not yet implemented");
+    }
+
+    public get(path : string) : AbstractControl {
+        return this.myForm.get(path);
     }
 }

@@ -23,8 +23,14 @@
             </li>
 
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Distribution'">
-                <componentDistributionInfos-form
+                <componentDistributionInfos-form *ngIf="!galaxyButtonUrl"
                         [parentGroup]="myForm.controls.componentInfo"></componentDistributionInfos-form>
+                <div *ngIf="galaxyButtonUrl && !iframeURL" (click)="navigateToWorkflow()">
+                    <button class="uk-button uk-button-large
+                                            uk-button-blue registerButton">Edit Workflow
+                    </button>
+                    <iframe *ngIf="iframeURL" [src]="iframeURL" style="width:100%; height:500px;"></iframe>
+                </div>
             </li>
 
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Rights Info'">

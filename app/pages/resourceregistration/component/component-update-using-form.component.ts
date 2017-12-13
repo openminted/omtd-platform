@@ -32,6 +32,7 @@ export class ComponentUpdateUsingFormComponent extends ComponentRegistrationUsin
             this.component.subscribe(component => {
                 this.componentMetadata = component.metadataHeaderInfo;
                 this.componentForm.loadComponent(component)
+                setTimeout(() =>{this.componentForm.galaxyToDistributionInfo()},1000);
             }, error => this.handleError(error));
         });
     }
@@ -47,6 +48,7 @@ export class ComponentUpdateUsingFormComponent extends ComponentRegistrationUsin
                 window.scrollTo(0,0);},
             error => this.handleError(error)
         );
+
     }
 
     onSubmit() {

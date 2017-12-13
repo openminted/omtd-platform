@@ -1,11 +1,12 @@
 /**
  * Created by stefanos on 10/19/16.
  */
-import { Component, OnInit, Type } from "@angular/core";
+import { Component, OnDestroy, OnInit, Renderer2, Type } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ParameterInfoFormComponent } from "../shared/parameter-info-form.component";
 import { Description, parameterInfoDesc } from "../../../domain/omtd.description";
 import { ResourceService } from "../../../services/resource.service";
+import { GalaxyService } from "../../../services/galaxy.service";
 
 @Component({
     selector: 'component-registration-form',
@@ -13,7 +14,7 @@ import { ResourceService } from "../../../services/resource.service";
     styleUrls: ['./component-registration-form.component.css'],
 })
 
-export class ComponentRegistrationFormComponent implements OnInit {
+export class ComponentRegistrationFormComponent implements OnInit, OnDestroy {
 
     myForm: FormGroup;
 
@@ -27,7 +28,10 @@ export class ComponentRegistrationFormComponent implements OnInit {
 
     production = process.env.PRODUCTION;
 
-    constructor(private _fb: FormBuilder) {
+    galaxyButtonUrl : string = null;
+    iframeURL = null;
+    listener = null;
+    constructor(private _fb: FormBuilder, private galaxyService : GalaxyService, private renderer : Renderer2) {
         this.tocForm = _fb.group({
             toc : [false,Validators.requiredTrue]
         })
@@ -38,7 +42,6 @@ export class ComponentRegistrationFormComponent implements OnInit {
             return (value == null) ? "" : value
         });
         component = JSON.parse(temp);
-        console.log(ResourceService.toForms(component.componentInfo.inputContentResourceInfo));
         this.myForm.patchValue(ResourceService.toForms(component));
     }
 
@@ -71,5 +74,35 @@ export class ComponentRegistrationFormComponent implements OnInit {
 
     public get(path : string) : AbstractControl {
         return this.myForm.get(path);
+    }
+
+    public galaxyToDistributionInfo() {
+        let distributionInfo = this.myForm.get('componentInfo.distributionInfos.0');
+        let schema = distributionInfo.get('componentDistributionForm').value;
+        let location = distributionInfo.get('distributionLocation').value;
+        if(schema === "GALAXY_WORKFLOW") {
+            this.galaxyButtonUrl = location;
+        }
+    }
+
+
+    navigateToWorkflow() {
+        let galaxyURL = new URL(this.galaxyButtonUrl);
+        let workflowId = this.galaxyButtonUrl.match(/\/(\w+)$/);
+        console.log(workflowId);
+        if(galaxyURL.origin == location.origin) {
+            this.iframeURL = this.galaxyService.workflowURLSanitized(workflowId[1]);
+        } else {
+            window.open(this.galaxyService.getGalaxyUrl(workflowId[1]));
+            this.listener = this.renderer.listen('window','message',data =>{
+                if(data['origin'] == location.origin && data['data']=='workflowSaved') {
+                    this.galaxyService.updateWorkflow(workflowId[1]).subscribe(_ => {console.log("Workflow saved")});
+                }
+            });
+        }
+    }
+
+    ngOnDestroy(): void {
+        this.listener && this.listener();
     }
 }

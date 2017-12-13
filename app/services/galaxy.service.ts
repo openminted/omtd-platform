@@ -1,10 +1,11 @@
 /**
  * Created by stefania on 6/12/17.
  */
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
-import {WorkflowDefinition} from "../domain/galaxy-workflow";
+import { Injectable, SecurityContext } from "@angular/core";
+import { Headers, Http, RequestOptions, Response } from "@angular/http";
+import { Observable } from "rxjs/Rx";
+import { WorkflowDefinition } from "../domain/galaxy-workflow";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Injectable()
 export class GalaxyService {
@@ -13,7 +14,7 @@ export class GalaxyService {
 
     private registryEndpoint = process.env.API_ENDPOINT;
 
-    constructor (private http: Http) {}
+    constructor (private http: Http, private _sanitizer : DomSanitizer) {}
 
     public get galaxyHost() :string {
         return this.galaxyEndpoint;
@@ -50,6 +51,11 @@ export class GalaxyService {
         return this.http.get(`${this.registryHost}/request/workflow/${id}`, options)
             .map(res => <WorkflowDefinition>res.json())
             .catch(this.handleError);
+    }
+
+    public workflowURLSanitized(workflowId : string) {
+        let url = this._sanitizer.sanitize(SecurityContext.URL, this.getGalaxyUrl(workflowId));
+        return this._sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
     public getGalaxyUrl(id : string) : string {

@@ -1,5 +1,6 @@
 <div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
     <div class="uk-container">
+        <div *ngIf="loading" class="whiteFilm"><i class="fa fa-spinner fa-spin fa-5x loader" aria-hidden="true"></i></div>
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
@@ -24,10 +25,10 @@
 
                         <!-- MIDDLE -->
                         <div *ngIf="!successfulMessage" class="uk-width-expand@m">
-                            <div *ngIf="corpusFormErrorMessage" class="alert alert-danger uk-margin-top">{{corpusFormErrorMessage}}</div>
-                            <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)" [corpus]="corpus"
-                                                      (tocValid)="tocValid = $event"
-                                                         class="uk-margin-top"></corpus-registration-form>
+                            <div *ngIf="errorMessage" class="alert alert-danger uk-margin-top">{{errorMessage}}</div>
+
+                            <corpus-registration-form #corpusForm class="uk-margin-top"></corpus-registration-form>
+
                             <div class="uk-grid">
                                 <div class="uk-width-1-5"></div>
                                 <div class="uk-width-4-5">

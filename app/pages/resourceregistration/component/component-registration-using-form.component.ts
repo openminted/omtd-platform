@@ -2,7 +2,10 @@
  * Created by stefanos on 1/22/17.
  */
 import { Component, Injector, ViewChild } from "@angular/core";
-import { Component as OMTDComponent, ResourceIdentifier } from "../../../domain/openminted-model";
+import {
+    Component as OMTDComponent, ResourceIdentifier,
+    ResourceIdentifierSchemeNameEnum
+} from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { ComponentRegistrationFormComponent } from "./component-registration-form.component";
 import { randomString } from "../../../domain/utils";
@@ -60,6 +63,7 @@ export class ComponentRegistrationUsingFormComponent {
         let component : OMTDComponent = Object.assign({},this.componentForm.formValue);
         let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
         resourceIdentifier.value = randomString();
+        resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
         component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
         let application = this.componentForm.get('componentInfo.application').value;
         let resourceType = application ? 'application' : 'component';

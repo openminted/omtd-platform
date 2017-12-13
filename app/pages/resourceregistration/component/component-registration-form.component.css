@@ -9,3 +9,8 @@
     width: 100%;
     z-index: 5;
 }
+
+.loader {
+    color: #00b9b4;
+    margin: 25% auto;
+}
