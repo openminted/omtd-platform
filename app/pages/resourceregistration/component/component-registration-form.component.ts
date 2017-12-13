@@ -92,13 +92,13 @@ export class ComponentRegistrationFormComponent implements OnInit, OnDestroy {
         console.log(workflowId);
         if(galaxyURL.origin == location.origin) {
             this.iframeURL = this.galaxyService.workflowURLSanitized(workflowId[1]);
-        } else {
-            window.open(this.galaxyService.getGalaxyUrl(workflowId[1]));
             this.listener = this.renderer.listen('window','message',data =>{
                 if(data['origin'] == location.origin && data['data']=='workflowSaved') {
                     this.galaxyService.updateWorkflow(workflowId[1]).subscribe(_ => {console.log("Workflow saved")});
                 }
             });
+        } else {
+            window.open(this.galaxyService.getGalaxyUrl(workflowId[1]));
         }
     }
 

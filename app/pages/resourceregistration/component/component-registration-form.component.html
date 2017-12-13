@@ -29,7 +29,9 @@
                     <button class="uk-button uk-button-large
                                             uk-button-blue registerButton">Edit Workflow
                     </button>
-                    <iframe *ngIf="iframeURL" [src]="iframeURL" style="width:100%; height:500px;"></iframe>
+                    <div *ngIf="iframeURL">
+                        <iframe  [src]="iframeURL" style="width:100%; height:500px;"></iframe>
+                    </div>
                 </div>
             </li>
 
