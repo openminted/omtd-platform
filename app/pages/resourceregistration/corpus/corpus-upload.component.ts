@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 1/19/17.
  */
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import {
     Corpus as OMTDCorpus,
@@ -10,6 +10,7 @@ import {
     ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
+import { CorpusRegistrationFormComponent } from "./corpus-registration-form.component";
 
 @Component({
     selector: 'corpus-upload',
@@ -31,6 +32,8 @@ export class CorpusUploadComponent implements OnInit {
     successfulMessage: string = null;
 
     uploadingCorpus:boolean = false;
+
+    @ViewChild('corpusForm') componentRegistrationForm : CorpusRegistrationFormComponent;
 
     constructor(private _fb: FormBuilder, private resourceService: ResourceService) {
     }
@@ -80,9 +83,11 @@ export class CorpusUploadComponent implements OnInit {
 
         if(this.corpusForm.valid && this.tocValid)
             this.corpusFormErrorMessage = null;
-        else if (!this.corpusForm.valid)
+        else if (!this.corpusForm.valid) {
             this.corpusFormErrorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
+            this.componentRegistrationForm.markAsTouched();
+        }
         else if (!this.tocValid)
             this.corpusFormErrorMessage = "Please accept the terms and conditions.";
 

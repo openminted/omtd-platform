@@ -29,7 +29,7 @@
                             <div class=" uk-width-expand@m">
                                 <div *ngIf="corpusFormErrorMessage" class="alert alert-danger">{{corpusFormErrorMessage}}</div>
 
-                                <corpus-registration-form [group]="corpusForm" (corpusForm)="handleCorpus($event)"
+                                <corpus-registration-form #corpusForm [group]="corpusForm" (corpusForm)="handleCorpus($event)"
                                                           [corpus]="corpusPromise" (tocValid)="tocValid = $event"></corpus-registration-form>
                             </div>
 

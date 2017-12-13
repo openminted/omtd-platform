@@ -100,7 +100,7 @@ export class MyServicesComponent {
 
     editComponent(component: OMTDComponent) {
         console.log(component);
-        this.router.navigate(['/resourceRegistration/component/form/edit/', component.metadataHeaderInfo.metadataRecordIdentifier.value]);
+        this.router.navigate([`/resourceRegistration/${this.resourceType}/form/edit/`, component.metadataHeaderInfo.metadataRecordIdentifier.value]);
     }
 
     deleteConfirmationComponent(component: OMTDComponent) {

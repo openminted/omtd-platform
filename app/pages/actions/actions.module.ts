@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpModule, JsonpModule } from '@angular/http';
 
 import { actionsRouting } from "./actions.routing";
-import { BuildAWorkflowComponent } from "./buildworkflow/build-a-workflow.component";
 import { RunApplicationComponent } from "./runapplication/run-application.component";
 import { ResourceService } from "../../services/resource.service";
 import { BrowseCorporaComponent } from "./utils/browse-corpora.component";
@@ -29,7 +28,6 @@ import {GalaxyService} from "../../services/galaxy.service";
         ReusableComponentsModule
     ],
     declarations: [
-        // BuildAWorkflowComponent,
         RunApplicationComponent,
         BrowseCorporaComponent,
         BrowseApplicationsComponent

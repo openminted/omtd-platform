@@ -30,8 +30,7 @@
                             <div *ngIf="errorMessage" class="uk-alert uk-alert-danger uk-margin-top">{{errorMessage}}</div>
                             <div *ngIf="successfulMessage" class="uk-alert uk-alert-success uk-margin-top">{{successfulMessage}}</div>
                             <div *ngIf="!successfulMessage">
-                                <component-registration-form #componentForm [group]="componentForm" (componentForm)="handleComponent($event)" (tocValid)="tocValid = $event"
-                                                             class="uk-margin-top"></component-registration-form>
+                                <component-registration-form #componentForm class="uk-margin-top"></component-registration-form>
 
                                 <div class="uk-grid">
                                     <div class="uk-width-1-5"></div>

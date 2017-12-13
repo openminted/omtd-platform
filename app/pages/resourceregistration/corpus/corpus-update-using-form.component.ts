@@ -72,9 +72,12 @@ export class CorpusUpdateUsingFormComponent implements OnInit {
 
         if(this.corpusForm.valid && this.tocValid)
             this.corpusFormErrorMessage = null;
-        else if(!this.corpusForm.valid)
+        else if(!this.corpusForm.valid) {
             this.corpusFormErrorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
+            this.corpusForm.markAsTouched();
+            this.corpusForm.updateValueAndValidity();
+        }
         else if (!this.tocValid)
             this.corpusFormErrorMessage = "Please accept the terms and conditions";
 

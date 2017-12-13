@@ -107,6 +107,24 @@ export class CorpusRegistrationFormComponent implements OnInit {
         })
     }
 
+
+    private markFormGroupTouched(formGroup: FormGroup) {
+        (<any>Object).values(formGroup.controls).forEach(control => {
+            console.log(control);
+            control.markAsTouched();
+            control.updateValueAndValidity();
+            if (control.controls) {
+                control.controls.forEach(c => this.markFormGroupTouched(c));
+            }
+        });
+    }
+
+    public markAsTouched() {
+        this.markFormGroupTouched(this.myForm);
+        this.myForm.markAsTouched();
+        this.myForm.updateValueAndValidity();
+    }
+
     loadCorpus(corpus : OMTDCorpus) {
         let temp = JSON.stringify(corpus, (key, value) => {
             return (value == null) ? "" : value

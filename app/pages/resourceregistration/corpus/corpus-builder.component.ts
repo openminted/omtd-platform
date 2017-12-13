@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 1/20/17.
  */
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
@@ -17,6 +17,7 @@ import { ResourceService } from "../../../services/resource.service";
 import { AuthenticationService } from "../../../services/authentication.service";
 import { CorpusBuildingState } from "../../../domain/corpus-building-state";
 import { ContentConnectorStatus } from "../../../domain/content-connector-status";
+import { CorpusRegistrationFormComponent } from "./corpus-registration-form.component";
 
 @Component({
     selector: 'corpus-builder',
@@ -55,6 +56,8 @@ export class CorpusBuilderComponent implements OnDestroy {
     contentConnectorStatus: ContentConnectorStatus;
 
     intervalId: number = null;
+
+    @ViewChild('corpusForm') componentRegistrationForm : CorpusRegistrationFormComponent;
 
     constructor(private authenticationService : AuthenticationService, private activatedRoute: ActivatedRoute, private router: Router,
                 private contentConnectorService: ContentConnectorService, private resourceService: ResourceService) {

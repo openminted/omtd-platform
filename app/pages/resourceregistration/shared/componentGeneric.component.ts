@@ -12,14 +12,14 @@ import { applicationDesc, Description, functionDesc } from "../../../domain/omtd
     <div [formGroup]="parentGroup">
         <div formGroupName="{{name}}">
             
-            <form-inline [description]="applicationCDesc">
-                <label class="radio-label">
-                    <input type="checkbox" formControlName="application">
-                    Check if component can be used as an integrated end-user application
-                </label>
-            </form-inline>
-                     
-            <div class="form-group-divider"></div>
+            <!--<form-inline [description]="applicationCDesc">-->
+                <!--<label class="radio-label">-->
+                    <input type="checkbox" formControlName="application" [hidden]="true">
+                    <!--Check if component can be used as an integrated end-user application-->
+                <!--</label>-->
+            <!--</form-inline>-->
+                     <!---->
+            <!--<div class="form-group-divider"></div>-->
             
             <div formGroupName="functionInfo">
                 <form-inline [description]="functionDesc">
