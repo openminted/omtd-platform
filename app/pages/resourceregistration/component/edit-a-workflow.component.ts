@@ -4,6 +4,7 @@
 import { Component, Injector, OnDestroy, OnInit, Renderer2 } from "@angular/core";
 import { GalaxyService } from "../../../services/galaxy.service";
 import { ActivatedRoute } from "@angular/router";
+import { SafeUrl } from "@angular/platform-browser";
 
 @Component({
     selector: 'build-a-workflow',
@@ -16,6 +17,7 @@ export class EditAWorkflowComponent implements OnInit, OnDestroy {
     private galaxyService : GalaxyService;
     private route : ActivatedRoute;
     galaxyId = '';
+    galaxyURL : SafeUrl = null;
     listener : any;
 
     constructor(injector : Injector){
@@ -27,6 +29,7 @@ export class EditAWorkflowComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.galaxyId = params['id'];
+            this.galaxyURL = this.galaxyService.workflowURLSanitized(this.galaxyId);
         });
         this.listener = this.renderer.listen('window','message',data =>{
             setTimeout(()=>{
@@ -41,10 +44,6 @@ export class EditAWorkflowComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.listener && this.listener();
-    }
-
-    get workflowURL() {
-        return this.galaxyService.workflowURLSanitized(this.galaxyId);
     }
 }
 
