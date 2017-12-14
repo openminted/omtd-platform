@@ -1,12 +1,11 @@
 /**
  * Created by stefanos on 10/19/16.
  */
-import { Component, OnDestroy, OnInit, Renderer2, Type } from "@angular/core";
+import { Component, OnInit, Type } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ParameterInfoFormComponent } from "../shared/parameter-info-form.component";
 import { Description, parameterInfoDesc } from "../../../domain/omtd.description";
 import { ResourceService } from "../../../services/resource.service";
-import { GalaxyService } from "../../../services/galaxy.service";
 
 @Component({
     selector: 'component-registration-form',
@@ -14,7 +13,7 @@ import { GalaxyService } from "../../../services/galaxy.service";
     styleUrls: ['./component-registration-form.component.css'],
 })
 
-export class ComponentRegistrationFormComponent implements OnInit, OnDestroy {
+export class ComponentRegistrationFormComponent implements OnInit {
 
     myForm: FormGroup;
 
@@ -29,9 +28,9 @@ export class ComponentRegistrationFormComponent implements OnInit, OnDestroy {
     production = process.env.PRODUCTION;
 
     galaxyButtonUrl : string = null;
-    iframeURL = null;
-    listener = null;
-    constructor(private _fb: FormBuilder, private galaxyService : GalaxyService, private renderer : Renderer2) {
+
+
+    constructor(private _fb: FormBuilder) {
         this.tocForm = _fb.group({
             toc : [false,Validators.requiredTrue]
         })
@@ -83,26 +82,5 @@ export class ComponentRegistrationFormComponent implements OnInit, OnDestroy {
         if(schema === "GALAXY_WORKFLOW") {
             this.galaxyButtonUrl = location;
         }
-    }
-
-
-    navigateToWorkflow() {
-        let galaxyURL = new URL(this.galaxyButtonUrl);
-        let workflowId = this.galaxyButtonUrl.match(/\/(\w+)$/);
-        console.log(workflowId);
-        if(galaxyURL.origin == location.origin) {
-            this.iframeURL = this.galaxyService.workflowURLSanitized(workflowId[1]);
-            this.listener = this.renderer.listen('window','message',data =>{
-                if(data['origin'] == location.origin && data['data']=='workflowSaved') {
-                    this.galaxyService.updateWorkflow(workflowId[1]).subscribe(_ => {console.log("Workflow saved")});
-                }
-            });
-        } else {
-            window.open(this.galaxyService.getGalaxyUrl(workflowId[1]));
-        }
-    }
-
-    ngOnDestroy(): void {
-        this.listener && this.listener();
     }
 }

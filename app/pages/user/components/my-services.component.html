@@ -95,13 +95,24 @@
                                                             <td class=""><div class="el-title">--</div></td>
                                                             <td class="uk-text-nowrap">
                                                                 <div *ngIf="!component.componentInfo.identificationInfo.public" class="el-title">
-                                                                    <a (click)="goToDetails(component)" class=""><i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i></a>
-                                                                    <a (click)="editComponent(component)"><i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i></a>
-                                                                    <a (click)="deleteConfirmationComponent(component)"><i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i></a>
-                                                                    <a (click)="makePublicConfirmation(component)" class=""><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                                    <a (click)="goToDetails(component)" title="View {{resourceType}}" uk-tooltip>
+                                                                        <i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="editComponent(component)" title="Edit {{resourceType}} metadata" uk-tooltip>
+                                                                        <i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a *ngIf="resourceType=='application'" (click)="editWorkflow(component)" title="Edit workflow" uk-tooltip>
+                                                                        <i class="fa fa-object-group uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="deleteConfirmationComponent(component)" title="Delete {{resourceType}}" uk-tooltip>
+                                                                        <i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="makePublicConfirmation(component)" title="Share {{resourceType}}" uk-tooltip>
+                                                                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                                                    </a>
                                                                 </div>
                                                                 <div *ngIf="component.componentInfo.identificationInfo.public" class="el-title">
-                                                                    <a (click)="goToDetails(component)" class=""><i class="fa fa-info" aria-hidden="true"></i></a>
+                                                                    <a (click)="goToDetails(component)" title="View {{resourceType}}" uk-tooltip><i class="fa fa-info" aria-hidden="true"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>

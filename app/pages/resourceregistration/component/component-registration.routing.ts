@@ -10,6 +10,7 @@ import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-gua
 import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
 import { BuildAWorkflowComponent } from "./build-a-workflow.component";
 import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component-registration-using-maven-coordinates.component";
+import { EditAWorkflowComponent } from "./edit-a-workflow.component";
 
 const componentRegistrationRoutes: Routes = [
     {
@@ -59,6 +60,10 @@ const componentRegistrationRoutes: Routes = [
     {
         path: 'buildWorkflow/:id',
         component: BuildAWorkflowComponent
+    },
+    {
+        path: 'editWorkflow/:id',
+        component: EditAWorkflowComponent
     },
 ];
 

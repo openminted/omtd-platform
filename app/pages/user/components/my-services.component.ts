@@ -103,6 +103,11 @@ export class MyServicesComponent {
         this.router.navigate([`/resourceRegistration/${this.resourceType}/form/edit/`, component.metadataHeaderInfo.metadataRecordIdentifier.value]);
     }
 
+    editWorkflow(component: OMTDComponent) {
+        let workflowId = component.componentInfo.distributionInfos[0].distributionLocation.match(/\/(\w+)$/);
+        this.router.navigate([`/editWorkflow/`, workflowId[1]]);
+    }
+
     deleteConfirmationComponent(component: OMTDComponent) {
 
         this.errorMessage = null;

@@ -18,6 +18,7 @@ import { ComponentUpdateUsingFormComponent } from "./component-update-using-form
 import { AceEditorModule } from "ng2-ace-editor";
 import { BuildAWorkflowComponent } from "./build-a-workflow.component";
 import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component-registration-using-maven-coordinates.component";
+import { EditAWorkflowComponent } from "./edit-a-workflow.component";
 
 
 @NgModule({
@@ -29,7 +30,6 @@ import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component
         AccordionModule.forRoot(),
         TypeaheadModule.forRoot(),
         ResourceRegistrationModule,
-        AceEditorModule,
         ReusableComponentsModule,
         AceEditorModule,
     ],
@@ -40,7 +40,8 @@ import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component
         ComponentRegistrationUsingFormComponent,
         ComponentRegistrationUsingMavenCoordinatesComponent,
         ComponentUpdateUsingFormComponent,
-        BuildAWorkflowComponent
+        BuildAWorkflowComponent,
+        EditAWorkflowComponent
     ],
     providers: [
         ResourceService
