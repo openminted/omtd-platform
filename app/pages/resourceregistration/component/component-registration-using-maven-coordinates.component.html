@@ -1,9 +1,12 @@
 <div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
     <div class="uk-container">
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+
+
             <div class="uk-width-1-1@m uk-first-column">
 
-                <h1 class="uk-h2">Resolving Maven Coordinates</h1>
+                <h1 *ngIf="!editMode" class="uk-h2">Choose a component to register</h1>
+                <h1 *ngIf="editMode" class="uk-h2">Fill the metadata for this component</h1>
                 <!--<hr class="uk-divider-small">-->
 
                 <!-- TOP HELP CONTENT -->
@@ -21,20 +24,37 @@
 
                         <!-- MIDDLE -->
                         <div class=" uk-width-expand@m">
-                            <div *ngIf="errorMessage">
+                            <div *ngIf="errorMessage" class="uk-alert uk-alert-danger">
                                 {{errorMessage}}
                             </div>
                             <div *ngIf="!errorMessage">
                                 <div *ngIf="!editMode">
-                                    <div *ngFor="let component of mavenComponents; let i=index">
-                                        {{i}}. {{component.component.componentInfo.identificationInfo.resourceNames[0].value}}
-                                        <div *ngIf="component.inserted">
-                                            <h2 style="color:red">YOU HAVE ALREADY ADDED ME MAN</h2>
-                                        </div>
-                                        <div *ngIf="!component.inserted">
-                                            <a (click)="editXMLComponent(component.xml,i)">CLICK HERE TO INSERT ME</a>
+
+                                    <div class="uk-width-1-1@m uk-first-column">
+                                        <div class="uk-margin uk-grid-match uk-child-width-1-1 uk-child-width-1-5@m uk-grid-small uk-grid
+                                        uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" uk-grid="" style="">
+
+                                            <div *ngFor="let component of mavenComponents; let i=index" class="" style="min-height: 115px">
+                                                <div uk-scrollspy-class="" class="el-item uk-card uk-card-default uk-card-hover
+                                                uk-card-body uk-scrollspy-inview uk-animation-fade" style="padding: 15px 25px">
+                                                    <a (click)="editXMLComponent(component.xml,i)" uk-scroll="" class="el-link
+                                                    uk-position-cover uk-margin-remove-adjacent"></a>
+                                                    <div class="uk-child-width-expand uk-flex-middle uk-grid" uk-grid="">
+                                                        <div class="el-title uk-width-1-1">
+                                                            {{component.component.componentInfo.identificationInfo.resourceNames[0].value}}
+                                                        </div>
+                                                        <div *ngIf="component.inserted" class="el-content"
+                                                             style="color: #68b8b3; margin-top: 15px">
+                                                            <span class="uk-float-right">
+                                                                <i class="fa fa-check" aria-hidden="true"></i> Already added
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div *ngIf="editMode">
                                     <form role="form" class="m-t componentXMLForm">
