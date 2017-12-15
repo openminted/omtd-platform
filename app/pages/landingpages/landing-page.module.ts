@@ -43,13 +43,15 @@ import { RelationInfoComponent } from "./resourceelements/relation-info.componen
 import { DomainsInfoComponent } from "./resourceelements/domains-info.component";
 import { KeywordsInfoComponent } from "./resourceelements/keywords-info.component";
 import { ResourceCreationInfoShortComponent } from "./resourceelements/resource-creation-info-short.component";
+import { SlickModule } from "ngx-slick";
 
 @NgModule({
     imports: [
         CommonModule,
         landingPageRouting,
         TabsModule.forRoot(),
-        ReusableComponentsModule
+        ReusableComponentsModule,
+        SlickModule.forRoot()
     ],
     declarations: [
         ComponentLandingPageComponent,

@@ -138,32 +138,16 @@
                                 </span>
                             </dd>
                         </dl>
-                        <!--<h4>Identifiers</h4>-->
-                        <!--<div *ngFor="let identifier of component.componentInfo.identificationInfo.resourceIdentifiers">-->
-                        <!--<span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'-->
-                        <!--|| identifier.resourceIdentifierSchemeName=='HANDLE'">-->
-                        <!--{{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>-->
-                        <!--</span>-->
-                        <!--<span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'-->
-                        <!--&& identifier.resourceIdentifierSchemeName!='HANDLE'">-->
-                        <!--{{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}-->
-                        <!--</span>-->
-                        <!--</div>-->
                     </div>
-                    <!--<div class="resourceIdentifiers" *ngIf="corpus.corpusInfo.identificationInfo.resourceIdentifiers-->
-                        <!--&& corpus.corpusInfo.identificationInfo.resourceIdentifiers.length>0">-->
-                        <!--<h4>Identifiers</h4>-->
-                        <!--<div *ngFor="let identifier of corpus.corpusInfo.identificationInfo.resourceIdentifiers">-->
-                            <!--<span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'-->
-                            <!--|| identifier.resourceIdentifierSchemeName=='HANDLE'">-->
-                                <!--{{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>-->
-                            <!--</span>-->
-                            <!--<span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'-->
-                            <!--&& identifier.resourceIdentifierSchemeName!='HANDLE'">-->
-                                <!--{{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}-->
-                            <!--</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
+
+                    <div class="annotations" *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus'
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.annotations
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.annotations.length>0">
+                        <annotations-info [annotations]="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.annotations"></annotations-info>
+                    </div>
 
                 </div>
 

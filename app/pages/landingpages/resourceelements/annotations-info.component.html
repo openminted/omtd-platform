@@ -1,13 +1,13 @@
-<!--<div *ngIf="annotationsInfo.rawCorpus">-->
-    <!--<h4>Raw Corpus</h4>-->
-    <!--<span *ngIf="annotationsInfo.rawCorpus.resourceNames && annotationsInfo.rawCorpus.resourceNames.length>0">-->
-        <!--{{annotationsInfo.rawCorpus.resourceNames[0].value}}-->
-    <!--</span>-->
-    <!--<span *ngIf="annotationsInfo.rawCorpus.resourceIdentifiers && annotationsInfo.rawCorpus.resourceIdentifiers.length>0">-->
-        <!--{{annotationsInfo.rawCorpus.resourceIdentifiers[0].value}}-->
-    <!--</span>-->
-<!--</div>-->
-<!--<div *ngIf="annotationsInfo.annotationInfo" class="uk-margin-top">-->
-    <!--<h4>Annotation</h4>-->
-    <!--<annotation-info [annotationInfo]="annotationsInfo.annotationInfo"></annotation-info>-->
-<!--</div>-->
+<h4>Annotations</h4>
+<div *ngFor="let annotationInfo of annotations">
+    <annotation-info [annotationInfo]="annotationInfo"></annotation-info>
+</div>
+
+
+<div class="uk-margin-top">
+    <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)">
+        <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+            <img src="{{ slide.img }}" alt="" width="100%">
+        </div>
+    </ngx-slick>
+</div>

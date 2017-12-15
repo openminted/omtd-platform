@@ -1,14 +1,47 @@
 <div class="uk-list">
 
+    <div *ngIf="annotationInfo.annotationTypes && annotationInfo.annotationTypes.length>0">
+        <strong>Annotation types: </strong>
+        <span *ngFor="let annotationType of annotationInfo.annotationTypes; let isLast = last;">
+            <span *ngIf="annotationType.annotationType">
+                {{annotationTypeType(annotationType.annotationType)}}
+            </span>
+            {{isLast ? '' : ', '}}
+        </span>
+    </div>
+
     <div *ngIf="annotationInfo.typesystem">
         <strong>Typesystem: </strong>
         <span *ngIf="annotationInfo.typesystem.resourceNames && annotationInfo.typesystem.resourceNames.length>0">
             {{annotationInfo.typesystem.resourceNames[0].value}}
         </span>
-        <span *ngIf="annotationInfo.typesystem.resourceIdentifiers && annotationInfo.typesystem.resourceIdentifiers.length>0">
-            {{annotationInfo.typesystem.resourceIdentifiers[0].value}}
+    </div>
+
+    <div *ngIf="annotationInfo.annotationSchema">
+        <strong>Annotation Schema: </strong>
+        <span *ngIf="annotationInfo.annotationSchema.resourceNames && annotationInfo.annotationSchema.resourceNames.length>0">
+            {{annotationInfo.annotationSchema.resourceNames[0].value}}
         </span>
     </div>
+
+    <div *ngIf="annotationInfo.annotationResource">
+        <strong>Annotation resource: </strong>
+        <span *ngIf="annotationInfo.annotationResource.resourceNames && annotationInfo.annotationResource.resourceNames.length>0">
+            {{annotationInfo.annotationResource.resourceNames[0].value}}
+        </span>
+    </div>
+
+    <div *ngIf="annotationInfo.isAnnotatedBy && annotationInfo.isAnnotatedBy.length>0">
+        <strong>Is annotated by: </strong>
+        <span *ngFor="let isAnnotatedBySingle of annotationInfo.isAnnotatedBy; let isLast = last;">
+            <span *ngIf="isAnnotatedBySingle.resourceNames && isAnnotatedBySingle.resourceNames.length>0">
+                {{isAnnotatedBySingle.resourceNames[0].value}}
+            </span>
+            {{isLast ? '' : ', '}}
+        </span>
+    </div>
+
+
     <!--<div *ngIf="annotationInfo.tagset">-->
         <!--<strong>Tagset: </strong>-->
         <!--<span *ngIf="annotationInfo.tagset.resourceNames && annotationInfo.tagset.resourceNames.length>0">-->
