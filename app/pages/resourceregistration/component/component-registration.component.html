@@ -3,7 +3,7 @@
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
-                <h2 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                <h2 class="uk-h2">
                     Want to share a new service/tool?
                 </h2>
                 <!--<hr class="uk-divider-icon uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
@@ -53,14 +53,15 @@
 
                                             <form role="form" class="m-t mavenCoordinatesForm" [formGroup]="mavenForm">
                                                 <div class="form-group">
-                                                    <input name="artifactId" required="" placeholder="ArtifactId" class="form-control" type="text" formControlName="artifactId">
+                                                    <input name="artifactId" required="" placeholder="ArtifactId (*)" class="form-control" type="text" formControlName="artifactId">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input name="groupId" required="" placeholder="GroupId" class="form-control" type="text" formControlName="groupId">
+                                                    <input name="groupId" required="" placeholder="GroupId (*)" class="form-control" type="text" formControlName="groupId">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input name="version" required="" placeholder="Version" class="form-control" type="text" formControlName="version">
+                                                    <input name="version" required="" placeholder="Version (*)" class="form-control" type="text" formControlName="version">
                                                 </div>
+                                                <div *ngIf="mavenError" class="uk-alert uk-alert-danger">{{mavenError}}</div>
                                                 <a class="el-link uk-button uk-button-primary" (click)="resolveMavenCoordinates()">Resolve maven coordinates</a>
                                             </form>
                                         </div>
@@ -88,7 +89,10 @@
                                             Would you like to create a new service using existing components?
                                         </h3>
                                         <!--<div class="el-meta uk-margin uk-text-meta">20. September 2017, posted in Blog</div>-->
-                                        <div class="el-content uk-margin">You can use our galaxy workflow editor to create your application using existing components.</div>
+                                        <div class="el-content uk-margin">
+                                            You can use our galaxy workflow editor to create your application using existing components.
+                                            <div *ngIf="workflowError" class="uk-alert uk-alert-danger">{{workflowError}}</div>
+                                        </div>
                                         <p><a class="el-link uk-button uk-button-primary" (click)="buildWorkflow()">Build workflow!</a></p>
                                     </div>
                                 </div>

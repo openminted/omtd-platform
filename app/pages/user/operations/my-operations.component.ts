@@ -8,6 +8,7 @@ import { ResourceService } from "../../../services/resource.service";
 import { SearchResults, SearchResultsNew } from "../../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog.component";
 import { EnrichedOperation } from "../../../domain/operation";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'my-operations',
@@ -84,8 +85,8 @@ export class MyOperationsComponent {
         }
     }
 
-    handleError(message: string, error) {
-        this.errorMessage = message + ' (Server responded: ' + error + ')';
+    handleError(message: string, error: ErrorObservable) {
+        this.errorMessage = message + ' (Server responded: ' + error.error + ')';
     }
 
     gotoDetail(resourceType: string, id: string) {

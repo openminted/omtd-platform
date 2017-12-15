@@ -9,6 +9,7 @@ import { ResourceService } from "../../services/resource.service";
 import { BaseMetadataRecord, ComponentInfo, CorpusInfo } from "../../domain/openminted-model";
 import { SearchResults } from "../../domain/search-results";
 import { ShortResultInfo } from "../../domain/short-resource-info";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'home',
@@ -94,8 +95,8 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/search', { query: searchValue.query}]);
     }
 
-    handleError(message: string, error) {
-        this.errorMessage = message + ' (Server responded: ' + error + ')';
+    handleError(message: string, error : ErrorObservable) {
+        this.errorMessage = message + ' (Server responded: ' + error.error + ')';
     }
 
     gotoDetail(resourceType : string, id : string) {

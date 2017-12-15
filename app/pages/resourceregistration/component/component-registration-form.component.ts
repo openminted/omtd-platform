@@ -32,7 +32,7 @@ export class ComponentRegistrationFormComponent implements OnInit {
 
     constructor(private _fb: FormBuilder) {
         this.tocForm = _fb.group({
-            toc : [false,Validators.requiredTrue]
+            toc : [!this.production,Validators.requiredTrue]
         })
     }
 
@@ -75,12 +75,13 @@ export class ComponentRegistrationFormComponent implements OnInit {
         return this.myForm.get(path);
     }
 
-    public galaxyToDistributionInfo() {
+    public galaxyToDistributionInfo() : string {
         let distributionInfo = this.myForm.get('componentInfo.distributionInfos.0');
         let schema = distributionInfo.get('componentDistributionForm').value;
         let location = distributionInfo.get('distributionLocation').value;
         if(schema === "GALAXY_WORKFLOW") {
-            this.galaxyButtonUrl = location;
+            return this.galaxyButtonUrl = location;
         }
+        return null;
     }
 }

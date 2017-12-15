@@ -11,12 +11,15 @@ import { Component as OMTDComponent} from "../../../domain/openminted-model";
 import { Corpus as OMTDCorpus} from "../../../domain/openminted-model";
 import { WorkflowService } from "../../../services/workflow.service";
 import {WSJobStatus} from "../../../domain/ws-job-status";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+
 
 @Component({
     selector: 'run-application',
     templateUrl: './run-application.component.html',
     styleUrls:  ['./run-application.component.css'],
 })
+
 
 export class RunApplicationComponent {
 
@@ -43,11 +46,9 @@ export class RunApplicationComponent {
 
     constructor(private  router: Router,private  activatedRoute: ActivatedRoute,
                 private resourceService: ResourceService,private  workflowService: WorkflowService) {
-
     }
 
     ngOnInit() {
-
         this.sub = this.activatedRoute
             .params
             .subscribe(params => {
@@ -90,8 +91,8 @@ export class RunApplicationComponent {
             });
     }
 
-    handleError(message: string, error) {
-        this.errorMessage = message + ' (Server responded: ' + error + ')';
+    handleError(message: string, error : ErrorObservable) {
+        this.errorMessage = message + ' (Server responded: ' + error.error + ')';
     }
 
     selectInput() {
@@ -128,7 +129,7 @@ export class RunApplicationComponent {
 
         let archiveId = this.corpus.corpusInfo.datasetDistributionInfo.distributionLocation.match(/\?archiveId=([\d\w-]+)$/);
         if(!archiveId) {
-            this.handleError('This corpus has no valid archiveId',{});
+            this.handleError('This corpus has no valid archiveId',null);
             return;
         }
         this.workflowService.executeJob(archiveId[1],
@@ -142,7 +143,7 @@ export class RunApplicationComponent {
                             error => this.handleError('System error getting execution status', <any>error)
                         );
                     },5000)},
-                error => this.handleError('System error executing service', <any>error)
+                error => this.handleError('System error executing service', error)
             );
     }
 

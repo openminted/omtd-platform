@@ -5,6 +5,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { GalaxyService } from "../../../services/galaxy.service";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'component-registration-options',
@@ -15,6 +16,9 @@ import { GalaxyService } from "../../../services/galaxy.service";
 export class ComponentRegistrationComponent {
 
     mavenForm : FormGroup;
+
+    workflowError : string = '';
+    mavenError : string = '';
 
     constructor(private router: Router, private _fb : FormBuilder, private galaxyService : GalaxyService) {
         this.mavenForm = _fb.group({
@@ -37,7 +41,7 @@ export class ComponentRegistrationComponent {
         if(this.mavenForm.valid) {
             this.router.navigate(['/resourceRegistration/component/mavenCoordinates',this.mavenForm.value]);
         } else {
-            console.error("form invalid");
+            this.mavenError = "Please fill in all fields";
         }
     }
 
@@ -45,8 +49,13 @@ export class ComponentRegistrationComponent {
 
         this.galaxyService.createWorkflow().subscribe(
             id => this.router.navigate(['/buildWorkflow',id]),
-            console.log
+            error => this.workflowEditorError(error)
         );
 
+    }
+
+    workflowEditorError(error : ErrorObservable) {
+        console.log(error);
+        this.workflowError = "Sorry, our editor is down at the moment, please try again later.";
     }
 }

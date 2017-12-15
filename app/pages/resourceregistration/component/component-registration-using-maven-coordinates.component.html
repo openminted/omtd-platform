@@ -24,46 +24,49 @@
 
                         <!-- MIDDLE -->
                         <div class=" uk-width-expand@m">
-                            <div *ngIf="errorMessage" class="uk-alert uk-alert-danger">
-                                {{errorMessage}}
-                            </div>
-                            <div *ngIf="!errorMessage">
-                                <div *ngIf="!editMode">
 
-                                    <div class="uk-width-1-1@m uk-first-column">
-                                        <div class="uk-margin uk-grid-match uk-child-width-1-1 uk-child-width-1-5@m uk-grid-small uk-grid
+
+                            <div *ngIf="!editMode">
+                                <div *ngIf="errorMessage" class="uk-alert uk-alert-danger">
+                                    {{errorMessage}}
+                                </div>
+                                <div class="uk-width-1-1@m uk-first-column">
+                                    <div class="uk-margin uk-grid-match uk-child-width-1-1 uk-child-width-1-5@m uk-grid-small uk-grid
                                         uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" uk-grid="" style="">
 
-                                            <div *ngFor="let component of mavenComponents; let i=index" class="" style="min-height: 115px">
-                                                <div uk-scrollspy-class="" class="el-item uk-card uk-card-default uk-card-hover
+                                        <div *ngFor="let component of mavenComponents; let i=index" class="" style="min-height: 115px">
+                                            <div uk-scrollspy-class="" class="el-item uk-card uk-card-default uk-card-hover
                                                 uk-card-body uk-scrollspy-inview uk-animation-fade" style="padding: 15px 25px">
-                                                    <a (click)="editXMLComponent(component.xml,i)" uk-scroll="" class="el-link
+                                                <a (click)="editXMLComponent(component.xml,i)" uk-scroll="" class="el-link
                                                     uk-position-cover uk-margin-remove-adjacent"></a>
-                                                    <div class="uk-child-width-expand uk-flex-middle uk-grid" uk-grid="">
-                                                        <div class="el-title uk-width-1-1">
-                                                            {{component.component.componentInfo.identificationInfo.resourceNames[0].value}}
-                                                        </div>
-                                                        <div *ngIf="component.inserted" class="el-content"
-                                                             style="color: #68b8b3; margin-top: 15px">
+                                                <div class="uk-child-width-expand uk-flex-middle uk-grid" uk-grid="">
+                                                    <div class="el-title uk-width-1-1">
+                                                        {{component.component.componentInfo.identificationInfo.resourceNames[0].value}}
+                                                    </div>
+                                                    <div *ngIf="component.inserted" class="el-content"
+                                                         style="color: #68b8b3; margin-top: 15px">
                                                             <span class="uk-float-right">
                                                                 <i class="fa fa-check" aria-hidden="true"></i> Already added
                                                             </span>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                </div>
-                                <div *ngIf="editMode">
-                                    <form role="form" class="m-t componentXMLForm">
-                                        <!--[theme]="'eclipse'"-->
-                                        <ace-editor [(text)]="componentXML" [theme]="'chrome'" [mode]="'xml'" style="min-height: 500px; width:100%; overflow: auto;"></ace-editor>
-                                    </form>
-                                    <button class="uk-button uk-button-primary registerButton" type="submit" (click)="onSubmit()">Register!</button>
-                                </div>
                             </div>
+                            <div *ngIf="editMode">
+                                <div *ngIf="errorMessage" class="uk-alert uk-alert-danger">
+                                    {{errorMessage}}
+                                </div>
+                                <form role="form" class="m-t componentXMLForm">
+                                    <!--[theme]="'eclipse'"-->
+                                    <ace-editor [(text)]="componentXML" [theme]="'chrome'" [mode]="'xml'" style="min-height: 500px; width:100%; overflow: auto;"></ace-editor>
+                                </form>
+                                <button class="uk-button uk-button-primary registerButton" type="submit" (click)="onSubmit()">Register!</button>
+                            </div>
+
                         </div>
 
 

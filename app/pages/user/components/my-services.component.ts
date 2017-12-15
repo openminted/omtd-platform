@@ -7,6 +7,7 @@ import { BaseMetadataRecord, Component as OMTDComponent} from "../../../domain/o
 import { ResourceService } from "../../../services/resource.service";
 import { SearchResults } from "../../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog.component";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'my-services',
@@ -90,8 +91,8 @@ export class MyServicesComponent {
         }
     }
 
-    handleError(message: string, error) {
-        this.errorMessage = message + ' (Server responded: ' + error + ')';
+    handleError(message: string, error : ErrorObservable) {
+        this.errorMessage = message + ' (Server responded: ' + error.error + ')';
     }
 
     goToDetails(component: OMTDComponent) {
@@ -104,8 +105,7 @@ export class MyServicesComponent {
     }
 
     editWorkflow(component: OMTDComponent) {
-        let workflowId = component.componentInfo.distributionInfos[0].distributionLocation.match(/\/(\w+)$/);
-        this.router.navigate([`/editWorkflow/`, workflowId[1]]);
+        this.router.navigate([`/editWorkflowApplication/`, component.metadataHeaderInfo.metadataRecordIdentifier.value]);
     }
 
     deleteConfirmationComponent(component: OMTDComponent) {

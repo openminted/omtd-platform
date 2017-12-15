@@ -5,6 +5,7 @@ import { Component } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ResourceService } from "../../../services/resource.service";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'component-registration-xml',
@@ -86,7 +87,7 @@ export class ComponentRegistrationXMLComponent {
         return false;
     }
 
-    handleError(error) {
-        this.errorMessage = 'System error registering your component (Server responded: ' + error + ')';
+    handleError(error : ErrorObservable) {
+        this.errorMessage = 'System error registering your component (Server responded: ' + error.error + ')';
     }
 }

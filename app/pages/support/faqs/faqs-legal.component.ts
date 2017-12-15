@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FAQService } from "../../../services/faq.service";
 import { ActiveTopicQuestions } from "../../../domain/faq-active-topic-questions";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'faqs',
@@ -33,7 +34,7 @@ export class FAQsComponent implements OnInit {
         this.activeTopicQuestions = activeTopicQuestions.filter(_ => _.name === "Legal");
     }
 
-    handleError(error) {
-        this.errorMessage = 'System error retrieving FAQs (Server responded: ' + error + ')';
+    handleError(error : ErrorObservable) {
+        this.errorMessage = 'System error retrieving FAQs (Server responded: ' + error.error + ')';
     }
 }

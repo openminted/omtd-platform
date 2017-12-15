@@ -9,6 +9,7 @@ import { SearchResults } from "../../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog.component";
 import {Observable} from "rxjs/Observable";
 import {ContentConnectorService} from "../../../services/content-connector.service";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'my-corpora',
@@ -139,8 +140,8 @@ export class MyCorporaComponent {
         // }
     }
 
-    handleError(message: string, error) {
-        this.errorMessage = message + ' (Server responded: ' + error + ')';
+    handleError(message: string, error : ErrorObservable) {
+        this.errorMessage = message + ' (Server responded: ' + error.error + ')';
     }
 
     goToDetails(corpus: OMTDCorpus) {

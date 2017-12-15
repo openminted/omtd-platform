@@ -18,6 +18,8 @@ export class ComponentUpdateUsingFormComponent extends ComponentRegistrationUsin
 
     componentMetadata : MetadataHeaderInfo = null;
 
+    applicationWorkflow : string = '';
+
     private resourceType;
 
     constructor(injector : Injector) {
@@ -31,8 +33,10 @@ export class ComponentUpdateUsingFormComponent extends ComponentRegistrationUsin
             this.component = this.resourceService.getComponent(id,this.resourceType);
             this.component.subscribe(component => {
                 this.componentMetadata = component.metadataHeaderInfo;
-                this.componentForm.loadComponent(component)
-                setTimeout(() =>{this.componentForm.galaxyToDistributionInfo()},1000);
+                this.componentForm.loadComponent(component);
+                setTimeout(() =>{
+                    this.applicationWorkflow = this.componentForm.galaxyToDistributionInfo();
+                },1000);
             }, error => this.handleError(error));
         });
     }
@@ -58,6 +62,10 @@ export class ComponentUpdateUsingFormComponent extends ComponentRegistrationUsin
         let componentFilled : OMTDComponent = Object.assign({},this.componentForm.formValue);
         componentFilled.metadataHeaderInfo = this.componentMetadata;
         this.updateComponent(componentFilled);
+    }
+
+    editWorkflow() {
+        this.router.navigate(['/editWorkflowApplication/',this.componentMetadata.metadataRecordIdentifier.value]);
     }
 
     navigateToComponent() {

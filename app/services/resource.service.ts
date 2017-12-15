@@ -133,7 +133,7 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    getComponent(id: string, resourceType : string = 'component') {
+    getComponent(id: string, resourceType : string = 'component') : Observable<OMTDComponent> {
         return this.http.get(`${this._resourcesUrl}${resourceType}/${id}`)
             .map(res => <OMTDComponent> res.json())
             .catch(this.handleError);

@@ -63,7 +63,13 @@ const componentRegistrationRoutes: Routes = [
     },
     {
         path: 'editWorkflow/:id',
-        component: EditAWorkflowComponent
+        component: EditAWorkflowComponent,
+        data : {application : false}
+    },
+    {
+        path: 'editWorkflowApplication/:id',
+        component: EditAWorkflowComponent,
+        data : {application : true}
     },
 ];
 
