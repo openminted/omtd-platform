@@ -1,5 +1,5 @@
 <div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true" style="box-sizing: border-box;">
-    <div class="uk-container">
+    <div class="uk-container resourceLandingPage">
         <div class="uk-grid" uk-grid="">
 
             <template [ngIf]="errorMessage">
@@ -53,109 +53,187 @@
 
                 <div class="uk-width-expand@m uk-first-column">
 
-                    <!--DOMAINS-->
-                    <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo
-                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype
-                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype=='rawCorpus'" class="uk-margin-bottom">
-                        <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains
-                            && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains.length>0">
-                            <span *ngFor="let domain of corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains">
-                                <ng-template [ngIf]="domain.domain">
-                                    <span class="uk-label uk-label-primary">
-                                        {{domain.domain.classificationSchemeName}}: {{domain.domain.value}}
-                                    </span>
-                                </ng-template>
-                            </span>
-                        </div>
-                    </div>
-                    <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo
-                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype
-                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus'" class="uk-margin-bottom">
-                        <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains
-                            && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains.length>0">
-                            <span *ngFor="let domain of corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains">
-                                <ng-template [ngIf]="domain.domain">
-                                    <span class="uk-label uk-label-primary">
-                                        {{domain.domain.classificationSchemeName}}: {{domain.domain.value}}
-                                    </span>
-                                </ng-template>
-                            </span>
-                        </div>
+                    <div *ngIf="corpus.corpusInfo.resourceCreationInfo" class="uk-margin-bottom">
+                        <resource-creation-info-short [resourceCreationInfo]="corpus.corpusInfo.resourceCreationInfo"></resource-creation-info-short>
                     </div>
 
-                    <!--KEYWORDS-->
-                    <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo
-                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype
-                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype=='rawCorpus'" class="uk-margin-bottom">
-                        <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications
-                            && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications.length>0">
-                            <span *ngFor="let textClassification of corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications">
-                                <ng-template [ngIf]="textClassification.keywords && textClassification.keywords.length>0">
-                                    <span>
-                                        <span *ngFor="let keyword of textClassification.keywords" class="uk-label uk-label-primary">
-                                            {{keyword}}
-                                        </span>
-                                    </span>
-                                </ng-template>
-                            </span>
-                        </div>
+                    <div *ngIf="corpus.corpusInfo.rightsInfo" class="uk-margin-bottom">
+                        <rights-info [rightsInfo]="corpus.corpusInfo.rightsInfo"></rights-info>
                     </div>
-                    <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo
-                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype
-                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus'" class="uk-margin-bottom">
-                        <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications
-                            && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications.length>0">
-                            <span *ngFor="let textClassification of corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications">
-                                <ng-template [ngIf]="textClassification.keywords && textClassification.keywords.length>0">
-                                    <span>
-                                        <span *ngFor="let keyword of textClassification.keywords" class="uk-label uk-label-primary">
-                                            {{keyword}}
-                                        </span>
-                                    </span>
-                                </ng-template>
-                            </span>
-                        </div>
-                    </div>
+
+                    <!--&lt;!&ndash;DOMAINS&ndash;&gt;-->
+                    <!--<div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo-->
+                        <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype-->
+                        <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype=='rawCorpus'" class="uk-margin-bottom">-->
+                        <!--<div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains-->
+                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains.length>0">-->
+                            <!--<domains-info [domains]="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains"></domains-info>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo-->
+                        <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype-->
+                        <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus'" class="uk-margin-bottom">-->
+                        <!--<div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains-->
+                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains.length>0">-->
+                            <!--<domains-info [domains]="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains"></domains-info>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--&lt;!&ndash;KEYWORDS&ndash;&gt;-->
+                    <!--<div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo-->
+                        <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype-->
+                        <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype=='rawCorpus'" class="uk-margin-bottom">-->
+                        <!--<div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications-->
+                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications.length>0">-->
+                            <!--<keywords-info [textClassifications]="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications"></keywords-info>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo-->
+                        <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype-->
+                        <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus'" class="uk-margin-bottom">-->
+                        <!--<div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications-->
+                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications.length>0">-->
+                            <!--<keywords-info [textClassifications]="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications"></keywords-info>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <version-info *ngIf="corpus.corpusInfo.versionInfo"
                                   [versionInfo]="corpus.corpusInfo.versionInfo">
                     </version-info>
-
-                    <div class="resourceIdentifiers" *ngIf="corpus.corpusInfo.identificationInfo.resourceIdentifiers
-                        && corpus.corpusInfo.identificationInfo.resourceIdentifiers.length>0">
-                        <div *ngFor="let identifier of corpus.corpusInfo.identificationInfo.resourceIdentifiers">
-                            <span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'
-                            || identifier.resourceIdentifierSchemeName=='HANDLE'">
-                                {{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>
-                            </span>
-                            <span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'
-                            && identifier.resourceIdentifierSchemeName!='HANDLE'">
-                                {{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}
-                            </span>
-                        </div>
-                    </div>
 
                     <!--TODO add multilingualityType and languages-->
 
                     <ul class="uk-list" *ngIf="corpus.corpusInfo.identificationInfo.descriptions
                                                 && corpus.corpusInfo.identificationInfo.descriptions.length>0">
                         <li *ngFor="let description of corpus.corpusInfo.identificationInfo.descriptions; let isFirst = first;"
-                            [class.uk-margin-top]="!isFirst" class="uk-text-justify">
+                            [class.uk-margin-top]="!isFirst" class="uk-text-justify resourceDescription">
                             {{description.value}}
                         </li>
                     </ul>
 
                     <!--TODO add size info-->
 
-                    <ul class="uk-list" *ngIf="corpus.corpusInfo.resourceDocumentations
+                    <div *ngIf="corpus.corpusInfo.resourceDocumentations
                         && corpus.corpusInfo.resourceDocumentations.length>0">
-                        <li *ngFor="let resourceDocumentationInfo of corpus.corpusInfo.resourceDocumentations" class="uk-margin-top">
-                            <resource-documentation-info [resourceDocumentationInfo]="resourceDocumentationInfo"></resource-documentation-info>
-                        </li>
-                    </ul>
+                        <h4>Documentation</h4>
+                        <ul class="uk-list">
+                            <li *ngFor="let resourceDocumentationInfo of corpus.corpusInfo.resourceDocumentations" class="uk-margin-top">
+                                <resource-documentation-info [resourceDocumentationInfo]="resourceDocumentationInfo"></resource-documentation-info>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="resourceIdentifiers" *ngIf="corpus.corpusInfo.identificationInfo.resourceIdentifiers
+                        && corpus.corpusInfo.identificationInfo.resourceIdentifiers.length>0">
+                        <dl class="uk-description-list">
+                            <dt>Identifiers</dt>
+                            <dd *ngFor="let identifier of corpus.corpusInfo.identificationInfo.resourceIdentifiers">
+                                <span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'
+                                || identifier.resourceIdentifierSchemeName=='HANDLE'">
+                                    {{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>
+                                </span>
+                                <span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'
+                                && identifier.resourceIdentifierSchemeName!='HANDLE'">
+                                    {{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}
+                                </span>
+                            </dd>
+                        </dl>
+                        <!--<h4>Identifiers</h4>-->
+                        <!--<div *ngFor="let identifier of component.componentInfo.identificationInfo.resourceIdentifiers">-->
+                        <!--<span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'-->
+                        <!--|| identifier.resourceIdentifierSchemeName=='HANDLE'">-->
+                        <!--{{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>-->
+                        <!--</span>-->
+                        <!--<span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'-->
+                        <!--&& identifier.resourceIdentifierSchemeName!='HANDLE'">-->
+                        <!--{{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}-->
+                        <!--</span>-->
+                        <!--</div>-->
+                    </div>
+                    <!--<div class="resourceIdentifiers" *ngIf="corpus.corpusInfo.identificationInfo.resourceIdentifiers-->
+                        <!--&& corpus.corpusInfo.identificationInfo.resourceIdentifiers.length>0">-->
+                        <!--<h4>Identifiers</h4>-->
+                        <!--<div *ngFor="let identifier of corpus.corpusInfo.identificationInfo.resourceIdentifiers">-->
+                            <!--<span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'-->
+                            <!--|| identifier.resourceIdentifierSchemeName=='HANDLE'">-->
+                                <!--{{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>-->
+                            <!--</span>-->
+                            <!--<span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'-->
+                            <!--&& identifier.resourceIdentifierSchemeName!='HANDLE'">-->
+                                <!--{{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}-->
+                            <!--</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                </div>
+
+                <!--SIDEBAR-->
+                <div class="tm-sidebar uk-width-1-4@m">
+
+                    <div class="uk-card uk-card-body uk-card-default sidemenu"
+                         *ngIf="(corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype=='rawCorpus'
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains.length>0)
+                        || (corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus' && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains.length>0)
+                        || (corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype=='rawCorpus'
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications.length>0)
+                        || (corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus'
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications.length>0)">
+
+                        <!--DOMAINS-->
+                        <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype=='rawCorpus'" class="uk-margin-bottom">
+                            <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains
+                            && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains.length>0">
+                                <h4>Domains</h4>
+                                <domains-info [domains]="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.domains"></domains-info>
+                            </div>
+                        </div>
+                        <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus'" class="uk-margin-bottom">
+                            <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains
+                            && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains.length>0">
+                                <h4>Domains</h4>
+                                <domains-info [domains]="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.domains"></domains-info>
+                            </div>
+                        </div>
+
+                        <!--KEYWORDS-->
+                        <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype=='rawCorpus'" class="uk-margin-bottom">
+                            <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications
+                            && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications.length>0">
+                                <h4>Keywords</h4>
+                                <keywords-info [textClassifications]="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.textClassifications"></keywords-info>
+                            </div>
+                        </div>
+                        <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus'" class="uk-margin-bottom">
+                            <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications
+                            && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications.length>0">
+                                <h4>Keywords</h4>
+                                <keywords-info [textClassifications]="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.textClassifications"></keywords-info>
+                            </div>
+                        </div>
+                    </div>
 
                     <div *ngIf="corpus.corpusInfo.relations && corpus.corpusInfo.relations.length>0"
-                         class="uk-card uk-card-body uk-card-secondary">
+                         class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">
                         <h4>Relations</h4>
                         <ul class="uk-list">
                             <li *ngFor="let relationInfo of corpus.corpusInfo.relations">
@@ -164,102 +242,10 @@
                         </ul>
                     </div>
 
-
-                    <!--&lt;!&ndash;TABS&ndash;&gt;-->
-                    <!--<ul class=" uk-tab uk-visible@m" uk-tab="connect: #infoTabs; animation: uk-animation-fade">-->
-                        <!--<li *ngIf="corpus.corpusInfo.distributionInfos && corpus.corpusInfo.distributionInfos.length>0">-->
-                            <!--<a>Distribution</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.validationInfos && corpus.corpusInfo.validationInfos.length>0">-->
-                            <!--<a>Validations</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.usageInfo">-->
-                            <!--<a>Usage</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo-->
-                                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo">-->
-                            <!--<a>Annotated Corpus</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo-->
-                                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo">-->
-                            <!--<a>Raw Corpus</a>-->
-                        <!--</li>-->
-                        <!--&lt;!&ndash;<li *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo&ndash;&gt;-->
-                                            <!--&lt;!&ndash;&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotationsInfo">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a>Annotations</a>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                    <!--</ul>-->
-
-                    <!--<button class="uk-button uk-button-default uk-hidden@m" type="button">-->
-                        <!--<span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">{{activeTab}}</span>-->
-                    <!--</button>-->
-
-                    <!--<ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m" uk-switcher="{connect: #infoTabs; animation: uk-animation-fade}" uk-dropdown="mode: click" uk-toggle="target: #toggle-small-tabs">-->
-                        <!--<li *ngIf="corpus.corpusInfo.distributionInfos && corpus.corpusInfo.distributionInfos.length>0">-->
-                            <!--<a>Distribution</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.validationInfos && corpus.corpusInfo.validationInfos.length>0">-->
-                            <!--<a>Validations</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.usageInfo">-->
-                            <!--<a>Usage</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo-->
-                                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo">-->
-                            <!--<a>Annotated Corpus</a>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo-->
-                                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo">-->
-                            <!--<a>Raw Corpus</a>-->
-                        <!--</li>-->
-                        <!--&lt;!&ndash;<li *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo&ndash;&gt;-->
-                                            <!--&lt;!&ndash;&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotationsInfo">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a>Annotations</a>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                    <!--</ul>-->
-
-                    <!--<ul id="infoTabs" class="uk-switcher  uk-width-1-1 uk-margin-top custom-tab-content-large">-->
-                        <!--<li *ngIf="corpus.corpusInfo.distributionInfos && corpus.corpusInfo.distributionInfos.length>0">-->
-                        <!--<dataset-distribution-info *ngFor="let distributionInfo of corpus.corpusInfo.distributionInfos"-->
-                                                   <!--[datasetDistributionInfo]="distributionInfo"></dataset-distribution-info>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.validationInfos && corpus.corpusInfo.validationInfos.length>0">-->
-                            <!--<validation-info *ngFor="let validationInfo of corpus.corpusInfo.validationInfos"-->
-                                             <!--[validationInfo]="validationInfo"></validation-info>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.usageInfo">-->
-                            <!--<usage-info [usageInfo]="corpus.corpusInfo.usageInfo"></usage-info>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo-->
-                                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo">-->
-                            <!--<annotated-corpus-info [annotatedCorpusInfo]="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo"></annotated-corpus-info>-->
-                        <!--</li>-->
-                        <!--<li *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo-->
-                                            <!--&& corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo">-->
-                            <!--<raw-corpus-info [rawCorpusInfo]="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo"></raw-corpus-info>-->
-                        <!--</li>-->
-                        <!--&lt;!&ndash;<li *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo&ndash;&gt;-->
-                                            <!--&lt;!&ndash;&& corpus.corpusInfo.corpusSubtypeSpecificInfo.annotationsInfo">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<annotations-info [annotationsInfo]="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotationsInfo"></annotations-info>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                    <!--</ul>-->
-
-                </div>
-
-                <!--SIDEBAR-->
-                <div class="tm-sidebar uk-width-1-4@m">
-
-                    <div *ngIf="corpus.corpusInfo.rightsInfo" class="uk-card uk-card-body uk-card-default sidemenu">
-                        <rights-info [rightsInfo]="corpus.corpusInfo.rightsInfo"></rights-info>
-                    </div>
-
                     <div *ngIf="corpus.corpusInfo.contactInfo" class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">
                         <contact-info [contactInfo]="corpus.corpusInfo.contactInfo"></contact-info>
                     </div>
 
-                    <div *ngIf="corpus.corpusInfo.resourceCreationInfo" class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">
-                        <resource-creation-info [resourceCreationInfo]="corpus.corpusInfo.resourceCreationInfo"></resource-creation-info>
-                    </div>
 
                 </div>
 

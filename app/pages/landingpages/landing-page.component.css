@@ -3,6 +3,23 @@
     word-wrap: break-word;
 }
 
+.resourceLandingPage h2 {
+    margin: 0px;
+}
+
+.uk-label, .label, a.label {
+    padding: 2px 5px;
+    font-size: 9px;
+    color: #0055b9;
+    white-space: normal;
+    font-family: Montserrat;
+    font-weight: 400;
+    text-transform: none;
+    border: 1px solid #0055b9;
+    /*background-color: #0055b9;*/
+    background: transparent;
+}
+
 .groupInfo, .personInfo {
     /*border-left: 2px solid #0055b9;*/
     border-left: 2px solid #0055b9;
@@ -10,14 +27,20 @@
     padding-left: 10px;
 }
 
-.resourceDocumentationInfo {
+.resourceDescription {
     border-left: 8px solid #e5e5e5;
     padding-left: 15px;
 }
 
+/*.resourceDocumentationInfo {*/
+    /*border-left: 8px solid #e5e5e5;*/
+    /*padding-left: 15px;*/
+/*}*/
+
 .componentExecution .uk-card-body {
     padding: 15px 20px;
     border-radius: 5px;
+    font-size: 85%;
 }
 
 .uk-card-primary.uk-card-body a, .uk-card-primary.uk-card-body a:hover, .uk-card-primary.uk-card-body a:focus {

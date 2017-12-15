@@ -2,7 +2,7 @@
  * Created by stefania on 11/16/16.
  */
 import { Component, Input } from '@angular/core';
-import {PersonInfo, ResourceCreationInfo} from "../../../domain/openminted-model";
+import { ResourceCreationInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'resource-creation-info',

@@ -40,6 +40,9 @@ import { OrganizationInfoComponent } from "./resourceelements/organisation-info.
 import { ComponentExecutionInfoComponent } from "./resourceelements/component-execution-info.component";
 import { FunctionInfoComponent } from "./resourceelements/function-info.component";
 import { RelationInfoComponent } from "./resourceelements/relation-info.component";
+import { DomainsInfoComponent } from "./resourceelements/domains-info.component";
+import { KeywordsInfoComponent } from "./resourceelements/keywords-info.component";
+import { ResourceCreationInfoShortComponent } from "./resourceelements/resource-creation-info-short.component";
 
 @NgModule({
     imports: [
@@ -80,7 +83,10 @@ import { RelationInfoComponent } from "./resourceelements/relation-info.componen
         OrganizationInfoComponent,
         ComponentExecutionInfoComponent,
         FunctionInfoComponent,
-        RelationInfoComponent
+        RelationInfoComponent,
+        DomainsInfoComponent,
+        KeywordsInfoComponent,
+        ResourceCreationInfoShortComponent
     ],
     providers: [
         ResourceService

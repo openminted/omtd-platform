@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<span *ngFor="let domain of domains">
+    <ng-template [ngIf]="domain.domain">
+        <span class="uk-label uk-label-primary" title="{{domain.domain.classificationSchemeName}}" style="margin-bottom: 5px">
+            {{domain.domain.value}}
+        </span>
+    </ng-template>
+</span>

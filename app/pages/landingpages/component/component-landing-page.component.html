@@ -13,14 +13,22 @@
             <template [ngIf]="component && !errorMessage">
 
                 <div class="uk-width-1-1 uk-row-first uk-clearfix">
-                    <h2 class="uk-h2 uk-inline" *ngIf="component.componentInfo.identificationInfo.resourceNames
+                    <div class="uk-inline" *ngIf="component.componentInfo.identificationInfo.resourceNames
                         && component.componentInfo.identificationInfo.resourceNames.length>0">
-                        {{component.componentInfo.identificationInfo.resourceNames[0].value}}
+                        <h2 class="uk-h2 uk-inline">{{component.componentInfo.identificationInfo.resourceNames[0].value}}</h2>
                         <span *ngIf="component.componentInfo.identificationInfo.resourceShortName"
                               class="element element-text uk-margin-small-left shortName">
                             | {{component.componentInfo.identificationInfo.resourceShortName}}
                         </span>
-                    </h2>
+                    </div>
+                    <!--<h2 class="uk-h2 uk-inline" *ngIf="component.componentInfo.identificationInfo.resourceNames-->
+                        <!--&& component.componentInfo.identificationInfo.resourceNames.length>0">-->
+                        <!--{{component.componentInfo.identificationInfo.resourceNames[0].value}}-->
+                        <!--<span *ngIf="component.componentInfo.identificationInfo.resourceShortName"-->
+                              <!--class="element element-text uk-margin-small-left shortName">-->
+                            <!--| {{component.componentInfo.identificationInfo.resourceShortName}}-->
+                        <!--</span>-->
+                    <!--</h2>-->
 
                     <button *ngIf="component.componentInfo.application" class="uk-button uk-button-primary uk-float-right"
                             (click)="process()">
@@ -30,7 +38,86 @@
 
                 <div class="uk-width-expand@m uk-first-column">
 
-                    <div class="tags" *ngIf="(component.componentInfo.domains && component.componentInfo.domains.length>0)
+                    <div *ngIf="component.componentInfo.resourceCreationInfo" class="uk-margin-bottom">
+                        <resource-creation-info-short [resourceCreationInfo]="component.componentInfo.resourceCreationInfo"></resource-creation-info-short>
+                    </div>
+
+                    <div *ngIf="component.componentInfo.rightsInfo" class="uk-margin-bottom">
+                        <rights-info [rightsInfo]="component.componentInfo.rightsInfo"></rights-info>
+                    </div>
+
+                    <version-info *ngIf="component.componentInfo.versionInfo"
+                                  [versionInfo]="component.componentInfo.versionInfo">
+                    </version-info>
+
+                    <ul class="uk-list" *ngIf="component.componentInfo.identificationInfo.descriptions
+                                                && component.componentInfo.identificationInfo.descriptions.length>0">
+                        <li *ngFor="let description of component.componentInfo.identificationInfo.descriptions; let isFirst = first;"
+                            [class.uk-margin-top]="!isFirst" class="uk-text-justify resourceDescription">
+                            {{description.value}}
+                        </li>
+                    </ul>
+
+                    <component-distribution-info *ngIf="component.componentInfo.distributionInfos && component.componentInfo.distributionInfos.length>0"
+                                                 [componentDistributionInfos]="component.componentInfo.distributionInfos"></component-distribution-info>
+                    <component-creation-info *ngIf="component.componentInfo.componentCreationInfo"
+                                             [componentCreationInfo]="component.componentInfo.componentCreationInfo"></component-creation-info>
+
+                    <div *ngIf="component.componentInfo.functionInfo || component.componentInfo.inputContentResourceInfo
+                        || component.componentInfo.outputResourceInfo || component.componentInfo.componentDependencies
+                        || (component.componentInfo.parameterInfos && component.componentInfo.parameterInfos.length>0)">
+                        <component-execution-info [functionInfo]="component.componentInfo.functionInfo"
+                                                  [input]="component.componentInfo.inputContentResourceInfo"
+                                                  [output]="component.componentInfo.outputResourceInfo"
+                                                  [parameters]="component.componentInfo.parameterInfos"
+                                                  [componentDependencies]="component.componentInfo.componentDependencies"></component-execution-info>
+                    </div>
+
+                    <div *ngIf="component.componentInfo.resourceDocumentations
+                        && component.componentInfo.resourceDocumentations.length>0">
+                        <h4>Documentation</h4>
+                        <ul class="uk-list">
+                            <li *ngFor="let resourceDocumentationInfo of component.componentInfo.resourceDocumentations" class="uk-margin-top">
+                                <resource-documentation-info [resourceDocumentationInfo]="resourceDocumentationInfo"></resource-documentation-info>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="resourceIdentifiers" *ngIf="component.componentInfo.identificationInfo.resourceIdentifiers
+                        && component.componentInfo.identificationInfo.resourceIdentifiers.length>0">
+                        <dl class="uk-description-list">
+                            <dt>Identifiers</dt>
+                            <dd *ngFor="let identifier of component.componentInfo.identificationInfo.resourceIdentifiers">
+                                <span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'
+                                || identifier.resourceIdentifierSchemeName=='HANDLE'">
+                                    {{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>
+                                </span>
+                                    <span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'
+                                && identifier.resourceIdentifierSchemeName!='HANDLE'">
+                                    {{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}
+                                </span>
+                            </dd>
+                        </dl>
+                        <!--<h4>Identifiers</h4>-->
+                        <!--<div *ngFor="let identifier of component.componentInfo.identificationInfo.resourceIdentifiers">-->
+                            <!--<span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'-->
+                            <!--|| identifier.resourceIdentifierSchemeName=='HANDLE'">-->
+                                <!--{{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>-->
+                            <!--</span>-->
+                            <!--<span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'-->
+                            <!--&& identifier.resourceIdentifierSchemeName!='HANDLE'">-->
+                                <!--{{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}-->
+                            <!--</span>-->
+                        <!--</div>-->
+                    </div>
+
+                </div>
+
+                <!--SIDEBAR-->
+                <div class="tm-sidebar uk-width-1-4@m">
+
+                    <div class="uk-card uk-card-body uk-card-default sidemenu"
+                         *ngIf="(component.componentInfo.domains && component.componentInfo.domains.length>0)
                         || (component.componentInfo.keywords && component.componentInfo.keywords.length>0)">
                         <ng-template [ngIf]="component.componentInfo.domains && component.componentInfo.domains.length>0">
                             <span *ngFor="let domain of component.componentInfo.domains" class="uk-label uk-label-primary">
@@ -44,56 +131,8 @@
                         </ng-template>
                     </div>
 
-                    <div class="resourceIdentifiers" *ngIf="component.componentInfo.identificationInfo.resourceIdentifiers
-                        && component.componentInfo.identificationInfo.resourceIdentifiers.length>0">
-                        <div *ngFor="let identifier of component.componentInfo.identificationInfo.resourceIdentifiers">
-                            <span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'
-                            || identifier.resourceIdentifierSchemeName=='HANDLE'">
-                                {{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>
-                            </span>
-                            <span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'
-                            && identifier.resourceIdentifierSchemeName!='HANDLE'">
-                                {{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}
-                            </span>
-                        </div>
-                    </div>
-
-                    <version-info *ngIf="component.componentInfo.versionInfo"
-                                  [versionInfo]="component.componentInfo.versionInfo">
-                    </version-info>
-
-                    <component-distribution-info *ngIf="component.componentInfo.distributionInfos && component.componentInfo.distributionInfos.length>0"
-                                                 [componentDistributionInfos]="component.componentInfo.distributionInfos"></component-distribution-info>
-                    <component-creation-info *ngIf="component.componentInfo.componentCreationInfo"
-                                             [componentCreationInfo]="component.componentInfo.componentCreationInfo"></component-creation-info>
-
-                    <ul class="uk-list" *ngIf="component.componentInfo.identificationInfo.descriptions
-                                                && component.componentInfo.identificationInfo.descriptions.length>0">
-                        <li *ngFor="let description of component.componentInfo.identificationInfo.descriptions; let isFirst = first;"
-                            [class.uk-margin-top]="!isFirst" class="uk-text-justify">
-                            {{description.value}}
-                        </li>
-                    </ul>
-
-                    <div *ngIf="component.componentInfo.functionInfo || component.componentInfo.inputContentResourceInfo
-                        || component.componentInfo.outputResourceInfo || component.componentInfo.componentDependencies
-                        || (component.componentInfo.parameterInfos && component.componentInfo.parameterInfos.length>0)">
-                        <component-execution-info [functionInfo]="component.componentInfo.functionInfo"
-                                                  [input]="component.componentInfo.inputContentResourceInfo"
-                                                  [output]="component.componentInfo.outputResourceInfo"
-                                                  [parameters]="component.componentInfo.parameterInfos"
-                                                  [componentDependencies]="component.componentInfo.componentDependencies"></component-execution-info>
-                    </div>
-
-                    <ul class="uk-list" *ngIf="component.componentInfo.resourceDocumentations
-                        && component.componentInfo.resourceDocumentations.length>0">
-                        <li *ngFor="let resourceDocumentationInfo of component.componentInfo.resourceDocumentations" class="uk-margin-top">
-                            <resource-documentation-info [resourceDocumentationInfo]="resourceDocumentationInfo"></resource-documentation-info>
-                        </li>
-                    </ul>
-
                     <div *ngIf="component.componentInfo.relations && component.componentInfo.relations.length>0"
-                         class="uk-card uk-card-body uk-card-secondary">
+                         class="uk-card uk-card-body uk-card-default sidemenu">
                         <h4>Relations</h4>
                         <ul class="uk-list">
                             <li *ngFor="let relationInfo of component.componentInfo.relations">
@@ -102,23 +141,11 @@
                         </ul>
                     </div>
 
-
-                </div>
-
-                <!--SIDEBAR-->
-                <div class="tm-sidebar uk-width-1-4@m">
-
-                    <div *ngIf="component.componentInfo.rightsInfo" class="uk-card uk-card-body uk-card-default sidemenu">
-                        <rights-info [rightsInfo]="component.componentInfo.rightsInfo"></rights-info>
-                    </div>
-
                     <div *ngIf="component.componentInfo.contactInfo" class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">
                         <contact-info [contactInfo]="component.componentInfo.contactInfo"></contact-info>
                     </div>
 
-                    <div *ngIf="component.componentInfo.resourceCreationInfo" class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">
-                        <resource-creation-info [resourceCreationInfo]="component.componentInfo.resourceCreationInfo"></resource-creation-info>
-                    </div>
+
 
                     <!--<div *ngIf="component.metadataHeaderInfo.metadataCreators && component.metadataHeaderInfo.metadataCreators.length>0"-->
                          <!--class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">-->

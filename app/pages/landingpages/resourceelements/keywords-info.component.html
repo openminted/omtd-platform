@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<span *ngFor="let textClassification of textClassifications">
+    <ng-template [ngIf]="textClassification.keywords && textClassification.keywords.length>0">
+        <span>
+            <span *ngFor="let keyword of textClassification.keywords" class="uk-label uk-label-primary" style="margin-bottom: 5px">
+                {{keyword}}
+            </span>
+        </span>
+    </ng-template>
+</span>

@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div>
+    <ng-template [ngIf]="resourceCreationInfo.creationDate">
+        <span *ngIf="resourceCreationInfo.creationDate.date">
+            <span *ngIf="resourceCreationInfo.creationDate.date.month">
+                {{resourceCreationInfo.creationDate.date.month}}/
+            </span>
+            <span *ngIf="resourceCreationInfo.creationDate.date.day">
+                {{resourceCreationInfo.creationDate.date.day}}/
+            </span>
+            <span *ngIf="resourceCreationInfo.creationDate.date.year">
+                {{resourceCreationInfo.creationDate.date.year}}
+            </span>
+        </span>
+        <span *ngIf="resourceCreationInfo.creationDate.dateRange">
+            <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate">
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate.month">
+                    {{resourceCreationInfo.creationDate.dateRange.startDate.month}}/
+                </span>
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate.day">
+                    {{resourceCreationInfo.creationDate.dateRange.startDate.day}}/
+                </span>
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate.year">
+                    {{resourceCreationInfo.creationDate.dateRange.startDate.year}}
+                </span>
+            </span>
+            -
+            <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate">
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate.month">
+                    {{resourceCreationInfo.creationDate.dateRange.endDate.month}}/
+                </span>
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate.day">
+                    {{resourceCreationInfo.creationDate.dateRange.endDate.day}}/
+                </span>
+                <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate.year">
+                    {{resourceCreationInfo.creationDate.dateRange.endDate.year}}
+                </span>
+            </span>
+        </span>
+
+        <span> by </span>
+
+        <span *ngFor="let resourceCreator of resourceCreationInfo.resourceCreators; let isLast = last;">
+            <ng-template [ngIf]="resourceCreator.actorType=='PERSON' && resourceCreator.relatedPerson" class="uk-margin-top">
+                <ng-template [ngIf]="resourceCreator.relatedPerson.givenName || resourceCreator.relatedPerson.surname">
+                    <span *ngIf="resourceCreator.relatedPerson.givenName">{{resourceCreator.relatedPerson.givenName}} </span>
+                    <span *ngIf="resourceCreator.relatedPerson.surname">{{resourceCreator.relatedPerson.surname}}</span>
+                </ng-template>
+            </ng-template>
+            <ng-template [ngIf]="resourceCreator.actorType=='GROUP' && resourceCreator.relatedGroup" class="uk-margin-top">
+                <span *ngIf="resourceCreator.relatedGroup.groupNames && resourceCreator.relatedGroup.groupNames.length>0">
+                    {{resourceCreator.relatedGroup.groupNames[0].value}}
+                </span>
+            </ng-template>
+            <ng-template [ngIf]="resourceCreator.actorType=='ORGANIZATION' && resourceCreator.relatedOrganization" class="uk-margin-top">
+                <span *ngIf="resourceCreator.relatedOrganization.organizationNames && resourceCreator.relatedOrganization.organizationNames.length>0">
+                    {{resourceCreator.relatedOrganization.organizationNames[0].value}}
+                </span>
+            </ng-template>
+            {{isLast ? '' : ', '}}
+        </span>
+    </ng-template>
+</div>

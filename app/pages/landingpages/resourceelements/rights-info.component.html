@@ -1,12 +1,24 @@
-<h4>Rights</h4>
-<ul class="uk-list">
-    <li *ngIf="rightsInfo.licenceInfos && rightsInfo.licenceInfos.length>0" class="rightsInfo">
-        <license-info *ngFor="let licenseInfo of rightsInfo.licenceInfos" [licenseInfo]="licenseInfo"></license-info>
-    </li>
-    <li *ngIf="rightsInfo.rightsStatement" class="uk-margin-top">
-        {{rightsStatement(rightsInfo.rightsStatement)}}
-    </li>
-    <li *ngIf="rightsInfo.copyrightStatement" class="uk-margin-top">
-        <i><i class="fa fa-copyright" aria-hidden="true"></i> {{rightsInfo.copyrightStatement}}</i>
-    </li>
-</ul>
+<!--<h4>Rights</h4>-->
+<div>
+    <ng-template [ngIf]="rightsInfo.rightsStatement && rightsInfo.rightsStatement=='OPEN_ACCESS'">
+        <img src="../../../../assets/imgs/1200px-Open_Access_logo_PLoS_white.svg.png" width="15px" style="margin-right: 7px;">
+    </ng-template>
+    <ng-template [ngIf]="rightsInfo.rightsStatement && rightsInfo.rightsStatement=='RESTRICTED_ACCESS'">
+        <img src="../../../../assets/imgs/Closed_Access_logo_white-2.svg" width="15px" style="margin-right: 7px;">
+    </ng-template>
+    <span *ngIf="rightsInfo.licenceInfos && rightsInfo.licenceInfos.length>0" class="rightsInfo">
+        <span *ngFor="let licenseInfo of rightsInfo.licenceInfos; let isLast = last;">
+            <span *ngIf="licenseInfo.licence">
+                {{licence(licenseInfo.licence)}}{{isLast ? '' : ', '}}
+            </span>
+        </span>
+        <!--<license-info *ngFor="let licenseInfo of rightsInfo.licenceInfos" [licenseInfo]="licenseInfo"></license-info>-->
+    </span>
+    <!--<li *ngIf="rightsInfo.rightsStatement" class="uk-margin-top">-->
+        <!--{{rightsStatement(rightsInfo.rightsStatement)}}-->
+    <!--</li>-->
+    <div *ngIf="rightsInfo.copyrightStatement" class="uk-margin-small-top">
+        <!--<i><i class="fa fa-copyright" aria-hidden="true"></i> {{rightsInfo.copyrightStatement}}</i>-->
+        <i class="fa fa-copyright" aria-hidden="true"></i> {{rightsInfo.copyrightStatement}}
+    </div>
+</div>
