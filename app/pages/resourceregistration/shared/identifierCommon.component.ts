@@ -8,19 +8,19 @@ import { EnumValues } from "../../../domain/omtd.enum";
 @Component({
     selector: 'identifierCommon-form',
     template : `
-<div [formGroup]="group" class="row">
-    <div class="col-sm-5 col-md-4" [ngClass]="{'has-error':!group.get('value').valid}">
-        <input type="text" class="form-control" formControlName="value" placeholder="value">
+<div [formGroup]="group" class="uk-grid-small" uk-grid>
+    <div class="uk-width-2-5" >
+        <input type="text" class="uk-input" formControlName="value" placeholder="value" [ngClass]="{'has-error':!group.get('value').valid}">
     </div>
-    <div class="col-sm-3 col-md-3" [ngClass]="{'has-error':!group.get(schemeName).valid}">
-        <select name="role" class="form-control" formControlName="{{schemeName}}">
+    <div class="uk-width-2-5" >
+        <select name="role" class="uk-select" formControlName="{{schemeName}}" [ngClass]="{'has-error':!group.get(schemeName).valid}">
             <option *ngFor="let value of schemeEnum" [value]="value.key" [selected]="value.key == ''">
                 {{value.value}}
             </option>
         </select>
     </div>
-    <div class="col-sm-4 col-md-4">
-        <input type="text" class="form-control" formControlName="schemeURI" placeholder="uri">
+    <div class="uk-width-1-5">
+        <input type="text" class="uk-input" formControlName="schemeURI" placeholder="uri">
     </div>
 </div>
 `,

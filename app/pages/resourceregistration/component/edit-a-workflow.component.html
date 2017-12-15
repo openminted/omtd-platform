@@ -22,11 +22,9 @@
 
                         <!-- MIDDLE -->
                         <div class=" uk-width-expand@m">
-                            <iframe src="/galaxy" style="width:100%; height:500px;"></iframe>
-                            <a (click)="createWorkflow()" class="uk-button uk-button-default">Create a new Workflow</a>
-
+                            <iframe [src]="galaxyURL" style="width:100%; height:500px;"></iframe>
+                            <!--<a (click)="fillMetadata()" class="uk-button uk-button-default uk-margin-medium-top">Fill in the metadata</a>-->
                         </div>
-
 
                         <!-- RIGHT HELP CONTENT -->
                         <aside-help-content #rightHelperContent [position]="'right'"

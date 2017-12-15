@@ -1,19 +1,22 @@
 /**
  * Created by stefania on 9/6/16.
  */
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Injectable } from "@angular/core";
+import { Headers, Http, RequestMethod, RequestOptions, Response } from "@angular/http";
+import { Observable } from "rxjs/Rx";
 import {
-    BaseMetadataRecord, Component as OMTDComponent, Corpus as OMTDCorpus, LanguageDescription,
+    BaseMetadataRecord,
+    Component as OMTDComponent,
+    Corpus as OMTDCorpus,
+    LanguageDescription,
     Lexical
 } from "../domain/openminted-model";
 import { URLParameter } from "../domain/url-parameter";
 import { SearchResults } from "../domain/search-results";
 import { Resource } from "../domain/resource";
-import {EnrichedOperation, Operation} from "../domain/operation";
-import {CorpusBuildingState} from "../domain/corpus-building-state";
-import {MavenComponent} from "../domain/maven-component";
+import { EnrichedOperation } from "../domain/operation";
+import { MavenComponent } from "../domain/maven-component";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Injectable()
 export class ResourceService {
@@ -195,6 +198,7 @@ export class ResourceService {
 
     public static toForms(service: any, obj : boolean = true) : any {
         let ret = obj ? {} : [];
+        if(service == null) return;
         Object.entries(service).forEach(([name, values]) => {
             let newValues = [];
             if (Array.isArray(values)) {
@@ -227,6 +231,7 @@ export class ResourceService {
     }
 
     private static removeNullParser(key,value) {
+        if(!value) return undefined;
         if (typeof value == 'boolean' || typeof value == "number") return value;
         if (value == "" || value.length == 0 || Object.values(value).length == 0) {
             return undefined;
@@ -255,21 +260,19 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    uploadComponent(component: OMTDComponent) {
+    uploadComponent(component: OMTDComponent, resourceType : string = 'component') {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
         let component_ = ResourceService.removeNulls(component);
         console.log(JSON.stringify(component_,null,2));
-        return this.http.post(this._searchUrl + 'component', JSON.stringify(component_), options)
+        return this.http.post(this._searchUrl + resourceType, JSON.stringify(component_), options)
             .map(res => res.status)
             .catch(this.handleError);
     }
 
     uploadXMLComponent(component: string) {
-
         let headers = new Headers({'Content-Type': 'application/xml'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
-        ResourceService.removeNulls(component);
         return this.http.post(this._searchUrl + 'component', component, options)
             .map(res => res.status)
             .catch(this.handleError);
@@ -298,8 +301,8 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    getMyComponents() {
-        return this.http.get(this._resourcesUrl + "component/my", { withCredentials: true })
+    getMyComponents(resourceType : string = 'component') {
+        return this.http.get(`${this._resourcesUrl}${resourceType}/my`, { withCredentials: true })
             .map(res => <SearchResults<BaseMetadataRecord>> res.json())
             .catch(this.handleError);
     }
@@ -310,45 +313,43 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    deleteComponent(component: OMTDComponent) {
+    deleteComponent(component: OMTDComponent,resourceType : string = 'component') {
 
-        ResourceService.removeNulls(component);
+        let component_ = ResourceService.removeNulls(component);
 
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({
             headers: headers,
             withCredentials: true,
             method: RequestMethod.Delete,
-            body: JSON.stringify(component)
+            body: JSON.stringify(component_)
         });
-
-        return this.http.request(this._resourcesUrl + 'component', options)
+        return this.http.request(this._resourcesUrl + resourceType, options)
             .catch(this.handleError);
     }
 
-    updateComponent(component: OMTDComponent) {
+    updateComponent(component: OMTDComponent, resourceType : string = 'component') {
 
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        options.withCredentials = true;
+        let options = new RequestOptions({headers: headers, withCredentials : true});
 
-        ResourceService.removeNulls(component);
+        let component_ = ResourceService.removeNulls(component);
 
-        return this.http.put(this._resourcesUrl + 'component', JSON.stringify(component), options)
+        return this.http.put(this._resourcesUrl + resourceType, JSON.stringify(component_), options)
             .map(res => <OMTDComponent> res.json())
             .catch(this.handleError);
     }
 
     deleteCorpus(corpus: OMTDCorpus) {
 
-        ResourceService.removeNulls(corpus);
+        let corpus_ = ResourceService.removeNulls(corpus);
 
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({
             headers: headers,
             withCredentials: true,
             method: RequestMethod.Delete,
-            body: JSON.stringify(corpus)
+            body: JSON.stringify(corpus_)
         });
 
         return this.http.request(this._resourcesUrl + 'corpus', options)
@@ -356,14 +357,10 @@ export class ResourceService {
     }
 
     updateCorpus(corpus: OMTDCorpus) {
-
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        options.withCredentials = true;
-
-        ResourceService.removeNulls(corpus);
-
-        return this.http.put(this._resourcesUrl + 'corpus', JSON.stringify(corpus), options)
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        let corpus_ = ResourceService.removeNulls(corpus);
+        return this.http.put(this._resourcesUrl + 'corpus', JSON.stringify(corpus_), options)
             .map(res => <OMTDCorpus> res.json())
             .catch(this.handleError);
     }
@@ -375,14 +372,11 @@ export class ResourceService {
     }
 
     registerIncompleteCorpus(corpus: OMTDCorpus) {
-
-        console.log(JSON.stringify(corpus));
-
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true });
-        ResourceService.removeNulls(corpus);
-        console.log(corpus);
-        return this.http.post(this._searchUrl + 'incompleteCorpus', JSON.stringify(corpus), options)
+        let corpus_ = ResourceService.removeNulls(corpus);
+        console.log(JSON.stringify(corpus_,null,2));
+        return this.http.post(this._searchUrl + 'incompleteCorpus', JSON.stringify(corpus_), options)
             .map(res => res.status)
             .catch(this.handleError);
     }
@@ -393,15 +387,14 @@ export class ResourceService {
         return body.data || { };
     }
 
-    private handleError (error: Response | any) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        let errMsg = "";
-        console.log(error);
+    private handleError (error: Response | any){
+        let errMsg = new OMTDError();
         if (error instanceof Response) {
-            const body = error.text() || '';
-            //const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${body}`;
+            const body = error.json() || '';
+            errMsg.error = body['error'];
+            errMsg.url = body['url'];
+            errMsg.status = error.status;
+            console.log(body);
         } else {
             errMsg = (error.message) ? error.message :
                 error.status ? `${error.status} - ${error.statusText}` : 'Server error';
@@ -409,4 +402,10 @@ export class ResourceService {
         }
         return Observable.throw(errMsg);
     }
+}
+
+export class OMTDError {
+    url : string;
+    error : string;
+    status : number;
 }

@@ -1,89 +1,88 @@
 /**
- * Created by stefania on 1/22/17.
+ * Created by stefanos on 1/22/17.
  */
-import { Component, OnInit } from "@angular/core";
-import { FormArray, FormControl, FormGroup } from "@angular/forms";
+import { Component, Injector, ViewChild } from "@angular/core";
 import {
-    Component as OMTDComponent,
-    ResourceIdentifier,
+    Component as OMTDComponent, ResourceIdentifier,
     ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
+import { ComponentRegistrationFormComponent } from "./component-registration-form.component";
+import { randomString } from "../../../domain/utils";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'component-registration-using-form',
-    templateUrl: './component-registration-using-form.component.html'
+    templateUrl: './component-registration-using-form.component.html',
+    styleUrls : ['./component-registration-form.component.css']
 })
 
-export class ComponentRegistrationUsingFormComponent implements OnInit {
+export class ComponentRegistrationUsingFormComponent {
 
-    componentForm: FormGroup;
-    componentValue : OMTDComponent;
-    componentFormErrorMessage: string = null;
-    tocValid : boolean;
     errorMessage: string = null;
+
     successfulMessage: string = null;
 
-    constructor(private resourceService: ResourceService) {
+    loading : boolean = false;
+
+    @ViewChild('componentForm') componentForm : ComponentRegistrationFormComponent;
+
+    protected resourceService: ResourceService;
+    protected route: ActivatedRoute;
+    protected router: Router;
+
+    constructor(injector : Injector) {
+        this.resourceService = injector.get(ResourceService);
+        this.route = injector.get(ActivatedRoute);
+        this.router = injector.get(Router);
     }
 
-    ngOnInit() {
-    }
-
-    handleComponent(component : any) {
-        this.componentForm = component;
-    }
-
-    setAsTouched(group: FormGroup | FormArray) {
-        group.markAsTouched();
-        for (let i in group.controls) {
-            if (group.controls[i] instanceof FormControl) {
-                group.controls[i].markAsTouched();
-            } else {
-                this.setAsTouched(group.controls[i]);
-            }
+    validate() : boolean {
+        this.successfulMessage = null;
+        this.errorMessage = null;
+        this.componentForm.setAsTouched();
+        if(this.componentForm.formValid && this.componentForm.tocValid) {
+            return true;
+        } else if (!this.componentForm.formValid) {
+            this.errorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
+                'can see the ones invalid or missing marked as red.';
+            window.scrollTo(0,0);
+        } else if (!this.componentForm.tocValid) {
+            this.errorMessage = "Please accept the terms and conditions";
+            window.scrollTo(0,0);
         }
+        return false;
     }
 
     onSubmit() {
 
-        this.setAsTouched(this.componentForm);
+        if(!this.validate())
+            return;
 
-        this.successfulMessage = null;
-        this.errorMessage = null;
+        let component : OMTDComponent = Object.assign({},this.componentForm.formValue);
+        let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
+        resourceIdentifier.value = randomString();
+        resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
+        component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
+        let application = this.componentForm.get('componentInfo.application').value;
+        let resourceType = application ? 'application' : 'component';
 
-        if(this.componentForm.valid && this.tocValid)
-            this.componentFormErrorMessage = null;
-        else if (!this.componentForm.valid)
-            this.componentFormErrorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
-                'can see the ones invalid or missing marked as red.';
-        else if (!this.tocValid)
-            this.componentFormErrorMessage = "Please accept the terms and conditions";
+        this.loading = true;
+        this.resourceService.uploadComponent(this.componentForm.formValue,resourceType).subscribe(
+            () => {
+                this.successfulMessage = 'Component registered successfully';
+                window.scrollTo(0,0);
+                this.loading=false;
+            }, error => this.handleError(error)
+        );
 
-        if(this.componentForm.valid && this.tocValid) {
-            let component : OMTDComponent = Object.assign({},this.componentForm.value);
-            let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
-            let text = "";
-            let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-            for (let i = 0; i < 40; i++)
-                text += possible.charAt(Math.floor(Math.random() * possible.length));
-            resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
-            resourceIdentifier.value = text;
-            component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
-            this.resourceService.uploadComponent(this.componentForm.value).subscribe(
-                res => {
-                    this.successfulMessage = 'Component registered successfully';
-                    window.scrollTo(0,0);
-                }, error => this.handleError(error)
-            );
-        } else {
-            window.scrollTo(0,0);
-        }
     }
 
-    handleError(error) {
-        this.errorMessage = 'Component registration failed (Server responded: ' + error + ')';
+    handleError(error : ErrorObservable) {
+        console.log(error);
+        this.errorMessage = `Component registration failed (${error.error})`;
+        this.loading = false;
         window.scrollTo(0,0);
     }
 

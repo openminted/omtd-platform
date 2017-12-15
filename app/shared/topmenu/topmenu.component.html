@@ -76,7 +76,8 @@
                                 <ul *ngIf="oAuthService.isUserLoggedIn" class="uk-nav-sub">
                                     <!--<li><a href="" >My profile</a></li>-->
                                     <li><a [routerLink]="['/mySpace/corpora']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Corpora</a></li>
-                                    <li><a [routerLink]="['/mySpace/services']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Services/Tools</a></li>
+                                    <li><a [routerLink]="['/mySpace/applications']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Applications</a></li>
+                                    <li><a [routerLink]="['/mySpace/components']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Components</a></li>
                                     <li><a [routerLink]="['/mySpace/operations']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Operations</a></li>
                                     <li><a routerLink="/home" (click)="logout()" >Log out</a></li>
                                 </ul>
@@ -198,7 +199,8 @@
                                         <ul class="uk-nav uk-navbar-dropdown-nav">
                                             <!--<li><a href="" >My profile</a></li>-->
                                             <li><a [routerLink]="['/mySpace/corpora']" routerLinkActive="uk-active">My Corpora</a></li>
-                                            <li><a [routerLink]="['/mySpace/services']" routerLinkActive="uk-active">My Services/Tools</a></li>
+                                            <li><a [routerLink]="['/mySpace/applications']" routerLinkActive="uk-active">My Applications</a></li>
+                                            <li><a [routerLink]="['/mySpace/components']" routerLinkActive="uk-active">My Components</a></li>
                                             <li><a [routerLink]="['/mySpace/operations']" routerLinkActive="uk-active">My Operations</a></li>
                                             <li><a routerLink="/home" (click)="logout()">Log out</a></li>
                                         </ul>

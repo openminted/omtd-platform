@@ -8,8 +8,9 @@ import { ComponentRegistrationXMLComponent } from "./component-registration-xml.
 import { ComponentRegistrationUsingFormComponent } from "./component-registration-using-form.component";
 import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-guard.service";
 import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
-import { BuildAWorkflowComponent } from "../../actions/buildworkflow/build-a-workflow.component";
+import { BuildAWorkflowComponent } from "./build-a-workflow.component";
 import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component-registration-using-maven-coordinates.component";
+import { EditAWorkflowComponent } from "./edit-a-workflow.component";
 
 const componentRegistrationRoutes: Routes = [
     {
@@ -45,11 +46,24 @@ const componentRegistrationRoutes: Routes = [
         component: ComponentUpdateUsingFormComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'component' }
     },
     {
-        path: 'buildWorkflow',
+        path: 'resourceRegistration/application/form/edit/:id',
+        component: ComponentUpdateUsingFormComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ],
+        data : {resourceType : 'application' }
+    },
+    {
+        path: 'buildWorkflow/:id',
         component: BuildAWorkflowComponent
+    },
+    {
+        path: 'editWorkflow/:id',
+        component: EditAWorkflowComponent
     },
 ];
 

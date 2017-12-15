@@ -82,7 +82,7 @@ export class RunApplicationComponent {
                     }
                     if(urlParameter.key === 'application') {
                         sessionStorage.setItem(urlParameter.key, urlParameter.values[0]);
-                        this.resourceService.getComponent(urlParameter.values[0]).subscribe(
+                        this.resourceService.getComponent(urlParameter.values[0],'application').subscribe(
                             component => {this.component = component; transform(this.component)},
                             error => this.handleError('System error loading application', <any>error));
                     }
@@ -122,8 +122,17 @@ export class RunApplicationComponent {
 
         this.isRunning = true;
 
-        this.workflowService.executeJob(this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value,
-            this.component.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
+        //TODO uncomment when we will use correctly the api
+        // this.workflowService.executeJob(this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value,
+        //     this.component.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
+
+        let archiveId = this.corpus.corpusInfo.datasetDistributionInfo.distributionLocation.match(/\?archiveId=([\d\w-]+)$/);
+        if(!archiveId) {
+            this.handleError('This corpus has no valid archiveId',{});
+            return;
+        }
+        this.workflowService.executeJob(archiveId[1],
+            this.component.componentInfo.identificationInfo.resourceIdentifiers[0].value).subscribe(
                 jobId => {
                     this.jobId = jobId;
                     console.log('jobId', jobId);

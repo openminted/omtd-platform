@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from "rxjs/Subscription";
+import { URLSearchParams } from "@angular/http";
 import { SearchQuery } from "../../domain/search-query";
 import { URLParameter } from "./../../domain/url-parameter";
 import { ResourceService } from "../../services/resource.service";

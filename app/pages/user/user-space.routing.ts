@@ -17,11 +17,20 @@ const userSpaceRoutes: Routes = [
         ]
     },
     {
-        path: 'mySpace/services',
+        path: 'mySpace/components',
         component: MyServicesComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'component' }
+    },
+    {
+        path: 'mySpace/applications',
+        component: MyServicesComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ],
+        data : {resourceType : 'application' }
     },
     {
         path: 'mySpace/operations',

@@ -19,6 +19,7 @@ import { CorpusUploadComponent } from "./corpus-upload.component";
 import { CorpusBuilderComponent } from "./corpus-builder.component";
 import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reusable-components.module";
 import { CorpusUpdateUsingFormComponent } from "./corpus-update-using-form.component";
+import { CorpusBaseUsingFormComponent } from "./corpus-base-using-form.component";
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { CorpusUpdateUsingFormComponent } from "./corpus-update-using-form.compo
         SearchForPublicationsComponent,
         CorpusRegistrationFormComponent,
         CorpusBuilderComponent,
-        CorpusUpdateUsingFormComponent
+        CorpusUpdateUsingFormComponent,
+        CorpusBaseUsingFormComponent
     ],
     providers: [
         ResourceService, 

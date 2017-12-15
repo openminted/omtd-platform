@@ -1,5 +1,5 @@
 <div class="uk-margin-medium-bottom">
-    <a *ngIf="production==false" (click)="testCorpus()" class="uk-button">Patch Value</a>
+    <a *ngIf="production==false" (click)="loadCorpus(testValue)" class="uk-button">Patch Value</a>
     <form class="form-horizontal corpusForm" [formGroup]="myForm">
         <ul uk-accordion="multiple: true">
 
@@ -45,5 +45,5 @@
 <div *ngIf="production==false" class="margin-20">
     <div>myForm details:-</div>
     <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
-    <pre>form value: <br>{{myForm.value | json}}</pre>
+    <pre>form value: <br>{{debugValue | json}}</pre>
 </div>

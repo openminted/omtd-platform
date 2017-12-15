@@ -27,6 +27,15 @@ export function deleteCookie(name) {
     setCookie(name, '', -1);
 }
 
+export function randomString(length : number = 40) : string {
+    let text = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (let i = 0; i < length; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
+}
+
 function setCookie(name: string, value: string, expireDays: number, path: string = '') {
     let d:Date = new Date();
     d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);

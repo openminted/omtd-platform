@@ -38,17 +38,21 @@ export class MyServicesComponent {
     private isNextPageDisabled: boolean = false;
     private isLastPageDisabled: boolean = false;
 
+    private resourceType: string = '';
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private resourceService: ResourceService) {}
+        private resourceService: ResourceService) {
+        this.resourceType = route.snapshot.data['resourceType'];
+    }
 
     ngOnInit() {
 
         this.errorMessage = null;
         this.successMessage = null;
 
-        this.resourceService.getMyComponents().subscribe(
+        this.resourceService.getMyComponents(this.resourceType).subscribe(
             searchResults => this.updateMyComponents(searchResults),
             error => this.handleError('System error retrieving user tools/services', <any>error));
     }
@@ -71,25 +75,6 @@ export class MyServicesComponent {
             this.components.push(<OMTDComponent> component.resource);
         }
 
-        // //update form values using URLParameters
-        // for (let urlParameter of this.urlParameters) {
-        //     if(urlParameter.key === 'query') {
-        //         this.searchCorporaForm.get('query').setValue(urlParameter.values[0]);
-        //     } else {
-        //         for(let facet of this.searchResults.facets) {
-        //             if(facet.field === urlParameter.key) {
-        //                 //
-        //                 for(let parameterValue of urlParameter.values) {
-        //                     for(let facetValue of facet.values) {
-        //                         if(parameterValue === facetValue.value)
-        //                             facetValue.isChecked = true;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
         this.pageSize = 10;
         this.currentPage = (searchResults.from / this.pageSize) + 1;
         this.totalPages = Math.ceil(searchResults.total / this.pageSize);
@@ -110,12 +95,17 @@ export class MyServicesComponent {
     }
 
     goToDetails(component: OMTDComponent) {
-        this.router.navigate(['/landingPage/component/', component.metadataHeaderInfo.metadataRecordIdentifier.value]);
+        this.router.navigate([`/landingPage/${this.resourceType}/`, component.metadataHeaderInfo.metadataRecordIdentifier.value]);
     }
 
     editComponent(component: OMTDComponent) {
         console.log(component);
-        this.router.navigate(['/resourceRegistration/component/form/edit/', component.metadataHeaderInfo.metadataRecordIdentifier.value]);
+        this.router.navigate([`/resourceRegistration/${this.resourceType}/form/edit/`, component.metadataHeaderInfo.metadataRecordIdentifier.value]);
+    }
+
+    editWorkflow(component: OMTDComponent) {
+        let workflowId = component.componentInfo.distributionInfos[0].distributionLocation.match(/\/(\w+)$/);
+        this.router.navigate([`/editWorkflow/`, workflowId[1]]);
     }
 
     deleteConfirmationComponent(component: OMTDComponent) {
@@ -136,7 +126,7 @@ export class MyServicesComponent {
 
             let component = components[0];
 
-            this.resourceService.deleteComponent(component).subscribe(
+            this.resourceService.deleteComponent(component,this.resourceType).subscribe(
                 _ => this.deleteComponent(id),
                 error => this.handleError('System error deleting the selected component', <any>error)
             );
@@ -166,7 +156,7 @@ export class MyServicesComponent {
 
             component.componentInfo.identificationInfo.public = true;
 
-            this.resourceService.updateComponent(component).subscribe(
+            this.resourceService.updateComponent(component,this.resourceType).subscribe(
                 component => this.updateComponent(component),
                 error => this.handleError('System error making this component public', <any>error)
             );

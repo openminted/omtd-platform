@@ -77,10 +77,9 @@ export class ContentConnectorService {
     buildCorpus(corpus: OMTDCorpus) {
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        options.withCredentials = true;
-        ResourceService.removeNulls(corpus);
-        return this.http.post(this._contentConnectorBuildCorpusUrl, JSON.stringify(corpus), options)
+        let options = new RequestOptions({ headers: headers, withCredentials : true });
+        let corpus_ = ResourceService.removeNulls(corpus);
+        return this.http.post(this._contentConnectorBuildCorpusUrl, JSON.stringify(corpus_), options)
             .map(res => res.status)
             .catch(this.handleError);
     }

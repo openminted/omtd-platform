@@ -12,14 +12,14 @@ import { applicationDesc, Description, functionDesc } from "../../../domain/omtd
     <div [formGroup]="parentGroup">
         <div formGroupName="{{name}}">
             
-            <form-inline [description]="applicationCDesc">
-                <label class="radio-label">
-                    <input type="checkbox" formControlName="application">
-                    Check if component can be used as an integrated end-user application
-                </label>
-            </form-inline>
-                     
-            <div class="form-group-divider"></div>
+            <!--<form-inline [description]="applicationCDesc">-->
+                <!--<label class="radio-label">-->
+                    <input type="checkbox" formControlName="application" [hidden]="true">
+                    <!--Check if component can be used as an integrated end-user application-->
+                <!--</label>-->
+            <!--</form-inline>-->
+                     <!---->
+            <!--<div class="form-group-divider"></div>-->
             
             <div formGroupName="functionInfo">
                 <form-inline [description]="functionDesc">
@@ -32,7 +32,7 @@ import { applicationDesc, Description, functionDesc } from "../../../domain/omtd
 
                     <div class="form-group-divider"></div>
 
-                    <form-inline [description]="functionDescOther" [hidden]="this.getMyControl('functionInfo.function')?.value!=='OTHER'">
+                    <form-inline [description]="functionDescOther" [hidden]="getMyControl('functionInfo.function')?.value!=='OTHER'">
                         <input type="text" class="uk-input" formControlName="functionOther" placeholder="Other type of operation(*)"/>
                     </form-inline>
                 </form-inline>

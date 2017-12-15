@@ -22,9 +22,13 @@
                                   [data]="{update : true}"></versionInfo-form>
             </li>
 
-            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Distribution'">
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Distribution'" *ngIf="!galaxyButtonUrl">
                 <componentDistributionInfos-form
                         [parentGroup]="myForm.controls.componentInfo"></componentDistributionInfos-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Rights Info'">
+                <rightsInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'rightsInfo'"></rightsInfo-form>
             </li>
 
             <li accordionSection class="uk-margin-large-bottom" [title]="'Input'">
@@ -41,10 +45,6 @@
                 <form-repeat [component]="parameterType" [parentGroup]="myForm.controls.componentInfo"
                              [name]="'parameterInfos'" [required]="false" [description]="parameterInfoDesc">
                 </form-repeat>
-            </li>
-
-            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Rights Info'">
-                <rightsInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'rightsInfo'"></rightsInfo-form>
             </li>
         </ul>
     </form>

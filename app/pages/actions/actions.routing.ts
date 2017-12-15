@@ -4,7 +4,6 @@
 
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BuildAWorkflowComponent } from "./buildworkflow/build-a-workflow.component";
 import { RunApplicationComponent } from "./runapplication/run-application.component";
 import { BrowseCorporaComponent } from "./utils/browse-corpora.component";
 import { BrowseApplicationsComponent } from "./utils/browse-applications.component";
@@ -17,10 +16,6 @@ const actionsRoutes: Routes = [
         canActivate: [
             CanActivateViaAuthGuard
         ]
-    },
-    {
-        path: 'buildWorkflow',
-        component: BuildAWorkflowComponent
     },
     {
         path: 'browseCorpora',

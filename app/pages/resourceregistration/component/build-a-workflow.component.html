@@ -4,10 +4,8 @@
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
-                <h2 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
-                    Update the metadata for your corpus
-                </h2>
-                <hr class="uk-divider-icon uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                <h1 class="uk-h2">Build a workflow</h1>
+                <!--<hr class="uk-divider-small">-->
 
                 <!-- TOP HELP CONTENT -->
                 <help-content #topHelperContent [position]="'top'"
@@ -24,24 +22,24 @@
 
 
                         <!-- MIDDLE -->
-                        <div *ngIf="!successfulMessage" class="uk-width-expand@m">
-                            <div *ngIf="errorMessage" class="alert alert-danger uk-margin-top">{{errorMessage}}</div>
+                        <div class=" uk-width-expand@m" *ngIf="galaxyId != '' && metadataFormPage==false">
+                            <iframe [src]="workflowURL" style="width:100%; height:500px;"></iframe>
+                            <!--<a (click)="fillMetadata()" class="uk-button uk-button-default uk-margin-medium-top">Fill in the metadata</a>-->
+                        </div>
+                        <div class=" uk-width-expand@m" *ngIf="metadataFormPage==true">
+                            <div *ngIf="errorMessage" class="uk-alert uk-alert-danger uk-margin-top">{{errorMessage}}</div>
+                            <div *ngIf="successfulMessage" class="uk-alert uk-alert-success uk-margin-top">{{successfulMessage}}</div>
+                            <div *ngIf="!successfulMessage">
+                                <component-registration-form #componentForm class="uk-margin-top"></component-registration-form>
 
-                            <corpus-registration-form #corpusForm class="uk-margin-top"></corpus-registration-form>
-
-                            <div class="uk-grid">
-                                <div class="uk-width-1-5"></div>
-                                <div class="uk-width-4-5">
-                                    <button [disabled]="busy" (click)="onSubmit()" class="uk-button uk-button-large
-                                            uk-button-blue registerButton">Update!
-                                        <span *ngIf="busy"><i class="fa fa-spin fa-spinner"></i></span>
-                                    </button>
+                                <div class="uk-grid">
+                                    <div class="uk-width-1-5"></div>
+                                    <div class="uk-width-4-5">
+                                        <button (click)="onSubmit()" class="uk-button uk-button-large
+                                                uk-button-blue registerButton">Register!</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div *ngIf="successfulMessage" class="uk-width-expand@m">
-                            <div class="alert alert-success">{{successfulMessage}}. Click <a (click)="navigateToCorpus()">here</a> to see it.</div>
                         </div>
 
 

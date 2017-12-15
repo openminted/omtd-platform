@@ -39,34 +39,6 @@
 
                                 <div *ngIf="searchResults.total>0">
 
-                                    <!--<div class="uk-width-1-1 uk-row-first">-->
-                                        <!--<ul class="uk-pagination">-->
-
-                                            <!--<li class="uk-disabled" *ngIf="isPreviousPageDisabled">-->
-                                                <!--<a class="uk-disabled" href="#">-->
-                                                    <!--<span class="uk-margin-small-right" uk-pagination-previous></span> Previous-->
-                                                <!--</a>-->
-                                            <!--</li>-->
-                                            <!--<li *ngIf="!isPreviousPageDisabled">-->
-                                                <!--<a (click)="goToPreviousPage()">-->
-                                                    <!--<span class="uk-margin-small-right" uk-pagination-previous></span> Previous-->
-                                                <!--</a>-->
-                                            <!--</li>-->
-
-                                            <!--<li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">-->
-                                                <!--<a class="uk-disabled" href="#">Next-->
-                                                    <!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
-                                                <!--</a>-->
-                                            <!--</li>-->
-                                            <!--<li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">-->
-                                                <!--<a (click)="goToNextPage()">Next-->
-                                                    <!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
-                                                <!--</a>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                        <!--<div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>-->
-                                    <!--</div>-->
-
                                     <div class="uk-grid-margin">
 
                                         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
@@ -97,13 +69,23 @@
                                                             <td class=""><div class="el-title">--</div></td>
                                                             <td class="uk-text-nowrap">
                                                                 <div *ngIf="!corpus.corpusInfo.identificationInfo.public" class="el-title">
-                                                                    <a (click)="goToDetails(corpus)" class=""><i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i></a>
-                                                                    <a (click)="editCorpus(corpus)"><i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i></a>
-                                                                    <a (click)="deleteConfirmationCorpus(corpus)"><i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i></a>
-                                                                    <a (click)="makePublicConfirmation(corpus)" class=""><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                                    <a (click)="goToDetails(corpus)" title="View corpus" uk-tooltip>
+                                                                        <i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="editCorpus(corpus)" title="Edit corpus" uk-tooltip>
+                                                                        <i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="deleteConfirmationCorpus(corpus)" title="Delete corpus" uk-tooltip>
+                                                                        <i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="makePublicConfirmation(corpus)" class="" title="Share corpus" uk-tooltip>
+                                                                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                                                    </a>
                                                                 </div>
                                                                 <div *ngIf="corpus.corpusInfo.identificationInfo.public" class="el-title">
-                                                                    <a (click)="goToDetails(corpus)" class=""><i class="fa fa-info" aria-hidden="true"></i></a>
+                                                                    <a (click)="goToDetails(corpus)" title="View corpus" uk-tooltip>
+                                                                        <i class="fa fa-info" aria-hidden="true"></i>
+                                                                    </a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -115,37 +97,6 @@
 
                                     </div>
 
-
-                                    <!--<div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top">-->
-                                        <!--<ul class="uk-pagination">-->
-
-                                            <!--<li class="uk-disabled" *ngIf="isPreviousPageDisabled">-->
-                                                <!--<a class="uk-disabled" href="#">-->
-                                                    <!--<span class="uk-margin-small-right" uk-pagination-previous></span> Previous-->
-                                                <!--</a>-->
-                                            <!--</li>-->
-                                            <!--<li *ngIf="!isPreviousPageDisabled">-->
-                                                <!--<a (click)="goToPreviousPage()">-->
-                                                    <!--<span class="uk-margin-small-right" uk-pagination-previous></span> Previous-->
-                                                <!--</a>-->
-                                            <!--</li>-->
-
-                                            <!--<li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">-->
-                                                <!--<a class="uk-disabled" href="#">Next-->
-                                                    <!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
-                                                <!--</a>-->
-                                            <!--</li>-->
-                                            <!--<li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">-->
-                                                <!--<a (click)="goToNextPage()">Next-->
-                                                    <!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
-                                                <!--</a>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                        <!--<div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>-->
-                                    <!--</div>-->
-
-
-                                    <!--You have {{searchResults.total}} corpora registered under your name-->
                                 </div>
 
                             </div>
@@ -191,15 +142,6 @@
                                                             </td>
                                                             <td class="uk-text-nowrap">
                                                                 --
-                                                                <!--<div *ngIf="!corpus.corpusInfo.identificationInfo.public" class="el-title">-->
-                                                                <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                                <!--<a (click)="editCorpus(corpus)"><i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                                <!--<a (click)="deleteConfirmationCorpus(corpus)"><i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                                <!--<a (click)="makePublicConfirmation(corpus)" class=""><i class="fa fa-share-alt" aria-hidden="true"></i></a>-->
-                                                                <!--</div>-->
-                                                                <!--<div *ngIf="corpus.corpusInfo.identificationInfo.public" class="el-title">-->
-                                                                <!--<a (click)="goToDetails(corpus)" class=""><i class="fa fa-info" aria-hidden="true"></i></a>-->
-                                                                <!--</div>-->
                                                             </td>
                                                         </tr>
                                                         </tbody>

@@ -5,6 +5,7 @@ import { Component, OnInit } from "@angular/core";
 import { ResourceService } from "../../../services/resource.service";
 import { MavenComponent } from "../../../domain/maven-component";
 import { ActivatedRoute } from "@angular/router";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'component-registration-using-maven-coordinates',
@@ -58,7 +59,7 @@ export class ComponentRegistrationUsingMavenCoordinatesComponent implements OnIn
         );
     }
 
-    handleError(error : any) {
-        this.errorMessage = error;
+    handleError(error : ErrorObservable) {
+        this.errorMessage = error.error;
     }
 }

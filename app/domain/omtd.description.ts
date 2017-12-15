@@ -1791,7 +1791,7 @@ export var usageInfoDesc = {
 export var domainInfoDesc = {
     desc : "Groups together information on domains represented in the resource; can be repeated for parts of the resource with distinct domain",
     label : "Domain",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 
