@@ -1,7 +1,61 @@
+<!--<dl class="uk-description-list">-->
+    <!--<ng-template [ngIf]="annotationInfo.annotationTypes && annotationInfo.annotationTypes.length>0">-->
+        <!--<dt>Annotation types</dt>-->
+        <!--<dd>-->
+            <!--<span *ngFor="let annotationType of annotationInfo.annotationTypes; let isLast = last;">-->
+                <!--<span *ngIf="annotationType.annotationType">-->
+                    <!--{{annotationTypeType(annotationType.annotationType)}}-->
+                <!--</span>-->
+                <!--{{isLast ? '' : ', '}}-->
+            <!--</span>-->
+        <!--</dd>-->
+    <!--</ng-template>-->
+
+    <!--<ng-template [ngIf]="annotationInfo.typesystem">-->
+        <!--<dt>Typesystem</dt>-->
+        <!--<dd>-->
+            <!--<span *ngIf="annotationInfo.typesystem.resourceNames && annotationInfo.typesystem.resourceNames.length>0">-->
+                <!--{{annotationInfo.typesystem.resourceNames[0].value}}-->
+            <!--</span>-->
+        <!--</dd>-->
+    <!--</ng-template>-->
+
+    <!--<ng-template [ngIf]="annotationInfo.annotationSchema">-->
+        <!--<dt>Annotation Schema</dt>-->
+        <!--<dd>-->
+            <!--<span *ngIf="annotationInfo.annotationSchema.resourceNames && annotationInfo.annotationSchema.resourceNames.length>0">-->
+                <!--{{annotationInfo.annotationSchema.resourceNames[0].value}}-->
+            <!--</span>-->
+        <!--</dd>-->
+    <!--</ng-template>-->
+
+    <!--<ng-template [ngIf]="annotationInfo.annotationResource">-->
+        <!--<dt>Annotation Schema</dt>-->
+        <!--<dd>-->
+            <!--<span *ngIf="annotationInfo.annotationResource.resourceNames && annotationInfo.annotationResource.resourceNames.length>0">-->
+                <!--{{annotationInfo.annotationResource.resourceNames[0].value}}-->
+            <!--</span>-->
+        <!--</dd>-->
+    <!--</ng-template>-->
+
+    <!--<ng-template [ngIf]="annotationInfo.isAnnotatedBy && annotationInfo.isAnnotatedBy.length>0">-->
+        <!--<dt>Is annotated by</dt>-->
+        <!--<dd>-->
+            <!--<span *ngFor="let isAnnotatedBySingle of annotationInfo.isAnnotatedBy; let isLast = last;">-->
+                <!--<span *ngIf="isAnnotatedBySingle.resourceNames && isAnnotatedBySingle.resourceNames.length>0">-->
+                    <!--{{isAnnotatedBySingle.resourceNames[0].value}}-->
+                <!--</span>-->
+                <!--{{isLast ? '' : ', '}}-->
+            <!--</span>-->
+        <!--</dd>-->
+    <!--</ng-template>-->
+<!--</dl>-->
+
+
 <div class="uk-list">
 
     <div *ngIf="annotationInfo.annotationTypes && annotationInfo.annotationTypes.length>0">
-        <strong>Annotation types: </strong>
+        <strong>Annotation types</strong><br>
         <span *ngFor="let annotationType of annotationInfo.annotationTypes; let isLast = last;">
             <span *ngIf="annotationType.annotationType">
                 {{annotationTypeType(annotationType.annotationType)}}
@@ -10,29 +64,29 @@
         </span>
     </div>
 
-    <div *ngIf="annotationInfo.typesystem">
-        <strong>Typesystem: </strong>
+    <div *ngIf="annotationInfo.typesystem" class="uk-margin-top">
+        <strong>Typesystem</strong><br>
         <span *ngIf="annotationInfo.typesystem.resourceNames && annotationInfo.typesystem.resourceNames.length>0">
             {{annotationInfo.typesystem.resourceNames[0].value}}
         </span>
     </div>
 
-    <div *ngIf="annotationInfo.annotationSchema">
-        <strong>Annotation Schema: </strong>
+    <div *ngIf="annotationInfo.annotationSchema" class="uk-margin-top">
+        <strong>Annotation Schema</strong><br>
         <span *ngIf="annotationInfo.annotationSchema.resourceNames && annotationInfo.annotationSchema.resourceNames.length>0">
             {{annotationInfo.annotationSchema.resourceNames[0].value}}
         </span>
     </div>
 
-    <div *ngIf="annotationInfo.annotationResource">
-        <strong>Annotation resource: </strong>
+    <div *ngIf="annotationInfo.annotationResource" class="uk-margin-top">
+        <strong>Annotation resource</strong><br>
         <span *ngIf="annotationInfo.annotationResource.resourceNames && annotationInfo.annotationResource.resourceNames.length>0">
             {{annotationInfo.annotationResource.resourceNames[0].value}}
         </span>
     </div>
 
-    <div *ngIf="annotationInfo.isAnnotatedBy && annotationInfo.isAnnotatedBy.length>0">
-        <strong>Is annotated by: </strong>
+    <div *ngIf="annotationInfo.isAnnotatedBy && annotationInfo.isAnnotatedBy.length>0" class="uk-margin-top">
+        <strong>Is annotated by</strong><br>
         <span *ngFor="let isAnnotatedBySingle of annotationInfo.isAnnotatedBy; let isLast = last;">
             <span *ngIf="isAnnotatedBySingle.resourceNames && isAnnotatedBySingle.resourceNames.length>0">
                 {{isAnnotatedBySingle.resourceNames[0].value}}
@@ -40,88 +94,5 @@
             {{isLast ? '' : ', '}}
         </span>
     </div>
-
-
-    <!--<div *ngIf="annotationInfo.tagset">-->
-        <!--<strong>Tagset: </strong>-->
-        <!--<span *ngIf="annotationInfo.tagset.resourceNames && annotationInfo.tagset.resourceNames.length>0">-->
-            <!--{{annotationInfo.tagset.resourceNames[0].value}}-->
-        <!--</span>-->
-        <!--<span *ngIf="annotationInfo.tagset.resourceIdentifiers && annotationInfo.tagset.resourceIdentifiers.length>0">-->
-            <!--{{annotationInfo.tagset.resourceIdentifiers[0].value}}-->
-        <!--</span>-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.theoreticModel">-->
-        <!--<strong>Theoretic model: </strong>{{annotationInfo.theoreticModel}}-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.guidelinesDocumentedIn && annotationInfo.guidelinesDocumentedIn.length>0">-->
-        <!--<strong>Guidelines documented in: </strong>-->
-        <!--<span *ngFor="let guidelinesDocumentedIn of annotationInfo.guidelinesDocumentedIn; let isLast = last;">-->
-            <!--<span *ngIf="guidelinesDocumentedIn.documentUnstructured">-->
-                <!--{{guidelinesDocumentedIn.documentUnstructured}}-->
-            <!--</span>-->
-            <!--<span *ngIf="guidelinesDocumentedIn.publicationIdentifiers && guidelinesDocumentedIn.publicationIdentifiers.length>0">-->
-                <!--{{guidelinesDocumentedIn.publicationIdentifiers[0].value}}-->
-            <!--</span>-->
-            <!--{{isLast ? '' : ', '}}-->
-        <!--</span>-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.annotationMode">-->
-        <!--<strong>Annotation mode: </strong>{{annotationInfo.annotationMode}}-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.annotationModeDetails">-->
-        <!--<strong>Annotation mode details: </strong>{{annotationInfo.annotationModeDetails}}-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.isAnnotatedBy && annotationInfo.isAnnotatedBy.length>0">-->
-        <!--<strong>Is annotated by: </strong>-->
-        <!--<span *ngFor="let annotatedBy of annotationInfo.isAnnotatedBy; let isLast = last;">-->
-            <!--<span *ngIf="annotatedBy.resourceNames && annotatedBy.resourceNames.length>0">-->
-                <!--{{annotatedBy.resourceNames[0].value}}-->
-            <!--</span>-->
-            <!--<span *ngIf="annotatedBy.resourceIdentifiers && annotatedBy.resourceIdentifiers.length>0">-->
-                <!--{{annotatedBy.resourceIdentifiers[0].value}}-->
-            <!--</span>-->
-            <!--{{isLast ? '' : ', '}}-->
-        <!--</span>-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.annotationDate">-->
-        <!--<strong>Annotation Date: </strong>-->
-        <!--<span *ngIf="annotationInfo.annotationDate.date">-->
-            <!--{{annotationInfo.annotationDate.date.month}}/{{annotationInfo.annotationDate.date.day}}/{{annotationInfo.annotationDate.date.year}}-->
-        <!--</span>-->
-        <!--<span *ngIf="annotationInfo.annotationDate.dateRange">-->
-            <!--{{annotationInfo.annotationDate.dateRange.startDate.month}}/{{annotationInfo.annotationDate.dateRange.startDate.day}}/{{annotationInfo.annotationDate.dateRange.startDate.year}}-->
-            <!-- - -->
-            <!--{{annotationInfo.annotationDate.dateRange.endDate.month}}/{{annotationInfo.annotationDate.dateRange.endDate.day}}/{{annotationInfo.annotationDate.dateRange.endDate.year}}-->
-        <!--</span>-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.sizePerAnnotation">-->
-        <!--<strong>Size per annotation: </strong>-->
-        <!--<span *ngIf="annotationInfo.sizePerAnnotation.size">{{annotationInfo.sizePerAnnotation.size}}</span>-->
-        <!--<span *ngIf="annotationInfo.sizePerAnnotation.sizeUnit"> {{annotationInfo.sizePerAnnotation.sizeUnit}}</span>-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.interannotatorAgreement">-->
-        <!--<strong>Inter-annotator agreement: </strong>{{annotationInfo.interannotatorAgreement}}-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.intraannotatorAgreement">-->
-        <!--<strong>Intra-annotator agreement: </strong>{{annotationInfo.intraannotatorAgreement}}-->
-    <!--</div>-->
-    <!--<div *ngIf="annotationInfo.annotators && annotationInfo.annotators.length>0">-->
-        <!--<strong>Annotators: </strong>-->
-        <!--<span *ngFor="let annotator of annotationInfo.annotators; let isLast = last;">-->
-            <!--<span *ngIf="annotator.relatedPerson && annotator.relatedPerson.personNames && annotator.relatedPerson.personNames.length>0">-->
-                <!--{{annotator.relatedPerson.personNames[0].value}}-->
-            <!--</span>-->
-            <!--<span *ngIf="annotator.relatedPerson && annotator.relatedPerson.personIdentifiers && annotator.relatedPerson.personIdentifiers.length>0">-->
-                <!--{{annotator.relatedPerson.personIdentifiers[0].value}}-->
-            <!--</span>-->
-            <!--<span *ngIf="annotator.relatedOrganization && annotator.relatedOrganization.organizationNames && annotator.relatedOrganization.organizationNames.length>0">-->
-                <!--{{annotator.relatedOrganization.organizationNames[0].value}}-->
-            <!--</span>-->
-            <!--<span *ngIf="annotator.relatedOrganization && annotator.relatedOrganization.organizationIdentifiers && annotator.relatedOrganization.organizationIdentifiers.length>0">-->
-                <!--{{annotator.relatedOrganization.organizationIdentifiers[0].value}}-->
-            <!--</span>-->
-            <!--{{isLast ? '' : ', '}}-->
-        <!--</span>-->
-    <!--</div>-->
 </div>
+

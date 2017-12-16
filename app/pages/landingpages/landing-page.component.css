@@ -61,6 +61,14 @@
     font-size: 17px;
 }
 
+.slick-prev::before, .slick-next::before {
+    color: #0055b9 !important;
+}
+
+.annotation {
+    margin-right: 15px;
+}
+
 .resourceSideInfo {
     font-size: 12px;
 }
