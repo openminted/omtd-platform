@@ -11,6 +11,7 @@ import { ComponentUpdateUsingFormComponent } from "./component-update-using-form
 import { BuildAWorkflowComponent } from "./build-a-workflow.component";
 import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component-registration-using-maven-coordinates.component";
 import { EditAWorkflowComponent } from "./edit-a-workflow.component";
+import { ApplicationRegistrationComponent } from "./application-registration.component";
 
 const componentRegistrationRoutes: Routes = [
     {
@@ -64,6 +65,13 @@ const componentRegistrationRoutes: Routes = [
     {
         path: 'editWorkflow/:id',
         component: EditAWorkflowComponent
+    },
+    {
+        path: 'resourceRegistration/application',
+        component: ApplicationRegistrationComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ]
     },
 ];
 

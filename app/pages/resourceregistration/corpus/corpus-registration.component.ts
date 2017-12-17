@@ -18,6 +18,14 @@ export class CorpusRegistrationComponent {
         this.router.navigate(['/resourceRegistration/corpus/searchForPublications']);
     }
 
+    corpusBuilderWithProvider(provider: string) {
+
+        var map: { [name: string]: string; } = { };
+        map['source'] = provider;
+
+        this.router.navigate(['/resourceRegistration/corpus/searchForPublications', map]);
+    }
+
     uploadCorpus() {
         this.router.navigate(['/resourceRegistration/corpus/upload']);
     }
