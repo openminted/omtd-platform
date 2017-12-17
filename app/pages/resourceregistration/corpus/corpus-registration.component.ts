@@ -29,4 +29,8 @@ export class CorpusRegistrationComponent {
     uploadCorpus() {
         this.router.navigate(['/resourceRegistration/corpus/upload']);
     }
+
+    registerUsingXML() {
+        this.router.navigate(['/resourceRegistration/corpus/xml']);
+    }
 }
