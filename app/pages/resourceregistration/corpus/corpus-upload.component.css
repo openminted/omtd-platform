@@ -1,11 +1,4 @@
-.subtitle {
-    /*background-color: rgba(0, 185, 180, 0.7);*/
-    /*color: #003d8c;*/
-    background-color: rgba(0, 61, 140, 0.9);
-    color: #fff;
-    letter-spacing: 1.2px;
-    padding: 5px 25px;
-    margin-bottom: 25px;
-    margin-top: 15px;
+h2, .uk-h2 {
+    font-size: 30px;
 }
 
