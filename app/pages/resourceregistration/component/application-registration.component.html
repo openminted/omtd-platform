@@ -100,6 +100,7 @@
                                                         <!--A Researcher?    </h4>-->
                                                         <div class="el-content uk-margin">
                                                             Create your application using our workflow editor
+                                                            <div *ngIf="workflowError" class="uk-alert uk-alert-danger">{{workflowError}}</div>
                                                         </div>
                                                         <p>
                                                             <a (click)="buildWorkflow()" class="el-link uk-button uk-button-default uk-button-small actionButton">

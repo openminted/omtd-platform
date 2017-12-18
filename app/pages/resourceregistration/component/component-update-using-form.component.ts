@@ -20,8 +20,6 @@ export class ComponentUpdateUsingFormComponent extends ComponentRegistrationUsin
 
     applicationWorkflow : string = '';
 
-    private resourceType;
-
     constructor(injector : Injector) {
         super(injector);
         this.resourceType = this.route.snapshot.data['resourceType'];

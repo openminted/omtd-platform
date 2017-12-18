@@ -33,7 +33,16 @@ const componentRegistrationRoutes: Routes = [
         component: ComponentRegistrationUsingFormComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'component' }
+    },
+    {
+        path: 'resourceRegistration/application/form',
+        component: ComponentRegistrationUsingFormComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ],
+        data : {resourceType : 'application' }
     },
     {
         path: 'resourceRegistration/component/mavenCoordinates',

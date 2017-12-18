@@ -39,7 +39,7 @@ export class MyServicesComponent {
     private isNextPageDisabled: boolean = false;
     private isLastPageDisabled: boolean = false;
 
-    private resourceType: string = '';
+    resourceType: string = '';
 
     constructor(
         private route: ActivatedRoute,

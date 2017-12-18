@@ -26,6 +26,7 @@ export class ComponentRegistrationUsingFormComponent {
 
     loading : boolean = false;
 
+    resourceType : string;
     @ViewChild('componentForm') componentForm : ComponentRegistrationFormComponent;
 
     protected resourceService: ResourceService;
@@ -36,6 +37,7 @@ export class ComponentRegistrationUsingFormComponent {
         this.resourceService = injector.get(ResourceService);
         this.route = injector.get(ActivatedRoute);
         this.router = injector.get(Router);
+        this.resourceType = this.route.snapshot.data['resourceType'];
     }
 
     validate() : boolean {
@@ -65,13 +67,11 @@ export class ComponentRegistrationUsingFormComponent {
         resourceIdentifier.value = randomString();
         resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
         component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
-        let application = this.componentForm.get('componentInfo.application').value;
-        let resourceType = application ? 'application' : 'component';
-
         this.loading = true;
-        this.resourceService.uploadComponent(this.componentForm.formValue,resourceType).subscribe(
+        this.componentForm.get('componentInfo.application').setValue(this.resourceType != 'component' )
+        this.resourceService.uploadComponent(this.componentForm.formValue,this.resourceType).subscribe(
             () => {
-                this.successfulMessage = 'Component registered successfully';
+                this.successfulMessage = `${this.resourceType} registered successfully`;
                 window.scrollTo(0,0);
                 this.loading=false;
             }, error => this.handleError(error)
