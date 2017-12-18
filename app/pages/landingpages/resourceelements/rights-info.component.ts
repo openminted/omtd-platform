@@ -15,6 +15,11 @@ export class RightsInfoComponent {
     rightsStatementValues : EnumValues[] = rightsStatementEnum;
     licenseValues : EnumValues[] = licenceEnum;
     @Input() rightsInfo: RightsInfo;
+    rightsStatementValue : any;
+    constructor() {
+        this.rightsStatementValue = this.rightsInfo.rightsStatement;
+    }
+
 
     private rightsStatement(l : string) {
         let rightsStatement = this.rightsStatementValues.find(v => v.key === l);

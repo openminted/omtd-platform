@@ -12,6 +12,7 @@ import { ResourceService } from "../../services/resource.service";
 import { SearchResults } from "../../domain/search-results";
 import { ShortResultInfo } from "../../domain/short-resource-info";
 import { BaseMetadataRecord, ComponentInfo, CorpusInfo } from "../../domain/openminted-model";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'search',
@@ -287,8 +288,8 @@ export class SearchComponent {
         this.router.navigate(['/landingPage/' + resourceType + '/', id]);
     }
 
-    handleError(error) {
-        this.errorMessage = 'System error searching for resources (Server responded: ' + error + ')';
+    handleError(error : ErrorObservable) {
+        this.errorMessage = 'System error searching for resources (Server responded: ' + error.error + ')';
     }
 
     goToFirstPage() {

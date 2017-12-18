@@ -26,14 +26,32 @@ const componentRegistrationRoutes: Routes = [
         component: ComponentRegistrationXMLComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'component' }
+    },
+    {
+        path: 'resourceRegistration/application/xml',
+        component: ComponentRegistrationXMLComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ],
+        data : {resourceType : 'application' }
     },
     {
         path: 'resourceRegistration/component/form',
         component: ComponentRegistrationUsingFormComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'component' }
+    },
+    {
+        path: 'resourceRegistration/application/form',
+        component: ComponentRegistrationUsingFormComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ],
+        data : {resourceType : 'application' }
     },
     {
         path: 'resourceRegistration/component/mavenCoordinates',
@@ -64,7 +82,13 @@ const componentRegistrationRoutes: Routes = [
     },
     {
         path: 'editWorkflow/:id',
-        component: EditAWorkflowComponent
+        component: EditAWorkflowComponent,
+        data : {application : false}
+    },
+    {
+        path: 'editWorkflowApplication/:id',
+        component: EditAWorkflowComponent,
+        data : {application : true}
     },
     {
         path: 'resourceRegistration/application',

@@ -3,7 +3,13 @@
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
-                <h1 class="uk-h2">Build a workflow</h1>
+                <h1 class="uk-h2">
+                    Edit a workflow
+                    <button *ngIf="omtdId" (click)="editMetadata()" class="uk-button uk-button-primary uk-float-right">
+                        Edit Application Metadata
+                    </button>
+                </h1>
+
                 <!--<hr class="uk-divider-small">-->
 
                 <!-- TOP HELP CONTENT -->
@@ -23,8 +29,8 @@
                         <!-- MIDDLE -->
                         <div class=" uk-width-expand@m">
                             <iframe [src]="galaxyURL" style="width:100%; height:500px;"></iframe>
-                            <!--<a (click)="fillMetadata()" class="uk-button uk-button-default uk-margin-medium-top">Fill in the metadata</a>-->
                         </div>
+
 
                         <!-- RIGHT HELP CONTENT -->
                         <aside-help-content #rightHelperContent [position]="'right'"

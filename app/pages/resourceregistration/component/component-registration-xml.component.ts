@@ -5,6 +5,8 @@ import { Component } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ResourceService } from "../../../services/resource.service";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import {title} from "../../../domain/utils";
 
 @Component({
     selector: 'component-registration-xml',
@@ -20,14 +22,16 @@ export class ComponentRegistrationXMLComponent {
     successMessage: string;
 
     uploadedFile : File;
-
-    //private resource: Resource;
+    resourceType : string;
+    titleResourceType : string;
 
     constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
                 private resourceService: ResourceService) {
         // this.componentXMLForm = fb.group({
         //     "xml": [""],
         // });
+        this.resourceType = this.activatedRoute.snapshot.data['resourceType'];
+        this.titleResourceType = title(this.resourceType);
         this.uploadedFile = null;
         this.xmlURL = '';
     }
@@ -47,9 +51,9 @@ export class ComponentRegistrationXMLComponent {
 
         console.log("submit",this.xmlURL,this.uploadedFile);
 
-        // this.resourceService.registerComponent(componentXML).subscribe(
-        //     resource => this.successfullySubscribed(),
-        //     error => this.handleError(<any>error));
+        this.resourceService.registerComponent(componentXML,this.resourceType).subscribe(
+            resource => this.successfullySubscribed(),
+            error => this.handleError(<any>error));
     }
 
     previewFromURL() {
@@ -82,11 +86,11 @@ export class ComponentRegistrationXMLComponent {
 
     successfullySubscribed() {
         window.scrollTo(0, 0)
-        this.successMessage = 'Your component has been successfully registered';
+        this.successMessage = `Your ${this.resourceType} has been successfully registered`;
         return false;
     }
 
-    handleError(error) {
-        this.errorMessage = 'System error registering your component (Server responded: ' + error + ')';
+    handleError(error : ErrorObservable) {
+        this.errorMessage = `System error registering your ${this.resourceType} (Server responded: ${error.error} )`;
     }
 }

@@ -42,9 +42,9 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
 
     constructor(injector : Injector){
         super(injector);
-        injector.get(DomSanitizer);
-        injector.get(GalaxyService);
-        injector.get(Renderer2);
+        this._sanitizer = injector.get(DomSanitizer);
+        this.galaxyService = injector.get(GalaxyService);
+        this.renderer = injector.get(Renderer2);
     }
 
     ngOnInit() {

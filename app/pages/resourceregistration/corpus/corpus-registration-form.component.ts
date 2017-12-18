@@ -91,7 +91,7 @@ export class CorpusRegistrationFormComponent implements OnInit {
 
     constructor(private _fb: FormBuilder) {
         this.tocForm = _fb.group({
-            toc: [false, Validators.requiredTrue]
+            toc: [!this.production, Validators.requiredTrue]
         })
     }
 

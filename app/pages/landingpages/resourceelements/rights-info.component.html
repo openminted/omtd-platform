@@ -1,9 +1,9 @@
 <!--<h4>Rights</h4>-->
 <div>
-    <ng-template [ngIf]="rightsInfo.rightsStatement && rightsInfo.rightsStatement=='OPEN_ACCESS'">
+    <ng-template [ngIf]="rightsInfo.rightsStatement && rightsStatementValue=='OPEN_ACCESS'">
         <img src="../../../../assets/imgs/1200px-Open_Access_logo_PLoS_white.svg.png" width="15px" style="margin-right: 7px;">
     </ng-template>
-    <ng-template [ngIf]="rightsInfo.rightsStatement && rightsInfo.rightsStatement=='RESTRICTED_ACCESS'">
+    <ng-template [ngIf]="rightsInfo.rightsStatement && rightsStatementValue=='RESTRICTED_ACCESS'">
         <img src="../../../../assets/imgs/Closed_Access_logo_white-2.svg" width="15px" style="margin-right: 7px;">
     </ng-template>
     <span *ngIf="rightsInfo.licenceInfos && rightsInfo.licenceInfos.length>0" class="rightsInfo">

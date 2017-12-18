@@ -15,6 +15,7 @@ import { AuthenticationService } from "../../../services/authentication.service"
 import { CorpusBuildingState } from "../../../domain/corpus-building-state";
 import { ContentConnectorStatus } from "../../../domain/content-connector-status";
 import { CorpusBaseUsingFormComponent } from "./corpus-base-using-form.component";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'corpus-builder',
@@ -169,7 +170,7 @@ export class CorpusBuilderComponent extends CorpusBaseUsingFormComponent impleme
         clearInterval(this.intervalId);
     }
 
-    handleError(message: string, error) {
+    handleError(message: string, error : ErrorObservable) {
         super.handleError(message,error);
         this.loading = false;
         this.buildingCorpus = false;

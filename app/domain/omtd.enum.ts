@@ -1,13 +1,12 @@
 
 /**
- * Generated at 23/Nov/2017
+ * Generated at 15/Dec/2017
  */
 
 export class EnumValues {
     key : string;
     value : string;
-}
-
+};
 export var mimeTypeEnum = [
     {key : "", value : "--Mime type--"},
     {key : "TEXT_PLAIN", value : "Plain text"},
@@ -323,14 +322,6 @@ export var contactTypeEnum = [
     {key : "CONTACT_EMAIL", value : "Contact email"}
 ];
 
-export var organizationIdentifierSchemeNameEnum = [
-    {key : "", value : "--Organization identifier scheme name--"},
-    {key : "ISNI", value : "ISNI (International Standard Name Identifier)"},
-    {key : "GRID", value : "GRID (Global Research Identifier Database)"},
-    {key : "FUND_REF", value : "CrossRef Funder ID"},
-    {key : "OTHER", value : "other"}
-];
-
 export var sexEnum = [
     {key : "", value : "--Sex--"},
     {key : "MALE", value : "Male"},
@@ -364,11 +355,12 @@ export var publicationIdentifierSchemeNameEnum = [
     {key : "OTHER", value : "Other"}
 ];
 
-export var userTypeEnum = [
-    {key : "", value : "--User type--"},
-    {key : "ACADEMIC", value : "Academic"},
-    {key : "COMMERCIAL", value : "Commercial"},
-    {key : "MEMBERS_OF_GROUP", value : "Members of group"}
+export var organizationIdentifierSchemeNameEnum = [
+    {key : "", value : "--Organization identifier scheme name--"},
+    {key : "ISNI", value : "ISNI (International Standard Name Identifier)"},
+    {key : "GRID", value : "GRID (Global Research Identifier Database)"},
+    {key : "FUND_REF", value : "CrossRef Funder ID"},
+    {key : "OTHER", value : "other"}
 ];
 
 export var compatibleLexiconTypeEnum = [
@@ -479,7 +471,7 @@ export var dataFormatTypeEnum = [
     {key : "ALVIS_ENRICHED_DOCUMENT", value : "ALVIS Enriched Document"},
     {key : "BNC", value : "BNC"},
     {key : "BIO_NLP", value : "BioNLP Shared Task"},
-    {key : "BIONLP__FORMAT_VARIANT_ST2013A1_A2", value : "BioNLP Shared Task 2013 a1/a2"},
+    {key : "BIO_NLP__FORMAT_VARIANT_ST2013A1_A2", value : "BioNLP Shared Task 2013 a1/a2"},
     {key : "CADIXE_JSON", value : "Cadixe"},
     {key : "CONLL2000", value : "CoNLL 2000"},
     {key : "CONLL2002", value : "CoNLL 2002"},
@@ -8673,7 +8665,7 @@ export var parameterTypeEnum = [
     {key : "BOOLEAN", value : "boolean"},
     {key : "FLOAT", value : "float"},
     {key : "OTHER", value : "other"},
-    {key : "URL", value : "url"},
+    {key : "URL", value : "URL"},
     {key : "DOCUMENT", value : "document"},
     {key : "CORPORA", value : "corpora"},
     {key : "COMPONENT", value : "component"}
@@ -8834,9 +8826,9 @@ export var characterEncodingEnum = [
 
 export var lingualityTypeEnum = [
     {key : "", value : "--Linguality type--"},
-    {key : "MONOLINGUAL", value : "Monolingual"},
-    {key : "BILINGUAL", value : "Bilingual"},
-    {key : "MULTILINGUAL", value : "Multilingual"}
+    {key : "MONOLINGUAL", value : "Linguality type"},
+    {key : "BILINGUAL", value : "Linguality type"},
+    {key : "MULTILINGUAL", value : "Linguality type"}
 ];
 
 export var conformanceToStandardsBestPracticesEnum = [
@@ -9200,6 +9192,13 @@ export var regionIdTypeEnum = [
     {key : "V419", value : "Latin America and the Caribbean"}
 ];
 
+export var actorTypeEnum = [
+    {key : "", value : "--actorType--"},
+    {key : "PERSON", value : "person"},
+    {key : "GROUP", value : "group"},
+    {key : "ORGANIZATION", value : "organization"}
+];
+
 export var journalIdentifierSchemeNameEnum = [
     {key : "", value : "--Journal identifier scheme name--"},
     {key : "DOI", value : "DOI (Digital Object Identifier)"},
@@ -9231,18 +9230,18 @@ export var contentTypesEnum = [
     {key : "", value : "--Linguistic information--"},
     {key : "ACCENTUATION", value : "accentuation"},
     {key : "LEMMA", value : "lemma"},
-    {key : "LEMMA_MULTIWORDUNITS", value : "lemma-MultiWordUnits"},
+    {key : "LEMMA_MULTI_WORD_UNITS", value : "lemma-MultiWordUnits"},
     {key : "LEMMA_VARIANTS", value : "lemma-Variants"},
     {key : "LEMMA_ABBREVIATIONS", value : "lemma-Abbreviations"},
     {key : "LEMMA_COMPOUNDS", value : "lemma-Compounds"},
-    {key : "LEMMA_CLITICFORMS", value : "lemma-CliticForms"},
+    {key : "LEMMA_CLITIC_FORMS", value : "lemma-CliticForms"},
     {key : "PART_OF_SPEECH", value : "partOfSpeech"},
     {key : "MORPHO_FEATURES", value : "morpho-Features"},
     {key : "MORPHO_CASE", value : "morpho-Case"},
     {key : "MORPHO_GENDER", value : "morpho-Gender"},
     {key : "MORPHO_NUMBER", value : "morpho-Number"},
     {key : "MORPHO_DEGREE", value : "morpho-Degree"},
-    {key : "MORPHO_IRREGULARFORMS", value : "morpho-IrregularForms"},
+    {key : "MORPHO_IRREGULAR_FORMS", value : "morpho-IrregularForms"},
     {key : "MORPHO_MOOD", value : "morpho-Mood"},
     {key : "MORPHO_TENSE", value : "morpho-Tense"},
     {key : "MORPHO_PERSON", value : "morpho-Person"},
@@ -9251,10 +9250,10 @@ export var contentTypesEnum = [
     {key : "MORPHO_AUXILIARY", value : "morpho-Auxiliary"},
     {key : "MORPHO_INFLECTION", value : "morpho-Inflection"},
     {key : "MORPHO_REFLEXIVITY", value : "morpho-Reflexivity"},
-    {key : "SYNTAX_SUBCATFRAME", value : "syntax-SubcatFrame"},
+    {key : "SYNTAX_SUBCAT_FRAME", value : "syntax-SubcatFrame"},
     {key : "SEMANTICS_TRAITS", value : "semantics-Traits"},
-    {key : "SEMANTICS_SEMANTICCLASS", value : "semantics-SemanticClass"},
-    {key : "SEMANTICS_CROSSREFERENCES", value : "semantics-CrossReferences"},
+    {key : "SEMANTICS_SEMANTIC_CLASS", value : "semantics-SemanticClass"},
+    {key : "SEMANTICS_CROSS_REFERENCES", value : "semantics-CrossReferences"},
     {key : "SEMANTICS_RELATIONS", value : "semantics-Relations"},
     {key : "SEMANTICS_RELATIONS_HYPONYMS", value : "semantics-Relations-Hyponyms"},
     {key : "SEMANTICS_RELATIONS_HYPERONYMS", value : "semantics-Relations-Hyperonyms"},
@@ -9270,11 +9269,11 @@ export var contentTypesEnum = [
     {key : "DEFINITION_GLOSS", value : "definition/gloss"},
     {key : "TRANSLATION_EQUIVALENT", value : "translationEquivalent"},
     {key : "SEMANTICS_DOMAIN", value : "semantics-Domain"},
-    {key : "SEMANTICS_EVENTTYPE", value : "semantics-EventType"},
-    {key : "SEMANTICS_SEMANTICROLES", value : "semantics-SemanticRoles"},
+    {key : "SEMANTICS_EVENT_TYPE", value : "semantics-EventType"},
+    {key : "SEMANTICS_SEMANTIC_ROLES", value : "semantics-SemanticRoles"},
     {key : "STATISTICAL_PROPERTIES", value : "statisticalProperties"},
     {key : "MORPHO_DERIVATION", value : "morpho-Derivation"},
-    {key : "SEMANTICS_QUALIASTRUCTURE", value : "semantics-QualiaStructure"},
+    {key : "SEMANTICS_QUALIA_STRUCTURE", value : "semantics-QualiaStructure"},
     {key : "SYNTACTICO_SEMANTIC_LINKS", value : "syntacticoSemanticLinks"},
     {key : "OTHER", value : "other"}
 ];
@@ -9314,7 +9313,7 @@ export var licenceEnum = [
     {key : "CC_BY_SA_3_0", value : "Creative Commons Attribution Share Alike 3.0 Unported"},
     {key : "PDDL", value : "Open Data Commons Public Domain Dedication and License"},
     {key : "ODC_BY_1_0", value : "Open Data Commons Attribution License v1.0"},
-    {key : "ODBL_1_0", value : "ODC Open Database License v1.0"},
+    {key : "ODB_L_1_0", value : "ODC Open Database License v1.0"},
     {key : "AGPL_1_0", value : "Affero General Public License v1.0"},
     {key : "APACHE_2_0", value : "Apache License v2.0"},
     {key : "BSD_4_CLAUSE", value : "BSD 4-Clause License (Original or Old)"},
@@ -9324,14 +9323,15 @@ export var licenceEnum = [
     {key : "GPL_3_0", value : "GNU General Public License v3.0"},
     {key : "LGPL_3_0", value : "GNU Lesser General Public License v3.0"},
     {key : "MIT", value : "MIT License"},
-    {key : "PRINCETON_WORDNET", value : "WordNet v3.0 (Princeton WordNet) License"},
+    {key : "PRINCETON_WORD_NET", value : "WordNet v3.0 (Princeton WordNet) License"},
     {key : "EPL_1_0", value : "Eclipse Public License v1.0"},
     {key : "NLM", value : "License Agreement for NLM Data"},
     {key : "F_DPPL_3_0", value : "Free Digital Peer Publishing Licence (v3)"},
     {key : "M_DPPL_3_0", value : "Modular Digital Peer Publishing Licence (v3)"},
     {key : "PROPRIETARY", value : "Proprietary"},
     {key : "UNDER_NEGOTIATION", value : "Under negotiation"},
-    {key : "NOT_AVAILABLE", value : "Under negotiation"},
+    {key : "OPEN_ACCESS_UNSPECIFIED", value : "Open access rights with unspecified licence"},
+    {key : "RESTRICTED_ACCESS_UNSPECIFIED", value : "Restricted access rights with unspecified licence"},
     {key : "NON_STANDARD_LICENCE_TERMS", value : "Non standard Licence or Terms of use"}
 ];
 
@@ -9554,10 +9554,10 @@ export var resourceTypeEnum = [
 ];
 
 export var previousAnnotationTypesPolicyEnum = [
-    {key : "", value : "--previousAnnotationTypesPolicy--"},
-    {key : "KEEP", value : "keep"},
-    {key : "MODIFY", value : "modify"},
-    {key : "DROP", value : "drop"}
+    {key : "", value : "--Policy on previous annotation types--"},
+    {key : "KEEP", value : "Keep"},
+    {key : "MODIFY", value : "Modify"},
+    {key : "DROP", value : "Drop"}
 ];
 
 export var relationTypeEnum = [
@@ -9635,7 +9635,7 @@ export var applicationTypeEnum = [
     {key : "EVENT_EXTRACTION", value : "event extraction"},
     {key : "EXPRESSION_RECOGNITION", value : "expression recognition"},
     {key : "EXTRACTION_OF_FUNDING_INFORMATION", value : "extraction of funding information"},
-    {key : "INTRA_DOCUMENTCOREFERENCERESOLUTION", value : "intra-document coreference resolution"},
+    {key : "INTRA_DOCUMENT_COREFERENCE_RESOLUTION", value : "intra-document coreference resolution"},
     {key : "LANGUAGE_IDENTIFICATION", value : "language identification"},
     {key : "LANGUAGE_MODELLING", value : "language modelling"},
     {key : "LANGUAGE_MODELS_TRAINING", value : "language models training"},
@@ -9649,8 +9649,8 @@ export var applicationTypeEnum = [
     {key : "LEXICON_VISUALIZATION", value : "lexicon visualization"},
     {key : "MACHINE_TRANSLATION", value : "machineTranslation"},
     {key : "MORPHOLOGICAL_ANALYSIS", value : "morphological analysis"},
-    {key : "MORPHOSYNTACTICANNOTATION_BPOSTAGGING", value : "morphosyntactic annotation - below Part-of-Speech tagging"},
-    {key : "MORPHOSYNTACTICANNOTATION_POSTAGGING", value : "morphosyntactic annotation - below Part-of-Speech tagging"},
+    {key : "MORPHOSYNTACTIC_ANNOTATION_B_POS_TAGGING", value : "morphosyntactic annotation - below Part-of-Speech tagging"},
+    {key : "MORPHOSYNTACTIC_ANNOTATION_POS_TAGGING", value : "morphosyntactic annotation - below Part-of-Speech tagging"},
     {key : "NATURAL_LANGUAGE_GENERATION", value : "natural language generation"},
     {key : "NATURAL_LANGUAGE_UNDERSTANDING", value : "natural language understanding"},
     {key : "OPINION_MINING", value : "opinion mining"},
@@ -9683,7 +9683,7 @@ export var applicationTypeEnum = [
     {key : "KNOWLEDGE_DISCOVERY_AND_INFORMATION_EXTRACTION", value : "Knowledge Discovery  and Information Extraction"},
     {key : "KNOWLEDGE_REPRESENTATION", value : "Knowledge Representation"},
     {key : "RELATION_EXTRACTION", value : "Relation Extraction"},
-    {key : "HTTP___WWW_META_SHARE_ORG_ONTOLOGIES_OMTD_TDMONTOLOGY_ACCESSCOMPONENT", value : "Access Component"},
+    {key : "HTTP___WWW_META_SHARE_ORG_ONTOLOGIES_OMTD_TDMONTOLOGY_ACCESS_COMPONENT", value : "Access Component"},
     {key : "COREFERENCE_RESOLUTION", value : "Co-reference Resolution"},
     {key : "TEXT_CATEGORISATION", value : "Text Categorisation"},
     {key : "SUMMARISATION", value : "Summarisation"},

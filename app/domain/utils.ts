@@ -8,6 +8,10 @@ export function transform(object : any ) : any {
     return object;
 }
 
+export function title(value : string) : string {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
 export function getCookie(name: string) : string {
     let ca: Array<string> = document.cookie.split(';');
     let caLen: number = ca.length;
