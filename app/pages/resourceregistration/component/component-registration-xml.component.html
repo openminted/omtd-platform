@@ -3,11 +3,11 @@
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
-                <h1 class="uk-h2">Component XML registration</h1>
+                <h1 class="uk-h2">{{titleResourceType}} XML registration</h1>
                 <!--<hr class="uk-divider-small">-->
 
                 <div class="uk-margin">
-                    Paste the XML presentation of your component below, or use one of our helper methods on the
+                    Paste the XML presentation of your {{resourceType}} below, or use one of our helper methods on the
                     right to preview your XML before you submit it.
                 </div>
 
@@ -53,7 +53,7 @@
                                 </form>
                             </div>
                             <div class="uk-card uk-card-body uk-card-default sidemenu uk-margin-bottom">
-                                <h3 class="uk-panel-title">URL of component XML</h3>
+                                <h3 class="uk-panel-title">URL of {{resourceType}} XML</h3>
                                 <form class="m-t componentXMLURLForm">
                                     <div class="form-group">
                                         <input class="form-control" name="xmlURL" [(ngModel)]="xmlURL">

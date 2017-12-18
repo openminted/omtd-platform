@@ -179,7 +179,7 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    registerComponent(component: Resource) {
+    registerComponent(component: Resource, resourceType : string = 'component') {
 
         let headers = new Headers({'Content-Type': 'application/xml'});
         let options = new RequestOptions({
@@ -187,7 +187,7 @@ export class ResourceService {
             withCredentials: true,
         });
         console.log(JSON.stringify(component));
-        return this.http.post(this._searchUrl+'component', component, options)
+        return this.http.post(this._searchUrl+resourceType, component, options)
             .catch(this.handleError);
     }
 

@@ -26,7 +26,16 @@ const componentRegistrationRoutes: Routes = [
         component: ComponentRegistrationXMLComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'component' }
+    },
+    {
+        path: 'resourceRegistration/application/xml',
+        component: ComponentRegistrationXMLComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ],
+        data : {resourceType : 'application' }
     },
     {
         path: 'resourceRegistration/component/form',
