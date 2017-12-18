@@ -23,16 +23,22 @@
                         <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
 
                         <article class="uk-article">
-                            <h3 class="subtitle">Upload your zip file</h3>
+                            <!--<h3 class="subtitle">Upload your zip file</h3>-->
+                            <h2 class="uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                                1. Upload your zip file
+                            </h2>
                             <div *ngIf="zipFormErrorMessage" class="alert alert-danger">{{zipFormErrorMessage}}</div>
-                            <zip-upload [group]="zipForm" (file)="updateFile($event)"></zip-upload>
+                            <zip-upload [group]="zipForm" (file)="updateFile($event)" class="uk-width-1-1"></zip-upload>
                             <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
                         </article>
                         <!--<h1 class="uk-article-title">Upload your zip file</h1>-->
 
 
                         <article class="uk-article">
-                            <h3 class="subtitle">Fill in the metadata for your corpus</h3>
+                            <!--<h3 class="subtitle">Fill in the metadata for your corpus</h3>-->
+                            <h2 class="uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                                2. Fill in the metadata for your corpus
+                            </h2>
                             <!--<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>-->
                             <corpus-registration-form #corpusForm></corpus-registration-form>
                             <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->

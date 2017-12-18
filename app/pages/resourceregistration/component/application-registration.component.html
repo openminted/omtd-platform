@@ -5,7 +5,7 @@
 
                 <!--<h2 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
                 <h2 class="uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
-                    Want to share a new corpus?
+                    Want to share a new application?
                 </h2>
                 <!--<hr class="uk-divider-icon uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
 
@@ -34,13 +34,13 @@
                                             <a href="#">
                                                 <div class="uk-card uk-card-body uk-card-default uk-text-center">
                                                     <!--<div class="uk-margin-bottom">-->
-                                                    <!--<img src="../../../../assets/imgs/maven-logo" width="150">-->
+                                                        <!--<img src="../../../../assets/imgs/maven-logo" width="150">-->
                                                     <!--</div>-->
                                                     <span>
-                                                        Upload your corpus
+                                                        Register an existing application
                                                     </span>
                                                     <!--<div class="uk-margin-top">-->
-                                                    <!--via Maven-->
+                                                        <!--via Maven-->
                                                     <!--</div>-->
                                                 </div>
                                             </a>
@@ -49,10 +49,10 @@
                                             <a href="#">
                                                 <div class="uk-card uk-card-body uk-card-default uk-text-center">
                                                     <!--<div class="uk-margin-bottom">-->
-                                                    <!--<img src="../../../../assets/imgs/docker-logo" width="70">-->
+                                                        <!--<img src="../../../../assets/imgs/docker-logo" width="70">-->
                                                     <!--</div>-->
                                                     <span>
-                                                        Build a new corpus
+                                                        Build and application from existing components
                                                     </span>
                                                 </div>
                                             </a>
@@ -67,10 +67,10 @@
                                                         <!--<h4 class="el-title uk-margin uk-h4">-->
                                                         <!--A Researcher?    </h4>-->
                                                         <div class="el-content uk-margin">
-                                                            Describe your corpus using the OMTD editor
+                                                            Describe your application using the OMTD editor
                                                         </div>
                                                         <p>
-                                                            <a (click)="uploadCorpus()" class="el-link uk-button uk-button-default uk-button-small actionButton">
+                                                            <a (click)="registerUsingForm()" class="el-link uk-button uk-button-default uk-button-small actionButton">
                                                                 Edit
                                                             </a>
                                                         </p>
@@ -81,7 +81,7 @@
                                                         <!--<h4 class="el-title uk-margin uk-h4">-->
                                                         <!--A Developer?    </h4>-->
                                                         <div class="el-content uk-margin">
-                                                            Describe your corpus according to the <a target="_blank" href="https://guidelines.openminted.eu">OMTD schema</a>
+                                                            Describe your application according to the <a target="_blank" href="https://guidelines.openminted.eu">OMTD schema</a>
                                                         </div>
                                                         <p>
                                                             <a (click)="registerUsingXML()" class="el-link uk-button uk-button-default uk-button-small actionButton">
@@ -99,19 +99,11 @@
                                                         <!--<h4 class="el-title uk-margin uk-h4">-->
                                                         <!--A Researcher?    </h4>-->
                                                         <div class="el-content uk-margin">
-                                                            Build your corpus using publications from the following content providers
-                                                            <ul class="uk-list uk-margin-top">
-                                                                <li (click)="corpusBuilderWithProvider('OpenAIRE')">
-                                                                    <a>OpenAIRE</a>
-                                                                </li>
-                                                                <li (click)="corpusBuilderWithProvider('CORE')">
-                                                                    <a>CORE</a>
-                                                                </li>
-                                                            </ul>
+                                                            Create your application using our workflow editor
                                                         </div>
                                                         <p>
-                                                            <a (click)="corpusBuilder()" class="el-link uk-button uk-button-default uk-button-small actionButton">
-                                                                Build corpus
+                                                            <a (click)="buildWorkflow()" class="el-link uk-button uk-button-default uk-button-small actionButton">
+                                                                Build workflow
                                                             </a>
                                                         </p>
                                                     </div>
@@ -122,6 +114,7 @@
                                 </div>
 
                             </div>
+
 
                         </div>
 

@@ -1,0 +1,36 @@
+.uk-card-body {
+    padding: 30px 40px;
+    /*height: 190px;*/
+}
+
+.uk-subnav-pill > .uk-active > a, .nav-pills > .active > a {
+    background-color: transparent;
+    color: #0055b9;
+    border-color: #0055b9;
+}
+
+/*.uk-grid-divider > :not(.uk-first-column)::before {*/
+    /*left: 15px;*/
+/*}*/
+
+/*.uk-grid-divider > * {*/
+    /*padding-left: 45px;*/
+/*}*/
+
+.mavenCoordinatesForm {
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 40px;
+}
+
+.mavenCoordinatesForm .uk-grid {
+    margin-left: -40px;
+}
+
+.mavenCoordinatesForm .uk-grid-margin {
+    margin-top: 25px;
+}
+
+.actionButton {
+    width: 150px;
+}

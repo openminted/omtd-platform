@@ -19,6 +19,7 @@ import { AceEditorModule } from "ng2-ace-editor";
 import { BuildAWorkflowComponent } from "./build-a-workflow.component";
 import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component-registration-using-maven-coordinates.component";
 import { EditAWorkflowComponent } from "./edit-a-workflow.component";
+import { ApplicationRegistrationComponent } from "./application-registration.component";
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { EditAWorkflowComponent } from "./edit-a-workflow.component";
         ComponentRegistrationUsingFormComponent,
         ComponentRegistrationUsingMavenCoordinatesComponent,
         ComponentUpdateUsingFormComponent,
+        ApplicationRegistrationComponent,
         BuildAWorkflowComponent,
         EditAWorkflowComponent
     ],

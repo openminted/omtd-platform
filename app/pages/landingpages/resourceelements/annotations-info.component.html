@@ -1,13 +1,10 @@
 <h4>Annotations</h4>
-<div *ngFor="let annotationInfo of annotations">
-    <annotation-info [annotationInfo]="annotationInfo"></annotation-info>
-</div>
-
-
-<div class="uk-margin-top">
-    <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)">
-        <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-            <img src="{{ slide.img }}" alt="" width="100%">
+<div class="uk-margin-small-top">
+    <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let annotationInfo of annotations" class="slide" style="height: 100%">
+            <div class="uk-card uk-card-body uk-card-primary annotation">
+                <annotation-info [annotationInfo]="annotationInfo"></annotation-info>
+            </div>
         </div>
     </ngx-slick>
 </div>
