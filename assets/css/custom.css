@@ -313,6 +313,13 @@ h2, .uk-h2 {
     text-transform: none;
 }
 
+.uk-button-default, .btn {
+    background-color: #fff;
+    color: #0055b9;
+    box-shadow: 0 3px 12px rgba(0,0,0,.07);
+    border: none;
+}
+
 /*.uk-section {*/
     /*padding-top: 40px;*/
 /*}*/

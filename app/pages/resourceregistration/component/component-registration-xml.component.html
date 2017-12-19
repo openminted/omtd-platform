@@ -3,12 +3,12 @@
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
-                <h1 class="uk-h2">{{titleResourceType}} XML registration</h1>
+                <h1 class="uk-h2">Upload an XML file for your {{titleResourceType}}</h1>
                 <!--<hr class="uk-divider-small">-->
 
                 <div class="uk-margin">
-                    Paste the XML presentation of your {{resourceType}} below, or use one of our helper methods on the
-                    right to preview your XML before you submit it.
+                    Paste the copied XML file below, or use one of the options to upload and preview the XML file
+                    before you submit it.
                 </div>
 
                 <!-- TOP HELP CONTENT -->
@@ -42,7 +42,7 @@
 
                         <aside class="tm-sidebar uk-width-1-4@m uk-first-column">
                             <div class="uk-card uk-card-body uk-card-default uk-margin-bottom">
-                                <h3 class="uk-panel-title">Upload XML</h3>
+                                <h3 class="uk-panel-title">Local Path</h3>
                                 <form class="m-t componentXMLFileForm">
                                     <div class="form-group">
                                         <input type="file" name="xmlFile" (change)="report($event)">
@@ -53,7 +53,7 @@
                                 </form>
                             </div>
                             <div class="uk-card uk-card-body uk-card-default sidemenu uk-margin-bottom">
-                                <h3 class="uk-panel-title">URL of {{resourceType}} XML</h3>
+                                <h3 class="uk-panel-title">URL Path</h3>
                                 <form class="m-t componentXMLURLForm">
                                     <div class="form-group">
                                         <input class="form-control" name="xmlURL" [(ngModel)]="xmlURL">

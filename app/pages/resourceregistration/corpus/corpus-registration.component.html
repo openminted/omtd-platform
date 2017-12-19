@@ -3,11 +3,16 @@
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
-                <!--<h2 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
-                <h2 class="uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                <h2 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                <!--<h2 class="uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
                     Want to share a new corpus?
                 </h2>
                 <!--<hr class="uk-divider-icon uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
+                <p class="uk-text-large uk-width-2-3 uk-align-center uk-text-center">
+                    Corpora are structured collections of textual data files (e.g. scholarly publications, journal articles, etc.)
+                    selected so as to represent as comprehensively as possible an object of study.
+                </p>
+
 
                 <!-- TOP HELP CONTENT -->
                 <help-content #topHelperContent [position]="'top'"
@@ -28,98 +33,228 @@
 
                             <div class="uk-grid">
 
-                                <div class="uk-width-1-1">
-                                    <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
-                                        <li class="uk-width-1-2@m">
-                                            <a href="#">
-                                                <div class="uk-card uk-card-body uk-card-default uk-text-center">
-                                                    <!--<div class="uk-margin-bottom">-->
-                                                    <!--<img src="../../../../assets/imgs/maven-logo" width="150">-->
-                                                    <!--</div>-->
-                                                    <span>
-                                                        Upload your corpus
-                                                    </span>
-                                                    <!--<div class="uk-margin-top">-->
-                                                    <!--via Maven-->
-                                                    <!--</div>-->
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="uk-width-1-2@m">
-                                            <a href="#">
-                                                <div class="uk-card uk-card-body uk-card-default uk-text-center">
-                                                    <!--<div class="uk-margin-bottom">-->
-                                                    <!--<img src="../../../../assets/imgs/docker-logo" width="70">-->
-                                                    <!--</div>-->
-                                                    <span>
-                                                        Build a new corpus
-                                                    </span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <!--TABS-->
+                                <!--<ul class="uk-width-1-1 uk-flex-center uk-tab uk-visible@m uk-margin-medium-top"-->
+                                <!--uk-tab="connect: #optionTabs; animation: uk-animation-fade">-->
+                                <ul class="uk-width-1-1 uk-flex-center uk-tab uk-visible@m uk-margin-medium-top"
+                                    uk-tab="connect: #optionTabs; animation: uk-animation-slide-right-medium">
+                                    <li>
+                                        <a>Upload your corpus</a>
+                                    </li>
+                                    <li>
+                                        <a>Build a new corpus</a>
+                                    </li>
+                                </ul>
 
-                                    <ul class="uk-switcher uk-margin-large">
-                                        <li>
-                                            <div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">
-                                                <div class="uk-width-expand@m uk-dark uk-grid-item-match uk-first-column">
-                                                    <div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview" uk-scrollspy-class="" style="">
-                                                        <!--<h4 class="el-title uk-margin uk-h4">-->
-                                                        <!--A Researcher?    </h4>-->
-                                                        <div class="el-content uk-margin">
-                                                            Describe your corpus using the OMTD editor
-                                                        </div>
-                                                        <p>
-                                                            <a (click)="uploadCorpus()" class="el-link uk-button uk-button-default uk-button-small actionButton">
-                                                                Edit
-                                                            </a>
-                                                        </p>
+                                <button class="uk-button uk-button-default uk-hidden@m" type="button">
+                                    <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">{{activeTab}}</span>
+                                </button>
+
+                                <!--<ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m"-->
+                                <!--uk-switcher="{connect: #optionTabs; animation: uk-animation-fade}"-->
+                                <!--uk-dropdown="mode: click" uk-toggle="target: #toggle-small-tabs">-->
+                                <ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m"
+                                    uk-switcher="{connect: #optionTabs; animation: uk-animation-slide-right-medium}"
+                                    uk-dropdown="mode: click" uk-toggle="target: #toggle-small-tabs">
+                                    <li>
+                                        <a>Upload your corpus</a>
+                                    </li>
+                                    <li>
+                                        <a>Build a new corpus</a>
+                                    </li>
+                                </ul>
+
+                                <ul id="optionTabs" class="uk-switcher uk-width-1-1 uk-margin-large-top
+                                    custom-tab-content-large">
+                                    <li>
+                                        <div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">
+
+                                            <div class="uk-width-1-3@m uk-dark uk-grid-item-match uk-first-column">
+                                                <div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview uk-margin-right"
+                                                     uk-scrollspy-class="" style="">
+                                                    <div class="el-content uk-margin">
+                                                        <img src="../../../../assets/imgs/corpusUpload.png" width="60%">
                                                     </div>
-                                                </div>
-                                                <div class="uk-width-expand@m uk-dark uk-grid-item-match">
-                                                    <div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview" uk-scrollspy-class="" style="">
-                                                        <!--<h4 class="el-title uk-margin uk-h4">-->
-                                                        <!--A Developer?    </h4>-->
-                                                        <div class="el-content uk-margin">
-                                                            Describe your corpus according to the <a target="_blank" href="https://guidelines.openminted.eu">OMTD schema</a>
-                                                        </div>
-                                                        <p>
-                                                            <a (click)="registerUsingXML()" class="el-link uk-button uk-button-default uk-button-small actionButton">
-                                                                Upload
-                                                            </a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">
-                                                <div class="uk-width-expand@m uk-dark uk-grid-item-match uk-first-column">
-                                                    <div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview" uk-scrollspy-class="" style="">
-                                                        <!--<h4 class="el-title uk-margin uk-h4">-->
-                                                        <!--A Researcher?    </h4>-->
-                                                        <div class="el-content uk-margin">
-                                                            Build your corpus using publications from the following content providers
-                                                            <ul class="uk-list uk-margin-top">
-                                                                <li (click)="corpusBuilderWithProvider('OpenAIRE')">
-                                                                    <a>OpenAIRE</a>
-                                                                </li>
-                                                                <li (click)="corpusBuilderWithProvider('CORE')">
-                                                                    <a>CORE</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>
-                                                            <a (click)="corpusBuilder()" class="el-link uk-button uk-button-default uk-button-small actionButton">
-                                                                Build corpus
-                                                            </a>
-                                                        </p>
-                                                    </div>
+                                                    <!--<div class="el-content uk-margin-top" style="font-size: 90%;">-->
+                                                    <!--<i>* We support UIMA and GATE components that are registered in Maven</i>-->
+                                                    <!--</div>-->
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
+
+                                            <div class="uk-width-2-3@m uk-dark uk-grid-item-match uk-first-column">
+                                                <div class="uk-margin uk-panel uk-scrollspy-inview uk-margin-left"
+                                                     uk-scrollspy-class="" style="">
+
+                                                    <ul class="uk-subnav uk-subnav-pill" uk-switcher>
+                                                        <li><a href="#">OMTD editor</a></li>
+                                                        <li><a href="#">Upload XML</a></li>
+                                                    </ul>
+
+                                                    <ul class="uk-switcher uk-margin-medium-top">
+                                                        <li>
+                                                            <div class="el-content uk-margin">
+                                                                Describe your corpus using the OMTD editor
+                                                            </div>
+                                                            <p>
+                                                                <a (click)="uploadCorpus()"
+                                                                   class="el-link uk-button uk-button-default uk-button-small actionButton">
+                                                                    Go
+                                                                </a>
+                                                            </p>
+                                                        </li>
+
+                                                        <li>
+                                                            <div class="el-content uk-margin">
+                                                                Upload an XML file with the description of your corpus according to the
+                                                                <a target="_blank" href="https://guidelines.openminted.eu">OMTD-SHARE
+                                                                    schema</a>
+                                                            </div>
+                                                            <p>
+                                                                <a (click)="registerUsingXML()"
+                                                                   class="el-link uk-button uk-button-default uk-button-small actionButton">
+                                                                    Upload
+                                                                </a>
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">
+
+                                            <div class="uk-width-1-3@m uk-dark uk-grid-item-match uk-first-column">
+                                                <div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview uk-margin-right"
+                                                     uk-scrollspy-class="" style="">
+                                                    <div class="el-content uk-margin">
+                                                        <img src="../../../../assets/imgs/BuildCorpus.png" width="50%">
+                                                    </div>
+                                                    <!--<div class="el-content uk-margin-top" style="font-size: 90%;">-->
+                                                    <!--<i>* We support UIMA and GATE components that are registered in Maven</i>-->
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+
+                                            <div class="uk-width-2-3@m uk-dark uk-grid-item-match uk-first-column">
+                                                <div class="uk-margin uk-panel uk-scrollspy-inview uk-margin-left"
+                                                     uk-scrollspy-class="" style="">
+
+                                                    <div class="el-content uk-margin">
+                                                        Build your corpus using publications from the following content providers
+                                                        <ul class="uk-list uk-margin-top">
+                                                            <li (click)="corpusBuilderWithProvider('OpenAIRE')">
+                                                                <a>OpenAIRE</a>
+                                                            </li>
+                                                            <li (click)="corpusBuilderWithProvider('CORE')">
+                                                                <a>CORE</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <p>
+                                                        <a (click)="corpusBuilder()" class="el-link uk-button uk-button-default uk-button-small actionButton">
+                                                            Build corpus
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <!--<div class="uk-width-1-1">-->
+                                    <!--<ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">-->
+                                        <!--<li class="uk-width-1-2@m">-->
+                                            <!--<a href="#">-->
+                                                <!--<div class="uk-card uk-card-body uk-card-default uk-text-center">-->
+                                                    <!--&lt;!&ndash;<div class="uk-margin-bottom">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<img src="../../../../assets/imgs/maven-logo" width="150">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                    <!--<span>-->
+                                                        <!--Upload your corpus-->
+                                                    <!--</span>-->
+                                                    <!--&lt;!&ndash;<div class="uk-margin-top">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;via Maven&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                <!--</div>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                        <!--<li class="uk-width-1-2@m">-->
+                                            <!--<a href="#">-->
+                                                <!--<div class="uk-card uk-card-body uk-card-default uk-text-center">-->
+                                                    <!--&lt;!&ndash;<div class="uk-margin-bottom">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<img src="../../../../assets/imgs/docker-logo" width="70">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                    <!--<span>-->
+                                                        <!--Build a new corpus-->
+                                                    <!--</span>-->
+                                                <!--</div>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+
+                                    <!--<ul class="uk-switcher uk-margin-large">-->
+                                        <!--<li>-->
+                                            <!--<div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">-->
+                                                <!--<div class="uk-width-expand@m uk-dark uk-grid-item-match uk-first-column">-->
+                                                    <!--<div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview" uk-scrollspy-class="" style="">-->
+                                                        <!--&lt;!&ndash;<h4 class="el-title uk-margin uk-h4">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;A Researcher?    </h4>&ndash;&gt;-->
+                                                        <!--<div class="el-content uk-margin">-->
+                                                            <!--Describe your corpus using the OMTD editor-->
+                                                        <!--</div>-->
+                                                        <!--<p>-->
+                                                            <!--<a (click)="uploadCorpus()" class="el-link uk-button uk-button-default uk-button-small actionButton">-->
+                                                                <!--Edit-->
+                                                            <!--</a>-->
+                                                        <!--</p>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="uk-width-expand@m uk-dark uk-grid-item-match">-->
+                                                    <!--<div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview" uk-scrollspy-class="" style="">-->
+                                                        <!--&lt;!&ndash;<h4 class="el-title uk-margin uk-h4">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;A Developer?    </h4>&ndash;&gt;-->
+                                                        <!--<div class="el-content uk-margin">-->
+                                                            <!--Describe your corpus according to the <a target="_blank" href="https://guidelines.openminted.eu">OMTD schema</a>-->
+                                                        <!--</div>-->
+                                                        <!--<p>-->
+                                                            <!--<a (click)="registerUsingXML()" class="el-link uk-button uk-button-default uk-button-small actionButton">-->
+                                                                <!--Upload-->
+                                                            <!--</a>-->
+                                                        <!--</p>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">-->
+                                                <!--<div class="uk-width-expand@m uk-dark uk-grid-item-match uk-first-column">-->
+                                                    <!--<div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview" uk-scrollspy-class="" style="">-->
+                                                        <!--&lt;!&ndash;<h4 class="el-title uk-margin uk-h4">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;A Researcher?    </h4>&ndash;&gt;-->
+                                                        <!--<div class="el-content uk-margin">-->
+                                                            <!--Build your corpus using publications from the following content providers-->
+                                                            <!--<ul class="uk-list uk-margin-top">-->
+                                                                <!--<li (click)="corpusBuilderWithProvider('OpenAIRE')">-->
+                                                                    <!--<a>OpenAIRE</a>-->
+                                                                <!--</li>-->
+                                                                <!--<li (click)="corpusBuilderWithProvider('CORE')">-->
+                                                                    <!--<a>CORE</a>-->
+                                                                <!--</li>-->
+                                                            <!--</ul>-->
+                                                        <!--</div>-->
+                                                        <!--<p>-->
+                                                            <!--<a (click)="corpusBuilder()" class="el-link uk-button uk-button-default uk-button-small actionButton">-->
+                                                                <!--Build corpus-->
+                                                            <!--</a>-->
+                                                        <!--</p>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
 
                             </div>
 
