@@ -6,6 +6,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/fo
 import { ParameterInfoFormComponent } from "../shared/parameter-info-form.component";
 import { Description, parameterInfoDesc } from "../../../domain/omtd.description";
 import { ResourceService } from "../../../services/resource.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'component-registration-form',
@@ -29,11 +30,13 @@ export class ComponentRegistrationFormComponent implements OnInit {
 
     galaxyButtonUrl : string = null;
 
+    resourceType : string;
 
-    constructor(private _fb: FormBuilder) {
+    constructor(private _fb: FormBuilder, private route : ActivatedRoute) {
         this.tocForm = _fb.group({
             toc : [!this.production,Validators.requiredTrue]
-        })
+        });
+        this.resourceType = this.route.snapshot.data['resourceType'];
     }
 
     loadComponent(component: any) {

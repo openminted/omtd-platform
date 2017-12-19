@@ -3,7 +3,7 @@
     <form class="form-horizontal componentForm" [formGroup]="myForm">
 
         <ul uk-accordion="multiple: true">
-            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Component Details'">
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="resourceType +' details'">
                 <componentGeneric-form [parentGroup]="myForm" [name]="'componentInfo'"></componentGeneric-form>
             </li>
 

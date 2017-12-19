@@ -63,6 +63,7 @@ import { DataFormatInfoFormControl } from "./shared/data-format-info-form.compon
 import { CharacterEncodingSetFormControl } from "./shared/character-encoding-form.component";
 import { TextFormatInfoFormControl } from "./shared/text-format-info-form.component";
 import { DomainInfoFormControl } from "./shared/domain-info-form";
+import { TreeModule } from "angular-tree-component";
 
 const entryComponents = [
     DomainInfoFormControl,
@@ -131,7 +132,8 @@ const declarations = [
         ReactiveFormsModule,
         TooltipModule.forRoot(),
         TypeaheadModule.forRoot(),
-        ReusableComponentsModule
+        ReusableComponentsModule,
+        TreeModule
     ],
     entryComponents: [
         ...entryComponents
