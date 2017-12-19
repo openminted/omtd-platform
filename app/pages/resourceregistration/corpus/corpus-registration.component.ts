@@ -12,6 +12,8 @@ import { Router } from "@angular/router";
 
 export class CorpusRegistrationComponent {
 
+    activeTab;
+
     constructor(private router: Router) {}
 
     corpusBuilder() {

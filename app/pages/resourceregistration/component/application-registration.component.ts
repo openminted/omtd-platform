@@ -17,6 +17,7 @@ export class ApplicationRegistrationComponent {
 
     mavenForm : FormGroup;
     workflowError : string = null;
+    activeTab;
 
     constructor(private router: Router, private _fb : FormBuilder, private galaxyService : GalaxyService) {
         this.mavenForm = _fb.group({

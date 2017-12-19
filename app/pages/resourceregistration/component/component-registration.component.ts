@@ -16,8 +16,8 @@ import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 export class ComponentRegistrationComponent {
 
     mavenForm: FormGroup;
-
     mavenError: string = '';
+    activeTab;
 
     constructor(private router: Router, private _fb: FormBuilder, private galaxyService: GalaxyService) {
         this.mavenForm = _fb.group({
