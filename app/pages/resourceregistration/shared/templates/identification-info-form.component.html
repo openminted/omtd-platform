@@ -1,0 +1,27 @@
+<div [formGroup]="group" >
+
+    <form-repeat-inline [component]="myStringType" [parentGroup]="group"
+                        [name]="'resourceNames'" [required]="true" [description]="resourceNameDesc">
+    </form-repeat-inline>
+
+    <div class="form-group-divider"></div>
+
+    <form-repeat-inline [component]="myStringAreaType" [parentGroup]="group"
+                        [name]="'descriptions'" [required]="true" [description]="descriptionDesc">
+    </form-repeat-inline>
+
+    <div class="form-group-divider"></div>
+
+    <form-inline [description]="resourceShortNameDesc">
+        <input type="text" class="uk-input" formControlName="resourceShortName"/>
+    </form-inline>
+
+    <div class="form-group-divider"></div>
+
+    <form-inline [description]="publicDesc">
+        <label>
+            <input type="checkbox" formControlName="public" class="uk-checkbox">
+        </label>
+    </form-inline>
+
+</div>

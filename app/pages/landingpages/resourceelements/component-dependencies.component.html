@@ -4,20 +4,11 @@
         <span *ngIf="componentDependencies.typesystem.resourceNames && componentDependencies.typesystem.resourceNames.length>0">
             {{componentDependencies.typesystem.resourceNames[0].value}}
         </span>
-        <span *ngIf="componentDependencies.typesystem.resourceIdentifiers && componentDependencies.typesystem.resourceIdentifiers.length>0">
-            {{componentDependencies.typesystem.resourceIdentifiers[0].value}}
-        </span>
     </div>
-    <div *ngIf="componentDependencies.tagsets && componentDependencies.tagsets.length>0">
-        <strong>Tagsets: </strong>
-        <span *ngFor="let tagset of componentDependencies.tagsets; let isLast = last;">
-            <span *ngIf="tagset.resourceNames && tagset.resourceNames.length>0">
-                {{tagset.resourceNames[0].value}}
-            </span>
-            <span *ngIf="tagset.resourceIdentifiers && tagset.resourceIdentifiers.length>0">
-                {{tagset.resourceIdentifiers[0].value}}
-            </span>
-            {{isLast ? '' : ', '}}
+    <div *ngIf="componentDependencies.annotationSchema">
+        <strong>Annotation schema: </strong>
+        <span *ngIf="componentDependencies.annotationSchema.resourceNames && componentDependencies.annotationSchema.resourceNames.length>0">
+            {{componentDependencies.annotationSchema.resourceNames[0].value}}
         </span>
     </div>
     <div *ngIf="componentDependencies.annotationResources && componentDependencies.annotationResources.length>0">
@@ -26,22 +17,13 @@
             <span *ngIf="annotationResource.resourceNames && annotationResource.resourceNames.length>0">
                 {{annotationResource.resourceNames[0].value}}
             </span>
-            <span *ngIf="annotationResource.resourceIdentifiers && annotationResource.resourceIdentifiers.length>0">
-                {{annotationResource.resourceIdentifiers[0].value}}
-            </span>
             {{isLast ? '' : ', '}}
         </span>
     </div>
-    <div *ngIf="componentDependencies.softwareLibraries && componentDependencies.softwareLibraries.length>0">
-        <strong>Software libraries: </strong>
-        <span *ngFor="let softwareLibrary of componentDependencies.softwareLibraries; let isLast = last;">
-            {{softwareLibrary}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="componentDependencies.requiresHardware && componentDependencies.requiresHardware.length>0">
-        <strong>Requires hardware: </strong>
-        <span *ngFor="let requiresHardware of componentDependencies.requiresHardware; let isLast = last;">
-            {{requiresHardware}}{{isLast ? '' : ', '}}
+    <div *ngIf="componentDependencies.mlModel">
+        <strong>ML model: </strong>
+        <span *ngIf="componentDependencies.mlModel.resourceNames && componentDependencies.mlModel.resourceNames.length>0">
+            {{componentDependencies.mlModel.resourceNames[0].value}}
         </span>
     </div>
 </div>

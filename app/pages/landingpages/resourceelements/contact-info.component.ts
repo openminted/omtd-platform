@@ -6,7 +6,7 @@ import { ContactInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'contact-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/contact-info.component.html',
+    templateUrl: './contact-info.component.html',
 })
 
 export class ContactInfoComponent {

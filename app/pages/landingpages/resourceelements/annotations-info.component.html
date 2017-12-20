@@ -1,13 +1,10 @@
-<div *ngIf="annotationsInfo.rawCorpus">
-    <h4>Raw Corpus</h4>
-    <span *ngIf="annotationsInfo.rawCorpus.resourceNames && annotationsInfo.rawCorpus.resourceNames.length>0">
-        {{annotationsInfo.rawCorpus.resourceNames[0].value}}
-    </span>
-    <span *ngIf="annotationsInfo.rawCorpus.resourceIdentifiers && annotationsInfo.rawCorpus.resourceIdentifiers.length>0">
-        {{annotationsInfo.rawCorpus.resourceIdentifiers[0].value}}
-    </span>
-</div>
-<div *ngIf="annotationsInfo.annotationInfo" class="uk-margin-top">
-    <h4>Annotation</h4>
-    <annotation-info [annotationInfo]="annotationsInfo.annotationInfo"></annotation-info>
+<h4>Annotations</h4>
+<div class="uk-margin-small-top">
+    <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let annotationInfo of annotations" class="slide" style="height: 100%">
+            <div class="uk-card uk-card-body uk-card-primary annotation">
+                <annotation-info [annotationInfo]="annotationInfo"></annotation-info>
+            </div>
+        </div>
+    </ngx-slick>
 </div>

@@ -1,42 +1,64 @@
-<div class="uk-block tm-block-main uk-block-default uk-block-large">
-    <div class="uk-container uk-container-center">
-        <div id="tm-middle" class="tm-middle uk-grid" data-uk-grid-match="" data-uk-grid-margin="">
-            <div class="tm-main uk-width-medium-1-1 uk-row-first">
-                <main id="tm-content" class="tm-content">
-                    <div id="system-message-container">
-                    </div>
-                    <div class="yoo-zoo page-uikit page-uikit-test">
+<div class="uk-margin-medium-bottom">
+    <a *ngIf="production==false" (click)="loadComponent(componentPatch)">Patch Component</a>
+    <form class="form-horizontal componentForm" [formGroup]="myForm">
 
-                        <h1 class="uk-h1"> Component Form registration </h1>
+        <ul uk-accordion="multiple: true">
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="resourceType +' details'">
+                <componentGeneric-form [parentGroup]="myForm" [name]="'componentInfo'"></componentGeneric-form>
+            </li>
 
-                        <!--<p class="uk-text-muted">Written by Super User on 26 March 2010 </p>-->
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Identification'">
+                <identification-info-form [parentGroup]="myForm.controls.componentInfo"
+                                          [name]="'identificationInfo'"></identification-info-form>
+            </li>
 
-                        <div class="uk-margin">
-                            Paste the XML presentation of your component below, or use one of our helper methods on the
-                            right to preview your XML before you submit it.
-                        </div>
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Contact'">
+                <contact-info-form [required]="true" [parentGroup]="myForm.controls.componentInfo"
+                                   [name]="'contactInfo'"></contact-info-form>
+            </li>
 
-                        <div class="uk-margin uk-grid componentXMLRegistration">
-                            <div class="uk-width-medium-1-1">
-                                <form class="form-horizontal componentForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
-                                    <accordion>
-                                        <div data-uk-grid-margin="" class="uk-grid uk-grid-width-1-1">
-                                            <metadata-header-info-form [group]="myForm"></metadata-header-info-form>
-                                            <div class="uk-grid-margin uk-row-first"><button class="uk-button uk-button-large
-                                            uk-button-primary registerButton">Register!</button></div>
-                                        </div>
-                                    </accordion>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="margin-20">
-                            <div>myForm details:-</div>
-                            <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
-                            <pre>form value: <br>{{myForm.value | json}}</pre>
-                        </div>
-                    </div>
-                </main>
-            </div>
-        </div>
-    </div>
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Version'">
+                <versionInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'versionInfo'"
+                                  [data]="{update : true}"></versionInfo-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Distribution'" *ngIf="!galaxyButtonUrl">
+                <componentDistributionInfos-form
+                        [parentGroup]="myForm.controls.componentInfo"></componentDistributionInfos-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Rights Info'">
+                <rightsInfo-form [parentGroup]="myForm.controls.componentInfo" [name]="'rightsInfo'"></rightsInfo-form>
+            </li>
+
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Input'">
+                <processing-resource-info-form [parentGroup]="myForm.controls.componentInfo"
+                                               [name]="'inputContentResourceInfo'"></processing-resource-info-form>
+            </li>
+
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Output'">
+                <processing-resource-info-form [parentGroup]="myForm.controls.componentInfo"
+                                               [name]="'outputResourceInfo'"></processing-resource-info-form>
+            </li>
+
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Parameters'">
+                <form-repeat [component]="parameterType" [parentGroup]="myForm.controls.componentInfo"
+                             [name]="'parameterInfos'" [required]="false" [description]="parameterInfoDesc">
+                </form-repeat>
+            </li>
+        </ul>
+    </form>
+    <form class="form-horizontal componentForm" [formGroup]="tocForm">
+        <form-inline [description]="{label : '', mandatory : false, description:''}" [params]="null"
+                     [valid]="tocForm.get('toc').valid">
+            <input type="checkbox" formControlName="toc" class="uk-checkbox">
+            I agree to the <a href="assets/files/OpenMinTeD_Terms_and_Conditions_v1.0.pdf" target="_blank">OpenMinTeD
+            Terms and Conditions</a>
+        </form-inline>
+    </form>
+</div>
+<div *ngIf="production==false" class="margin-20">
+    <div>myForm details:-</div>
+    <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+    <pre>form value: <br>{{debugValue | json}}</pre>
 </div>

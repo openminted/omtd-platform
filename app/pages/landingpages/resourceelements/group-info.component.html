@@ -1,0 +1,9 @@
+<div class="groupInfo">
+    <div *ngIf="groupInfo.groupNames && groupInfo.groupNames.length>0">
+        {{groupInfo.groupNames[0].value}}
+    </div>
+    <div *ngIf="groupInfo.affiliatedOrganization && groupInfo.affiliatedOrganization.organizationNames &&
+        groupInfo.affiliatedOrganization.organizationNames.length>0">
+        {{groupInfo.affiliatedOrganization.organizationNames[0].value}}
+    </div>
+</div>

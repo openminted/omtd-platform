@@ -1,0 +1,33 @@
+<div>
+    <!--<form-inline [description]="{label : 'Choose'}" [params]="null">-->
+        <!--<div class="uk-margin uk-grid-small uk-child-width-auto">-->
+            <!--<label *ngFor="let radio of radioButton">-->
+                <!--<input type="radio" name="options{{name + index}}" class="uk-radio" [checked]="radio === radioButtonSelected"-->
+                       <!--(click)="changeType(radio)">-->
+                <!--{{radio}}-->
+            <!--</label>-->
+        <!--</div>-->
+    <!--</form-inline>-->
+
+    <div [formGroup]="group">
+        <!--<div formGroupName="{{name}}">-->
+        <!--[hidden]="radioButtonSelected!=='Contact Email'"-->
+        <div>
+            <form-inline [description]="emailDesc" [valid]="group.valid">
+                <input type="text" class="uk-input" formControlName="contactEmail" placeholder="Email">
+            </form-inline>
+        </div>
+
+        <!--<div [hidden]="radioButtonSelected!=='Landing Page'">-->
+            <!--<form-inline [description]="landingPageDesc" [valid]="group.valid">-->
+                <!--<input type="text" class="form-control" formControlName="landingPage" placeholder="Page">-->
+            <!--</form-inline>-->
+        <!--</div>-->
+
+        <!--<div [hidden]="radioButtonSelected!=='Contact Person'">-->
+            <!--<form-repeat [component]="type" [parentGroup]="group" [name]="'contactPersons'" [required]="true" [description]="contactInfoDesc">-->
+            <!--</form-repeat>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>

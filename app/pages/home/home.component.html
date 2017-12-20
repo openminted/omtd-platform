@@ -1,66 +1,276 @@
-<div class="uk-block tm-block-top-a uk-block-default" id="tm-top-a">
-    <div class="">
-        <section data-uk-grid-margin="" data-uk-grid-match="{target:'&gt; div &gt; .uk-panel'}" class="tm-top-a uk-grid">
-            <div class="uk-width-1-1 uk-row-first">
-                <div class="uk-panel bigImageSearch">
-                    <div class="tm-popover-chester ">
-                        <div class="uk-position-relative uk-display-inline-block">
-
-                            <img alt="" src="http://www.openminted.eu/wp-content/uploads/2016/01/many_books.jpg">
-                            <div data-uk-dropdown="{'pos': 'right-bottom','mode': 'hover'}" style="left:10%; top:5%; width: 80%" class="uk-position-absolute uk-hidden-small">
-
-                                <div class="uk-align-center uk-text-large uk-margin"><div style="color:orange!important; text-align: left!important">
-                                    <div style="font-size:60px; line-height:76px; font-variant: small-caps; font-weight: 400;">Are you a provider of scientific literature? </div>
-                                        <div style="font-size:58px;  line-height:68px; font-variant: small-caps; font-weight: 400;">
-                                            Repository? Publisher?
-                                        </div>
-                                        <p style="font-size:32px; line-height:38px;font-weight: 400;">
-                                            Your content is key to novel findings and hypotheses from research.<br>Join us and work with text mining experts around the world.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 20px">
-                                    <form [formGroup]="searchForm" class="searchForm uk-form" (ngSubmit)="onSubmit(searchForm.value)">
-                                        <div data-uk-grid-margin="" class="uk-grid uk-grid-width-1-1">
-                                            <div class="input_container">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                                <input type="text" class="uk-width-1-1" placeholder="Search in the OpenMinTeD Resources ..."
-                                                       formControlName="query">
-                                            </div>
-                                        </div>
+<div class="uk-section-secondary uk-position-relative" uk-scrollspy="{&quot;target&quot;:&quot;[uk-scrollspy-class]&quot;,&quot;cls&quot;:&quot;uk-animation-fade&quot;,&quot;delay&quot;:false}">
+    <div style="background-image: url('./assets/imgs/Firstpage_v6.jpg'); background-color: rgb(255, 255, 255); box-sizing: border-box; min-height: calc(100vh - 229.5px);" class="uk-background-norepeat uk-background-cover uk-background-fixed uk-section uk-padding-remove-bottom uk-flex uk-flex-middle" uk-height-viewport="offset-top: true;offset-bottom: 20">
+        <!--<div class="uk-position-cover" style="background-color: rgba(73, 102, 95, 0.53);"></div>-->
+        <div class="uk-position-cover" style="background-color: rgba(55, 81, 99, 0.53);"></div>
+        <div class="uk-width-1-1">
+            <div class="uk-position-relative">
+                <div class="uk-container uk-margin-large">
+                    <div class="search_box_bg uk-grid-large uk-flex-middle uk-grid uk-grid-stack" uk-grid="">
+                        <div class="uk-width-1-1@m uk-first-column">
+                            <h2 class="uk-margin-large uk-margin-remove-top uk-text-center uk-h2 uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
+                                Text and data mining for scholarly works on the cloud    </h2>
+                            <div>
+                                <div class="search_box_bg" style="text-align:center">
+                                    <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
+                                        <input aria-describedby="sizing-addon2" class="uk-input uk-width-1-2 ng-pristine ng-valid ng-touched uk-comment uk-comment-meta"
+                                               name="keyword" placeholder="Search for scientific literature corpora or text mining services..." type="text"
+                                               formControlName="query">
+                                        <button class=" uk-button uk-button-default" type="submit">Search</button>
                                     </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-container uk-container-expand uk-margin-medium">
+                    <div class="search_box_bg uk-grid-collapse uk-grid uk-grid-stack" uk-grid="">
+                        <div class="uk-width-1-1@m uk-first-column">
+                            <div class="uk-margin-large uk-margin-remove-bottom uk-text-center uk-grid-match uk-child-width-1-1 uk-child-width-1-3@s uk-child-width-1-3@m uk-grid-collapse uk-grid-divider uk-scrollspy-inview uk-animation-fade uk-grid" uk-scrollspy-class="" uk-grid="" style="">
+                                <div class="uk-first-column"><div uk-scrollspy-class="" class="uk-width-medium uk-margin-auto el-item uk-panel uk-scrollspy-inview uk-animation-fade" style="">
+                                    <h1 class="el-title uk-margin uk-h3 uk-text-primary">
+                                        20 tools &amp; services    </h1>
+                                </div>
+                                </div>
+                                <div><div uk-scrollspy-class="" class="uk-width-medium uk-margin-auto el-item uk-panel uk-scrollspy-inview uk-animation-fade" style="">
+                                    <h1 class="el-title uk-margin uk-h3 uk-text-primary">
+                                        6 mi fulltexts    </h1>
+                                </div>
+                                </div>
+                                <div><div uk-scrollspy-class="" class="uk-width-medium uk-margin-auto el-item uk-panel uk-scrollspy-inview uk-animation-fade" style="">
+                                    <h1 class="el-title uk-margin uk-h3 uk-text-primary">
+                                        10 mi abstracts    </h1>
+                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 </div>
-<div class="uk-block tm-block-top-b uk-block-default uk-block-large" id="tm-top-b">
-    <div class="uk-container uk-container-center tm-container-small">
-        <section data-uk-grid-margin="" data-uk-grid-match="{target:'&gt; div &gt; .uk-panel'}" class="tm-top-b uk-grid">
-            <div class="uk-width-1-1 uk-row-first"><div class="uk-panel">
-                <div class="uk-grid uk-grid-width-medium-1-2 uk-margin-large-top">
-                    <div>
-                        <h1 class="uk-heading-large uk-text-right uk-text-center-small">
-                        Welcome to<br class="uk-visible-large"> OpenMinTeD
-                        </h1>
+<div class="uk-section-default uk-section uk-section-small" uk-scrollspy="{&quot;target&quot;:&quot;[uk-scrollspy-class]&quot;,&quot;cls&quot;:&quot;uk-animation-slide-top-medium&quot;,&quot;delay&quot;:false}">
+    <div class="uk-container">
+        <div class="uk-margin-small uk-grid uk-grid-stack" uk-grid="">
+            <div class="uk-width-1-1@m uk-first-column">
+                <h2 id="page#12" class="uk-margin-large uk-margin-remove-bottom uk-text-center uk-h3 uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
+                    <span class="uk-text-meta" style="font-size:28px!important; letter-spacing:1px!important">Discover TDM applications&nbsp;<span uk-icon="icon:chevron-right; ratio: 1.5" class="uk-icon"><svg width="30" height="30" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><polyline fill="none" stroke="#000" stroke-width="1.03" points="7 4 13 10 7 16"/></svg></span>&nbsp;Retrieve OA content&nbsp;<span uk-icon="icon:chevron-right; ratio: 1.5" class="uk-icon"><svg width="30" height="30" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><polyline fill="none" stroke="#000" stroke-width="1.03" points="7 4 13 10 7 16"/></svg></span>&nbsp;Run on the cloud</span>    </h2>
+                <div class="uk-margin-medium uk-text-left uk-grid-match uk-child-width-1-1 uk-child-width-1-3@m uk-grid-small uk-grid-divider uk-scrollspy-inview uk-animation-slide-top-medium uk-grid" uk-scrollspy-class="" uk-grid="" style="">
+                    <div class="uk-first-column"><div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-top-medium" style="">
+                        <div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">
+                            <div class="uk-width-1-5@m uk-first-column">
+                                <img src="./assets/imgs/Icons/number_1_blue.svg" class="el-image" alt="" height="100" width="100">            </div>
+                            <div>
+                                <h2 class="el-title uk-margin uk-h3 uk-margin-remove-adjacent">
+                                    <span class="uk-text-background">A registry of text and data mining applications</span>
+                                </h2>
+                                <div class="el-meta uk-margin uk-text-meta">A place to find and share TDM applications where...</div>
+                                <div class="el-content uk-margin"><ul class="uk-list uk-list-divider">
+                                    <li>Researchers are able to find the most fitting applications for their work.</li>
+                                    <li>Text and data miners share their components and applications.</li>
+                                    <li>Application developers mix and match NLP components to build TDM applications.</li>
+                                </ul></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="uk-flex uk-flex-bottom">
-                        <p class="tm-panel-subtitle uk-text-center-small">
-                        Lorem ipsum dolor sit amet, adipi scing elit, sed do adipi scing eiusmod
-                        </p>
+                    </div>
+                    <div><div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-top-medium" style="">
+                        <div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">
+                            <div class="uk-width-1-5@m uk-first-column">
+                                <img src="./assets/imgs/Icons/number_2_blue.svg" class="el-image" alt="" height="100" width="100">            </div>
+                            <div>
+                                <h2 class="el-title uk-margin uk-h3 uk-margin-remove-adjacent">
+                                    <span class="uk-text-background">A bridge to OA scientific and scholarly literature</span>
+                                </h2>
+                                <div class="el-meta uk-margin uk-text-meta">A hassle-free access mechanism where... </div>
+                                <div class="el-content uk-margin"><ul class="uk-list uk-list-divider">
+                                    <li>Researchers are able to find or build corpora from OA scientific and scholarly literature data sources.
+                                    </li>
+                                    <li>Content providers put forward their content to be further and intelligently used in research.
+                                    </li>
+                                </ul></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div><div uk-scrollspy-class="" class="el-item uk-panel uk-scrollspy-inview uk-animation-slide-top-medium" style="">
+                        <div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">
+                            <div class="uk-width-1-5@m uk-first-column">
+                                <img src="./assets/imgs/Icons/number_3_blue.svg" class="el-image" alt="" height="100" width="100">            </div>
+                            <div>
+                                <h2 class="el-title uk-margin uk-h3 uk-margin-remove-adjacent">
+                                    <span class="uk-text-background">A cloud computing environment</span>
+                                </h2>
+                                <div class="el-meta uk-margin uk-text-meta">A trusted and connected environment where...</div>
+                                <div class="el-content uk-margin"><ul class="uk-list uk-list-divider">
+                                    <li>Researchers are able to utilize computing resources to seamlessly run TDM on OA content.
+                                    </li>
+                                    <li>Researchers share and publish annotated corpora as research results.
+                                    </li>
+                                    <li>Application developers build and evaluate more complex NLP related workflows.
+                                    </li>
+                                </ul></div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                <p class="uk-column-medium-1-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-                </p>
+                <div class="uk-margin uk-text-center uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
+                    <a class="el-content uk-button uk-button-default" [routerLink]="['/search']">
+                        <span class="uk-text-middle">Get started here</span>
+                        <span uk-icon="arrow-right" class="uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><polyline fill="none" stroke="#000" points="10 5 15 9.5 10 14"/><line fill="none" stroke="#000" x1="4" y1="9.5" x2="15" y2="9.5"/></svg></span>
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 </div>
+<div class="omtd_secondary uk-section-muted uk-section uk-padding-remove-vertical">
+    <div class="uk-container uk-container-expand">
+        <div class="uk-container uk-container-expand">
+            <div class="uk-grid-collapse uk-grid" uk-grid="">
+                <div class="uk-width-3-4@m uk-first-column">
+                    <div class="uk-margin-remove-vertical">
+                        &nbsp;</div>
+                    <h2 class="uk-margin-small uk-h2 uk-text-primary">
+                        Our policies    </h2>
+                    <ul class="uk-margin-small uk-list uk-list-large">
+                        <li class="el-item">                <h3 class="el-title uk-h3 uk-margin-remove">on open access scholarly and scientific content</h3>
+                            <div class="el-content uk-text-lead">
+                                How and where we retrieve the content from, how often, what processes it goes through? Are there any constraints or limitations on its use for research?
+                            </div>
+                        </li>
+                        <li class="el-item">                <h3 class="el-title uk-h3 uk-margin-remove">on sharing and using TDM applications</h3>
+                            <div class="el-content uk-text-lead">
+                                Who is able to register applications or components? What types of applications/components is the platform for? What are the relevant quality issues?
+                            </div>
+                        </li>
+                        <li class="el-item">                <h3 class="el-title uk-h3 uk-margin-remove">on the platform usage</h3>
+                            <div class="el-content uk-text-lead">
+                                Who is able to use the platform? What are the resources allocated? Where are the results stored, published, shared?
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="uk-margin-medium uk-text-center">
+                        <a class="el-content uk-button uk-button-secondary" [routerLink]="['/support/faqPolicies']">
+                            View all
+                        </a>
+                    </div>
+                    <div class="uk-margin-remove-vertical">
+                        &nbsp;</div>
+                </div>
+                <div class="uk-width-expand@m uk-grid-item-match">
+                    <div class="uk-tile uk-tile-secondary uk-tile-xsmall">
+                        <h2 class="uk-h3">
+                            Latest additions    </h2>
+                        <div id="page#25" class="small-padding uk-margin-remove-vertical uk-grid-match uk-child-width-1-1 uk-child-width-1-1@m uk-child-width-1-1@l uk-child-width-1-1@xl uk-grid-small uk-grid-divider uk-grid uk-grid-stack" uk-grid="">
+                            <div *ngFor="let resourceInfo of shortResultsInfo" class="uk-first-column">
+                                <div class="el-item uk-panel">
+                                    <div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">
+                                        <div class="uk-width-1-5@m uk-first-column">
+                                            <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)">
+                                                <i *ngIf="resourceInfo.resourceType==='corpus'"
+                                                   class="fa fa-database fa-2x" aria-hidden="true"></i>
+                                                <i *ngIf="resourceInfo.resourceType==='component'"
+                                                   class="fa fa-cogs fa-2x" aria-hidden="true"></i>
+                                                <i *ngIf="resourceInfo.resourceType==='language'"
+                                                   class="fa fa-file-o fa-2x" aria-hidden="true"></i>
+                                                <i *ngIf="resourceInfo.resourceType==='lexical'"
+                                                   class="fa fa-language fa-2x" aria-hidden="true"></i>
+                                                <i *ngIf="resourceInfo.resourceType==='model'"
+                                                   class="fa fa-clipboard fa-2x" aria-hidden="true"></i>
+                                            </a>
+                                            <!--<a href="/www.cnn.com" class="el-link">-->
+                                                <!--<span uk-icon="icon: cog;ratio: 1" class="el-image uk-icon">-->
+                                                    <!--<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><circle fill="none" stroke="#000" cx="9.997" cy="10" r="3.31"/><path fill="none" stroke="#000" d="M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z"/></svg>-->
+                                                <!--</span>-->
+                                            <!--</a>-->
+                                        </div>
+                                        <div>
+                                            <h6 class="el-title uk-margin uk-h6 uk-text-primary uk-margin-remove-adjacent" style="word-wrap: break-word;">
+                                                <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)">
+                                                    {{resourceInfo.title}}
+                                                </a>
+                                            </h6>
+                                            <div class="el-meta uk-text-meta" style="max-height: 75px; overflow-y: hidden">
+                                                {{resourceInfo.description}}
+                                            </div>
+                                            <div class="el-meta">
+                                                ...
+                                            </div>
+                                            <div class="el-content uk-margin">
+                                                <div class="margin-top:0px!important; padding-top:0px">{{resourceInfo.creationDate | date }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="uk-grid-margin uk-first-column"><div class="el-item uk-panel">-->
+                                <!--<div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">-->
+                                    <!--<div class="uk-width-1-5@m uk-first-column">-->
+                                        <!--<a href="/www.cnn.com" class="el-link"><span uk-icon="icon: album;ratio: 1" class="el-image uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><rect x="5" y="2" width="10" height="1"/><rect x="3" y="4" width="14" height="1"/><rect fill="none" stroke="#000" x="1.5" y="6.5" width="17" height="11"/></svg></span></a>            </div>-->
+                                    <!--<div>-->
+                                        <!--<h6 class="el-title uk-margin uk-h6 uk-text-primary uk-margin-remove-adjacent uk-margin-remove-bottom">-->
+                                            <!--Portuguese OA Sci literature    </h6>-->
+                                        <!--<div class="el-meta uk-margin uk-text-meta">University of Minho</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="uk-grid-margin uk-first-column"><div class="el-item uk-panel">-->
+                                <!--<div class="uk-child-width-expand uk-grid-collapse uk-grid" uk-grid="">-->
+                                    <!--<div class="uk-width-1-5@m uk-first-column">-->
+                                        <!--<a href="/www.cnn.com" class="el-link"><span uk-icon="icon: cog;ratio: 1" class="el-image uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><circle fill="none" stroke="#000" cx="9.997" cy="10" r="3.31"/><path fill="none" stroke="#000" d="M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z"/></svg></span></a>            </div>-->
+                                    <!--<div>-->
+                                        <!--<h6 class="el-title uk-margin uk-h6 uk-text-primary uk-margin-remove-adjacent uk-margin-remove-bottom">-->
+                                            <!--Funder exractor    </h6>-->
+                                        <!--<div class="el-meta uk-margin uk-text-meta">Athena Research &amp; Innovation Center</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="uk-section-muted uk-section-overlap uk-position-relative" uk-scrollspy="{&quot;target&quot;:&quot;[uk-scrollspy-class]&quot;,&quot;cls&quot;:&quot;uk-animation-fade&quot;,&quot;delay&quot;:false}">
+    <div style="background-image: url('./assets/imgs/Firstpage_v6.jpg');" class="uk-background-norepeat uk-background-cover uk-background-center-center uk-background-fixed uk-section uk-section-large">
+        <!--<div class="uk-position-cover" style="background-color: rgba(73, 102, 95, 0.53);"></div>-->
+        <div class="uk-position-cover" style="background-color: rgba(55, 81, 99, 0.53);"></div>
+        <div class="uk-container uk-container-large uk-position-relative">
+            <div class="uk-container uk-container-large uk-grid-margin-large">
+                <div class="uk-grid-large uk-grid-divider uk-grid" uk-grid="">
+                    <div class="uk-width-expand@m uk-first-column">
+                        <h1 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
+                            <span style="color:#fff">Are you a content provider?</span>    </h1>
+                        <div class="uk-margin uk-text-center uk-text-lead uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
+                            <div style="color:#fefefe"><p>Do you have Open Access content and want to make it easily available for text and data mining to the broader research community?</p>
+                                <p>Are you concerned with legal or technical issues? Consider about registering your content with OpenMinTeD and provide a hassle free access to your content.</p></div></div>
+                    </div>
+                    <div class="uk-width-expand@m">
+                        <h1 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
+                            <span style="color:#fff">Are you a service provider?</span>    </h1>
+                        <div class="uk-margin uk-text-center uk-text-lead uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
+                            <div style="color:#fefefe"><p>Are you a text and data mining researcher, and want to share your tools with the broader research community? Are you an application developer and want an easy way to build applications from individual NLP components?</p>
+                                <p>Then OpenMinTeD may be the place for you.</p></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+                <div class="uk-width-1-1@m uk-first-column">
+                    <div class="uk-margin-large uk-margin-remove-bottom uk-text-center uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
+                        <a class="el-content uk-button uk-button-secondary" target="_blank" href="https://guidelines.openminted.eu">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

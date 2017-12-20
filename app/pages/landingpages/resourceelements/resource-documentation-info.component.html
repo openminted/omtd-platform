@@ -1,35 +1,25 @@
-<!--<h4 class="uk-margin-top-remove">Resource Documentation Info </h4>-->
-<div class="uk-list">
-    <div *ngIf="resourceDocumentationInfo.mustBeCitedWith" class="uk-alert uk-alert-warning">
-        <div>
-            <strong><i class="fa fa-quote-left" aria-hidden="true"></i> Must be cited with </strong>
-        </div>
-        <div>
-            <span *ngIf="resourceDocumentationInfo.mustBeCitedWith.documentUnstructured">
-                {{resourceDocumentationInfo.mustBeCitedWith.documentUnstructured}}
-            </span>
-            <span *ngIf="resourceDocumentationInfo.mustBeCitedWith.publicationIdentifiers
-            && resourceDocumentationInfo.mustBeCitedWith.publicationIdentifiers.length>0">
-                {{resourceDocumentationInfo.mustBeCitedWith.publicationIdentifiers[0].value}}
-            </span>
-        </div>
-    </div>
-    <div *ngIf="resourceDocumentationInfo.documentationPublications && resourceDocumentationInfo.documentationPublications.length>0">
-        <strong>Documentation publications: </strong>
-        <span *ngFor="let documentationPublication of resourceDocumentationInfo.documentationPublications; let isLast = last;">
-            <span *ngIf="documentationPublication.documentUnstructured">
-                {{documentationPublication.documentUnstructured}}
-            </span>
-            <span *ngIf="documentationPublication.publicationIdentifiers && documentationPublication.publicationIdentifiers.length>0">
-                {{documentationPublication.publicationIdentifiers[0].value}}
-            </span>
-            {{isLast ? '' : ', '}}
+<!--<h4 class="uk-margin-top-remove">Documentation</h4>-->
+<div class="resourceDocumentationInfo">
+    <div *ngIf="resourceDocumentationInfo.documentationType || resourceDocumentationInfo.documentationDescription">
+        <span *ngIf="resourceDocumentationInfo.documentationType">
+            {{documentationType(resourceDocumentationInfo.documentationType)}} -
+        </span>
+        <span *ngIf="resourceDocumentationInfo.documentationDescription">
+            {{resourceDocumentationInfo.documentationDescription}}
         </span>
     </div>
-    <div *ngIf="resourceDocumentationInfo.samplesLocations && resourceDocumentationInfo.samplesLocations.length>0">
-        <strong>Samples locations: </strong>
-        <span *ngFor="let samplesLocations of resourceDocumentationInfo.samplesLocations; let isLast = last;">
-            {{samplesLocations}}{{isLast ? '' : ', '}}
-        </span>
+
+    <div *ngIf="resourceDocumentationInfo.publicationIdentifiers && resourceDocumentationInfo.publicationIdentifiers.length>0"
+         class="uk-margin-top">
+        <div *ngFor="let publicationIdentifier of resourceDocumentationInfo.publicationIdentifiers">
+            <span *ngIf="publicationIdentifier.publicationIdentifierSchemeName=='URL' || publicationIdentifier.publicationIdentifierSchemeName=='PURL'
+            || publicationIdentifier.publicationIdentifierSchemeName=='HANDLE'">
+                {{publicationIdentifier.publicationIdentifierSchemeName}}: <a href="{{publicationIdentifier.value}}" target="_blank">{{publicationIdentifier.value}}</a>
+            </span>
+            <span *ngIf="publicationIdentifier.publicationIdentifierSchemeName!='URL' && publicationIdentifier.publicationIdentifierSchemeName!='PURL'
+            && publicationIdentifier.publicationIdentifierSchemeName!='HANDLE'">
+                {{publicationIdentifier.publicationIdentifierSchemeName}}: {{publicationIdentifier.value}}
+            </span>
+        </div>
     </div>
 </div>

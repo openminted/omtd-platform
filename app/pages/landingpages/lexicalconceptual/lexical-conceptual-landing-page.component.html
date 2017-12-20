@@ -1,0 +1,126 @@
+<div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true" style="box-sizing: border-box;">
+    <div class="uk-container">
+        <div class="uk-grid" uk-grid="">
+
+            <ng-template [ngIf]="errorMessage">
+                <div class="uk-width-expand@m uk-first-column">
+                    <div data-uk-alert="" class="uk-alert uk-alert-danger">
+                        <p>{{errorMessage}}</p>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template [ngIf]="lexicalConceptual && !errorMessage">
+
+                <div class="uk-width-1-1 uk-row-first uk-clearfix">
+                    <h2 class="uk-h2" *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.resourceNames
+                            && lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.resourceNames.length>0">
+                        {{lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.resourceNames[0].value}}
+                    </h2>
+                </div>
+
+                <div class="uk-width-expand@m uk-first-column">
+
+                    <ul class="uk-subnav">
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.resourceShortNames
+                                && lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.resourceShortNames.length>0"
+                            class="element element-text">
+                            <strong>{{lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.resourceShortNames[0].value}} </strong> </li>
+                    </ul>
+
+                    <div class="resourceIdentifiers" *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.identifiers
+                            && lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.identifiers.length>0">
+                        <div *ngFor="let identifier of lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.identifiers">
+                            <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>
+                        </div>
+                    </div>
+
+                    <ul class="uk-list" *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.descriptions
+                                                    && lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.descriptions.length>0">
+                        <li *ngFor="let description of lexicalConceptual.lexicalConceptualResourceInfo.identificationInfo.descriptions; let isFirst = first;"
+                            [class.uk-margin-top]="!isFirst">
+                            {{description.value}}
+                        </li>
+                    </ul>
+                    <div *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.lexicalConceptualResourceType" class="uk-subnav uk-subnav-line lexicalConceptualResourceType">
+                        <strong>{{lexicalConceptual.lexicalConceptualResourceInfo.lexicalConceptualResourceType}} </strong>
+                    </div>
+                    <version-info *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.versionInfo"
+                                  [versionInfo]="lexicalConceptual.lexicalConceptualResourceInfo.versionInfo">
+                    </version-info>
+                    <resource-documentation-info *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.resourceDocumentationInfo"
+                                                 [resourceDocumentationInfo]="lexicalConceptual.lexicalConceptualResourceInfo.resourceDocumentationInfo">
+                    </resource-documentation-info>
+
+
+                    <!--TABS-->
+                    <ul class=" uk-tab uk-visible@m" uk-tab="connect: #infoTabs; animation: uk-animation-fade">
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.distributionInfos
+                        && lexicalConceptual.lexicalConceptualResourceInfo.distributionInfos.length>0">
+                            <a>Distribution</a>
+                        </li>
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.validationInfos
+                        && lexicalConceptual.lexicalConceptualResourceInfo.validationInfos.length>0">
+                            <a>Validations</a>
+                        </li>
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.usageInfo">
+                            <a>Usage</a>
+                        </li>
+                    </ul>
+
+                    <button class="uk-button uk-button-default uk-hidden@m" type="button">
+                        <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">{{activeTab}}</span>
+                    </button>
+
+                    <ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m" uk-switcher="{connect: #infoTabs; animation: uk-animation-fade}" uk-dropdown="mode: click" uk-toggle="target: #toggle-small-tabs">
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.distributionInfos
+                        && lexicalConceptual.lexicalConceptualResourceInfo.distributionInfos.length>0">
+                            <a>Distribution</a>
+                        </li>
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.validationInfos
+                        && lexicalConceptual.lexicalConceptualResourceInfo.validationInfos.length>0">
+                            <a>Validations</a>
+                        </li>
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.usageInfo">
+                            <a>Usage</a>
+                        </li>
+                    </ul>
+
+                    <ul id="infoTabs" class="uk-switcher  uk-width-1-1 uk-margin-top custom-tab-content-large">
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.distributionInfos
+                        && lexicalConceptual.lexicalConceptualResourceInfo.distributionInfos.length>0">
+                            <dataset-distribution-info *ngFor="let distributionInfo of lexicalConceptual.lexicalConceptualResourceInfo.distributionInfos"
+                                                       [datasetDistributionInfo]="distributionInfo"></dataset-distribution-info>
+                        </li>
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.validationInfos
+                        && lexicalConceptual.lexicalConceptualResourceInfo.validationInfos.length>0">
+                            <validation-info *ngFor="let validationInfo of lexicalConceptual.lexicalConceptualResourceInfo.validationInfos"
+                                             [validationInfo]="validationInfo"></validation-info>
+                        </li>
+                        <li *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.usageInfo">
+                            <usage-info [usageInfo]="lexicalConceptual.lexicalConceptualResourceInfo.usageInfo"></usage-info>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!--SIDEBAR-->
+                <div class="tm-sidebar uk-width-1-4@m">
+
+                    <div *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.contactInfo" class="uk-card uk-card-body uk-card-default sidemenu">
+                        <contact-info [contactInfo]="lexicalConceptual.lexicalConceptualResourceInfo.contactInfo"></contact-info>
+                    </div>
+
+                    <div *ngIf="lexicalConceptual.lexicalConceptualResourceInfo.resourceCreationInfo" class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">
+                        <resource-creation-info [resourceCreationInfo]="lexicalConceptual.lexicalConceptualResourceInfo.resourceCreationInfo"></resource-creation-info>
+                    </div>
+                </div>
+
+            </ng-template>
+
+
+
+
+        </div>
+    </div>
+</div>

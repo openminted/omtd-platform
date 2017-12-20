@@ -4,3 +4,5 @@ node_modules/
 dist/
 app/**/*.js
 app/**/*.js.map
+stats.json
+.DS_Store

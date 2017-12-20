@@ -1,0 +1,6 @@
+<div class="organizationInfo">
+    <div *ngIf="organizationInfo.organizationNames && organizationInfo.organizationNames.length>0">
+        {{organizationInfo.organizationNames[0].value}}
+    </div>
+    <communication-info *ngIf="organizationInfo.communicationInfo" [communicationInfo]="organizationInfo.communicationInfo"></communication-info>
+</div>

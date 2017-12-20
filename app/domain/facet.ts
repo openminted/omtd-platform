@@ -12,6 +12,7 @@ export class Facet {
 export interface FacetValue {
 
     value: string;
+    label: string;
     count: number;
     isChecked: boolean;
 }

@@ -1,203 +1,203 @@
 <div class="uk-list">
-    <div *ngIf="corpusTextPartInfo.mediaType">
-        <strong>Media type: </strong>{{corpusTextPartInfo.mediaType}}
-    </div>
-    <div *ngIf="corpusTextPartInfo.lingualityInfo">
-        <strong>Linguality Info</strong>
-        <div class="lingualityInfo">
-            <div *ngIf="corpusTextPartInfo.lingualityInfo.lingualityType">
-                <strong>Linguality type: </strong>{{corpusTextPartInfo.lingualityInfo.lingualityType}}
-            </div>
-            <div *ngIf="corpusTextPartInfo.lingualityInfo.multilingualityType">
-                <strong>Multilinguality type: </strong>{{corpusTextPartInfo.lingualityInfo.multilingualityType}}
-            </div>
-            <div *ngIf="corpusTextPartInfo.lingualityInfo.multilingualityTypeDetails">
-                <strong>Multilinguality type details: </strong>{{corpusTextPartInfo.lingualityInfo.multilingualityTypeDetails}}
-            </div>
-        </div>
-    </div>
-    <div *ngIf="corpusTextPartInfo.languages && corpusTextPartInfo.languages.length>0">
-        <strong>Languages </strong>
-        <div *ngFor="let languageItem of corpusTextPartInfo.languages">
-            <div *ngIf="languageItem.language">
-                <strong>Language: </strong>{{languageItem.language.languageTag}}
-            </div>
-            <div *ngIf="languageItem.sizePerLanguage">
-                <strong>Size per language: </strong>
-                <span *ngIf="languageItem.sizePerLanguage.size">{{languageItem.sizePerLanguage.size}}</span>
-                <span *ngIf="languageItem.sizePerLanguage.sizeUnit"> {{languageItem.sizePerLanguage.sizeUnit}}</span>
-            </div>
-            <div *ngIf="languageItem.languageVarieties && languageItem.languageVarieties.length>0">
-                <strong>Language varieties: </strong>
-                <span *ngFor="let languageVariety of languageItem.languageVarieties; let isLast = last;">
-                    <span *ngIf="languageVariety.languageVarietyName">
-                        {{languageVariety.languageVarietyName}}
-                    </span>
-                    <span *ngIf="languageVariety.languageVarietyType || languageVariety.sizePerLanguageVariety">
-                        (
-                        <span *ngIf="languageVariety.languageVarietyType">{{languageVariety.languageVarietyType}} - </span>
-                        <span *ngIf="languageVariety.sizePerLanguageVariety">
-                            <span *ngIf="languageVariety.sizePerLanguageVariety.size">{{languageVariety.sizePerLanguageVariety.size}}</span>
-                            <span *ngIf="languageVariety.sizePerLanguageVariety.sizeUnit"> {{languageVariety.sizePerLanguageVariety.sizeUnit}}</span>
-                        </span>
-                        )
-                    </span>
-                    {{isLast ? '' : ', '}}
-                </span>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="corpusTextPartInfo.modalities && corpusTextPartInfo.modalities.length>0">
-        <strong>Modalities </strong>
-        <div *ngFor="let modality of corpusTextPartInfo.modalities">
-            <div *ngIf="modality.modalityType">
-                <strong>Modality types: </strong>
-                <span *ngFor="let modalityType of modality.modalityType; let isLast = last;">
-                    {{modalityType}}{{isLast ? '' : ', '}}
-                </span>
-            </div>
-            <div *ngIf="modality.modalityTypeDetails">
-                <span>Modality type details: </span>{{modality.modalityTypeDetails}}
-            </div>
-            <div *ngIf="modality.sizePerModality">
-                <strong>Size per modality: </strong>
-                <span>
-                    <span *ngIf="modality.sizePerModality.size">{{modality.sizePerModality.size}}</span>
-                    <span *ngIf="modality.sizePerModality.sizeUnit"> {{modality.sizePerModality.sizeUnit}}</span>
-                </span>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="corpusTextPartInfo.sizes && corpusTextPartInfo.sizes.length>0">
-        <strong>Sizes: </strong>
-        <span *ngFor="let sizeItem of corpusTextPartInfo.sizes; let isLast = last;">
-            <span *ngIf="sizeItem.size">{{sizeItem.size}}</span>
-            <span *ngIf="sizeItem.sizeUnit"> {{sizeItem.sizeUnit}}</span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="corpusTextPartInfo.textFormats && corpusTextPartInfo.textFormats.length>0">
-        <strong>Text formats: </strong>
-        <span *ngFor="let textFormat of corpusTextPartInfo.textFormats; let isLast = last;">
-            <span *ngIf="textFormat.mimeType">{{textFormat.mimeType}}</span>
-            <span *ngIf="textFormat.sizePerTextFormat"> (
-                <span *ngIf="textFormat.sizePerTextFormat.size">{{textFormat.sizePerTextFormat.size}}</span>
-                <span *ngIf="textFormat.sizePerTextFormat.sizeUnit"> {{textFormat.sizePerTextFormat.sizeUnit}}</span>
-                )
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="corpusTextPartInfo.characterEncodings && corpusTextPartInfo.characterEncodings.length>0">
-        <strong>Character encodings: </strong>
-        <span *ngFor="let characterEncoding of corpusTextPartInfo.characterEncodings; let isLast = last;">
-            <span *ngIf="characterEncoding.characterEncoding">{{characterEncoding.characterEncoding}}</span>
-            <span *ngIf="characterEncoding.sizePerCharacterEncoding"> (
-                <span *ngIf="characterEncoding.sizePerCharacterEncoding.size">{{characterEncoding.sizePerCharacterEncoding.size}}</span>
-                <span *ngIf="characterEncoding.sizePerCharacterEncoding.sizeUnit"> {{characterEncoding.sizePerCharacterEncoding.sizeUnit}}</span>
-                )
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="corpusTextPartInfo.domains && corpusTextPartInfo.domains.length>0">
-        <strong>Domains: </strong>
-        <span *ngFor="let domainInfo of corpusTextPartInfo.domains; let isLast = last;">
-            <span *ngIf="domainInfo.domain">{{domainInfo.domain.value}}</span>
-            <span *ngIf="domainInfo.sizePerDomain"> (
-                <span *ngIf="domainInfo.sizePerDomain.size">{{domainInfo.sizePerDomain.size}}</span>
-                <span *ngIf="domainInfo.sizePerDomain.sizeUnit"> {{domainInfo.sizePerDomain.sizeUnit}}</span>
-                )
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="corpusTextPartInfo.textClassifications && corpusTextPartInfo.textClassifications.length>0">
-        <strong>Text Classifications </strong>
-        <div *ngFor="let textClassification of corpusTextPartInfo.textClassifications">
-            <div *ngIf="textClassification.textGenre">
-                <strong>Text genre: </strong>{{textClassification.textGenre.value}}
-            </div>
-            <div *ngIf="textClassification.textType">
-                <strong>Text type: </strong>{{textClassification.textType.value}}
-            </div>
-            <div *ngIf="textClassification.register">
-                <strong>Register: </strong>{{textClassification.register.value}}
-            </div>
-            <div *ngIf="textClassification.subject">
-                <strong>Subject: </strong>{{textClassification.subject.value}}
-            </div>
-            <div *ngIf="textClassification.keywords && textClassification.keywords.length>0">
-                <strong>Keywords: </strong>
-                <span *ngFor="let keyword of textClassification.keywords; let isLast = last;">
-                    {{keyword}}
-                </span>
-                {{isLast ? '' : ', '}}
-            </div>
-            <div *ngIf="textClassification.sizePerTextClassification">
-                <strong>Size per text classification: </strong>
-                <span>
-                    <span *ngIf="textClassification.sizePerTextClassification.size">{{modality.sizePerTextClassification.size}}</span>
-                    <span *ngIf="textClassification.sizePerTextClassification.sizeUnit"> {{modality.sizePerTextClassification.sizeUnit}}</span>
-                </span>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="corpusTextPartInfo.timeClassifications && corpusTextPartInfo.timeClassifications.length>0">
-        <strong>Time classifications: </strong>
-        <span *ngFor="let timeClassification of corpusTextPartInfo.timeClassifications; let isLast = last;">
-            <span *ngIf="timeClassification.timeCoverage">{{timeClassification.timeCoverage}}</span>
-            <span *ngIf="timeClassification.sizePerTimeCoverage"> (
-                <span *ngIf="timeClassification.sizePerTimeCoverage.size">{{timeClassification.sizePerTimeCoverage.size}}</span>
-                <span *ngIf="timeClassification.sizePerTimeCoverage.sizeUnit"> {{timeClassification.sizePerTimeCoverage.sizeUnit}}</span>
-                )
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="corpusTextPartInfo.geographicClassifications && corpusTextPartInfo.geographicClassifications.length>0">
-        <strong>Geographic classifications: </strong>
-        <span *ngFor="let geographicClassifications of corpusTextPartInfo.geographicClassifications; let isLast = last;">
-            <span *ngIf="geographicClassifications.geographicCoverage">{{geographicClassifications.geographicCoverage}}</span>
-            <span *ngIf="geographicClassifications.sizePerGeographicCoverage"> (
-                <span *ngIf="geographicClassifications.sizePerGeographicCoverage.size">{{geographicClassifications.sizePerGeographicCoverage.size}}</span>
-                <span *ngIf="geographicClassifications.sizePerGeographicCoverage.sizeUnit"> {{geographicClassifications.sizePerGeographicCoverage.sizeUnit}}</span>
-                )
-            </span>
-            {{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="corpusTextPartInfo.creationInfo">
-        <strong>Creation Info</strong>
-        <div *ngIf="corpusTextPartInfo.creationInfo.originalSources && corpusTextPartInfo.creationInfo.originalSources.length>0">
-            <strong>Original sources: </strong>
-            <span *ngFor="let originalSource of corpusTextPartInfo.creationInfo.originalSources; let isLast = last;">
-                <span *ngIf="originalSource.resourceNames && originalSource.resourceNames.length>0">
-                    {{originalSource.resourceNames[0].value}}
-                </span>
-                <span *ngIf="originalSource.resourceIdentifiers && originalSource.resourceIdentifiers.length>0">
-                    {{originalSource.resourceIdentifiers[0].value}}
-                </span>
-                {{isLast ? '' : ', '}}
-            </span>
-        </div>
-        <div *ngIf="corpusTextPartInfo.creationInfo.creationMode">
-            <strong>Creation mode: </strong>{{corpusTextPartInfo.creationInfo.creationMode}}
-        </div>
-        <div *ngIf="corpusTextPartInfo.creationInfo.creationModeDetails">
-            <strong>Creation mode details: </strong>{{corpusTextPartInfo.creationInfo.creationModeDetails}}
-        </div>
-        <div *ngIf="corpusTextPartInfo.creationInfo.creationSwComponents && corpusTextPartInfo.creationInfo.creationSwComponents.length>0">
-            <strong>Creation software components: </strong>
-            <span *ngFor="let creationSwComponent of corpusTextPartInfo.creationInfo.creationSwComponents; let isLast = last;">
-                <span *ngIf="creationSwComponent.resourceNames && creationSwComponent.resourceNames.length>0">
-                    {{creationSwComponent.resourceNames[0].value}}
-                </span>
-                <span *ngIf="creationSwComponent.resourceIdentifiers && creationSwComponent.resourceIdentifiers.length>0">
-                    {{creationSwComponent.resourceIdentifiers[0].value}}
-                </span>
-                {{isLast ? '' : ', '}}
-            </span>
-        </div>
-    </div>
+    <!--<div *ngIf="corpusTextPartInfo.mediaType">-->
+        <!--<strong>Media type: </strong>{{corpusTextPartInfo.mediaType}}-->
+    <!--</div>-->
+    <!--<div *ngIf="corpusTextPartInfo.lingualityInfo">-->
+        <!--<strong>Linguality Info</strong>-->
+        <!--<div class="lingualityInfo">-->
+            <!--<div *ngIf="corpusTextPartInfo.lingualityInfo.lingualityType">-->
+                <!--<strong>Linguality type: </strong>{{corpusTextPartInfo.lingualityInfo.lingualityType}}-->
+            <!--</div>-->
+            <!--<div *ngIf="corpusTextPartInfo.lingualityInfo.multilingualityType">-->
+                <!--<strong>Multilinguality type: </strong>{{corpusTextPartInfo.lingualityInfo.multilingualityType}}-->
+            <!--</div>-->
+            <!--<div *ngIf="corpusTextPartInfo.lingualityInfo.multilingualityTypeDetails">-->
+                <!--<strong>Multilinguality type details: </strong>{{corpusTextPartInfo.lingualityInfo.multilingualityTypeDetails}}-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div *ngIf="corpusTextPartInfo.languages && corpusTextPartInfo.languages.length>0">-->
+        <!--<strong>Languages </strong>-->
+        <!--<div *ngFor="let languageItem of corpusTextPartInfo.languages">-->
+            <!--<div *ngIf="languageItem.language">-->
+                <!--<strong>Language: </strong>{{languageItem.language.languageTag}}-->
+            <!--</div>-->
+            <!--<div *ngIf="languageItem.sizePerLanguage">-->
+                <!--<strong>Size per language: </strong>-->
+                <!--<span *ngIf="languageItem.sizePerLanguage.size">{{languageItem.sizePerLanguage.size}}</span>-->
+                <!--<span *ngIf="languageItem.sizePerLanguage.sizeUnit"> {{languageItem.sizePerLanguage.sizeUnit}}</span>-->
+            <!--</div>-->
+            <!--<div *ngIf="languageItem.languageVarieties && languageItem.languageVarieties.length>0">-->
+                <!--<strong>Language varieties: </strong>-->
+                <!--<span *ngFor="let languageVariety of languageItem.languageVarieties; let isLast = last;">-->
+                    <!--<span *ngIf="languageVariety.languageVarietyName">-->
+                        <!--{{languageVariety.languageVarietyName}}-->
+                    <!--</span>-->
+                    <!--<span *ngIf="languageVariety.languageVarietyType || languageVariety.sizePerLanguageVariety">-->
+                        <!--(-->
+                        <!--<span *ngIf="languageVariety.languageVarietyType">{{languageVariety.languageVarietyType}} - </span>-->
+                        <!--<span *ngIf="languageVariety.sizePerLanguageVariety">-->
+                            <!--<span *ngIf="languageVariety.sizePerLanguageVariety.size">{{languageVariety.sizePerLanguageVariety.size}}</span>-->
+                            <!--<span *ngIf="languageVariety.sizePerLanguageVariety.sizeUnit"> {{languageVariety.sizePerLanguageVariety.sizeUnit}}</span>-->
+                        <!--</span>-->
+                        <!--)-->
+                    <!--</span>-->
+                    <!--{{isLast ? '' : ', '}}-->
+                <!--</span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<div *ngIf="corpusTextPartInfo.modalities && corpusTextPartInfo.modalities.length>0">&ndash;&gt;-->
+        <!--&lt;!&ndash;<strong>Modalities </strong>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div *ngFor="let modality of corpusTextPartInfo.modalities">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div *ngIf="modality.modalityType">&ndash;&gt;-->
+                <!--&lt;!&ndash;<strong>Modality types: </strong>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span *ngFor="let modalityType of modality.modalityType; let isLast = last;">&ndash;&gt;-->
+                    <!--&lt;!&ndash;{{modalityType}}{{isLast ? '' : ', '}}&ndash;&gt;-->
+                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div *ngIf="modality.modalityTypeDetails">&ndash;&gt;-->
+                <!--&lt;!&ndash;<span>Modality type details: </span>{{modality.modalityTypeDetails}}&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div *ngIf="modality.sizePerModality">&ndash;&gt;-->
+                <!--&lt;!&ndash;<strong>Size per modality: </strong>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span *ngIf="modality.sizePerModality.size">{{modality.sizePerModality.size}}</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span *ngIf="modality.sizePerModality.sizeUnit"> {{modality.sizePerModality.sizeUnit}}</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--<div *ngIf="corpusTextPartInfo.sizes && corpusTextPartInfo.sizes.length>0">-->
+        <!--<strong>Sizes: </strong>-->
+        <!--<span *ngFor="let sizeItem of corpusTextPartInfo.sizes; let isLast = last;">-->
+            <!--<span *ngIf="sizeItem.size">{{sizeItem.size}}</span>-->
+            <!--<span *ngIf="sizeItem.sizeUnit"> {{sizeItem.sizeUnit}}</span>-->
+            <!--{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="corpusTextPartInfo.textFormats && corpusTextPartInfo.textFormats.length>0">-->
+        <!--<strong>Text formats: </strong>-->
+        <!--<span *ngFor="let textFormat of corpusTextPartInfo.textFormats; let isLast = last;">-->
+            <!--<span *ngIf="textFormat.mimeType">{{textFormat.mimeType}}</span>-->
+            <!--<span *ngIf="textFormat.sizePerTextFormat"> (-->
+                <!--<span *ngIf="textFormat.sizePerTextFormat.size">{{textFormat.sizePerTextFormat.size}}</span>-->
+                <!--<span *ngIf="textFormat.sizePerTextFormat.sizeUnit"> {{textFormat.sizePerTextFormat.sizeUnit}}</span>-->
+                <!--)-->
+            <!--</span>-->
+            <!--{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="corpusTextPartInfo.characterEncodings && corpusTextPartInfo.characterEncodings.length>0">-->
+        <!--<strong>Character encodings: </strong>-->
+        <!--<span *ngFor="let characterEncoding of corpusTextPartInfo.characterEncodings; let isLast = last;">-->
+            <!--<span *ngIf="characterEncoding.characterEncoding">{{characterEncoding.characterEncoding}}</span>-->
+            <!--<span *ngIf="characterEncoding.sizePerCharacterEncoding"> (-->
+                <!--<span *ngIf="characterEncoding.sizePerCharacterEncoding.size">{{characterEncoding.sizePerCharacterEncoding.size}}</span>-->
+                <!--<span *ngIf="characterEncoding.sizePerCharacterEncoding.sizeUnit"> {{characterEncoding.sizePerCharacterEncoding.sizeUnit}}</span>-->
+                <!--)-->
+            <!--</span>-->
+            <!--{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="corpusTextPartInfo.domains && corpusTextPartInfo.domains.length>0">-->
+        <!--<strong>Domains: </strong>-->
+        <!--<span *ngFor="let domainInfo of corpusTextPartInfo.domains; let isLast = last;">-->
+            <!--<span *ngIf="domainInfo.domain">{{domainInfo.domain.value}}</span>-->
+            <!--<span *ngIf="domainInfo.sizePerDomain"> (-->
+                <!--<span *ngIf="domainInfo.sizePerDomain.size">{{domainInfo.sizePerDomain.size}}</span>-->
+                <!--<span *ngIf="domainInfo.sizePerDomain.sizeUnit"> {{domainInfo.sizePerDomain.sizeUnit}}</span>-->
+                <!--)-->
+            <!--</span>-->
+            <!--{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="corpusTextPartInfo.textClassifications && corpusTextPartInfo.textClassifications.length>0">-->
+        <!--<strong>Text Classifications </strong>-->
+        <!--<div *ngFor="let textClassification of corpusTextPartInfo.textClassifications">-->
+            <!--<div *ngIf="textClassification.textGenre">-->
+                <!--<strong>Text genre: </strong>{{textClassification.textGenre.value}}-->
+            <!--</div>-->
+            <!--<div *ngIf="textClassification.textType">-->
+                <!--<strong>Text type: </strong>{{textClassification.textType.value}}-->
+            <!--</div>-->
+            <!--<div *ngIf="textClassification.register">-->
+                <!--<strong>Register: </strong>{{textClassification.register.value}}-->
+            <!--</div>-->
+            <!--<div *ngIf="textClassification.subject">-->
+                <!--<strong>Subject: </strong>{{textClassification.subject.value}}-->
+            <!--</div>-->
+            <!--<div *ngIf="textClassification.keywords && textClassification.keywords.length>0">-->
+                <!--<strong>Keywords: </strong>-->
+                <!--<span *ngFor="let keyword of textClassification.keywords; let isLast = last;">-->
+                    <!--{{keyword}}-->
+                <!--</span>-->
+                <!--{{isLast ? '' : ', '}}-->
+            <!--</div>-->
+            <!--<div *ngIf="textClassification.sizePerTextClassification">-->
+                <!--<strong>Size per text classification: </strong>-->
+                <!--<span>-->
+                    <!--<span *ngIf="textClassification.sizePerTextClassification.size">{{modality.sizePerTextClassification.size}}</span>-->
+                    <!--<span *ngIf="textClassification.sizePerTextClassification.sizeUnit"> {{modality.sizePerTextClassification.sizeUnit}}</span>-->
+                <!--</span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div *ngIf="corpusTextPartInfo.timeClassifications && corpusTextPartInfo.timeClassifications.length>0">-->
+        <!--<strong>Time classifications: </strong>-->
+        <!--<span *ngFor="let timeClassification of corpusTextPartInfo.timeClassifications; let isLast = last;">-->
+            <!--<span *ngIf="timeClassification.timeCoverage">{{timeClassification.timeCoverage}}</span>-->
+            <!--<span *ngIf="timeClassification.sizePerTimeCoverage"> (-->
+                <!--<span *ngIf="timeClassification.sizePerTimeCoverage.size">{{timeClassification.sizePerTimeCoverage.size}}</span>-->
+                <!--<span *ngIf="timeClassification.sizePerTimeCoverage.sizeUnit"> {{timeClassification.sizePerTimeCoverage.sizeUnit}}</span>-->
+                <!--)-->
+            <!--</span>-->
+            <!--{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="corpusTextPartInfo.geographicClassifications && corpusTextPartInfo.geographicClassifications.length>0">-->
+        <!--<strong>Geographic classifications: </strong>-->
+        <!--<span *ngFor="let geographicClassifications of corpusTextPartInfo.geographicClassifications; let isLast = last;">-->
+            <!--<span *ngIf="geographicClassifications.geographicCoverage">{{geographicClassifications.geographicCoverage}}</span>-->
+            <!--<span *ngIf="geographicClassifications.sizePerGeographicCoverage"> (-->
+                <!--<span *ngIf="geographicClassifications.sizePerGeographicCoverage.size">{{geographicClassifications.sizePerGeographicCoverage.size}}</span>-->
+                <!--<span *ngIf="geographicClassifications.sizePerGeographicCoverage.sizeUnit"> {{geographicClassifications.sizePerGeographicCoverage.sizeUnit}}</span>-->
+                <!--)-->
+            <!--</span>-->
+            <!--{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<div *ngIf="corpusTextPartInfo.creationInfo">-->
+        <!--<strong>Creation Info</strong>-->
+        <!--<div *ngIf="corpusTextPartInfo.creationInfo.originalSources && corpusTextPartInfo.creationInfo.originalSources.length>0">-->
+            <!--<strong>Original sources: </strong>-->
+            <!--<span *ngFor="let originalSource of corpusTextPartInfo.creationInfo.originalSources; let isLast = last;">-->
+                <!--<span *ngIf="originalSource.resourceNames && originalSource.resourceNames.length>0">-->
+                    <!--{{originalSource.resourceNames[0].value}}-->
+                <!--</span>-->
+                <!--<span *ngIf="originalSource.resourceIdentifiers && originalSource.resourceIdentifiers.length>0">-->
+                    <!--{{originalSource.resourceIdentifiers[0].value}}-->
+                <!--</span>-->
+                <!--{{isLast ? '' : ', '}}-->
+            <!--</span>-->
+        <!--</div>-->
+        <!--<div *ngIf="corpusTextPartInfo.creationInfo.creationMode">-->
+            <!--<strong>Creation mode: </strong>{{corpusTextPartInfo.creationInfo.creationMode}}-->
+        <!--</div>-->
+        <!--<div *ngIf="corpusTextPartInfo.creationInfo.creationModeDetails">-->
+            <!--<strong>Creation mode details: </strong>{{corpusTextPartInfo.creationInfo.creationModeDetails}}-->
+        <!--</div>-->
+        <!--<div *ngIf="corpusTextPartInfo.creationInfo.creationSwComponents && corpusTextPartInfo.creationInfo.creationSwComponents.length>0">-->
+            <!--<strong>Creation software components: </strong>-->
+            <!--<span *ngFor="let creationSwComponent of corpusTextPartInfo.creationInfo.creationSwComponents; let isLast = last;">-->
+                <!--<span *ngIf="creationSwComponent.resourceNames && creationSwComponent.resourceNames.length>0">-->
+                    <!--{{creationSwComponent.resourceNames[0].value}}-->
+                <!--</span>-->
+                <!--<span *ngIf="creationSwComponent.resourceIdentifiers && creationSwComponent.resourceIdentifiers.length>0">-->
+                    <!--{{creationSwComponent.resourceIdentifiers[0].value}}-->
+                <!--</span>-->
+                <!--{{isLast ? '' : ', '}}-->
+            <!--</span>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>

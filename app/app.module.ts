@@ -17,14 +17,18 @@ import { AppComponent } from "./app.component";
 import { TopMenuComponent } from "./shared/topmenu/topmenu.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { SearchComponent } from "./pages/search/search.component";
-import { SupportComponent } from "./pages/support/support.component";
-import { LoginComponent } from "./pages/user/signin/login.component";
-import { RegisterComponent } from "./pages/user/register/register.component";
-import { EditProfileComponent } from "./pages/user/editprofile/edit-profile.component";
 import { ComponentRegistrationModule } from "./pages/resourceregistration/component/component-registration.module";
-import { TabsModule } from "ng2-bootstrap/ng2-bootstrap";
+import { TabsModule } from "ngx-bootstrap";
 import { LandingPageModule } from "./pages/landingpages/landing-page.module";
 import { CorpusRegistrationModule } from "./pages/resourceregistration/corpus/corpus-registration.module";
+import { FooterComponent } from "./shared/footer/footer.component";
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { ReusableComponentsModule } from "./shared/reusablecomponents/reusable-components.module";
+import { SupportModule } from "./pages/support/support.module";
+import { AboutModule } from "./pages/about/about.module";
+import { DatasourceRegistrationModule } from "./pages/resourceregistration/datasource/datasource-registration.module";
+import { ActionsModule } from "./pages/actions/actions.module";
+import { UserSpaceModule } from "./pages/user/user-space.module";
 
 @NgModule({
     imports: [
@@ -36,19 +40,23 @@ import { CorpusRegistrationModule } from "./pages/resourceregistration/corpus/co
         // ResourceRegistrationModule,
         routing,
         ComponentRegistrationModule, 
-        CorpusRegistrationModule, 
+        CorpusRegistrationModule,
+        DatasourceRegistrationModule,
         LandingPageModule, 
-        TabsModule
+        TabsModule,
+        OAuthModule.forRoot(),
+        ReusableComponentsModule,
+        SupportModule,
+        AboutModule,
+        ActionsModule,
+        UserSpaceModule
     ],
     declarations: [
         AppComponent,
         HomeComponent,
-        SupportComponent,
-        LoginComponent,
-        RegisterComponent,
-        EditProfileComponent,
         SearchComponent,
         TopMenuComponent,
+        FooterComponent,
     ],
     providers: [
         UserService,

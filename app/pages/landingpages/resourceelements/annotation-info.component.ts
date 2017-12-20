@@ -3,12 +3,20 @@
  */
 import { Component, Input } from '@angular/core';
 import { AnnotationInfo } from "../../../domain/openminted-model";
+import { annotationTypeTypeEnum, EnumValues } from "../../../domain/omtd.enum";
 
 @Component({
     selector: 'annotation-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/annotation-info.component.html',
+    templateUrl: './annotation-info.component.html',
 })
 
 export class AnnotationInfoComponent {
+
+    annotationTypeTypeValues : EnumValues[] = annotationTypeTypeEnum;
     @Input() annotationInfo: AnnotationInfo;
+
+    private annotationTypeType(l : string) {
+        let annotationTypeType = this.annotationTypeTypeValues.find(v => v.key === l);
+        return annotationTypeType && annotationTypeType.value;
+    }
 }

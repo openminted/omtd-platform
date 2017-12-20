@@ -1,0 +1,9 @@
+<span *ngFor="let textClassification of textClassifications">
+    <ng-template [ngIf]="textClassification.keywords && textClassification.keywords.length>0">
+        <span>
+            <span *ngFor="let keyword of textClassification.keywords" class="uk-label uk-label-primary" style="margin-bottom: 5px">
+                {{keyword}}
+            </span>
+        </span>
+    </ng-template>
+</span>

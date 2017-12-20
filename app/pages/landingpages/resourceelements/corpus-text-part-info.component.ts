@@ -6,7 +6,7 @@ import { CorpusTextPartInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'corpus-text-part-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/corpus-text-part-info.component.html',
+    templateUrl: './corpus-text-part-info.component.html',
 })
 
 export class CorpusTextPartInfoComponent {

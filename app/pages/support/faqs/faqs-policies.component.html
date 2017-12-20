@@ -1,0 +1,90 @@
+<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div class="uk-container">
+        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+            <div class="uk-width-1-1@m uk-first-column">
+
+                <h1 class="uk-h2">FAQs - Policies</h1>
+                <!--<hr class="uk-divider-small">-->
+
+                <!-- TOP HELP CONTENT -->
+                <help-content #topHelperContent [position]="'top'"
+                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+                <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+                    <div class="uk-grid">
+
+                        <!-- LEFT HELP CONTENT -->
+                        <aside-help-content #leftHelperContent [position]="'left'"
+                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+
+                        <!-- MIDDLE -->
+                        <div class=" uk-width-expand@m">
+
+                            <div *ngIf="errorMessage" class="uk-alert uk-alert-danger">{{errorMessage}}</div>
+
+                            <div *ngIf="activeTopicQuestions && !errorMessage">
+
+                                <div *ngIf="activeTopicQuestions.length==0" class="uk-alert uk-alert-warning">
+                                    There are no active policies at the moment
+                                </div>
+
+                                <div *ngIf="activeTopicQuestions.length>0">
+
+
+                                    <ul class=" uk-tab uk-visible@m" uk-tab="connect: #faqTopicTabs; animation: uk-animation-fade">
+                                        <li *ngFor="let activeTopicQuestion of activeTopicQuestions"><a>{{activeTopicQuestion.name}}</a></li>
+                                    </ul>
+
+                                    <button class="uk-button uk-button-default uk-hidden@m" type="button">
+                                        <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">{{activeTab}}</span>
+                                    </button>
+
+                                    <ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m"
+                                        uk-switcher="{connect: #faqTopicTabs; animation: uk-animation-fade}" uk-dropdown="mode: click"
+                                        uk-toggle="target: #toggle-small-tabs">
+                                        <li *ngFor="let activeTopicQuestion of activeTopicQuestions"><a>{{activeTopicQuestion.name}}</a></li>
+                                    </ul>
+
+                                    <ul id="faqTopicTabs" class="uk-switcher  uk-width-1-1 uk-margin-top custom-tab-content-large">
+                                        <li *ngFor="let activeTopicQuestion of activeTopicQuestions">
+                                            <p *ngIf="activeTopicQuestion.description">{{activeTopicQuestion.description}}</p>
+
+                                            <ul *ngIf="activeTopicQuestion.questions.length>0" uk-accordion>
+                                                <li *ngFor="let question of activeTopicQuestion.questions" class="uk-margin-bottom">
+                                                    <h3 class="uk-accordion-title">{{question.question}}</h3>
+                                                    <div class="uk-accordion-content">
+                                                        <p>{{question.answer}}</p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RIGHT HELP CONTENT -->
+                        <aside-help-content #rightHelperContent [position]="'right'"
+                                            [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+                    </div>
+                </div>
+
+
+                <!-- BOTTOM HELP CONTENT -->
+                <help-content #bottomHelperContent [position]="'bottom'"
+                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+            </div>
+        </div>
+    </div>
+</div>

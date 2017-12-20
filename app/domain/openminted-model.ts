@@ -1,1736 +1,922 @@
-export class MyString  {
-    value : string;
-    lang : string;
-    desc:string;
-    label:string;
-}
+// Generated using typescript-generator version 1.29.366 on 2017-12-05 16:27:47.
 
-MyString.prototype.desc="Base type for multilingual elements";
+export class MyString {
+    value: string;
+    lang: string;
+}
 
 export class Abstract extends MyString {
-    desc:string;
-    label:string;
 }
 
-Abstract.prototype.desc="The abstract of the document in plain text format; the element can be repeated for the different language versions using the \"lang\" attribute to specify the language.";
-Abstract.prototype.label="Abstract";
-
-export class ActorInfo  {
-    relatedPerson : RelatedPerson;
-    relatedOrganization : RelatedOrganization;
-    desc:string;
-    label:string;
+export class ActorInfo {
+    actorType: ActorTypeEnum;
+    relatedPerson: PersonInfo;
+    relatedGroup: GroupInfo;
+    relatedOrganization: OrganizationInfo;
 }
 
-export class ActualUseInfo  {
-    actualUse : ActualUseEnum;
-    useNlpApplications : UseNLPSpecificEnum[];
-    usageReports : RelatedDocumentInfo[];
-    derivedResources : RelatedResource[];
-    usageProjects : RelatedProject[];
-    actualUseDetails : string;
-    desc:string;
-    label:string;
+export class ActualUseInfo {
+    applicationsInvolved: ApplicationType[];
+    applicationOther: string;
+    usageReports: RelatedDocumentInfo[];
+    derivedResources: RelatedResource[];
+    usageProjects: ProjectInfo[];
+    actualUseDetails: string;
 }
 
-ActualUseInfo.prototype.desc="Groups information on how the resource has already been used";
-ActualUseInfo.prototype.label="Actual use";
-
-export class Affiliation  {
-    position : string;
-    affiliatedOrganization : RelatedOrganization;
-    desc:string;
-    label:string;
+export class Affiliation {
+    position: string;
+    affiliatedOrganization: OrganizationInfo;
 }
 
-Affiliation.prototype.desc="Groups information on organization to whom the person is affiliated";
-Affiliation.prototype.label="Affiliation";
-
-export class AnnotatedCorpusInfo  {
-    corpusSubtype : any;
-    corpusMediaParts : CorpusMediaParts;
-    desc:string;
-    label:string;
+export class AnnotatedCorpusInfo {
+    corpusSubtype: string;
+    mediaType: string;
+    lingualityInfo: LingualityInfo;
+    languages: LanguageInfo[];
+    annotations: AnnotationInfo[];
+    textClassifications: TextClassificationInfo[];
+    domains: DomainInfo[];
+    timeClassifications: TimeCoverageInfo[];
+    geographicClassifications: GeographicCoverageInfo[];
 }
 
-AnnotatedCorpusInfo.prototype.desc="Groups together information on annotated corpora of all media types";
-AnnotatedCorpusInfo.prototype.label="Annotated corpus";
-
-export class AnnotatedDocumentInfo  {
-    rawPublication : RelatedDocumentInfo;
-    annotationInfo : AnnotationInfo;
-    desc:string;
-    label:string;
+export class AnnotatedDocumentInfo {
+    rawPublication: RelatedDocumentInfo;
+    dataFormatInfo: DataFormatInfo;
+    annotations: AnnotationInfo[];
 }
 
-export class AnnotationInfo  {
-    annotationLevel : AnnotationLevelEnum;
-    annotationStandoff : boolean;
-    dataFormat : DataFormat;
-    typesystem : RelatedResource;
-    tagset : RelatedResource;
-    theoreticModel : string;
-    guidelinesDocumentedIn : RelatedDocumentInfo[];
-    annotationMode : ProcessMode;
-    annotationModeDetails : string;
-    isAnnotatedBy : RelatedResource[];
-    annotationDate : DateCombination;
-    sizePerAnnotation : SizeInfo;
-    interannotatorAgreement : string;
-    intraannotatorAgreement : string;
-    annotators : ActorInfo[];
-    desc:string;
-    label:string;
+export class AnnotationInfo {
+    annotationTypes: AnnotationTypeInfo[];
+    typesystem: RelatedResource;
+    annotationSchema: RelatedResource;
+    annotationResource: RelatedResource;
+    guidelinesDocumentedIn: RelatedDocumentInfo[];
+    annotationMode: ProcessMode;
+    annotationModeDetails: string;
+    isAnnotatedBy: RelatedResource[];
+    annotationDate: DateCombination;
+    interannotatorAgreement: string;
+    intraannotatorAgreement: string;
+    annotators: ActorInfo[];
 }
 
-AnnotationInfo.prototype.desc="Groups information on the annotated part(s) of a resource";
-AnnotationInfo.prototype.label="Annotation";
-
-export class AnnotationsInfo  {
-    corpusSubtype : any;
-    rawCorpus : RelatedResource;
-    annotationInfo : AnnotationInfo;
-    desc:string;
-    label:string;
+export class AnnotationTypeInfo {
+    annotationType: AnnotationTypeType;
+    annotationTypeOther: string;
 }
 
-AnnotationsInfo.prototype.desc="Groups together information on annotations";
-AnnotationsInfo.prototype.label="Annotations";
-
-export class AttributionText extends MyString {
-    desc:string;
-    label:string;
+export class BaseMetadataRecord {
+    metadataHeaderInfo: MetadataHeaderInfo;
 }
 
-AttributionText.prototype.desc="The text that must be quoted for attribution purposes when using a resource - for cases where a resource is provided with a restriction on attribution; you can use a standard text such as \"Resource A by Resource Creator/Owner B used under licence C as accessed at D\"";
-AttributionText.prototype.label="Attribution text";
-
-export class Browsing  {
-    total : number;
-    from : number;
-    to : number;
-    results : Result;
-    facets : Facet[];
-    desc:string;
-    label:string;
+export class CharacterEncodingInfo {
+    characterEncoding: CharacterEncodingEnum;
+    sizePerCharacterEncoding: SizeInfo;
 }
 
-export class CharacterEncodingInfo  {
-    characterEncoding : CharacterEncodingEnum;
-    sizePerCharacterEncoding : SizeInfo;
-    desc:string;
-    label:string;
+export class CommunicationInfo {
+    emails: string[];
+    homepages: string[];
+    postalAddress: PostalAddress;
+    telephoneNumbers: string[];
 }
 
-CharacterEncodingInfo.prototype.desc="Groups together information on character encoding of the resource";
-CharacterEncodingInfo.prototype.label="Character encoding";
-
-export class CommunicationInfo  {
-    emails : string[];
-    homepages : string[];
-    postalAddress : PostalAddress;
-    telephoneNumbers : string[];
-    faxNumbers : string[];
-    desc:string;
-    label:string;
+export class Component extends BaseMetadataRecord {
+    componentInfo: ComponentInfo;
 }
 
-CommunicationInfo.prototype.desc="Groups information on communication details of a person or an organization";
-CommunicationInfo.prototype.label="Communication";
-
-export class OMTDComponent  {
-    metadataHeaderInfo : MetadataHeaderInfo;
-    componentInfo : ComponentInfo;
-    desc:string;
-    label:string;
+export class ComponentCreationInfo {
+    framework: FrameworkEnum;
+    formalism: string;
+    implementationLanguage: string;
+    hasOriginalSource: ResourceIdentifier[];
+    creationDetails: string;
+    tdmmethod: TDMMethodType;
 }
 
-export class ComponentCreationInfo  {
-    framework : FrameworkEnum;
-    implementationLanguage : string[];
-    formalism : string[];
-    hasOriginalSource : ResourceIdentifier[];
-    creationDetails : string;
-    desc:string;
-    label:string;
+export class ComponentDependencies {
+    typesystem: RelatedResource;
+    annotationSchema: RelatedResource;
+    annotationResources: RelatedResource[];
+    mlModel: RelatedResource;
+    softwareLibraries: string[];
 }
 
-ComponentCreationInfo.prototype.desc="Groups together information on the creation of a component";
-ComponentCreationInfo.prototype.label="OMTDComponent creation";
-
-export class ComponentDependencies  {
-    typesystem : RelatedResource;
-    tagsets : RelatedResource[];
-    annotationResources : RelatedResource[];
-    softwareLibraries : string[];
-    requiresHardware : RequiresHardwareEnum[];
-    desc:string;
-    label:string;
+export class ComponentDistributionInfo {
+    componentDistributionForm: ComponentDistributionFormEnum;
+    distributionLocation: string;
+    command: string;
+    webServiceType: WebServiceTypeEnum;
+    operatingSystems: OperatingSystemEnum[];
 }
 
-export class ComponentDistributionInfo  {
-    componentDistributionMedium : ComponentDistributionMediumEnum;
-    downloadURLs : string[];
-    accessURLs : string[];
-    mavenID : any;
-    webServiceType : WebServiceTypeEnum;
-    operatingSystem : OperatingSystemEnum[];
-    rightsInfo : RightsInfo;
-    copyrightStatements : CopyrightStatement[];
-    attributionTexts : AttributionText[];
-    rightsHolders : ActorInfo[];
-    availabilityStartDate : Date;
-    availabilityEndDate : Date;
-    fee : string;
-    userTypes : UserTypeEnum[];
-    desc:string;
-    label:string;
+export class ComponentEvaluationInfo {
+    evaluated: boolean;
+    evaluationLevels: EvaluationLevelEnum[];
+    evaluationTypes: EvaluationTypeEnum[];
+    evaluationCriteria: EvaluationCriterionEnum[];
+    evaluationMeasures: EvaluationMeasureEnum[];
+    goldStandardLocation: string;
+    performanceIndicators: PerformanceIndicatorInfo[];
+    evaluationReports: RelatedDocumentInfo[];
+    evaluationSwComponents: RelatedResource[];
+    evaluationDetails: string;
+    evaluators: ActorInfo[];
 }
 
-ComponentDistributionInfo.prototype.desc="Groups information on the distribution of a component (software code, executable programme, web service/workflow)";
-ComponentDistributionInfo.prototype.label="Document distribution";
-
-export class ComponentDocumentationInfo  {
-    onLineHelpURL : string;
-    hasManual : RelatedDocumentInfo;
-    issueTracker : string;
-    desc:string;
-    label:string;
+export class ComponentInfo {
+    resourceType: ResourceTypeEnum;
+    identificationInfo: IdentificationInfo;
+    versionInfo: VersionInfo;
+    contactInfo: ContactInfo;
+    resourceDocumentations: ResourceDocumentationInfo[];
+    resourceCreationInfo: ResourceCreationInfo;
+    validationInfos: ValidationInfo[];
+    usageInfo: UsageInfo;
+    application: boolean;
+    functionInfo: FunctionInfo;
+    distributionInfos: ComponentDistributionInfo[];
+    rightsInfo: RightsInfo;
+    parameterInfos: ParameterInfo[];
+    inputContentResourceInfo: ProcessingResourceInfo;
+    outputResourceInfo: ProcessingResourceInfo;
+    previousAnnotationTypesPolicy: PreviousAnnotationTypesPolicyEnum;
+    componentDependencies: ComponentDependencies;
+    componentCreationInfo: ComponentCreationInfo;
+    keywords: string[];
+    domains: Domain[];
+    scmInfo: ScmInfo;
+    issueManagementInfo: IssueManagementInfo;
+    relations: RelationInfo[];
+    componentEvaluationInfo: ComponentEvaluationInfo;
 }
 
-ComponentDocumentationInfo.prototype.desc="Groups together information on the documentation of a component";
-ComponentDocumentationInfo.prototype.label="OMTDComponent documentation";
-
-export class ComponentEvaluationInfo  {
-    evaluated : boolean;
-    evaluationLevels : EvaluationLevelEnum[];
-    evaluationTypes : EvaluationTypeEnum[];
-    evaluationCriteria : EvaluationCriterionEnum[];
-    evaluationMeasures : EvaluationMeasureEnum[];
-    evaluationReports : RelatedDocumentInfo[];
-    evaluationSwComponents : RelatedResource[];
-    evaluationDetails : string;
-    evaluators : ActorInfo[];
-    desc:string;
-    label:string;
+export class ComponentOperationInfo {
+    runningEnvironmentInfo: RunningEnvironmentInfo;
+    runningTime: string;
 }
 
-ComponentEvaluationInfo.prototype.desc="Groups together information on the evaluation status of a component";
-ComponentEvaluationInfo.prototype.label="OMTDComponent evaluation";
-
-export class ComponentInfo  {
-    resourceType : string;
-    identificationInfo : IdentificationInfo;
-    contactInfo : ContactInfo;
-    versionInfo : VersionInfo;
-    validationInfos : ValidationInfo[];
-    usageInfo : UsageInfo;
-    resourceDocumentationInfo : ResourceDocumentationInfo;
-    resourceCreationInfo : ResourceCreationInfo;
-    componentTypes : ComponentTypeEnum[];
-    distributionInfos : ComponentDistributionInfo[];
-    inputContentResourceInfo : ProcessingResourceInfo;
-    outputResourceInfo : ProcessingResourceInfo;
-    componentDependencies : ComponentDependencies;
-    componentCreationInfo : ComponentCreationInfo;
-    componentEvaluationInfo : ComponentEvaluationInfo;
-    componentDocumentationInfo : ComponentDocumentationInfo;
-    desc:string;
-    label:string;
+export class ContactInfo {
+    contactPoint: string;
+    contactType: ContactTypeEnum;
+    contactPersons: PersonInfo[];
+    contactGroups: GroupInfo[];
+    mailingLists: MailingListInfo[];
 }
 
-ComponentInfo.prototype.desc="Groups together all information related to software components";
-ComponentInfo.prototype.label="OMTDComponent";
-
-export class ComponentOperationInfo  {
-    runningEnvironmentInfo : RunningEnvironmentInfo;
-    runningTime : string;
-    desc:string;
-    label:string;
+export class Corpus extends BaseMetadataRecord {
+    corpusInfo: CorpusInfo;
 }
 
-ComponentOperationInfo.prototype.desc="Groups together information on the operation of a component";
-ComponentOperationInfo.prototype.label="OMTDComponent operation";
-
-export class ContactInfo  {
-    contactEmail : string;
-    landingPage : string;
-    contactPersons : RelatedPerson[];
-    contactGroups : RelatedGroup[];
-    mailingLists : MailingListInfo[];
-    desc:string;
-    label:string;
+export class CorpusInfo {
+    resourceType: string;
+    identificationInfo: IdentificationInfo;
+    versionInfo: VersionInfo;
+    contactInfo: ContactInfo;
+    datasetDistributionInfo: DatasetDistributionInfo;
+    rightsInfo: RightsInfo;
+    resourceDocumentations: ResourceDocumentationInfo[];
+    resourceCreationInfo: ResourceCreationInfo;
+    validationInfos: ValidationInfo[];
+    usageInfo: UsageInfo;
+    relations: RelationInfo[];
+    corpusSubtypeSpecificInfo: CorpusSubtypeSpecificInfo;
 }
 
-ContactInfo.prototype.desc="Groups information on the possible sources for obtaining further information regarding the resource; at least a general email address or a landing page (website) must be supplied, although the recommended practice is to describe a contact person/group";
-ContactInfo.prototype.label="Contact";
-
-export class Contributor  {
-    relatedPerson : RelatedPerson;
-    relatedOrganization : RelatedOrganization;
-    desc:string;
-    label:string;
+export class CorpusSubtypeSpecificInfo {
+    rawCorpusInfo: RawCorpusInfo;
+    annotatedCorpusInfo: AnnotatedCorpusInfo;
 }
 
-Contributor.prototype.desc="The identifier of the contributor, preferrably in the format: surname, initials (first name) prefix or the unique identifier of the author";
-Contributor.prototype.label="Contributor";
-
-export class CopyrightStatement extends MyString {
-    desc:string;
-    label:string;
+export class CorpusTextPartInfo {
 }
 
-CopyrightStatement.prototype.desc="A free text statement that may be included with the resource, usually containing the name(s) of copyright holders and licensing terms (intended for resources that already have such a statement); the element can be repeated for the different language versions using the \"lang\" attribute to specify the language.";
-CopyrightStatement.prototype.label="Copyright statement";
-
-export class OMTDCorpus  {
-    metadataHeaderInfo : MetadataHeaderInfo;
-    corpusInfo : CorpusInfo;
-    desc:string;
-    label:string;
+export class CreationInfo {
+    originalSources: RelatedResource[];
+    creationMode: ProcessMode;
+    creationModeDetails: string;
+    creationSwComponents: RelatedResource[];
 }
 
-export class CorpusInfo  {
-    resourceType : string;
-    identificationInfo : IdentificationInfo;
-    contactInfo : ContactInfo;
-    versionInfo : VersionInfo;
-    validationInfos : ValidationInfo[];
-    usageInfo : UsageInfo;
-    resourceDocumentationInfo : ResourceDocumentationInfo;
-    resourceCreationInfo : ResourceCreationInfo;
-    distributionInfos : DatasetDistributionInfo[];
-    corpusSubtypeSpecificInfo : CorpusSubtypeSpecificInfo;
-    desc:string;
-    label:string;
+export class DataFormatInfo {
+    dataFormat: DataFormatType;
+    dataFormatOther: string;
 }
 
-CorpusInfo.prototype.desc="Groups together all information related to corpora";
-CorpusInfo.prototype.label="OMTDCorpus";
-
-export class CorpusMediaParts  {
-    corpusTextParts : CorpusTextPartInfo[];
-    annotations : AnnotationInfo[];
-    desc:string;
-    label:string;
+export class DatasetDistributionInfo {
+    distributionMedium: DistributionMediumEnum;
+    distributionLocation: string;
+    sizes: SizeInfo[];
+    textFormats: TextFormatInfo[];
+    characterEncodings: CharacterEncodingInfo[];
 }
 
-CorpusMediaParts.prototype.desc="Used to specify the media type specific to corpora and group together the relevant information";
-CorpusMediaParts.prototype.label="Media type parts of corpus";
-
-export class CorpusMediaPartsType  {
-    corpusTextParts : CorpusTextPartInfo[];
-    desc:string;
-    label:string;
+export class OMTDDate {
+    day: number;
+    month: number;
+    year: number;
 }
 
-CorpusMediaPartsType.prototype.desc="Used to specify the media type specific to corpora and group together the relevant information";
-CorpusMediaPartsType.prototype.label="Media type component of corpus";
-
-export class CorpusSubtypeSpecificInfo  {
-    annotatedCorpusInfo : AnnotatedCorpusInfo;
-    rawCorpusInfo : RawCorpusInfo;
-    annotationsInfo : AnnotationsInfo;
-    desc:string;
-    label:string;
+export class DateCombination {
+    date: OMTDDate;
+    dateRange: DateRange;
 }
 
-export class CorpusTextPartInfo  {
-    mediaType : string;
-    lingualityInfo : LingualityInfo;
-    languages : LanguageInfo[];
-    modalities : ModalityInfo[];
-    sizes : SizeInfo[];
-    textFormats : TextFormatInfo[];
-    characterEncodings : CharacterEncodingInfo[];
-    domains : DomainInfoType[];
-    textClassifications : TextClassificationInfo[];
-    timeClassifications : TimeCoverageInfo[];
-    geographicClassifications : GeographicCoverageInfo[];
-    creationInfo : CreationInfo;
-    desc:string;
-    label:string;
+export class DateRange {
+    startDate: OMTDDate;
+    endDate: OMTDDate;
 }
-
-CorpusTextPartInfo.prototype.desc="Groups together information on the text component of a resource";
-CorpusTextPartInfo.prototype.label="OMTDCorpus text part";
-
-export class CreationInfo  {
-    originalSources : RelatedResource[];
-    creationMode : ProcessMode;
-    creationModeDetails : string;
-    creationSwComponents : RelatedResource[];
-    desc:string;
-    label:string;
-}
-
-CreationInfo.prototype.desc="Groups together information on the resource creation (e.g. for corpora, selection of texts/audio files/ video files etc.; for lexica, construction of lemma list etc.)";
-CreationInfo.prototype.label="Creation";
-
-export class DataFormat  {
-    mimeType : MimeTypeEnum;
-    dataFormatSpecific : DataFormatSpecificEnum;
-    documentationURL : string;
-    desc:string;
-    label:string;
-}
-
-DataFormat.prototype.desc="Specifies the format that is used since often the mime type will not be sufficient for machine processing; NOTE: normally the format should be represented as a combination of the mimetype (e.g. application/xml) and some name and link to the documentation about the supplementary conventions used (e.g xces, alvisED etc.)";
-DataFormat.prototype.label="Data format";
-
-export class DatasetDistributionInfo  {
-    distributionMediums : DistributionMediumEnum[];
-    downloadURLs : string[];
-    accessURLs : string[];
-    textFormats : TextFormatInfo[];
-    characterEncodings : CharacterEncodingInfo[];
-    sizes : SizeInfo[];
-    rightsInfo : RightsInfo;
-    copyrightStatements : CopyrightStatement[];
-    attributionTexts : AttributionText[];
-    rightsHolders : ActorInfo[];
-    availabilityStartDate : Date;
-    availabilityEndDate : Date;
-    fee : string;
-    userTypes : UserTypeEnum[];
-    desc:string;
-    label:string;
-}
-
-DatasetDistributionInfo.prototype.desc="Groups information on the distribution of a dataset resource (multiple files)";
-DatasetDistributionInfo.prototype.label="Document distribution";
-
-export class Date  {
-    day : number;
-    month : number;
-    year : number;
-    desc:string;
-    label:string;
-}
-
-Date.prototype.desc="Basic format for dates, with optional day and month and obligatory year";
-Date.prototype.label="Date";
-
-export class DateCombination  {
-    date : Date;
-    dateRange : DateRange;
-    desc:string;
-    label:string;
-}
-
-export class DateRange  {
-    startDate : Date;
-    endDate : Date;
-    desc:string;
-    label:string;
-}
-
-DateRange.prototype.desc="Basic format for date ranges, allowing combinations of years and full dates";
-DateRange.prototype.label="Date range";
 
 export class DepartmentName extends MyString {
-    nameType : NameTypeEnum;
-    desc:string;
-    label:string;
+    nameType: NameTypeEnum;
 }
-
-DepartmentName.prototype.desc="The name of the department or unit (e.g. specific university faculty/department, department/unit of a research organization or private company etc.)";
-DepartmentName.prototype.label="Department name";
 
 export class Description extends MyString {
-    desc:string;
-    label:string;
 }
 
-Description.prototype.desc="Provides the description of the resource in prose; the element can be repeated for the different language versions using the \"lang\" attribute to specify the language.";
-Description.prototype.label="Description";
-
-export class Document  {
-    publication : DocumentInfo;
-    annotatedPublication : AnnotatedDocumentInfo;
-    desc:string;
-    label:string;
+export class DistributionLoc {
 }
 
-Document.prototype.desc="Root element for documents (single files); choice among raw publications and annotated publications";
-export class DocumentDistributionInfo  {
-    distributionMediums : DistributionMediumEnum[];
-    downloadURLs : string[];
-    accessURLs : string[];
-    fullText : FullText;
-    mimeTypes : MimeTypeEnum[];
-    characterEncodings : CharacterEncodingEnum[];
-    sizes : SizeInfo[];
-    rightsInfo : any[];
-    copyrightStatements : CopyrightStatement[];
-    attributionTexts : AttributionText[];
-    rightsHolders : ActorInfo[];
-    availabilityStartDate : Date;
-    availabilityEndDate : Date;
-    fee : string;
-    userTypes : UserTypeEnum[];
-    desc:string;
-    label:string;
+export class Document {
+    publication: DocumentInfo;
+    annotatedPublication: AnnotatedDocumentInfo;
 }
 
-DocumentDistributionInfo.prototype.desc="Groups information on the distribution of a document (single file)";
-DocumentDistributionInfo.prototype.label="Document distribution";
-
-export class DocumentInfo  {
-    documentType : DocumentTypeEnum;
-    publicationType : PublicationTypeEnum;
-    identifiers : PublicationIdentifier[];
-    titles : Title[];
-    authors : RelatedPerson[];
-    contributors : Contributor[];
-    publicationDate : Date;
-    publisher : ActorInfo;
-    journal : RelatedJournal;
-    inBook : RelatedDocumentInfo;
-    volume : string;
-    series : string;
-    pages : string;
-    edition : string;
-    conference : string;
-    distributions : DocumentDistributionInfo[];
-    documentLanguages : Language[];
-    subjects : Subject[];
-    keywords : string[];
-    fundingProjects : RelatedProject[];
-    abstracts : Abstract[];
-    sizes : SizeInfo[];
-    desc:string;
-    label:string;
+export class DocumentDistributionInfo {
+    distributionLocation: string;
+    hashkey: string;
+    dataFormatInfo: DataFormatInfo;
+    characterEncoding: CharacterEncodingEnum;
+    sizes: SizeInfo[];
 }
 
-export class DocumentMetadataRecord  {
-    metadataHeaderInfo : MetadataHeaderInfo;
-    document : Document;
-    desc:string;
-    label:string;
+export class DocumentInfo {
+    documentType: DocumentTypeEnum;
+    publicationType: PublicationTypeEnum;
+    identifiers: PublicationIdentifier[];
+    titles: Title[];
+    authors: PersonInfo[];
+    contributors: ActorInfo[];
+    publicationDate: OMTDDate;
+    publisher: OrganizationInfo;
+    journal: JournalInfo;
+    inBook: RelatedDocumentInfo;
+    volume: string;
+    series: string;
+    pages: string;
+    edition: string;
+    conference: string;
+    distributions: DocumentDistributionInfo[];
+    rightsInfo: RightsInfo;
+    documentLanguages: string[];
+    keywords: string[];
+    subjects: Subject[];
+    fullTexts: FullText[];
+    abstracts: Abstract[];
+    fundingProjects: ProjectInfo[];
+    sizes: SizeInfo[];
+    relations: RelationInfo[];
 }
 
-DocumentMetadataRecord.prototype.desc="Root element for metadata records of single files (documents); groups metadata header and information about the document itself";
-DocumentMetadataRecord.prototype.label="Document metadata record";
-
-export class Domain  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
-    desc:string;
-    label:string;
+export class DocumentMetadataRecord extends BaseMetadataRecord {
+    document: Document;
 }
 
-Domain.prototype.desc="Specifies the application domain of the resource or the tool/service";
-Domain.prototype.label="Domain";
-
-export class DomainInfoType  {
-    domain : Domain;
-    sizePerDomain : SizeInfo;
-    desc:string;
-    label:string;
+export class Domain {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-export class Facet  {
-    field : string;
-    label : string;
-    values : Value[];
-    desc:string;
-    // label:string;
+export class DomainInfo {
+    domain: Domain;
+    sizePerDomain: SizeInfo;
 }
 
-export class ForeseenUseInfo  {
-    foreseenUse : ForeseenUseEnum;
-    useNlpApplications : UseNLPSpecificEnum[];
-    desc:string;
-    label:string;
-}
-
-ForeseenUseInfo.prototype.desc="Groups information on the use for which the resource is created";
-ForeseenUseInfo.prototype.label="Foreseen use";
-
-export class Formalisms  {
-    formalism : string;
-    desc:string;
-    label:string;
+export class Formalisms {
+    formalism: string;
 }
 
 export class FullText extends MyString {
-    desc:string;
-    label:string;
 }
 
-FullText.prototype.desc="The full text of the publication in simple text format";
-export class GeographicCoverageInfo  {
-    geographicCoverage : string;
-    sizePerGeographicCoverage : SizeInfo;
-    desc:string;
-    label:string;
+export class FunctionInfo {
+    function: OperationType;
+    functionOther: string;
 }
 
-GeographicCoverageInfo.prototype.desc="Groups information on geographic classification of the resource";
-GeographicCoverageInfo.prototype.label="Geographic coverage";
-
-export class GivenName extends MyString {
-    desc:string;
-    label:string;
+export class GeographicCoverageInfo {
+    geographicCoverage: string;
+    sizePerGeographicCoverage: SizeInfo;
 }
 
-GivenName.prototype.desc="The given name (first name) of a person related to the resource; initials can also be used";
-GivenName.prototype.label="Given name";
-
-export class GivenNames  {
-    givenName : GivenName[];
-    desc:string;
-    label:string;
+export class GrammaticalPhenomenaCoverages {
+    grammaticalPhenomenaCoverage: GrammaticalPhenomenaCoverageEnum[];
+    weightedGrammar: boolean;
 }
 
-export class GrammaticalPhenomenaCoverages  {
-    grammaticalPhenomenaCoverage : GrammaticalPhenomenaCoverageEnum[];
-    weightedGrammar : boolean;
-    desc:string;
-    label:string;
+export class GroupInfo {
+    groupNames: GroupName[];
+    affiliatedOrganization: OrganizationInfo;
 }
 
 export class GroupName extends MyString {
-    desc:string;
-    label:string;
 }
 
-GroupName.prototype.desc="The name(s) of the group";
-GroupName.prototype.label="Group name";
-
-export class IdentificationInfo  {
-    resourceNames : ResourceName[];
-    descriptions : Description[];
-    resourceShortNames : ResourceShortName[];
-    identifiers : ResourceIdentifier[];
-    desc:string;
-    label:string;
+export class IdentificationInfo {
+    resourceNames: ResourceName[];
+    descriptions: Description[];
+    resourceShortName: string;
+    resourceIdentifiers: ResourceIdentifier[];
+    public: boolean;
 }
 
-IdentificationInfo.prototype.desc="Groups together information needed to identify the resource";
-IdentificationInfo.prototype.label="Identification";
-
-export class JournalIdentifier  {
-    value : string;
-    journalIdentifierSchemeName : JournalIdentifierSchemeNameEnum;
-    schemeURI : string;
-    desc:string;
-    label:string;
+export class IntendedApplications {
+    intendedApplication: ApplicationType[];
+    applicationOther: string;
 }
 
-JournalIdentifier.prototype.desc="Reference to a DOI (recommended) or any kind of identifier used for the publication";
-JournalIdentifier.prototype.label="Journal Identifier";
-
-export class JournalIdentifiers  {
-    journalIdentifier : JournalIdentifier[];
-    desc:string;
-    label:string;
+export class IssueManagementInfo {
+    system: string;
+    url: string;
 }
 
-export class JournalInfo  {
-    identifiers : JournalIdentifier[];
-    journalTitles : JournalTitle[];
-    publisher : ActorInfo;
-    languages : Language[];
-    subjects : Subject[];
-    rights : RightsInfo[];
-    desc:string;
-    label:string;
+export class JournalIdentifier {
+    value: string;
+    journalIdentifierSchemeName: JournalIdentifierSchemeNameEnum;
+    schemeURI: string;
+}
+
+export class JournalInfo {
+    journalTitles: JournalTitle[];
+    identifiers: JournalIdentifier[];
+    publisher: OrganizationInfo;
+    languages: string[];
+    subjects: Subject[];
+    rights: RightsInfo[];
 }
 
 export class JournalTitle extends MyString {
-    desc:string;
-    label:string;
 }
 
-JournalTitle.prototype.desc="The title(s) of the journal";
-JournalTitle.prototype.label="Journal title";
-
-export class Language  {
-    languageTag : string;
-    languageId : string;
-    scriptId : ScriptIdType;
-    regiontId : RegionIdType;
-    variantId : VariantIdType;
-    desc:string;
-    label:string;
+export class LanguageDescription extends BaseMetadataRecord {
+    languageDescriptionInfo: LanguageDescriptionInfo;
 }
 
-Language.prototype.desc="A human understandable name of the language that is used in the resource or supported by the tool/service, as specified in the BCP47 guidelines (https://tools.ietf.org/html/bcp47); the guidelines includes (a) language subtag according to ISO 639-1 and for languages not covered by this, the ISO 639-3; (b) the script tag according to ISO 15924; (c) the region tag according to ISO 3166-1;  (d) the variant subtag";
-Language.prototype.label="Language";
-
-export class LanguageDescription  {
-    metadataHeaderInfo : MetadataHeaderInfo;
-    languageDescriptionInfo : LanguageDescriptionInfo;
-    desc:string;
-    label:string;
+export class LanguageDescriptionEncodingInfo {
+    encodingLevels: EncodingLevelEnum[];
+    standardsBestPractices: ConformanceToStandardsBestPractices[];
+    theoreticModels: string[];
+    formalisms: Formalisms;
+    tasks: TaskEnum[];
+    grammaticalPhenomenaCoverages: GrammaticalPhenomenaCoverages;
 }
 
-export class LanguageDescriptionEncodingInfo  {
-    encodingLevels : EncodingLevelEnum[];
-    standardsBestPractices : ConformanceToStandardsBestPractices[];
-    theoreticModels : string[];
-    formalisms : Formalisms;
-    tasks : TaskEnum[];
-    grammaticalPhenomenaCoverages : GrammaticalPhenomenaCoverages;
-    desc:string;
-    label:string;
+export class LanguageDescriptionInfo {
+    resourceType: string;
+    identificationInfo: IdentificationInfo;
+    versionInfo: VersionInfo;
+    contactInfo: ContactInfo;
+    distributionInfos: DatasetDistributionInfo[];
+    rightsInfo: RightsInfo;
+    resourceDocumentations: ResourceDocumentationInfo[];
+    resourceCreationInfo: ResourceCreationInfo;
+    validationInfos: ValidationInfo[];
+    usageInfo: UsageInfo;
+    languageDescriptionType: LanguageDescriptionTypeEnum;
+    modelOperationInfo: ModelOperationInfo;
+    languageDescriptionEncodingInfo: LanguageDescriptionEncodingInfo;
+    languageDescriptionOperationInfo: LanguageDescriptionOperationInfo;
+    languageDescriptionPerformanceInfo: LanguageDescriptionPerformanceInfo;
+    relations: RelationInfo[];
+    languageDescriptionTextInfo: LanguageDescriptionTextInfo;
 }
 
-LanguageDescriptionEncodingInfo.prototype.desc="Groups together information on the contents of the LanguageDescriptions";
-LanguageDescriptionEncodingInfo.prototype.label="Language description encoding";
-
-export class LanguageDescriptionInfo  {
-    resourceType : string;
-    identificationInfo : IdentificationInfo;
-    contactInfo : ContactInfo;
-    versionInfo : VersionInfo;
-    validationInfos : ValidationInfo[];
-    usageInfo : UsageInfo;
-    resourceDocumentationInfo : ResourceDocumentationInfo;
-    resourceCreationInfo : ResourceCreationInfo;
-    distributionInfos : DatasetDistributionInfo[];
-    languageDescriptionType : LanguageDescriptionTypeEnum;
-    languageDescriptionEncodingInfo : LanguageDescriptionEncodingInfo;
-    languageDescriptionOperationInfo : LanguageDescriptionOperationInfo;
-    languageDescriptionPerformanceInfo : LanguageDescriptionPerformanceInfo;
-    languageDescriptionMediaType : LanguageDescriptionMediaType;
-    desc:string;
-    label:string;
+export class LanguageDescriptionOperationInfo {
+    runningEnvironmentInfo: RunningEnvironmentInfo;
+    relatedLexiconInfo: RelatedLexiconInfo;
 }
 
-LanguageDescriptionInfo.prototype.desc="Groups together all information related to language descriptions";
-LanguageDescriptionInfo.prototype.label="Language description";
-
-export class LanguageDescriptionMediaType  {
-    languageDescriptionTextInfo : LanguageDescriptionTextInfo;
-    desc:string;
-    label:string;
+export class LanguageDescriptionPerformanceInfo {
+    robustness: string;
+    shallowness: string;
+    output: string;
 }
 
-LanguageDescriptionMediaType.prototype.desc="Groups information on the media type-specific components for language descriptions";
-LanguageDescriptionMediaType.prototype.label="Media type component of language description";
-
-export class LanguageDescriptionOperationInfo  {
-    runningEnvironmentInfo : RunningEnvironmentInfo;
-    relatedLexiconInfo : RelatedLexiconInfo;
-    desc:string;
-    label:string;
+export class LanguageDescriptionTextInfo {
+    mediaType: string;
+    lingualityInfo: LingualityInfo;
+    languages: LanguageInfo[];
+    metalanguages: LanguageInfo[];
+    domains: Domain[];
+    keywords: string[];
+    timeCoverage: string;
+    geographicCoverage: string;
+    creationInfo: CreationInfo;
 }
 
-LanguageDescriptionOperationInfo.prototype.desc="Groups together information on the operation requirements of the Language Descriptions";
-LanguageDescriptionOperationInfo.prototype.label="Language description operation";
-
-export class LanguageDescriptionPerformanceInfo  {
-    robustness : string;
-    shallowness : string;
-    output : string;
-    desc:string;
-    label:string;
+export class LanguageInfo {
+    language: string;
+    sizePerLanguage: SizeInfo;
+    languageVarieties: LanguageVarietyInfo[];
 }
 
-LanguageDescriptionPerformanceInfo.prototype.desc="Groups together information on the performance of the Language Descriptions";
-LanguageDescriptionPerformanceInfo.prototype.label="Language description performance";
-
-export class LanguageDescriptionTextInfo  {
-    mediaType : string;
-    lingualityInfo : LingualityInfo;
-    languages : LanguageInfo[];
-    metalanguages : LanguageInfo[];
-    modalities : ModalityInfo[];
-    sizes : SizeInfo[];
-    domains : DomainInfoType[];
-    timeClassifications : TimeCoverageInfo[];
-    geographicClassifications : GeographicCoverageInfo[];
-    creationInfo : CreationInfo;
-    desc:string;
-    label:string;
+export class LanguageVarietyInfo {
+    languageVarietyType: LanguageVarietyTypeEnum;
+    languageVarietyName: string;
+    sizePerLanguageVariety: SizeInfo;
 }
 
-LanguageDescriptionTextInfo.prototype.desc="Groups together all information relevant to the text module of a language description (e.g. format, languages, size etc.); it is obligatory for all language descriptions";
-LanguageDescriptionTextInfo.prototype.label="Language description text component";
-
-export class LanguageInfo  {
-    language : Language;
-    sizePerLanguage : SizeInfo;
-    languageVarieties : LanguageVarietyInfo[];
-    desc:string;
-    label:string;
+export class Lexical extends BaseMetadataRecord {
+    lexicalConceptualResourceInfo: LexicalConceptualResourceInfo;
 }
 
-LanguageInfo.prototype.desc="Groups information on the languages represented in the resource";
-LanguageInfo.prototype.label="Language";
-
-export class LanguageVarietyInfo  {
-    languageVarietyType : LanguageVarietyTypeEnum;
-    languageVarietyName : string;
-    sizePerLanguageVariety : SizeInfo;
-    desc:string;
-    label:string;
+export class LexicalConceptualResourceEncodingInfo {
+    contentTypes: ContentTypesEnum[];
+    conformanceToStandardsBestPractices: ConformanceToStandardsBestPractices[];
+    theoreticModel: string[];
+    externalRef: string[];
 }
 
-LanguageVarietyInfo.prototype.desc="Groups information on language varieties occurred in the resource (e.g. dialects)";
-LanguageVarietyInfo.prototype.label="Language variety";
-
-export class Lexical  {
-    metadataHeaderInfo : MetadataHeaderInfo;
-    lexicalConceptualResourceInfo : LexicalConceptualResourceInfo;
-    desc:string;
-    label:string;
+export class LexicalConceptualResourceInfo {
+    resourceType: string;
+    identificationInfo: IdentificationInfo;
+    versionInfo: VersionInfo;
+    contactInfo: ContactInfo;
+    distributionInfos: DatasetDistributionInfo[];
+    rightsInfo: RightsInfo;
+    resourceDocumentations: ResourceDocumentationInfo[];
+    resourceCreationInfo: ResourceCreationInfo;
+    validationInfos: ValidationInfo[];
+    usageInfo: UsageInfo;
+    lexicalConceptualResourceType: LexicalConceptualResourceTypeEnum;
+    lexicalConceptualResourceEncodingInfo: LexicalConceptualResourceEncodingInfo;
+    relations: RelationInfo[];
+    lexicalConceptualResourceTextInfo: LexicalConceptualResourceTextInfo;
 }
 
-export class LexicalConceptualResourceEncodingInfo  {
-    encodingLevel : EncodingLevelEnum[];
-    linguisticInformation : LinguisticInformationEnum[];
-    conformanceToStandardsBestPractices : ConformanceToStandardsBestPractices[];
-    theoreticModel : string[];
-    externalRef : string[];
-    extratextualInformation : ExtratextualInformationEnum[];
-    extraTextualInformationUnit : ExtraTextualInformationUnitEnum[];
-    desc:string;
-    label:string;
+export class LexicalConceptualResourceTextInfo {
+    mediaType: string;
+    lingualityInfo: LingualityInfo;
+    languages: LanguageInfo[];
+    metalanguages: LanguageInfo[];
+    domains: Domain[];
+    keywords: string[];
+    timeCoverage: string;
+    geographicCoverage: string;
+    creationInfo: CreationInfo;
 }
 
-LexicalConceptualResourceEncodingInfo.prototype.desc="Groups all information regarding the contents of lexical/conceptual resources";
-LexicalConceptualResourceEncodingInfo.prototype.label="Lexical / Conceptual resource encoding";
-
-export class LexicalConceptualResourceInfo  {
-    resourceType : string;
-    identificationInfo : IdentificationInfo;
-    contactInfo : ContactInfo;
-    versionInfo : VersionInfo;
-    validationInfos : ValidationInfo[];
-    usageInfo : UsageInfo;
-    resourceDocumentationInfo : ResourceDocumentationInfo;
-    resourceCreationInfo : ResourceCreationInfo;
-    distributionInfos : DatasetDistributionInfo[];
-    lexicalConceptualResourceType : LexicalConceptualResourceTypeEnum;
-    lexicalConceptualResourceEncodingInfo : LexicalConceptualResourceEncodingInfo;
-    lexicalConceptualResourceMediaType : LexicalConceptualResourceMediaType;
-    desc:string;
-    label:string;
+export class LicenceInfo {
+    licence: LicenceEnum;
+    nonStandardLicenceName: string;
+    nonStandardLicenceTermsURL: string;
+    nonStandaradLicenceTermsText: NonStandaradLicenceTermsText[];
+    conditionOfUse: ConditionOfUseEnum[];
 }
 
-LexicalConceptualResourceInfo.prototype.desc="Groups together all information related to lexical/conceptual resources";
-LexicalConceptualResourceInfo.prototype.label="Lexical/conceptual resource";
-
-export class LexicalConceptualResourceMediaType  {
-    lexicalConceptualResourceTextInfo : LexicalConceptualResourceTextInfo;
-    desc:string;
-    label:string;
+export class LingualityInfo {
+    lingualityType: LingualityTypeEnum;
+    multilingualityType: MultilingualityTypeEnum;
+    multilingualityTypeDetails: string;
 }
 
-LexicalConceptualResourceMediaType.prototype.desc="Restriction of mediaType for lexicalConceptualResources";
-LexicalConceptualResourceMediaType.prototype.label="Media type component of lexical / conceptual resource";
-
-export class LexicalConceptualResourceTextInfo  {
-    mediaType : string;
-    lingualityInfo : LingualityInfo;
-    languages : LanguageInfo[];
-    metalanguages : LanguageInfo[];
-    modalities : ModalityInfo[];
-    sizes : SizeInfo[];
-    domains : DomainInfoType[];
-    timeClassifications : TimeCoverageInfo[];
-    geographicClassifications : GeographicCoverageInfo[];
-    creationInfo : CreationInfo;
-    desc:string;
-    label:string;
+export class MailingListInfo {
+    mailingListName: string;
+    subscribe: string;
+    unsubscribe: string;
+    post: string;
+    archive: string;
+    otherArchives: string[];
 }
 
-LexicalConceptualResourceTextInfo.prototype.desc="Groups information on the textual part of the lexical/conceptual resource";
-LexicalConceptualResourceTextInfo.prototype.label="Lexical / Conceptual resource text";
-
-export class LicenceInfo  {
-    licence : LicenceEnum;
-    version : VersionEnum;
-    nonStandardLicenceName : NonStandardLicenceName[];
-    nonStandardLicenceTermsURL : string;
-    nonStandaradLicenceTermsText : NonStandaradLicenceTermsText[];
-    conditionsOfUse : ConditionsOfUseEnum[];
-    desc:string;
-    label:string;
+export class MetadataHeaderInfo {
+    metadataRecordIdentifier: MetadataIdentifier;
+    metadataCreationDate: Date;
+    metadataCreators: PersonInfo[];
+    sourceOfMetadataRecord: SourceOfMetadataRecord;
+    userQuery: string;
+    metadataLastDateUpdated: Date;
+    revision: string;
 }
 
-LicenceInfo.prototype.desc="Groups information on licences for the resource; can be repeated to allow for different modes of access and restrictions of use (e.g. free for academic use, on-a-fee basis for commercial use, download of a sample for free use etc.)";
-LicenceInfo.prototype.label="Licence";
-
-export class LicenceInfos  {
-    licenceInfo : LicenceInfo[];
-    desc:string;
-    label:string;
+export class MetadataIdentifier {
+    value: string;
+    metadataIdentifierSchemeName: MetadataIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-export class LingualityInfo  {
-    lingualityType : LingualityTypeEnum;
-    multilingualityType : MultilingualityTypeEnum;
-    multilingualityTypeDetails : string;
-    desc:string;
-    label:string;
+export class ModalityInfo {
+    modalityType: ModalityTypeEnum[];
+    modalityTypeDetails: string;
+    sizePerModality: SizeInfo;
 }
 
-LingualityInfo.prototype.desc="Groups information on the number of languages of the resource part and of the way they are combined to each other";
-LingualityInfo.prototype.label="Linguality";
-
-export class MailingListInfo  {
-    mailingListName : string;
-    subscribe : string;
-    unsubscribe : string;
-    post : string;
-    archive : string;
-    otherArchives : string[];
-    desc:string;
-    label:string;
-}
-
-MailingListInfo.prototype.desc="Groups information on the mailing list(s) that can be used for further information regarding the resource";
-MailingListInfo.prototype.label="Mailing list";
-
-export class MetadataHeaderInfo  {
-    metadataRecordIdentifier : MetadataIdentifier;
-    metadataCreationDate : Date;
-    metadataCreators : RelatedPerson[];
-    sourceOfMetadataRecord : SourceOfMetadataRecord;
-    metadataLanguages : Language[];
-    metadataLastDateUpdated : Date;
-    revision : string;
-    desc:string;
-    label:string;
-}
-
-MetadataHeaderInfo.prototype.desc="Groups information on the metadata record itself";
-MetadataHeaderInfo.prototype.label="Metadata header";
-
-export class MetadataIdentifier  {
-    value : string;
-    metadataIdentifierSchemeName : MetadataIdentifierSchemeNameEnum;
-    schemeURI : string;
-    desc:string;
-    label:string;
-}
-
-export class ModalityInfo  {
-    modalityType : ModalityTypeEnum[];
-    modalityTypeDetails : string;
-    sizePerModality : SizeInfo;
-    desc:string;
-    label:string;
-}
-
-ModalityInfo.prototype.desc="Groups information on the modalities represented in the resource";
-ModalityInfo.prototype.label="Modality";
-
-export class Model  {
-    metadataHeaderInfo : MetadataHeaderInfo;
-    modelInfo : ModelInfo;
-    desc:string;
-    label:string;
-}
-
-export class ModelInfo  {
-    resourceType : string;
-    identificationInfo : IdentificationInfo;
-    contactInfo : ContactInfo;
-    versionInfo : VersionInfo;
-    validationInfos : ValidationInfo[];
-    usageInfo : UsageInfo;
-    resourceDocumentationInfo : ResourceDocumentationInfo;
-    resourceCreationInfo : ResourceCreationInfo;
-    distributionInfos : DatasetDistributionInfo[];
-    modelOperationInfo : ModelOperationInfo;
-    modelMediaType : ModelMediaType;
-    desc:string;
-    label:string;
-}
-
-ModelInfo.prototype.desc="Groups together all information related to models";
-ModelInfo.prototype.label="Model";
-
-export class ModelMediaType  {
-    modelTextInfo : ModelTextInfo;
-    desc:string;
-    label:string;
-}
-
-ModelMediaType.prototype.desc="Restriction of mediaType for models";
-ModelMediaType.prototype.label="Media type component of model";
-
-export class ModelOperationInfo  {
-    variantName : string;
-    tagset : RelatedResource;
-    typesystem : RelatedResource;
-    algorithm : string;
-    algorithmDetails : string;
-    trainingCorpusDetails : string;
-    desc:string;
-    label:string;
-}
-
-export class ModelTextInfo  {
-    mediaType : string;
-    lingualityInfo : LingualityInfo;
-    languages : LanguageInfo[];
-    modalities : ModalityInfo[];
-    sizes : SizeInfo[];
-    domains : DomainInfoType[];
-    timeClassifications : TimeCoverageInfo[];
-    geographicClassifications : GeographicCoverageInfo[];
-    creationInfo : CreationInfo;
-    desc:string;
-    label:string;
-}
-
-ModelTextInfo.prototype.desc="Groups together all information related to the textual part of models";
-ModelTextInfo.prototype.label="Model";
-
-export class Name extends MyString {
-    desc:string;
-    label:string;
-}
-
-Name.prototype.desc="The full name of a person; the preferred format is \"family name, given name\"";
-Name.prototype.label="Name";
-
-export class Names  {
-    name : Name[];
-    desc:string;
-    label:string;
+export class ModelOperationInfo {
+    variant: string;
+    typesystem: RelatedResource;
+    annotationSchema: RelatedResource;
+    annotationResources: RelatedResource[];
+    tagsets: RelatedResource[];
+    algorithm: string;
+    algorithmDetails: string;
+    trainingCorpusDetails: string;
+    tdmmethod: TDMMethodType;
 }
 
 export class NonStandaradLicenceTermsText extends MyString {
-    desc:string;
-    label:string;
 }
 
-NonStandaradLicenceTermsText.prototype.desc="Used for inputting the text of licences (that are not included in the pre-defined list) and terms of use or terms of service (for web services)";
-NonStandaradLicenceTermsText.prototype.label="Text (for non-standard licences / terms of use / terms of service)";
-
-export class NonStandardLicenceName extends MyString {
-    desc:string;
-    label:string;
-}
-
-NonStandardLicenceName.prototype.desc="The name with which a licence is known; to be used for licences not included in the pre-defined list of recommended licences";
-NonStandardLicenceName.prototype.label="Name (for non-standard licences)";
-
-export class ObjectFactory  {
-    desc:string;
-    label:string;
+export class ObjectFactory {
 }
 
 export class OrganizationAlternativeName extends MyString {
-    nameType : NameTypeEnum;
-    desc:string;
-    label:string;
+    nameType: NameTypeEnum;
 }
 
-OrganizationAlternativeName.prototype.desc="An alternative name (e.g. abbreviation, acronym, translation etc.) used for an organization";
-OrganizationAlternativeName.prototype.label="Organization alternative name";
-
-export class OrganizationIdentifier  {
-    value : string;
-    organizationIdentifierSchemeName : OrganizationIdentifierSchemeNameEnum;
-    schemeURI : string;
-    desc:string;
-    label:string;
+export class OrganizationIdentifier {
+    value: string;
+    organizationIdentifierSchemeName: OrganizationIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-OrganizationIdentifier.prototype.desc="Reference to any kind of identifier used for an organization; the attribute should be used to specify the type of identifier (e.g. ORCID, LinkedIn etc.)";
-OrganizationIdentifier.prototype.label="Identifier";
-
-export class OrganizationIdentifiers  {
-    organizationIdentifier : OrganizationIdentifier[];
-    desc:string;
-    label:string;
+export class OrganizationInfo {
+    organizationNames: OrganizationName[];
+    organizationAlternativeNames: OrganizationAlternativeName[];
+    organizationIdentifiers: OrganizationIdentifier[];
+    departmentNames: DepartmentName[];
+    communicationInfo: CommunicationInfo;
 }
-
-export class OrganizationInfo  {
-    organizationNames : OrganizationName[];
-    organizationAlternativeNames : OrganizationAlternativeName[];
-    organizationIdentifiers : OrganizationIdentifier[];
-    departmentNames : DepartmentName[];
-    communicationInfo : CommunicationInfo;
-    desc:string;
-    label:string;
-}
-
-OrganizationInfo.prototype.desc="Groups information on organizations related to the resource";
-OrganizationInfo.prototype.label="Organization";
 
 export class OrganizationName extends MyString {
-    desc:string;
-    label:string;
 }
 
-OrganizationName.prototype.desc="The name(s) of the organization";
-OrganizationName.prototype.label="Organization name";
-
-export class OrganizationNames  {
-    organizationName : OrganizationName[];
-    desc:string;
-    label:string;
+export class OriginalDataProviderInfo {
+    originalDataProviderType: OriginalDataProviderTypeEnum;
+    originalDataProviderRepository: RepositoryInfo;
+    originalDataProviderJournal: JournalInfo;
+    originalDataProviderPublisher: OrganizationInfo;
 }
 
-export class OriginalDataProviderInfo  {
-    originalDataProviderType : OriginalDataProviderTypeEnum;
-    originalDataProviderRepository : RelatedRepository;
-    originalDataProviderJournal : RelatedJournal;
-    originalDataProviderPublisher : RelatedOrganization;
-    desc:string;
-    label:string;
+export class ParameterInfo {
+    parameterName: string;
+    parameterLabel: string;
+    parameterDescription: string;
+    parameterType: ParameterTypeEnum;
+    optional: boolean;
+    multiValue: boolean;
+    defaultValue: string[];
+    dataFormats: DataFormatInfo[];
 }
 
-OriginalDataProviderInfo.prototype.desc="Refers to the original data provider, in case the metadata record carries information taken from previous repositories/journals/publishers (e.g. in case the record's last source is an aggregator)";
-OriginalDataProviderInfo.prototype.label="Original data provider";
-
-export class PersonIdentifier  {
-    value : string;
-    personIdentifierSchemeName : PersonIdentifierSchemeNameEnum;
-    schemeURI : string;
-    desc:string;
-    label:string;
+export class PerformanceIndicatorInfo {
+    metric: MetricEnum;
+    measure: number;
+    unit: string;
 }
 
-PersonIdentifier.prototype.desc="Reference to any kind of identifier used for a person; the attribute should be used to specify the type of identifier (e.g. ORCID, LinkedIn etc.)";
-PersonIdentifier.prototype.label="Identifier";
-
-export class PersonIdentifiers  {
-    personIdentifier : PersonIdentifier[];
-    desc:string;
-    label:string;
+export class PersonIdentifier {
+    value: string;
+    personIdentifierSchemeName: PersonIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-export class PersonInfo  {
-    surnames : Surname[];
-    givenNames : GivenName[];
-    names : Name[];
-    personIdentifiers : PersonIdentifier[];
-    sex : SexEnum;
-    communicationInfo : CommunicationInfo;
-    affiliations : Affiliation[];
-    desc:string;
-    label:string;
+export class PersonInfo {
+    surname: string;
+    givenName: string;
+    personIdentifiers: PersonIdentifier[];
+    communicationInfo: CommunicationInfo;
+    affiliation: Affiliation;
 }
 
-PersonInfo.prototype.desc="Groups information relevant to personsrelated to the resource; to be used mainly for contact persons, resource creators, validators, annotators etc. for whom personal data can be provided";
-PersonInfo.prototype.label="Person";
-
-export class PersonName extends MyString {
-    desc:string;
-    label:string;
+export class PostalAddress {
+    address: string;
+    zipCode: string;
+    city: string;
+    region: string;
+    country: RegionIdType;
 }
 
-PersonName.prototype.desc="The name(s) of the person, preferrably in the format: surname, initials (first name) prefix";
-PersonName.prototype.label="Person name";
-
-export class PersonNames  {
-    personName : PersonName[];
-    desc:string;
-    label:string;
+export class ProcessingResourceInfo {
+    processingResourceType: ProcessingResourceTypeEnum;
+    dataFormats: DataFormatInfo[];
+    characterEncodings: CharacterEncodingEnum[];
+    languages: string[];
+    annotationTypes: AnnotationTypeInfo[];
+    typesystem: RelatedResource;
+    annotationSchema: RelatedResource;
+    annotationResource: RelatedResource;
+    samplesLocation: string;
 }
 
-export class Order<T> {
-    order: number;
-    resource : T;
+export class ProjectIdentifier {
+    value: string;
+    projectIdentifierSchemeName: string;
+    schemeURI: string;
 }
 
-export class PostalAddress  {
-    address : string;
-    zipCode : string;
-    city : string;
-    region : string;
-    country : RegionIdType;
-    desc:string;
-    label:string;
+export class ProjectInfo {
+    projectNames: ProjectName[];
+    projectShortNames: ProjectShortName[];
+    projectIdentifiers: ProjectIdentifier[];
+    webpages: string[];
+    funders: OrganizationInfo[];
+    fundingTypes: FundingTypeEnum[];
+    fundingProgramme: string;
+    jurisdiction: string;
+    fundingCountries: RegionIdType[];
+    projectDates: DateCombination;
 }
-
-export class ProcessingResourceInfo  {
-    resourceTypes : ResourceTypeEnum[];
-    mediaType : MediaTypeEnum;
-    languages : Language[];
-    characterEncodings : CharacterEncodingEnum[];
-    dataFormats : DataFormat[];
-    typesystem : RelatedResource;
-    tagset : RelatedResource;
-    annotationLevels : AnnotationLevelEnum[];
-    modalityTypes : ModalityTypeEnum[];
-    domains : Domain[];
-    textGenres : TextGenre[];
-    textTypes : Text[];
-    registers : Register[];
-    subjects : Subject[];
-    keywords : string[];
-    desc:string;
-    label:string;
-}
-
-export class ProjectIdentifier  {
-    value : string;
-    projectIdentifierSchemeName : string;
-    schemeURI : string;
-    desc:string;
-    label:string;
-}
-
-ProjectIdentifier.prototype.desc="A unique identifier for research projects";
-export class ProjectIdentifiers  {
-    projectIdentifier : ProjectIdentifier[];
-    desc:string;
-    label:string;
-}
-
-export class ProjectInfo  {
-    projectNames : ProjectName[];
-    projectShortNames : ProjectShortName[];
-    projectIdentifiers : ProjectIdentifier[];
-    webpages : string[];
-    fundingTypes : FundingTypeEnum[];
-    funders : RelatedOrganization[];
-    fundingProgramme : string;
-    jurisdiction : string;
-    fundingCountries : RegionIdType[];
-    projectDates : DateCombination;
-    desc:string;
-    label:string;
-}
-
-ProjectInfo.prototype.desc="Groups information on a project related to the resource(e.g. a project the resource has been used in; a funded project that led to the resource creation etc.)";
-ProjectInfo.prototype.label="Project";
 
 export class ProjectName extends MyString {
-    desc:string;
-    label:string;
-}
-
-ProjectName.prototype.desc="The name(s) of the project";
-ProjectName.prototype.label="Project name";
-
-export class ProjectNames  {
-    projectName : ProjectName[];
-    desc:string;
-    label:string;
 }
 
 export class ProjectShortName extends MyString {
-    desc:string;
-    label:string;
 }
 
-ProjectShortName.prototype.desc="A short name, abbreviation or acronym of a project related to the resource";
-ProjectShortName.prototype.label="Project short name";
-
-export class PublicationIdentifier  {
-    value : string;
-    publicationIdentifierSchemeName : PublicationIdentifierSchemeNameEnum;
-    schemeURI : string;
-    desc:string;
-    label:string;
+export class PublicationIdentifier {
+    value: string;
+    publicationIdentifierSchemeName: PublicationIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-PublicationIdentifier.prototype.desc="Reference to a DOI (recommended) or any kind of identifier used for the publication";
-PublicationIdentifier.prototype.label="Publication identifier";
-
-export class PublicationIdentifiers  {
-    publicationIdentifier : PublicationIdentifier[];
-    desc:string;
-    label:string;
+export class RawCorpusInfo {
+    corpusSubtype: string;
+    mediaType: string;
+    lingualityInfo: LingualityInfo;
+    languages: LanguageInfo[];
+    textClassifications: TextClassificationInfo[];
+    domains: DomainInfo[];
+    timeClassifications: TimeCoverageInfo[];
+    geographicClassifications: GeographicCoverageInfo[];
+    creationInfo: CreationInfo;
 }
 
-export class RawCorpusInfo  {
-    corpusSubtype : any;
-    corpusMediaPartsType : CorpusMediaPartsType;
-    desc:string;
-    label:string;
+export class Register {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-RawCorpusInfo.prototype.desc="Groups together information on corpora of all media types";
-RawCorpusInfo.prototype.label="Raw corpus";
-
-export class Register  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
-    desc:string;
-    label:string;
+export class RelatedDocumentInfo {
+    documentUnstructured: string;
+    publicationIdentifiers: PublicationIdentifier[];
 }
 
-Register.prototype.desc="For corpora that have already been using register classification";
-Register.prototype.label="Register";
-
-export class RelatedDocumentInfo  {
-    documentUnstructured : string;
-    publicationIdentifiers : PublicationIdentifier[];
-    desc:string;
-    label:string;
+export class RelatedLexiconInfo {
+    relatedLexiconType: RelatedLexiconTypeEnum;
+    attachedLexiconPosition: string;
+    compatibleLexiconType: CompatibleLexiconTypeEnum[];
 }
 
-export class RelatedGroup  {
-    groupNames : GroupName[];
-    relatedOrganization : RelatedOrganization;
-    desc:string;
-    label:string;
+export class RelatedResource {
+    resourceNames: ResourceName[];
+    resourceIdentifiers: ResourceIdentifier[];
 }
 
-export class RelatedJournal  {
-    journalTitles : JournalTitle[];
-    journalIdentifiers : JournalIdentifier[];
-    desc:string;
-    label:string;
+export class RelationInfo {
+    relationType: RelationTypeEnum;
+    relatedResource: RelatedResource;
 }
 
-export class RelatedLexiconInfo  {
-    relatedLexiconType : RelatedLexiconTypeEnum;
-    attachedLexiconPosition : string;
-    compatibleLexiconType : CompatibleLexiconTypeEnum[];
-    desc:string;
-    label:string;
+export class RepositoryIdentifier {
+    value: string;
+    repositoryIdentifierSchemeName: RepositoryIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
-RelatedLexiconInfo.prototype.desc="Groups together information on requirements for lexica set by the LanguageDescriptions";
-RelatedLexiconInfo.prototype.label="Related lexicon";
-
-export class RelatedOrganization  {
-    organizationNames : OrganizationName[];
-    organizationIdentifiers : OrganizationIdentifier[];
-    desc:string;
-    label:string;
-}
-
-export class RelatedPerson  {
-    personNames : PersonName[];
-    personIdentifiers : PersonIdentifier[];
-    desc:string;
-    label:string;
-}
-
-export class RelatedProject  {
-    projectNames : ProjectName[];
-    projectIdentifiers : ProjectIdentifier[];
-    desc:string;
-    label:string;
-}
-
-export class RelatedRepository  {
-    repositoryNames : RepositoryName[];
-    repositoryIdentifiers : RepositoryIdentifier[];
-    desc:string;
-    label:string;
-}
-
-export class RelatedResource  {
-    resourceIdentifiers : ResourceIdentifier[];
-    resourceNames : ResourceName[];
-    desc:string;
-    label:string;
-}
-
-export class RelationInfo  {
-    relationType : RelationTypeEnum;
-    relatedResource1 : RelatedResource;
-    relatedResources : RelatedResource[];
-    desc:string;
-    label:string;
-}
-
-RelationInfo.prototype.desc="Groups together information on relations between resources";
-RelationInfo.prototype.label="Annotations";
-
-export class RepositoryIdentifier  {
-    value : string;
-    repositoryIdentifierSchemeName : RepositoryIdentifierSchemeNameEnum;
-    schemeURI : string;
-    desc:string;
-    label:string;
-}
-
-export class RepositoryIdentifiers  {
-    repositoryIdentifier : RepositoryIdentifier[];
-    desc:string;
-    label:string;
+export class RepositoryInfo {
+    repositoryNames: RepositoryName[];
+    repositoryIdentifiers: RepositoryIdentifier[];
 }
 
 export class RepositoryName extends MyString {
-    desc:string;
-    label:string;
 }
 
-RepositoryName.prototype.desc="The name(s) of the repository";
-RepositoryName.prototype.label="Repository name";
-
-export class RepositoryNames  {
-    repositoryName : RepositoryName[];
-    desc:string;
-    label:string;
+export class ResourceCreationInfo {
+    resourceCreators: ActorInfo[];
+    fundingProjects: ProjectInfo[];
+    creationDate: DateCombination;
 }
 
-export class ResourceCreationInfo  {
-    resourceCreators : ActorInfo[];
-    fundingProjects : RelatedProject[];
-    creationDate : DateCombination;
-    desc:string;
-    label:string;
+export class ResourceDocumentationInfo {
+    documentationDescription: string;
+    documentationType: DocumentationTypeEnum;
+    publicationIdentifiers: PublicationIdentifier[];
 }
 
-ResourceCreationInfo.prototype.desc="Groups information on the creation procedure of a resource";
-ResourceCreationInfo.prototype.label="Resource creation";
-
-export class ResourceDocumentationInfo  {
-    mustBeCitedWith : RelatedDocumentInfo;
-    documentationPublications : RelatedDocumentInfo[];
-    samplesLocations : string[];
-    desc:string;
-    label:string;
-}
-
-ResourceDocumentationInfo.prototype.desc="Groups together information on any document describing the resource";
-ResourceDocumentationInfo.prototype.label="Resource documentation";
-
-export class ResourceIdentifier  {
-    value : string;
-    resourceIdentifierSchemeName : ResourceIdentifierSchemeNameEnum;
-    schemeURI : string;
-    desc:string;
-    label:string;
-}
-
-export class ResourceIdentifiers  {
-    resourceIdentifier : ResourceIdentifier[];
-    desc:string;
-    label:string;
+export class ResourceIdentifier {
+    value: string;
+    resourceIdentifierSchemeName: ResourceIdentifierSchemeNameEnum;
+    schemeURI: string;
 }
 
 export class ResourceName extends MyString {
-    desc:string;
-    label:string;
 }
 
-ResourceName.prototype.desc="The full name by which the resource is known; the element can be repeated for the different language versions using the \"lang\" attribute to specify the language";
-export class ResourceNames  {
-    resourceName : ResourceName[];
-    desc:string;
-    label:string;
+export class RightsInfo {
+    licenceInfos: LicenceInfo[];
+    rightsStatement: RightsStatementEnum;
+    attributionText: string;
+    copyrightStatement: string;
+    availabilityStartDate: Date;
+    availabilityEndDate: Date;
+    rightsHolders: ActorInfo[];
 }
 
-export class ResourceShortName extends MyString {
-    desc:string;
-    label:string;
+export class RunningEnvironmentInfo {
+    requiresSoftware: RelatedResource[];
+    requiresLRs: RelatedResource[];
+    runningEnvironmentDetails: string;
 }
 
-ResourceShortName.prototype.desc="The short form (abbreviation, acronym etc.) used to identify the resource; the element can be repeated for the different language versions using the \"lang\" attribute to specify the language.";
-ResourceShortName.prototype.label="Resource short name";
-
-export class Result  {
-    corpora : OMTDCorpus[];
-    components : OMTDComponent[];
-    desc:string;
-    label:string;
+export class ScmInfo {
+    connection: string;
+    developerConnection: string;
+    tag: string;
+    url: string;
 }
 
-export class RightsInfo  {
-    licenceInfos : LicenceInfo[];
-    rightsStatementInfo : RightsStatementInfo;
-    desc:string;
-    label:string;
+export class SizeInfo {
+    size: string;
+    sizeUnit: SizeUnitEnum;
 }
 
-export class RightsStatementInfo  {
-    rightsStmtName : RightsStmtNameEnum;
-    rightsStmtURL : string;
-    desc:string;
-    label:string;
+export class SourceOfMetadataRecord {
+    collectedFrom: RepositoryInfo;
+    sourceMetadataLink: string;
+    relatedMetadataScheme: string;
+    originalDataProviderInfo: OriginalDataProviderInfo;
 }
 
-RightsStatementInfo.prototype.desc="Groups information on official statements indicative of licensing terms for the use of a resource (e.g. open access, free to read, all rights reserved etc.); its semantics should be clear, preferrably formally expressed and stored at a url";
-RightsStatementInfo.prototype.label="Rights statement";
-
-export class RunningEnvironmentInfo  {
-    requiresSoftware : RelatedResource[];
-    requiresHardware : RequiresHardwareEnum[];
-    requiresLRs : RelatedResource[];
-    runningEnvironmentDetails : string;
-    desc:string;
-    label:string;
+export class StructuralEncoding {
+    value: string;
+    schemeName: SchemeNameEnum;
+    schemeURI: string;
 }
 
-RunningEnvironmentInfo.prototype.desc="Groups together information on the running environment of a tool or a language description";
-RunningEnvironmentInfo.prototype.label="Running environment";
-
-export class SizeInfo  {
-    size : string;
-    sizeUnit : SizeUnitEnum;
-    desc:string;
-    label:string;
+export class StructuralEncodingInfo {
+    structuralEncoding: StructuralEncoding;
+    sizePerStructuralEncoding: SizeInfo;
 }
 
-SizeInfo.prototype.desc="Groups information on the size of the resource or of resource parts";
-SizeInfo.prototype.label="Size";
-
-export class SourceOfMetadataRecord  {
-    collectedFrom : RelatedRepository;
-    sourceMetadataLink : string;
-    relatedMetadataScheme : string;
-    originalDataProviderInfo : OriginalDataProviderInfo;
-    desc:string;
-    label:string;
+export class Subject {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-SourceOfMetadataRecord.prototype.desc="Refers to the catalog or repository from which the metadata record has been originated (for harvested records)";
-SourceOfMetadataRecord.prototype.label="Source of metadata record";
-
-export class StructuralEncoding  {
-    value : string;
-    schemeName : SchemeNameEnum;
-    schemeURI : string;
-    desc:string;
-    label:string;
+export class TextClassificationInfo {
+    keywords: string[];
+    textGenre: TextGenre;
+    textType: TextType;
+    register: Register;
+    subject: Subject;
+    sizePerTextClassification: SizeInfo;
 }
 
-StructuralEncoding.prototype.desc="Information on whether the structure of the corpus documents is formally encoded and the scheme used for this";
-StructuralEncoding.prototype.label="Structural encoding";
-
-export class StructuralEncodingInfo  {
-    structuralEncoding : StructuralEncoding;
-    sizePerStructuralEncoding : SizeInfo;
-    desc:string;
-    label:string;
+export class TextFormatInfo {
+    dataFormatInfo: DataFormatInfo;
+    sizePerTextFormat: SizeInfo;
 }
 
-StructuralEncodingInfo.prototype.desc="Groups information on the encoding of the structure of the contents of the corpus";
-StructuralEncodingInfo.prototype.label="Text format";
-
-export class Subject  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
-    desc:string;
-    label:string;
+export class TextGenre {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-Subject.prototype.desc="For resources that are using subject / topic classification";
-Subject.prototype.label="Subject";
-
-export class Surname extends MyString {
-    desc:string;
-    label:string;
+export class TextType {
+    value: string;
+    classificationSchemeName: ClassificationSchemeName;
+    schemeURI: string;
 }
 
-Surname.prototype.desc="The surname (family name) of a person related to the resource";
-Surname.prototype.label="Surname";
-
-export class Surnames  {
-    surname : Surname[];
-    desc:string;
-    label:string;
+export class TimeCoverageInfo {
+    timeCoverage: string;
+    sizePerTimeCoverage: SizeInfo;
 }
-
-export class Text  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
-    desc:string;
-    label:string;
-}
-
-export class TextClassificationInfo  {
-    textGenre : TextGenre;
-    textType : Text;
-    register : Register;
-    subject : Subject;
-    keywords : string[];
-    sizePerTextClassification : SizeInfo;
-    desc:string;
-    label:string;
-}
-
-TextClassificationInfo.prototype.desc="Groups together information on text type/genre of the resource";
-TextClassificationInfo.prototype.label="Text classification";
-
-export class TextFormatInfo  {
-    mimeType : MimeTypeEnum;
-    sizePerTextFormat : SizeInfo;
-    desc:string;
-    label:string;
-}
-
-TextFormatInfo.prototype.desc="Groups information on the text format(s) of a resource";
-TextFormatInfo.prototype.label="Text format";
-
-export class TextGenre  {
-    value : string;
-    classificationSchemeName : ClassificationSchemeName;
-    schemeURI : string;
-    desc:string;
-    label:string;
-}
-
-TextGenre.prototype.desc="Genre: The conventionalized discourse or text types of the content of the resource, based on extra-linguistic and internal linguistic criteria";
-TextGenre.prototype.label="Text genre";
-
-export class TimeCoverageInfo  {
-    timeCoverage : string;
-    sizePerTimeCoverage : SizeInfo;
-    desc:string;
-    label:string;
-}
-
-TimeCoverageInfo.prototype.desc="Groups together information on time classification of the resource";
-TimeCoverageInfo.prototype.label="Time coverage";
 
 export class Title extends MyString {
-    titleType : TitleTypeEnum;
-    desc:string;
-    label:string;
+    titleType: TitleTypeEnum;
 }
 
-Title.prototype.desc="The title of the publication";
-Title.prototype.label="Title";
-
-export class UsageInfo  {
-    foreseenUseInfos : ForeseenUseInfo[];
-    actualUseInfos : ActualUseInfo[];
-    desc:string;
-    label:string;
+export class UsageInfo {
+    intendedApplications: IntendedApplications;
+    actualUseInfos: ActualUseInfo[];
 }
 
-UsageInfo.prototype.desc="Groups information on usage of the resource (both intended and actual use)";
-UsageInfo.prototype.label="Usage";
-
-export class User  {
-    id : number;
-    name : string;
-    surname : string;
-    username : string;
-    email : string;
-    password : string;
-    join_date : string;
-    affiliation : string;
-    roles : string[];
-    desc:string;
-    label:string;
+export class ValidationInfo {
+    validated: boolean;
+    validationType: ValidationTypeEnum;
+    validationMode: ProcessMode;
+    validationModeDetails: string;
+    validationExtent: ValidationExtentEnum;
+    validationExtentDetails: string;
+    validationReports: RelatedDocumentInfo[];
+    validationSwComponents: RelatedResource[];
+    validators: ActorInfo[];
 }
 
-export class Utils  {
-    desc:string;
-    label:string;
+export class VersionInfo {
+    version: string;
+    versionDate: string;
+    versionType: VersionTypeEnum;
+    revision: string;
 }
 
-export class ValidationInfo  {
-    validated : boolean;
-    validationType : ValidationTypeEnum;
-    validationMode : ProcessMode;
-    validationModeDetails : string;
-    validationExtent : ValidationExtentEnum;
-    validationExtentDetails : string;
-    sizePerValidation : SizeInfo;
-    validationReports : RelatedDocumentInfo[];
-    validationSwComponents : RelatedResource[];
-    validators : ActorInfo[];
-    desc:string;
-    label:string;
+export const enum ActorTypeEnum {
+    PERSON,
+    GROUP,
+    ORGANIZATION,
 }
 
-ValidationInfo.prototype.desc="Groups information on validation of a resource; it can be repeated to allow for different validations (e.g. formal validation of the whole resource; content validation of one part of the resource etc.). ";
-ValidationInfo.prototype.label="Validation";
-
-export class Comparable<T>  {
-    desc:string;
-    label:string;
+export const enum AnnotationTypeType {
+    LEMMA,
+    TOKEN,
 }
 
-export class Value extends Comparable<Value> {
-    value : string;
-    count : number;
-    desc:string;
-    label:string;
-}
-
-export class VersionInfo  {
-    version : string;
-    revision : string;
-    lastDateUpdated : Date;
-    updateFrequency : string;
-    desc:string;
-    label:string;
-}
-
-VersionInfo.prototype.desc="Groups information on a specific version or release of the resource";
-VersionInfo.prototype.label="Version";
-
-export class Cloneable  {
-    desc:string;
-    label:string;
-}
-
-export enum ActualUseEnum {
-    HUMAN_USE,
-    NLP_APPLICATIONS
-}
-
-export enum AnnotationLevelEnum {
-    ALIGNMENT,
-    DISCOURSE_ANNOTATION,
-    DISCOURSE_ANNOTATION_ARGUMENTATION,
-    DISCOURSE_ANNOTATION_AUDIENCE_REACTIONS,
-    DISCOURSE_ANNOTATION_COREFERENCE,
-    DISCOURSE_ANNOTATION_DIALOGUE_ACTS,
-    DISCOURSE_ANNOTATION_DISCOURSE_RELATIONS,
+export const enum ApplicationType {
+    ANNOTATION,
+    BILINGUAL_LEXICON_INDUCTION,
+    CONTRADICTION_DETECTION,
+    DEPENDENCY_PARSING,
+    DERIVATIONAL_MORPHOLOGICAL_ANALYSIS,
+    DISCOURSE_ANALYSIS,
+    DOCUMENT_CLASSIFICATION,
+    EMOTION_GENERATION,
+    EMOTION_RECOGNITION,
+    ENTITY_MENTION_RECOGNITION,
+    EVENT_EXTRACTION,
+    EXPRESSION_RECOGNITION,
+    EXTRACTION_OF_FUNDING_INFORMATION,
+    INTRA_DOCUMENT_COREFERENCE_RESOLUTION,
+    LANGUAGE_IDENTIFICATION,
+    LANGUAGE_MODELLING,
+    LANGUAGE_MODELS_TRAINING,
     LEMMATIZATION,
+    LEXICON_ACCESS,
+    LEXICON_ACQUISITION_FROM_CORPORA,
+    LEXICON_ENHANCEMENT,
+    LEXICON_EXTRACTION_FROM_LEXICA,
+    LEXICON_FORMAT_CONVERSION,
+    LEXICON_MERGING,
+    LEXICON_VISUALIZATION,
+    MACHINE_TRANSLATION,
+    MORPHOLOGICAL_ANALYSIS,
     MORPHOSYNTACTIC_ANNOTATION_B_POS_TAGGING,
     MORPHOSYNTACTIC_ANNOTATION_POS_TAGGING,
-    SEGMENTATION,
-    SEMANTIC_ANNOTATION,
-    SEMANTIC_ANNOTATION_CERTAINTY_LEVEL,
-    SEMANTIC_ANNOTATION_EMOTIONS,
-    SEMANTIC_ANNOTATION_EVENTS,
-    SEMANTIC_ANNOTATION_NAMED_ENTITIES,
-    SEMANTIC_ANNOTATION_POLARITY,
-    SEMANTIC_ANNOTATION_QUESTION_TOPICAL_TARGET,
-    SEMANTIC_ANNOTATION_READABILTY,
-    SEMANTIC_ANNOTATION_SEMANTIC_CLASSES,
-    SEMANTIC_ANNOTATION_SEMANTIC_RELATIONS,
-    SEMANTIC_ANNOTATION_SEMANTIC_ROLES,
-    SEMANTIC_ANNOTATION_SPEECH_ACTS,
-    SEMANTIC_ANNOTATION_SUBJECTIVITY,
-    SEMANTIC_ANNOTATION_TEMPORAL_EXPRESSIONS,
-    SEMANTIC_ANNOTATION_TEXTUAL_ENTAILMENT,
-    SEMANTIC_ANNOTATION_WORD_SENSES,
-    SYNTACTIC_ANNOTATION_SEMANTIC_FRAMES,
-    SPEECH_ANNOTATION,
-    SPEECH_ANNOTATION_ORTHOGRAPHIC_TRANSCRIPTION,
-    SPEECH_ANNOTATION_PARALANGUAGE_ANNOTATION,
-    SPEECH_ANNOTATION_PHONETIC_TRANSCRIPTION,
-    SPEECH_ANNOTATION_PROSODIC_ANNOTATION,
-    SPEECH_ANNOTATION_SOUND_EVENTS,
-    SPEECH_ANNOTATION_SOUND_TO_TEXT_ALIGNMENT,
-    SPEECH_ANNOTATION_SPEAKER_IDENTIFICATION,
-    SPEECH_ANNOTATION_SPEAKER_TURNS,
-    STEMMING,
-    STRUCTURAL_ANNOTATION,
-    STRUCTURAL_ANNOTATION_DOCUMENT_DIVISIONS,
-    STRUCTURAL_ANNOTATION_SENTENCES,
-    STRUCTURAL_ANNOTATION_CLAUSES,
-    STRUCTURAL_ANNOTATION_PHRASES,
-    STRUCTURAL_ANNOTATION_WORDS,
-    SYNTACTIC_ANNOTATION_SUBCATEGORIZATION_FRAMES,
-    SYNTACTIC_ANNOTATION_DEPENDENCY_TREES,
-    SYNTACTIC_ANNOTATION_CONSTITUENCY_TREES,
-    SYNTACTIC_ANNOTATION_CHUNKS,
-    SYNTACTICOSEMANTIC_ANNOTATION_LINKS,
-    TRANSLATION,
-    TRANSLITERATION,
-    MODALITY_ANNOTATION_BODY_MOVEMENTS,
-    MODALITY_ANNOTATION_FACIAL_EXPRESSIONS,
-    MODALITY_ANNOTATION_GAZE_EYE_MOVEMENTS,
-    MODALITY_ANNOTATION_HAND_ARM_GESTURES,
-    MODALITY_ANNOTATION_HAND_MANIPULATION_OF_OBJECTS,
-    MODALITY_ANNOTATION_HEAD_MOVEMENTS,
-    MODALITY_ANNOTATION_LIP_MOVEMENTS,
-    OTHER
+    NATURAL_LANGUAGE_GENERATION,
+    NATURAL_LANGUAGE_UNDERSTANDING,
+    OPINION_MINING,
+    OTHER,
+    PERSUASIVE_EXPRESSION_MINING,
+    QUALITATIVE_ANALYSIS,
+    QUESTION_ANSWERING,
+    SEMANTIC_ROLE_LABELLING,
+    SENTENCE_SPLITTING,
+    SHALLOW_PARSING,
+    SPELL_CHECKING,
+    TEMPORAL_EXPRESSION_RECOGNITION,
+    TERMINOLOGY_EXTRACTION,
+    TEXT_GENERATION,
+    TEXT_MINING,
+    TOKENIZATION,
+    TOKENIZATION_AND_SENTENCE_SPLITTING,
+    TOPIC_DETECTION,
+    TOPIC_DETECTION_AND_TRACKING,
+    TOPIC_MODELLING,
+    TEXT_AND_DATA_MINING,
+    CONTENT_MINING,
+    TEXT_AND_DATA_ANALYTICS,
+    KNOWLEDGE_ACQUISITION,
+    INFORMATION_EXTRACTION,
+    WORD_SENSE_DISAMBIGUATION,
+    EVENT_DETECTION,
+    NAMED_ENTITY_RECOGNITION,
+    KNOWLEDGE_DISCOVERY,
+    KNOWLEDGE_DISCOVERY_AND_INFORMATION_EXTRACTION,
+    KNOWLEDGE_REPRESENTATION,
+    RELATION_EXTRACTION,
+    HTTP___WWW_META_SHARE_ORG_ONTOLOGIES_OMTD_TDMONTOLOGY_ACCESSCOMPONENT,
+    COREFERENCE_RESOLUTION,
+    TEXT_CATEGORISATION,
+    SUMMARISATION,
+    SENTIMENT_ANALYSIS,
+    EMOTION_DETECTION,
+    COMPUTATIONAL_ARGUMENTATION,
+    INFORMATION_RETRIEVAL,
+    EXPLORATORY_SEARCH,
+    SEMANTIC_SEARCH,
+    INFORMATION_FILTERING,
+    RECOMMENDER_SYSTEM,
+    RECOGNIZING_TEXTUAL_ENTAILMENT,
+    PARAPHRASING,
 }
 
-export enum CharacterEncodingEnum {
+export const enum CharacterEncodingEnum {
     US_ASCII,
     WINDOWS_1250,
     WINDOWS_1251,
@@ -1870,10 +1056,10 @@ export enum CharacterEncodingEnum {
     MAC_SYMBOL,
     MAC_THAI,
     MAC_TURKISH,
-    MAC_UKRAINE
+    MAC_UKRAINE,
 }
 
-export enum ClassificationSchemeName {
+export const enum ClassificationSchemeName {
     DDC,
     UDC,
     EURO_VOC,
@@ -1885,93 +1071,27 @@ export enum ClassificationSchemeName {
     NLK_CLASSIFICATION,
     PAROLE_TOPIC_CLASSIFICATION,
     PAROLE_GENRE_CLASSIFICATION,
-    OTHER
+    OTHER,
 }
 
-export enum CompatibleLexiconTypeEnum {
+export const enum CompatibleLexiconTypeEnum {
     WORDNET,
     WORDLIST,
     MORPHOLOGICAL_LEXICON,
-    OTHER
+    OTHER,
 }
 
-export enum ComponentDistributionMediumEnum {
+export const enum ComponentDistributionFormEnum {
     WEB_SERVICE,
     SOURCE_CODE,
-    EXECUTABLE_CODE
+    EXECUTABLE_CODE,
+    SOURCE_AND_EXECUTABLE_CODE,
+    DOCKER_IMAGE,
+    GALAXY_WORKFLOW,
+    WORKFLOW_FILE,
 }
 
-export enum ComponentTypeEnum {
-    ACCESS_COMPONENT,
-    READER,
-    WRITER,
-    SUPPORT_COMPONENT,
-    VISUALISER,
-    DEBUGGER,
-    VALIDATOR,
-    VIEWER,
-    CORPUS_VIEWER,
-    LEXICON_VIEWER,
-    EDITOR,
-    ML_TRAINER,
-    ML_PREDICTOR,
-    FEATURE_EXTRACTOR,
-    DATA_SPLITTER,
-    DATA_MERGER,
-    CONVERTER,
-    EVALUATOR,
-    FLOW_CONTROLLER,
-    SCRIPT_BASED_ANALYSER,
-    MATCHER,
-    GAZETEER_BASED_MATCHER,
-    CROWD_SOURCING_COMPONENT,
-    DATA_COLLECTOR,
-    CRAWLER,
-    PROCESSOR,
-    ANNOTATOR,
-    SEGMENTER,
-    STEMMER,
-    LEMMATIZER,
-    MORPHOLOGICAL_TAGGER,
-    CHUNKER,
-    PARSER,
-    COREFERENCE_ANNOTATOR,
-    NAMED_ENTITY_RECOGNIZER,
-    SEMANTICS_ANNOTATOR,
-    SRL_ANNOTATOR,
-    READABILITY_ANNOTATOR,
-    ALIGNER,
-    GENERATOR,
-    SUMMARIZER,
-    SIMPLIFIER,
-    PRE_OR_POST_PROCESSING_COMPONENT,
-    SPELLING_CHECKER,
-    GRAMMAR_CHECKER,
-    NORMALIZER,
-    FILTERS,
-    ANALYZER,
-    TOPIC_EXTRACTOR,
-    DOCUMENT_CLASSIFIER,
-    LANGUAGE_IDENTIFIER,
-    SENTIMENT_ANALYZER,
-    KEYWORDS_EXTRACTOR,
-    TERM_EXTRACTOR,
-    CONTRADICTION_DETECTOR,
-    EVENT_EXTRACTOR,
-    PERSUASIVE_EXPRESSION_MINER,
-    INFORMATION_EXTRACTOR,
-    LEXICON_EXTRACTOR_FROM_CORPORA,
-    LEXICON_EXTRACTOR_FROM_LEXICA,
-    WORD_SENSE_DISAMBIGUATOR,
-    QUALITATIVE_ANALYZER,
-    PLATFORM,
-    INFRASTRUCTURE,
-    ARCHITECTURE,
-    NLP_DEVELOPMENT_ENVIRONMENT,
-    OTHER
-}
-
-export enum ConditionsOfUseEnum {
+export const enum ConditionOfUseEnum {
     ATTRIBUTION,
     NON_COMMERCIAL_USE,
     COMMERCIAL_USE,
@@ -1993,10 +1113,10 @@ export enum ConditionsOfUseEnum {
     ACADEMIC_USERS,
     COMMERCIAL_USERS,
     MEMBERS_OF_GROUP,
-    OTHER
+    OTHER,
 }
 
-export enum ConformanceToStandardsBestPractices {
+export const enum ConformanceToStandardsBestPractices {
     AGRO_VOC,
     ALVIS,
     ARGO,
@@ -2059,230 +1179,15 @@ export enum ConformanceToStandardsBestPractices {
     XLIFF,
     UD,
     WORD_NET,
-    OTHER
-}
-
-export enum ContributorTypeEnum {
-    EDITOR,
-    TRANSLATOR,
-    OTHER
-}
-
-export enum DataFormatSpecificEnum {
-    ACL_ANTHOLOGY,
-    ALVIS_ENRICHED_DOCUMENT,
-    BNC,
-    BIO_NLP,
-    BIONLP_FORMAT_VARIANT_ST2013A1_A2,
-    CADIXE_JSON,
-    CONLL_2000,
-    CONLL_2002,
-    CONLL_2006,
-    CONLL_2007,
-    CONLL_2009,
-    CONLL_2012,
-    DATA_SIFT,
-    FACTORED_TAG_LEM,
-    GATE,
-    GENIA,
-    GRAF,
-    HTML_5_MICRODATA,
-    I_2_B_2,
-    IMS_CWB,
-    JDBC,
-    KEA_CORPUS,
-    LLL,
-    NEGRA_EXPORT,
-    PTB_FORMAT_VARIANT_CHUNKED,
-    PTB_FORMAT_VARIANT_COMBINED,
-    PML,
-    RELP,
-    AIMED_CORPUS,
-    TIGER,
-    TUPP_DZ,
-    TWITTER,
-    XCES_FORMAT_VARIANT_ILSP,
-    WEB_1_T,
-    UIMA_CAS_DUMP,
-    UIMA_BINARY_CAS
-}
-
-export enum DistributionMediumEnum {
-    WEB_EXECUTABLE,
-    PAPER_COPY,
-    HARD_DISK,
-    BLU_RAY,
-    DVD_R,
-    CD_ROM,
-    DOWNLOADABLE,
-    ACCESSIBLE_THROUGH_INTERFACE,
-    OTHER
-}
-
-export enum DocumentTypeEnum {
-    BIBLIOGRAPHIC_RECORD_ONLY,
-    ABSTRACT,
-    FULL_TEXT
-}
-
-export enum EncodingLevelEnum {
-    PHONETICS,
-    PHONOLOGY,
-    SEMANTICS,
-    MORPHOLOGY,
-    SYNTAX,
-    PRAGMATICS,
-    OTHER
-}
-
-export enum EvaluationCriterionEnum {
-    EXTRINSIC,
-    INTRINSIC
-}
-
-export enum EvaluationLevelEnum {
-    TECHNOLOGICAL,
-    USAGE,
-    IMPACT,
-    DIAGNOSTIC
-}
-
-export enum EvaluationMeasureEnum {
-    HUMAN,
-    AUTOMATIC
-}
-
-export enum EvaluationTypeEnum {
-    GLASS_BOX,
-    BLACK_BOX
-}
-
-export enum ExtraTextualInformationUnitEnum {
-    WORD,
-    LEMMA,
-    SEMANTICS,
-    EXAMPLE,
-    SYNTAX,
-    LEXICAL_UNIT,
-    OTHER
-}
-
-export enum ExtratextualInformationEnum {
-    IMAGES,
-    VIDEOS,
-    SOUND_RECORDINGS,
-    OTHER
-}
-
-export enum ForeseenUseEnum {
-    HUMAN_USE,
-    NLP_APPLICATIONS
-}
-
-export enum FrameworkEnum {
-    UIMA,
-    GATE,
-    OTHER
-}
-
-export enum FundingTypeEnum {
     OTHER,
-    OWN_FUNDS,
-    NATIONAL_FUNDS,
-    EU_FUNDS
 }
 
-export enum GrammaticalPhenomenaCoverageEnum {
-    CLAUSE_STRUCTURE,
-    PP_ATTACHMENT,
-    NP_STRUCTURE,
-    COORDINATION,
-    ANAPHORA,
-    OTHER
+export const enum ContactTypeEnum {
+    LANDING_PAGE,
+    CONTACT_EMAIL,
 }
 
-export enum JournalIdentifierSchemeNameEnum {
-    DOI,
-    HDL,
-    ISSN,
-    OTHER
-}
-
-export enum LanguageDescriptionTypeEnum {
-    GRAMMAR,
-    OTHER
-}
-
-export enum LanguageVarietyTypeEnum {
-    DIALECT,
-    JARGON,
-    OTHER
-}
-
-export enum LexicalConceptualResourceTypeEnum {
-    WORD_LIST,
-    COMPUTATIONAL_LEXICON,
-    ONTOLOGY,
-    WORDNET,
-    THESAURUS,
-    FRAMENET,
-    TERMINOLOGICAL_RESOURCE,
-    MACHINE_READABLE_DICTIONARY,
-    LEXICON,
-    TYPESYSTEM,
-    TAGSET,
-    MAPPING_OF_RESOURCES,
-    OTHER
-}
-
-export enum LicenceEnum {
-    CC_BY,
-    CC_BY_NC,
-    CC_BY_NC_ND,
-    CC_BY_NC_SA,
-    CC_BY_ND,
-    CC_BY_SA,
-    CC_ZERO,
-    PDDL,
-    ODC_BY,
-    O_DB_L,
-    MS_NO_RE_D,
-    MS_NO_RE_D_FF,
-    MS_NO_RE_D_ND,
-    MS_NO_RE_D_ND_FF,
-    MS_NC_NO_RE_D,
-    MS_NC_NO_RE_D_FF,
-    MS_NC_NO_RE_D_ND,
-    MS_NC_NO_RE_D_ND_FF,
-    ELRA_END_USER,
-    ELRA_EVALUATION,
-    ELRA_VAR,
-    CLARIN_PUB,
-    CLARIN_ACA,
-    CLARIN_ACA_NC,
-    CLARIN_RES,
-    AGPL,
-    APACHELICENCE_2_0,
-    BSD_4_CLAUSE,
-    BSD_3_CLAUSE,
-    FREE_BSD,
-    GFDL,
-    GPL,
-    LGPL,
-    MIT,
-    PRINCETON_WORDNET,
-    PROPRIETARY,
-    UNDER_NEGOTIATION,
-    NON_STANDARD_LICENCE_TERMS
-}
-
-export enum LingualityTypeEnum {
-    MONOLINGUAL,
-    BILINGUAL,
-    MULTILINGUAL
-}
-
-export enum LinguisticInformationEnum {
+export const enum ContentTypesEnum {
     ACCENTUATION,
     LEMMA,
     LEMMA_MULTI_WORD_UNITS,
@@ -2323,7 +1228,6 @@ export enum LinguisticInformationEnum {
     USAGE_NOTES,
     DEFINITION_GLOSS,
     TRANSLATION_EQUIVALENT,
-    PHONETICS_TRANSCRIPTION,
     SEMANTICS_DOMAIN,
     SEMANTICS_EVENT_TYPE,
     SEMANTICS_SEMANTIC_ROLES,
@@ -2331,30 +1235,13 @@ export enum LinguisticInformationEnum {
     MORPHO_DERIVATION,
     SEMANTICS_QUALIA_STRUCTURE,
     SYNTACTICO_SEMANTIC_LINKS,
-    OTHER
+    OTHER,
 }
 
-export enum MediaTypeEnum {
-    TEXT,
-    AUDIO,
-    VIDEO,
-    IMAGE,
-    TEXT_NUMERICAL
-}
-
-export enum MetadataIdentifierSchemeNameEnum {
-    HDL,
-    PURL,
-    URL,
-    URN,
-    OTHER
-}
-
-export enum MimeTypeEnum {
+export const enum DataFormatType {
     TEXT_PLAIN,
     APPLICATION_VND_XMI_XML,
-    TEXT_XML,
-    APPLICATION_X_TMX_XML,
+    APPLICATION_XML,
     APPLICATION_X_XCES_XML,
     APPLICATION_TEI_XML,
     APPLICATION_RDF_XML,
@@ -2362,44 +1249,278 @@ export enum MimeTypeEnum {
     APPLICATION_EMMA_XML,
     APPLICATION_PLS_XML,
     APPLICATION_POSTSCRIPT,
-    APPLICATION_VOICEXML_XML,
     TEXT_SGML,
     TEXT_HTML,
     APPLICATION_X_TEX,
     APPLICATION_RTF,
+    APPLICATION_JSON_LD,
     APPLICATION_X_LATEX,
     TEXT_CSV,
     TEXT_TAB_SEPARATED_VALUES,
     APPLICATION_PDF,
     APPLICATION_X_MSACCESS,
-    AUDIO_MP_4,
-    AUDIO_MPEG,
-    AUDIO_WAV,
-    IMAGE_BMP,
-    IMAGE_GIF,
-    IMAGE_JPEG,
-    IMAGE_PNG,
-    IMAGE_SVG_XML,
-    IMAGE_TIFF,
-    VIDEO_JPEG,
-    VIDEO_MP_4,
-    VIDEO_MPEG,
-    VIDEO_X_FLV,
-    VIDEO_X_MSVIDEO,
-    VIDEO_X_MS_WMV,
     APPLICATION_MSWORD,
     APPLICATION_VND_MS_EXCEL,
-    AUDIO_MPEG_3,
     TEXT_TURTLE,
-    OTHER,
-    AUDIO_PCMA,
-    AUDIO_FLAC,
-    AUDIO_SPEEX,
-    AUDIO_VORBIS,
-    VIDEO_MP_2_T
+    ACL_ANTHOLOGY,
+    ALVIS_ENRICHED_DOCUMENT,
+    BNC,
+    BIO_NLP,
+    BIONLP_FORMAT_VARIANT_ST2013A1_A2,
+    CADIXE_JSON,
+    CONLL_2000,
+    CONLL_2002,
+    CONLL_2006,
+    CONLL_2007,
+    CONLL_2009,
+    CONLL_2012,
+    DATA_SIFT,
+    FACTORED_TAG_LEM,
+    GATE,
+    GENIA,
+    GRAF,
+    HTML_5_MICRODATA,
+    I_2_B_2,
+    IMS_CWB,
+    JDBC,
+    KEA_CORPUS,
+    LLL,
+    NEGRA_EXPORT,
+    PTB_FORMAT_VARIANT_CHUNKED,
+    PTB_FORMAT_VARIANT_COMBINED,
+    PML,
+    RELP,
+    AIMED_CORPUS,
+    TIGER,
+    TUPP_DZ,
+    TWITTER,
+    XCES_FORMAT_VARIANT_ILSP,
+    WEB_1_T,
+    UIMA_CAS_DUMP,
+    UIMA_BINARY_CAS,
 }
 
-export enum ModalityTypeEnum {
+export const enum DistributionMediumEnum {
+    WEB_EXECUTABLE,
+    DOWNLOADABLE,
+    ACCESSIBLE_THROUGH_INTERFACE,
+    OTHER,
+}
+
+export const enum DocumentTypeEnum {
+    BIBLIOGRAPHIC_RECORD_ONLY,
+    WITH_ABSTRACT_ONLY,
+    WITH_FULL_TEXT,
+}
+
+export const enum DocumentationTypeEnum {
+    PUBLICATION_FOR_CITATION,
+    PUBLICATION,
+    MANUAL,
+    ON_LINE_HELP_URL,
+    ISSUE_TRACKER,
+    SAMPLES_LOCATION,
+    TRAINING_RESOURCE,
+    DEMO_RESOURCE,
+    OTHER,
+}
+
+export const enum EncodingLevelEnum {
+    PHONETICS,
+    PHONOLOGY,
+    SEMANTICS,
+    MORPHOLOGY,
+    SYNTAX,
+    PRAGMATICS,
+    OTHER,
+}
+
+export const enum EvaluationCriterionEnum {
+    EXTRINSIC,
+    INTRINSIC,
+}
+
+export const enum EvaluationLevelEnum {
+    TECHNOLOGICAL,
+    USAGE,
+    IMPACT,
+    DIAGNOSTIC,
+}
+
+export const enum EvaluationMeasureEnum {
+    HUMAN,
+    AUTOMATIC,
+}
+
+export const enum EvaluationTypeEnum {
+    GLASS_BOX,
+    BLACK_BOX,
+}
+
+export const enum FrameworkEnum {
+    UIMA,
+    GATE,
+    ALVIS_NLP,
+    GALAXY,
+    OTHER,
+}
+
+export const enum FundingTypeEnum {
+    OTHER,
+    OWN_FUNDS,
+    NATIONAL_FUNDS,
+    EU_FUNDS,
+}
+
+export const enum GrammaticalPhenomenaCoverageEnum {
+    CLAUSE_STRUCTURE,
+    PP_ATTACHMENT,
+    NP_STRUCTURE,
+    COORDINATION,
+    ANAPHORA,
+    OTHER,
+}
+
+export const enum JournalIdentifierSchemeNameEnum {
+    DOI,
+    HANDLE,
+    ISSN,
+    OTHER,
+}
+
+export const enum LanguageDescriptionTypeEnum {
+    ML_MODEL,
+    GRAMMAR,
+    OTHER,
+}
+
+export const enum LanguageVarietyTypeEnum {
+    DIALECT,
+    JARGON,
+    OTHER,
+}
+
+export const enum LexicalConceptualResourceTypeEnum {
+    WORD_LIST,
+    COMPUTATIONAL_LEXICON,
+    ONTOLOGY,
+    WORDNET,
+    THESAURUS,
+    FRAMENET,
+    TERMINOLOGICAL_RESOURCE,
+    MACHINE_READABLE_DICTIONARY,
+    LEXICON,
+    TYPESYSTEM,
+    TAGSET,
+    ANNOTATION_SCHEME,
+    MAPPING_OF_RESOURCES,
+    OTHER,
+}
+
+export const enum LicenceEnum {
+    CC_BY_4_0,
+    CC_BY_NC_4_0,
+    CC_BY_NC_ND_4_0,
+    CC_BY_NC_SA_4_0,
+    CC_BY_ND_4_0,
+    CC_BY_SA_4_0,
+    CC0_1_0,
+    CC_BY_3_0,
+    CC_BY_NC_3_0,
+    CC_BY_NC_ND_3_0,
+    CC_BY_NC_SA_3_0,
+    CC_BY_ND_3_0,
+    CC_BY_SA_3_0,
+    PDDL,
+    ODC_BY_1_0,
+    ODBL_1_0,
+    AGPL_1_0,
+    APACHE_2_0,
+    BSD_4_CLAUSE,
+    BSD_3_CLAUSE,
+    BSD_2_CLAUSE,
+    GFDL_1_3,
+    GPL_3_0,
+    LGPL_3_0,
+    MIT,
+    PRINCETON_WORD_NET,
+    EPL_1_0,
+    NLM,
+    F_DPPL_3_0,
+    M_DPPL_3_0,
+    PROPRIETARY,
+    UNDER_NEGOTIATION,
+    OPEN_ACCESS_UNSPECIFIED,
+    RESTRICTED_ACCESS_UNSPECIFIED,
+    NON_STANDARD_LICENCE_TERMS,
+}
+
+export const enum LingualityTypeEnum {
+    MONOLINGUAL,
+    BILINGUAL,
+    MULTILINGUAL,
+}
+
+export const enum MediaTypeEnum {
+    TEXT,
+    AUDIO,
+    VIDEO,
+    IMAGE,
+    TEXT_NUMERICAL,
+}
+
+export const enum MetadataIdentifierSchemeNameEnum {
+    HANDLE,
+    PURL,
+    URL,
+    URN,
+    OMTD,
+    OPEN_AIRE,
+    CORE,
+    OTHER,
+}
+
+export const enum MetricEnum {
+    MAD,
+    MTDV,
+    MTSA,
+    ART,
+    MTBF,
+    MTTR,
+    OTHER,
+}
+
+export const enum MimeTypeEnum {
+    TEXT_PLAIN,
+    APPLICATION_VND_XMI_XML,
+    TEXT_XML,
+    APPLICATION_XML,
+    APPLICATION_X_XCES_XML,
+    APPLICATION_TEI_XML,
+    APPLICATION_RDF_XML,
+    APPLICATION_XHTML_XML,
+    APPLICATION_EMMA_XML,
+    APPLICATION_PLS_XML,
+    APPLICATION_POSTSCRIPT,
+    TEXT_SGML,
+    TEXT_HTML,
+    APPLICATION_X_TEX,
+    APPLICATION_RTF,
+    APPLICATION_JSON_LD,
+    APPLICATION_X_LATEX,
+    TEXT_CSV,
+    TEXT_TAB_SEPARATED_VALUES,
+    APPLICATION_PDF,
+    APPLICATION_X_MSACCESS,
+    APPLICATION_MSWORD,
+    APPLICATION_VND_MS_EXCEL,
+    TEXT_TURTLE,
+    TEXT_RTF,
+    TEXT_TCF_XML,
+    OTHER,
+}
+
+export const enum ModalityTypeEnum {
     BODY_GESTURE,
     FACIAL_EXPRESSION,
     VOICE,
@@ -2407,24 +1528,24 @@ export enum ModalityTypeEnum {
     SIGN_LANGUAGE,
     SPOKEN_LANGUAGE,
     WRITTEN_LANGUAGE,
-    OTHER
+    OTHER,
 }
 
-export enum MultilingualityTypeEnum {
+export const enum MultilingualityTypeEnum {
     PARALLEL,
     COMPARABLE,
     MULTILINGUAL_SINGLE_TEXT,
     ORIGINAL_TRANSLATIONS_IN_SAME_TEXT,
-    OTHER
+    OTHER,
 }
 
-export enum NameTypeEnum {
+export const enum NameTypeEnum {
     SHORT_NAME,
     ALTERNATIVE_NAME,
-    TRANSLATED_NAME
+    TRANSLATED_NAME,
 }
 
-export enum OperatingSystemEnum {
+export const enum OperatingSystemEnum {
     OS_INDEPENDENT,
     WINDOWS,
     LINUX,
@@ -2434,39 +1555,135 @@ export enum OperatingSystemEnum {
     I_OS,
     ANDROID,
     OTHER,
-    BLANK
 }
 
-export enum OrganizationIdentifierSchemeNameEnum {
+export const enum OperationType {
+    ACCESS_COMPONENT,
+    READER,
+    WRITER,
+    SUPPORT_COMPONENT,
+    VISUALISER,
+    DEBUGGER,
+    VALIDATOR,
+    VIEWER,
+    CORPUS_VIEWER,
+    LEXICON_VIEWER,
+    EDITOR,
+    ML_TRAINER,
+    ML_PREDICTOR,
+    FEATURE_EXTRACTOR,
+    DATA_SPLITTER,
+    DATA_MERGER,
+    CONVERTER,
+    DEPENDENCY_CONVERTER,
+    DEPENDENCY_PARSER,
+    CONSTITUENCY_PARSER,
+    EVALUATOR,
+    FLOW_CONTROLLER,
+    SCRIPT_BASED_ANALYSER,
+    MATCHER,
+    GAZETEER_BASED_MATCHER,
+    CROWD_SOURCING_COMPONENT,
+    DATA_COLLECTOR,
+    CRAWLER,
+    PROCESSOR,
+    ANNOTATOR,
+    SEGMENTER,
+    STEMMER,
+    LEMMATIZER,
+    MORPHOLOGICAL_TAGGER,
+    CHUNKER,
+    PARSER,
+    COREFERENCE_ANNOTATOR,
+    NAMED_ENTITY_RECOGNIZER,
+    SEMANTICS_ANNOTATOR,
+    SRL_ANNOTATOR,
+    READABILITY_ANNOTATOR,
+    ALIGNER,
+    GENERATOR,
+    SUMMARIZER,
+    SIMPLIFIER,
+    PRE_OR_POST_PROCESSING_COMPONENT,
+    SPELLING_CHECKER,
+    GRAMMAR_CHECKER,
+    NORMALIZER,
+    FILTERS,
+    ANALYZER,
+    TOPIC_EXTRACTOR,
+    DOCUMENT_CLASSIFIER,
+    LANGUAGE_IDENTIFIER,
+    SENTIMENT_ANALYZER,
+    EMOTION_RECOGNIZER,
+    KEYWORDS_EXTRACTOR,
+    TERM_EXTRACTOR,
+    CONTRADICTION_DETECTOR,
+    EVENT_EXTRACTOR,
+    PERSUASIVE_EXPRESSION_MINER,
+    INFORMATION_EXTRACTOR,
+    LEXICON_EXTRACTOR_FROM_CORPORA,
+    LEXICON_EXTRACTOR_FROM_LEXICA,
+    WORD_SENSE_DISAMBIGUATOR,
+    OTHER,
+}
+
+export const enum OrganizationIdentifierSchemeNameEnum {
     ISNI,
-    FUNDREF,
-    OTHER
+    GRID,
+    FUND_REF,
+    OTHER,
 }
 
-export enum OriginalDataProviderTypeEnum {
+export const enum OriginalDataProviderTypeEnum {
     REPOSITORY,
     JOURNAL,
-    PUBLISHER
+    PUBLISHER,
 }
 
-export enum PersonIdentifierSchemeNameEnum {
+export const enum ParameterTypeEnum {
+    DATA,
+    STRING,
+    INTEGER,
+    BOOLEAN,
+    FLOAT,
+    OTHER,
+    URL,
+    DOCUMENT,
+    CORPORA,
+    COMPONENT,
+}
+
+export const enum PersonIdentifierSchemeNameEnum {
     ORCID,
     ISNI,
     RESEARCHER_ID,
     SCOPUS_ID,
-    OTHER
+    OTHER,
 }
 
-export enum ProcessMode {
+export const enum PreviousAnnotationTypesPolicyEnum {
+    KEEP,
+    MODIFY,
+    DROP,
+}
+
+export const enum ProcessMode {
     MANUAL,
     AUTOMATIC,
     MIXED,
-    INTERACTIVE
+    INTERACTIVE,
 }
 
-export enum PublicationIdentifierSchemeNameEnum {
+export const enum ProcessingResourceTypeEnum {
+    CORPUS,
+    DOCUMENT,
+    USER_INPUT_TEXT,
+    LEXICAL_CONCEPTUAL_RESOURCE,
+    LANGUAGE_DESCRIPTION,
+}
+
+export const enum PublicationIdentifierSchemeNameEnum {
     DOI,
-    HDL,
+    HANDLE,
     ARK,
     AR_XIV,
     BIBCODE,
@@ -2481,15 +1698,16 @@ export enum PublicationIdentifierSchemeNameEnum {
     UPC,
     URL,
     URN,
-    FCT,
     OAI,
-    PMC,
+    PMCID,
     PMID,
-    OTHER
+    OPEN_AIRE,
+    CORE,
+    OTHER,
 }
 
-export enum PublicationTypeEnum {
-    ARTICLE,
+export const enum PublicationTypeEnum {
+    JOURNAL_ARTICLE,
     BACHELOR_THESIS,
     MASTER_THESIS,
     DOCTORAL_THESIS,
@@ -2502,18 +1720,38 @@ export enum PublicationTypeEnum {
     PRE_PRINT,
     REPORT,
     ANNOTATION,
-    CONTRIBUTION_TO_PERIODICAL,
+    CONTRIBUTION_TO_JOURNAL,
     PATENT,
-    IN_PROCEEDINGS,
-    BOOKLET,
-    MANUAL,
-    TECH_REPORT,
-    IN_COLLECTION,
-    UNPUBLISHED,
-    OTHER
+    CONFERENCE_PAPER,
+    CONFERENCE_POSTER,
+    TECHNICAL_DOCUMENTATION,
+    TECHNICAL_REPORT,
+    BIBLIOGRAPHY,
+    CONFERENCE_PROCEEDINGS,
+    CONFERENCE_PAPER_NOT_IN_PROCEEDINGS,
+    CONFERENCE_POSTER_NOT_IN_PROCEEDINGS,
+    PERIODICAL,
+    JOURNAL,
+    REVIEW_ARTICLE,
+    RESEARCH_ARTICLE,
+    EDITORIAL,
+    DATA_PAPER,
+    LETTER_TO_THE_EDITOR,
+    REPORT_PART,
+    RESEARCH_PROPOSAL,
+    INTERNAL_REPORT,
+    MEMORANDUM,
+    OTHER_TYPE_OF_REPORT,
+    POLICY_REPORT,
+    PROJECT_DELIVERABLE,
+    REPORT_TO_FUNDING_AGENCY,
+    RESEARCH_REPORT,
+    BOOK_REVIEW,
+    THESIS,
+    OTHER,
 }
 
-export enum RegionIdType {
+export const enum RegionIdType {
     AA,
     AC,
     AD,
@@ -2803,17 +2041,17 @@ export enum RegionIdType {
     V151,
     V154,
     V155,
-    V419
+    V419,
 }
 
-export enum RelatedLexiconTypeEnum {
+export const enum RelatedLexiconTypeEnum {
     INCLUDED,
     ATTACHED,
     COMPATIBLE,
-    NONE
+    NONE,
 }
 
-export enum RelationTypeEnum {
+export const enum RelationTypeEnum {
     IS_PART_OF,
     IS_PART_WITH,
     HAS_PART,
@@ -2821,7 +2059,7 @@ export enum RelationTypeEnum {
     IS_COMBINED_WITH,
     REQUIRES_LR,
     REQUIRES_SOFTWARE,
-    ISEXACT_MATCH,
+    IS_EXACT_MATCH,
     IS_SIMILAR_TO,
     IS_CONTINUATION_OF,
     IS_VERSION_OF,
@@ -2837,33 +2075,26 @@ export enum RelationTypeEnum {
     IS_ACCESSED_BY,
     IS_ARCHIVED_BY,
     IS_DISPLAYED_BY,
-    IS_COMPATIBLE_WITH
+    IS_COMPATIBLE_WITH,
+    IS_ANNOTATED_VERSION_OF,
+    HAS_ANNOTATED_VERSION,
 }
 
-export enum RepositoryIdentifierSchemeNameEnum {
+export const enum RepositoryIdentifierSchemeNameEnum {
     DOI,
-    HDL,
+    HANDLE,
     URL,
     OAI,
-    OPENDOAR,
-    RE_3_D,
+    OPEN_DOAR,
+    RE_3_DATA,
     ROAR,
-    OTHER
+    OTHER,
 }
 
-export enum RequiresHardwareEnum {
-    GRAPHIC_CARD,
-    MICROPHONE,
-    OCR_SYSTEM,
-    SPECIAL_HARDWARE_EQUIPMENT,
-    NONE,
-    OTHER
-}
-
-export enum ResourceIdentifierSchemeNameEnum {
+export const enum ResourceIdentifierSchemeNameEnum {
     DOI,
     ISLRN,
-    HDL,
+    HANDLE,
     ARK,
     AR_XIV,
     BIBCODE,
@@ -2878,35 +2109,32 @@ export enum ResourceIdentifierSchemeNameEnum {
     UPC,
     URL,
     URN,
-    FCT,
     OAI,
-    PMC,
+    PMCID,
     PMID,
-    OTHER
+    MAVEN,
+    DOCKER,
+    OMTD_DOCKER,
+    OMTD,
+    OTHER,
 }
 
-export enum ResourceTypeEnum {
-    CORPUS,
-    DOCUMENT,
-    USER_INPUT_TEXT,
-    LEXICAL_CONCEPTUAL_RESOURCE,
-    LANGUAGE_DESCRIPTION
+export const enum ResourceTypeEnum {
+    COMPONENT,
 }
 
-export enum RightsStmtNameEnum {
+export const enum RightsStatementEnum {
     OPEN_ACCESS,
-    CLOSED_ACCESS,
-    EMBARGOED_ACCESS,
-    RESTRICTED_ACCESS
+    RESTRICTED_ACCESS,
 }
 
-export enum SchemeNameEnum {
+export const enum SchemeNameEnum {
     JATS,
     TEI_P_5,
-    OTHER
+    OTHER,
 }
 
-export enum ScriptIdType {
+export const enum ScriptIdType {
     AFAK,
     AGHB,
     AHOM,
@@ -3074,28 +2302,23 @@ export enum ScriptIdType {
     ZSYM,
     ZXXX,
     ZYYY,
-    ZZZZ
+    ZZZZ,
 }
 
-export enum SexEnum {
+export const enum SexEnum {
     MALE,
     FEMALE,
-    UNKNOWN
+    UNKNOWN,
 }
 
-export enum SizeUnitEnum {
+export const enum SizeUnitEnum {
     TERMS,
     ENTRIES,
-    TURNS,
-    UTTERANCES,
     ARTICLES,
     FILES,
     ITEMS,
-    SECONDS,
     ELEMENTS,
     UNITS,
-    MINUTES,
-    HOURS,
     TEXTS,
     SENTENCES,
     BYTES,
@@ -3112,31 +2335,44 @@ export enum SizeUnitEnum {
     CONCEPTS,
     LEXICAL_TYPES,
     PHONETIC_UNITS,
+    MORPHOLOGICAL_UNITS,
     SYNTACTIC_UNITS,
     SEMANTIC_UNITS,
     PREDICATES,
-    PHONEMES,
-    DIPHONES,
-    T_H_PAIRS,
-    SYLLABLES,
     FRAMES,
-    IMAGES,
     KB,
     MB,
     GB,
-    RB,
-    SHOTS,
+    TB,
     UNIGRAMS,
     BIGRAMS,
     TRIGRAMS,
     V4_GRAMS,
     V5_GRAMS,
     RULES,
-    QUESTIONS,
-    OTHER
+    OTHER,
 }
 
-export enum TaskEnum {
+export const enum TDMMethodType {
+    RULE_BASED,
+    MACHINE_LEARNING,
+    STATISTICAL_LEARNING,
+    MACHINE_AND_STATISTICAL_LEARNING,
+    REGRESSION_ANALYSIS,
+    REGULARISATION,
+    INSTANCE_BASED_LEARNING,
+    DECISION_TREES,
+    BAYESIAN,
+    KERNEL_METHOD,
+    CLUSTERING_METHOD,
+    ASSOCIATION_RULE_LEARNING,
+    ARTIFICIAL_NEURAL_NETWORK,
+    DEEP_LEARNING,
+    ENSEMBLE_METHOD,
+    DIMENSIONALITY_REDUCTION,
+}
+
+export const enum TaskEnum {
     ANAPHORA_RESOLUTION,
     CHUNKING,
     PARSING,
@@ -3145,127 +2381,27 @@ export enum TaskEnum {
     DEFINITIONS_PARSING,
     ANALYSIS,
     GENERATION,
-    OTHER
+    OTHER,
 }
 
-export enum TitleTypeEnum {
+export const enum TitleTypeEnum {
     ALTERNATIVE_TITLE,
     SUBTITLE,
     TRANSLATED_TITLE,
-    OTHER
-}
-
-export enum UseNLPSpecificEnum {
-    ALIGNMENT,
-    ANNOTATION,
-    AVATAR_SYNTHESIS,
-    BILINGUAL_LEXICON_INDUCTION,
-    CONTRADICTION_DETECTION,
-    COREFERENCE_RESOLUTION,
-    DEPENDENCY_PARSING,
-    DERIVATIONAL_MORPHOLOGICAL_ANALYSIS,
-    DISCOURSE_ANALYSIS,
-    DOCUMENT_CLASSIFICATION,
-    EMOTION_GENERATION,
-    EMOTION_RECOGNITION,
-    ENTITY_MENTION_RECOGNITION,
-    EVENT_EXTRACTION,
-    EXPRESSION_RECOGNITION,
-    FACE_RECOGNITION,
-    FACE_VERIFICATION,
-    HUMANOID_AGENT_SYNTHESIS,
-    INFORMATION_EXTRACTION,
-    INFORMATION_RETRIEVAL,
-    INTRA_DOCUMENT_COREFERENCE_RESOLUTION,
-    KNOWLEDGE_DISCOVERY,
-    KNOWLEDGE_REPRESENTATION,
-    LANGUAGE_IDENTIFICATION,
-    LANGUAGE_MODELLING,
-    LANGUAGE_MODELS_TRAINING,
-    LEMMATIZATION,
-    LEXICON_ACCESS,
-    LEXICON_ACQUISITION_FROM_CORPORA,
-    LEXICON_ENHANCEMENT,
-    LEXICON_EXTRACTION_FROM_LEXICA,
-    LEXICON_FORMAT_CONVERSION,
-    LEXICON_MERGING,
-    LEXICON_VISUALIZATION,
-    LINGUISTIC_RESEARCH,
-    LIP_TRACKING_ANALYSIS,
-    MACHINE_TRANSLATION,
-    MORPHOLOGICAL_ANALYSIS,
-    MORPHOSYNTACTIC_ANNOTATION_B_POS_TAGGING,
-    MORPHOSYNTACTIC_ANNOTATION_POS_TAGGING,
-    MULTIMEDIA_DEVELOPMENT,
-    MULTIMEDIA_DOCUMENT_PROCESSING,
-    NAMED_ENTITY_RECOGNITION,
-    NATURAL_LANGUAGE_GENERATION,
-    NATURAL_LANGUAGE_UNDERSTANDING,
-    OPINION_MINING,
     OTHER,
-    PERSON_IDENTIFICATION,
-    PERSON_RECOGNITION,
-    PERSUASIVE_EXPRESSION_MINING,
-    PHRASE_ALIGNMENT,
-    QUALITATIVE_ANALYSIS,
-    QUESTION_ANSWERING,
-    READING_AND_WRITING_AID_APPLICATIONS,
-    SEMANTIC_ROLE_LABELLING,
-    SEMANTIC_WEB,
-    SENTENCE_ALIGNMENT,
-    SENTENCE_SPLITTING,
-    SENTIMENT_ANALYSIS,
-    SHALLOW_PARSING,
-    SIGN_LANGUAGE_GENERATION,
-    SIGN_LANGUAGE_RECOGNITION,
-    SPEAKER_IDENTIFICATION,
-    SPEAKER_VERIFICATION,
-    SPEECH_ANALYSIS,
-    SPEECH_ASSISTED_VIDEO_CONTROL,
-    SPEECH_LIPS_CORRELATION_ANALYSIS,
-    SPEECH_RECOGNITION,
-    SPEECH_SYNTHESIS,
-    SPEECH_TO_SPEECH_TRANSLATION,
-    SPEECH_UNDERSTANDING,
-    SPEECH_VERIFICATION,
-    SPELL_CHECKING,
-    SPOKEN_DIALOGUE_SYSTEMS,
-    SUMMARIZATION,
-    TALKING_HEAD_SYNTHESIS,
-    TEMPORAL_EXPRESSION_RECOGNITION,
-    TERMINOLOGY_EXTRACTION,
-    TEXT_CATEGORISATION,
-    TEXT_GENERATION,
-    TEXT_MINING,
-    TEXT_TO_SPEECH_SYNTHESIS,
-    TEXTUAL_ENTAILMENT,
-    TOKENIZATION,
-    TOKENIZATION_AND_SENTENCE_SPLITTING,
-    TOPIC_DETECTION_TRACKING,
-    USER_AUTHENTICATION,
-    VISUAL_SCENE_UNDERSTANDING,
-    VOICE_CONTROL,
-    WORD_ALIGNMENT,
-    WORD_SENSE_DISAMBIGUATION
 }
 
-export enum UserTypeEnum {
-    ACADEMIC,
-    COMMERCIAL,
-    MEMBERS_OF_GROUP
-}
-
-export enum ValidationExtentEnum {
+export const enum ValidationExtentEnum {
     FULL,
-    PARTIAL
+    PARTIAL,
 }
 
-export enum ValidationTypeEnum {
+export const enum ValidationTypeEnum {
     FORMAL,
-    CONTENT
+    CONTENT,
 }
 
-export enum VariantIdType {
+export const enum VariantIdType {
     V1606NICT,
     ALALC_97,
     FONIPA,
@@ -3331,18 +2467,19 @@ export enum VariantIdType {
     VAIDIKA,
     VALENCIA,
     VALLADER,
-    WADEGILE
+    WADEGILE,
 }
 
-export enum VersionEnum {
-    V1_0_0,
-    V2_0,
-    V3_0,
-    V4_0
+export const enum VersionTypeEnum {
+    ACCEPTED,
+    PUBLISHED,
+    DRAFT,
+    SUBMITTED,
+    UPDATED,
 }
 
-export enum WebServiceTypeEnum {
-    SOAP,
+export const enum WebServiceTypeEnum {
     REST,
-    OTHER
+    SOAP,
+    OTHER,
 }

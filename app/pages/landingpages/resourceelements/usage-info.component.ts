@@ -6,7 +6,7 @@ import { UsageInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'usage-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/usage-info.component.html',
+    templateUrl: './usage-info.component.html',
 })
 
 export class UsageInfoComponent {

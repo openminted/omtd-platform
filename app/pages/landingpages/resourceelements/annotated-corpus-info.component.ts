@@ -7,7 +7,7 @@ import { AnnotatedCorpusInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'annotated-corpus-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/annotated-corpus-info.component.html',
+    templateUrl: './annotated-corpus-info.component.html',
 })
 
 export class AnnotatedCorpusInfoComponent {

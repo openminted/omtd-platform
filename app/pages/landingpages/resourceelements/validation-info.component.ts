@@ -6,8 +6,8 @@ import { ValidationInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'validation-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/validation-info.component.html',
-    styleUrls:  ['app/pages/landingpages/landing-page.component.css'],
+    templateUrl: './validation-info.component.html',
+    styleUrls:  ['../landing-page.component.css'],
 })
 
 export class ValidationInfoComponent {

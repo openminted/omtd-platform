@@ -1,90 +1,138 @@
-<div class="uk-block tm-block-main uk-block-default uk-block-large">
-    <div class="uk-container uk-container-center">
-        <div data-uk-grid-margin="" data-uk-grid-match="" class="tm-middle uk-grid" id="tm-middle">
-            <div class="tm-main uk-width-medium-1-1 uk-row-first">
-                <main class="tm-content" id="tm-content">
-                    <div id="system-message-container">
+<div>
+    <div *ngIf="searching" class="whiteFilm"><i class="fa fa-spinner fa-spin fa-5x loader" aria-hidden="true"></i></div>
+
+
+    <div class="uk-background-norepeat uk-background-cover uk-background-fixed uk-section uk-padding-remove-bottom uk-flex uk-flex-middle"
+         style="background-image: url('./assets/imgs/Firstpage_v6.jpg'); box-sizing: border-box; height: 150px">
+        <!--<div class="uk-position-cover"></div>-->
+        <div class="uk-width-1-1">
+            <div class="uk-position-relative">
+                <div class="uk-container uk-margin-medium">
+                    <div class="search_box_bg uk-grid-large uk-flex-middle uk-grid uk-grid-stack" uk-grid="">
+                        <div class="uk-width-1-1@m uk-first-column">
+                            <div>
+                                <div class="search_box_bg" style="text-align:center">
+                                    <form [formGroup]="publicationsSearchForm" (ngSubmit)="onSubmit(publicationsSearchForm.value)">
+                                        <input aria-describedby="sizing-addon2" class="uk-input uk-width-1-2 ng-pristine ng-valid
+                                    uk-comment uk-comment-meta ng-untouched" formControlName="query" name="keyword"
+                                               placeholder="Search ..." type="text">
+                                        <button class=" uk-button uk-button-default" type="submit">Search</button>
+                                    </form>
+                                    <ul *ngIf="urlParameters && urlParameters.length>0" class="facets-selected cf uk-width-medium-9-10">
+                                        <ng-template ngFor let-urlParameter [ngForOf]="urlParameters">
+                                            <ng-template [ngIf]="urlParameter.key!='advanced'">
+                                                <li *ngFor="let facet of urlParameter.values" class="search-tag">
+                                                    <span class="title">{{urlParameter.key}}:</span> {{facet}} <a (click)="deselectFacet(urlParameter.key, facet)" data-role="remove"></a>
+                                                </li>
+                                            </ng-template>
+                                        </ng-template>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <article class="uk-article">
-
-                        <div class="uk-text-center">
-                            <form [formGroup]="publicationsSearchForm" class="searchForm uk-form" (ngSubmit)="onSubmit(publicationsSearchForm.value)">
-                                <div data-uk-grid-margin="" class="uk-grid uk-grid-width-1-1">
-                                    <div class="" style="display: inline-block; width: 95%">
-                                        <input type="text" class="uk-width-1-1" placeholder="Search" formControlName="query"
-                                               style="padding: 6px 20px">
-                                    </div>
-                                    <div class="searchButton" style="display: inline-block; width: 5%">
-                                        <button class="uk-button uk-button-large uk-button-primary">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="uk-grid uk-margin-large-top">
-                            <aside class="tm-sidebar-a uk-width-medium-1-4" style="min-height: 1217px;">
-
-                                <div *ngIf="publicationSearchResults && publicationSearchResults.facets && publicationSearchResults.facets.length>0"
-                                     class="uk-panel uk-panel-box refines">
-
-                                    <h3 class="uk-panel-title">Limit your search</h3>
-
-                                    <div class="refineCategory uk-grid-margin" *ngFor="let facet of publicationSearchResults.facets">
-                                        <span>{{facet.label}}</span>
-                                        <div class="refineOption" *ngFor="let facetValue of facet.values">
-                                            <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
-                                                   (change)="onSelection($event, facet.field, facetValue.value)"
-                                                   [checked]="facetValue.isChecked">
-                                            {{facetValue.value}}
-                                            <span>({{facetValue.count}})</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </aside>
-
-                            <div *ngIf="errorMessage" class="uk-width-medium-3-4">
-                                <div data-uk-alert="" class="uk-alert uk-alert-danger">
-                                    <p>{{errorMessage}}</p>
-                                </div>
-                            </div>
-
-                            <div *ngIf="!errorMessage && publicationSearchResults" class="uk-width-medium-3-4">
-
-                                <div *ngIf="!foundResults">
-                                    <div data-uk-alert="" class="uk-alert uk-alert-warning">
-                                        <p>No results found</p>
-                                    </div>
-                                </div>
-
-                                <div *ngIf="foundResults" class="uk-margin-left">
-                                    <div class="uk-margin uk-grid uk-panel uk-panel-box uk-panel-box-primary totalPublications">
-                                        <h3>We found a total of {{publicationSearchResults.totalHits}} publications.</h3>
-                                    </div>
-
-                                    <div *ngIf="publicationSources && publicationSources.values && publicationSources.values.length>0"
-                                         class="uk-margin uk-grid uk-panel uk-panel-box uk-panel-box-primary sourcesList">
-                                        <ul class="uk-list">
-                                            <li *ngFor="let source of publicationSources.values">
-                                                <h4>{{source.count}} publications from {{source.value}}</h4>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                                <div class="uk-margin-left">
-                                    <div class="uk-align-right uk-margin-top"><button class="uk-button uk-button-large
-                                        uk-button-primary" (click)="createCorpus()">Create corpus!</button></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </article>
-                </main>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true" style="box-sizing: border-box;">
+        <div class="uk-container">
+
+
+            <!-- TOP HELP CONTENT -->
+            <help-content #topHelperContent [position]="'top'"
+                          [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+            </help-content>
+
+            <div *ngIf="contentConnectorStatus && contentConnectorStatus.maxFulltextDocuments" class="">
+                <div data-uk-alert="" class="uk-alert uk-alert-warning uk-margin-medium-bottom">
+                    <p>To reduce the load on our data providers, OpenMinTeD has imposed a limit on the number of publications
+                        in the user generated corpora. In this beta version the limit has been set to
+                        {{contentConnectorStatus.maxFulltextDocuments}} per data provider but this limit will be revised in
+                        future releases.
+                    </p>
+                </div>
+            </div>
+
+            <div class="uk-grid" uk-grid="">
+
+
+                <aside id="tm-sidebar" class="tm-sidebar uk-width-1-4@m">
+
+                    <div *ngIf="publicationSearchResults && publicationSearchResults.facets && publicationSearchResults.facets.length>0"
+                         class="uk-card uk-card-body uk-card-default sidemenu refines">
+
+                        <h3 class="uk-h3 uk-heading-bullet">Refine</h3>
+
+                        <div class="refineCategory uk-grid-margin" *ngFor="let facet of publicationSearchResults.facets">
+                            <read-more [maxHeight]="245">
+                                <span>{{facet.label}}</span>
+                                <div class="refineOption" *ngFor="let facetValue of facet.values">
+                                    <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
+                                           (change)="onSelection($event, facet.field, facetValue.value)"
+                                           [checked]="facetValue.isChecked">
+                                    {{facetValue.label}}
+                                    <span>({{facetValue.count}})</span>
+                                </div>
+                            </read-more>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+                <div class="uk-width-expand@m uk-first-column">
+
+                    <div *ngIf="errorMessage" class="">
+                        <div data-uk-alert="" class="uk-alert uk-alert-danger">
+                            <p>{{errorMessage}}</p>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!errorMessage && publicationSearchResults != null" >
+
+                        <div *ngIf="!foundResults">
+                            <div data-uk-alert="" class="uk-alert uk-alert-warning">
+                                <p>No results found</p>
+                            </div>
+                        </div>
+
+                        <div *ngIf="foundResults" class="uk-margin-left">
+                            <div class="uk-margin uk-grid uk-panel uk-panel-box uk-panel-box-primary totalPublications">
+                                <h3>We found a total of {{publicationSearchResults.totalHits}} publications.</h3>
+                            </div>
+
+                            <div *ngIf="publicationSources && publicationSources.values && publicationSources.values.length>0"
+                                 class="uk-margin uk-grid uk-panel uk-panel-box uk-panel-box-primary sourcesList">
+                                <ul class="uk-list">
+                                    <li *ngFor="let source of publicationSources.values">
+                                        <h4>{{source.count}} publications from {{source.value}}</h4>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="uk-align-right uk-margin-top">
+                            <!--<button class="uk-button uk-button-large uk-button-primary" (click)="buildCorpus()">Build corpus!</button>-->
+                            <button class="uk-button uk-button-primary" (click)="buildCorpus()">Build corpus!</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- RIGHT HELP CONTENT -->
+                <aside-help-content #rightHelperContent [position]="'right'"
+                                    [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                </aside-help-content>
+
+            </div>
+
+            <!-- BOTTOM HELP CONTENT -->
+            <help-content #bottomHelperContent [position]="'bottom'"
+                          [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+            </help-content>
         </div>
     </div>
 </div>

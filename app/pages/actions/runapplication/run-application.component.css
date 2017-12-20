@@ -1,0 +1,24 @@
+.placeholderGrid a,
+.placeholderGrid a:hover,
+.placeholderGrid a:focus {
+    color: #524f4f;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.placeholderGrid i {
+    color: #8a8a8a;
+}
+
+/*.placeholderGrid.uk-disabled a {*/
+    /*color: #fff;*/
+/*}*/
+
+.placeholderGrid.uk-disabled .uk-placeholder {
+    background-color: #eaeaea;
+}
+
+.placeholderGrid.output .uk-placeholder {
+    background-color: #68b8b3;
+    color: #fff;
+}

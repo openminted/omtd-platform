@@ -1,0 +1,9 @@
+<div>
+    <span *ngIf="relationInfo.relationType">
+        {{relationType(relationInfo.relationType)}}:
+    </span>
+    <span *ngIf="relationInfo.relatedResource && relationInfo.relatedResource.resourceNames
+    && relationInfo.relatedResource.resourceNames.length>0">
+        {{relationInfo.relatedResource.resourceNames[0].value}}
+    </span>
+</div>

@@ -1,235 +1,254 @@
-<div class="uk-block tm-block-main uk-block-default uk-block-large">
-    <div class="uk-container uk-container-center">
-        <div data-uk-grid-margin="" data-uk-grid-match="" class="tm-middle uk-grid" id="tm-middle">
-            <div class="tm-main uk-width-medium-1-1 uk-row-first">
-                <main class="tm-content" id="tm-content">
-                    <div id="system-message-container">
+<div class="uk-background-norepeat uk-background-cover uk-background-fixed uk-section uk-padding-remove-bottom uk-flex uk-flex-middle"
+     style="background-image: url('./assets/imgs/omtd_home_2.jpeg'); box-sizing: border-box; height: 150px">
+    <div class="uk-position-cover"></div>
+    <div class="uk-width-1-1">
+        <div class="uk-position-relative">
+            <div class="uk-container uk-margin-medium">
+                <div class="search_box_bg uk-grid-large uk-flex-middle uk-grid uk-grid-stack" uk-grid="">
+                    <div class="uk-width-1-1@m uk-first-column">
+                        <div>
+                            <div class="search_box_bg" style="text-align:center">
+                                <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
+                                    <input aria-describedby="sizing-addon2" class="uk-input uk-width-1-2 ng-pristine ng-valid
+                                    uk-comment uk-comment-meta ng-untouched" formControlName="query" name="keyword"
+                                           placeholder="Search for scientific literature corpora or text mining services..."
+                                           type="text">
+                                    <button class=" uk-button uk-button-default" type="submit">Search</button>
+                                </form>
+                                <ul *ngIf="urlParameters && urlParameters.length>0"
+                                    class="facets-selected cf uk-width-medium-9-10">
+                                    <ng-template ngFor let-urlParameter [ngForOf]="urlParameters">
+                                        <ng-template [ngIf]="urlParameter.key!='from'">
+                                            <li *ngFor="let facet of urlParameter.values" class="search-tag">
+                                                <span class="title">{{urlParameter.key}}:</span> {{facet}} <a
+                                                    (click)="deselectFacet(urlParameter.key, facet)"
+                                                    data-role="remove"></a>
+                                            </li>
+                                        </ng-template>
+                                    </ng-template>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <article class="uk-article">
-
-                        <div class="" style="margin-bottom: 50px">
-                            <div class="uk-align-right">
-                                <button *ngIf='!advanced' class="uk-button-blue" style="width: 150px" (click)="advancedView()">Advanced view</button>
-                                <button *ngIf='advanced' class="uk-button-blue" style="width: 150px" (click)="simpleView()">Simple view</button>
-                            </div>
-                        </div>
-
-                        <div class="uk-text-center">
-                            <form [formGroup]="searchForm" class="searchForm uk-form" (ngSubmit)="onSubmit(searchForm.value)">
-                                <div data-uk-grid-margin="" class="uk-grid uk-grid-width-1-1">
-                                    <div class="" style="display: inline-block; width: 95%">
-                                        <input type="text" class="uk-width-1-1" placeholder="Search" formControlName="query"
-                                               style="padding: 6px 20px">
-                                    </div>
-                                    <div class="searchButton" style="display: inline-block; width: 5%">
-                                        <button class="uk-button uk-button-large uk-button-primary">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="uk-grid uk-margin-large-top">
-                            <aside class="tm-sidebar-a uk-width-medium-1-4" style="min-height: 1217px;">
-
-                                <!--Simple view-->
-                                <div *ngIf="searchResults && !advanced" class="uk-panel uk-panel-box">
-
-                                    <template ngFor let-facet [ngForOf]="searchResults.facets">
-                                        <template [ngIf]="facet.field=='resourceType'">
-                                            <h3 class="uk-panel-title">Resource Type</h3>
-                                            <p *ngFor="let facetValue of facet.values">
-                                                <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
-                                                (change)="onSelection($event, facet.field, facetValue.value)"
-                                                [checked]="facetValue.isChecked">
-                                                {{facetValue.value}}
-                                                <span>({{facetValue.count}})</span>
-                                                <span [ngSwitch]="facetValue.value">
-                                                    <span *ngSwitchCase="'component'"><i class="fa fa-cogs uk-float-right" aria-hidden="true"></i></span>
-                                                    <span *ngSwitchCase="'corpus'"><i class="fa fa-database uk-float-right" aria-hidden="true"></i></span>
-                                                    <span *ngSwitchCase="'languageDescription'"><i class="fa fa-file-o uk-float-right" aria-hidden="true"></i></span>
-                                                    <span *ngSwitchCase="'lexicalConceptualResource'"><i class="fa fa-language uk-float-right" aria-hidden="true"></i></span>
-                                                    <span *ngSwitchDefault><i class="fa fa-language uk-float-right" aria-hidden="true"></i></span>
-                                                </span>
-                                            </p>
-                                        </template>
-                                    </template>
-
-                                </div>
-
-                                <div *ngIf="searchResults && !advanced" class="uk-panel uk-panel-box refines">
-
-                                    <h3 class="uk-panel-title">Limit your search</h3>
-
-                                    <template ngFor let-facet [ngForOf]="searchResults.facets">
-                                        <div *ngIf="facet.field!='resourceType'" class="refineCategory uk-grid-margin">
-                                            <span>{{facet.label}}</span>
-                                            <div class="refineOption" *ngFor="let facetValue of facet.values">
-                                                <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
-                                                (change)="onSelection($event, facet.field, facetValue.value)"
-                                                [checked]="facetValue.isChecked">
-                                                {{facetValue.value}}
-                                                <span>({{facetValue.count}})</span>
-                                            </div>
-                                        </div>
-                                    </template>
-
-                                </div>
-
-                                <!--Advanced view-->
-                                <div *ngIf="searchResults && advanced" class="uk-panel uk-panel-box uk-panel-box-secondary">
-
-                                    <template ngFor let-facet [ngForOf]="searchResults.facets">
-                                        <template [ngIf]="facet.field=='resourceType'">
-                                            <h3 class="uk-panel-title">Resource Type</h3>
-                                            <p *ngFor="let facetValue of facet.values">
-                                                <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
-                                                       (change)="onSelection($event, facet.field, facetValue.value)"
-                                                       [checked]="facetValue.isChecked">
-                                                {{facetValue.value}}
-                                                <span>({{facetValue.count}})</span>
-                                                <span [ngSwitch]="facetValue.value">
-                                                    <span *ngSwitchCase="'component'"><i class="fa fa-cogs uk-float-right" aria-hidden="true"></i></span>
-                                                    <span *ngSwitchCase="'corpus'"><i class="fa fa-database uk-float-right" aria-hidden="true"></i></span>
-                                                    <span *ngSwitchCase="'languageDescription'"><i class="fa fa-file-o uk-float-right" aria-hidden="true"></i></span>
-                                                    <span *ngSwitchCase="'lexicalConceptualResource'"><i class="fa fa-language uk-float-right" aria-hidden="true"></i></span>
-                                                    <span *ngSwitchDefault><i class="fa fa-language uk-float-right" aria-hidden="true"></i></span>
-                                                </span>
-                                            </p>
-                                        </template>
-                                    </template>
-
-                                </div>
-
-                                <div *ngIf="searchResults && advanced" class="uk-panel uk-panel-box uk-panel-box-secondary refines">
-
-                                    <h3 class="uk-panel-title">Limit your search</h3>
-
-                                    <template ngFor let-facet [ngForOf]="searchResults.facets">
-                                        <div *ngIf="facet.field!='resourceType'" class="refineCategory uk-grid-margin">
-                                            <span>{{facet.label}}</span>
-                                            <div class="refineOption" *ngFor="let facetValue of facet.values">
-                                                <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
-                                                       (change)="onSelection($event, facet.field, facetValue.value)"
-                                                       [checked]="facetValue.isChecked">
-                                                {{facetValue.value}}
-                                                <span>({{facetValue.count}})</span>
-                                            </div>
-                                        </div>
-                                    </template>
-
-                                </div>
-
-                            </aside>
-
-                            <div *ngIf="errorMessage" class="uk-width-medium-3-4">
-                                <div data-uk-alert="" class="uk-alert uk-alert-danger">
-                                    <p>{{errorMessage}}</p>
-                                </div>
-                            </div>
-
-                            <div *ngIf="!errorMessage && shortResultsInfo" class="uk-width-medium-3-4">
-
-                                <div *ngIf="!foundResults">
-                                    <div data-uk-alert="" class="uk-alert uk-alert-warning">
-                                        <p>No results found</p>
-                                    </div>
-                                </div>
-
-                                <div *ngIf="shortResultsInfo.length>0">
-
-                                    <div class="uk-width-1-1 uk-row-first">
-                                        <ul class="uk-pagination">
-
-                                            <li class="uk-disabled" *ngIf="isFirstPageDisabled"><span><i class="uk-icon-angle-double-left"></i></span></li>
-                                            <li *ngIf="!isFirstPageDisabled"><a (click)="goToFirstPage()"><i class="uk-icon-angle-double-left"></i></a></li>
-
-                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled"><span><i class="uk-icon-angle-left"></i></span></li>
-                                            <li *ngIf="!isPreviousPageDisabled"><a (click)="goToPreviousPage()"><i class="uk-icon-angle-left"></i></a></li>
-
-                                            <li><span>page {{currentPage}} of {{totalPages}}</span></li>
-
-                                            <li class="uk-disabled" *ngIf="isNextPageDisabled"><span><i class="uk-icon-angle-right"></i></span></li>
-                                            <li *ngIf="!isNextPageDisabled"><a (click)="goToNextPage()"><i class="uk-icon-angle-right"></i></a></li>
-
-                                            <li class="uk-disabled" *ngIf="isLastPageDisabled"><span><i class="uk-icon-angle-double-right"></i></span></li>
-                                            <li *ngIf="!isLastPageDisabled"><a (click)="goToLastPage()"><i class="uk-icon-angle-double-right"></i></a></li>
-
-                                        </ul>
-                                    </div>
-
-                                    <div class="uk-grid-margin">
-
-                                        <div *ngFor="let resourceInfo of shortResultsInfo">
-                                            <div data-uk-grid-match="" data-uk-grid-margin="" class="uk-grid uk-grid-divider resource">
-                                                <div class="uk-width-medium-1-1 uk-row-first">
-                                                    <div data-uk-grid-margin="" class="uk-grid">
-                                                        <!--<div class="uk-row-first">-->
-                                                        <div class="uk-width-medium-3-4 uk-row-first">
-                                                            <div class="uk-thumbnail uk-align-medium-left resourceTypeIcon">
-                                                                <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)">
-                                                                    <i *ngIf="resourceInfo.resourceType==='corpus'"
-                                                                       class="fa fa-database fa-3x" aria-hidden="true"></i>
-                                                                    <i *ngIf="resourceInfo.resourceType==='component'"
-                                                                       class="fa fa-cogs fa-3x" aria-hidden="true"></i>
-                                                                </a>
-                                                            </div>
-                                                            <div class="uk-nbfc">
-                                                                <h2 class="uk-h3 uk-margin-remove">
-                                                                    <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)">
-                                                                        {{resourceInfo.title}}</a></h2>
-                                                                <div class="uk-margin">{{resourceInfo.description}}</div>
-                                                                <ul class="uk-subnav uk-subnav-line">
-                                                                    <li class="element element-itemlink">
-                                                                        <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)"
-                                                                           class="uk-button uk-button-link">Show Details</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="uk-width-medium-1-4">
-                                                            <ul class="uk-list">
-                                                                <li class="element element-text">
-                                                                    <strong>Downloaded: </strong> -</li>
-                                                                <li class="element element-select">
-                                                                    <strong>Viewed: </strong> -</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr class="uk-grid-divider">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="uk-width-1-1 uk-row-first">
-                                        <ul class="uk-pagination">
-
-                                            <li class="uk-disabled" *ngIf="isFirstPageDisabled"><span><i class="uk-icon-angle-double-left"></i></span></li>
-                                            <li *ngIf="!isFirstPageDisabled"><a (click)="goToFirstPage()"><i class="uk-icon-angle-double-left"></i></a></li>
-
-                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled"><span><i class="uk-icon-angle-left"></i></span></li>
-                                            <li *ngIf="!isPreviousPageDisabled"><a (click)="goToPreviousPage()"><i class="uk-icon-angle-left"></i></a></li>
-
-                                            <li><span>page {{currentPage}} of {{totalPages}}</span></li>
-
-                                            <li class="uk-disabled" *ngIf="isNextPageDisabled"><span><i class="uk-icon-angle-right"></i></span></li>
-                                            <li *ngIf="!isNextPageDisabled"><a (click)="goToNextPage()"><i class="uk-icon-angle-right"></i></a></li>
-
-                                            <li class="uk-disabled" *ngIf="isLastPageDisabled"><span><i class="uk-icon-angle-double-right"></i></span></li>
-                                            <li *ngIf="!isLastPageDisabled"><a (click)="goToLastPage()"><i class="uk-icon-angle-double-right"></i></a></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </article>
-                </main>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true"
+     style="box-sizing: border-box;">
+    <div class="uk-container">
+
+        <!-- TOP HELP CONTENT -->
+        <help-content #topHelperContent [position]="'top'"
+                      [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+        </help-content>
+
+        <div class="uk-grid" uk-grid="">
+
+
+            <aside id="tm-sidebar" class="tm-sidebar uk-width-1-4@m">
+
+                <!--Simple view-->
+                <div *ngIf="searchResults" class="uk-card uk-card-body uk-card-default sidemenu">
+
+                    <ng-template ngFor let-facet [ngForOf]="searchResults.facets">
+                        <ng-template [ngIf]="facet.field=='resourceType'">
+                            <h3 class="uk-h3 uk-heading-bullet">Resource Type</h3>
+                            <p *ngFor="let facetValue of facet.values" class="resourceType">
+                                <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
+                                       (change)="onSelection($event, facet.field, facetValue.value)"
+                                       [checked]="facetValue.isChecked">
+                                <span [ngSwitch]="facetValue.value">
+                                                    <span *ngSwitchCase="'component'">Components</span>
+                                                    <span *ngSwitchCase="'corpus'">Corpora</span>
+                                                    <span *ngSwitchCase="'application'">Applications</span>
+                                                </span>
+                                <span class="resourceTypeCount">({{facetValue.count}})</span>
+                                <span [ngSwitch]="facetValue.value">
+                                                    <span *ngSwitchCase="'component'"><i
+                                                            class="fa fa-puzzle-piece uk-float-right resourceTypeIcon"
+                                                            aria-hidden="true"></i></span>
+                                                    <span *ngSwitchCase="'corpus'"><i
+                                                            class="fa fa-database uk-float-right resourceTypeIcon"
+                                                            aria-hidden="true"></i></span>
+                                                    <span *ngSwitchCase="'application'"><i
+                                                            class="fa fa-cogs uk-float-right resourceTypeIcon"
+                                                            aria-hidden="true"></i></span>
+                                                    <span *ngSwitchDefault><i
+                                                            class="fa fa-language uk-float-right resourceTypeIcon"
+                                                            aria-hidden="true"></i></span>
+                                                </span>
+                            </p>
+                        </ng-template>
+                    </ng-template>
+
+                </div>
+
+                <div *ngIf="searchResults" class="uk-card uk-card-body uk-card-default sidemenu refines uk-margin-top">
+
+                    <h3 class="uk-h3 uk-heading-bullet">Refine</h3>
+
+                    <ng-template ngFor let-facet [ngForOf]="searchResults.facets">
+                        <div *ngIf="facet.field!='resourceType'" class="refineCategory uk-grid-margin">
+                            <read-more [maxHeight]="245">
+                                <span>{{facet.label}}</span>
+                                <div class="refineOption" *ngFor="let facetValue of facet.values">
+                                    <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
+                                           (change)="onSelection($event, facet.field, facetValue.value)"
+                                           [checked]="facetValue.isChecked">
+                                    {{facetValue.label}}
+                                    <span>({{facetValue.count}})</span>
+                                </div>
+                            </read-more>
+                        </div>
+                    </ng-template>
+
+                </div>
+
+            </aside>
+
+            <div class="uk-width-expand@m uk-first-column">
+
+                <div *ngIf="errorMessage" class="">
+                    <div data-uk-alert="" class="uk-alert uk-alert-danger">
+                        <p>{{errorMessage}}</p>
+                    </div>
+                </div>
+
+                <div *ngIf="!errorMessage && shortResultsInfo.length != 0" class="">
+
+                    <div *ngIf="!foundResults">
+                        <div data-uk-alert="" class="uk-alert uk-alert-warning">
+                            <p>No results found</p>
+                        </div>
+                    </div>
+
+                    <div *ngIf="shortResultsInfo.length>0">
+
+                        <div class="uk-width-1-1 uk-row-first uk-margin-medium-bottom">
+                            <span>Showing {{searchResults.from+1}} - {{searchResults.to}} of {{searchResults.total}} results</span>
+                        </div>
+
+                        <div class="uk-width-1-1 uk-row-first">
+                            <ul class="uk-pagination">
+
+                                <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
+                                    <a class="uk-disabled" href="#">
+                                        <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                    </a>
+                                </li>
+                                <li *ngIf="!isPreviousPageDisabled">
+                                    <a (click)="goToPreviousPage()">
+                                        <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                    </a>
+                                </li>
+
+                                <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
+                                    <a class="uk-disabled" href="#">Next
+                                        <span class="uk-margin-small-left" uk-pagination-next></span>
+                                    </a>
+                                </li>
+                                <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
+                                    <a (click)="goToNextPage()">Next
+                                        <span class="uk-margin-small-left" uk-pagination-next></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
+                        </div>
+
+                        <div class="uk-grid-margin">
+
+                            <ng-template ngFor let-resourceInfo [ngForOf]="shortResultsInfo">
+
+                                <div class="uk-grid" uk-grid="">
+                                    <div class="uk-width-1-6@m uk-first-column">
+                                        <div class="uk-margin uk-text-center uk-scrollspy-inview uk-animation-fade"
+                                             uk-scrollspy-class="" style="">
+                                            <span class="uk-thumbnail uk-align-medium-left resourceTypeIcon">
+                                                <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)"
+                                                   [ngSwitch]="resourceInfo.resourceType">
+                                                    <i *ngSwitchCase="'corpus'" class="fa fa-database fa-3x"
+                                                       aria-hidden="true"></i>
+                                                    <i *ngSwitchCase="'component'" class="fa fa-puzzle-piece fa-3x"
+                                                       aria-hidden="true"></i>
+                                                    <i *ngSwitchCase="'application'" class="fa fa-cogs fa-3x"
+                                                       aria-hidden="true"></i>
+                                                    <i *ngSwitchCase="'lexical'" class="fa fa-language fa-3x"
+                                                       aria-hidden="true"></i>
+                                                    <i *ngSwitchCase="'model'" class="fa fa-clipboard fa-3x"
+                                                       aria-hidden="true"></i>
+                                                    <i *ngSwitchDefault class="fa fa-question fa-3x"
+                                                       aria-hidden="true"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-5-6@m">
+                                        <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade"
+                                            uk-scrollspy-class="" style="">
+                                            <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)">
+                                                {{resourceInfo.title}}
+                                            </a>
+                                        </h3>
+                                        <div class="uk-margin-remove-vertical uk-text-left@m uk-text-center uk-text-meta uk-scrollspy-inview
+                                        uk-animation-fade" uk-scrollspy-class="" style="">
+                                            {{resourceInfo.description}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr uk-scrollspy-class="" style=""
+                                    class="uk-scrollspy-inview uk-animation-slide-top-medium">
+
+                            </ng-template>
+                        </div>
+
+                        <div class="uk-width-1-1 uk-row-first">
+                            <ul class="uk-pagination">
+
+                                <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
+                                    <a class="uk-disabled" href="#">
+                                        <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                    </a>
+                                </li>
+                                <li *ngIf="!isPreviousPageDisabled">
+                                    <a (click)="goToPreviousPage()">
+                                        <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                    </a>
+                                </li>
+
+                                <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
+                                    <a class="uk-disabled" href="#">Next
+                                        <span class="uk-margin-small-left" uk-pagination-next></span>
+                                    </a>
+                                </li>
+                                <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
+                                    <a (click)="goToNextPage()">Next
+                                        <span class="uk-margin-small-left" uk-pagination-next></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT HELP CONTENT -->
+            <aside-help-content #rightHelperContent [position]="'right'"
+                                [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+            </aside-help-content>
+
+        </div>
+
+        <!-- BOTTOM HELP CONTENT -->
+        <help-content #bottomHelperContent [position]="'bottom'"
+                      [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+        </help-content>
+
+    </div>
+</div>
+

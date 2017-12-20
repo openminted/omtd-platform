@@ -5,28 +5,31 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from "rxjs/Subscription";
+import { URLSearchParams } from "@angular/http";
 import { SearchQuery } from "../../domain/search-query";
 import { URLParameter } from "./../../domain/url-parameter";
 import { ResourceService } from "../../services/resource.service";
 import { SearchResults } from "../../domain/search-results";
-import {ShortResultInfo} from "../../domain/short-resource-info";
+import { ShortResultInfo } from "../../domain/short-resource-info";
+import { BaseMetadataRecord, ComponentInfo, CorpusInfo } from "../../domain/openminted-model";
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
 @Component({
     selector: 'search',
-    templateUrl: 'app/pages/search/search.component.html',
-    styleUrls:  ['app/pages/search/search.component.css'],
+    templateUrl: './search.component.html',
+    styleUrls:  ['./search.component.css'],
 })
 
 export class SearchComponent {
 
-    private searchForm: FormGroup;
-    private errorMessage: string;
+    searchForm: FormGroup;
+    errorMessage: string;
     private sub: Subscription;
 
-    private urlParameters: URLParameter[] = [];
+    urlParameters: URLParameter[] = [];
     
-    private searchResults: SearchResults;
-    private shortResultsInfo : ShortResultInfo[] = [];
+    searchResults: SearchResults<BaseMetadataRecord>;
+    shortResultsInfo : ShortResultInfo[] = [];
 
     private pageSize: number = 0;
     private currentPage: number = 0;
@@ -39,8 +42,6 @@ export class SearchComponent {
 
     private foundResults = true;
 
-    private advanced: boolean = false;
-
     constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
                 private resourceService: ResourceService) {
         this.searchForm = fb.group({
@@ -51,32 +52,30 @@ export class SearchComponent {
     ngOnInit() {
 
         this.sub = this.activatedRoute
-            .params
-            .subscribe(params => {
-                
+            .params.subscribe(params => {
                 this.urlParameters.splice(0,this.urlParameters.length);
                 this.foundResults = true;
-
+                let searchParams : URLSearchParams = new URLSearchParams();
                 for (var obj in params) {
                     if (params.hasOwnProperty(obj)) {
                         var urlParameter: URLParameter = {
                             key: obj,
                             values: params[obj].split(',')
                         };
+                        
+                        searchParams.set(urlParameter.key,urlParameter.values[0]);
                         this.urlParameters.push(urlParameter);
                         // console.log(urlParameter);
                     }
                 }
-
-                // console.log(this.urlParameters);
                 //request results from the registry
-                this.resourceService.search(this.urlParameters).subscribe(
+                this.resourceService.search(searchParams).subscribe(
                     searchResults => this.updateSearchResults(searchResults),
                     error => this.handleError(<any>error));
             });
     }
     
-    updateSearchResults(searchResults: SearchResults) {
+    updateSearchResults(searchResults: SearchResults<BaseMetadataRecord>) {
 
         //INITIALISATIONS
         this.errorMessage = null;
@@ -90,78 +89,40 @@ export class SearchComponent {
 
         this.shortResultsInfo.splice(0,this.shortResultsInfo.length);
 
-        for (let component of this.searchResults.results.components) {
-            var componentBody = component.resource;
-            var shortResultInfo: ShortResultInfo = {
+        for (let component of this.searchResults.results) {
+            let componentBody = component.resource;
+            let corpusInfo : CorpusInfo;
+            let componentInfo : ComponentInfo;
+            let title : string;
+            let description : string;
+            let resourceType : string;
+            let creationDate: Date;
+            if (typeof componentBody['corpusInfo'] != 'undefined') {
+                corpusInfo = componentBody['corpusInfo'];
+                title = corpusInfo.identificationInfo.resourceNames[0].value;
+                description = corpusInfo.identificationInfo.descriptions[0].value;
+                resourceType = 'corpus';
+                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
+            } else if (typeof componentBody['componentInfo'] != 'undefined') {
+                componentInfo = componentBody['componentInfo'];
+                title = componentInfo.identificationInfo.resourceNames[0].value;
+                description = componentInfo.identificationInfo.descriptions[0].value;
+                resourceType = componentInfo.application ? 'application' :'component';
+                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
+            }
+            let shortResultInfo: ShortResultInfo = {
                 // id: component.componentInfo.identificationInfo.identifiers[0].value,
                 order: component.order,
                 id: componentBody.metadataHeaderInfo.metadataRecordIdentifier.value,
-                title: componentBody.componentInfo.identificationInfo.resourceNames[0].value,
-                description: componentBody.componentInfo.identificationInfo.descriptions[0].value,
-                resourceType: 'component'
-            };
-            // console.log(component.resourceIdentificationInfo.resourceIdentifiers[0].id);
-            // console.log(shortResultInfo.id);
-            this.shortResultsInfo.push(shortResultInfo);
-        }
-
-
-        for (let corpus of this.searchResults.results.corpora) {
-            var order = corpus.order;
-            var corpusBody = corpus.resource;
-            var shortResultInfo: ShortResultInfo = {
-                // id: corpus.corpusInfo.identificationInfo.identifiers[0].value,
-                order: corpus.order,
-                id: corpusBody.metadataHeaderInfo.metadataRecordIdentifier.value,
-                title: corpusBody.corpusInfo.identificationInfo.resourceNames[0].value,
-                description: corpusBody.corpusInfo.identificationInfo.descriptions[0].value,
-                resourceType: 'corpus'
+                title: title,
+                description: description,
+                resourceType: resourceType,
+                creationDate: creationDate
             };
             this.shortResultsInfo.push(shortResultInfo);
         }
 
-        for (let model of this.searchResults.results.models) {
-            var order = model.order;
-            var modelBody = model.resource;
-            var shortResultInfo: ShortResultInfo = {
-                // id: corpus.corpusInfo.identificationInfo.identifiers[0].value,
-                order: model.order,
-                id: modelBody.metadataHeaderInfo.metadataRecordIdentifier.value,
-                title: modelBody.modelInfo.identificationInfo.resourceNames[0].value,
-                description: modelBody.modelInfo.identificationInfo.descriptions[0].value,
-                resourceType: 'model'
-            };
-            this.shortResultsInfo.push(shortResultInfo);
-        }
 
-        for (let language of this.searchResults.results.languageDescriptions) {
-            var order = language.order;
-            var languageBody = language.resource;
-            var shortResultInfo: ShortResultInfo = {
-                // id: corpus.corpusInfo.identificationInfo.identifiers[0].value,
-                order: language.order,
-                id: languageBody.metadataHeaderInfo.metadataRecordIdentifier.value,
-                title: languageBody.languageDescriptionInfo.identificationInfo.resourceNames[0].value,
-                description: languageBody.languageDescriptionInfo.identificationInfo.descriptions[0].value,
-                resourceType: 'language'
-            };
-            this.shortResultsInfo.push(shortResultInfo);
-        }
-
-        for (let lexical of this.searchResults.results.lexicalConceptualResources) {
-            var order = lexical.order;
-            var lexicalBody = lexical.resource;
-            var shortResultInfo: ShortResultInfo = {
-                // id: corpus.corpusInfo.identificationInfo.identifiers[0].value,
-                order: lexical.order,
-                id: lexicalBody.metadataHeaderInfo.metadataRecordIdentifier.value,
-                title: lexicalBody.lexicalConceptualResourceInfo.identificationInfo.resourceNames[0].value,
-                description: lexicalBody.lexicalConceptualResourceInfo.identificationInfo.descriptions[0].value,
-                resourceType: 'lexical'
-            };
-            this.shortResultsInfo.push(shortResultInfo);
-        }
-        console.log("AAAA");
         if(this.shortResultsInfo.length==0)
             this.foundResults = false;
         else {
@@ -174,11 +135,6 @@ export class SearchComponent {
         for (let urlParameter of this.urlParameters) {
             if(urlParameter.key === 'query') {
                 this.searchForm.get('query').setValue(urlParameter.values[0]);
-            } else if(urlParameter.key === 'advanced') {
-                if(urlParameter.values[0]=='true')
-                    this.advanced = true;
-                else
-                    this.advanced = false;
             } else {
                 for(let facet of this.searchResults.facets) {
                     if(facet.field === urlParameter.key) {
@@ -207,47 +163,6 @@ export class SearchComponent {
             this.isLastPageDisabled = true;
             this.isNextPageDisabled = true;
         }
-    }
-
-    advancedView() {
-        
-        this.advanced = true;
-        
-        var foundAdvancedParameter = false;
-        for (let urlParameter of this.urlParameters) {
-            if(urlParameter.key === 'advanced') {
-                foundAdvancedParameter = true;
-                if(urlParameter.values[0] === 'false') {
-                    urlParameter.values.splice(0,urlParameter.values.length);
-                    urlParameter.values.push('true')
-                }
-            }
-        }
-        
-        if(!foundAdvancedParameter) {
-            var newParameter: URLParameter = {
-                key: 'advanced',
-                values: ['true']
-            };
-            this.urlParameters.push(newParameter);
-        }
-        
-        this.navigateUsingParameters();
-    }
-
-    simpleView() {
-
-        this.advanced = false;
-
-        var categoryIndex = 0;
-        for (let urlParameter of this.urlParameters) {
-            if(urlParameter.key === 'advanced') {
-                this.urlParameters.splice(categoryIndex, 1);
-            }
-            categoryIndex ++;
-        }
-
-        this.navigateUsingParameters();
     }
 
     ngOnDestroy() {
@@ -280,6 +195,29 @@ export class SearchComponent {
                 values: [searchValue.query]
             };
             this.urlParameters.push(searchQuery);
+        }
+
+        this.navigateUsingParameters();
+    }
+
+    deselectFacet(category: string, value: string) {
+
+        var categoryIndex = 0;
+        for (let urlParameter of this.urlParameters) {
+            if(urlParameter.key === category) {
+                var valueIndex = urlParameter.values.indexOf(value, 0);
+                if (valueIndex > -1) {
+                    urlParameter.values.splice(valueIndex, 1);
+                    if(urlParameter.values.length == 0) {
+                        this.urlParameters.splice(categoryIndex, 1);
+                    }
+                }
+            }
+            categoryIndex ++;
+
+            if(category==='query') {
+                this.searchForm.get('query').setValue('');
+            }
         }
 
         this.navigateUsingParameters();
@@ -347,13 +285,11 @@ export class SearchComponent {
     }
 
     gotoDetail(resourceType: string, id: string) {
-        //TODO remove ms. I have put it there because the id gets parsed without the ms
-        // this.router.navigate(['/landingPage/' + resourceType + '/', 'ms' + id]);
         this.router.navigate(['/landingPage/' + resourceType + '/', id]);
     }
 
-    handleError(error) {
-        this.errorMessage = 'System error searching for resources (Server responded: ' + error + ')';
+    handleError(error : ErrorObservable) {
+        this.errorMessage = 'System error searching for resources (Server responded: ' + error.error + ')';
     }
 
     goToFirstPage() {
@@ -361,7 +297,7 @@ export class SearchComponent {
         var from: number = 0;
         var to: number = 9;
 
-        this.updatePagingURLParameters(from, to);
+        this.updatePagingURLParameters(from);
         this.navigateUsingParameters();
     }
 
@@ -373,7 +309,7 @@ export class SearchComponent {
         from -= this.pageSize;
         to -= this.pageSize;
 
-        this.updatePagingURLParameters(from, to);
+        this.updatePagingURLParameters(from);
         this.navigateUsingParameters();
     }
 
@@ -385,7 +321,7 @@ export class SearchComponent {
         from += this.pageSize;
         to += this.pageSize;
 
-        this.updatePagingURLParameters(from, to);
+        this.updatePagingURLParameters(from);
         this.navigateUsingParameters();
     }
 
@@ -394,25 +330,19 @@ export class SearchComponent {
         var from: number = Math.floor(this.searchResults.total/this.pageSize) * this.pageSize;
         var to: number = this.searchResults.total - 1;
 
-        this.updatePagingURLParameters(from, to);
+        this.updatePagingURLParameters(from);
         this.navigateUsingParameters();
     }
 
-    updatePagingURLParameters(from: number, to: number) {
+    updatePagingURLParameters(from: number) {
 
         var foundFromCategory = false;
-        var foundToCategory = false;
 
         for (let urlParameter of this.urlParameters) {
             if(urlParameter.key === 'from') {
                 foundFromCategory = true;
                 urlParameter.values = [];
                 urlParameter.values.push(from+'');
-            }
-            if(urlParameter.key === 'to') {
-                foundToCategory = true;
-                urlParameter.values = [];
-                urlParameter.values.push(to+'');
             }
         }
         if(!foundFromCategory) {
@@ -421,13 +351,6 @@ export class SearchComponent {
                 values: [from+'']
             };
             this.urlParameters.push(newFromParameter);
-        }
-        if(!foundToCategory) {
-            var newToParameter: URLParameter = {
-                key: 'to',
-                values: [to+'']
-            };
-            this.urlParameters.push(newToParameter);
         }
     }
 }

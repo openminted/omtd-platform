@@ -8,4 +8,5 @@ export class ShortResultInfo {
     title: string;
     description: string;
     resourceType: string;
+    creationDate: Date;
 }

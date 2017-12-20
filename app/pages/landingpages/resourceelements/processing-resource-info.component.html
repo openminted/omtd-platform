@@ -1,108 +1,51 @@
 <div>
-    <div *ngIf="processingResourceInfo.resourceTypes && processingResourceInfo.resourceTypes.length>0">
-        <strong>Resource types: </strong>
-        <span *ngFor="let resourceType of processingResourceInfo.resourceTypes; let isLast = last;">
-            {{resourceType}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.mediaType">
-        <strong>Media type: </strong>{{processingResourceInfo.mediaType}}
-    </div>
-    <div *ngIf="processingResourceInfo.languages && processingResourceInfo.languages.length>0">
-        <strong>Languages: </strong>
-        <span *ngFor="let language of processingResourceInfo.languages; let isLast = last;">
-            {{language.languageTag}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.characterEncodings && processingResourceInfo.characterEncodings.length>0">
-        <strong>Character encodings: </strong>
-        <span *ngFor="let characterEncoding of processingResourceInfo.characterEncodings; let isLast = last;">
-            {{characterEncoding}}{{isLast ? '' : ', '}}
-        </span>
+    <div *ngIf="processingResourceInfo.processingResourceType">
+        <strong>Resource type: </strong>
+        {{processingResourceType(processingResourceInfo.processingResourceType)}}
     </div>
     <div *ngIf="processingResourceInfo.dataFormats && processingResourceInfo.dataFormats.length>0">
         <strong>Data formats: </strong>
         <span *ngFor="let dataFormat of processingResourceInfo.dataFormats; let isLast = last;">
-            <a *ngIf="dataFormat.documentationURL" href="{{dataFormat.documentationURL}}">
-                <span *ngIf="!dataFormat.mimeType || !dataFormat.dataFormatSpecific">{{dataFormat.documentationURL}}</span>
-                <span *ngIf="dataFormat.mimeType">{{dataFormat.mimeType}} </span>
-                <span *ngIf="dataFormat.dataFormatSpecific">{{dataFormat.dataFormatSpecific}} </span>
-            </a>
-            <span *ngIf="!dataFormat.documentationURL">
-                <span *ngIf="dataFormat.mimeType">{{dataFormat.mimeType}} </span>
-                <span *ngIf="dataFormat.dataFormatSpecific">{{dataFormat.dataFormatSpecific}} </span>
-            </span>
-            {{isLast ? '' : ', '}}
+            <span *ngIf="dataFormat.dataFormat">{{dataFormatType(dataFormat.dataFormat)}}</span>
+            <span *ngIf="dataFormat.dataFormatOther">, {{dataFormat.dataFormatOther}}</span>
+
+        {{isLast ? '' : ', '}}
         </span>
     </div>
-    <div *ngIf="processingResourceInfo.typesystem">
+    <!--<div *ngIf="processingResourceInfo.characterEncodings && processingResourceInfo.characterEncodings.length>0">-->
+        <!--<strong>Character encodings: </strong>-->
+        <!--<span *ngFor="let characterEncoding of processingResourceInfo.characterEncodings; let isLast = last;">-->
+            <!--{{characterEncoding}}{{isLast ? '' : ', '}}-->
+        <!--</span>-->
+    <!--</div>-->
+    <div *ngIf="processingResourceInfo.languages && processingResourceInfo.languages.length>0">
+        <strong>Language(s): </strong>
+        <span *ngFor="let language of processingResourceInfo.languages; let isLast = last;">
+            {{language}}{{isLast ? '' : ', '}}
+        </span>
+    </div>
+    <div *ngIf="processingResourceInfo.annotationTypes && processingResourceInfo.annotationTypes.length>0">
+        <strong>Annotation types: </strong>
+        <span *ngFor="let annotationType of processingResourceInfo.annotationTypes; let isLast = last;">
+            <span *ngIf="annotationType.annotationType">{{annotationTypeType(annotationType.annotationType)}}</span>
+            <span *ngIf="annotationType.annotationTypeOther">, {{annotationType.annotationTypeOther}}</span>
+
+        {{isLast ? '' : ', '}}
+        </span>
+    </div>
+    <div *ngIf="processingResourceInfo.typesystem && processingResourceInfo.typesystem.resourceNames
+        && processingResourceInfo.typesystem.resourceNames.length>0">
         <strong>Typesystem: </strong>
-        <span *ngIf="processingResourceInfo.typesystem.resourceNames && processingResourceInfo.typesystem.resourceNames.length>0">
-            {{processingResourceInfo.typesystem.resourceNames[0].value}}
-        </span>
-        <span *ngIf="processingResourceInfo.typesystem.resourceIdentifiers && processingResourceInfo.typesystem.resourceIdentifiers.length>0">
-            {{processingResourceInfo.typesystem.resourceIdentifiers[0].value}}
-        </span>
+        {{processingResourceInfo.typesystem.resourceNames[0].value}}
     </div>
-    <div *ngIf="processingResourceInfo.tagset">
-        <strong>Tagset: </strong>
-        <span *ngIf="processingResourceInfo.tagset.resourceNames && processingResourceInfo.tagset.resourceNames.length>0">
-            {{processingResourceInfo.tagset.resourceNames[0].value}}
-        </span>
-        <span *ngIf="processingResourceInfo.tagset.resourceIdentifiers && processingResourceInfo.tagset.resourceIdentifiers.length>0">
-            {{processingResourceInfo.tagset.resourceIdentifiers[0].value}}
-        </span>
+    <div *ngIf="processingResourceInfo.annotationSchema && processingResourceInfo.annotationSchema.resourceNames
+        && processingResourceInfo.annotationSchema.resourceNames.length>0">
+        <strong>Annotation schema: </strong>
+        {{processingResourceInfo.annotationSchema.resourceNames[0].value}}
     </div>
-    <div *ngIf="processingResourceInfo.annotationLevels && processingResourceInfo.annotationLevels.length>0">
-        <strong>Annotation levels: </strong>
-        <span *ngFor="let annotationLevel of processingResourceInfo.annotationLevels; let isLast = last;">
-            {{annotationLevel}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.modalityTypes && processingResourceInfo.modalityTypes.length>0">
-        <strong>Modality types: </strong>
-        <span *ngFor="let modalityType of processingResourceInfo.modalityTypes; let isLast = last;">
-            {{modalityType}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-
-    <!--The following have 2 other fields apart from value. Should I display them somehow?-->
-    <div *ngIf="processingResourceInfo.domains && processingResourceInfo.domains.length>0">
-        <strong>Domains: </strong>
-        <span *ngFor="let domain of processingResourceInfo.domains; let isLast = last;">
-            {{domain.value}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.textGenres && processingResourceInfo.textGenres.length>0">
-        <strong>Text genres: </strong>
-        <span *ngFor="let textGenre of processingResourceInfo.textGenres; let isLast = last;">
-            {{textGenre.value}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.textTypes && processingResourceInfo.textTypes.length>0">
-        <strong>Text types: </strong>
-        <span *ngFor="let textType of processingResourceInfo.textTypes; let isLast = last;">
-            {{textType.value}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.registers && processingResourceInfo.registers.length>0">
-        <strong>Registers: </strong>
-        <span *ngFor="let register of processingResourceInfo.registers; let isLast = last;">
-            {{register.value}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-    <div *ngIf="processingResourceInfo.subjects && processingResourceInfo.subjects.length>0">
-        <strong>Subjects: </strong>
-        <span *ngFor="let subject of processingResourceInfo.subjects; let isLast = last;">
-            {{subject.value}}{{isLast ? '' : ', '}}
-        </span>
-    </div>
-
-
-    <div *ngIf="processingResourceInfo.keywords && processingResourceInfo.keywords.length>0">
-        <strong>Keywords: </strong>
-        <span *ngFor="let keyword of processingResourceInfo.keywords; let isLast = last;">
-            {{keyword}}{{isLast ? '' : ', '}}
-        </span>
+    <div *ngIf="processingResourceInfo.annotationResource && processingResourceInfo.annotationResource.resourceNames
+        && processingResourceInfo.annotationResource.resourceNames.length>0">
+        <strong>Annotation resource: </strong>
+        {{processingResourceInfo.annotationResource.resourceNames[0].value}}
     </div>
 </div>

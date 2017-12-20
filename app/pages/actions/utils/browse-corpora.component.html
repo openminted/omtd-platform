@@ -1,0 +1,202 @@
+<div class="uk-background-norepeat uk-background-cover uk-background-fixed uk-section uk-padding-remove-bottom uk-flex uk-flex-middle"
+     style="background-image: url('./assets/imgs/Firstpage_v6.jpg'); box-sizing: border-box; height: 150px">
+    <!--<div class="uk-position-cover"></div>-->
+    <div class="uk-width-1-1">
+        <div class="uk-position-relative">
+            <div class="uk-container uk-margin-medium">
+                <div class="search_box_bg uk-grid-large uk-flex-middle uk-grid uk-grid-stack" uk-grid="">
+                    <div class="uk-width-1-1@m uk-first-column">
+                        <div>
+                            <div class="search_box_bg" style="text-align:center">
+                                <form [formGroup]="searchCorporaForm" (ngSubmit)="onSubmit(searchCorporaForm.value)">
+                                    <input aria-describedby="sizing-addon2" class="uk-input uk-width-1-2 ng-pristine ng-valid
+                                    uk-comment uk-comment-meta ng-untouched" formControlName="query" name="keyword"
+                                           placeholder="Search for corpora..." type="text">
+                                    <button class=" uk-button uk-button-default" type="submit">Search</button>
+                                </form>
+                                <ul *ngIf="urlParameters && urlParameters.length>0" class="facets-selected cf uk-width-medium-9-10">
+                                    <ng-template ngFor let-urlParameter [ngForOf]="urlParameters">
+                                        <ng-template [ngIf]="urlParameter.key!='from'">
+                                            <li *ngFor="let facet of urlParameter.values" class="search-tag">
+                                                <span class="title">{{urlParameter.key}}:</span> {{facet}} <a (click)="deselectFacet(urlParameter.key, facet)" data-role="remove"></a>
+                                            </li>
+                                        </ng-template>
+                                    </ng-template>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true" style="box-sizing: border-box;">
+    <div class="uk-container">
+
+        <!-- TOP HELP CONTENT -->
+        <help-content #topHelperContent [position]="'top'"
+                      [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+        </help-content>
+
+        <div class="uk-grid" uk-grid="">
+
+            <aside id="tm-sidebar" class="tm-sidebar uk-width-1-4@m">
+
+                <!--Simple view-->
+
+                <div *ngIf="searchResults" class="uk-card uk-card-body uk-card-default sidemenu refines">
+
+                    <h3 class="uk-h3 uk-heading-bullet">Refine</h3>
+
+                    <ng-template ngFor let-facet [ngForOf]="searchResults.facets">
+                        <div *ngIf="facet.field!='resourceType'" class="refineCategory uk-grid-margin">
+                            <read-more [maxHeight]="245">
+                                <span>{{facet.label}}</span>
+                                <div class="refineOption" *ngFor="let facetValue of facet.values">
+                                    <input type="checkbox" name="vehicle" value="Bike" data-md-icheck
+                                           (change)="onSelection($event, facet.field, facetValue.value)"
+                                           [checked]="facetValue.isChecked">
+                                    {{facetValue.value}}
+                                    <span>({{facetValue.count}})</span>
+                                </div>
+                            </read-more>
+                        </div>
+                    </ng-template>
+
+                </div>
+
+
+            </aside>
+
+            <div class="uk-width-expand@m uk-first-column">
+
+                <div *ngIf="errorMessage" class="">
+                    <div data-uk-alert="" class="uk-alert uk-alert-danger">
+                        <p>{{errorMessage}}</p>
+                    </div>
+                </div>
+
+                <div *ngIf="!errorMessage && shortResultsInfo != null" class="">
+
+                    <div *ngIf="!foundResults">
+                        <div data-uk-alert="" class="uk-alert uk-alert-warning">
+                            <p>No results found</p>
+                        </div>
+                    </div>
+
+                    <div *ngIf="shortResultsInfo.length>0">
+
+                        <div class="uk-width-1-1 uk-row-first">
+                            <ul class="uk-pagination">
+
+                                <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
+                                    <a class="uk-disabled" href="#">
+                                        <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                    </a>
+                                </li>
+                                <li *ngIf="!isPreviousPageDisabled">
+                                    <a (click)="goToPreviousPage()">
+                                        <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                    </a>
+                                </li>
+
+                                <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
+                                    <a class="uk-disabled" href="#">Next
+                                        <span class="uk-margin-small-left" uk-pagination-next></span>
+                                    </a>
+                                </li>
+                                <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
+                                    <a (click)="goToNextPage()">Next
+                                        <span class="uk-margin-small-left" uk-pagination-next></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
+                        </div>
+
+                        <div class="uk-grid-margin">
+
+                            <ng-template ngFor let-resourceInfo [ngForOf]="shortResultsInfo">
+
+                                <div class="uk-grid" uk-grid="">
+                                    <div class="uk-width-1-6@m uk-first-column">
+                                        <div class="uk-margin uk-text-center uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
+                                            <span class="uk-thumbnail uk-align-medium-left resourceTypeIcon">
+                                                <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)">
+                                                    <i class="fa fa-database fa-3x" aria-hidden="true"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-5-6@m">
+                                        <div class="uk-margin-small">
+                                            <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview
+                                            uk-animation-fade uk-inline" uk-scrollspy-class="" style="">
+                                                <a (click)="gotoDetail(resourceInfo.resourceType, resourceInfo.id)">
+                                                    {{resourceInfo.title}}
+                                                </a>
+                                            </h3>
+                                            <button class="uk-button uk-button-primary uk-float-right minus-margin-top" (click)="process(resourceInfo.id)">
+                                                Process <i class="fa fa-cogs" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div class="uk-margin-remove-vertical uk-text-left@m uk-text-center uk-text-meta uk-scrollspy-inview
+                                        uk-animation-fade" uk-scrollspy-class="" style="">
+                                            {{resourceInfo.description}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr uk-scrollspy-class="" style="" class="uk-scrollspy-inview uk-animation-slide-top-medium">
+
+                            </ng-template>
+                        </div>
+
+                        <div class="uk-width-1-1 uk-row-first">
+                            <ul class="uk-pagination">
+
+                                <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
+                                    <a class="uk-disabled" href="#">
+                                        <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                    </a>
+                                </li>
+                                <li *ngIf="!isPreviousPageDisabled">
+                                    <a (click)="goToPreviousPage()">
+                                        <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                    </a>
+                                </li>
+
+                                <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
+                                    <a class="uk-disabled" href="#">Next
+                                        <span class="uk-margin-small-left" uk-pagination-next></span>
+                                    </a>
+                                </li>
+                                <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
+                                    <a (click)="goToNextPage()">Next
+                                        <span class="uk-margin-small-left" uk-pagination-next></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT HELP CONTENT -->
+            <aside-help-content #rightHelperContent [position]="'right'"
+                                [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+            </aside-help-content>
+
+        </div>
+
+        <!-- BOTTOM HELP CONTENT -->
+        <help-content #bottomHelperContent [position]="'bottom'"
+                      [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+        </help-content>
+
+    </div>
+</div>

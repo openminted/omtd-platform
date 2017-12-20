@@ -7,20 +7,30 @@ import { AuthenticationService } from "../../services/authentication.service";
 
 @Component({
     selector: 'top-menu',
-    templateUrl: 'app/shared/topmenu/topmenu.component.html',
-    encapsulation: ViewEncapsulation.None
+    templateUrl: './topmenu.component.html',
+    encapsulation: ViewEncapsulation.None,
+    styles: [`
+        .uk-navbar-nav > li > a.loginLink {
+            color: #2c4eac;
+        }
+    `]
 })
 
 export class TopMenuComponent {
 
-    constructor(private authenticationService: AuthenticationService) {
+    constructor(public oAuthService: AuthenticationService) {
     }
 
-    loggedIn() {
-        return this.authenticationService.isUserLoggedIn();
+    private loginWithState() {
+        this.oAuthService.loginWithState();
     }
 
-    logout() {
-        this.authenticationService.logout();
+    onClick(id: string) {
+        var el: HTMLElement = document.getElementById(id);
+        el.classList.remove('uk-open');
     }
+    private logout() {
+        this.oAuthService.logout();
+    }
+
 }

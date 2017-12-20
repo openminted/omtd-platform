@@ -61,5 +61,126 @@
 }
 
 .totalPublications h3 {
-    color: #004DB0;
+    /*color: #004DB0;*/
+    font-weight: 400;
+}
+
+.searchBoxContainer {
+    background: url("//www.openminted.eu/wp-content/uploads/2016/01/data_sea_1.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-bottom: 0;
+}
+
+input.searchTextBox, input.searchTextBox:focus, input.searchTextBox:active  {
+    background: #fff none repeat scroll 0 0;
+}
+
+.searchButton button {
+    width: 100%;
+}
+
+/******************************************************************/
+
+.cf::after, .lc::after, main::after, [role="main"]::after, .section::after, .search-list-item footer::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.facets-selected {
+    display: block;
+    font-size: 0;
+    margin-top: 0.4rem;
+    text-align: center;
+}
+
+.search-input-item, .search-tag {
+    display: inline-block;
+    line-height: 1.6;
+    margin-right: 0.2em;
+    padding: 0.2rem 0.4rem;
+}
+
+.search-input-item, .search-tag {
+    display: inline-block;
+    line-height: 1.6;
+    margin-right: 0.2em;
+    padding: 0.2rem 0.4rem;
+}
+
+.facets-selected .search-tag {
+    background-color: transparent;
+    border-right: 1px solid #a3b8bd;
+    color: #ffffff;
+    font-size: 0.875rem;
+}
+
+.has-bgimage .facets-selected .search-tag {
+    color: #ffffff;
+}
+
+.search-tag .title {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.has-bgimage .search-tag .title {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.search-tag a[data-role="remove"] {
+    color: white;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.facets-selected .search-tag a[data-role="remove"] {
+    background-color: #a3b8bd;
+    border-radius: 20em;
+    display: inline-block;
+    font-size: 11px;
+    position: relative;
+    text-align: center;
+    top: -1px;
+    width: 1.6em;
+}
+
+.has-bgimage .facets-selected .search-tag a[data-role="remove"] {
+    color: #4d4d4d;
+}
+
+.search-tag a[data-role="remove"]::after {
+    content: "✕";
+    padding: 0 2px;
+    vertical-align: baseline;
+}
+
+.is-vishidden {
+    border: 0 none;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+}
+
+/******************************************************************/
+
+
+
+/******************************************************************/
+
+.search_box_bg .uk-button-default {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+#tm-main {
+    padding-top: 40px;
 }

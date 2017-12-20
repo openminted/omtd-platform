@@ -1,0 +1,108 @@
+<div class="componentExecution uk-margin-medium-bottom uk-margin-medium-top">
+
+    <h3>How to use</h3>
+    <!--<div *ngIf="parameters && parameters.length>0" class="uk-section-default uk-section uk-padding-remove-vertical">-->
+        <!--<div class="uk-container">-->
+            <!--<div class="uk-grid-margin uk-grid" uk-grid="">-->
+                <!--<div class="uk-width-expand@m uk-first-column">-->
+                <!--</div>-->
+                <!--<div class="uk-width-auto@m">-->
+                    <!--<div class="uk-margin-small uk-text-center uk-card uk-card-primary uk-card-body" data-id="page#51">-->
+                        <!--&lt;!&ndash;<a href="#modal-center" style="text-decoration: none" uk-toggle>&ndash;&gt;-->
+                            <!--<h4 class="el-title uk-card-title">Parameters</h4>-->
+                            <!--<div class="el-content">-->
+                                <!--(click to view)-->
+                            <!--</div>-->
+                        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                    <!--</div>-->
+                    <!--<div class="uk-margin-remove-vertical uk-text-center" data-id="page#52">-->
+                        <!--<span uk-icon="icon: arrow-down;ratio: 3" class="uk-icon"><svg width="60" height="60" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="3"> <polygon points="10.5,16.08 5.63,10.66 6.37,10 10.5,14.58 14.63,10 15.37,10.66"></polygon> <line fill="none" stroke="#000" x1="10.5" y1="4" x2="10.5" y2="15"></line></svg></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="uk-width-expand@m">-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="uk-section-default uk-section uk-padding-remove-top uk-padding-remove-bottom">
+        <div class="uk-container">
+            <div class="uk-grid" uk-grid="">
+                <div class="uk-width-expand@m">
+                    <div class="uk-margin-small uk-text-center uk-card uk-card-primary uk-card-body" data-id="page#57" style="height: 100%">
+                        <h4 class="el-title uk-card-title">Input</h4>
+                        <div class="el-content">
+                            <processing-resource-info *ngIf="input" [processingResourceInfo]="input"></processing-resource-info>
+                            <div *ngIf="!input">not available</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-medium@m">
+                    <div class="uk-margin-small">
+                        <div class="uk-grid uk-grid-margin">
+                            <div class="uk-width-1-5@m uk-margin-top" style="padding-left: 10px">
+                                <span uk-icon="icon: arrow-right;ratio: 3" class="uk-icon"><svg width="60" height="60" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="3"> <polyline fill="none" stroke="#000" points="10 5 15 9.5 10 14"></polyline> <line fill="none" stroke="#000" x1="4" y1="9.5" x2="15" y2="9.5"></line></svg></span>
+                            </div>
+                            <div class="uk-width-3-5@m uk-margin-top" style="padding-left: 20px">
+                                <div class="uk-margin uk-text-center uk-panel" data-id="page#60">
+                                    <function-info *ngIf="functionInfo" [functionInfo]="functionInfo"></function-info>
+                                    <h3 class="el-title uk-margin" *ngIf="!functionInfo">Function</h3>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-5@m uk-margin-top"  style="padding-left: 10px">
+                                <span uk-icon="icon: arrow-right;ratio: 3" class="uk-icon"><svg width="60" height="60" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="3"> <polyline fill="none" stroke="#000" points="10 5 15 9.5 10 14"></polyline> <line fill="none" stroke="#000" x1="4" y1="9.5" x2="15" y2="9.5"></line></svg></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-expand@m" style="padding-left: 20px">
+                    <div class="uk-margin-small uk-text-center uk-card uk-card-primary uk-card-body" data-id="page#63" style="height: 100%">
+                        <h4 class="el-title uk-card-title">Output</h4>
+                        <div class="el-content">
+                            <processing-resource-info *ngIf="output" [processingResourceInfo]="output"></processing-resource-info>
+                            <div *ngIf="!output">not available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="componentDependencies" class="uk-section-default uk-section uk-padding-remove-vertical">
+        <div class="uk-container">
+            <div class="uk-grid" uk-grid="">
+                <div class="uk-width-expand@m uk-first-column">
+                </div>
+                <div class="uk-width-xlarge@m">
+                    <div class="uk-margin uk-text-center" data-id="page#68">
+                        <span uk-icon="icon: arrow-up;ratio: 3" class="uk-icon"><svg width="60" height="60" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="3"> <polygon points="10.5,4 15.37,9.4 14.63,10.08 10.5,5.49 6.37,10.08 5.63,9.4"></polygon> <line fill="none" stroke="#000" x1="10.5" y1="16" x2="10.5" y2="5"></line></svg></span>
+                    </div>
+                    <div class="uk-margin-small uk-text-center uk-card uk-card-primary uk-card-body" data-id="page#69">
+                        <h4 class="el-title uk-card-title">Component Dependencies</h4>
+                        <div class="el-content">
+                            <component-dependencies [componentDependencies]="componentDependencies"></component-dependencies>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-expand@m">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--<div id="modal-center" class="uk-flex-top" uk-modal>-->
+    <!--<div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">-->
+
+        <!--<button class="uk-modal-close-default" type="button" uk-close></button>-->
+
+        <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+
+    <!--</div>-->
+<!--</div>-->
+
+<!--<confirmation-dialog #parametersModal [isModalShown]="isParametersModalShown" [title]="'Parameters'"-->
+                     <!--[confirmActionButton]="'Yes, delete it'" (emmitObject)="confirmedDeleteComponent($event)">-->
+    <!--This should display the parameters-->
+<!--</confirmation-dialog>-->

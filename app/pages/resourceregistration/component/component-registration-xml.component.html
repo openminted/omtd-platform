@@ -1,65 +1,85 @@
-<div class="uk-block tm-block-main uk-block-default uk-block-large">
-    <div class="uk-container uk-container-center">
-        <div id="tm-middle" class="tm-middle uk-grid" data-uk-grid-match="" data-uk-grid-margin="">
-            <div class="tm-main uk-width-medium-1-1 uk-row-first">
-                <main id="tm-content" class="tm-content">
-                    <div id="system-message-container">
-                    </div>
-                    <div class="yoo-zoo page-uikit page-uikit-test">
+<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div class="uk-container">
+        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+            <div class="uk-width-1-1@m uk-first-column">
 
-                        <h1 class="uk-h1"> Component XML registration </h1>
+                <h1 class="uk-h2">Upload an XML file for your {{titleResourceType}}</h1>
+                <!--<hr class="uk-divider-small">-->
 
-                        <!--<p class="uk-text-muted">Written by Super User on 26 March 2010 </p>-->
+                <div class="uk-margin">
+                    Paste the copied XML file below, or use one of the options to upload and preview the XML file
+                    before you submit it.
+                </div>
 
-                        <div class="uk-margin">
-                            Paste the XML presentation of your component below, or use one of our helper methods on the
-                            right to preview your XML before you submit it.
+                <!-- TOP HELP CONTENT -->
+                <help-content #topHelperContent [position]="'top'"
+                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+                <div *ngIf="errorMessage" class="uk-alert uk-alert-danger">{{errorMessage}}</div>
+                <div *ngIf="successMessage" class="uk-alert uk-alert-success">{{successMessage}}</div>
+
+                <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+                    <div class="uk-grid">
+
+                        <!-- LEFT HELP CONTENT -->
+                        <aside-help-content #leftHelperContent [position]="'left'"
+                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+                        <!-- MIDDLE -->
+                        <div class=" uk-width-expand@m">
+                            <!--[formGroup]="componentXMLForm"-->
+                            <form role="form" class="m-t componentXMLForm" (ngSubmit)="onSubmit(componentXML, $event)">
+                                <div class="form-group">
+                                    <!--<textarea class="form-control" rows="16" name="xml" formControlName="xml"></textarea>-->
+                                    <div ace-editor [(text)]="componentXML" [theme]="'eclipse'" style="min-height: 500px; width:100%; overflow: auto;"></div>
+                                </div>
+                                <button class="uk-button uk-button-primary registerButton" type="submit">Register!</button>
+                            </form>
+
                         </div>
 
-                        <div class="uk-margin uk-grid componentXMLRegistration">
-                            <div class="uk-width-medium-7-10">
-                                <form [formGroup]="componentXMLForm" class="componentXMLForm" (ngSubmit)="onSubmit(componentXMLForm.value, $event)">
-                                    <div data-uk-grid-margin="" class="uk-grid uk-grid-width-1-1">
-                                        <div class="form-group">
-                                            <textarea class="form-control" rows="16" name="xml" formControlName="xml"></textarea>
-                                        </div>
-                                        <div class="uk-grid-margin uk-row-first"><button class="uk-button uk-button-large
-                                        uk-button-primary registerButton" type="submit">Register!</button></div>
+                        <aside class="tm-sidebar uk-width-1-4@m uk-first-column">
+                            <div class="uk-card uk-card-body uk-card-default uk-margin-bottom">
+                                <h3 class="uk-panel-title">Local Path</h3>
+                                <form class="m-t componentXMLFileForm">
+                                    <div class="form-group">
+                                        <input type="file" name="xmlFile" (change)="report($event)">
                                     </div>
+                                    <a (click)="previewFromFile()" class="">
+                                        Preview <i class="fa fa-angle-right uk-margin-small-left"></i>
+                                    </a>
                                 </form>
                             </div>
-                            <aside class="tm-sidebar-a uk-width-medium-3-10">
-                                <div class="uk-panel uk-panel-box uk-panel-box-primary">
-                                    <h3 class="uk-panel-title">Upload XML</h3>
-                                    <form class="componentXMLFileForm">
-                                        <div data-uk-grid-margin="" class="uk-grid uk-grid-width-1-1">
-                                            <div class="form-group">
-                                                <input type="file" name="xmlFile" (change)="report($event)">
-                                            </div>
-                                            <a (click)="previewFromFile()" class="uk-margin-top">
-                                                Preview <i class="uk-icon-angle-right uk-margin-small-left"></i>
-                                            </a>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="uk-panel uk-panel-box uk-panel-box-primary">
-                                    <h3 class="uk-panel-title">URL of component XML</h3>
-                                    <form class="componentXMLURLForm">
-                                        <div data-uk-grid-margin="" class="uk-grid uk-grid-width-1-1">
-                                            <div class="form-group">
-                                                <input class="form-control" name="xmlURL" [(ngModel)]="xmlURL">
-                                            </div>
-                                            <a (click)="previewFromURL()" class="uk-margin-top">
-                                                Preview <i class="uk-icon-angle-right uk-margin-small-left"></i>
-                                            </a>
-                                        </div>
-                                    </form>
-                                </div>
-                            </aside>
-                        </div>
+                            <div class="uk-card uk-card-body uk-card-default sidemenu uk-margin-bottom">
+                                <h3 class="uk-panel-title">URL Path</h3>
+                                <form class="m-t componentXMLURLForm">
+                                    <div class="form-group">
+                                        <input class="form-control" name="xmlURL" [(ngModel)]="xmlURL">
+                                    </div>
+                                    <a (click)="previewFromURL()" class="">
+                                        Preview <i class="fa fa-angle-right uk-margin-small-left"></i>
+                                    </a>
+                                </form>
+                            </div>
+                        </aside>
+
+                        <!--&lt;!&ndash; RIGHT HELP CONTENT &ndash;&gt;-->
+                        <!--<aside-help-content #rightHelperContent [position]="'right'"-->
+                                            <!--[ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">-->
+                        <!--</aside-help-content>-->
 
                     </div>
-                </main>
+                </div>
+
+
+                <!-- BOTTOM HELP CONTENT -->
+                <help-content #bottomHelperContent [position]="'bottom'"
+                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+
             </div>
         </div>
     </div>

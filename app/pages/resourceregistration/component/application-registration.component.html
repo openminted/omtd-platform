@@ -1,0 +1,267 @@
+<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div class="uk-container">
+        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+            <div class="uk-width-1-1@m uk-first-column">
+
+                <h2 class="uk-text-center uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                <!--<h2 class="uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
+                    Want to share a new application?
+                </h2>
+                <!--<hr class="uk-divider-icon uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
+                <p class="uk-text-large uk-width-2-3 uk-align-center uk-text-center">
+                    Applications are software programs intended for the end-user addressing one or multiple related user needs.
+                </p>
+
+                <!-- TOP HELP CONTENT -->
+                <help-content #topHelperContent [position]="'top'"
+                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+                <div class="uk-container uk-margin-medium-top uk-margin-large-bottom">
+                    <div class="uk-grid">
+
+                        <!-- LEFT HELP CONTENT -->
+                        <aside-help-content #leftHelperContent [position]="'left'"
+                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+
+                        <!-- MIDDLE -->
+                        <div class=" uk-width-expand@m">
+
+                            <div class="uk-grid">
+
+                                <!--TABS-->
+                                <!--<ul class="uk-width-1-1 uk-flex-center uk-tab uk-visible@m uk-margin-medium-top"-->
+                                <!--uk-tab="connect: #optionTabs; animation: uk-animation-fade">-->
+                                <ul class="uk-width-1-1 uk-flex-center uk-tab uk-visible@m uk-margin-medium-top"
+                                    uk-tab="connect: #optionTabs; animation: uk-animation-slide-right-medium">
+                                    <li>
+                                        <a>Register an existing application</a>
+                                    </li>
+                                    <li>
+                                        <a>Build an application with existing components</a>
+                                    </li>
+                                </ul>
+
+                                <button class="uk-button uk-button-default uk-hidden@m" type="button">
+                                    <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">{{activeTab}}</span>
+                                </button>
+
+                                <!--<ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m"-->
+                                <!--uk-switcher="{connect: #optionTabs; animation: uk-animation-fade}"-->
+                                <!--uk-dropdown="mode: click" uk-toggle="target: #toggle-small-tabs">-->
+                                <ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m"
+                                    uk-switcher="{connect: #optionTabs; animation: uk-animation-slide-right-medium}"
+                                    uk-dropdown="mode: click" uk-toggle="target: #toggle-small-tabs">
+                                    <li>
+                                        <a>Register an existing application</a>
+                                    </li>
+                                    <li>
+                                        <a>Build an application with existing components</a>
+                                    </li>
+                                </ul>
+
+                                <ul id="optionTabs" class="uk-switcher uk-width-1-1 uk-margin-large-top
+                                    custom-tab-content-large">
+                                    <li>
+                                        <div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">
+
+                                            <div class="uk-width-1-3@m uk-dark uk-grid-item-match uk-first-column">
+                                                <div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview uk-margin-right"
+                                                     uk-scrollspy-class="" style="">
+                                                    <div class="el-content uk-margin">
+                                                        <img src="../../../../assets/imgs/ExistingApplication_version2.png">
+                                                    </div>
+                                                    <!--<div class="el-content uk-margin-top" style="font-size: 90%;">-->
+                                                    <!--<i>* We support UIMA and GATE components that are registered in Maven</i>-->
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+
+                                            <div class="uk-width-2-3@m uk-dark uk-grid-item-match uk-first-column">
+                                                <div class="uk-margin uk-panel uk-scrollspy-inview uk-margin-left"
+                                                     uk-scrollspy-class="" style="">
+
+                                                    <ul class="uk-subnav uk-subnav-pill" uk-switcher>
+                                                        <li><a href="#">OMTD editor</a></li>
+                                                        <li><a href="#">Upload XML</a></li>
+                                                    </ul>
+
+                                                    <ul class="uk-switcher uk-margin-medium-top">
+                                                        <li>
+                                                            <div class="el-content uk-margin">
+                                                                Describe your application using the OMTD editor
+                                                            </div>
+                                                            <p>
+                                                                <a (click)="registerUsingForm()"
+                                                                   class="el-link uk-button uk-button-default uk-button-small actionButton">
+                                                                    Go
+                                                                </a>
+                                                            </p>
+                                                        </li>
+
+                                                        <li>
+                                                            <div class="el-content uk-margin">
+                                                                Upload an XML file with the description of your application according to the
+                                                                <a target="_blank" href="https://guidelines.openminted.eu">OMTD-SHARE
+                                                                    schema</a>
+                                                            </div>
+                                                            <p>
+                                                                <a (click)="registerUsingXML()"
+                                                                   class="el-link uk-button uk-button-default uk-button-small actionButton">
+                                                                    Upload
+                                                                </a>
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">
+
+                                            <div class="uk-width-1-3@m uk-dark uk-grid-item-match uk-first-column">
+                                                <div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview uk-margin-right"
+                                                     uk-scrollspy-class="" style="">
+                                                    <div class="el-content uk-margin">
+                                                        <img src="../../../../assets/imgs/BuildApplication.png">
+                                                    </div>
+                                                    <!--<div class="el-content uk-margin-top" style="font-size: 90%;">-->
+                                                    <!--<i>* We support UIMA and GATE components that are registered in Maven</i>-->
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+
+                                            <div class="uk-width-2-3@m uk-dark uk-grid-item-match uk-first-column">
+                                                <div class="uk-margin uk-panel uk-scrollspy-inview uk-margin-left"
+                                                     uk-scrollspy-class="" style="">
+
+                                                    <div class="el-content uk-margin">
+                                                        Create your application using our workflow editor
+                                                        <div *ngIf="workflowError" class="uk-alert uk-alert-danger">{{workflowError}}</div>
+                                                    </div>
+                                                    <p>
+                                                        <a (click)="buildWorkflow()" class="el-link uk-button uk-button-default uk-button-small actionButton">
+                                                            Build
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <!--<div class="uk-width-1-1">-->
+                                    <!--<ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">-->
+                                        <!--<li class="uk-width-1-2@m">-->
+                                            <!--<a href="#">-->
+                                                <!--<div class="uk-card uk-card-body uk-card-default uk-text-center">-->
+                                                    <!--&lt;!&ndash;<div class="uk-margin-bottom">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<img src="../../../../assets/imgs/maven-logo" width="150">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                    <!--<span>-->
+                                                        <!--Register an existing application-->
+                                                    <!--</span>-->
+                                                    <!--&lt;!&ndash;<div class="uk-margin-top">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;via Maven&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                <!--</div>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                        <!--<li class="uk-width-1-2@m">-->
+                                            <!--<a href="#">-->
+                                                <!--<div class="uk-card uk-card-body uk-card-default uk-text-center">-->
+                                                    <!--&lt;!&ndash;<div class="uk-margin-bottom">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<img src="../../../../assets/imgs/docker-logo" width="70">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                    <!--<span>-->
+                                                        <!--Build an application with existing components-->
+                                                    <!--</span>-->
+                                                <!--</div>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+
+                                    <!--<ul class="uk-switcher uk-margin-large">-->
+                                        <!--<li>-->
+                                            <!--<div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">-->
+                                                <!--<div class="uk-width-expand@m uk-dark uk-grid-item-match uk-first-column">-->
+                                                    <!--<div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview" uk-scrollspy-class="" style="">-->
+                                                        <!--&lt;!&ndash;<h4 class="el-title uk-margin uk-h4">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;A Researcher?    </h4>&ndash;&gt;-->
+                                                        <!--<div class="el-content uk-margin">-->
+                                                            <!--Describe your application using the OMTD editor-->
+                                                        <!--</div>-->
+                                                        <!--<p>-->
+                                                            <!--<a (click)="registerUsingForm()" class="el-link uk-button uk-button-default uk-button-small actionButton">-->
+                                                                <!--Go-->
+                                                            <!--</a>-->
+                                                        <!--</p>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="uk-width-expand@m uk-dark uk-grid-item-match">-->
+                                                    <!--<div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview" uk-scrollspy-class="" style="">-->
+                                                        <!--&lt;!&ndash;<h4 class="el-title uk-margin uk-h4">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;A Developer?    </h4>&ndash;&gt;-->
+                                                        <!--<div class="el-content uk-margin">-->
+                                                            <!--Describe your application according to the <a target="_blank" href="https://guidelines.openminted.eu">OMTD-Share schema</a>-->
+                                                        <!--</div>-->
+                                                        <!--<p>-->
+                                                            <!--<a (click)="registerUsingXML()" class="el-link uk-button uk-button-default uk-button-small actionButton">-->
+                                                                <!--Upload-->
+                                                            <!--</a>-->
+                                                        <!--</p>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<div class="uk-grid-divider uk-margin-large uk-grid" uk-grid="">-->
+                                                <!--<div class="uk-width-expand@m uk-dark uk-grid-item-match uk-first-column">-->
+                                                    <!--<div class="uk-margin uk-text-center uk-panel uk-scrollspy-inview" uk-scrollspy-class="" style="">-->
+                                                        <!--&lt;!&ndash;<h4 class="el-title uk-margin uk-h4">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;A Researcher?    </h4>&ndash;&gt;-->
+                                                        <!--<div class="el-content uk-margin">-->
+                                                            <!--Create your application using our workflow editor-->
+                                                            <!--<div *ngIf="workflowError" class="uk-alert uk-alert-danger">{{workflowError}}</div>-->
+                                                        <!--</div>-->
+                                                        <!--<p>-->
+                                                            <!--<a (click)="buildWorkflow()" class="el-link uk-button uk-button-default uk-button-small actionButton">-->
+                                                                <!--Build-->
+                                                            <!--</a>-->
+                                                        <!--</p>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- RIGHT HELP CONTENT -->
+                        <aside-help-content #rightHelperContent [position]="'right'"
+                                            [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+                    </div>
+                </div>
+
+
+                <!-- BOTTOM HELP CONTENT -->
+                <help-content #bottomHelperContent [position]="'bottom'"
+                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@ import { MetadataHeaderInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'metadata-header-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/metadata-header-info.component.html',
+    templateUrl: './metadata-header-info.component.html',
 })
 
 export class MetadataHeaderInfoComponent {

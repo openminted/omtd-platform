@@ -1,22 +1,26 @@
 /**
  * Created by stefania on 10/5/16.
  */
-import { NgModule }       from '@angular/core';
-import { CommonModule }   from '@angular/common';
-import {FormsModule, ReactiveFormsModule}    from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ResourceService } from "../../../services/resource.service";
 import { componentRegistrationRouting } from "./component-registration.routing";
 import { ComponentRegistrationComponent } from "./component-registration.component";
 import { ComponentRegistrationXMLComponent } from "./component-registration-xml.component";
 import { ComponentRegistrationFormComponent } from "./component-registration-form.component";
-import {MetadataIdentifierFormControl} from "../shared/metadata-identifier-form.component";
-import {MetadataHeaderInfoFormControl} from "../shared/metadata-header-info-form.component";
-import {ValuesPipe} from "../shared/values-pipe";
-import {RelatedPersonsForm, RelatedPersonForm} from "../shared/related-persons-form.component";
-import {IdentifierFormControl} from "../shared/identifier-common-form.component";
-import {LanguageTypeForm, LanguagesTypeForm} from "../shared/language-type-form.component";
-import {AccordionModule, TypeaheadModule} from "ng2-bootstrap/ng2-bootstrap";
+import { AccordionModule, TypeaheadModule } from "ngx-bootstrap";
+import { ResourceRegistrationModule } from "../resource-registration.module";
+import { ComponentRegistrationUsingFormComponent } from "./component-registration-using-form.component";
+import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reusable-components.module";
+import { ComponentUpdateUsingFormComponent } from "./component-update-using-form.component";
+import { AceEditorModule } from "ng2-ace-editor";
+import { BuildAWorkflowComponent } from "./build-a-workflow.component";
+import { ComponentRegistrationUsingMavenCoordinatesComponent } from "./component-registration-using-maven-coordinates.component";
+import { EditAWorkflowComponent } from "./edit-a-workflow.component";
+import { ApplicationRegistrationComponent } from "./application-registration.component";
+
 
 @NgModule({
     imports: [
@@ -24,21 +28,22 @@ import {AccordionModule, TypeaheadModule} from "ng2-bootstrap/ng2-bootstrap";
         FormsModule,
         ReactiveFormsModule,
         componentRegistrationRouting,
-        AccordionModule,
-        TypeaheadModule
+        AccordionModule.forRoot(),
+        TypeaheadModule.forRoot(),
+        ResourceRegistrationModule,
+        ReusableComponentsModule,
+        AceEditorModule,
     ],
     declarations: [
         ComponentRegistrationComponent,
         ComponentRegistrationXMLComponent, 
         ComponentRegistrationFormComponent,
-        MetadataIdentifierFormControl,
-        MetadataHeaderInfoFormControl,
-        ValuesPipe,
-        RelatedPersonsForm,
-        RelatedPersonForm,
-        LanguageTypeForm,
-        LanguagesTypeForm,
-        IdentifierFormControl
+        ComponentRegistrationUsingFormComponent,
+        ComponentRegistrationUsingMavenCoordinatesComponent,
+        ComponentUpdateUsingFormComponent,
+        ApplicationRegistrationComponent,
+        BuildAWorkflowComponent,
+        EditAWorkflowComponent
     ],
     providers: [
         ResourceService

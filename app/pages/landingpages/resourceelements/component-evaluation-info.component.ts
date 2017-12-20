@@ -6,8 +6,8 @@ import { ComponentEvaluationInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'component-evaluation-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/component-evaluation-info.component.html',
-    styleUrls:  ['app/pages/landingpages/landing-page.component.css'],
+    templateUrl: './component-evaluation-info.component.html',
+    styleUrls:  ['../landing-page.component.css'],
 })
 
 export class ComponentEvaluationInfoComponent {

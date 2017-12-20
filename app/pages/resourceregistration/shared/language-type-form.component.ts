@@ -1,133 +1,103 @@
 /**
  * Created by stefanos on 6/12/2016.
  */
-import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, FormArray, Validators, FormControl} from '@angular/forms';
-import {Description, languageIdDesc, scriptIdDesc, variantIdDesc,regiontIdDesc,languageTagDesc} from "./omtd.description";
-import {
-    EnumValues, personIdentifierSchemeNameEnum, scriptIdTypeEnum, regionIdTypeEnum,
-    variantIdTypeEnum, languageIdTypeEnum
-} from "./omtd.enum";
-
-
+import { Component } from "@angular/core";
+import { Validators } from "@angular/forms";
+import { EnumValues, languageIdTypeEnum } from "../../../domain/omtd.enum";
+import { MyGroup } from "../myform/my-group.interface";
 
 @Component({
-    selector: 'languages-types',
+    selector: 'simplelanguageType-form',
     template : `
-    
-<div [formGroup]="parentForm">
-    <div *ngFor="let c of parentForm.controls[name].controls; let i=index" class="group">
-        <div class="col-md-offset-2 col-sm-offset-2">
-            <div class="group-label">Language <a class="remove-element col-sm-1 col-md-1" (click)="delete_creator(i)">
-            <i class="fa fa-times" aria-hidden="true"></i></a></div>
+        <!--<ng-template #customItemTemplate let-model="item">-->
+            <!--<h5>{{model.value}} - {{ model.key }}</h5>-->
+        <!--</ng-template>-->
+        <input type="text" class="uk-input" placeholder="Language"
+               [(ngModel)]="selected"
+               [typeahead]="languageIdEnum"
+               (typeaheadOnSelect)="setLanguageId($event)"
+               [typeaheadOptionField]="'value'" />
+        <div [formGroup]="group">
+            <input type="hidden" formControlName="entry" />
         </div>
-        <language-type [group]="c" [index]="i"></language-type>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-md-offset-2 col-sm-9 col-md-9">
-            <a class="add-new-element" (click)="add_new()"><i class="fa fa-plus" aria-hidden="true"></i>
-                Add New Language</a>
-        </div>
-    </div>
-</div>
-`,
-    styleUrls : ['app/pages/resourceregistration/shared/templates/common.css']
+    `,
+    styleUrls : ['./templates/common.css']
 })
-export class LanguagesTypeForm implements OnInit{
+export class SimpleLanguageTypeForm extends MyGroup {
 
-    @Input('group')
-    public parentForm: FormGroup;
+    readonly languageIdEnum : EnumValues[] = languageIdTypeEnum;
 
-    @Input('name')
-    private name : string;
+    selected : string = "";
 
-    private myForm : FormGroup;
+    groupDefinition = {
+        entry : ['', Validators.required],
+    };
 
-    public add_new() {
-        const control = <FormArray>this.parentForm.controls[this.name];
-        control.push(this._fb.group({}));
-    }
-
-    public delete_creator(i : number) {
-        const control = <FormArray>this.parentForm.controls[this.name];
-        control.removeAt(i);
-    }
-
-    constructor(private _fb: FormBuilder) {
+    setLanguageId($event : any) : void {
+        this.getMyControl('entry').setValue($event.item.key.toLowerCase());
     }
 
     ngOnInit() {
-        this.myForm = this._fb.group({});
-        this.parentForm.addControl(this.name,this._fb.array([this.myForm]));
+        super.ngOnInit();
+        this.getMyControl('entry').valueChanges.subscribe(_ => {
+            let language = this.languageIdEnum.find(a => a.key == _.toUpperCase());
+            this.selected = language ? language.value : '';
+        });
     }
+
 }
 
-
 @Component({
-    selector: 'language-type',
-    templateUrl : 'app/pages/resourceregistration/shared/templates/language-type-form.component.html',
-    styleUrls : ['app/pages/resourceregistration/shared/templates/common.css']
+    selector: 'simplelanguageType2-form',
+    template : `
+        <!--<ng-template #customItemTemplate let-model="item">-->
+        <!--<h5>{{model.value}} - {{ model.key }}</h5>-->
+        <!--</ng-template>-->
+        <input type="text" class="uk-input" placeholder="Language"
+               [ngClass]="{'has-error':!group.valid}"
+               [(ngModel)]="selected"
+               [typeahead]="languageIdEnum"
+               (typeaheadOnSelect)="setLanguageId($event)"
+               (typeaheadNoResults)="noResults($event)"
+               [typeaheadOptionField]="'value'" />
+        <div [formGroup]="group">
+            <input type="hidden" formControlName="language" />
+        </div>
+    `,
+    styleUrls : ['./templates/common.css']
 })
-export class LanguageTypeForm implements OnInit {
+export class SimpleLanguageTypeForm2 extends MyGroup {
 
-    @Input('group')
-    public parentForm: FormGroup;
+    readonly languageIdEnum : EnumValues[] = languageIdTypeEnum;
 
-    @Input('index')
-    private index: number;
+    selected : string = "";
+    required = true;
 
-    private myForm : FormGroup;
+    groupDefinition = {
+        language : ['', Validators.required],
+    };
 
-    private languageTagDesc : Description;
-    private languageIdDesc : Description;
-    private scriptIdDesc : Description;
-    private regionIdDesc : Description;
-    private variantIdDesc : Description;
-
-    private languageIdEnum : EnumValues[];
-    private scriptIdEnum : EnumValues[];
-    private regionIdEnum : EnumValues[];
-    private variantIdEnum : EnumValues[];
-
-    private withIdentifier;
-
-    public addIdentifier() {
-        this.withIdentifier = true;
-        this.myForm.addControl('languageId',new FormControl('',[Validators.required]));
-        this.myForm.addControl('scriptId',new FormControl(''));
-        this.myForm.addControl('regionId',new FormControl(''));
-        this.myForm.addControl('variantId',new FormControl(''));
+    noResults($event : any) {
+        if(!$event && this.getMyControl('language').value!=='') this.getMyControl('language').setValue('');
     }
 
-    public deleteIdentifier() {
-        this.withIdentifier = false;
-        this.myForm.removeControl('languageId');
-        this.myForm.removeControl('scriptId');
-        this.myForm.removeControl('regionId');
-        this.myForm.removeControl('variantId');
-
-    }
-
-    constructor(private _fb: FormBuilder) {
-        this.languageTagDesc = languageTagDesc;
-        this.languageIdDesc = languageIdDesc;
-        this.scriptIdDesc = scriptIdDesc;
-        this.regionIdDesc = regiontIdDesc;
-        this.variantIdDesc = variantIdDesc;
-
-        this.languageIdEnum = languageIdTypeEnum;
-        this.scriptIdEnum = scriptIdTypeEnum;
-        this.regionIdEnum = regionIdTypeEnum;
-        this.variantIdEnum = variantIdTypeEnum;
-
-        this.withIdentifier = false;
+    setLanguageId($event : any) : void {
+        this.getMyControl('language').setValue($event.item.key.toLowerCase());
     }
 
     ngOnInit() {
-        this.myForm = this._fb.group({
-            languageTag : ['', Validators.required]
+        super.ngOnInit();
+        this.getMyControl('language').valueChanges.subscribe(_ => {
+            let language = this.languageIdEnum.find(a => a.key == _.toUpperCase());
+            console.log(language);
+            if(language.key == '') {
+                this.selected = '';
+            }
+            else {
+                this.selected = language ? language.value : '';
+            }
         });
-        this.parentForm.addControl('language',this.myForm);
     }
+
 }
 

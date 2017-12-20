@@ -1,0 +1,115 @@
+<div class="uk-block tm-block-main uk-block-default uk-block-large">
+    <div class="uk-container uk-container-center">
+        <div data-uk-grid-margin="" data-uk-grid-match="" class="tm-middle uk-grid" id="tm-middle">
+            <div class="tm-main uk-width-medium-1-1 uk-row-first">
+                <main class="tm-content" id="tm-content">
+
+                    <div *ngIf="errorMessage" data-uk-alert="" class="uk-alert uk-alert-danger">
+                        <p>{{errorMessage}}</p>
+                    </div>
+
+                    <div *ngIf="model && !errorMessage">
+                        <!--<div id="system-message-container">-->
+                        <!--</div>-->
+                        <div class="yoo-zoo">
+
+                            <!--<div class="uk-align-medium-right">-->
+                                <!--<div class="uk-grid-margin uk-row-first">-->
+                                    <!--<button class="uk-button uk-button-large uk-button-primary" (click)="goBack()">-->
+                                        <!--<i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <h2 class="uk-h2" *ngIf="model.modelInfo.identificationInfo.resourceNames
+                            && model.modelInfo.identificationInfo.resourceNames.length>0">
+                                {{model.modelInfo.identificationInfo.resourceNames[0].value}}
+                            </h2>
+
+                            <ul class="uk-subnav uk-subnav-line">
+                                <li *ngIf="model.modelInfo.identificationInfo.resourceShortNames
+                                && model.modelInfo.identificationInfo.resourceShortNames.length>0"
+                                    class="element element-text">
+                                    <strong>{{model.modelInfo.identificationInfo.resourceShortNames[0].value}} </strong> </li>
+                            </ul>
+
+                            <div class="resourceIdentifiers" *ngIf="model.modelInfo.identificationInfo.identifiers
+                            && model.modelInfo.identificationInfo.identifiers.length>0">
+                                <div *ngFor="let identifier of model.modelInfo.identificationInfo.identifiers">
+                                    <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <div data-uk-grid-margin="" class="uk-grid">
+
+                                    <div class="uk-width-medium-3-4 uk-row-first">
+
+                                        <div class="uk-panel uk-panel-box resourceGeneralInfo">
+                                            <div class="uk-thumbnail uk-align-medium-right">
+                                                <img width="80" height="80" alt="Logo" src="assets/imgs/yourLogoHere.jpg">
+                                            </div>
+
+                                            <div class="uk-nbfc">
+                                                <!--<h2 class="uk-panel-title uk-margin-top-remove">Description </h2>-->
+                                                <ul class="uk-list" *ngIf="model.modelInfo.identificationInfo.descriptions
+                                                    && model.modelInfo.identificationInfo.descriptions.length>0">
+                                                    <li *ngFor="let description of model.modelInfo.identificationInfo.descriptions; let isFirst = first;"
+                                                        [class.uk-margin-top]="!isFirst">
+                                                        {{description.value}}
+                                                    </li>
+                                                </ul>
+                                                <version-info *ngIf="model.modelInfo.versionInfo"
+                                                              [versionInfo]="model.modelInfo.versionInfo">
+                                                </version-info>
+                                                <resource-documentation-info *ngIf="model.modelInfo.resourceDocumentationInfo"
+                                                                             [resourceDocumentationInfo]="model.modelInfo.resourceDocumentationInfo">
+                                                </resource-documentation-info>
+                                            </div>
+
+                                        </div>
+
+                                        <tabset class="infoTabs">
+                                            <tab *ngIf="model.modelInfo.distributionInfos && model.modelInfo.distributionInfos.length>0"
+                                                 heading="Distribution" class="infoTab">
+                                                <dataset-distribution-info *ngFor="let distributionInfo of model.modelInfo.distributionInfos"
+                                                                           [datasetDistributionInfo]="distributionInfo"></dataset-distribution-info>
+                                            </tab>
+                                            <tab *ngIf="model.modelInfo.validationInfos && model.modelInfo.validationInfos.length>0"
+                                                 heading="Validation" class="infoTab">
+                                                <validation-info *ngFor="let validationInfo of model.modelInfo.validationInfos"
+                                                                 [validationInfo]="validationInfo"></validation-info>
+                                            </tab>
+                                            <tab *ngIf="model.modelInfo.usageInfo"
+                                                 heading="Usage" class="infoTab">
+                                                <usage-info [usageInfo]="model.modelInfo.usageInfo"></usage-info>
+                                            </tab>
+                                        </tabset>
+
+                                        <!--<h3>Directions</h3><div class="uk-margin">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div><div class="uk-margin">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div><div class="uk-margin">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div><div class="uk-margin">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div><div class="uk-margin">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>-->
+                                    </div>
+
+                                    <div class="uk-width-medium-1-4 resourceSideInfo">
+
+                                        <div *ngIf="model.modelInfo.contactInfo" class="uk-panel uk-panel-box uk-panel-box-blue">
+                                            <contact-info [contactInfo]="model.modelInfo.contactInfo"></contact-info>
+                                        </div>
+
+                                        <div *ngIf="model.modelInfo.resourceCreationInfo" class="uk-panel uk-panel-box uk-panel-box-blue">
+                                            <resource-creation-info [resourceCreationInfo]="model.modelInfo.resourceCreationInfo"></resource-creation-info>
+                                        </div>
+
+                                        <!--<div *ngIf="model.metadataHeaderInfo" class="uk-panel uk-panel-box uk-panel-box-blue">-->
+                                            <!--<metadata-header-info [metadataHeaderInfo]="model.metadataHeaderInfo"></metadata-header-info>-->
+                                        <!--</div>-->
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>

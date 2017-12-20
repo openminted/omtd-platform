@@ -6,7 +6,7 @@ import { VersionInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'version-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/version-info.component.html',
+    templateUrl: './version-info.component.html',
 })
 
 export class VersionInfoComponent {

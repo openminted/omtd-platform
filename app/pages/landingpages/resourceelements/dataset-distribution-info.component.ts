@@ -7,7 +7,7 @@ import { DatasetDistributionInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'dataset-distribution-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/dataset-distribution-info.component.html',
+    templateUrl: './dataset-distribution-info.component.html',
 })
 
 export class DatasetDistributionInfoComponent {

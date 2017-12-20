@@ -6,7 +6,7 @@ import { ComponentDependencies } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'component-dependencies',
-    templateUrl: 'app/pages/landingpages/resourceelements/component-dependencies.component.html',
+    templateUrl: './component-dependencies.component.html',
 })
 
 export class ComponentDependenciesComponent {

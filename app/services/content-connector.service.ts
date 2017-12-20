@@ -6,72 +6,94 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { URLParameter } from "../domain/url-parameter";
 import { PublicationSearchResults } from "../domain/publications-search-results";
+import { Corpus as OMTDCorpus } from "../domain/openminted-model";
+import { ResourceService } from "./resource.service";
+import { ContentConnectorStatus } from "../domain/content-connector-status";
+import {CorpusBuildingState} from "../domain/corpus-building-state";
 
 @Injectable()
 export class ContentConnectorService {
 
     constructor (private http: Http) {}
 
-    private _contentConnectorSearchUrl = 'http://83.212.101.85:8888/content-connector-service/content/browse/';
+    private _contentConnectorSearchUrl = process.env.CONNECTOR_API_ENDPOINT + '/content/browse/';
+    private _contentConnectorPrepareCorpusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/prepare/';
+    private _contentConnectorBuildCorpusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/build/';
+    private _contentConnectorBuildCorpusStatusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/status/?id=';
+    private _contentConnectorStatusUrl = process.env.CONNECTOR_API_ENDPOINT + '/content/status';
+
+    private _corpusBuildingStateUrl = process.env.API_ENDPOINT + '/request/corpusbuildingstate/aggregate/';
+
+    getContentConnectorStatus() {
+        return this.http.get(this._contentConnectorStatusUrl)
+            .map(res => <ContentConnectorStatus> res.json())
+            .catch(this.handleError);
+    }
 
     search(urlParameters: URLParameter[]) {
 
-        var postBody = '{}';
-
-        var keywordString = '';
-        var paramsString = '\"params\":{';
-
-        var foundParams = false;
+        var body = {};
+        body['params'] = {};
 
         for(let urlParameter of urlParameters) {
 
             if(urlParameter.key === 'query') {
-                keywordString = '\"keyword\":\"' + urlParameter.values[0] + '\"';
+                body['keyword'] = urlParameter.values[0];
             } else {
-                foundParams = true;
-                var valuesCounter = 0;
-                paramsString += '\"' + urlParameter.key + '\":[';
-                for(let value of urlParameter.values) {
-                    if(valuesCounter!=0)
-                        paramsString += ',';
-                    paramsString += '\"' + value + '\"';
-                    valuesCounter++;
-                }
-                paramsString += ']';
+                body['params'][urlParameter.key] = urlParameter.values;
             }
-
         }
-
-        paramsString += '}';
-
-        if(keywordString != '' || foundParams) {
-            postBody = '{';
-            if(keywordString!='')
-                postBody += keywordString;
-            if(foundParams) {
-                if(keywordString!='')
-                    postBody += ',' + paramsString;
-                else
-                    postBody += paramsString;
-            }
-            postBody += '}';
-        }
-
-        console.log(postBody);
-
-        // {"keyword":"blah","params":{"year":["2012"],"language":["english","somalian"]},"facets":["language","year"],"from":0,"to":0}
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        
-        return this.http.post(this._contentConnectorSearchUrl, postBody, options)
+        options.withCredentials = true;
+        return this.http.post(this._contentConnectorSearchUrl, JSON.stringify(body), options)
             .map(res => <PublicationSearchResults> res.json())
             .catch(this.handleError);
-        
-        
-        // return this.http.get(this._contentConnectorSearchUrl + '?facets=licence,year,language')
-        //     .map(res => <PublicationSearchResults> res.json())
-        //     .catch(this.handleError);
+    }
+
+    prepareCorpus(urlParameters: URLParameter[]) {
+
+        var body = {};
+        body['params'] = {};
+
+        for(let urlParameter of urlParameters) {
+
+            if(urlParameter.key === 'query') {
+                body['keyword'] = urlParameter.values[0];
+            } else {
+                body['params'][urlParameter.key] = urlParameter.values;
+            }
+        }
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        options.withCredentials = true;
+        return this.http.post(this._contentConnectorPrepareCorpusUrl, JSON.stringify(body), options)
+            .map(res => <OMTDCorpus> res.json())
+            .catch(this.handleError).share();
+    }
+
+    buildCorpus(corpus: OMTDCorpus) {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials : true });
+        let corpus_ = ResourceService.removeNulls(corpus);
+        return this.http.post(this._contentConnectorBuildCorpusUrl, JSON.stringify(corpus_), options)
+            .map(res => res.status)
+            .catch(this.handleError);
+    }
+
+    getStatus(corpusId: string) {
+        return this.http.get(this._contentConnectorBuildCorpusStatusUrl + corpusId)
+            .map(res => res.text())
+            .catch(this.handleError);
+    }
+
+    getCorpusBuildingState(corpusId: string) {
+        return this.http.get(this._corpusBuildingStateUrl + corpusId)
+            .map(res => <CorpusBuildingState[]> res.json())
+            .catch(this.handleError);
     }
 
     private extractData(res: Response) {

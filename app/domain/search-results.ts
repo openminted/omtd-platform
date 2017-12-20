@@ -1,15 +1,25 @@
 /**
  * Created by stefania on 9/9/16.
  */
-import { Results } from "./results";
 import { Facet } from "./facet";
+import { Order } from "./resource";
     
-export class SearchResults {
+export class SearchResults<T> {
 
     from: number;
     to: number;
     total: number;
     
-    results: Results;
+    results: Order<T>[];
+    facets: Facet[];
+}
+
+export class SearchResultsNew<T> {
+
+    from: number;
+    to: number;
+    total: number;
+
+    results: T[];
     facets: Facet[];
 }

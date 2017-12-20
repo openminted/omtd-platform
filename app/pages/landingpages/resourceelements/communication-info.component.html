@@ -1,0 +1,24 @@
+<div>
+    <div *ngIf="communicationInfo.homepages && communicationInfo.homepages.length>0">
+        <a target="_blank" href="{{communicationInfo.homepages[0]}}">{{communicationInfo.homepages[0]}}</a>
+    </div>
+    <div *ngIf="communicationInfo.emails && communicationInfo.emails.length>0">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        <span *ngFor="let email of communicationInfo.emails; let isLast = last">
+        <span>
+            <a href="mailto:{{email}}">{{email}}</a>
+        </span>
+        {{isLast ? '' : ' | '}}
+    </span>
+
+    </div>
+    <div *ngIf="communicationInfo.telephoneNumbers && communicationInfo.telephoneNumbers.length>0">
+        <i class="fa fa-phone" aria-hidden="true"></i>
+        <span *ngFor="let telephoneNumber of communicationInfo.telephoneNumbers; let isLast = last">
+            <span>
+                {{telephoneNumber}}
+            </span>
+            {{isLast ? '' : ' | '}}
+        </span>
+    </div>
+</div>

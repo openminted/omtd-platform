@@ -7,7 +7,7 @@ import { RawCorpusInfo } from "../../../domain/openminted-model";
 
 @Component({
     selector: 'raw-corpus-info',
-    templateUrl: 'app/pages/landingpages/resourceelements/raw-corpus-info.component.html',
+    templateUrl: './raw-corpus-info.component.html',
 })
 
 export class RawCorpusInfoComponent {

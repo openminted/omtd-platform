@@ -1,3 +1,126 @@
-<div>
-    SUPPORT!!!!!
+<div class="uk-background-norepeat uk-background-cover uk-background-fixed uk-section uk-padding-remove-bottom uk-flex uk-flex-middle"
+     style="background-image: url('./assets/imgs/omtd_home_2.jpeg'); box-sizing: border-box; height: 150px">
+    <div class="uk-width-1-1">
+        <div class="uk-position-relative">
+            <div class="uk-container uk-margin-medium">
+                <div class="search_box_bg uk-grid-large uk-flex-middle uk-grid uk-grid-stack" uk-grid="">
+                    <div class="uk-width-1-1@m uk-first-column">
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div class="uk-container">
+
+        <!-- TOP HELP CONTENT -->
+        <help-content #topHelperContent [position]="'top'"
+                      [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+        </help-content>
+
+        <div class="uk-grid" uk-grid="">
+
+            <!-- LEFT HELP CONTENT -->
+            <aside-help-content #leftHelperContent [position]="'left'"
+                                [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+            </aside-help-content>
+
+            <div class="uk-width-expand@m uk-first-column">
+
+                <div class="uk-container uk-container-small uk-margin-large-bottom">
+                    <div uk-grid="" class="uk-grid uk-grid-stack">
+                        <div class="uk-width-1-1@m uk-first-column">
+
+                            <div class="uk-margin-medium-bottom">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a href="https://groups.google.com/forum/#!forum/openminted-user-forum" target="_blank">
+                                        OpenMinTeD user forum: Google Group
+                                    </a>
+                                </h3>
+                                <p>The OpenMinTeD platform is still in its early stages and therefore bugs or questions may come up
+                                    while using it. Please, share your questions and best practices with the community on our
+                                    <a href="https://groups.google.com/forum/#!forum/openminted-user-forum" target="_blank">OpenMinTeD user Google Group</a>.
+                                    Discuss it with fellow users and experts, receive answers and help improve the platform.</p>
+                            </div>
+
+                            <div class="uk-margin-medium-bottom">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a [routerLink]="['/support/faqPolicies']">
+                                        FAQ Policies
+                                    </a>
+                                </h3>
+                                <p>For general information about the policies of OpenMinTeD, instructions on how to use the
+                                    services provided by OpenMinTeD or how to contribute to OpenMinTeD, check this our
+                                    <a [routerLink]="['/support/faqPolicies']">frequently asked policies questions and answers</a>.</p>
+                            </div>
+
+                            <div class="uk-margin-medium-bottom">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a [routerLink]="['/support/faqLegal']">
+                                        FAQ Legal
+                                    </a>
+                                </h3>
+                                <p>Is the complex legal landscape holding you back from using our platform and doing TDM?
+                                    Don't worry, you are not the only one. We compiled the most
+                                    <a [routerLink]="['/support/faqLegal']">frequently asked legal questions and answers</a> to
+                                    help you out and get you on your way again.</p>
+                            </div>
+
+                            <div class="uk-margin-medium-bottom">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a href="https://www.fosteropenscience.eu/openminted" target="_blank">
+                                        Training and resources on text and data mining
+                                    </a>
+                                </h3>
+                                <p>If you are looking for general information on text and data mining on educational resources, try our
+                                    <a href="https://www.fosteropenscience.eu/openminted" target="_blank">OpenMinTeD knowledge base</a>
+                                    on the Foster platform. We collected resources and are working on online courses on TDM.</p>
+                            </div>
+
+                            <div class="uk-margin-medium-bottom">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a href="https://guidelines.openminted.eu/" target="_blank">
+                                        Guidelines
+                                    </a>
+                                </h3>
+                                <p>If you are looking to contribute with content or TDM tools, services and auxiliary resources to
+                                    OpenMinTeD, you should check our <a href="https://guidelines.openminted.eu/" target="_blank">guidelines</a>
+                                    containing instructions on how to create metadata and how to register your content and TDM resources to
+                                    OpenMinTeD.</p>
+                            </div>
+
+                            <div class="uk-margin-medium-bottom">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a href="http://openminted.eu/support/" target="_blank">
+                                        Specific questions
+                                    </a>
+                                </h3>
+                                <p>Are you not getting there with the resources and help above and are you stuck? Please, go to the
+                                    <a href="http://openminted.eu/support/" target="_blank">OpenMinTeD online Support center</a>. We'll do our
+                                    best to help you resume your mining, sharing or collaborating.</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT HELP CONTENT -->
+            <aside-help-content #rightHelperContent [position]="'right'"
+                                [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+            </aside-help-content>
+
+        </div>
+
+        <!-- BOTTOM HELP CONTENT -->
+        <help-content #bottomHelperContent [position]="'bottom'"
+                      [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+        </help-content>
+    </div>
 </div>

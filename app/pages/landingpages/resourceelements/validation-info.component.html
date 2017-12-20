@@ -20,15 +20,15 @@
     <li *ngIf="validationInfo.validationExtentDetails">
         <strong>Validation extent details: </strong>{{validationInfo.validationExtentDetails}}
     </li>
-    <li *ngIf="validationInfo.sizePerValidation">
-        <strong>Size per validation: </strong>
-        <span *ngIf="validationInfo.sizePerValidation.size">
-            {{validationInfo.sizePerValidation.size}}
-        </span>
-        <span *ngIf="validationInfo.sizePerValidation.sizeUnit">
-            {{validationInfo.sizePerValidation.sizeUnit}}
-        </span>
-    </li>
+    <!--<li *ngIf="validationInfo.sizePerValidation">-->
+        <!--<strong>Size per validation: </strong>-->
+        <!--<span *ngIf="validationInfo.sizePerValidation.size">-->
+            <!--{{validationInfo.sizePerValidation.size}}-->
+        <!--</span>-->
+        <!--<span *ngIf="validationInfo.sizePerValidation.sizeUnit">-->
+            <!--{{validationInfo.sizePerValidation.sizeUnit}}-->
+        <!--</span>-->
+    <!--</li>-->
     <li *ngIf="validationInfo.validationReports && validationInfo.validationReports.length>0">
         <strong>Validation reports: </strong>
         <span *ngFor="let validationReport of validationInfo.validationReports; let isLast = last;">

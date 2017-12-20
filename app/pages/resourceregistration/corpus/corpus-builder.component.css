@@ -1,0 +1,7 @@
+/*.uk-table-striped > tr:nth-of-type(2n+1), .uk-table-striped tbody tr:nth-of-type(2n+1) {*/
+    /*background: #f7f7fa none repeat scroll 0 0;*/
+/*}*/
+
+tr:nth-of-type(2n+1) .uk-progress {
+    background-color: #fff;
+}
