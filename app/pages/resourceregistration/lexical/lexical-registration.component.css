@@ -1,0 +1,116 @@
+.form-control {
+    border-radius: 0px;
+}
+
+.uk-grid {
+    margin-left: -20px;
+}
+
+.registrationOptions {
+    margin-top: 30px;
+}
+
+
+
+/*.mavenCoordinatesForm label {*/
+    /*font-weight: 300;*/
+/*}*/
+
+.uk-grid-divider.uk-grid-large > * {
+    padding-left: 0px;
+}
+
+.uk-grid-divider.uk-grid-large.uk-grid-stack > .uk-grid-margin::before {
+    left: 0px;
+}
+
+/******************************************************/
+
+.uk-card-body {
+    padding: 30px 40px;
+    height: 190px;
+}
+
+.uk-subnav-pill > .uk-active > a, .nav-pills > .active > a {
+    /*background-color: transparent;*/
+    /*color: #0055b9;*/
+    /*border-color: #0055b9;*/
+    background-color: #0055b9;
+    color: #fff;
+    border-color: #0055b9;
+}
+
+.uk-grid-divider > :not(.uk-first-column)::before {
+    left: 15px;
+}
+
+.uk-grid-divider > * {
+    padding-left: 45px;
+}
+
+.mavenCoordinatesForm {
+    margin-top: 25px;
+}
+
+.mavenCoordinatesForm .uk-grid {
+    margin-left: -40px;
+}
+
+.mavenCoordinatesForm .uk-grid-margin {
+    margin-top: 25px;
+}
+
+.actionButton {
+    width: 150px;
+}
+
+.uk-tab > li > a {
+    display: block;
+    padding: 8px 12px 8px 12px;
+    border: 1px solid transparent;
+    border-bottom-width: 1px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-bottom-width: 0;
+    color: #8b8e97;
+    text-decoration: none;
+}
+
+.uk-tab > li > a:hover, .uk-tab > li > a:focus, .uk-tab > li.uk-open > a {
+    border-color: rgba(0, 0, 0, 0);
+    background: #f7f7f7;
+    color: #0055b9;
+    outline: none;
+}
+
+.uk-tab > li.uk-active > a {
+    border-color: #f1f1f1;
+    border-bottom-color: transparent;
+    background: #ffffff;
+    color: #8b8e97;
+}
+
+.uk-subnav > li > a {
+    border: 1px solid #9c9c9c !important;
+    border-radius: 0px !important;
+}
+
+.uk-subnav-pill > * > :hover {
+    border: 1px solid #0055b9 !important;
+    color: #0055b9 !important;
+    text-decoration: none;
+    outline: 0;
+    box-shadow: none !important;
+    background: none;
+}
+
+.uk-subnav-pill > .uk-active > * {
+    background: #0055b9;
+    border: 1px solid #0055b9 !important;
+    color: #fff !important;
+    box-shadow: none;
+}
+
+/******************************************************/

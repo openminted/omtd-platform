@@ -251,6 +251,17 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
+    uploadResource(resource: OMTDCorpus,resourceType : string) {
+
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        let resource_ = ResourceService.removeNulls(resource);
+        console.log(JSON.stringify(resource_,null,2));
+        return this.http.post(this._searchUrl + resourceType, JSON.stringify(resource_), options)
+            .map(res => res.status)
+            .catch(this.handleError);
+    }
+
     uploadZip(name : string,file : File) {
         let formBody : FormData = new FormData();
         formBody.append('filename',name);

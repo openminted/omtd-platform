@@ -64,6 +64,8 @@ import { CharacterEncodingSetFormControl } from "./shared/character-encoding-for
 import { TextFormatInfoFormControl } from "./shared/text-format-info-form.component";
 import { DomainInfoFormControl } from "./shared/domain-info-form";
 import { TreeModule } from "angular-tree-component";
+import { LexicalGenericFormControl } from "./shared/lexical-generic-info-form.component";
+import { LexicalTextInfoFormControl } from "./shared/lexical-text-info-form.component";
 
 const entryComponents = [
     DomainInfoFormControl,
@@ -123,6 +125,8 @@ const declarations = [
     ValuesPipe,
     VersionFormControl,
     ZipUploadComponent,
+    LexicalGenericFormControl,
+    LexicalTextInfoFormControl
 ];
 
 @NgModule({
