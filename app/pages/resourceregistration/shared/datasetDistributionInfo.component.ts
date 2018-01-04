@@ -21,10 +21,10 @@ import { TextFormatInfoFormControl } from "./text-format-info-form.component";
     template : `    
     <div [formGroup]="parentGroup">
 
-        <datasetDistributionInfo-form [parentGroup]="parentGroup" [name]="'datasetDistributionInfo'"></datasetDistributionInfo-form>
-        <!--<form-repeat [component]="datasetDistributionType" [parentGroup]="parentGroup" -->
-                            <!--[name]="'distributionInfos'" [required]="true" [description]="datasetDistributionDesc">-->
-        <!--</form-repeat>-->
+        <!--<datasetDistributionInfo-form [parentGroup]="parentGroup" [name]="'datasetDistributionInfo'"></datasetDistributionInfo-form>-->
+        <form-repeat [component]="datasetDistributionType" [parentGroup]="parentGroup" 
+                            [name]="'distributionInfos'" [required]="true" [description]="datasetDistributionDesc">
+        </form-repeat>
         
     </div>
 `,

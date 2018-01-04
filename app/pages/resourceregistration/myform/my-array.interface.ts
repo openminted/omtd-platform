@@ -36,6 +36,8 @@ export class MyArray extends MyGroup {
 
     @Input() public wrapper : Type<MyWrapper> = MyArrayWrapper;
 
+    @Input() public initEmpty : boolean = false;
+
     @ViewChild(MyFormDirective) protected formComponents: MyFormDirective;
 
     protected _cfr : ComponentFactoryResolver;
@@ -97,7 +99,7 @@ export class MyArray extends MyGroup {
         // super.ngOnInit();
         this.viewContainerRef = this.formComponents.viewContainerRef;
         (<FormGroup>this.parentGroup).addControl(<string>this.name, this._fb.array([]));
-        this.createView();
+        !this.initEmpty && this.createView();
         this.parentGroup.get(this.name as string).patchValue = this.patchValue();
 
     }
