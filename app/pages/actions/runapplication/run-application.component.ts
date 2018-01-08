@@ -129,7 +129,7 @@ export class RunApplicationComponent {
 
         let archiveId = this.corpus.corpusInfo.datasetDistributionInfo.distributionLocation.match(/\?archiveId=([\d\w-]+)$/);
         if(!archiveId) {
-            this.handleError('This corpus has no valid archiveId',null);
+            this.handleError('This corpus has no valid archiveId',{error:"Error"} as any);
             return;
         }
         this.workflowService.executeJob(archiveId[1],

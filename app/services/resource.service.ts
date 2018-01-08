@@ -2,7 +2,7 @@
  * Created by stefania on 9/6/16.
  */
 import { Injectable } from "@angular/core";
-import { Headers, Http, RequestMethod, RequestOptions, Response } from "@angular/http";
+import { Headers, Http, RequestMethod, RequestOptions, Response, URLSearchParams } from "@angular/http";
 import { Observable } from "rxjs/Rx";
 import {
     BaseMetadataRecord,
@@ -16,7 +16,7 @@ import { SearchResults } from "../domain/search-results";
 import { Resource } from "../domain/resource";
 import { EnrichedOperation } from "../domain/operation";
 import { MavenComponent } from "../domain/maven-component";
-import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { GhQueryEncoder } from "../domain/utils";
 
 @Injectable()
 export class ResourceService {
@@ -31,7 +31,31 @@ export class ResourceService {
     private _resourcesUrl = this.endpoint + '/request/';
     private _uploadUrl = this.endpoint + '/resources/';
     private _uploadZip = this.endpoint + "/request/corpus/upload";
-    
+
+    private rearangeFacets(results : SearchResults<BaseMetadataRecord>) : SearchResults<BaseMetadataRecord> {
+        for(let facet of results.facets) {
+            let order=0;
+            switch(facet.field) {
+                case 'licence' : order = 13; break;
+                case 'rights' : order = 12; break;
+                case 'lingualityType' : order = 11; break;
+                case 'language' : order = 10; break;
+                case 'function' : order = 9; break;
+                case 'componentDistributionMedium' : order = 8; break;
+                case 'processingResourceType' : order = 7; break;
+                case 'dataFormat' : order = 6; break;
+                case 'annotationType' : order = 5; break;
+                case 'keyword' : order = 4; break;
+                case 'domain' : order = 3; break;
+                case 'framework' : order = 2; break;
+                default : order = 0;
+            }
+            facet['order_'] = order;
+        }
+        results.facets.sort((l,r)=>r['order_'] - l['order_']);
+        return results;
+    }
+
     search(urlParameters: URLSearchParams) {
 
         if(urlParameters.has('query')) {
@@ -46,8 +70,10 @@ export class ResourceService {
         if(["component","corpus","application"].includes(resourceType)) {
             searchUrl = `${this._searchUrl}${resourceType}/all`;
         }
-        return this.http.get(searchUrl +'?' + urlParameters.toString())
+
+        return this.http.get(searchUrl,{params : urlParameters})
             .map(res => <SearchResults<BaseMetadataRecord>> res.json())
+            .map(res => this.rearangeFacets(res))
             .catch(this.handleError);
     }
 
@@ -146,7 +172,7 @@ export class ResourceService {
     }
 
     getMavenComponents(artifactId : string, groupId : string, version : string) {
-        let search : URLSearchParams = new URLSearchParams();
+        let search : URLSearchParams = new URLSearchParams('',new GhQueryEncoder());
         search.set('artifactID',artifactId);
         search.set('groupID',groupId);
         search.set('version',version);
@@ -247,6 +273,17 @@ export class ResourceService {
         let corpus_ = ResourceService.removeNulls(corpus);
         console.log(JSON.stringify(corpus_,null,2));
         return this.http.post(this._searchUrl + 'corpus', JSON.stringify(corpus_), options)
+            .map(res => res.status)
+            .catch(this.handleError);
+    }
+
+    uploadResource(resource: OMTDCorpus,resourceType : string) {
+
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        let resource_ = ResourceService.removeNulls(resource);
+        console.log(JSON.stringify(resource_,null,2));
+        return this.http.post(this._searchUrl + resourceType, JSON.stringify(resource_), options)
             .map(res => res.status)
             .catch(this.handleError);
     }

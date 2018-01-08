@@ -13,6 +13,7 @@ import { SearchResults } from "../../domain/search-results";
 import { ShortResultInfo } from "../../domain/short-resource-info";
 import { BaseMetadataRecord, ComponentInfo, CorpusInfo } from "../../domain/openminted-model";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { GhQueryEncoder } from "../../domain/utils";
 
 @Component({
     selector: 'search',
@@ -55,7 +56,7 @@ export class SearchComponent {
             .params.subscribe(params => {
                 this.urlParameters.splice(0,this.urlParameters.length);
                 this.foundResults = true;
-                let searchParams : URLSearchParams = new URLSearchParams();
+                let searchParams : URLSearchParams = new URLSearchParams('',new GhQueryEncoder());
                 for (var obj in params) {
                     if (params.hasOwnProperty(obj)) {
                         var urlParameter: URLParameter = {

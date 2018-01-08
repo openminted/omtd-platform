@@ -1,7 +1,21 @@
+import { QueryEncoder } from "@angular/http";
 /**
  * Created by stefanos on 2/3/2017.
  */
 // import {allEnum} from "./omtd.enum";
+/**
+ * @see https://github.com/angular/angular/issues/11058
+ */
+export class GhQueryEncoder extends QueryEncoder {
+    encodeKey(k: string): string {
+        k = super.encodeKey(k);
+        return k.replace(/\+/gi, '%2B');
+    }
+    encodeValue(v: string): string {
+        v = super.encodeKey(v);
+        return v.replace(/\+/gi, '%2B');
+    }
+}
 
 export function transform(object : any ) : any {
     transformR(object);
