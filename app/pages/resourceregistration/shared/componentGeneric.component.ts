@@ -1,10 +1,12 @@
-import { Component, Injector } from "@angular/core";
+import {Component, ElementRef, Injector, ViewChild} from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { Validators } from "@angular/forms";
 import { EnumValues, operationTypeEnum } from "../../../domain/omtd.enum";
 import { applicationDesc, Description, functionDesc } from "../../../domain/omtd.description";
 import { applicationOntologies, componentOntologies } from "../../../domain/ontologies";
 import { ActivatedRoute } from "@angular/router";
+declare var UIkit : any;
+
 /**
  * Created by stefanos on 24/5/2017.
  */
@@ -27,9 +29,13 @@ import { ActivatedRoute } from "@angular/router";
                 <form-inline [description]="functionDesc">
                     <div class="ontology-align">
                         <div class="uk-select">{{selectedOperation}}</div>
-                        <div uk-dropdown="pos: bottom-justify; mode: click; boundary: .ontology-align; boundary-align: true">
-                            <tree-root [nodes]="ontologies" [options]="{}"
+                        <div id="ontologyTreeDropdown" uk-dropdown="pos: bottom-justify; mode: click; boundary: .ontology-align; boundary-align: true">
+                            <input type="text" placeholder="Filter tree" #filter (keyup)="tree.treeModel.filterNodes(filter.value)"/>
+                            <tree-root #tree [nodes]="ontologies" [options]="{}"
                                        (focus)="selectOperation($event)">
+                                <ng-template #treeNodeTemplate let-node let-index="index">
+                                    <span uk-tooltip="pos: right; delay:500" title="{{node.data.comment}}">{{ node.data.name }}</span>
+                                </ng-template>
                             </tree-root>
                         </div>
                     </div>
@@ -74,11 +80,11 @@ export class ComponentGenericFormControl extends MyGroup {
         this.route = injector.get(ActivatedRoute);
         this.resourceType = this.route.snapshot.data['resourceType'];
         this.ontologies = componentOntologies;
-        // if(this.resourceType == 'component') {
-        //     this.ontologies = componentOntologies;
-        // } else {
-        //     this.ontologies = applicationOntologies;
-        // }
+        if(this.resourceType == 'component') {
+            this.ontologies = componentOntologies;
+        } else {
+            this.ontologies = applicationOntologies;
+        }
     }
 
     ontologies = null;
@@ -94,10 +100,13 @@ export class ComponentGenericFormControl extends MyGroup {
 
     label = 'Component General Info';
 
+    @ViewChild('ontologyTreeDropdown') tree : ElementRef;
+
     selectOperation(event) {
         this.selectedOperation = event.node.data.name;
         let operation = this.operationType.find(v => v.value.toLowerCase() === this.selectedOperation.toLowerCase());
         this.getMyControl('functionInfo.function').setValue(operation.key);
+        UIkit.dropdown('#ontologyTreeDropdown').hide();
     }
 
     ngOnInit() {
