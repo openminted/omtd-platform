@@ -1,0 +1,55 @@
+<div class="uk-margin-medium-bottom">
+    <a *ngIf="production==false" (click)="loadLexical(testValue)" class="uk-button">Patch Value</a>
+    <form class="form-horizontal corpusForm" [formGroup]="myForm">
+        <ul uk-accordion="multiple: true">
+
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Lexical Conceptual'">
+                <lexicalGeneric-form [parentGroup]="myForm"
+                                     [name]="'lexicalConceptualResourceInfo'"></lexicalGeneric-form>
+
+
+                <lexical-text-info-form [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"
+                                        [name]="'lexicalConceptualResourceTextInfo'"></lexical-text-info-form>
+            </li>
+
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Identification'">
+                <identification-info-form [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"
+                                          [name]="'identificationInfo'"></identification-info-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Contact'">
+                <contact-info-form [required]="true" [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"
+                                   [name]="'contactInfo'"></contact-info-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Version'">
+                <versionInfo-form [parentGroup]="myForm.controls.lexicalConceptualResourceInfo" [name]="'versionInfo'"></versionInfo-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Distribution'">
+                <datasetDistributionsInfo-form
+                        [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"></datasetDistributionsInfo-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Rights Info'">
+                <rightsInfo-form [parentGroup]="myForm.controls.lexicalConceptualResourceInfo" [name]="'rightsInfo'"></rightsInfo-form>
+            </li>
+        </ul>
+
+    </form>
+    <form class="form-horizontal componentForm" [formGroup]="tocForm">
+        <form-inline [description]="{label : '', mandatory : false, description:''}" [params]="null"
+                     [valid]="tocForm.get('toc').valid">
+            <input type="checkbox" formControlName="toc" class="uk-checkbox">
+            I agree to the <a href="assets/files/OpenMinTeD_Terms_and_Conditions_v1.0.pdf" target="_blank">OpenMinTeD
+            Terms and Conditions</a>
+        </form-inline>
+    </form>
+</div>
+<div *ngIf="production==false" class="margin-20">
+    <div>myForm details:-</div>
+    <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+    <pre>form value: <br>{{debugValue | json}}</pre>
+</div>

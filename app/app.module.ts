@@ -29,6 +29,7 @@ import { AboutModule } from "./pages/about/about.module";
 import { DatasourceRegistrationModule } from "./pages/resourceregistration/datasource/datasource-registration.module";
 import { ActionsModule } from "./pages/actions/actions.module";
 import { UserSpaceModule } from "./pages/user/user-space.module";
+import { LexicalRegistrationModule } from "./pages/resourceregistration/lexical/lexical-registration.module";
 
 @NgModule({
     imports: [
@@ -41,6 +42,7 @@ import { UserSpaceModule } from "./pages/user/user-space.module";
         routing,
         ComponentRegistrationModule, 
         CorpusRegistrationModule,
+        LexicalRegistrationModule,
         DatasourceRegistrationModule,
         LandingPageModule, 
         TabsModule,
