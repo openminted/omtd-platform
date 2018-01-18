@@ -110,6 +110,12 @@ export class SearchComponent {
                 description = componentInfo.identificationInfo.descriptions[0].value;
                 resourceType = componentInfo.application ? 'application' :'component';
                 creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
+            } else if (typeof componentBody['lexicalConceptualResourceInfo'] != 'undefined') {
+                componentInfo = componentBody['lexicalConceptualResourceInfo'];
+                title = componentInfo.identificationInfo.resourceNames[0].value;
+                description = componentInfo.identificationInfo.descriptions[0].value;
+                resourceType = 'lexical';
+                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
             }
             let shortResultInfo: ShortResultInfo = {
                 // id: component.componentInfo.identificationInfo.identifiers[0].value,

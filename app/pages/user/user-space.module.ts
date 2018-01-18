@@ -1,18 +1,18 @@
 /**
  * Created by stefania on 7/6/17.
  */
-import { NgModule }       from '@angular/core';
-import { CommonModule }   from '@angular/common';
-
-import { ModalModule } from 'ngx-bootstrap';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { ResourceService } from "../../services/resource.service";
 import { userSpaceRouting } from "./user-space.routing";
 import { MyCorporaComponent } from "./corpora/my-corpora.component";
 import { MyServicesComponent } from "./components/my-services.component";
-import { ConfirmationDialogComponent } from "../../shared/confirmation-dialog.component";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
 import { MyOperationsComponent } from "./operations/my-operations.component";
+import { MyLexicalsComponent } from "./lexical/my-lexicals.component";
+import { MyLanguagesComponent } from "./language/my-languages.component";
+import { MyResourceComponent } from "./my-resource.component";
 
 @NgModule({
     imports: [
@@ -24,6 +24,9 @@ import { MyOperationsComponent } from "./operations/my-operations.component";
         MyCorporaComponent,
         MyServicesComponent,
         MyOperationsComponent,
+        MyLexicalsComponent,
+        MyLanguagesComponent,
+        MyResourceComponent
     ],
     providers: [
         ResourceService

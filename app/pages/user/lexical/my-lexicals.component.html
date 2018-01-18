@@ -84,25 +84,22 @@
                                                         </thead>
                                                         <tbody>
                                                         <tr *ngFor="let component of resources" class="el-item">
-                                                            <td class=""><div class="el-title">{{component.componentInfo.identificationInfo.resourceNames[0].value}}</div></td>
+                                                            <td class=""><div class="el-title">{{component.lexicalConceptualResourceInfo.identificationInfo.resourceNames[0].value}}</div></td>
                                                             <td class=""><div class="el-title">{{component.metadataHeaderInfo.metadataCreationDate | date:'shortDate'}}</div></td>
-                                                            <td class=""><div class="el-title">{{component.componentInfo.identificationInfo.descriptions[0].value}}</div></td>
+                                                            <td class=""><div class="el-title">{{component.lexicalConceptualResourceInfo.identificationInfo.descriptions[0].value}}</div></td>
                                                             <td class="">
-                                                                <div *ngIf="component.componentInfo.identificationInfo.public" class="el-title">yes</div>
-                                                                <div *ngIf="!component.componentInfo.identificationInfo.public" class="el-title">no</div>
+                                                                <div *ngIf="component.lexicalConceptualResourceInfo.identificationInfo.public" class="el-title">yes</div>
+                                                                <div *ngIf="!component.lexicalConceptualResourceInfo.identificationInfo.public" class="el-title">no</div>
                                                             </td>
                                                             <td class=""><div class="el-title">--</div></td>
                                                             <td class=""><div class="el-title">--</div></td>
                                                             <td class="uk-text-nowrap">
-                                                                <div *ngIf="!component.componentInfo.identificationInfo.public" class="el-title">
+                                                                <div *ngIf="!component.lexicalConceptualResourceInfo.identificationInfo.public" class="el-title">
                                                                     <a (click)="goToDetails(component)" title="View {{resourceType}}" uk-tooltip>
                                                                         <i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i>
                                                                     </a>
                                                                     <a (click)="editResource(component)" title="Edit {{resourceType}} metadata" uk-tooltip>
                                                                         <i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a *ngIf="resourceType=='application'" (click)="editWorkflow(component)" title="Edit workflow" uk-tooltip>
-                                                                        <i class="fa fa-object-group uk-margin-small-right" aria-hidden="true"></i>
                                                                     </a>
                                                                     <a (click)="deleteConfirmation(component)" title="Delete {{resourceType}}" uk-tooltip>
                                                                         <i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i>
@@ -111,7 +108,7 @@
                                                                         <i class="fa fa-share-alt" aria-hidden="true"></i>
                                                                     </a>
                                                                 </div>
-                                                                <div *ngIf="component.componentInfo.identificationInfo.public" class="el-title">
+                                                                <div *ngIf="component.lexicalConceptualResourceInfo.identificationInfo.public" class="el-title">
                                                                     <a (click)="goToDetails(component)" title="View {{resourceType}}" uk-tooltip><i class="fa fa-info" aria-hidden="true"></i></a>
                                                                 </div>
                                                             </td>

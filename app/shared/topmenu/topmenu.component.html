@@ -3,11 +3,6 @@
         <div class="uk-navbar-left">
             <a class="uk-navbar-toggle" href="#tm-mobile" uk-toggle="">
                 <div uk-navbar-toggle-icon="" class="uk-navbar-toggle-icon uk-icon">
-                    <!--<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1">-->
-                        <!--<rect y="2" width="20" height="1"/>-->
-                        <!--<rect y="9" width="20" height="1"/>-->
-                        <!--<rect y="16" width="20" height="1"/>-->
-                    <!--</svg>-->
                 </div>
             </a>
         </div>
@@ -21,10 +16,6 @@
     <div id="tm-mobile" uk-offcanvas="" mode="slide" overlay="" class="uk-offcanvas">
         <div class="uk-offcanvas-bar">
             <button class="uk-offcanvas-close uk-close uk-icon" type="button" uk-close="">
-                <!--<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1">-->
-                    <!--<line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"/>-->
-                    <!--<line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"/>-->
-                <!--</svg>-->
             </button>
             <div class="uk-child-width-1-1 uk-grid uk-grid-stack" uk-grid="">
                 <div>
@@ -41,6 +32,8 @@
                                     <li><a [routerLink]="['/search', { resourceType: 'application' }]" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Applications</a></li>
                                     <li><a [routerLink]="['/search', { resourceType: 'component' }]" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Components</a></li>
                                     <li><a [routerLink]="['/search', { resourceType: 'corpus' }]" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Corpora</a></li>
+                                    <li><a [routerLink]="['/search', { resourceType: 'lexical' }]" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Annotation Resources</a></li>
+                                    <li><a [routerLink]="['/search', { resourceType: 'language' }]" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Models & Grammars</a></li>
                                     <!--<li><a [routerLink]="['/search']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">...</a></li>-->
                                 </ul>
                             </li>
@@ -49,7 +42,8 @@
                                     <li><a [routerLink]="['/resourceRegistration/application']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Applications</a></li>
                                     <li><a [routerLink]="['/resourceRegistration/component']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Components</a></li>
                                     <li><a [routerLink]="['/resourceRegistration/corpus']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Corpora</a></li>
-                                    <li><a [routerLink]="['/resourceRegistration/lexical']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Lexical</a></li>
+                                    <li><a [routerLink]="['/resourceRegistration/lexical']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Annotation Resources</a></li>
+                                    <li><a [routerLink]="['/resourceRegistration/language']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">Models & Grammars</a></li>
                                 </ul>
                             </li>
                             <li class="uk-nav-header" [routerLinkActive]="['uk-active']">
@@ -80,6 +74,8 @@
                                     <li><a [routerLink]="['/mySpace/applications']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Applications</a></li>
                                     <li><a [routerLink]="['/mySpace/components']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Components</a></li>
                                     <li><a [routerLink]="['/mySpace/corpora']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Corpora</a></li>
+                                    <li><a [routerLink]="['/mySpace/lexicals']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Annotation Resources</a></li>
+                                    <li><a [routerLink]="['/mySpace/languages']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Models & Grammars</a></li>
                                     <li><a [routerLink]="['/mySpace/operations']" routerLinkActive="uk-active" class="uk-offcanvas-close offcanvas-close">My Operations</a></li>
                                     <li><a routerLink="/home" (click)="logout()" >Log out</a></li>
                                 </ul>
@@ -87,44 +83,11 @@
                         </ul>
                     </div>
                 </div>
-
-
-                <!--<div>-->
-                    <!--<div class="uk-panel" id="module-tm-2">-->
-                        <!--<form id="search-tm-2" action="/index.php?option=com_content&amp;view=article&amp;id=1044&amp;Itemid=2029" method="post" role="search" class="uk-search uk-search-default">-->
-                            <!--<span uk-search-icon="" class="uk-search-icon uk-icon">-->
-                                <!--<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1">-->
-                                    <!--<circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"/>-->
-                                    <!--<path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"/>-->
-                                <!--</svg>-->
-                            <!--</span>-->
-                            <!--<input name="searchword" placeholder="Search" class="uk-search-input" type="search">-->
-                            <!--<input name="task" value="search" type="hidden">-->
-                            <!--<input name="option" value="com_search" type="hidden">-->
-                            <!--<input name="Itemid" value="2029" type="hidden">-->
-                        <!--</form>-->
-                    <!--</div>-->
-                <!--</div>-->
             </div>
         </div>
     </div>
 </div>
-<!--<div class="tm-toolbar uk-visible@m">-->
-    <!--<div class="uk-container uk-flex uk-flex-middle uk-container-expand">-->
 
-
-        <!--<div class="uk-margin-auto-left">-->
-            <!--<div class="uk-grid-medium uk-child-width-auto uk-flex-middle uk-grid uk-grid-stack" uk-grid="margin: uk-margin-small-top">-->
-                <!--<div class="uk-first-column"><div class="uk-panel inner" id="module-119">-->
-                    <!--<ul class="uk-subnav uk-subnav-line">-->
-                        <!--<li class="home-hover"><a href="/index.php?option=com_content&amp;view=article&amp;id=292&amp;Itemid=1860"><img class="uk-responsive-height" src="/images/Icons/Home_24white.svg" alt="home"></a></li><li><a href="/www.cnn.com">Discover</a></li><li><a href="/www.cnn.com">Join</a></li><li><a href="/www.cnn.com">Connect</a></li><li><a href="/www.cnn.com">Monitor</a></li><li><a href="/www.cnn.com">Develop</a></li></ul>-->
-                <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-    <!--</div>-->
-<!--</div>-->
 <div class="tm-header uk-visible@m" uk-header="">
     <div class="uk-navbar-container uk-sticky" uk-sticky="" media="768" cls-active="uk-active uk-navbar-sticky" style="">
         <div class="uk-container uk-container-expand">
@@ -151,6 +114,8 @@
                                             <li><a [routerLink]="['/search', { resourceType: 'application' }]" routerLinkActive="uk-active">Applications</a></li>
                                             <li><a [routerLink]="['/search', { resourceType: 'component' }]" routerLinkActive="uk-active">Components</a></li>
                                             <li><a [routerLink]="['/search', { resourceType: 'corpus' }]" routerLinkActive="uk-active">Corpora</a></li>
+                                            <li><a [routerLink]="['/search', { resourceType: 'lexical' }]" routerLinkActive="uk-active">Annotation Resources</a></li>
+                                            <li><a [routerLink]="['/search', { resourceType: 'language' }]" routerLinkActive="uk-active">Models & Grammars</a></li>
                                             <!--<li><a [routerLink]="['/search']" routerLinkActive="uk-active">...</a></li>-->
                                         </ul>
                                     </div>
@@ -165,7 +130,8 @@
                                             <li><a [routerLink]="['/resourceRegistration/application']" routerLinkActive="uk-active">Applications</a></li>
                                             <li><a [routerLink]="['/resourceRegistration/component']" routerLinkActive="uk-active">Components</a></li>
                                             <li><a [routerLink]="['/resourceRegistration/corpus']" routerLinkActive="uk-active">Corpora</a></li>
-                                            <li><a [routerLink]="['/resourceRegistration/lexical']" routerLinkActive="uk-active">Lexical</a></li>
+                                            <li><a [routerLink]="['/resourceRegistration/lexical']" routerLinkActive="uk-active">Annotation Resources</a></li>
+                                            <li><a [routerLink]="['/resourceRegistration/language']" routerLinkActive="uk-active">Models & Grammars</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -205,6 +171,8 @@
                                             <li><a [routerLink]="['/mySpace/applications']" routerLinkActive="uk-active">My Applications</a></li>
                                             <li><a [routerLink]="['/mySpace/components']" routerLinkActive="uk-active">My Components</a></li>
                                             <li><a [routerLink]="['/mySpace/corpora']" routerLinkActive="uk-active">My Corpora</a></li>
+                                            <li><a [routerLink]="['/mySpace/lexicals']" routerLinkActive="uk-active">My Annotation Resources</a></li>
+                                            <li><a [routerLink]="['/mySpace/languages']" routerLinkActive="uk-active">My Models & Grammars</a></li>
                                             <li><a [routerLink]="['/mySpace/operations']" routerLinkActive="uk-active">My Operations</a></li>
                                             <li><a routerLink="/home" (click)="logout()">Log out</a></li>
                                         </ul>
@@ -213,33 +181,6 @@
                             </div>
                         </li>
                     </ul>
-
-                    <!--<div class="uk-navbar-item btlogin" id="module-367">-->
-                        <!--<div id="btl">-->
-
-                            <!--&lt;!&ndash; Panel top &ndash;&gt;-->
-                            <!--<div *ngIf="!oAuthService.isUserLoggedIn" class="btl-panel" style="float: right;">-->
-                                <!--&lt;!&ndash; Login button &ndash;&gt;-->
-			                    <!--<span style="color: rgb(255, 255, 255); border: medium none rgb(255, 255, 255);" id="btl-panel-login" class="btl-dropdown">-->
-			                        <!--<a class="loginLink" (click)="loginWithState()"> SIGN IN   </a>-->
-                                <!--</span>-->
-                                <!--|-->
-                                <!--&lt;!&ndash; Registration button &ndash;&gt;-->
-                                <!--<span style="color: rgb(255, 255, 255); border: medium none rgb(255, 255, 255);" class="btl-dropdown">-->
-			                        <!--<a [href]="'https://aai.openminted.eu/signup'" routerLinkActive="uk-active" class="loginLink">REGISTER</a>-->
-                                <!--</span>-->
-                            <!--</div>-->
-
-                            <!--&lt;!&ndash; Panel top &ndash;&gt;-->
-                            <!--<div *ngIf="oAuthService.isUserLoggedIn" class="btl-panel" style="float: right;">-->
-                                <!--&lt;!&ndash; Login button &ndash;&gt;-->
-			                    <!--<span style="color: rgb(255, 255, 255); border: medium none rgb(255, 255, 255);" class="btl-dropdown">-->
-			                        <!--<a routerLink="/home" routerLinkActive="uk-active" (click)="logout()" class="loginLink">SIGN OUT {{oAuthService.getLoggedInUser}}</a>-->
-                                <!--</span>-->
-                            <!--</div>-->
-                            <!--&lt;!&ndash; content dropdown/modal box &ndash;&gt;-->
-                        <!--</div>-->
-                    <!--</div>-->
                 </div>
             </nav>
         </div>

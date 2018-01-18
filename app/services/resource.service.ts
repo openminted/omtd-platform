@@ -326,6 +326,12 @@ export class ResourceService {
         return location + 'corpus/download?archiveId=' + id;
     }
 
+    getMyResources(resourceType : string) {
+        return this.http.get(`${this._resourcesUrl}${resourceType}/my`, { withCredentials: true })
+            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
+            .catch(this.handleError);
+    }
+
     getMyCorpora() {
         return this.http.get(this._resourcesUrl + "corpus/my", { withCredentials: true })
             .map(res => <SearchResults<BaseMetadataRecord>> res.json())
@@ -360,6 +366,20 @@ export class ResourceService {
             withCredentials: true,
             method: RequestMethod.Delete,
             body: JSON.stringify(component_)
+        });
+        return this.http.request(this._resourcesUrl + resourceType, options)
+            .catch(this.handleError);
+    }
+
+    deleteResource(resource : any, resourceType : string) {
+        let resource_ = ResourceService.removeNulls(resource);
+
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({
+            headers: headers,
+            withCredentials: true,
+            method: RequestMethod.Delete,
+            body: JSON.stringify(resource_)
         });
         return this.http.request(this._resourcesUrl + resourceType, options)
             .catch(this.handleError);

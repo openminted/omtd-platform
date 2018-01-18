@@ -1,17 +1,17 @@
 /**
- * Created by stefania on 7/10/17.
+ * Created by stefanos on 7/10/17.
  */
 import { Component, Injector } from '@angular/core';
-import { Component as OMTDComponent } from "../../../domain/openminted-model";
+import { Component as OMTDComponent, Lexical } from "../../../domain/openminted-model";
 import { MyResourceComponent } from "../my-resource.component";
 
 @Component({
-    selector: 'my-services',
-    templateUrl: './my-services.component.html',
+    selector: 'my-lexicals',
+    templateUrl: './my-lexicals.component.html',
     styleUrls:  ['../user-space.component.css'],
 })
 
-export class MyServicesComponent extends MyResourceComponent<OMTDComponent> {
+export class MyLexicalsComponent extends MyResourceComponent<Lexical> {
 
 
     constructor(injector : Injector) {
@@ -21,9 +21,9 @@ export class MyServicesComponent extends MyResourceComponent<OMTDComponent> {
 
     ngOnInit() {
         super.ngOnInit();
-        this.resourceService.getMyComponents(this.resourceType).subscribe(
+        this.resourceService.getMyResources(this.resourceType).subscribe(
             searchResults => this.updateMyResources(searchResults),
-            error => this.handleError('System error retrieving user tools/services', <any>error));
+            error => this.handleError(`System error retrieving user ${this.resourceType}`, <any>error));
     }
 
     editWorkflow(component: OMTDComponent) {

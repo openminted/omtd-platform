@@ -61,25 +61,33 @@
                                        (change)="onSelection($event, facet.field, facetValue.value)"
                                        [checked]="facetValue.isChecked">
                                 <span [ngSwitch]="facetValue.value">
-                                                    <span *ngSwitchCase="'component'">Components</span>
-                                                    <span *ngSwitchCase="'corpus'">Corpora</span>
-                                                    <span *ngSwitchCase="'application'">Applications</span>
-                                                </span>
+                                    <span *ngSwitchCase="'component'">Components</span>
+                                    <span *ngSwitchCase="'corpus'">Corpora</span>
+                                    <span *ngSwitchCase="'application'">Applications</span>
+                                    <span *ngSwitchCase="'lexical'">Annotation Resources</span>
+                                    <span *ngSwitchCase="'language'">Models & Grammars</span>
+                                </span>
                                 <span class="resourceTypeCount">({{facetValue.count}})</span>
                                 <span [ngSwitch]="facetValue.value">
-                                                    <span *ngSwitchCase="'component'"><i
-                                                            class="fa fa-puzzle-piece uk-float-right resourceTypeIcon"
+                                    <span *ngSwitchCase="'component'"><i
+                                            class="fa fa-puzzle-piece uk-float-right resourceTypeIcon"
+                                            aria-hidden="true"></i></span>
+                                    <span *ngSwitchCase="'corpus'"><i
+                                            class="fa fa-database uk-float-right resourceTypeIcon"
+                                            aria-hidden="true"></i></span>
+                                    <span *ngSwitchCase="'application'"><i
+                                            class="fa fa-cogs uk-float-right resourceTypeIcon"
                                                             aria-hidden="true"></i></span>
-                                                    <span *ngSwitchCase="'corpus'"><i
-                                                            class="fa fa-database uk-float-right resourceTypeIcon"
-                                                            aria-hidden="true"></i></span>
-                                                    <span *ngSwitchCase="'application'"><i
-                                                            class="fa fa-cogs uk-float-right resourceTypeIcon"
-                                                            aria-hidden="true"></i></span>
-                                                    <span *ngSwitchDefault><i
-                                                            class="fa fa-language uk-float-right resourceTypeIcon"
-                                                            aria-hidden="true"></i></span>
-                                                </span>
+                                    <span *ngSwitchCase="'lexical'"><i
+                                            class="fa fa-language uk-float-right resourceTypeIcon"
+                                            aria-hidden="true"></i></span>
+                                    <span *ngSwitchCase="'language'"><i
+                                            class="fa fa-clipboard uk-float-right resourceTypeIcon"
+                                            aria-hidden="true"></i></span>
+                                    <span *ngSwitchDefault><i
+                                            class="fa fa-language uk-float-right resourceTypeIcon"
+                                            aria-hidden="true"></i></span>
+                                </span>
                             </p>
                         </ng-template>
                     </ng-template>
@@ -178,7 +186,7 @@
                                                        aria-hidden="true"></i>
                                                     <i *ngSwitchCase="'lexical'" class="fa fa-language fa-3x"
                                                        aria-hidden="true"></i>
-                                                    <i *ngSwitchCase="'model'" class="fa fa-clipboard fa-3x"
+                                                    <i *ngSwitchCase="'language'" class="fa fa-clipboard fa-3x"
                                                        aria-hidden="true"></i>
                                                     <i *ngSwitchDefault class="fa fa-question fa-3x"
                                                        aria-hidden="true"></i>

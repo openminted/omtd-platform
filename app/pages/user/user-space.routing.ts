@@ -7,6 +7,8 @@ import { CanActivateViaAuthGuard } from "../../services/can-activate-auth-guard.
 import { MyCorporaComponent } from "./corpora/my-corpora.component";
 import { MyServicesComponent } from "./components/my-services.component";
 import { MyOperationsComponent } from "./operations/my-operations.component";
+import { MyLexicalsComponent } from "./lexical/my-lexicals.component";
+import { MyLanguagesComponent } from "./language/my-languages.component";
 
 const userSpaceRoutes: Routes = [
     {
@@ -14,7 +16,8 @@ const userSpaceRoutes: Routes = [
         component: MyCorporaComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'corpus' }
     },
     {
         path: 'mySpace/components',
@@ -31,6 +34,22 @@ const userSpaceRoutes: Routes = [
             CanActivateViaAuthGuard
         ],
         data : {resourceType : 'application' }
+    },
+    {
+        path: 'mySpace/lexicals',
+        component: MyLexicalsComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ],
+        data : {resourceType : 'lexical' }
+    },
+    {
+        path: 'mySpace/languages',
+        component: MyLanguagesComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ],
+        data : {resourceType : 'language' }
     },
     {
         path: 'mySpace/operations',
