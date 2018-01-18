@@ -16,6 +16,7 @@ import {
 import { MyGroup } from "../myform/my-group.interface";
 import { DataFormatInfoFormControl } from "./data-format-info-form.component";
 import { MySingleStringForm } from "./my-string-form.component";
+import { EnumValues, parameterTypeEnum } from "../../../domain/omtd.enum";
 
 @Component({
     selector: 'parameter-info-form',
@@ -41,7 +42,12 @@ import { MySingleStringForm } from "./my-string-form.component";
                 <div class="form-group-divider"></div>
 
                 <form-inline [description]="parameterTypeDesc" [valid]="getMyControl('parameterType').valid">
-                    <input type="text" class="uk-input" formControlName="parameterType" placeholder="">
+                    <select name="role" class="uk-select" formControlName="parameterType">
+                        <option *ngFor="let value of parameterTypeEnum" [value]="value.key" [selected]="value.key == ''">
+                            {{value.value}}
+                        </option>
+                    </select>
+                    <!--<input type="text" class="uk-input" formControlName="parameterType" placeholder="">-->
                 </form-inline>
 
                 <div class="form-group-divider"></div>
@@ -105,6 +111,7 @@ export class ParameterInfoFormComponent extends MyGroup {
     optionalDesc : Description = optionalDesc;
     multiValueDesc : Description = multiValueDesc;
     defaultValueDesc : Description = defaultValueDesc;
+    parameterTypeEnum : EnumValues[] = parameterTypeEnum;
     dataFormatsDesc : Description = dataFormatTypeDesc;
 
 }
