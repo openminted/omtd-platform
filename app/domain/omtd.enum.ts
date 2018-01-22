@@ -1419,9 +1419,9 @@ export var regionIdTypeEnum = [
 
 export var actorTypeEnum = [
     {key : "", value : "--actorType--"},
-    {key : "PERSON", value : "person"},
-    {key : "GROUP", value : "group"},
-    {key : "ORGANIZATION", value : "organization"}
+    {key : "PERSON", value : "Person"},
+    {key : "GROUP", value : "Group"},
+    {key : "ORGANIZATION", value : "Organization"}
 ];
 
 export var journalIdentifierSchemeNameEnum = [

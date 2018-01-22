@@ -11,7 +11,7 @@ import { ActivatedRoute } from "@angular/router";
 @Component({
     selector: 'component-registration-form',
     templateUrl: './component-registration-form.component.html',
-    styleUrls: ['./component-registration-form.component.css'],
+    styleUrls: ['./component-registration-form.component.css', '../shared/templates/common.css'],
 })
 
 export class ComponentRegistrationFormComponent implements OnInit {

@@ -10,6 +10,11 @@
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Identification'">
                 <identification-info-form [parentGroup]="myForm.controls.componentInfo"
                                           [name]="'identificationInfo'"></identification-info-form>
+
+                <div class="form-group-divider"></div>
+
+                <resourceCreationInfo-form [parentGroup]="myForm.controls.componentInfo"
+                                           [name]="'resourceCreationInfo'"></resourceCreationInfo-form>
             </li>
 
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Contact'">

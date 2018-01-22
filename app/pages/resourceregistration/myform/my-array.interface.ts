@@ -23,7 +23,7 @@ import { Subject } from "rxjs/Subject";
     <div class="uk-width-1-5"></div>
     <div class="uk-width-expand\@m">
         <a class="add-new-element add-new-group" (click)="push()"><i class="fa fa-plus" aria-hidden="true"></i>
-            Add New {{description.label}}</a>
+            Add {{viewContainerRef.length>1 ? 'New' : ''}} {{description.label}}</a>
     </div>
 </div>
 `,

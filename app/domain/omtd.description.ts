@@ -2012,6 +2012,13 @@ export var originalDataProviderInfoDesc = {
     recommended : false
 };
 
+export var previousAnnotationTypesPolicyDesc = {
+    desc : "Specifies whether the component (annotator) keeps, modifies or drops previous annotation types",
+    label : "Policy on previous annotation types",
+    mandatory : false,
+    recommended : true
+};
+
 export var publicationIdentifierSchemeNameDesc = {
     desc : "Specifies the name of the scheme according to which the publication identifier is assigned by the authority that issues it (e.g. DOI, PubMed Central etc.)",
     label : "Publication identifier scheme name",
@@ -2287,7 +2294,7 @@ export var scriptIdTypeDesc = {
 
 export var actorInfoTypeDesc = {
     desc : "Base type for actors/agents; choice between person and organization",
-    label : "actorInfoType",
+    label : "Actor Type",
     mandatory : true,
     recommended : false
 };

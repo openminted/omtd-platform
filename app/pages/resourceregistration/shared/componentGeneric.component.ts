@@ -1,8 +1,11 @@
 import {Component, ElementRef, Injector, ViewChild} from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { Validators } from "@angular/forms";
-import { EnumValues, operationTypeEnum } from "../../../domain/omtd.enum";
-import { applicationDesc, Description, functionDesc } from "../../../domain/omtd.description";
+import { EnumValues, operationTypeEnum, previousAnnotationTypesPolicyEnum } from "../../../domain/omtd.enum";
+import {
+    applicationDesc, Description, functionDesc,
+    previousAnnotationTypesPolicyDesc
+} from "../../../domain/omtd.description";
 import { applicationOntologies, componentOntologies } from "../../../domain/ontologies";
 import { ActivatedRoute } from "@angular/router";
 declare var UIkit : any;
@@ -16,14 +19,7 @@ declare var UIkit : any;
     <div [formGroup]="parentGroup">
         <div formGroupName="{{name}}">
             
-            <!--<form-inline [description]="applicationCDesc">-->
-                <!--<label class="radio-label">-->
-                    <input type="checkbox" formControlName="application" [hidden]="true">
-                    <!--Check if component can be used as an integrated end-user application-->
-                <!--</label>-->
-            <!--</form-inline>-->
-                     <!---->
-            <!--<div class="form-group-divider"></div>-->
+            <input type="checkbox" formControlName="application" [hidden]="true">
             
             <div formGroupName="functionInfo">
                 <form-inline [description]="functionDesc">
@@ -56,6 +52,17 @@ declare var UIkit : any;
             </div>
         
             <componentCreationInfo-form [parentGroup]="group" [required]="true"></componentCreationInfo-form>
+
+            <div class="form-group-divider"></div>
+            
+            <form-inline [description]="previousAnnotationTypesPolicyDesc"
+                         [valid]="getMyControl('previousAnnotationTypesPolicy').valid">
+                <select name="role" class="uk-select" formControlName="previousAnnotationTypesPolicy">
+                    <option *ngFor="let value of previousAnnotationTypesPolicyEnum" [value]="value.key" [selected]="value.key == ''">
+                        {{value.value}}
+                    </option>
+                </select>
+            </form-inline>
             
         </div>
     </div>
@@ -67,6 +74,7 @@ export class ComponentGenericFormControl extends MyGroup {
 
     readonly groupDefinition = {
         application : false,
+        previousAnnotationTypesPolicy : '',
         functionInfo : this._fb.group({
             function : ['',Validators.required],
             functionOther : ['',Validators.required]
@@ -90,6 +98,8 @@ export class ComponentGenericFormControl extends MyGroup {
     ontologies = null;
     selectedOperation : string = operationTypeEnum[0].value;
     operationType : EnumValues[] = operationTypeEnum;
+    previousAnnotationTypesPolicyEnum : EnumValues[] = previousAnnotationTypesPolicyEnum;
+    previousAnnotationTypesPolicyDesc : Description = previousAnnotationTypesPolicyDesc;
     applicationCDesc : Description = applicationDesc;
     functionDesc : Description = functionDesc;
     functionDescOther : Description = Object.assign({},functionDesc);

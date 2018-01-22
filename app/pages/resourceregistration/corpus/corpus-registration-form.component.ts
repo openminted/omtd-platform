@@ -9,7 +9,7 @@ import { ResourceService } from "../../../services/resource.service";
 @Component({
     selector: 'corpus-registration-form',
     templateUrl: './corpus-registration-form.component.html',
-    styleUrls:  ['./corpus-registration-form.component.css'],
+    styleUrls:  ['./corpus-registration-form.component.css', '../shared/templates/common.css'],
 })
 
 export class CorpusRegistrationFormComponent implements OnInit {

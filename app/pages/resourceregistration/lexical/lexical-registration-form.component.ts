@@ -9,7 +9,7 @@ import { Lexical } from "../../../domain/openminted-model";
 @Component({
     selector: 'lexical-registration-form',
     templateUrl: './lexical-registration-form.component.html',
-    styleUrls: ['./lexical-registration-form.component.css'],
+    styleUrls: ['./lexical-registration-form.component.css', '../shared/templates/common.css'],
 })
 
 export class LexicalRegistrationFormComponent implements OnInit {

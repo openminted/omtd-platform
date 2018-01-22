@@ -46,7 +46,10 @@ import { VersionFormControl } from "./shared/versionInfo.component";
 import { ComponentGenericFormControl } from "./shared/componentGeneric.component";
 import { InlineFormWrapper, MyGroup } from "./myform/my-group.interface";
 import { ContactPersonFormControl } from "./shared/contactPerson.component";
-import { IdentifierCommonFormControl } from "./shared/identifierCommon.component";
+import {
+    IdentifierCommonFormControl, OrganizationIdentifierCommonFormControl,
+    PersonIdentifierCommonFormControl
+} from "./shared/identifierCommon.component";
 import { ComponentCreationInfoFormControl } from "./shared/componentCreationInfo.component";
 import {
     TextClassificationInfoFormControl
@@ -66,6 +69,13 @@ import { DomainInfoFormControl } from "./shared/domain-info-form";
 import { TreeModule } from "angular-tree-component";
 import { LexicalGenericFormControl } from "./shared/lexical-generic-info-form.component";
 import { LexicalTextInfoFormControl } from "./shared/lexical-text-info-form.component";
+import { ActorInfoFormControl, PersonInfoFormControl } from "./shared/actorInfo.component";
+import { ResourceCreationFormControl } from "./shared/resourceCreationInfo.component";
+import { CommunicationInfoFormControl } from "./shared/communicationInfo.component";
+import { OrganizationInfoFormControl } from "./shared/organizationInfo.component";
+import { AffiliationFormControl } from "./shared/affiliation.component";
+import { GroupFormsComponent } from "./shared/groupForms.directive";
+import { GroupInfoFormControl } from "./shared/groupInfo.component";
 
 const entryComponents = [
     DomainInfoFormControl,
@@ -94,7 +104,11 @@ const entryComponents = [
     SizeInfoFormControl,
     MyStringDescFormGroup,
     LanguageInfoFormControl,
-    MySingleStringForm
+    MySingleStringForm,
+    ActorInfoFormControl,
+    PersonIdentifierCommonFormControl,
+    OrganizationIdentifierCommonFormControl,
+    GroupInfoFormControl
 ];
 
 const declarations = [
@@ -126,7 +140,13 @@ const declarations = [
     VersionFormControl,
     ZipUploadComponent,
     LexicalGenericFormControl,
-    LexicalTextInfoFormControl
+    LexicalTextInfoFormControl,
+    ResourceCreationFormControl,
+    PersonInfoFormControl,
+    CommunicationInfoFormControl,
+    OrganizationInfoFormControl,
+    AffiliationFormControl,
+    GroupFormsComponent
 ];
 
 @NgModule({
