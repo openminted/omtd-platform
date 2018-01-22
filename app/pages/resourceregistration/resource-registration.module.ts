@@ -48,7 +48,7 @@ import { InlineFormWrapper, MyGroup } from "./myform/my-group.interface";
 import { ContactPersonFormControl } from "./shared/contactPerson.component";
 import {
     IdentifierCommonFormControl, OrganizationIdentifierCommonFormControl,
-    PersonIdentifierCommonFormControl
+    PersonIdentifierCommonFormControl, ResourceIdentifierCommonFormControl
 } from "./shared/identifierCommon.component";
 import { ComponentCreationInfoFormControl } from "./shared/componentCreationInfo.component";
 import {
@@ -76,6 +76,8 @@ import { OrganizationInfoFormControl } from "./shared/organizationInfo.component
 import { AffiliationFormControl } from "./shared/affiliation.component";
 import { GroupFormsComponent } from "./shared/groupForms.directive";
 import { GroupInfoFormControl } from "./shared/groupInfo.component";
+import { RelatedResourceFormControl } from "./shared/relatedResource.component";
+import { ComponentDependenciesInfoFormControl } from "./shared/componentDependencies.component";
 
 const entryComponents = [
     DomainInfoFormControl,
@@ -108,7 +110,9 @@ const entryComponents = [
     ActorInfoFormControl,
     PersonIdentifierCommonFormControl,
     OrganizationIdentifierCommonFormControl,
-    GroupInfoFormControl
+    GroupInfoFormControl,
+    ResourceIdentifierCommonFormControl,
+    RelatedResourceFormControl
 ];
 
 const declarations = [
@@ -146,7 +150,8 @@ const declarations = [
     CommunicationInfoFormControl,
     OrganizationInfoFormControl,
     AffiliationFormControl,
-    GroupFormsComponent
+    GroupFormsComponent,
+    ComponentDependenciesInfoFormControl
 ];
 
 @NgModule({

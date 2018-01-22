@@ -1641,6 +1641,14 @@ export var componentDistributionInfoDesc = {
     recommended : false
 };
 
+export var componentDependenciesDesc = {
+    desc : "Groups together information on resources required for the operation of a component (e.g. typesystem, annotation resources etc.)",
+    label : "Component dependencies",
+    mandatory : false,
+    recommended : true
+};
+
+
 export var componentOperationInfoDesc = {
     desc : "Groups together information on the operation of a component",
     label : "Component operation",

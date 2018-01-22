@@ -3,7 +3,7 @@ import { MyGroup } from "../myform/my-group.interface";
 import { Validators } from "@angular/forms";
 import {
     EnumValues, organizationIdentifierSchemeNameEnum, personIdentifierSchemeNameEnum,
-    publicationIdentifierSchemeNameEnum
+    publicationIdentifierSchemeNameEnum, resourceIdentifierSchemeNameEnum
 } from "../../../domain/omtd.enum";
 /**
  * Created by stefanos on 24/5/2017.
@@ -126,5 +126,37 @@ export class OrganizationIdentifierCommonFormControl extends MyGroup {
         value : ['', Validators.required],
         schemeURI : '',
         organizationIdentifierSchemeName : ''
+    };
+}
+
+@Component({
+    selector: 'organizationIdentifier-form',
+    template : `
+<div [formGroup]="group" class="uk-grid-small" uk-grid>
+    <div class="uk-width-2-5" >
+        <input type="text" class="uk-input" formControlName="value" placeholder="value (*)" [ngClass]="{'has-error':!getMyControl('value').valid}">
+    </div>
+    <div class="uk-width-2-5" >
+        <select name="role" class="uk-select" formControlName="resourceIdentifierSchemeName" [ngClass]="{'has-error':!getMyControl('resourceIdentifierSchemeName').valid}">
+            <option *ngFor="let value of schemeEnum" [value]="value.key" [selected]="value.key == ''">
+                {{value.value}}
+            </option>
+        </select>
+    </div>
+    <div class="uk-width-1-5">
+        <input type="text" class="uk-input" formControlName="schemeURI" placeholder="uri">
+    </div>
+</div>
+`,
+    styleUrls : ['./templates/common.css']
+})
+export class ResourceIdentifierCommonFormControl extends MyGroup {
+
+    schemeEnum : EnumValues[] = resourceIdentifierSchemeNameEnum;
+
+    groupDefinition = {
+        value : ['', Validators.required],
+        schemeURI : '',
+        resourceIdentifierSchemeName : ''
     };
 }

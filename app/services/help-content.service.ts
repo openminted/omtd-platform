@@ -15,10 +15,16 @@ export class HelpContentService {
     constructor (private http: Http) {
     }
 
+    cache : any = {};
+
     getActivePageContent(route: string) {
-        return this.http.get(this._helpServiceUrl + "/page/route?q=" + route)
-            .map(res => <PageContent> res.json())
-            .catch(this.handleError);
+        if (!this.cache[route]) {
+            this.cache[route] = this.http.get(this._helpServiceUrl + "/page/route?q=" + route)
+                .map(res => <PageContent> res.json())
+                .catch(this.handleError)
+                .share();
+        }
+        return this.cache[route];
     }
 
     private extractData(res: Response) {

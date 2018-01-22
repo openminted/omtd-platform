@@ -46,6 +46,11 @@
                                                [name]="'outputResourceInfo'"></processing-resource-info-form>
             </li>
 
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Dependencies'">
+                <componentDependenciesInfo-form [parentGroup]="myForm.controls.componentInfo"
+                                               [name]="'componentDependencies'"></componentDependenciesInfo-form>
+            </li>
+
             <li accordionSection class="uk-margin-large-bottom" [title]="'Parameters'">
                 <form-repeat [component]="parameterType" [parentGroup]="myForm.controls.componentInfo"
                              [name]="'parameterInfos'" [required]="false" [description]="parameterInfoDesc">
