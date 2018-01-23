@@ -17,10 +17,10 @@ import { OrganizationIdentifierCommonFormControl } from "./identifierCommon.comp
 
             <div class="form-group-divider"></div>
 
-            <form-repeat-inline [component]="simpleStringComponent" [parentGroup]="group"
-                                [description]="organizationAlternativeNameDesc" [name]="'organizationAlternativeNames'"></form-repeat-inline>
+            <!--<form-repeat-inline [component]="simpleStringComponent" [parentGroup]="group"-->
+                                <!--[description]="organizationAlternativeNameDesc" [name]="'organizationAlternativeNames'"></form-repeat-inline>-->
 
-            <div class="form-group-divider"></div>
+            <!--<div class="form-group-divider"></div>-->
 
             <form-repeat-inline [component]="organizationIdentifierComponent" [parentGroup]="group"
                                 [description]="organizationIdentifierDesc" [name]="'organizationIdentifiers'"></form-repeat-inline>

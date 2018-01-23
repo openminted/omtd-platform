@@ -5,7 +5,7 @@ import {
 import { Component, Injector, Type } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { RelatedResourceFormControl } from "./relatedResource.component";
-import { MyStringFormGroup } from "./my-string-form.component";
+import { MySingleStringForm, MyStringFormGroup } from "./my-string-form.component";
 
 @Component({
     selector: 'componentDependenciesInfo-form',
@@ -46,7 +46,7 @@ export class ComponentDependenciesInfoFormControl extends MyGroup {
     };
 
     relatedResourceType : Type<any> = RelatedResourceFormControl;
-    simpleStringComponent : Type<any> = MyStringFormGroup;
+    simpleStringComponent : Type<any> = MySingleStringForm;
 
     typesystemDesc : Description = typesystemDesc;
     annotationSchemaDesc : Description = annotationTypeDesc;
