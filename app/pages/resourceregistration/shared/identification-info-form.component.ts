@@ -23,7 +23,7 @@ export class IdentificationInfoFormControl extends MyGroup {
     descriptionDesc: Description = descriptionDesc;
     resourceShortNameDesc: Description = resourceShortNameDesc;
     publicDesc : Description = publicDesc;
-    resourceIdentifierDesc : Description = resourceIdentifierDesc;
+    resourceIdentifierDesc : Description = Object.assign({},resourceIdentifierDesc);
 
     isUpdateForm : boolean = false;
     isCorpusForm : boolean = false;
@@ -33,6 +33,7 @@ export class IdentificationInfoFormControl extends MyGroup {
     constructor(private injector : Injector) {
         super(injector);
         this.publicDesc.mandatory = false;
+        this.resourceIdentifierDesc.mandatory = true;
         this.route = injector.get(ActivatedRoute);
         this.isUpdateForm = this.route.snapshot.data['update'];
         this.isCorpusForm = this.route.snapshot.data['resourceType'] === 'corpus';

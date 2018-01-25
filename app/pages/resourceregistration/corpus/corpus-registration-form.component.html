@@ -34,6 +34,12 @@
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Rights Info'">
                 <rightsInfo-form [parentGroup]="myForm.controls.corpusInfo" [name]="'rightsInfo'"></rightsInfo-form>
             </li>
+
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Documentations'">
+                <form-repeat [component]="resourceDocumentationType" [parentGroup]="myForm.controls.corpusInfo"
+                             [name]="'resourceDocumentations'" [required]="false" [description]="resourceDocumentationDesc">
+                </form-repeat>
+            </li>
         </ul>
 
     </form>
