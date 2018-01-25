@@ -56,6 +56,12 @@
                              [name]="'parameterInfos'" [required]="false" [description]="parameterInfoDesc">
                 </form-repeat>
             </li>
+
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Documentations'">
+                <form-repeat [component]="resourceDocumentationType" [parentGroup]="myForm.controls.componentInfo"
+                             [name]="'resourceDocumentations'" [required]="false" [description]="resourceDocumentationDesc">
+                </form-repeat>
+            </li>
         </ul>
     </form>
     <form class="form-horizontal componentForm" [formGroup]="tocForm">

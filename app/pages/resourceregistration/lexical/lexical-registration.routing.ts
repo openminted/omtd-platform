@@ -23,7 +23,7 @@ const lexicalRegistrationRoutes: Routes = [
         canActivate: [
             CanActivateViaAuthGuard
         ],
-        data : {resourceType : 'component' }
+        data : {resourceType : 'lexical', update : true }
     },
 ];
 

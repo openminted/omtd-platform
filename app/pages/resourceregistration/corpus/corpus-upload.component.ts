@@ -4,9 +4,7 @@
 import { Component, Injector } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import {
-    Corpus as OMTDCorpus,
-    DistributionMediumEnum,
-    ResourceIdentifier,
+    Corpus as OMTDCorpus, DistributionMediumEnum, ResourceIdentifier,
     ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
 import { CorpusBaseUsingFormComponent } from "./corpus-base-using-form.component";

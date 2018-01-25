@@ -8,18 +8,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TooltipModule, TypeaheadModule } from "ngx-bootstrap";
 import { MetadataHeaderInfoFormControl } from "./shared/metadata-header-info-form.component";
 import { ValuesPipe } from "./shared/values-pipe";
+import { SimpleLanguageTypeForm, SimpleLanguageTypeForm2 } from "./shared/language-type-form.component";
 import {
-    SimpleLanguageTypeForm,
-    SimpleLanguageTypeForm2
-} from "./shared/language-type-form.component";
-import {
-    MySimpleStringControl,
-    MySingleStringForm,
-    MyStringAreaFormGroup,
-    MyStringArrayFormGroup,
-    MyStringDescFormGroup,
-    MyStringFormControl,
-    MyStringFormGroup
+    MySimpleStringControl, MySingleStringForm, MyStringAreaFormGroup, MyStringArrayFormGroup,
+    MyStringDescFormGroup, MyStringFormControl, MyStringFormGroup
 } from "./shared/my-string-form.component";
 import { IdentificationInfoFormControl } from "./shared/identification-info-form.component";
 import { EnumCommonForm } from "./shared/enum-common-form";
@@ -30,8 +22,7 @@ import { LicenseInfoForm, RightsInfoForm } from "./shared/rights-info-form.compo
 import { LanguageVarietyInfoFormControl } from "./shared/language-variety-info-form.component";
 import { LanguageInfoFormControl } from "./shared/languageInfo.component";
 import {
-    DatasetDistributionInfoFormControl,
-    DatasetDistributionLocInfoFormControl,
+    DatasetDistributionInfoFormControl, DatasetDistributionLocInfoFormControl,
     DatasetDistributionsInfoFormControl
 } from "./shared/datasetDistributionInfo.component";
 import { ZipUploadComponent } from "./shared/zip-upload-form.component";
@@ -47,13 +38,11 @@ import { ComponentGenericFormControl } from "./shared/componentGeneric.component
 import { InlineFormWrapper, MyGroup } from "./myform/my-group.interface";
 import { ContactPersonFormControl } from "./shared/contactPerson.component";
 import {
-    IdentifierCommonFormControl, OrganizationIdentifierCommonFormControl,
-    PersonIdentifierCommonFormControl, ResourceIdentifierCommonFormControl
+    IdentifierCommonFormControl, OrganizationIdentifierCommonFormControl, PersonIdentifierCommonFormControl,
+    PublicationIdentifierCommonFormControl, ResourceIdentifierCommonFormControl
 } from "./shared/identifierCommon.component";
 import { ComponentCreationInfoFormControl } from "./shared/componentCreationInfo.component";
-import {
-    TextClassificationInfoFormControl
-} from "./shared/text-classification-info-form.component";
+import { TextClassificationInfoFormControl } from "./shared/text-classification-info-form.component";
 import { CorpusSubtypeSpecificInfoForm } from "./shared/corpus-subtype-specific-info-form.component";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
 import { MyChoice, MyChoiceWrapper } from "./myform/my-choice.interface";
@@ -78,8 +67,11 @@ import { GroupFormsComponent } from "./shared/groupForms.directive";
 import { GroupInfoFormControl } from "./shared/groupInfo.component";
 import { RelatedResourceFormControl } from "./shared/relatedResource.component";
 import { ComponentDependenciesInfoFormControl } from "./shared/componentDependencies.component";
+import { ResourceDocumentationFormControl } from "./shared/resourceDocumentationInfo.component";
 
 const entryComponents = [
+    PublicationIdentifierCommonFormControl,
+    ResourceDocumentationFormControl,
     DomainInfoFormControl,
     TextClassificationInfoFormControl,
     TextFormatInfoFormControl,

@@ -66,7 +66,7 @@ const componentRegistrationRoutes: Routes = [
         canActivate: [
             CanActivateViaAuthGuard
         ],
-        data : {resourceType : 'component' }
+        data : {resourceType : 'component', update : true }
     },
     {
         path: 'resourceRegistration/application/form/edit/:id',
@@ -74,7 +74,7 @@ const componentRegistrationRoutes: Routes = [
         canActivate: [
             CanActivateViaAuthGuard
         ],
-        data : {resourceType : 'application' }
+        data : {resourceType : 'application', update : true }
     },
     {
         path: 'buildWorkflow/:id',

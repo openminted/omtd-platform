@@ -24,21 +24,24 @@ const corpusRegistrationRoutes: Routes = [
         component: CorpusUploadComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'corpus' }
     },
     {
         path: 'resourceRegistration/corpus/build',
         component: CorpusBuilderComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'corpus' }
     },
     {
         path: 'resourceRegistration/corpus/form/edit/:id',
         component: CorpusUpdateUsingFormComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : {resourceType : 'corpus', update : true }
     }
 ];
 

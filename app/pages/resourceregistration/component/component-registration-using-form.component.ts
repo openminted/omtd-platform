@@ -1,7 +1,7 @@
 /**
  * Created by stefanos on 1/22/17.
  */
-import { Component, Injector, ViewChild } from "@angular/core";
+import { Component, Injector, OnInit, ViewChild } from "@angular/core";
 import {
     Component as OMTDComponent, ResourceIdentifier,
     ResourceIdentifierSchemeNameEnum
@@ -18,7 +18,7 @@ import { ErrorObservable } from "rxjs/observable/ErrorObservable";
     styleUrls : ['./component-registration-form.component.css']
 })
 
-export class ComponentRegistrationUsingFormComponent {
+export class ComponentRegistrationUsingFormComponent implements OnInit {
 
     errorMessage: string = null;
 
@@ -38,6 +38,16 @@ export class ComponentRegistrationUsingFormComponent {
         this.route = injector.get(ActivatedRoute);
         this.router = injector.get(Router);
         this.resourceType = this.route.snapshot.data['resourceType'];
+    }
+
+    ngOnInit(): void {
+        setTimeout(() => {
+            let resourceId = this.componentForm.get('componentInfo.identificationInfo.resourceIdentifiers.0');
+            let resourceIdentifier : any = new ResourceIdentifier();
+            resourceIdentifier.value = randomString();
+            resourceIdentifier.resourceIdentifierSchemeName = 'OMTD';
+            resourceId.patchValue(resourceIdentifier);
+        },1000);
     }
 
     validate() : boolean {

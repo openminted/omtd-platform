@@ -18,6 +18,13 @@
 
     <div class="form-group-divider"></div>
 
+    <div [hidden]="!showIdentifiers">
+        <form-repeat-inline [component]="resourceIdentifierType" [parentGroup]="group"
+                            [name]="'resourceIdentifiers'" [required]="true" [description]="resourceIdentifierDesc">
+        </form-repeat-inline>
+    </div>
+    <div class="form-group-divider"></div>
+
     <form-inline [description]="publicDesc">
         <label>
             <input type="checkbox" formControlName="public" class="uk-checkbox">

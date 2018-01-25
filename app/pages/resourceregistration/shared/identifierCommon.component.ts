@@ -160,3 +160,35 @@ export class ResourceIdentifierCommonFormControl extends MyGroup {
         resourceIdentifierSchemeName : ''
     };
 }
+
+@Component({
+    selector: 'publicationIdentifier-form',
+    template : `
+<div [formGroup]="group" class="uk-grid-small" uk-grid>
+    <div class="uk-width-2-5" >
+        <input type="text" class="uk-input" formControlName="value" placeholder="value (*)" [ngClass]="{'has-error':!getMyControl('value').valid}">
+    </div>
+    <div class="uk-width-2-5" >
+        <select name="role" class="uk-select" formControlName="publicationIdentifierSchemeName" [ngClass]="{'has-error':!getMyControl('publicationIdentifierSchemeName').valid}">
+            <option *ngFor="let value of schemeEnum" [value]="value.key" [selected]="value.key == ''">
+                {{value.value}}
+            </option>
+        </select>
+    </div>
+    <div class="uk-width-1-5">
+        <input type="text" class="uk-input" formControlName="schemeURI" placeholder="uri">
+    </div>
+</div>
+`,
+    styleUrls : ['./templates/common.css']
+})
+export class PublicationIdentifierCommonFormControl extends MyGroup {
+
+    schemeEnum : EnumValues[] = publicationIdentifierSchemeNameEnum;
+
+    groupDefinition = {
+        value : ['', Validators.required],
+        schemeURI : '',
+        publicationIdentifierSchemeName : ''
+    };
+}
