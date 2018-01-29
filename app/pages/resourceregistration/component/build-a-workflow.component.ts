@@ -81,8 +81,10 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
                 this.loading = false;
                 this.metadataFormPage = true;
                 this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = location.origin + this.galaxyService.workflowDefinitionURL+this.galaxyId;
-                this.componentForm.loadComponent(this.defaultValues);
-                this.componentForm.get('componentInfo.distributionInfos').disable();
+                setTimeout(() =>{
+                    this.componentForm.loadComponent(this.defaultValues);
+                    this.componentForm.get('componentInfo.distributionInfos').disable();
+                },500);
             },this.handleError);
         }, 500);
     }
