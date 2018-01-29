@@ -60,6 +60,7 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
         this.listener = this.renderer.listen('window','message',data =>{
             setTimeout(()=>{
                 if(data['origin'] == location.origin && data['data']=='workflowSaved') {
+                    this._cd.reattach();
                     this.fillMetadata();
                 }
             },500);
@@ -76,16 +77,17 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
     }
 
     public fillMetadata() {
-        this._cd.reattach();
         this.metadataFormPage = true;
         this.loading = true;
         setTimeout(() => {
             this.galaxyService.updateWorkflow(this.galaxyId).subscribe(_ => {
-                this.loading = false;
+                console.log("HELLO");
                 this.metadataFormPage = true;
                 this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = location.origin + this.galaxyService.workflowDefinitionURL+this.galaxyId;
                 this.componentForm.loadComponent(this.defaultValues);
                 this.componentForm.get('componentInfo.distributionInfos').disable();
+                this.loading = false;
+                this._cd.markForCheck();
             },this.handleError);
         }, 500);
     }
