@@ -35,22 +35,17 @@ declare var UIkit : any;
                             </tree-root>
                         </div>
                     </div>
-                    <!--[valid]="getMyControl('functionInfo.function').valid"-->
+                    
                     <input type="text" formControlName="function" [hidden]="true">
-                    <!--<select name="role" class="form-control" formControlName="function">-->
-                        <!--<option *ngFor="let value of operationType" [value]="value.key" [selected]="value.key == ''">-->
-                        <!--{{value.value}}-->
-                        <!--</option>-->
-                    <!--</select>-->
-
+                    
                     <div class="form-group-divider"></div>
-
-                    <form-inline [description]="functionDescOther" [hidden]="getMyControl('functionInfo.function')?.value!=='OTHER'">
-                        <input type="text" class="uk-input" formControlName="functionOther" placeholder="Other type of operation(*)"/>
-                    </form-inline>
+                    
+                    <input type="text" class="uk-input" formControlName="functionOther" placeholder="Other type of operation(*)"/>
                 </form-inline>
             </div>
-        
+
+            <div class="form-group-divider"></div>
+            
             <componentCreationInfo-form [parentGroup]="group" [required]="true"></componentCreationInfo-form>
 
             <div class="form-group-divider"></div>
@@ -77,7 +72,7 @@ export class ComponentGenericFormControl extends MyGroup {
         previousAnnotationTypesPolicy : '',
         functionInfo : this._fb.group({
             function : ['',Validators.required],
-            functionOther : ['',Validators.required]
+            functionOther : ''
         })
     };
 
@@ -122,15 +117,6 @@ export class ComponentGenericFormControl extends MyGroup {
     ngOnInit() {
         this.functionDescOther.label=null;
         this.functionDescOther.desc=null;
-        // this.getMyControl('functionInfo.functionOther').disable();
         super.ngOnInit();
-        this.getMyControl('functionInfo.function').valueChanges.subscribe(_ => {
-            this.selectedOperation = this.operationType.find(v => v.key.toLowerCase() === _.toLowerCase()).value;
-            if (_ === 'OTHER') {
-               this.getMyControl('functionInfo.functionOther').enable();
-            } else {
-               this.getMyControl('functionInfo.functionOther').disable();
-            }
-        });
     }
 }

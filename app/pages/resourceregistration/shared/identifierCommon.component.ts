@@ -73,7 +73,7 @@ export class IdentifierCommonFormControl extends MyGroup {
         <input type="text" class="uk-input" formControlName="value" placeholder="value (*)" [ngClass]="{'has-error':!getMyControl('value').valid}">
     </div>
     <div class="uk-width-2-5" >
-        <select name="role" class="uk-select" formControlName="publicationIdentifierSchemeName" [ngClass]="{'has-error':!getMyControl('publicationIdentifierSchemeName').valid}">
+        <select name="role" class="uk-select" formControlName="personIdentifierSchemeName" [ngClass]="{'has-error':!getMyControl('personIdentifierSchemeName').valid}">
             <option *ngFor="let value of schemeEnum" [value]="value.key" [selected]="value.key == ''">
                 {{value.value}}
             </option>
@@ -93,7 +93,7 @@ export class PersonIdentifierCommonFormControl extends MyGroup {
     groupDefinition = {
         value : ['', Validators.required],
         schemeURI : '',
-        publicationIdentifierSchemeName : ''
+        personIdentifierSchemeName : ''
     };
 }
 
@@ -130,7 +130,7 @@ export class OrganizationIdentifierCommonFormControl extends MyGroup {
 }
 
 @Component({
-    selector: 'organizationIdentifier-form',
+    selector: 'resourceIdentifier-form',
     template : `
 <div [formGroup]="group" class="uk-grid-small" uk-grid>
     <div class="uk-width-2-5" >

@@ -72,11 +72,6 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
         if(!this.validate())
             return;
 
-        let component : OMTDComponent = Object.assign({},this.componentForm.formValue);
-        let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
-        resourceIdentifier.value = randomString();
-        resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
-        component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
         this.loading = true;
         this.componentForm.get('componentInfo.application').setValue(this.resourceType != 'component' )
         this.resourceService.uploadComponent(this.componentForm.formValue,this.resourceType).subscribe(

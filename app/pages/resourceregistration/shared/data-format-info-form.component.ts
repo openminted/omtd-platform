@@ -27,9 +27,11 @@ declare var UIkit : any;
                 </div>
             </div>
             <input type="text" formControlName="dataFormat" [hidden]="true">
-            <div class="form-group-divider"></div>
-
-            <input [hidden]="getMyControl('dataFormat')?.value!=='OTHER'" type="text" class="uk-input" formControlName="dataFormatOther" placeholder="Other Data Format">            
+            <div class="form-group-divider"></div>            
+        </form-inline>
+        
+        <form-inline [description]="dataFormatOtherDesc">
+            <input type="text" class="uk-input" formControlName="dataFormatOther" placeholder="Other Data Format">
         </form-inline>
     </div>
     `,
@@ -69,13 +71,5 @@ export class DataFormatInfoFormControl extends MyGroup {
     ngOnInit() {
         super.ngOnInit();
         this.ukDropdown = `pos: bottom-justify; mode: click; boundary: .ontology-align-data${this.randomId}; boundary-align: true`;
-        this.getMyControl('dataFormatOther').disable();
-        this.getMyControl('dataFormat').valueChanges.subscribe(_ => {
-            if (_ === 'OTHER') {
-                this.getMyControl('dataFormatOther').enable();
-            } else {
-                this.getMyControl('dataFormatOther').disable();
-            }
-        });
     }
 }
