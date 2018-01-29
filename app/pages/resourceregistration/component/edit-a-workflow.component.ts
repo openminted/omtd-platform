@@ -1,7 +1,7 @@
 /**
  * Created by stefanos on 14/11/2017
  */
-import { Component, Injector, OnDestroy, OnInit, Renderer2 } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Injector, OnDestroy, OnInit, Renderer2 } from "@angular/core";
 import { GalaxyService } from "../../../services/galaxy.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SafeUrl } from "@angular/platform-browser";
@@ -12,7 +12,8 @@ declare var UIkit : any;
 @Component({
     selector: 'build-a-workflow',
     templateUrl: './edit-a-workflow.component.html',
-    styleUrls : ['./component-registration-form.component.css']
+    styleUrls : ['./component-registration-form.component.css'],
+    changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class EditAWorkflowComponent implements OnInit, OnDestroy {
 

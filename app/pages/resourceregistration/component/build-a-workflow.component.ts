@@ -1,7 +1,10 @@
 /**
  * Created by stefania on 6/7/17.
  */
-import { Component, Injector, OnDestroy, OnInit, Renderer2, SecurityContext } from "@angular/core";
+import {
+    ChangeDetectionStrategy, Component, Injector, OnDestroy, OnInit, Renderer2,
+    SecurityContext
+} from "@angular/core";
 import { GalaxyService } from "../../../services/galaxy.service";
 import { DomSanitizer } from "@angular/platform-browser";
 import {
@@ -15,7 +18,8 @@ import { ComponentRegistrationUsingFormComponent } from "./component-registratio
 @Component({
     selector: 'build-a-workflow',
     templateUrl: './build-a-workflow.component.html',
-    styleUrls : ['./component-registration-form.component.css']
+    styleUrls : ['./component-registration-form.component.css'],
+    changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormComponent implements OnInit, OnDestroy {
 
