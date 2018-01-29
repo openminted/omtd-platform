@@ -11,15 +11,15 @@ import { MySingleStringForm } from "./my-string-form.component";
             <form-repeat-inline [component]="simpleStringComponent" [parentGroup]="group" 
                                 [description]="emailsDesc" [name]="'emails'"></form-repeat-inline>
 
-            <div class="form-group-divider"></div>
+            <!--<div class="form-group-divider"></div>-->
 
-            <form-repeat-inline [component]="simpleStringComponent" [parentGroup]="group" [initEmpty]="true"
-                                [description]="homepagesDesc" [name]="'homepages'"></form-repeat-inline>
+            <!--<form-repeat-inline [component]="simpleStringComponent" [parentGroup]="group" [initEmpty]="true"-->
+                                <!--[description]="homepagesDesc" [name]="'homepages'"></form-repeat-inline>-->
 
-            <div class="form-group-divider"></div>
-            
-            <form-repeat-inline [component]="simpleStringComponent" [parentGroup]="group" [initEmpty]="true"
-                                [description]="telephoneNumbersDesc" [name]="'telephoneNumbers'"></form-repeat-inline>
+            <!--<div class="form-group-divider"></div>-->
+            <!---->
+            <!--<form-repeat-inline [component]="simpleStringComponent" [parentGroup]="group" [initEmpty]="true"-->
+                                <!--[description]="telephoneNumbersDesc" [name]="'telephoneNumbers'"></form-repeat-inline>-->
             
         </div>
 `,

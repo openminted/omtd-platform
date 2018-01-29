@@ -83,10 +83,10 @@ export class ActorInfoFormControl extends MyGroup {
 
             <div class="form-group-divider"></div>
             
-            <div [groupForms]="affiliationDesc.label">
-                <affiliation-form [parentGroup]="group" [name]="'affiliation'"
-                    [description]="affiliationDesc"></affiliation-form>
-            </div>
+            <!--<div [groupForms]="affiliationDesc.label">-->
+                <!--<affiliation-form [parentGroup]="group" [name]="'affiliation'"-->
+                    <!--[description]="affiliationDesc"></affiliation-form>-->
+            <!--</div>-->
         </div>
 `,
     styleUrls : ['./templates/common.css']
