@@ -81,7 +81,7 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
         this.loading = true;
         setTimeout(() => {
             this.galaxyService.updateWorkflow(this.galaxyId).subscribe(_ => {
-                console.log("HELLO");
+                this._cd.markForCheck();
                 this.metadataFormPage = true;
                 this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = location.origin + this.galaxyService.workflowDefinitionURL+this.galaxyId;
                 this.componentForm.loadComponent(this.defaultValues);
