@@ -2,7 +2,7 @@
  * Created by stefania on 6/7/17.
  */
 import {
-    ChangeDetectionStrategy, Component, Injector, OnDestroy, OnInit, Renderer2,
+    ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, OnDestroy, OnInit, Renderer2,
     SecurityContext
 } from "@angular/core";
 import { GalaxyService } from "../../../services/galaxy.service";
@@ -26,6 +26,7 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
     private _sanitizer;
     private galaxyService;
     private renderer;
+    private _cd : ChangeDetectorRef;
     galaxyId = '';
     metadataFormPage = false;
 
@@ -49,6 +50,7 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
         this._sanitizer = injector.get(DomSanitizer);
         this.galaxyService = injector.get(GalaxyService);
         this.renderer = injector.get(Renderer2);
+        this._cd = injector.get(ChangeDetectorRef);
     }
 
     ngOnInit() {
@@ -74,6 +76,7 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
     }
 
     public fillMetadata() {
+        this._cd.reattach();
         this.metadataFormPage = true;
         this.loading = true;
         setTimeout(() => {
@@ -81,10 +84,8 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
                 this.loading = false;
                 this.metadataFormPage = true;
                 this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = location.origin + this.galaxyService.workflowDefinitionURL+this.galaxyId;
-                setTimeout(() =>{
-                    this.componentForm.loadComponent(this.defaultValues);
-                    this.componentForm.get('componentInfo.distributionInfos').disable();
-                },500);
+                this.componentForm.loadComponent(this.defaultValues);
+                this.componentForm.get('componentInfo.distributionInfos').disable();
             },this.handleError);
         }, 500);
     }
