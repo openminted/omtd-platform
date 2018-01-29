@@ -79,6 +79,7 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
     public fillMetadata() {
         this.metadataFormPage = true;
         this.loading = true;
+        this._cd.markForCheck();
         setTimeout(() => {
             this.galaxyService.updateWorkflow(this.galaxyId).subscribe(_ => {
                 this._cd.markForCheck();
