@@ -9,14 +9,14 @@ import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import {title} from "../../../domain/utils";
 
 @Component({
-    selector: 'component-registration-xml',
-    templateUrl: './component-registration-xml.component.html',
-    styleUrls:  ['./component-registration-xml.component.css'],
+    selector: 'lexical-registration-xml',
+    templateUrl: './lexical-registration-xml.component.html',
+    styleUrls:  ['./lexical-registration-xml.component.css'],
 })
 
-export class ComponentRegistrationXMLComponent {
+export class LexicalUploadXMLComponent {
 
-    componentXML: string;
+    lexicalXML: string;
     errorMessage: string;
     xmlURL : string;
     successMessage: string;
@@ -58,7 +58,7 @@ export class ComponentRegistrationXMLComponent {
 
     previewFromURL() {
         this.resourceService.getXML(this.xmlURL,this.resourceType).subscribe(
-            xml => this.componentXML = xml
+            xml => this.lexicalXML = xml
         );
     }
 
@@ -72,7 +72,7 @@ export class ComponentRegistrationXMLComponent {
                 //TODO validation here
             };
             myReader.onloadend = function(e){
-                self.componentXML = myReader.result;
+                self.lexicalXML = myReader.result;
             };
             myReader.readAsText(this.uploadedFile);
 

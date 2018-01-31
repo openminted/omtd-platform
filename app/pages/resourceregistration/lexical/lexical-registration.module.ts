@@ -14,6 +14,7 @@ import { LexicalRegistrationFormComponent } from "./lexical-registration-form.co
 import { LexicalRegistrationComponent } from "./lexical-registration.component";
 import { LexicalUploadComponent } from "./lexical-upload.component";
 import { LexicalBaseUsingFormComponent } from "./lexical-base-using-form.component";
+import { LexicalUploadXMLComponent } from "./lexical-registration-xml.component";
 
 
 
@@ -34,7 +35,8 @@ import { LexicalBaseUsingFormComponent } from "./lexical-base-using-form.compone
         LexicalRegistrationFormComponent,
         LexicalRegistrationComponent,
         LexicalUploadComponent,
-        LexicalBaseUsingFormComponent
+        LexicalBaseUsingFormComponent,
+        LexicalUploadXMLComponent
     ],
     providers: [
         ResourceService

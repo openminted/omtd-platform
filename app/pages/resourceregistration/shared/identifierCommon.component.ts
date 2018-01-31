@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { Validators } from "@angular/forms";
 import {
+    classificationSchemeNameEnum,
     EnumValues, organizationIdentifierSchemeNameEnum, personIdentifierSchemeNameEnum,
     publicationIdentifierSchemeNameEnum, resourceIdentifierSchemeNameEnum
 } from "../../../domain/omtd.enum";
@@ -93,7 +94,7 @@ export class PersonIdentifierCommonFormControl extends MyGroup {
     groupDefinition = {
         value : ['', Validators.required],
         schemeURI : '',
-        personIdentifierSchemeName : ''
+        personIdentifierSchemeName : ['', Validators.required]
     };
 }
 
@@ -125,7 +126,7 @@ export class OrganizationIdentifierCommonFormControl extends MyGroup {
     groupDefinition = {
         value : ['', Validators.required],
         schemeURI : '',
-        organizationIdentifierSchemeName : ''
+        organizationIdentifierSchemeName : ['', Validators.required]
     };
 }
 
@@ -157,7 +158,7 @@ export class ResourceIdentifierCommonFormControl extends MyGroup {
     groupDefinition = {
         value : ['', Validators.required],
         schemeURI : '',
-        resourceIdentifierSchemeName : ''
+        resourceIdentifierSchemeName : ['', Validators.required]
     };
 }
 
@@ -189,6 +190,38 @@ export class PublicationIdentifierCommonFormControl extends MyGroup {
     groupDefinition = {
         value : ['', Validators.required],
         schemeURI : '',
-        publicationIdentifierSchemeName : ''
+        publicationIdentifierSchemeName : ['', Validators.required]
+    };
+}
+
+@Component({
+    selector: 'domainIdentifier-form',
+    template : `
+<div [formGroup]="group" class="uk-grid-small" uk-grid>
+    <div class="uk-width-2-5" >
+        <input type="text" class="uk-input" formControlName="value" placeholder="value (*)" [ngClass]="{'has-error':!getMyControl('value').valid}">
+    </div>
+    <div class="uk-width-2-5" >
+        <select name="role" class="uk-select" formControlName="classificationSchemeName" [ngClass]="{'has-error':!getMyControl('classificationSchemeName').valid}">
+            <option *ngFor="let value of schemeEnum" [value]="value.key" [selected]="value.key == ''">
+                {{value.value}}
+            </option>
+        </select>
+    </div>
+    <div class="uk-width-1-5">
+        <input type="text" class="uk-input" formControlName="schemeURI" placeholder="uri">
+    </div>
+</div>
+`,
+    styleUrls : ['./templates/common.css']
+})
+export class DomainIdentifierCommonFormControl extends MyGroup {
+
+    schemeEnum : EnumValues[] = classificationSchemeNameEnum;
+
+    groupDefinition = {
+        value : ['', Validators.required],
+        schemeURI : '',
+        classificationSchemeName : ['', Validators.required]
     };
 }

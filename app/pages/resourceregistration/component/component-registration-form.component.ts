@@ -4,10 +4,14 @@
 import { Component, OnInit, Type } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ParameterInfoFormComponent } from "../shared/parameter-info-form.component";
-import { Description, parameterInfoDesc, resourceDocumentationInfoDesc } from "../../../domain/omtd.description";
+import {
+    Description, parameterInfoDesc, relationTypeDesc,
+    resourceDocumentationInfoDesc
+} from "../../../domain/omtd.description";
 import { ResourceService } from "../../../services/resource.service";
 import { ActivatedRoute } from "@angular/router";
 import { ResourceDocumentationFormControl } from "../shared/resourceDocumentationInfo.component";
+import { RelationInfoFormControl } from "../shared/relationInfo.component";
 
 @Component({
     selector: 'component-registration-form',
@@ -24,8 +28,10 @@ export class ComponentRegistrationFormComponent implements OnInit {
     componentPatch: any = {"componentInfo":{"application":false,"functionInfo":{"function":"VIEWER"},"identificationInfo":{"public":false,"resourceShortName":"","resourceNames":[{"value":"Stefania's amazing Component !","lang":"en-us"},{"value":"Stefania's amazing Component ! 2","lang":"en-us"}],"descriptions":[{"value":"A workflow of components that aim at topic extraction; it includes the DKProCore component MalletLdaTopicModelInferencer that infers the topic distribution over documents using a Mallet ParallelTopicModel.","lang":"en-us"}],"resourceIdentifiers":[{"resourceIdentifierSchemeName":24,"value":"2wHbZG7kzlYlE6gknaqNWZKkDnzQOHqFIg2sJ0iL"}]},"contactInfo":{"contactPoint":"stevengatsios@gmail.com","contactType":1},"versionInfo":{"version":"0.0.1","revision":""},"inputContentResourceInfo":{"processingResourceType":"CORPUS","dataFormats":[{"dataFormat":"APPLICATION_XML"},{"dataFormat":"APPLICATION_XML"}],"characterEncodings":[{"entry":"WINDOWS_1253"},{"entry":"WINDOWS_1251"},{"entry":"MAC_ROMANIA"}],"languages":[{"entry":"en"},{"entry":"el"}]},"outputResourceInfo":{"processingResourceType":"","dataFormats":[{"dataFormat":""}],"characterEncodings":[{"entry":""}],"languages":[{"entry":""}]},"parameterInfos":[{"parameterName":"language","parameterLabel":"language","parameterDescription":"Use this language instead of the document language to resolve the model.","parameterType":"STRING","optional":true,"multiValue":false,"defaultValue":[{"entry":""}],"dataFormats":[{"dataFormat":""}]},{"parameterName":"dictVariant","parameterLabel":"dictVariant","parameterDescription":"Override the default variant used to locate the dictionary.","parameterType":"STRING","optional":true,"multiValue":false,"defaultValue":[{"entry":""}],"dataFormats":[{"dataFormat":""}]}],"rightsInfo":{"rightsStatement":"OPEN_ACCESS","licenceInfos":[{"licence":"CC_BY_3_0"}]},"componentCreationInfo":{"framework":"ALVIS_NLP","tdmmethod":"CLUSTERING_METHOD"},"distributionInfos":[{"componentDistributionForm":"EXECUTABLE_CODE","distributionLocation":"http://www.google.com"}]}};
 
     parameterType: Type<any> = ParameterInfoFormComponent;
-
     resourceDocumentationType: Type<any> = ResourceDocumentationFormControl;
+    relationType : Type<any> = RelationInfoFormControl;
+
+    relationTypeDesc : Description = relationTypeDesc;
     resourceDocumentationDesc : Description = resourceDocumentationInfoDesc;
 
     parameterInfoDesc : Description = parameterInfoDesc;

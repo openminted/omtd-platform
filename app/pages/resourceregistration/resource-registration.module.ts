@@ -38,6 +38,7 @@ import { ComponentGenericFormControl } from "./shared/componentGeneric.component
 import { InlineFormWrapper, MyGroup } from "./myform/my-group.interface";
 import { ContactPersonFormControl } from "./shared/contactPerson.component";
 import {
+    DomainIdentifierCommonFormControl,
     IdentifierCommonFormControl, OrganizationIdentifierCommonFormControl, PersonIdentifierCommonFormControl,
     PublicationIdentifierCommonFormControl, ResourceIdentifierCommonFormControl
 } from "./shared/identifierCommon.component";
@@ -68,6 +69,7 @@ import { GroupInfoFormControl } from "./shared/groupInfo.component";
 import { RelatedResourceFormControl } from "./shared/relatedResource.component";
 import { ComponentDependenciesInfoFormControl } from "./shared/componentDependencies.component";
 import { ResourceDocumentationFormControl } from "./shared/resourceDocumentationInfo.component";
+import { RelationInfoFormControl } from "./shared/relationInfo.component";
 
 const entryComponents = [
     PublicationIdentifierCommonFormControl,
@@ -104,7 +106,9 @@ const entryComponents = [
     OrganizationIdentifierCommonFormControl,
     GroupInfoFormControl,
     ResourceIdentifierCommonFormControl,
-    RelatedResourceFormControl
+    RelatedResourceFormControl,
+    RelationInfoFormControl,
+    DomainIdentifierCommonFormControl
 ];
 
 const declarations = [

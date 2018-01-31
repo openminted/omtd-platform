@@ -53,6 +53,7 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
     validate() : boolean {
         this.successfulMessage = null;
         this.errorMessage = null;
+        console.log(this.componentForm.myForm.errors);
         this.componentForm.setAsTouched();
         if(this.componentForm.formValid && this.componentForm.tocValid) {
             return true;

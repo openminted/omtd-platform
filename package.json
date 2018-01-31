@@ -5,7 +5,7 @@
     "clean": "rm -rf dist/ && mkdir dist",
     "build:prod": "webpack --progress -p --env.release=true",
     "build": "webpack --progress -p --env.develop=true",
-    "build:docker": "npm run build:prod && docker build -t omtd-platform -t 83.212.101.85:5000/omtd-platform .",
+    "build:docker": "npm run build:prod && docker build -t omtd-platform -t docker.openminted.eu/omtd-platform .",
     "deploy:server": "docker rm -f omtd-platform && docker run --name omtd-platform -d -p 80:80 omtd-platform",
     "deploy:complete": "npm run build:docker && npm run deploy:server",
     "watch": "npm run build -- --watch",

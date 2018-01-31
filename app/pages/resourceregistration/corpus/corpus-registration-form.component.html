@@ -40,6 +40,12 @@
                              [name]="'resourceDocumentations'" [required]="false" [description]="resourceDocumentationDesc">
                 </form-repeat>
             </li>
+
+            <li accordionSection class="uk-margin-large-bottom" [title]="'Relations'">
+                <form-repeat [component]="relationType" [parentGroup]="myForm.controls.corpusInfo"
+                             [name]="'relations'" [required]="false" [description]="relationTypeDesc">
+                </form-repeat>
+            </li>
         </ul>
 
     </form>

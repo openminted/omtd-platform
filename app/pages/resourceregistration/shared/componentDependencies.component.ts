@@ -1,5 +1,5 @@
 import {
-    annotationResourceDesc, annotationTypeDesc, Description, requiresSoftwareDesc,
+    annotationResourceDesc, annotationSchemaDesc, annotationTypeDesc, Description, requiresSoftwareDesc,
     typesystemDesc
 } from "../../../domain/omtd.description";
 import { Component, Injector, Type } from "@angular/core";
@@ -49,7 +49,7 @@ export class ComponentDependenciesInfoFormControl extends MyGroup {
     simpleStringComponent : Type<any> = MySingleStringForm;
 
     typesystemDesc : Description = typesystemDesc;
-    annotationSchemaDesc : Description = annotationTypeDesc;
+    annotationSchemaDesc : Description = annotationSchemaDesc;
     annotationResourcesDesc : Description = annotationResourceDesc;
     mlModelDesc : Description = new Description();
     softwareLibrariesDesc : Description = requiresSoftwareDesc;

@@ -2,11 +2,12 @@
  * Created by stefania on 1/19/17.
  */
 import { Component, ElementRef, Injector, ViewChild } from "@angular/core";
-import { dataFormatTypeEnum, EnumValues, operationTypeEnum } from "../../../domain/omtd.enum";
+import { dataFormatTypeEnum, EnumValues } from "../../../domain/omtd.enum";
 import { MyGroup } from "../myform/my-group.interface";
 import { dataFormatInfoDesc, Description } from "../../../domain/omtd.description";
-import { FormControlName, Validators } from "@angular/forms";
+import { Validators } from "@angular/forms";
 import { dataFormatOntologies } from "../../../domain/ontologies";
+
 declare var UIkit : any;
 
 @Component({
@@ -47,7 +48,7 @@ export class DataFormatInfoFormControl extends MyGroup {
 
     ukDropdown : string = "";
     randomId : string = Math.random().toString().substring(2);
-    selectedDataFormat : string = operationTypeEnum[0].value;
+    selectedDataFormat : string = dataFormatTypeEnum[0].value;
     dataFormatTypeEnum: EnumValues[] = dataFormatTypeEnum;
     dataFormatTypeDesc: Description = Object.assign({}, dataFormatInfoDesc);
     dataFormatOtherDesc: Description = new Description();
@@ -71,5 +72,9 @@ export class DataFormatInfoFormControl extends MyGroup {
     ngOnInit() {
         super.ngOnInit();
         this.ukDropdown = `pos: bottom-justify; mode: click; boundary: .ontology-align-data${this.randomId}; boundary-align: true`;
+        this.getMyControl('dataFormat').valueChanges.subscribe( ev => {
+            let operation = this.dataFormatTypeEnum.find(v => v.key.toLowerCase() === ev.toLowerCase());
+            this.selectedDataFormat = operation.value;
+        });
     }
 }

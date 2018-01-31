@@ -1,13 +1,16 @@
-import {Component, ElementRef, Injector, ViewChild} from "@angular/core";
+import { Component, ElementRef, Injector, Type, ViewChild } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { Validators } from "@angular/forms";
 import { EnumValues, operationTypeEnum, previousAnnotationTypesPolicyEnum } from "../../../domain/omtd.enum";
 import {
-    applicationDesc, Description, functionDesc,
+    applicationDesc, Description, domainInfoDesc, functionDesc, keywordDesc,
     previousAnnotationTypesPolicyDesc
 } from "../../../domain/omtd.description";
 import { applicationOntologies, componentOntologies } from "../../../domain/ontologies";
 import { ActivatedRoute } from "@angular/router";
+import { DomainInfoFormControl } from "./domain-info-form";
+import { MySingleStringForm } from "./my-string-form.component";
+import { DomainIdentifierCommonFormControl } from "./identifierCommon.component";
 declare var UIkit : any;
 
 /**
@@ -58,6 +61,20 @@ declare var UIkit : any;
                     </option>
                 </select>
             </form-inline>
+
+            <div class="form-group-divider"></div>
+            
+            <form-repeat-inline [component]="domainInfoType" [parentGroup]="group" [initEmpty]="true"
+                                [name]="'domains'" [description]="domainInfoDesc">
+
+            </form-repeat-inline>
+
+            <div class="form-group-divider"></div>
+            
+            <form-repeat-inline [component]="simpleStringType" [parentGroup]="group" [initEmpty]="true"
+                                [name]="'keywords'" [description]="keywordDesc">
+
+            </form-repeat-inline>
             
         </div>
     </div>
@@ -98,7 +115,10 @@ export class ComponentGenericFormControl extends MyGroup {
     applicationCDesc : Description = applicationDesc;
     functionDesc : Description = functionDesc;
     functionDescOther : Description = Object.assign({},functionDesc);
-
+    domainInfoType : Type<any> = DomainIdentifierCommonFormControl;
+    domainInfoDesc : Description = domainInfoDesc;
+    keywordDesc: Description = Object.assign({}, keywordDesc);
+    simpleStringType: Type<any> = MySingleStringForm;
     required = true;
 
     name = 'componentInfo';
@@ -117,6 +137,11 @@ export class ComponentGenericFormControl extends MyGroup {
     ngOnInit() {
         this.functionDescOther.label=null;
         this.functionDescOther.desc=null;
+        this.keywordDesc.mandatory=false;
         super.ngOnInit();
+        this.getMyControl('functionInfo.function').valueChanges.subscribe( ev => {
+            let operation = this.operationType.find(v => v.key.toLowerCase() === ev.toLowerCase());
+            this.selectedOperation = operation.value;
+        });
     }
 }

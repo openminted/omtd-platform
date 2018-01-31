@@ -5,8 +5,9 @@ import { Component, OnInit, Type } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Corpus as OMTDCorpus } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
-import { Description, resourceDocumentationInfoDesc } from "../../../domain/omtd.description";
+import { Description, relationTypeDesc, resourceDocumentationInfoDesc } from "../../../domain/omtd.description";
 import { ResourceDocumentationFormControl } from "../shared/resourceDocumentationInfo.component";
+import { RelationInfoFormControl } from "../shared/relationInfo.component";
 
 @Component({
     selector: 'corpus-registration-form',
@@ -93,6 +94,9 @@ export class CorpusRegistrationFormComponent implements OnInit {
 
     resourceDocumentationType: Type<any> = ResourceDocumentationFormControl;
     resourceDocumentationDesc : Description = resourceDocumentationInfoDesc;
+    relationType : Type<any> = RelationInfoFormControl;
+    relationTypeDesc : Description = relationTypeDesc;
+
 
     constructor(private _fb: FormBuilder) {
         this.tocForm = _fb.group({

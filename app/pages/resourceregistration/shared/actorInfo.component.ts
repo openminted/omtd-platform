@@ -5,7 +5,7 @@ import {
     actorInfoTypeDesc, affiliationDesc, communicationInfoDesc, Description, nameTypeDesc,
     personIdentifierDesc
 } from "../../../domain/omtd.description";
-import { Validators } from "@angular/forms";
+import { FormGroup, Validators } from "@angular/forms";
 import { PersonIdentifierCommonFormControl } from "./identifierCommon.component";
 import { title } from "../../../domain/utils";
 
@@ -43,6 +43,11 @@ export class ActorInfoFormControl extends MyGroup {
 
     actorTypePrevious : string = '';
 
+    /**
+     * Storing date to patchValue the form group when the ngSwitch is applied.
+     */
+    patchDataForChoice : any = {};
+
     ngOnInit(){
         super.ngOnInit();
         this.getMyControl('actorType').valueChanges.subscribe(
@@ -50,15 +55,36 @@ export class ActorInfoFormControl extends MyGroup {
 
                 if (this.actorTypePrevious != '') {
                     console.log("disable",title(this.actorTypePrevious.toLowerCase()));
-                    let previousControl = this.getMyControl('related' + title(this.actorTypePrevious.toLowerCase()));
+                    let t = 'related' + title(this.actorTypePrevious.toLowerCase());
+                    let previousControl = this.getMyControl(t);
                     if (previousControl) previousControl.disable();
                 }
-                console.log("enable",'related' + title(value.toLowerCase()));
-                let control = this.getMyControl('related' + title(value.toLowerCase()));
-                if (control) control.enable();
+                let tn = 'related' + title(value.toLowerCase());
+                console.log("enable",tn);
+                let control = this.getMyControl(tn);
+                console.log(tn,this.patchDataForChoice);
+                if(this.patchDataForChoice[tn]) {
+                    setTimeout(() => {
+                        let patchForm = this.getMyControl(tn);
+                        patchForm.patchValue(this.patchDataForChoice[tn]);
+                    },500);
+                }
+                if (control) {
+                    control.enable();
+                }
                 this.actorTypePrevious = value;
             }
-        )
+        );
+        this.group.patchValue = (value: {[key: string]: any}, options: {onlySelf?: boolean, emitEvent?: boolean} = {})=> {
+            this.patchDataForChoice = value;
+            let formGroup = this.group as FormGroup;
+            Object.keys(value).forEach(name => {
+                if (formGroup.controls[name]) {
+                    formGroup.controls[name].patchValue(value[name], {onlySelf: true, emitEvent: options.emitEvent});
+                }
+            });
+            formGroup.updateValueAndValidity(options);
+        }
     }
 }
 

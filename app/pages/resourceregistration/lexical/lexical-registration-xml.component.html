@@ -3,7 +3,7 @@
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
-                <h1 class="uk-h2">Upload an XML file for your {{titleResourceType}}</h1>
+                <h1 class="uk-h2">Upload an XML file for your Annotation Resource</h1>
                 <!--<hr class="uk-divider-small">-->
 
                 <div class="uk-margin">
@@ -30,10 +30,10 @@
                         <!-- MIDDLE -->
                         <div class=" uk-width-expand@m">
                             <!--[formGroup]="componentXMLForm"-->
-                            <form role="form" class="m-t componentXMLForm" (ngSubmit)="onSubmit(componentXML, $event)">
+                            <form role="form" class="m-t componentXMLForm" (ngSubmit)="onSubmit(lexicalXML, $event)">
                                 <div class="form-group">
                                     <!--<textarea class="form-control" rows="16" name="xml" formControlName="xml"></textarea>-->
-                                    <div ace-editor [(text)]="componentXML" [mode]="'xml'" [theme]="'chrome'" style="min-height: 500px; width:100%; overflow: auto;"></div>
+                                    <div ace-editor [(text)]="lexicalXML" [mode]="'xml'" [theme]="'chrome'" style="min-height: 500px; width:100%; overflow: auto;"></div>
                                 </div>
                                 <button class="uk-button uk-button-primary registerButton" type="submit">Register!</button>
                             </form>

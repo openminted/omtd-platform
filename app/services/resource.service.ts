@@ -199,9 +199,15 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    getXML(url : string) {
-        return this.http.get(url)
-            .map(res => <string> JSON.stringify(res.json()))
+    getXML(url : string, resource : string, validate : boolean = true) {
+        let params : URLSearchParams = new URLSearchParams();
+        let headers = new Headers();
+        headers.append('Accept', 'application/xml');
+        params.append('url',url);
+        params.append('validate',`${validate}`);
+        return this.http.get(`${this._resourcesUrl}${resource}/load`,
+            {withCredentials : true, params : params, headers : headers})
+            .map(res => <string> res.text())
             .catch(this.handleError);
     }
 

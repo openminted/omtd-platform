@@ -89,6 +89,136 @@ export var componentOntologies = [
         "name": "Analyzer"
     },
     {
+        "comment": "A component that provides support to developers",
+        "children": [
+            {
+                "comment": "A component that supports humans in accessing the contents of a resource",
+                "children": [
+                    {
+                        "comment": "A component that supports humans in accessing the contents of a lexical/conceptual resource",
+                        "id": "http://w3id.org/meta-share/omtd-share/LexiconViewer",
+                        "name": "Lexicon viewer"
+                    },
+                    {
+                        "comment": "A component that supports humans in accessing the contents of a corpus",
+                        "id": "http://w3id.org/meta-share/omtd-share/CorpusViewer",
+                        "name": "Corpus viewer"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/Viewer",
+                "name": "Viewer"
+            },
+            {
+                "comment": "A component that allows matching of elements",
+                "children": [
+                    {
+                        "comment": "A component that allows matching of elements based on a gazeteer",
+                        "id": "http://w3id.org/meta-share/omtd-share/GazeteerBasedMatcher",
+                        "name": "Gazeteer based matcher"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/Matcher",
+                "name": "Matcher"
+            },
+            {
+                "comment": "A component used to confirm that a system/resource meets the specifications and fulfills its intended purpose",
+                "id": "http://w3id.org/meta-share/omtd-share/Validator",
+                "name": "Validator"
+            },
+            {
+                "comment": "A component that is used in training models for machine learning",
+                "id": "http://w3id.org/meta-share/omtd-share/TrainerOfMachineLearningModels",
+                "name": "Trainer of Machine Learning models"
+            },
+            {
+                "comment": "A component that is used in the evaluation of the performance of a component",
+                "id": "http://w3id.org/meta-share/omtd-share/Evaluator",
+                "name": "Evaluator"
+            },
+            {
+                "comment": "A component that performs data splitting for cross validation purposes",
+                "id": "http://w3id.org/meta-share/omtd-share/DataSplitter",
+                "name": "Data splitter"
+            },
+            {
+                "comment": "A component that supports data merging from various sources",
+                "id": "http://w3id.org/meta-share/omtd-share/DataMerger",
+                "name": "Data merger"
+            },
+            {
+                "comment": "A component that allows humans to edit the contents of a resource",
+                "id": "http://w3id.org/meta-share/omtd-share/Editor",
+                "name": "Editor"
+            },
+            {
+                "comment": "A component that collects (retrieves) data from various sources",
+                "children": [
+                    {
+                        "comment": "A component that crawls the web and collects data from various web sites",
+                        "id": "http://w3id.org/meta-share/omtd-share/Crawler",
+                        "name": "Crawler"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/DataCollector",
+                "name": "Data collector"
+            },
+            {
+                "comment": "A component that is used in the debugging process",
+                "id": "http://w3id.org/meta-share/omtd-share/Debugger",
+                "name": "Debugger"
+            },
+            {
+                "comment": "A component that is used in predicting based on machine learning models",
+                "id": "http://w3id.org/meta-share/omtd-share/MachineLearningPredictor",
+                "name": "Machine Learning predictor"
+            },
+            {
+                "comment": "A technology that supports the development of software components and data resources required for their operation",
+                "id": "http://w3id.org/meta-share/omtd-share/SoftwareDevelopmentEnvironment",
+                "name": "Software development environment"
+            },
+            {
+                "comment": "A component that performs conversion between formats of a resource",
+                "children": [
+                    {
+                        "comment": "A component that converts a constituency tree into a dependency tree",
+                        "id": "http://w3id.org/meta-share/omtd-share/DependencyConverter",
+                        "name": "Dependency converter"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/Converter",
+                "name": "Converter"
+            },
+            {
+                "comment": "A component that performs analysis tasks based on a script",
+                "id": "http://w3id.org/meta-share/omtd-share/ScriptBasedAnalyser",
+                "name": "Script-based analyser"
+            },
+            {
+                "comment": "A component that supports crowdsourcing operations",
+                "id": "http://w3id.org/meta-share/omtd-share/CrowdsourcingComponent",
+                "name": "Crowdsourcing component"
+            },
+            {
+                "comment": "A component that is used for extracting features",
+                "id": "http://w3id.org/meta-share/omtd-share/FeatureExtractor",
+                "name": "Feature extractor"
+            },
+            {
+                "comment": "A component or interface that renders the contents of a resource in a graphic way for visualisation purposes",
+                "id": "http://w3id.org/meta-share/omtd-share/Visualiser",
+                "name": "Visualiser"
+            },
+            {
+                "comment": "A component that supports controlling flows",
+                "id": "http://w3id.org/meta-share/omtd-share/FlowController",
+                "name": "Flow controller"
+            }
+        ],
+        "id": "http://w3id.org/meta-share/omtd-share/SupportComponent",
+        "name": "Support component"
+    },
+    {
         "comment": "A component that provides access to data resources, e.g. reads a resource or writes the output of a process in a certain format",
         "children": [
             {
