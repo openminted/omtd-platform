@@ -1450,3 +1450,666 @@ export var dataFormatOntologies = [
         "name": "UIMA CAS format"
     }
 ];
+
+export var annotationOntologies = [
+    {
+        "comment": "Any type of annotation pertaining to the semantic level",
+        "children": [
+            {
+                "comment": "Corresponds to the structural part of a lexical entry that contains the relevant semantic, grammatical, and anthropological information for a lexical unit. [adapted from http://www.glossary.sil.org/term/sense]",
+                "id": "http://w3id.org/meta-share/omtd-share/WordSense",
+                "name": "Word sense"
+            },
+            {
+                "comment": "A linguistic expression (word, group of words, group of numbers etc.) that denotes time (a point in time, duration, frequency)",
+                "id": "http://w3id.org/meta-share/omtd-share/TemporalExpression",
+                "name": "Temporal expression"
+            },
+            {
+                "comment": "A division of words into classes based on their common semantic features",
+                "id": "http://w3id.org/meta-share/omtd-share/SemanticClass",
+                "name": "Semantic class"
+            },
+            {
+                "comment": "A word or group of words used to describe or index the contents of a document",
+                "id": "http://w3id.org/meta-share/omtd-share/Keyword",
+                "name": "Keyword"
+            },
+            {
+                "comment": "Degree of certainty about the validity of what is being asserted in the text",
+                "id": "http://w3id.org/meta-share/omtd-share/CertaintyLevel",
+                "name": "Certainty level"
+            },
+            {
+                "comment": "A feature that distinguishes between positive, negative or neutral; in sentiment analysis, it refers to determining whether the expressed opinion in a document, a sentence or an entity feature/aspect is positive, negative, or neutral. [adapted from Wikipedia]",
+                "id": "http://w3id.org/meta-share/omtd-share/Polarity",
+                "name": "Polarity"
+            },
+            {
+                "comment": "A thing that happens or takes place, especially one of importance [https://en.oxforddictionaries.com/definition/event]",
+                "id": "http://w3id.org/meta-share/omtd-share/Event",
+                "name": "Event"
+            },
+            {
+                "comment": "A word or phrase referring to an entity, identified and annotated as such with a name (label); examples include organizations, persons, places etc.",
+                "children": [
+                    {
+                        "comment": "A text unit that denotes a date, a specific point in time",
+                        "id": "http://w3id.org/meta-share/omtd-share/Date",
+                        "name": "Date"
+                    },
+                    {
+                        "comment": "The influx and/or efflux of ions through an ion channel",
+                        "id": "http://w3id.org/meta-share/omtd-share/IonicCurrent",
+                        "name": "Ionic current"
+                    },
+                    {
+                        "comment": "Part of the brain",
+                        "id": "http://w3id.org/meta-share/omtd-share/BrainRegion",
+                        "name": "Brain region"
+                    },
+                    {
+                        "comment": "Biological activity",
+                        "id": "http://w3id.org/meta-share/omtd-share/BiologicalActivity",
+                        "name": "Biological activity"
+                    },
+                    {
+                        "comment": "A single protein or protein complex that traverses the lipid bilayer of cell membrane and form a channel to facilitate the movement of ions through the membrane according to their electrochemical gradient [http://www.biology-online.org/dictionary/Ion_channel]",
+                        "id": "http://w3id.org/meta-share/omtd-share/IonicChannel",
+                        "name": "Ionic channel"
+                    },
+                    {
+                        "comment": "Official text",
+                        "id": "http://w3id.org/meta-share/omtd-share/OfficialText",
+                        "name": "Official text"
+                    },
+                    {
+                        "comment": "A word or group of words that denotes an organization, such as company, association, institution etc.",
+                        "id": "http://w3id.org/meta-share/omtd-share/Organization",
+                        "name": "Organization"
+                    },
+                    {
+                        "comment": "Spectral data is essentially data derived by the use of spectroscopic instruments",
+                        "id": "http://w3id.org/meta-share/omtd-share/SpectralData",
+                        "name": "Spectral data"
+                    },
+                    {
+                        "comment": "A nerve cell that carries information between the brain and other parts of the body",
+                        "id": "http://w3id.org/meta-share/omtd-share/Neuron",
+                        "name": "Neuron"
+                    },
+                    {
+                        "comment": "A set of animals or plants in which the members have similar characteristics to each other and can breed with each other",
+                        "children": [
+                            {
+                                "comment": "Wheat-related species",
+                                "id": "http://w3id.org/meta-share/omtd-share/WheatRelatedSpecies",
+                                "name": "Wheat-related species"
+                            }
+                        ],
+                        "id": "http://w3id.org/meta-share/omtd-share/Species",
+                        "name": "Species"
+                    },
+                    {
+                        "comment": "Scientific value",
+                        "id": "http://w3id.org/meta-share/omtd-share/ScientificValue",
+                        "name": "Scientific value"
+                    },
+                    {
+                        "comment": "The main means of mass communication (broadcasting, publishing, and the Internet) regarded collectively [https://en.oxforddictionaries.com/definition/media]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Media",
+                        "name": "Media"
+                    },
+                    {
+                        "comment": "Scientific unit",
+                        "id": "http://w3id.org/meta-share/omtd-share/ScientificUnit",
+                        "name": "Scientific unit"
+                    },
+                    {
+                        "comment": "Any of various naturally occurring extremely complex substances that consist of amino-acid residues joined by peptide bonds, contain the elements carbon, hydrogen, nitrogen, oxygen, usually sulfur, and occasionally other elements (such as phosphorus or iron), and include many essential biological compounds (such as enzymes, hormones, or antibodies) [https://www.merriam-webster.com/dictionary/protein]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Protein",
+                        "name": "Protein"
+                    },
+                    {
+                        "comment": "A word or group of words that denotes a geographical entity",
+                        "id": "http://w3id.org/meta-share/omtd-share/Location",
+                        "name": "Location"
+                    },
+                    {
+                        "comment": "Method of research",
+                        "id": "http://w3id.org/meta-share/omtd-share/MethodOfResearch",
+                        "name": "Method of research"
+                    },
+                    {
+                        "comment": "Any substance (as an acid) that is formed when two or more other substances act upon one another or that is used to produce a change in another substance [https://www.merriam-webster.com/dictionary/chemical]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Chemical",
+                        "name": "Chemical"
+                    },
+                    {
+                        "comment": "Any substance involved in metabolism (= the chemical processes in the body needed for life) [https://dictionary.cambridge.org/dictionary/english/metabolite]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Metabolite",
+                        "name": "Metabolite"
+                    },
+                    {
+                        "comment": "Historical event",
+                        "id": "http://w3id.org/meta-share/omtd-share/HistoricalEvent",
+                        "name": "Historical event"
+                    },
+                    {
+                        "comment": "Ionic conductance",
+                        "id": "http://w3id.org/meta-share/omtd-share/IonicConductance",
+                        "name": "Ionic conductance"
+                    },
+                    {
+                        "comment": "Theoretical frame",
+                        "id": "http://w3id.org/meta-share/omtd-share/TheoreticalFrame",
+                        "name": "Theoretical frame"
+                    },
+                    {
+                        "comment": "A word or group of words that refers to a person",
+                        "id": "http://w3id.org/meta-share/omtd-share/Person",
+                        "name": "Person"
+                    },
+                    {
+                        "comment": "A specialized structure or junction that allows cell to cell communication [http://www.biology-online.org/dictionary/Synapse]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Synapse",
+                        "name": "Synapse"
+                    },
+                    {
+                        "comment": "Model organism/species",
+                        "id": "http://w3id.org/meta-share/omtd-share/ModelOrganism_species",
+                        "name": "Model organism/species"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/NamedEntity",
+                "name": "Named entity"
+            },
+            {
+                "comment": "A semantic role is the underlying relationship that a participant has with the main verb in a clause [http://www.glossary.sil.org/term/semantic-role]",
+                "id": "http://w3id.org/meta-share/omtd-share/SemanticRole",
+                "name": "Semantic role"
+            },
+            {
+                "comment": "A relation holding between two or more words based on their meanings",
+                "id": "http://w3id.org/meta-share/omtd-share/LexicalSemanticRelation",
+                "name": "Lexical semantic relation"
+            },
+            {
+                "comment": "A link between the syntactic unit and the semantic unit (sense) of a word",
+                "id": "http://w3id.org/meta-share/omtd-share/SyntacticoSemanticLink",
+                "name": "Syntactico-semantic link"
+            },
+            {
+                "comment": "A schematic representation of a situation involving various participants, props and other conceptual roles, each of which is a frame element",
+                "id": "http://w3id.org/meta-share/omtd-share/SemanticFrame",
+                "name": "Semantic frame"
+            },
+            {
+                "comment": "An affective state of consciousness in which joy, sorrow, fear, hate, or the like, is experienced, as distinguished from cognitive and volitional states of consciousness [http://www.dictionary.com/browse/emotion]",
+                "id": "http://w3id.org/meta-share/omtd-share/Emotion",
+                "name": "Emotion"
+            },
+            {
+                "comment": "The linguistic expression of somebody\u2019s opinions, sentiments, emotions, evaluations, beliefs, speculations (private states, i.e. states that are not open to objective observation or verification). [http://www.mavir.net/docs/JWiebe-Subjectivity-nov2010.pdf]",
+                "id": "http://w3id.org/meta-share/omtd-share/Subjectivity",
+                "name": "Subjectivity"
+            },
+            {
+                "comment": "The subject of a text or conversation, what it is about",
+                "id": "http://w3id.org/meta-share/omtd-share/Topic",
+                "name": "Topic"
+            },
+            {
+                "comment": "The affective state (judgement, feeling) of a person or group towards an entity or event",
+                "id": "http://w3id.org/meta-share/omtd-share/Sentiment",
+                "name": "Sentiment"
+            },
+            {
+                "comment": "The segment of a question that describes the entity about which the question is made",
+                "id": "http://w3id.org/meta-share/omtd-share/QuestionTopicalTarget",
+                "name": "Question Topical Target"
+            },
+            {
+                "comment": "The ease with which a reader can understand a written text. [https://en.wikipedia.org/wiki/Readability]",
+                "id": "http://w3id.org/meta-share/omtd-share/Readability",
+                "name": "Readability"
+            },
+            {
+                "comment": "A word or phrase used for persuasion purposes",
+                "id": "http://w3id.org/meta-share/omtd-share/PersuasiveExpression",
+                "name": "Persuasive expression"
+            }
+        ],
+        "id": "http://w3id.org/meta-share/omtd-share/SemanticAnnotationType",
+        "name": "Semantic annotation type"
+    },
+    {
+        "comment": "Any kind of annotation that is used for specific domains (e.g. genes and proteins from the biomedical domain, plants from agriculture etc.)",
+        "children": [
+            {
+                "comment": "Any type of annotation that is relevant to scholarly analtyics (e.g. citations, funding information etc.)",
+                "children": [
+                    {
+                        "comment": "A word or group of words used to describe or index the contents of a document",
+                        "id": "http://w3id.org/meta-share/omtd-share/Keyword",
+                        "name": "Keyword"
+                    },
+                    {
+                        "comment": "Annotation related to the funding of a resource (e.g. funder, funding project, etc.)",
+                        "id": "http://w3id.org/meta-share/omtd-share/Funding",
+                        "name": "Funding"
+                    },
+                    {
+                        "comment": "Reference to a book, paper, or author, especially in a scholarly work.",
+                        "id": "http://w3id.org/meta-share/omtd-share/Citation",
+                        "name": "Citation"
+                    },
+                    {
+                        "comment": "Any subdivision of a document, e.g. a chapter, abstract, etc.",
+                        "id": "http://w3id.org/meta-share/omtd-share/DocumentSection",
+                        "name": "Document section"
+                    },
+                    {
+                        "comment": "The subject of a text or conversation, what it is about",
+                        "id": "http://w3id.org/meta-share/omtd-share/Topic",
+                        "name": "Topic"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/ScholarlyCommunicationAnnotation",
+                "name": "Scholarly analytics entity"
+            },
+            {
+                "comment": "Any kind of annotation pertaining to entities of the agricultural domain; the use of the AGROVOC thesaurus is recommended",
+                "children": [
+                    {
+                        "comment": "The physical appearance or biochemical characteristic of an organism as a result of the interaction of its genotype and the environment [http://www.biology-online.org/dictionary/Phenotype]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Phenotype",
+                        "name": "Phenotype"
+                    },
+                    {
+                        "comment": "Any of various nucleic acids that contain ribose and uracil as structural components and are associated with the control of cellular chemical activities",
+                        "id": "http://w3id.org/meta-share/omtd-share/Rna",
+                        "name": "RNA"
+                    },
+                    {
+                        "comment": "The place or environment where an organism, plant or animal naturally or normally lives and grows",
+                        "id": "http://w3id.org/meta-share/omtd-share/Habitat",
+                        "name": "Habitat"
+                    },
+                    {
+                        "comment": "Specific sequence of nucleotides along a molecule of DNA (or, in the case of some viruses, RNA) which represents functional units of heredity [http://artemide.art.uniroma2.it:8081/agrovoc/agrovoc/en/page/c_3214]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Gene",
+                        "name": "Gene"
+                    },
+                    {
+                        "comment": "An individual animal, plant, or single-celled life form [https://en.oxforddictionaries.com/definition/organism]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Organism",
+                        "name": "Organism"
+                    },
+                    {
+                        "comment": "Marker",
+                        "id": "http://w3id.org/meta-share/omtd-share/Marker",
+                        "name": "Marker"
+                    },
+                    {
+                        "comment": "A protein family is a group of proteins that share a common evolutionary origin, reflected by their related functions and similarities in sequence or structure [https://www.ebi.ac.uk/training/online/course/introduction-protein-classification-ebi/protein-classification/what-are-protein-families]",
+                        "id": "http://w3id.org/meta-share/omtd-share/ProteinFamily",
+                        "name": "Protein family"
+                    },
+                    {
+                        "comment": "A type of grape",
+                        "id": "http://w3id.org/meta-share/omtd-share/GrapeVariety",
+                        "name": "Grape variety"
+                    },
+                    {
+                        "comment": "A gene family is a set of several similar genes, formed by duplication of a single original gene, and generally with similar biochemical functions [https://en.wikipedia.org/wiki/Gene_family]",
+                        "id": "http://w3id.org/meta-share/omtd-share/GeneFamily",
+                        "name": "Gene family"
+                    },
+                    {
+                        "comment": "Wheat-related species",
+                        "id": "http://w3id.org/meta-share/omtd-share/WheatRelatedSpecies",
+                        "name": "Wheat-related species"
+                    },
+                    {
+                        "comment": "Physical and chemical property of substances",
+                        "id": "http://w3id.org/meta-share/omtd-share/PhysicoChemicalProperty",
+                        "name": "Physico-chemical property"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/AgriculturalEntity",
+                "name": "Agricultural entity"
+            },
+            {
+                "comment": "Any kind of annotation pertaining to entities of linguistics; the use of OLIA is recommended",
+                "id": "http://w3id.org/meta-share/omtd-share/LinguisticEntity",
+                "name": "Linguistic entity"
+            },
+            {
+                "comment": "Any kind of annotation pertaining to entities of biology",
+                "children": [
+                    {
+                        "comment": "The influx and/or efflux of ions through an ion channel",
+                        "id": "http://w3id.org/meta-share/omtd-share/IonicCurrent",
+                        "name": "Ionic current"
+                    },
+                    {
+                        "comment": "Part of the brain",
+                        "id": "http://w3id.org/meta-share/omtd-share/BrainRegion",
+                        "name": "Brain region"
+                    },
+                    {
+                        "comment": "Biological activity",
+                        "id": "http://w3id.org/meta-share/omtd-share/BiologicalActivity",
+                        "name": "Biological activity"
+                    },
+                    {
+                        "comment": "A single protein or protein complex that traverses the lipid bilayer of cell membrane and form a channel to facilitate the movement of ions through the membrane according to their electrochemical gradient [http://www.biology-online.org/dictionary/Ion_channel]",
+                        "id": "http://w3id.org/meta-share/omtd-share/IonicChannel",
+                        "name": "Ionic channel"
+                    },
+                    {
+                        "comment": "A nerve cell that carries information between the brain and other parts of the body",
+                        "id": "http://w3id.org/meta-share/omtd-share/Neuron",
+                        "name": "Neuron"
+                    },
+                    {
+                        "comment": "A set of animals or plants in which the members have similar characteristics to each other and can breed with each other",
+                        "children": [
+                            {
+                                "comment": "Wheat-related species",
+                                "id": "http://w3id.org/meta-share/omtd-share/WheatRelatedSpecies",
+                                "name": "Wheat-related species"
+                            }
+                        ],
+                        "id": "http://w3id.org/meta-share/omtd-share/Species",
+                        "name": "Species"
+                    },
+                    {
+                        "comment": "Any of various naturally occurring extremely complex substances that consist of amino-acid residues joined by peptide bonds, contain the elements carbon, hydrogen, nitrogen, oxygen, usually sulfur, and occasionally other elements (such as phosphorus or iron), and include many essential biological compounds (such as enzymes, hormones, or antibodies) [https://www.merriam-webster.com/dictionary/protein]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Protein",
+                        "name": "Protein"
+                    },
+                    {
+                        "comment": "Any substance (as an acid) that is formed when two or more other substances act upon one another or that is used to produce a change in another substance [https://www.merriam-webster.com/dictionary/chemical]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Chemical",
+                        "name": "Chemical"
+                    },
+                    {
+                        "comment": "Any substance involved in metabolism (= the chemical processes in the body needed for life) [https://dictionary.cambridge.org/dictionary/english/metabolite]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Metabolite",
+                        "name": "Metabolite"
+                    },
+                    {
+                        "comment": "Ionic conductance",
+                        "id": "http://w3id.org/meta-share/omtd-share/IonicConductance",
+                        "name": "Ionic conductance"
+                    },
+                    {
+                        "comment": "A specialized structure or junction that allows cell to cell communication [http://www.biology-online.org/dictionary/Synapse]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Synapse",
+                        "name": "Synapse"
+                    },
+                    {
+                        "comment": "Model organism/species",
+                        "id": "http://w3id.org/meta-share/omtd-share/ModelOrganism_species",
+                        "name": "Model organism/species"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/BiologicalEnity",
+                "name": "Biological enity"
+            },
+            {
+                "comment": "Scientific value",
+                "id": "http://w3id.org/meta-share/omtd-share/ScientificValue",
+                "name": "Scientific value"
+            },
+            {
+                "comment": "Any kind of annotation pertaining to entities from chemistry",
+                "id": "http://w3id.org/meta-share/omtd-share/ChemicalEntity",
+                "name": "Chemical entity"
+            },
+            {
+                "comment": "Scientific unit",
+                "id": "http://w3id.org/meta-share/omtd-share/ScientificUnit",
+                "name": "Scientific unit"
+            },
+            {
+                "comment": "Any kind of annotation that pertains to entities of social sciences; the use of TheSoz is recommended",
+                "children": [
+                    {
+                        "comment": "Official text",
+                        "id": "http://w3id.org/meta-share/omtd-share/OfficialText",
+                        "name": "Official text"
+                    },
+                    {
+                        "comment": "The main means of mass communication (broadcasting, publishing, and the Internet) regarded collectively [https://en.oxforddictionaries.com/definition/media]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Media",
+                        "name": "Media"
+                    },
+                    {
+                        "comment": "ALLBUS variable",
+                        "id": "http://w3id.org/meta-share/omtd-share/AllbusVariable",
+                        "name": "ALLBUS variable"
+                    },
+                    {
+                        "comment": "Method of research",
+                        "id": "http://w3id.org/meta-share/omtd-share/MethodOfResearch",
+                        "name": "Method of research"
+                    },
+                    {
+                        "comment": "Historical event",
+                        "id": "http://w3id.org/meta-share/omtd-share/HistoricalEvent",
+                        "name": "Historical event"
+                    },
+                    {
+                        "comment": "Theoretical frame",
+                        "id": "http://w3id.org/meta-share/omtd-share/TheoreticalFrame",
+                        "name": "Theoretical frame"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/SocialSciencesEntity",
+                "name": "Social sciences entity"
+            },
+            {
+                "comment": "Any kind of annotation pertaining to entities of neuroscience",
+                "id": "http://w3id.org/meta-share/omtd-share/NeuroscienceEntity",
+                "name": "Neuroscience entity"
+            },
+            {
+                "comment": "Any type of relation that holds between two or more entities of a specific domain",
+                "id": "http://w3id.org/meta-share/omtd-share/Relation",
+                "name": "Relation"
+            }
+        ],
+        "id": "http://w3id.org/meta-share/omtd-share/Domain-specificAnnotation",
+        "name": "Domain-specific annotation type"
+    },
+    {
+        "comment": "Any type of annotation pertaining to the morphological level",
+        "children": [
+            {
+                "comment": "Any feature relevant to the derivation process of a word (e.g. marking affixes, their meaning etc.)",
+                "id": "http://w3id.org/meta-share/omtd-share/DerivationalFeature",
+                "name": "Derivational feature"
+            },
+            {
+                "comment": "A stem is the root or roots of a word, together with any derivational affixes, to which inflectional affixes are added. [http://www.glossary.sil.org/term/stem]",
+                "id": "http://w3id.org/meta-share/omtd-share/Stem",
+                "name": "Stem"
+            },
+            {
+                "comment": "A single word composed of two or more free morphemes",
+                "id": "http://w3id.org/meta-share/omtd-share/Compound",
+                "name": "Compound"
+            },
+            {
+                "comment": "Property of a word that is expressed in its inflected form; examples include person, tense, gender, case etc.",
+                "id": "http://w3id.org/meta-share/omtd-share/MorphologicalFeature",
+                "name": "Morphological feature"
+            },
+            {
+                "comment": "The canonical or citation form used for referring to a word and its inflected forms",
+                "id": "http://w3id.org/meta-share/omtd-share/Lemma",
+                "name": "Lemma"
+            },
+            {
+                "comment": "A word is a unit which is a constituent at the phrase level and above. It is sometimes identifiable according to such criteria as (a) being the minimal possible unit in a reply, (b) having features such as a regular stress pattern, and phonological changes conditioned by or blocked at word boundaries, (c) being the largest unit resistant to insertion of new constituents within its boundaries, or (d) being the smallest constituent that can be moved within a sentence without making the sentence ungrammatical. A word is sometimes placed, in a hierarchy of grammatical constituents, above the morpheme level and below the phrase level. [http://www.glossary.sil.org/term/word]\n            In annotation, words are often used as equivalent to tokens; thus, for instance, punctuation marks (traditionally not considered as words) will also be annotated as \"word\".",
+                "id": "http://w3id.org/meta-share/omtd-share/Word",
+                "name": "Word"
+            }
+        ],
+        "id": "http://w3id.org/meta-share/omtd-share/MorphologicalAnnotationType",
+        "name": "Morphological annotation type"
+    },
+    {
+        "comment": "Any type of annotation relevant to discourse",
+        "children": [
+            {
+                "comment": "A set of statements that contradict each other (i.e. one of them asserts the truth and the other the falsity of the proposition)",
+                "id": "http://w3id.org/meta-share/omtd-share/Contradiction",
+                "name": "Contradiction"
+            },
+            {
+                "comment": "The relation that holds between two segments of discourse; e.g. causal, temporal etc.",
+                "id": "http://w3id.org/meta-share/omtd-share/DiscourceRelation",
+                "name": "Discource relation"
+            },
+            {
+                "comment": "The response of the target recipients (audience) to a system, process or event",
+                "id": "http://w3id.org/meta-share/omtd-share/AudienceReaction",
+                "name": "Audience reaction"
+            },
+            {
+                "comment": "Coreference is the reference in one expression to the same referent in another expression. [http://www.glossary.sil.org/term/coreference]",
+                "children": [
+                    {
+                        "comment": "The pair of an entity and all the mentions of this entity formulated in various ways; used in co-reference resolution",
+                        "id": "http://w3id.org/meta-share/omtd-share/EntityMentionPair",
+                        "name": "Entity-Mention pair"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/Coreference",
+                "name": "Coreference"
+            },
+            {
+                "comment": "A speech act is an act that a speaker performs when making an utterance, including the following: (a) A general act (illocutionary act) that a speaker performs, analyzable as including: the uttering of words (utterance acts), making reference and predicating (propositional acts), and a particular intention in making the utterance (illocutionary force). (b) An act involved in the illocutionary act, including utterance acts and propositional acts, (c) The production of a particular effect in the addressee (perlocutionary act) [http://www.glossary.sil.org/term/speech-act]",
+                "children": [
+                    {
+                        "comment": "A dialogue act has two main components:  a communicative function and a semantic content.   The semantic content specifies the objects, relations, actions, events, etc. that the dialogue act is about; the communicative function can be viewed as a specification of the way an addressee uses the semantic content to update his or her information state when  he  or  she  understands  the  corresponding  stretch  of dialogue. [http://www.lrec-conf.org/proceedings/lrec2010/pdf/560_Paper.pdf]",
+                        "id": "http://w3id.org/meta-share/omtd-share/DialogueAct",
+                        "name": "Dialogue act"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/SpeechAct",
+                "name": "Speech act"
+            }
+        ],
+        "id": "http://w3id.org/meta-share/omtd-share/DiscourseAnnotationType",
+        "name": "Discourse annotation type"
+    },
+    {
+        "comment": "Any kind of annotation that is used to describe a document (e.g. identifier, size, location, language etc.)",
+        "id": "http://w3id.org/meta-share/omtd-share/DocumentAnnotationType",
+        "name": "Document annotation type"
+    },
+    {
+        "comment": "Any type of annotation that pertains to the structure of a document",
+        "children": [
+            {
+                "comment": "A phrase is a syntactic structure that consists of more than one word but lacks the subject-predicate organization of a clause. [http://www.glossary.sil.org/term/phrase]",
+                "id": "http://w3id.org/meta-share/omtd-share/Phrase",
+                "name": "Phrase"
+            },
+            {
+                "comment": "A set of characters surrounded by spaces or punctuation marks, as well as punctuation marks themselves",
+                "id": "http://w3id.org/meta-share/omtd-share/Token",
+                "name": "Token"
+            },
+            {
+                "comment": "A group of words, usually containing a verb, that expresses a thought in the form of a statement, question, instruction, or exclamation and starts with a capital letter when written [https://dictionary.cambridge.org/dictionary/english/sentence]",
+                "id": "http://w3id.org/meta-share/omtd-share/Sentence",
+                "name": "Sentence"
+            },
+            {
+                "comment": "A division of a text, usually about a single theme, consisting of one or more sentences and marked by a new line, indentation or other conventions.",
+                "id": "http://w3id.org/meta-share/omtd-share/Paragraph",
+                "name": "Paragraph"
+            },
+            {
+                "comment": "A clause is a subdivision of a sentence containing a subject (argument) and predicate. It is possible to have a word that implies or refers to a predicate rather than one explicitly stated. [Pei & Gaynor 1980: 40, http://linguistics-ontology.org/gold/2010/Clause]",
+                "id": "http://w3id.org/meta-share/omtd-share/Clause",
+                "name": "Clause"
+            },
+            {
+                "comment": "A combination of words that are considered as forming one semantic unit",
+                "id": "http://w3id.org/meta-share/omtd-share/MultiWordUnit",
+                "name": "Multi-word unit"
+            },
+            {
+                "comment": "Any subdivision of a document, e.g. a chapter, abstract, etc.",
+                "id": "http://w3id.org/meta-share/omtd-share/DocumentSection",
+                "name": "Document section"
+            },
+            {
+                "comment": "A word is a unit which is a constituent at the phrase level and above. It is sometimes identifiable according to such criteria as (a) being the minimal possible unit in a reply, (b) having features such as a regular stress pattern, and phonological changes conditioned by or blocked at word boundaries, (c) being the largest unit resistant to insertion of new constituents within its boundaries, or (d) being the smallest constituent that can be moved within a sentence without making the sentence ungrammatical. A word is sometimes placed, in a hierarchy of grammatical constituents, above the morpheme level and below the phrase level. [http://www.glossary.sil.org/term/word]\n            In annotation, words are often used as equivalent to tokens; thus, for instance, punctuation marks (traditionally not considered as words) will also be annotated as \"word\".",
+                "id": "http://w3id.org/meta-share/omtd-share/Word",
+                "name": "Word"
+            }
+        ],
+        "id": "http://w3id.org/meta-share/omtd-share/StructuralAnnotationType",
+        "name": "Structural annotation type"
+    },
+    {
+        "comment": "A term is a designation consisting of one or more words representing a general concept in a special language in a specific subject field [ISO 704:2009]",
+        "id": "http://w3id.org/meta-share/omtd-share/Term",
+        "name": "Term"
+    },
+    {
+        "comment": "Any type of annotation that pertains to the syntactic level",
+        "children": [
+            {
+                "comment": "A word or group of words that function as a single unit in a syntactic structure",
+                "id": "http://w3id.org/meta-share/omtd-share/Constituent",
+                "name": "Constituent"
+            },
+            {
+                "comment": "A tree that represents the dependency relations in a sentence, i.e. showing the governor (head) and its dependents with directed links",
+                "id": "http://w3id.org/meta-share/omtd-share/DependencyTree",
+                "name": "Dependency tree"
+            },
+            {
+                "comment": "Group of words that function together; a chunk normally includes a head and some consecutive (i.e. without gaps) preceding words",
+                "id": "http://w3id.org/meta-share/omtd-share/Chunk",
+                "name": "Chunk"
+            },
+            {
+                "comment": "An ordered, rooted tree that represents the syntactic structure of a string according to a constituency grammar (= phrase structure grammars). It distinguishes between terminal and non-terminal nodes. The interior nodes are labeled by non-terminal categories of the grammar (phrases), while the leaf nodes are labeled by terminal categories (parts of speech). [adapted from https://en.wikipedia.org/wiki/Parse_tree]",
+                "id": "http://w3id.org/meta-share/omtd-share/ConstituencyTree",
+                "name": "Constituency tree"
+            },
+            {
+                "comment": "A link between the syntactic unit and the semantic unit (sense) of a word",
+                "id": "http://w3id.org/meta-share/omtd-share/SyntacticoSemanticLink",
+                "name": "Syntactico-semantic link"
+            },
+            {
+                "comment": "A type of syntactic relation that holds between linguistic units, where we try to recognise the head (governor) and its dependents",
+                "id": "http://w3id.org/meta-share/omtd-share/Dependency",
+                "name": "Dependency"
+            },
+            {
+                "comment": "The number and types of syntactic arguments required by a certain lexical item (mainly verbs, but also nouns and adjectives)",
+                "id": "http://w3id.org/meta-share/omtd-share/SubcategorizationFrame",
+                "name": "Subcategorization frame"
+            }
+        ],
+        "id": "http://w3id.org/meta-share/omtd-share/SyntacticAnnotationType",
+        "name": "Syntactic annotation type"
+    },
+    {
+        "comment": "A division of words based on common grammatical features",
+        "id": "http://w3id.org/meta-share/omtd-share/PartOfSpeech",
+        "name": "Part of Speech"
+    }
+];

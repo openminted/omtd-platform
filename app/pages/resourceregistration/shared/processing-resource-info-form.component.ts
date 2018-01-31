@@ -3,6 +3,7 @@
  */
 import { Component, Type } from "@angular/core";
 import {
+    annotationTypeDesc,
     characterEncodingDesc,
     dataFormatTypeDesc,
     Description,
@@ -15,6 +16,7 @@ import { DataFormatInfoFormControl } from "./data-format-info-form.component";
 import { MySingleStringForm } from "./my-string-form.component";
 import { CharacterEncodingSetFormControl } from "./character-encoding-form.component";
 import { SimpleLanguageTypeForm } from "./language-type-form.component";
+import { AnnotationTypeInfoFormControl } from "./annotationTypeInfo.component";
 
 @Component({
     selector: 'processing-resource-info-form',
@@ -39,6 +41,12 @@ import { SimpleLanguageTypeForm } from "./language-type-form.component";
 
                 <form-repeat-inline [component]="characterEncodingSetFormatType" [parentGroup]="group"
                                     [name]="'characterEncodings'" [description]="characterEncodingsDesc">
+                </form-repeat-inline>
+
+                <div class="form-group-divider"></div>
+
+                <form-repeat-inline [component]="annotationTypeType" [parentGroup]="group"
+                                    [name]="'annotationTypes'" [description]="annotationTypeDesc">
                 </form-repeat-inline>
                 
                 <!--<form-inline [description]="characterEncodingsDesc" [valid]="getMyControl('characterEncodings').valid">-->
@@ -73,6 +81,8 @@ import { SimpleLanguageTypeForm } from "./language-type-form.component";
 
 export class ProcessingResourceInfoFormComponent extends MyGroup {
 
+    annotationTypeDesc : Description = annotationTypeDesc;
+    annotationTypeType : Type<any> = AnnotationTypeInfoFormControl;
     public groupDefinition = {
         processingResourceType : "",
         // dataFormats : this._fb.array([""]),

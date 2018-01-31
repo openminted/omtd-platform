@@ -70,6 +70,7 @@ import { RelatedResourceFormControl } from "./shared/relatedResource.component";
 import { ComponentDependenciesInfoFormControl } from "./shared/componentDependencies.component";
 import { ResourceDocumentationFormControl } from "./shared/resourceDocumentationInfo.component";
 import { RelationInfoFormControl } from "./shared/relationInfo.component";
+import { AnnotationTypeInfoFormControl } from "./shared/annotationTypeInfo.component";
 
 const entryComponents = [
     PublicationIdentifierCommonFormControl,
@@ -108,7 +109,8 @@ const entryComponents = [
     ResourceIdentifierCommonFormControl,
     RelatedResourceFormControl,
     RelationInfoFormControl,
-    DomainIdentifierCommonFormControl
+    DomainIdentifierCommonFormControl,
+    AnnotationTypeInfoFormControl
 ];
 
 const declarations = [
