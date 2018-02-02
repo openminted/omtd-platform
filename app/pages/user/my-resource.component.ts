@@ -145,7 +145,8 @@ export class MyResourceComponent<T extends BaseMetadataRecord> {
 
             let component = JSON.parse(JSON.stringify(components[0]));
 
-            component.componentInfo.identificationInfo.public = true;
+            let info = Object.keys(component).find(_ => _ != 'metadataHeaderInfo');
+            component[info].identificationInfo.public = true;
 
             this.resourceService.updateComponent(component, this.resourceType).subscribe(
                 component => this.updateResource(component),
