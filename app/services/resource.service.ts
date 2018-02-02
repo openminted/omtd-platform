@@ -264,6 +264,7 @@ export class ResourceService {
 
     private static removeNullParser(key,value) {
         if(!value) return undefined;
+        if(value['lang'] && value['lang']=='en' && !value['value']) return undefined;
         if (typeof value == 'boolean' || typeof value == "number") return value;
         if (value == "" || value.length == 0 || Object.values(value).length == 0) {
             return undefined;
