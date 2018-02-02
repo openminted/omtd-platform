@@ -7,6 +7,7 @@ import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-gua
 import { LexicalRegistrationComponent } from "./lexical-registration.component";
 import { LexicalUploadComponent } from "./lexical-upload.component";
 import { LexicalUploadXMLComponent } from "./lexical-registration-xml.component";
+import { ComingSoonPageComponent } from "../../../shared/reusablecomponents/coming-soon-page.component";
 
 
 
@@ -29,12 +30,20 @@ const lexicalRegistrationRoutes: Routes = [
     },
     {
         path: 'resourceRegistration/lexical/xml',
-        component: LexicalUploadXMLComponent,
+        component: ComingSoonPageComponent,
         canActivate: [
             CanActivateViaAuthGuard
         ],
-        data : {resourceType : 'lexical'}
+        data : {title : 'Upload an XML file for your Annotation Resource'}
     }
+    // {
+    //     path: 'resourceRegistration/lexical/xml',
+    //     component: LexicalUploadXMLComponent,
+    //     canActivate: [
+    //         CanActivateViaAuthGuard
+    //     ],
+    //     data : {resourceType : 'lexical'}
+    // }
 ];
 
 export const lexicalRegistrationRouting: ModuleWithProviders = RouterModule.forChild(lexicalRegistrationRoutes);

@@ -1,11 +1,8 @@
 /**
  * Created by stefania on 10/6/16.
  */
-import {Component} from "@angular/core";
-import {Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {GalaxyService} from "../../../services/galaxy.service";
-import {ErrorObservable} from "rxjs/observable/ErrorObservable";
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'lexical-registration-options',
@@ -17,7 +14,7 @@ export class LexicalRegistrationComponent {
 
     activeTab;
 
-    constructor(private router: Router, private _fb: FormBuilder) {}
+    constructor(private router: Router) {}
 
 
     registerUsingXML() {

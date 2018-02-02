@@ -30,6 +30,7 @@ import { DatasourceRegistrationModule } from "./pages/resourceregistration/datas
 import { ActionsModule } from "./pages/actions/actions.module";
 import { UserSpaceModule } from "./pages/user/user-space.module";
 import { LexicalRegistrationModule } from "./pages/resourceregistration/lexical/lexical-registration.module";
+import { LanguageDescriptionRegistrationModule } from "./pages/resourceregistration/languagedescription/language-description-registration.module";
 
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import { LexicalRegistrationModule } from "./pages/resourceregistration/lexical/
         ComponentRegistrationModule, 
         CorpusRegistrationModule,
         LexicalRegistrationModule,
+        LanguageDescriptionRegistrationModule,
         DatasourceRegistrationModule,
         LandingPageModule, 
         TabsModule,

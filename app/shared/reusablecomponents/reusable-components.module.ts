@@ -13,13 +13,15 @@ import { HelpContentComponent, AsideHelpContentComponent } from "./help-content.
 import { HelpContentService } from "../../services/help-content.service";
 import { ConfirmationDialogComponent } from "../confirmation-dialog.component";
 import { ModalModule } from "ngx-bootstrap";
+import { ComingSoonPageComponent } from "./coming-soon-page.component";
 
 
 const modules = [
     ReadMoreComponent,
     HelpContentComponent,
     AsideHelpContentComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ComingSoonPageComponent
 ];
 
 @NgModule({
