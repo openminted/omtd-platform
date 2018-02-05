@@ -16,8 +16,6 @@ export class ComponentUpdateUsingFormComponent extends ComponentRegistrationUsin
 
     component : Observable<OMTDComponent>;
 
-    componentMetadata : MetadataHeaderInfo = null;
-
     applicationWorkflow : string = '';
 
     constructor(injector : Injector) {
@@ -28,7 +26,7 @@ export class ComponentUpdateUsingFormComponent extends ComponentRegistrationUsin
     ngOnInit() {
         this.route.params.subscribe(params => {
             let id = params['id'];
-            this.component = this.resourceService.getComponent(id,this.resourceType);
+            this.component = this.resourceService.get<OMTDComponent>(id,this.resourceType);
             this.component.subscribe(component => {
                 this.componentMetadata = component.metadataHeaderInfo;
                 this.componentForm.loadComponent(component);

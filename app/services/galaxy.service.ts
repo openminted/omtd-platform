@@ -24,11 +24,11 @@ export class GalaxyService {
         return this.registryEndpoint;
     }
 
-    public createWorkflow() : Observable<string> {
+    public createWorkflow() : Observable<WorkflowDefinition> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
         return this.http.get(`${this.registryHost}/request/workflow/create`, options)
-            .map(res => <string> res.json())
+            .map(res => <WorkflowDefinition> res.json())
             .catch(this.handleError);
     }
 
@@ -36,6 +36,14 @@ export class GalaxyService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
         return this.http.get(`${this.registryHost}/request/workflow/update/${workflowId}`, options)
+            .catch(this.handleError);
+    }
+
+    public restoreWorkflow(omtdId : string) : Observable<WorkflowDefinition> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        return this.http.get(`${this.registryHost}/request/workflow/restore/${omtdId}`, options)
+            .map( res => <WorkflowDefinition> res.json())
             .catch(this.handleError);
     }
 

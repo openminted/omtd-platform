@@ -18,6 +18,7 @@ import { EnrichedOperation } from "../domain/operation";
 import { MavenComponent } from "../domain/maven-component";
 import { GhQueryEncoder } from "../domain/utils";
 
+
 @Injectable()
 export class ResourceService {
 
@@ -32,7 +33,7 @@ export class ResourceService {
     private _uploadUrl = this.endpoint + '/resources/';
     private _uploadZip = this.endpoint + "/request/corpus/upload";
 
-    private rearangeFacets(results : SearchResults<BaseMetadataRecord>) : SearchResults<BaseMetadataRecord> {
+    private rearangeFacets(results : SearchResults<any>) : SearchResults<any> {
         for(let facet of results.facets) {
             let order=0;
             switch(facet.field) {
@@ -74,100 +75,6 @@ export class ResourceService {
         return this.http.get(searchUrl,{params : urlParameters})
             .map(res => <SearchResults<BaseMetadataRecord>> res.json())
             .map(res => this.rearangeFacets(res))
-            .catch(this.handleError);
-    }
-
-    searchForApplications(urlParameters: URLParameter[]) {
-
-        var searchQuery = '';
-        var counter = 0;
-        for (let urlParameter of urlParameters) {
-
-            if(counter === 0)
-                searchQuery += '?';
-
-            if(urlParameter.key === 'query') {
-                searchQuery += 'keyword=' + urlParameter.values[0];
-            } else {
-                var valuesCounter = 0;
-                for(let value of urlParameter.values) {
-                    if(valuesCounter!=0)
-                        searchQuery += '&';
-                    searchQuery += urlParameter.key + '=' + value;
-                    valuesCounter++;
-                }
-            }
-
-            if(counter != urlParameters.length-1)
-                searchQuery += '&';
-
-            counter++;
-        }
-
-        return this.http.get(this._searchUrl + searchQuery)
-            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
-            .catch(this.handleError);
-    }
-
-    searchForCorpora(urlParameters: URLParameter[]) {
-
-        var searchQuery = '';
-        var counter = 0;
-        for (let urlParameter of urlParameters) {
-
-            if(counter === 0)
-                searchQuery += '?';
-
-            if(urlParameter.key === 'query') {
-                searchQuery += 'keyword=' + urlParameter.values[0];
-            } else {
-                var valuesCounter = 0;
-                for(let value of urlParameter.values) {
-                    if(valuesCounter!=0)
-                        searchQuery += '&';
-                    searchQuery += urlParameter.key + '=' + value;
-                    valuesCounter++;
-                }
-            }
-
-            if(counter != urlParameters.length-1)
-                searchQuery += '&';
-
-            counter++;
-        }
-
-        if(urlParameters.length==0) {
-            searchQuery += '?resourceType=corpus';
-        } else {
-            searchQuery += '&resourceType=corpus';
-        }
-
-        return this.http.get(this._searchUrl + searchQuery)
-            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
-            .catch(this.handleError);
-    }
-
-    getCorpus(id: string) {
-        return this.http.get(this._resourcesUrl + "corpus/" + id)
-            .map(res => <OMTDCorpus> res.json())
-            .catch(this.handleError);
-    }
-
-    getCorpora() {
-        return this.http.get(this._resourcesUrl + "corpus/all")
-            .map(res => <OMTDCorpus> res.json())
-            .catch(this.handleError);
-    }
-
-    getComponent(id: string, resourceType : string = 'component') : Observable<OMTDComponent> {
-        return this.http.get(`${this._resourcesUrl}${resourceType}/${id}`)
-            .map(res => <OMTDComponent> res.json())
-            .catch(this.handleError);
-    }
-
-    getComponents(resourceType : string = 'component') {
-        return this.http.get(`${this._resourcesUrl}${resourceType}/all`)
-            .map(res => <OMTDComponent> res.json())
             .catch(this.handleError);
     }
 
@@ -273,25 +180,30 @@ export class ResourceService {
         }
     }
 
-    uploadCorpus(corpus: OMTDCorpus) {
-
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers, withCredentials : true});
-        let corpus_ = ResourceService.removeNulls(corpus);
-        console.log(JSON.stringify(corpus_,null,2));
-        return this.http.post(this._searchUrl + 'corpus', JSON.stringify(corpus_), options)
-            .map(res => res.status)
-            .catch(this.handleError);
-    }
-
-    uploadResource(resource: OMTDCorpus,resourceType : string) {
-
+    upload<T>(resource : T, resourceType : string) : Observable<T> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
         let resource_ = ResourceService.removeNulls(resource);
-        console.log(JSON.stringify(resource_,null,2));
         return this.http.post(this._searchUrl + resourceType, JSON.stringify(resource_), options)
-            .map(res => res.status)
+            .map(res => <T> res.json())
+            .catch(this.handleError);
+    }
+
+    get<T>(id : string,resourceType : string) : Observable<T> {
+        return this.http.get(`${this._resourcesUrl}${resourceType}/${id}`)
+            .map(res => <OMTDCorpus> res.json())
+            .catch(this.handleError);
+    }
+
+    getAll<T>(urlParameters : URLSearchParams, resourceType : string) : Observable<SearchResults<T>> {
+        if(urlParameters.has('query')) {
+            urlParameters.set('keyword',urlParameters.get('query'));
+            urlParameters.delete('query');
+        }
+        let searchUrl = `${this._searchUrl}${resourceType}/all`;
+        return this.http.get(searchUrl,{params : urlParameters})
+            .map(res => <SearchResults<T>> res.json())
+            .map(res => this.rearangeFacets(res))
             .catch(this.handleError);
     }
 
@@ -301,16 +213,6 @@ export class ResourceService {
         formBody.append('file',file);
         return this.http.post(this._uploadZip,formBody)
             .map(res => this.corpusDownloadURL(res.json()))
-            .catch(this.handleError);
-    }
-
-    uploadComponent(component: OMTDComponent, resourceType : string = 'component') {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers, withCredentials : true});
-        let component_ = ResourceService.removeNulls(component);
-        console.log(JSON.stringify(component_,null,2));
-        return this.http.post(this._searchUrl + resourceType, JSON.stringify(component_), options)
-            .map(res => res.status)
             .catch(this.handleError);
     }
 

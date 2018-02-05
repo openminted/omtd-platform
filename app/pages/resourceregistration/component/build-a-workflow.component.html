@@ -22,13 +22,18 @@
 
 
                         <!-- MIDDLE -->
-                        <div class=" uk-width-expand@m" *ngIf="galaxyId != '' && metadataFormPage==false">
-                            <iframe [src]="workflowURL" style="width:100%; height:500px;"></iframe>
-                            <a (click)="fillMetadata()" class="uk-button uk-button-default uk-margin-medium-top">Fill in the metadata</a>
+                        <div class=" uk-width-expand@m" *ngIf="galaxyID != '' && metadataFormPage==false">
+                            <div *ngIf="!errorMessage; else error">
+                                <iframe [src]="workflowURL" style="width:100%; height:500px;"></iframe>
+                                <a *ngIf="!production" (click)="fillMetadata()" class="uk-button uk-button-default uk-margin-medium-top">Fill in the metadata</a>
+                            </div>
+                            <ng-template #error>
+                                <div *ngIf="errorMessage" class="uk-alert uk-alert-danger uk-margin-top">{{errorMessage}}</div>
+                            </ng-template>
                         </div>
                         <div class=" uk-width-expand@m" *ngIf="metadataFormPage==true">
                             <div *ngIf="errorMessage" class="uk-alert uk-alert-danger uk-margin-top">{{errorMessage}}</div>
-                            <div *ngIf="successfulMessage" class="uk-alert uk-alert-success uk-margin-top">{{successfulMessage}}</div>
+                            <div *ngIf="successfulMessage" class="uk-alert uk-alert-success uk-margin-top">{{successfulMessage}}. Click <a (click)="navigateToComponent()">here</a> to see it.</div>
                             <div *ngIf="!successfulMessage">
                                 <component-registration-form #componentForm class="uk-margin-top"></component-registration-form>
 

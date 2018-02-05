@@ -29,7 +29,7 @@ export class CorpusLandingPageComponent implements OnInit {
 
         this.sub = this.route.params.subscribe(params => {
             let id = params['id'];
-            this.resourceService.getCorpus(id).subscribe(
+            this.resourceService.get<OMTDCorpus>(id,'corpus').subscribe(
                 corpus => this.corpus = corpus,
                 error => this.handleError(<any>error));
         });

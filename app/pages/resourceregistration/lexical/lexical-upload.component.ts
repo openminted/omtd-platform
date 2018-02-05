@@ -52,7 +52,7 @@ export class LexicalUploadComponent extends LexicalBaseUsingFormComponent {
             // corpusBody.lexicalConceptualResourceInfo.distributionInfos = [new DatasetDistributionInfo()];
             corpusBody.lexicalConceptualResourceInfo.distributionInfos[0].distributionMedium = DistributionMediumEnum.DOWNLOADABLE;
             corpusBody.lexicalConceptualResourceInfo.distributionInfos[0].distributionLocation = id;
-            this.resourceService.uploadResource(this.lexicalForm.formValue,'lexical').subscribe(
+            this.resourceService.upload<Lexical>(this.lexicalForm.formValue,'lexical').subscribe(
                 () => {
                     this.loading = false;
                     this.successfulMessage = 'Lexical conceptual resource uploaded successfully.';

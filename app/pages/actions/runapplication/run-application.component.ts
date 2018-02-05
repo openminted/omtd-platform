@@ -77,13 +77,13 @@ export class RunApplicationComponent {
                 for (let urlParameter of this.urlParameters) {
                     if(urlParameter.key === 'input') {
                         sessionStorage.setItem(urlParameter.key, urlParameter.values[0]);
-                        this.resourceService.getCorpus(urlParameter.values[0]).subscribe(
+                        this.resourceService.get<OMTDCorpus>(urlParameter.values[0],'corpus').subscribe(
                             corpus => this.corpus = corpus,
                             error => this.handleError('System error loading input', <any>error));
                     }
                     if(urlParameter.key === 'application') {
                         sessionStorage.setItem(urlParameter.key, urlParameter.values[0]);
-                        this.resourceService.getComponent(urlParameter.values[0],'application').subscribe(
+                        this.resourceService.get<OMTDComponent>(urlParameter.values[0],'application').subscribe(
                             component => {this.component = component; transform(this.component)},
                             error => this.handleError('System error loading application', <any>error));
                     }

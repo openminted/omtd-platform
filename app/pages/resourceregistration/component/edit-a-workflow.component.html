@@ -5,7 +5,7 @@
 
                 <h1 class="uk-h2">
                     Edit a workflow
-                    <button *ngIf="omtdId" (click)="editMetadata()" class="uk-button uk-button-primary uk-float-right">
+                    <button *ngIf="galaxyId" (click)="editMetadata()" class="uk-button uk-button-primary uk-float-right">
                         Edit Application Metadata
                     </button>
                 </h1>
@@ -28,10 +28,12 @@
 
                         <!-- MIDDLE -->
                         <div class=" uk-width-expand@m">
-                            <iframe [src]="galaxyURL" style="width:100%; height:500px;"></iframe>
+                            <div *ngIf="galaxyURL != null">
+                                <iframe [src]="galaxyURL" style="width:100%; height:500px;"></iframe>
+                            </div>
                         </div>
 
-
+                        <button *ngIf="!production" class="uk-button uk-button-default" (click)="debugSave()">Debug Save</button>
                         <!-- RIGHT HELP CONTENT -->
                         <aside-help-content #rightHelperContent [position]="'right'"
                                             [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">

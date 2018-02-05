@@ -52,7 +52,7 @@ export class CorpusUploadComponent extends CorpusBaseUsingFormComponent {
             corpusBody.corpusInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
             corpusBody.corpusInfo.datasetDistributionInfo.distributionMedium = DistributionMediumEnum.DOWNLOADABLE;
             corpusBody.corpusInfo.datasetDistributionInfo.distributionLocation = id;
-            this.resourceService.uploadCorpus(this.corpusForm.formValue).subscribe(
+            this.resourceService.upload<OMTDCorpus>(this.corpusForm.formValue,'corpus').subscribe(
                 res => {
                     this.loading = false;
                     this.successfulMessage = 'Corpus uploaded successfully';

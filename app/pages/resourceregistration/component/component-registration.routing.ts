@@ -78,24 +78,26 @@ const componentRegistrationRoutes: Routes = [
     },
     {
         path: 'buildWorkflow/:id',
-        component: BuildAWorkflowComponent
+        component: BuildAWorkflowComponent,
+        data : {resourceType : 'application', update : true}
     },
     {
         path: 'editWorkflow/:id',
         component: EditAWorkflowComponent,
-        data : {application : false}
+        data : {resourceType : 'application',application : false}
     },
     {
         path: 'editWorkflowApplication/:id',
         component: EditAWorkflowComponent,
-        data : {application : true}
+        data : {resourceType : 'application',application : true}
     },
     {
         path: 'resourceRegistration/application',
         component: ApplicationRegistrationComponent,
         canActivate: [
             CanActivateViaAuthGuard
-        ]
+        ],
+        data : { resourceType : 'application'}
     },
 ];
 

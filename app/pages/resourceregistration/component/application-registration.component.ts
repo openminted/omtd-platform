@@ -38,7 +38,7 @@ export class ApplicationRegistrationComponent {
 
     buildWorkflow() {
         this.galaxyService.createWorkflow().subscribe(
-            id => this.router.navigate(['/buildWorkflow', id]),
+            workflow => this.router.navigate(['/buildWorkflow', workflow.openminted_id]),
             error => this.workflowEditorError(error)
         );
 

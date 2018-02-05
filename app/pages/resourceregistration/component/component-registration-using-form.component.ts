@@ -3,12 +3,12 @@
  */
 import { Component, Injector, OnInit, ViewChild } from "@angular/core";
 import {
-    Component as OMTDComponent, ResourceIdentifier,
+    Component as OMTDComponent, MetadataHeaderInfo, ResourceIdentifier,
     ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { ComponentRegistrationFormComponent } from "./component-registration-form.component";
-import { randomString } from "../../../domain/utils";
+import { randomString, title } from "../../../domain/utils";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 
@@ -25,6 +25,8 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
     successfulMessage: string = null;
 
     loading : boolean = false;
+
+    componentMetadata : MetadataHeaderInfo = null;
 
     resourceType : string;
     @ViewChild('componentForm') componentForm : ComponentRegistrationFormComponent;
@@ -75,9 +77,10 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
 
         this.loading = true;
         this.componentForm.get('componentInfo.application').setValue(this.resourceType != 'component' )
-        this.resourceService.uploadComponent(this.componentForm.formValue,this.resourceType).subscribe(
-            () => {
-                this.successfulMessage = `${this.resourceType} registered successfully`;
+        this.resourceService.upload<OMTDComponent>(this.componentForm.formValue,this.resourceType).subscribe(
+            component => {
+                this.componentMetadata = component.metadataHeaderInfo;
+                this.successfulMessage = `${title(this.resourceType)} registered successfully`;
                 window.scrollTo(0,0);
                 this.loading=false;
             }, error => this.handleError(error)
@@ -85,11 +88,16 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
 
     }
 
-    handleError(error : ErrorObservable) {
+    handleError(error : ErrorObservable ,msg : string = 'Component Registration Error') {
         console.log(error);
-        this.errorMessage = `Component registration failed (${error.error})`;
+        this.errorMessage = `${msg} (${error.error})`;
         this.loading = false;
         window.scrollTo(0,0);
+    }
+
+    navigateToComponent() {
+        this.router.navigate([`/landingPage/${this.resourceType}/`,
+            this.componentMetadata.metadataRecordIdentifier.value]);
     }
 
 }

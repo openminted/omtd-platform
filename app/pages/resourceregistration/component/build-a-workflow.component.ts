@@ -27,10 +27,12 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
     private galaxyService;
     private renderer;
     private _cd : ChangeDetectorRef;
-    galaxyId = '';
+    workflowDefinitionID = '';
+    galaxyID = '';
     metadataFormPage = false;
-
+    workflowName : string = '';
     workflowDefinition : WorkflowDefinition = null;
+    production = process.env.PRODUCTION;
 
     listener : any;
 
@@ -55,7 +57,19 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
 
     ngOnInit() {
         this.route.params.subscribe(params => {
-            this.galaxyId = params['id'];
+            this.workflowDefinitionID = params['id'];
+            this.galaxyService.getWorkflowDefinition(this.workflowDefinitionID).subscribe(
+                definition => {
+                    console.log(definition);
+                    this.galaxyID = definition.workflow_id;
+                    this.workflowName = definition.workflowName;
+                    if(!this.galaxyID) {
+                        this.handleError({error : "Workflow does not exist"},'Error loading workflow');
+                    }
+                    this._cd.markForCheck();
+                },
+                error => this.handleError(error,'Error loading workflow')
+            );
         });
         this.listener = this.renderer.listen('window','message',data =>{
             setTimeout(()=>{
@@ -72,7 +86,7 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
     }
 
     get workflowURL() {
-        let url = this._sanitizer.sanitize(SecurityContext.URL, this.galaxyService.getGalaxyUrl(this.galaxyId));
+        let url = this._sanitizer.sanitize(SecurityContext.URL, this.galaxyService.getGalaxyUrl(this.galaxyID));
         return this._sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
@@ -81,10 +95,10 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
         this.loading = true;
         this._cd.markForCheck();
         setTimeout(() => {
-            this.galaxyService.updateWorkflow(this.galaxyId).subscribe(_ => {
+            this.galaxyService.updateWorkflow(this.workflowDefinitionID).subscribe(_ => {
                 this._cd.markForCheck();
                 this.metadataFormPage = true;
-                this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = location.origin + this.galaxyService.workflowDefinitionURL+this.galaxyId;
+                this.defaultValues.componentInfo.distributionInfos[0].distributionLocation = location.origin + this.galaxyService.workflowDefinitionURL+this.workflowDefinitionID;
                 this.componentForm.loadComponent(this.defaultValues);
                 this.componentForm.get('componentInfo.distributionInfos').disable();
                 this.loading = false;
@@ -94,7 +108,7 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
     }
 
     onSubmit() {
-
+        this._cd.markForCheck();
         if(!this.validate())
             return;
 
@@ -104,30 +118,36 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
         let resourceIdentifier : ResourceIdentifier = new ResourceIdentifier();
 
         resourceIdentifier.resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OMTD;
-        this.galaxyService.getWorkflowDefinition(this.galaxyId).subscribe(_ => {
+        this.galaxyService.getWorkflowDefinition(this.workflowDefinitionID).subscribe(_ => {
             this.loading = true;
+            this._cd.markForCheck();
             this.workflowDefinition = _;
             resourceIdentifier.value = this.workflowDefinition.workflowName;
             component.componentInfo.identificationInfo.resourceIdentifiers = [resourceIdentifier];
-            this.resourceService.uploadComponent(this.componentForm.formValue,'application').subscribe(
-                () => {
-                    this.successfulMessage = 'Application registered successfully';
+            this.resourceService.upload<OMTDComponent>(this.componentForm.formValue,'application').subscribe(
+                application => {
+                    this.componentMetadata = application.metadataHeaderInfo;
+                    this.successfulMessage = `Application registered successfully`;
                     window.scrollTo(0,0);
                     this.loading = false;
+                    this._cd.markForCheck();
                 }, error => {
-                    this.handleError(error);
+                    this.handleError(error, 'Error saving application');
                 }
             );
 
         },error => {
-            this.handleError(error);
+            this.handleError(error, 'Error updating workflow');
         });
-
+        this._cd.markForCheck();
     }
 
-    handleError(error : any) {
-        this.componentForm.get('componentInfo.distributionInfos').disable();
-        super.handleError(error);
+    handleError(error : any, msg : string) {
+        if(this.componentForm) {
+            this.componentForm.get('componentInfo.distributionInfos').disable();
+        }
+        super.handleError(error,msg);
+        this._cd.markForCheck();
     }
 }
 

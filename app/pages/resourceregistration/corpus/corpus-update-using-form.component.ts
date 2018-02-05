@@ -23,7 +23,7 @@ export class CorpusUpdateUsingFormComponent extends CorpusBaseUsingFormComponent
     ngOnInit() {
         this.route.params.subscribe(params => {
             let id = params['id'];
-            this.corpus = this.resourceService.getCorpus(id);
+            this.corpus = this.resourceService.get<OMTDCorpus>(id,'corpus');
             this.corpus.subscribe(corpus => {
                 this.metadata = corpus.metadataHeaderInfo;
                 this.corpusForm.loadCorpus(corpus);

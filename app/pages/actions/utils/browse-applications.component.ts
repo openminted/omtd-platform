@@ -10,7 +10,9 @@ import { SearchResults } from "../../../domain/search-results";
 import { URLParameter } from "../../../domain/url-parameter";
 import { Subscription } from "rxjs/Subscription";
 import { SearchQuery } from "../../../domain/search-query";
-import { BaseMetadataRecord, ComponentInfo } from "../../../domain/openminted-model";
+import { BaseMetadataRecord, ComponentInfo, Component as OMTDComponent } from "../../../domain/openminted-model";
+import { GhQueryEncoder } from "../../../domain/utils";
+import { URLSearchParams } from "@angular/http";
 
 @Component({
     selector: 'browse-applications',
@@ -50,26 +52,25 @@ export class BrowseApplicationsComponent {
     ngOnInit() {
 
         this.sub = this.activatedRoute
-            .params
-            .subscribe(params => {
-
+            .params.subscribe(params => {
                 this.urlParameters.splice(0,this.urlParameters.length);
                 this.foundResults = true;
-
+                let searchParams : URLSearchParams = new URLSearchParams('',new GhQueryEncoder());
+                searchParams.set('resourceType','application');
                 for (var obj in params) {
                     if (params.hasOwnProperty(obj)) {
                         var urlParameter: URLParameter = {
                             key: obj,
                             values: params[obj].split(',')
                         };
+
+                        searchParams.set(urlParameter.key,urlParameter.values[0]);
                         this.urlParameters.push(urlParameter);
                         // console.log(urlParameter);
                     }
                 }
-
-                // console.log(this.urlParameters);
                 //request results from the registry
-                this.resourceService.getComponents('application').subscribe(
+                this.resourceService.getAll<OMTDComponent>(searchParams,'application').subscribe(
                     searchResults => this.updateSearchResults(searchResults),
                     error => this.handleError(<any>error));
             });

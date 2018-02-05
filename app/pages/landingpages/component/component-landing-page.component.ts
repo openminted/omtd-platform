@@ -31,7 +31,7 @@ export class ComponentLandingPageComponent {
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
             let id = params['id'];
-            this.resourceService.getComponent(id, this.resourceType).subscribe(
+            this.resourceService.get<OMTDComponent>(id, this.resourceType).subscribe(
                 component => {this.component = component; transform(this.component)},
                 error => this.handleError(<any>error));
         });
