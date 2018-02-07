@@ -22,7 +22,7 @@ import { OrganizationIdentifierCommonFormControl } from "./identifierCommon.comp
 
             <!--<div class="form-group-divider"></div>-->
 
-            <form-repeat-inline [component]="organizationIdentifierComponent" [parentGroup]="group"
+            <form-repeat-inline [component]="organizationIdentifierComponent" [parentGroup]="group" [initEmpty]="true"
                                 [description]="organizationIdentifierDesc" [name]="'organizationIdentifiers'"></form-repeat-inline>
 
             <div class="form-group-divider"></div>

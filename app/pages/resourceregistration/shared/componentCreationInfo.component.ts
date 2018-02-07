@@ -13,7 +13,7 @@ import { Description, frameworkDesc, TDMMethodDesc } from "../../../domain/omtd.
 
     <form-inline [description]="frameworkDesc"
         [valid]="getMyControl('framework').valid">
-        <select name="role" class="form-control" formControlName="framework">
+        <select name="role" class="uk-select" formControlName="framework">
             <option *ngFor="let value of frameworkEnum" [value]="value.key" [selected]="value.key == ''">
                 {{value.value}}
             </option>
@@ -24,7 +24,7 @@ import { Description, frameworkDesc, TDMMethodDesc } from "../../../domain/omtd.
 
     <form-inline [description]="tdmDesc"
                  [valid]="getMyControl('tdmmethod').valid">
-        <select name="role" class="form-control" formControlName="tdmmethod">
+        <select name="role" class="uk-select" formControlName="tdmmethod">
             <option *ngFor="let value of tdmMethodEnum" [value]="value.key" [selected]="value.key == ''">
                 {{value.value}}
             </option>

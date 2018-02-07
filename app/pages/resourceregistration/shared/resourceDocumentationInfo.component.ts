@@ -27,7 +27,7 @@ import { PublicationIdentifierCommonFormControl } from "./identifierCommon.compo
             
             <div class="form-group-divider"></div>
             
-            <form-repeat-inline [component]="publicationIdentifierType" [parentGroup]="group"
+            <form-repeat-inline [component]="publicationIdentifierType" [parentGroup]="group" [initEmpty]="true"
                                 [description]="publicationIdentifierDesc" [name]="'publicationIdentifiers'"></form-repeat-inline>
         </div>
 `,

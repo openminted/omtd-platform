@@ -8,7 +8,7 @@ import { MySingleStringForm } from "./my-string-form.component";
     template : `
         <div [formGroup]="group">
             
-            <form-repeat-inline [component]="simpleStringComponent" [parentGroup]="group" 
+            <form-repeat-inline [component]="simpleStringComponent" [parentGroup]="group" [initEmpty]="true"
                                 [description]="emailsDesc" [name]="'emails'"></form-repeat-inline>
 
             <!--<div class="form-group-divider"></div>-->

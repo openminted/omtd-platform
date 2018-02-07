@@ -13,7 +13,7 @@ import { ResourceIdentifierCommonFormControl } from "./identifierCommon.componen
 
             <div class="form-group-divider"></div>
 
-            <form-repeat-inline [component]="resourceIdentifierComponent" [parentGroup]="group"
+            <form-repeat-inline [component]="resourceIdentifierComponent" [parentGroup]="group" [initEmpty]="true"
                                 [description]="resourceIdentifierDesc" [name]="'resourceIdentifiers'"></form-repeat-inline>
         </div>
 `,

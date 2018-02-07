@@ -18,7 +18,7 @@ import { EnumValues, lexicalConceptualResourceTypeEnum } from "../../../domain/o
     template : `
         <div [formGroup]="group">
             <form-inline [description]="lexicalConceptualResourceTypeDesc">
-                <select name="role" class="form-control" formControlName="lexicalConceptualResourceType">
+                <select name="role" class="uk-select" formControlName="lexicalConceptualResourceType">
                     <option *ngFor="let value of lexicalConceptualResourceTypeEnum" [value]="value.key" [selected]="value.key == ''">
                         {{value.value}}
                     </option>

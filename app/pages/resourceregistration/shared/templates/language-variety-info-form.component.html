@@ -1,10 +1,10 @@
 <div [formGroup]="myForm" [ngClass]="{'has-error':!myForm.valid}">
     <label class="col-sm-2 col-md-2 control-label">Language Variety</label>
     <div class="col-sm-5 col-md-5">
-        <input type="text" class="form-control" formControlName="languageVarietyName" placeholder="Name">
+        <input type="text" class="uk-input" formControlName="languageVarietyName" placeholder="Name">
     </div>
     <div class="col-sm-4 col-md-4">
-        <select name="role" class="form-control" formControlName="languageVarietyType">
+        <select name="role" class="uk-select" formControlName="languageVarietyType">
             <option *ngFor="let value of languageVarietyTypes" [value]="value.key" [selected]="value.key == ''">
                 {{value.value}}
             </option>

@@ -40,7 +40,7 @@ export class ComponentDistributionsInfoFormControl {
     template : ` 
 <div [formGroup]="group">
     <form-inline [description]="componentDistributionFormDesc" [valid]="getMyControl('componentDistributionForm').valid">
-        <select name="role" class="form-control" formControlName="componentDistributionForm">
+        <select name="role" class="uk-select" formControlName="componentDistributionForm">
             <option *ngFor="let value of componentDistributionFormEnum" [value]="value.key" [selected]="value.key == ''">
                 {{value.value}}
             </option>
@@ -53,7 +53,7 @@ export class ComponentDistributionsInfoFormControl {
         <div  class="form-group-divider"></div>
 
         <form-inline [description]="commandDesc" [valid]="getMyControl('command').valid">
-            <input type="text" class="form-control" formControlName="command" placeholder="{{commandDesc.label}}">
+            <input type="text" class="uk-input" formControlName="command" placeholder="{{commandDesc.label}}">
         </form-inline>
     </div>
 
@@ -61,7 +61,7 @@ export class ComponentDistributionsInfoFormControl {
         <div  class="form-group-divider"></div>
 
         <form-inline [description]="webServiceTypeDesc" [valid]="getMyControl('webServiceType').valid">
-            <select name="role" class="form-control" formControlName="webServiceType">
+            <select name="role" class="uk-select" formControlName="webServiceType">
                 <option *ngFor="let value of webServiceTypeEnum" [value]="value.key" [selected]="value.key == ''">
                     {{value.value}}
                 </option>
@@ -72,7 +72,7 @@ export class ComponentDistributionsInfoFormControl {
     <div class="form-group-divider"></div>
 
     <form-inline [description]="distributionURLDesc" [valid]="getMyControl('distributionLocation').valid">
-        <input type="text" class="form-control" formControlName="distributionLocation" placeholder="{{distributionURLDesc.label}}">
+        <input type="text" class="uk-input" formControlName="distributionLocation" placeholder="{{distributionURLDesc.label}}">
     </form-inline>
 </div>  
     

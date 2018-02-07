@@ -4,12 +4,12 @@
         <div *ngIf="index != -1 && index!=0" class="col-sm-2 col-md-2 control-label"></div>
         <div >
             <div class="col-sm-4 col-md-4" [ngClass]="{'has-error':!myForm.controls.value.valid}">
-                <input type="text" class="form-control" formControlName="value" placeholder="value">
+                <input type="text" class="uk-input" formControlName="value" placeholder="value">
             </div>
             <div class="col-sm-2 col-md-2" [ngClass]="{'has-error':!myForm.controls[schemeName].valid}">
                 <!--[ngClass]="{'has-error':!myForm.controls['metadataIdentifierSchemeName'].valid-->
                 <!--&& !myForm.controls['metadataIdentifierSchemeName'].pristine}"-->
-                <select name="role" class="form-control" formControlName="{{schemeName}}">
+                <select name="role" class="uk-select" formControlName="{{schemeName}}">
                     <option *ngFor="let value of schemeUriValues" [value]="value.key" [selected]="value.key == ''">
                         {{value.value}}
                     </option>

@@ -16,9 +16,9 @@ declare var UIkit : any;
     <div [formGroup]="group">
         <form-inline [description]="dataFormatTypeDesc" [valid]="getMyControl('dataFormat').valid">
             <div class="ontology-align-data{{randomId}}">
-                <div class="uk-select">{{selectedDataFormat}}</div>
+                <div class="uk-select" [ngClass]="{'ng-invalid' : !getMyControl('dataFormat').valid , 'ng-touched' : getMyControl('dataFormat').touched}">{{selectedDataFormat}}</div>
                 <div #ontologyTreeDropdown [attr.uk-dropdown]="ukDropdown">
-                    <input type="text" placeholder="Filter tree" #filter (keyup)="tree.treeModel.filterNodes(filter.value)"/>
+                    <input type="text" class="uk-input" placeholder="Filter tree" #filter (keyup)="tree.treeModel.filterNodes(filter.value)"/>
                     <tree-root #tree [nodes]="dataFormatontologies" [options]="{}"
                                (focus)="selectDataFormat($event)">
                         <ng-template #treeNodeTemplate let-node let-index="index">

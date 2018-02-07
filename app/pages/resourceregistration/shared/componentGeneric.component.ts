@@ -27,9 +27,10 @@ declare var UIkit : any;
             <div formGroupName="functionInfo">
                 <form-inline [description]="functionDesc">
                     <div class="ontology-align">
-                        <div class="uk-select">{{selectedOperation}}</div>
+                        <div class="uk-select"  [ngClass]="{'ng-invalid' : !getMyControl('functionInfo.function').valid , 'ng-touched' : getMyControl('functionInfo.function').touched}">{{selectedOperation}}</div>
                         <div id="ontologyTreeDropdown" uk-dropdown="pos: bottom-justify; mode: click; boundary: .ontology-align; boundary-align: true">
-                            <input type="text" placeholder="Filter tree" #filter (keyup)="tree.treeModel.filterNodes(filter.value)"/>
+                            <input type="text" class="uk-input" placeholder="Filter tree" 
+                                   #filter (keyup)="tree.treeModel.filterNodes(filter.value)"/>
                             <tree-root #tree [nodes]="ontologies" [options]="{}"
                                        (focus)="selectOperation($event)">
                                 <ng-template #treeNodeTemplate let-node let-index="index">
@@ -43,7 +44,7 @@ declare var UIkit : any;
                     
                     <div class="form-group-divider"></div>
                     
-                    <input type="text" class="uk-input" formControlName="functionOther" placeholder="Other type of operation(*)"/>
+                    <input type="text" class="uk-input" formControlName="functionOther" placeholder="Other type of operation"/>
                 </form-inline>
             </div>
 

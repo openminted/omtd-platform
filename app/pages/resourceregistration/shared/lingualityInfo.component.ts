@@ -13,7 +13,7 @@ import { Description, lingualityInfoDesc } from "../../../domain/omtd.descriptio
     <div [formGroup]="group" >
         <form-inline [description]="lingualityInfoDesc">
             <div class="col-sm-3 col-md-3" [ngClass]="{'has-error':!getMyControl('lingualityType').valid}">
-                <select name="role" class="form-control" formControlName="lingualityType" >
+                <select name="role" class="uk-select" formControlName="lingualityType" >
                     <option *ngFor="let value of lingualityTypeEnum" [value]="value.key" [selected]="value.key == ''">
                         {{value.value}}
                     </option>
@@ -21,14 +21,14 @@ import { Description, lingualityInfoDesc } from "../../../domain/omtd.descriptio
             </div>
             <ng-template [ngIf]="getMyControl('lingualityType').value != '' && getMyControl('lingualityType').value != 'MONOLINGUAL'">
                 <div class="col-sm-3 col-md-3">
-                    <select name="role" class="form-control" formControlName="multilingualityType">
+                    <select name="role" class="uk-select" formControlName="multilingualityType">
                         <option *ngFor="let value of multiLingualityTypes" [value]="value.key" [selected]="value.key == ''">
                             {{value.value}}
                         </option>
                     </select>
                 </div>
                 <div class="col-sm-3 col-md-3">
-                    <input type="text" class="form-control" formControlName="multilingualityTypeDetails" placeholder="Multilinguality type details">
+                    <input type="text" class="uk-input" formControlName="multilingualityTypeDetails" placeholder="Multilinguality type details">
                 </div>
             </ng-template>
         </form-inline>

@@ -13,7 +13,7 @@ import { Description, revisionDesc, versionDesc, versionTypeDesc } from "../../.
         <div class="form-group">
         
             <form-inline [description]="versionDesc" [valid]="getMyControl('version').valid">
-                <input type="text" class="form-control" formControlName="version" placeholder="Version in the form of major.minor.patch">
+                <input type="text" class="uk-input" formControlName="version" placeholder="Version in the form of major.minor.patch">
             </form-inline>
             
             <div class="form-group-divider"></div>
@@ -29,7 +29,7 @@ import { Description, revisionDesc, versionDesc, versionTypeDesc } from "../../.
             <div class="form-group-divider"></div>
             
             <form-inline [description]="revisionDesc">
-                <textarea type="text" class="form-control" formControlName="revision" placeholder="Revision Text"></textarea>
+                <textarea type="text" class="uk-textarea" formControlName="revision" placeholder="Revision Text"></textarea>
             </form-inline>
             
             <!--<div class="form-group-divider"></div>-->
@@ -48,7 +48,7 @@ export class VersionFormControl extends MyGroup {
     @Input() data : any;
 
     readonly groupDefinition = {
-        version : ['1.0.0', Validators.compose([Validators.required,Validators.pattern(/^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,3}$/)])],
+        version : ['1.0.0', Validators.required],
         revision : '',
         // versionType : '',
         // updateFrequency : ''

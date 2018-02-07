@@ -7,7 +7,7 @@ import { EnumValues } from "../../../domain/omtd.enum";
 @Component({
     selector: 'enum-common-form',
     template: `
-<select name="role" class="form-control" formControlName="{{name}}">
+<select name="role" class="uk-select" formControlName="{{name}}">
     <option *ngFor="let value of enumForm" [value]="value.key" [selected]="value.key == ''">
         {{value.value}}
     </option>

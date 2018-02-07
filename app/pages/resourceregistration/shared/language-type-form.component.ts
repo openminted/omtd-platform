@@ -13,6 +13,7 @@ import { MyGroup } from "../myform/my-group.interface";
             <!--<h5>{{model.value}} - {{ model.key }}</h5>-->
         <!--</ng-template>-->
         <input type="text" class="uk-input" placeholder="Language"
+               [ngClass]="{'ng-invalid' : !getMyControl('entry').valid , 'ng-touched' : getMyControl('entry').touched}"
                [(ngModel)]="selected"
                [typeahead]="languageIdEnum"
                (typeaheadOnSelect)="setLanguageId($event)"
@@ -54,7 +55,7 @@ export class SimpleLanguageTypeForm extends MyGroup {
         <!--<h5>{{model.value}} - {{ model.key }}</h5>-->
         <!--</ng-template>-->
         <input type="text" class="uk-input" placeholder="Language"
-               [ngClass]="{'has-error':!group.valid}"
+               [ngClass]="{'ng-invalid' : !getMyControl('language').valid , 'ng-touched' : getMyControl('language').touched}"
                [(ngModel)]="selected"
                [typeahead]="languageIdEnum"
                (typeaheadOnSelect)="setLanguageId($event)"

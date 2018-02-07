@@ -10,10 +10,10 @@ import { MyGroup } from "../myform/my-group.interface";
     template : `
     <div [formGroup]="parentForm">
         <div class="col-sm-8 col-md-8" [ngClass]="{'has-error':!parentForm.valid}">
-            <input type="text" class="form-control" formControlName="value" placeholder="Name">
+            <input type="text" class="uk-input" formControlName="value" placeholder="Name">
         </div>
         <div class="col-sm-1 col-md-1" [hidden]="!hiddenLang">
-            <input type="{{ !hiddenLang ? 'hidden' : 'text'}}" class="form-control" formControlName="lang" placeholder="Language">
+            <input type="{{ !hiddenLang ? 'hidden' : 'text'}}" class="uk-input" formControlName="lang" placeholder="Language">
             <div *ngIf="hiddenLang">
                 <a class="remove-element" (click)="toggle()">{{parentForm.controls['lang'].value}} <i
                                     class="fa fa-pencil" aria-hidden="true"></i></a>
