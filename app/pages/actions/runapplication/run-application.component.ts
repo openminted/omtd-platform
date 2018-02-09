@@ -12,6 +12,7 @@ import { Corpus as OMTDCorpus} from "../../../domain/openminted-model";
 import { WorkflowService } from "../../../services/workflow.service";
 import {WSJobStatus} from "../../../domain/ws-job-status";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { Operation } from "../../../domain/operation";
 
 
 @Component({
@@ -38,7 +39,7 @@ export class RunApplicationComponent {
     jobId: string;
     intervalId: number = null;
 
-    wsJobStatus: WSJobStatus = null;
+    wsJobStatus: Operation = null;
 
     isRunning: boolean = false;
 
@@ -123,17 +124,15 @@ export class RunApplicationComponent {
 
         this.isRunning = true;
 
-        //TODO uncomment when we will use correctly the api
-        // this.workflowService.executeJob(this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value,
-        //     this.component.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
+        let corpusId = this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value;
+        let applicationId = this.component.metadataHeaderInfo.metadataRecordIdentifier.value;
 
         let archiveId = this.corpus.corpusInfo.datasetDistributionInfo.distributionLocation.match(/\?archiveId=([\d\w-]+)$/);
         if(!archiveId) {
             this.handleError('This corpus has no valid archiveId',{error:"Error"} as any);
             return;
         }
-        this.workflowService.executeJob(archiveId[1],
-            this.component.componentInfo.identificationInfo.resourceIdentifiers[0].value).subscribe(
+        this.workflowService.executeJob(corpusId,applicationId).subscribe(
                 jobId => {
                     this.jobId = jobId;
                     console.log('jobId', jobId);
@@ -147,7 +146,7 @@ export class RunApplicationComponent {
             );
     }
 
-    checkStatus(wsJobStatus: WSJobStatus) {
+    checkStatus(wsJobStatus: Operation) {
 
         console.log('Status', wsJobStatus);
 

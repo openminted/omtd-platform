@@ -5,44 +5,46 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { WSJobStatus } from "../domain/ws-job-status";
+import { Operation } from "../domain/operation";
 
 @Injectable()
 export class WorkflowService {
 
-    private endpoint = process.env.WORKFLOW_API_ENDPOINT;
+    private endpoint = process.env.API_ENDPOINT;
 
     constructor (private http: Http) {
         console.log(this.endpoint);
     }
 
-    private _workflowServiceUrl = this.endpoint + '/';
+    private _workflowServiceUrl = this.endpoint + '/request/operation';
 
     executeJob(corpusId: string, workflowId: string) {
 
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
 
         let params = new URLSearchParams();
         // params.append('corpusId','60446e38-ab69-4440-8d8f-a5c744c7d6d2');
         // params.append('workflowId','DGTest1');
         params.append('corpusId', corpusId);
-        params.append('workflowId', workflowId);
+        params.append('applicationId', workflowId);
 
-        return this.http.post(this._workflowServiceUrl + 'executeJob?' + params.toString(), {}, options)
+        return this.http.get(this._workflowServiceUrl + '/executeJob?' + params.toString(), options)
             .map(res => <string> res.text())
+            .map(res => res.replace(/\"/g,''))
             .catch(this.handleError);
     }
 
-    getStatus(jobID: string) {
+    getStatus(jobID: string) : Observable<Operation>{
 
         let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
 
         let params = new URLSearchParams();
         params.append('jobID',jobID);
 
-        return this.http.post(this._workflowServiceUrl + 'getStatus?' + params.toString(), {}, options)
-            .map(res => <WSJobStatus> res.json())
+        return this.http.get(this._workflowServiceUrl + '/' + jobID, options)
+            .map(res => <Operation> res.json())
             .catch(this.handleError);
 
     }
