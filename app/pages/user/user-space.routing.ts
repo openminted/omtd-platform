@@ -1,8 +1,8 @@
 /**
  * Created by stefania on 7/6/17.
  */
-import { ModuleWithProviders }  from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAuthGuard } from "../../services/can-activate-auth-guard.service";
 import { MyCorporaComponent } from "./corpora/my-corpora.component";
 import { MyServicesComponent } from "./components/my-services.component";

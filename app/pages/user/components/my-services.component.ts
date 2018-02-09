@@ -21,7 +21,7 @@ export class MyServicesComponent extends MyResourceComponent<OMTDComponent> {
 
     ngOnInit() {
         super.ngOnInit();
-        this.resourceService.getMyComponents(this.resourceType).subscribe(
+        this.resourceService.getMyResources<OMTDComponent>(this.resourceType).subscribe(
             searchResults => this.updateMyResources(searchResults),
             error => this.handleError('System error retrieving user tools/services', <any>error));
     }

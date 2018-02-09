@@ -2,7 +2,7 @@
  * Created by stefanos on 7/10/17.
  */
 import { Component, Injector } from '@angular/core';
-import { Component as OMTDComponent } from "../../../domain/openminted-model";
+import { Component as OMTDComponent, LanguageDescription } from "../../../domain/openminted-model";
 import { MyResourceComponent } from "../my-resource.component";
 
 @Component({
@@ -11,7 +11,7 @@ import { MyResourceComponent } from "../my-resource.component";
     styleUrls:  ['../user-space.component.css'],
 })
 
-export class MyLanguagesComponent extends MyResourceComponent<OMTDComponent> {
+export class MyLanguagesComponent extends MyResourceComponent<LanguageDescription> {
 
 
     constructor(injector : Injector) {
@@ -21,13 +21,9 @@ export class MyLanguagesComponent extends MyResourceComponent<OMTDComponent> {
 
     ngOnInit() {
         super.ngOnInit();
-        this.resourceService.getMyComponents(this.resourceType).subscribe(
+        this.resourceService.getMyResources<LanguageDescription>(this.resourceType).subscribe(
             searchResults => this.updateMyResources(searchResults),
             error => this.handleError(`System error retrieving user ${this.resourceType}`, <any>error));
-    }
-
-    editWorkflow(component: OMTDComponent) {
-        this.router.navigate([`/editWorkflowApplication/`, component.metadataHeaderInfo.metadataRecordIdentifier.value]);
     }
 
 }

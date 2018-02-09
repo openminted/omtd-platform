@@ -235,48 +235,16 @@ export class ResourceService {
         return location + 'corpus/download?archiveId=' + id;
     }
 
-    getMyResources(resourceType : string) {
-        return this.http.get(`${this._resourcesUrl}${resourceType}/my`, { withCredentials: true })
-            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
-            .catch(this.handleError);
-    }
-
-    getMyCorpora() {
-        return this.http.get(this._resourcesUrl + "corpus/my", { withCredentials: true })
-            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
-            .catch(this.handleError);
-    }
-
-    getMyIncompleteCorpora() {
-        return this.http.get(this._resourcesUrl + "incompleteCorpus/my", { withCredentials: true })
-            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
-            .catch(this.handleError);
-    }
-
-    getMyComponents(resourceType : string = 'component') {
-        return this.http.get(`${this._resourcesUrl}${resourceType}/my`, { withCredentials: true })
-            .map(res => <SearchResults<BaseMetadataRecord>> res.json())
-            .catch(this.handleError);
-    }
-
-    getMyOperations() {
-        return this.http.get(this._resourcesUrl + "operation/my", { withCredentials: true })
-            .map(res => <SearchResults<EnrichedOperation>> res.json())
-            .catch(this.handleError);
-    }
-
-    deleteComponent(component: OMTDComponent,resourceType : string = 'component') {
-
-        let component_ = ResourceService.removeNulls(component);
-
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({
-            headers: headers,
-            withCredentials: true,
-            method: RequestMethod.Delete,
-            body: JSON.stringify(component_)
+    getMyResources<T>(resourceType : string,params = { order : 'desc', orderField : 'modification_date'}) : Observable<SearchResults<T>> {
+        let searchParams: URLSearchParams = new URLSearchParams('', new GhQueryEncoder());
+        Object.keys(params).forEach(key => {
+            searchParams.set(key, params[key]);
         });
-        return this.http.request(this._resourcesUrl + resourceType, options)
+        return this.http.get(`${this._resourcesUrl}${resourceType}/my`, {
+            withCredentials: true,
+            params: searchParams
+        })
+            .map(res => <SearchResults<T>> res.json())
             .catch(this.handleError);
     }
 
@@ -303,22 +271,6 @@ export class ResourceService {
 
         return this.http.put(this._resourcesUrl + resourceType, JSON.stringify(component_), options)
             .map(res => <OMTDComponent> res.json())
-            .catch(this.handleError);
-    }
-
-    deleteCorpus(corpus: OMTDCorpus) {
-
-        let corpus_ = ResourceService.removeNulls(corpus);
-
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({
-            headers: headers,
-            withCredentials: true,
-            method: RequestMethod.Delete,
-            body: JSON.stringify(corpus_)
-        });
-
-        return this.http.request(this._resourcesUrl + 'corpus', options)
             .catch(this.handleError);
     }
 

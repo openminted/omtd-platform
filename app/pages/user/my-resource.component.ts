@@ -66,10 +66,7 @@ export class MyResourceComponent<T extends BaseMetadataRecord> {
         this.isNextPageDisabled = false;
 
         this.resources.length = 0;
-
-        for (let component of this.searchResults.results) {
-            this.resources.push(<T> component.resource);
-        }
+        this.resources = this.searchResults.results;
 
         this.pageSize = 10;
         this.currentPage = (searchResults.from / this.pageSize) + 1;

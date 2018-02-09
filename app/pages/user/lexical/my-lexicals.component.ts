@@ -21,13 +21,9 @@ export class MyLexicalsComponent extends MyResourceComponent<Lexical> {
 
     ngOnInit() {
         super.ngOnInit();
-        this.resourceService.getMyResources(this.resourceType).subscribe(
+        this.resourceService.getMyResources<Lexical>(this.resourceType).subscribe(
             searchResults => this.updateMyResources(searchResults),
             error => this.handleError(`System error retrieving user ${this.resourceType}`, <any>error));
-    }
-
-    editWorkflow(component: OMTDComponent) {
-        this.router.navigate([`/editWorkflowApplication/`, component.metadataHeaderInfo.metadataRecordIdentifier.value]);
     }
 
 }

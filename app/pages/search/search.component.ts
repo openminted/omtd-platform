@@ -91,7 +91,7 @@ export class SearchComponent {
         this.shortResultsInfo.splice(0,this.shortResultsInfo.length);
 
         for (let component of this.searchResults.results) {
-            let componentBody = component.resource;
+            let componentBody = component;
             let corpusInfo : CorpusInfo;
             let componentInfo : ComponentInfo;
             let title : string;
@@ -118,8 +118,6 @@ export class SearchComponent {
                 creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
             }
             let shortResultInfo: ShortResultInfo = {
-                // id: component.componentInfo.identificationInfo.identifiers[0].value,
-                order: component.order,
                 id: componentBody.metadataHeaderInfo.metadataRecordIdentifier.value,
                 title: title,
                 description: description,
@@ -132,11 +130,6 @@ export class SearchComponent {
 
         if(this.shortResultsInfo.length==0)
             this.foundResults = false;
-        else {
-            this.shortResultsInfo.sort((lhs : ShortResultInfo,rhs: ShortResultInfo) => {
-                return lhs.order - rhs.order;
-            })
-        }
 
         //update form values using URLParameters
         for (let urlParameter of this.urlParameters) {

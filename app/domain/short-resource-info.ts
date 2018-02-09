@@ -4,7 +4,6 @@
 export class ShortResultInfo {
     
     id: string;
-    order: number;
     title: string;
     description: string;
     resourceType: string;

@@ -91,14 +91,11 @@ export class BrowseCorporaComponent {
         this.shortResultsInfo.splice(0,this.shortResultsInfo.length);
 
         for (let corpus of this.searchResults.results) {
-            var order = corpus.order;
-            var corpusBody = corpus.resource;
+            var corpusBody = corpus;
             let corpusInfo : CorpusInfo;
             if (typeof corpusBody['corpusInfo'] != 'undefined') {
                 corpusInfo = corpusBody['corpusInfo']
                 var shortResultInfo: ShortResultInfo = {
-                    // id: corpus.corpusInfo.identificationInfo.identifiers[0].value,
-                    order: corpus.order,
                     id: corpusBody.metadataHeaderInfo.metadataRecordIdentifier.value,
                     title: corpusInfo.identificationInfo.resourceNames[0].value,
                     description: corpusInfo.identificationInfo.descriptions[0].value,
@@ -113,11 +110,6 @@ export class BrowseCorporaComponent {
 
         if(this.shortResultsInfo.length==0)
             this.foundResults = false;
-        else {
-            this.shortResultsInfo.sort((lhs : ShortResultInfo,rhs: ShortResultInfo) => {
-                return lhs.order - rhs.order;
-            })
-        }
 
         //update form values using URLParameters
         for (let urlParameter of this.urlParameters) {

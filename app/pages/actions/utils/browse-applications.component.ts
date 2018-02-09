@@ -91,13 +91,11 @@ export class BrowseApplicationsComponent {
         this.shortResultsInfo.splice(0,this.shortResultsInfo.length);
 
         for (let component of this.searchResults.results) {
-            var componentBody = component.resource;
+            var componentBody = component;
             let componentInfo : ComponentInfo;
             if (typeof componentBody['componentInfo'] != 'undefined') {
                 componentInfo = componentBody['componentInfo'];
                 var shortResultInfo: ShortResultInfo = {
-                    // id: component.componentInfo.identificationInfo.identifiers[0].value,
-                    order: component.order,
                     id: componentBody.metadataHeaderInfo.metadataRecordIdentifier.value,
                     title: componentInfo.identificationInfo.resourceNames[0].value,
                     description: componentInfo.identificationInfo.descriptions[0].value,
@@ -110,11 +108,6 @@ export class BrowseApplicationsComponent {
 
         if(this.shortResultsInfo.length==0)
             this.foundResults = false;
-        else {
-            this.shortResultsInfo.sort((lhs : ShortResultInfo,rhs: ShortResultInfo) => {
-                return lhs.order - rhs.order;
-            })
-        }
 
         //update form values using URLParameters
         for (let urlParameter of this.urlParameters) {

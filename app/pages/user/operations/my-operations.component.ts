@@ -2,10 +2,10 @@
  * Created by stefania on 8/31/17.
  */
 import { Component, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { BaseMetadataRecord, Corpus as OMTDCorpus, Component as OMTDComponent } from "../../../domain/openminted-model";
+import { ActivatedRoute, Router } from '@angular/router';
+import { BaseMetadataRecord, Component as OMTDComponent, Corpus as OMTDCorpus } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
-import { SearchResults, SearchResultsNew } from "../../../domain/search-results";
+import { SearchResults } from "../../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog.component";
 import { EnrichedOperation } from "../../../domain/operation";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
@@ -21,7 +21,7 @@ export class MyOperationsComponent {
     @ViewChild('deleteConfirmationModal')
     public deleteConfirmationModal : ConfirmationDialogComponent;
 
-    public searchResults: SearchResultsNew<EnrichedOperation>;
+    public searchResults: SearchResults<EnrichedOperation>;
     public operations: EnrichedOperation[] = [];
     public errorMessage: string;
     public successMessage: string;
@@ -47,12 +47,12 @@ export class MyOperationsComponent {
         this.errorMessage = null;
         this.successMessage = null;
 
-        this.resourceService.getMyOperations().subscribe(
+        this.resourceService.getMyResources<EnrichedOperation>('operation').subscribe(
             searchResults => this.updateMyOperations(searchResults),
             error => this.handleError('System error retrieving user operations', <any>error));
     }
 
-    updateMyOperations(searchResults: SearchResultsNew<EnrichedOperation>) {
+    updateMyOperations(searchResults: SearchResults<EnrichedOperation>) {
 
         //INITIALISATIONS
         this.errorMessage = null;

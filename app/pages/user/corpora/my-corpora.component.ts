@@ -33,11 +33,11 @@ export class MyCorporaComponent extends MyResourceComponent<OMTDCorpus> {
     ngOnInit() {
         super.ngOnInit();
 
-        this.resourceService.getMyCorpora().subscribe(
+        this.resourceService.getMyResources<OMTDCorpus>('corpus').subscribe(
             searchResults => this.updateMyResources(searchResults),
             error => this.handleError('System error retrieving user corpora', <any>error));
 
-        this.resourceService.getMyIncompleteCorpora().subscribe(
+        this.resourceService.getMyResources<OMTDCorpus>('incompleteCorpus').subscribe(
             incompleteCorporaSearchResults => this.updateMyIncompleteCorpora(incompleteCorporaSearchResults),
             error => this.handleError('System error retrieving user incomplete corpora', <any>error));
     }
@@ -52,8 +52,8 @@ export class MyCorporaComponent extends MyResourceComponent<OMTDCorpus> {
         this.incompleteCorpora.length = 0;
 
         for (let corpus of this.incompleteCorporaSearchResults.results) {
-            this.incompleteCorpora.push(<OMTDCorpus> corpus.resource);
-            this.corporaStatus.push(this.contentConnectorService.getStatus((corpus.resource as OMTDCorpus).metadataHeaderInfo.metadataRecordIdentifier.value));
+            this.incompleteCorpora.push(<OMTDCorpus> corpus);
+            this.corporaStatus.push(this.contentConnectorService.getStatus(corpus.metadataHeaderInfo.metadataRecordIdentifier.value));
         }
     }
 
