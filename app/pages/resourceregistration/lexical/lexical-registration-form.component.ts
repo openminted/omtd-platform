@@ -1,10 +1,13 @@
 /**
  * Created by stefanos on 10/19/16.
  */
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Type } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ResourceService } from "../../../services/resource.service";
 import { Lexical } from "../../../domain/openminted-model";
+import { Description, relationTypeDesc, resourceDocumentationInfoDesc } from "../../../domain/omtd.description";
+import { RelationInfoFormControl } from "../shared/relationInfo.component";
+import { ResourceDocumentationFormControl } from "../shared/resourceDocumentationInfo.component";
 
 @Component({
     selector: 'lexical-registration-form',
@@ -21,6 +24,11 @@ export class LexicalRegistrationFormComponent implements OnInit {
 
 
     production = process.env.PRODUCTION;
+
+    resourceDocumentationType: Type<any> = ResourceDocumentationFormControl;
+    resourceDocumentationDesc : Description = resourceDocumentationInfoDesc;
+    relationType : Type<any> = RelationInfoFormControl;
+    relationTypeDesc : Description = relationTypeDesc;
 
     testValue: any = {
         "lexicalConceptualResourceInfo": {
