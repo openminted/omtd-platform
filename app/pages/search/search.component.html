@@ -47,11 +47,20 @@
 
         <div class="uk-grid" uk-grid="">
 
+            <aside *ngIf="!searchResults || !searchResults.facets || searchResults.facets.length==0"
+                   class="tm-sidebar uk-width-1-4@m">
 
-            <aside id="tm-sidebar" class="tm-sidebar uk-width-1-4@m">
+                <div class="uk-card uk-card-body uk-card-default sidemenu">
+                    <h3 class="uk-h3 uk-heading-bullet">Refine</h3>
+                    <p *ngIf="searchResults.facets.length==0">No refines found</p>
+                </div>
+            </aside>
+
+            <aside *ngIf="searchResults && searchResults.facets && searchResults.facets.length>0"
+                   id="tm-sidebar" class="tm-sidebar uk-width-1-4@m">
 
                 <!--Simple view-->
-                <div *ngIf="searchResults" class="uk-card uk-card-body uk-card-default sidemenu">
+                <div class="uk-card uk-card-body uk-card-default sidemenu">
 
                     <ng-template ngFor let-facet [ngForOf]="searchResults.facets">
                         <ng-template [ngIf]="facet.field=='resourceType'">
@@ -94,7 +103,7 @@
 
                 </div>
 
-                <div *ngIf="searchResults" class="uk-card uk-card-body uk-card-default sidemenu refines uk-margin-top">
+                <div class="uk-card uk-card-body uk-card-default sidemenu refines uk-margin-top">
 
                     <h3 class="uk-h3 uk-heading-bullet">Refine</h3>
 
@@ -125,7 +134,8 @@
                     </div>
                 </div>
 
-                <div *ngIf="!errorMessage && shortResultsInfo.length != 0" class="">
+                <!--<div *ngIf="!errorMessage && shortResultsInfo.length != 0" class="">-->
+                <div *ngIf="!errorMessage" class="">
 
                     <div *ngIf="!foundResults">
                         <div data-uk-alert="" class="uk-alert uk-alert-warning">
