@@ -1,41 +1,45 @@
 <div>
-    <ng-template [ngIf]="resourceCreationInfo.creationDate">
-        <span *ngIf="resourceCreationInfo.creationDate.date">
-            <span *ngIf="resourceCreationInfo.creationDate.date.month">
-                {{resourceCreationInfo.creationDate.date.month}}/
-            </span>
-            <span *ngIf="resourceCreationInfo.creationDate.date.day">
+    <span *ngIf="resourceCreationInfo.creationDate">
+        <ng-template [ngIf]="resourceCreationInfo.creationDate.date">
+            <ng-template [ngIf]="resourceCreationInfo.creationDate.date.day">
                 {{resourceCreationInfo.creationDate.date.day}}/
-            </span>
-            <span *ngIf="resourceCreationInfo.creationDate.date.year">
+            </ng-template>
+            <ng-template [ngIf]="resourceCreationInfo.creationDate.date.month">
+                {{resourceCreationInfo.creationDate.date.month}}/
+            </ng-template>
+            <ng-template [ngIf]="resourceCreationInfo.creationDate.date.year">
                 {{resourceCreationInfo.creationDate.date.year}}
-            </span>
-        </span>
-        <span *ngIf="resourceCreationInfo.creationDate.dateRange">
-            <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate">
-                <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate.month">
-                    {{resourceCreationInfo.creationDate.dateRange.startDate.month}}/
-                </span>
-                <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate.day">
+            </ng-template>
+        </ng-template>
+        <ng-template [ngIf]="resourceCreationInfo.creationDate.dateRange">
+            <ng-template [ngIf]="resourceCreationInfo.creationDate.dateRange.startDate">
+                <ng-template [ngIf]="resourceCreationInfo.creationDate.dateRange.startDate.day">
                     {{resourceCreationInfo.creationDate.dateRange.startDate.day}}/
-                </span>
-                <span *ngIf="resourceCreationInfo.creationDate.dateRange.startDate.year">
+                </ng-template>
+                <ng-template [ngIf]="resourceCreationInfo.creationDate.dateRange.startDate.month">
+                    {{resourceCreationInfo.creationDate.dateRange.startDate.month}}/
+                </ng-template>
+                <ng-template [ngIf]="resourceCreationInfo.creationDate.dateRange.startDate.year">
                     {{resourceCreationInfo.creationDate.dateRange.startDate.year}}
-                </span>
-            </span>
+                </ng-template>
+            </ng-template>
             -
-            <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate">
-                <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate.month">
-                    {{resourceCreationInfo.creationDate.dateRange.endDate.month}}/
-                </span>
-                <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate.day">
+            <ng-template [ngIf]="resourceCreationInfo.creationDate.dateRange.endDate">
+                <ng-template [ngIf]="resourceCreationInfo.creationDate.dateRange.endDate.day">
                     {{resourceCreationInfo.creationDate.dateRange.endDate.day}}/
-                </span>
-                <span *ngIf="resourceCreationInfo.creationDate.dateRange.endDate.year">
+                </ng-template>
+                <ng-template [ngIf]="resourceCreationInfo.creationDate.dateRange.endDate.month">
+                    {{resourceCreationInfo.creationDate.dateRange.endDate.month}}/
+                </ng-template>
+                <ng-template [ngIf]="resourceCreationInfo.creationDate.dateRange.endDate.year">
                     {{resourceCreationInfo.creationDate.dateRange.endDate.year}}
-                </span>
-            </span>
-        </span>
+                </ng-template>
+            </ng-template>
+        </ng-template>
+
+    </span>
+
+    <ng-template [ngIf]="resourceCreationInfo.resourceCreators && resourceCreationInfo.resourceCreators.length > 0">
 
         <span> by </span>
 
