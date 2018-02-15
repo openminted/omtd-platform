@@ -9,7 +9,11 @@
     <span *ngIf="rightsInfo.licenceInfos && rightsInfo.licenceInfos.length>0" class="rightsInfo">
         <span *ngFor="let licenseInfo of rightsInfo.licenceInfos; let isLast = last;">
             <span *ngIf="licenseInfo.licence">
-                {{licence(licenseInfo.licence)}}{{isLast ? '' : ', '}}
+                {{licence(licenseInfo.licence)}}
+                <ng-template [ngIf]="licenseInfo.licence=='NON_STANDARD_LICENCE_TERMS'">
+                    (<a target="_blank" href="{{licenseInfo.nonStandardLicenceTermsURL}}">{{licenseInfo.nonStandardLicenceName}}</a>)
+                </ng-template>
+                {{isLast ? '' : ', '}}
             </span>
         </span>
         <!--<license-info *ngFor="let licenseInfo of rightsInfo.licenceInfos" [licenseInfo]="licenseInfo"></license-info>-->
