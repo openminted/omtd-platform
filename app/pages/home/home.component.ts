@@ -6,7 +6,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchQuery } from "../../domain/search-query";
 import { ResourceService } from "../../services/resource.service";
-import { BaseMetadataRecord, ComponentInfo, CorpusInfo } from "../../domain/openminted-model";
+import {
+    BaseMetadataRecord, ComponentInfo, CorpusInfo, LanguageDescriptionInfo,
+    LexicalConceptualResourceInfo
+} from "../../domain/openminted-model";
 import { SearchResults } from "../../domain/search-results";
 import { ShortResultInfo } from "../../domain/short-resource-info";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
@@ -52,6 +55,8 @@ export class HomeComponent implements OnInit {
             let componentBody = component;
             let corpusInfo : CorpusInfo;
             let componentInfo : ComponentInfo;
+            let lexicalConceptualResourceInfo: LexicalConceptualResourceInfo;
+            let languageDescriptionInfo: LanguageDescriptionInfo;
             let title : string;
             let description : string;
             let resourceType : string;
@@ -67,6 +72,18 @@ export class HomeComponent implements OnInit {
                 title = componentInfo.identificationInfo.resourceNames[0].value;
                 description = componentInfo.identificationInfo.descriptions[0].value;
                 resourceType = 'component';
+                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
+            } else if (typeof componentBody['lexicalConceptualResourceInfo'] != 'undefined') {
+                lexicalConceptualResourceInfo = componentBody['lexicalConceptualResourceInfo'];
+                title = lexicalConceptualResourceInfo.identificationInfo.resourceNames[0].value;
+                description = lexicalConceptualResourceInfo.identificationInfo.descriptions[0].value;
+                resourceType = 'lexical';
+                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
+            } else if (typeof componentBody['languageDescriptionInfo'] != 'undefined') {
+                languageDescriptionInfo = componentBody['languageDescriptionInfo'];
+                title = languageDescriptionInfo.identificationInfo.resourceNames[0].value;
+                description = languageDescriptionInfo.identificationInfo.descriptions[0].value;
+                resourceType = 'language';
                 creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
             }
             let shortResultInfo: ShortResultInfo = {

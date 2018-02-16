@@ -11,7 +11,10 @@ import { URLParameter } from "./../../domain/url-parameter";
 import { ResourceService } from "../../services/resource.service";
 import { SearchResults } from "../../domain/search-results";
 import { ShortResultInfo } from "../../domain/short-resource-info";
-import { BaseMetadataRecord, ComponentInfo, CorpusInfo } from "../../domain/openminted-model";
+import {
+    BaseMetadataRecord, ComponentInfo, CorpusInfo, LanguageDescriptionInfo,
+    LexicalConceptualResourceInfo
+} from "../../domain/openminted-model";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { GhQueryEncoder } from "../../domain/utils";
 
@@ -94,6 +97,8 @@ export class SearchComponent {
             let componentBody = component;
             let corpusInfo : CorpusInfo;
             let componentInfo : ComponentInfo;
+            let lexicalConceptualResourceInfo: LexicalConceptualResourceInfo;
+            let languageDescriptionInfo: LanguageDescriptionInfo;
             let title : string;
             let description : string;
             let resourceType : string;
@@ -111,10 +116,16 @@ export class SearchComponent {
                 resourceType = componentInfo.application ? 'application' :'component';
                 creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
             } else if (typeof componentBody['lexicalConceptualResourceInfo'] != 'undefined') {
-                componentInfo = componentBody['lexicalConceptualResourceInfo'];
-                title = componentInfo.identificationInfo.resourceNames[0].value;
-                description = componentInfo.identificationInfo.descriptions[0].value;
+                lexicalConceptualResourceInfo = componentBody['lexicalConceptualResourceInfo'];
+                title = lexicalConceptualResourceInfo.identificationInfo.resourceNames[0].value;
+                description = lexicalConceptualResourceInfo.identificationInfo.descriptions[0].value;
                 resourceType = 'lexical';
+                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
+            } else if (typeof componentBody['languageDescriptionInfo'] != 'undefined') {
+                languageDescriptionInfo = componentBody['languageDescriptionInfo'];
+                title = languageDescriptionInfo.identificationInfo.resourceNames[0].value;
+                description = languageDescriptionInfo.identificationInfo.descriptions[0].value;
+                resourceType = 'language';
                 creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
             }
             let shortResultInfo: ShortResultInfo = {
