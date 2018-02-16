@@ -143,7 +143,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="shortResultsInfo.length>0">
+                    <div *ngIf="searchResults && shortResultsInfo && shortResultsInfo.length>0">
 
                         <div class="uk-width-1-1 uk-row-first uk-margin-medium-bottom">
                             <span>Showing {{searchResults.from+1}} - {{searchResults.to}} of {{searchResults.total}} results</span>
