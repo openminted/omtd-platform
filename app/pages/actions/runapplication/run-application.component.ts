@@ -24,6 +24,8 @@ import { Operation } from "../../../domain/operation";
 
 export class RunApplicationComponent {
 
+    state: string = 'SELECT';
+
     errorMessage: string;
     successfulMessage: string;
 
@@ -80,13 +82,15 @@ export class RunApplicationComponent {
                         sessionStorage.setItem(urlParameter.key, urlParameter.values[0]);
                         this.resourceService.get<OMTDCorpus>(urlParameter.values[0],'corpus').subscribe(
                             corpus => this.corpus = corpus,
-                            error => this.handleError('System error loading input', <any>error));
+                            error => this.handleError('System error loading input', <any>error),
+                            () => this.selectedState());
                     }
                     if(urlParameter.key === 'application') {
                         sessionStorage.setItem(urlParameter.key, urlParameter.values[0]);
                         this.resourceService.get<OMTDComponent>(urlParameter.values[0],'application').subscribe(
                             component => {this.component = component; transform(this.component)},
-                            error => this.handleError('System error loading application', <any>error));
+                            error => this.handleError('System error loading application', <any>error),
+                            () => this.selectedState());
                     }
                 }
             });
@@ -94,6 +98,7 @@ export class RunApplicationComponent {
 
     handleError(message: string, error : ErrorObservable) {
         this.errorMessage = message + ' (Server responded: ' + error.error + ')';
+        this.state = 'READY';
     }
 
     selectInput() {
@@ -116,6 +121,10 @@ export class RunApplicationComponent {
         this.router.navigate(['/browseApplications']);
     }
 
+    selectedState() {
+        this.state = (this.corpus && this.component) ? 'READY' : 'SELECT';
+    }
+
     runApplication() {
 
         this.successfulMessage = null;
@@ -136,6 +145,7 @@ export class RunApplicationComponent {
                 jobId => {
                     this.jobId = jobId;
                     console.log('jobId', jobId);
+                    this.state = 'RUNNING';
                     this.intervalId = window.setInterval(() => {
                         this.workflowService.getStatus(this.jobId).subscribe(
                             res => { this.wsJobStatus=res; this.checkStatus(res) },
@@ -153,10 +163,12 @@ export class RunApplicationComponent {
         if(wsJobStatus.status == 'FINISHED') {
             this.successfulMessage = 'Application run finished successfully';
             this.isRunning = false;
+            this.state = 'FINISHED';
             clearInterval(this.intervalId);
         } else if(wsJobStatus.status == 'FAILED') {
             this.errorMessage = 'There was a problem running the application. Try again in a while.';
             this.isRunning = true;
+            this.state = 'READY';
             clearInterval(this.intervalId);
         }
     }

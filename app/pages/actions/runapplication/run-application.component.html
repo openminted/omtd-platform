@@ -72,34 +72,32 @@
                     <div class="uk-width-1-5@m placeholderGrid" style="text-align: center; height: 200px; line-height: 200px">
                         <i aria-hidden="true" class="fa fa-arrow-right fa-3x" style="vertical-align: middle;"></i>
                     </div>
-                    <div *ngIf="!corpus || !component"
-                         class="uk-width-1-5@m placeholderGrid uk-disabled" style="height: 200px">
-                        <a class="uk-disabled" style="height: 100%">
-                            <div class="uk-placeholder uk-text-center" style="height: 100%"
-                                 title="You need to select both an input and an application">Click to run the application!
-                                (You need to select both an input and an application first)</div>
-                        </a>
-                    </div>
-                    <div *ngIf="!isRunning && (corpus && component && !wsJobStatus) || (wsJobStatus && wsJobStatus.status=='FAILED')"
-                         class="uk-width-1-5@m placeholderGrid" style="height: 200px">
-                        <a style="height: 100%" (click)="runApplication()">
-                            <div class="uk-placeholder uk-text-center" style="height: 100%">Click to run the application!</div>
-                        </a>
-                    </div>
-                    <div *ngIf="isRunning"
-                         class="uk-width-1-5@m placeholderGrid uk-disabled" style="height: 200px">
-                        <a class="uk-disabled" style="height: 100%" >
-                            <div class="uk-placeholder uk-text-center" style="height: 100%">Running....
-                                <i class="fa fa-spinner fa-spin uk-display-block fa-2x uk-margin-top"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div *ngIf="wsJobStatus && wsJobStatus.status=='FINISHED'"
-                         class="uk-width-1-5@m placeholderGrid output" style="height: 200px">
-                        <a style="height: 100%" target="_blank"
-                           href="{{endpoint}}/request/corpus/download?archiveId={{wsJobStatus.corpusID}}">
-                            <div class="uk-placeholder uk-text-center" style="height: 100%">Download output!</div>
-                        </a>
+
+                    <div class="uk-width-1-5@m" [ngSwitch]="state" style="height: 200px">
+                        <div *ngSwitchCase="'SELECT'" class="placeholderGrid uk-disabled" style="height: 100%">
+                            <a class="uk-disabled" style="height: 100%">
+                                <div class="uk-placeholder uk-text-center" style="height: 100%"
+                                     title="You need to select both an input and an application">Click to run the application!
+                                    (You need to select both an input and an application first)</div>
+                            </a>
+                        </div>
+                        <div *ngSwitchCase="'READY'" class="placeholderGrid" style="height: 100%">
+                            <a style="height: 100%" (click)="runApplication()">
+                                <div class="uk-placeholder uk-text-center" style="height: 100%">Click to run the application!</div>
+                            </a>
+                        </div>
+                        <div *ngSwitchCase="'RUNNING'" class="placeholderGrid uk-disabled" style="height: 100%">
+                            <a class="uk-disabled" style="height: 100%" >
+                                <div class="uk-placeholder uk-text-center" style="height: 100%">Running....
+                                    <i class="fa fa-spinner fa-spin uk-display-block fa-2x uk-margin-top"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div *ngSwitchCase="'FINISHED'" class="placeholderGrid output" style="height: 100%">
+                            <a style="height: 100%" href="/landingPage/corpus/{{wsJobStatus.corpus.output}}">
+                                <div class="uk-placeholder uk-text-center" style="height: 100%">Click here to view the output!</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
