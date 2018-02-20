@@ -212,7 +212,7 @@ export class ResourceService {
         formBody.append('filename',name);
         formBody.append('file',file);
         return this.http.post(this._uploadZip,formBody)
-            .map(res => this.corpusDownloadURL(res.json()))
+            .map(res => res.json())
             .catch(this.handleError);
     }
 
