@@ -15,7 +15,7 @@
 }
 
 .searchForm.uk-form *::-moz-placeholder {
-    /*color: #666666;*/
+    color: #fff;
 }
 
 .searchForm input {
@@ -38,4 +38,30 @@
     /*color: #666666;*/
     display: inline-block;
     margin-left: 15px;
+}
+
+.uk-search-field {
+    color: #fff !important;
+}
+
+.uk-search-field::-webkit-input-placeholder {
+    color: #fff !important;
+    font-size: 90%;
+}
+
+.uk-search-field:-moz-placeholder {
+    color: #fff !important;
+    font-size: 90%;
+    opacity:  1;
+}
+
+.uk-search-field::-moz-placeholder {
+    color: #fff !important;
+    font-size: 90%;
+    opacity:  1;
+}
+
+.uk-search-field:-ms-input-placeholder {
+    color: #fff !important;
+    font-size: 90%;
 }
