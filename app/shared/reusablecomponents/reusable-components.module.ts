@@ -14,6 +14,7 @@ import { HelpContentService } from "../../services/help-content.service";
 import { ConfirmationDialogComponent } from "../confirmation-dialog.component";
 import { ModalModule } from "ngx-bootstrap";
 import { ComingSoonPageComponent } from "./coming-soon-page.component";
+import { DownloadComponent } from "./download.component";
 
 
 const modules = [
@@ -21,7 +22,8 @@ const modules = [
     HelpContentComponent,
     AsideHelpContentComponent,
     ConfirmationDialogComponent,
-    ComingSoonPageComponent
+    ComingSoonPageComponent,
+    DownloadComponent
 ];
 
 @NgModule({

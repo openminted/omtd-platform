@@ -67,20 +67,26 @@ export class AuthenticationService {
             setInterval(() =>{
                 this.http.get(this.endpoint + '/user',{ withCredentials: true }).subscribe(
                     userInfo => {console.log("User is still logged in")},
-                    () => {sessionStorage.removeItem('name');sessionStorage.removeItem('email');deleteCookie('name');}
+                    () => {
+                        sessionStorage.removeItem('name');
+                        sessionStorage.removeItem('email');
+                        sessionStorage.removeItem('sub');
+                        deleteCookie('name');}
                 );
             },1000 * 60 * 5);
             if(!sessionStorage.getItem('name')) {
                 this.http.get(this.endpoint + '/user',{ withCredentials: true }).subscribe(
                     userInfo => {
                         console.log(userInfo.json());
-                        sessionStorage.setItem('name',userInfo.json()['name'])
-                        sessionStorage.setItem('email',userInfo.json()['email'])
+                        sessionStorage.setItem('name',userInfo.json()['name']);
+                        sessionStorage.setItem('email',userInfo.json()['email']);
+                        sessionStorage.setItem('sub',userInfo.json()['sub']);
                     },
                     () => {
                         sessionStorage.removeItem('name');
                         sessionStorage.removeItem('email');
-                        deleteCookie('name')
+                        sessionStorage.removeItem('sub');
+                        deleteCookie('name');
                         this.router.navigateByUrl('/home');
                     }
                 );
