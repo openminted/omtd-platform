@@ -71,7 +71,8 @@ export class CorpusLandingPageComponent implements OnInit {
         }
         let pub = this.originalCorpus.corpusInfo.identificationInfo.public;
         let owned = this.isOwn_(this.originalCorpus);
-        let isGenerated = this.originalCorpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo != null;
+        let isGenerated = this.originalCorpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo == null;
+        console.log(pub,owned,isGenerated);
         return (pub || owned) && !isGenerated;
     }
 
