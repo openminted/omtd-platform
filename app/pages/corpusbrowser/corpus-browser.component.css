@@ -1,0 +1,23 @@
+.resultsPageLabel {
+    margin-top: -40px;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 300;
+    color: #9f9b9b;
+    text-transform: uppercase;
+}
+
+h4, .uk-h4 {
+    text-transform: none;
+}
+
+a:hover .uk-label-primary , a:focus .uk-label-primary {
+    background-color: #2c4eac;
+    color: #fff;
+    text-decoration: none;
+}
+
+.documentViewer {
+    padding-left: 0px;
+}

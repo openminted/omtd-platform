@@ -1,0 +1,216 @@
+<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div class="uk-container">
+        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+            <div class="uk-width-1-1@m uk-first-column">
+
+                <h1 class="uk-h2">Corpus Browser</h1>
+                <hr class="uk-divider-small">
+
+                <!-- TOP HELP CONTENT -->
+                <help-content #topHelperContent [position]="'top'"
+                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+                <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+                    <div class="uk-grid">
+
+                        <!-- LEFT HELP CONTENT -->
+                        <aside-help-content #leftHelperContent [position]="'left'"
+                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+
+                        <!-- MIDDLE -->
+
+                        <div *ngIf="corpusContent |  async; else loading" class="uk-width-2-5@m uk-first-column">
+
+                            <div *ngIf="errorMessage" class="">
+                                <div data-uk-alert="" class="uk-alert uk-alert-danger">
+                                    <p>{{errorMessage}}</p>
+                                </div>
+                            </div>
+
+                            <!--<div *ngIf="!errorMessage && shortResultsInfo.length != 0" class="">-->
+                            <div *ngIf="!errorMessage" class="">
+
+                                <div *ngIf="!(searchResults?.results?.length>0)">
+                                    <div data-uk-alert="" class="uk-alert uk-alert-warning">
+                                        <p>No results found</p>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="searchResults?.results?.length>0">
+
+                                    <div class="uk-width-1-1 uk-row-first uk-margin-medium-bottom">
+                                        <span>Showing {{searchResults.from+1}} - {{searchResults.to}} of {{searchResults.total}} results</span>
+                                    </div>
+
+                                    <div class="uk-width-1-1 uk-row-first">
+                                        <ul class="uk-pagination">
+
+                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
+                                                <a class="uk-disabled" href="#">
+                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                                </a>
+                                            </li>
+                                            <li *ngIf="!isPreviousPageDisabled">
+                                                <a (click)="goToPreviousPage()">
+                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                                </a>
+                                            </li>
+
+                                            <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
+                                                <a class="uk-disabled" href="#">Next
+                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
+                                                </a>
+                                            </li>
+                                            <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
+                                                <a (click)="goToNextPage()">Next
+                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
+                                    </div>
+
+                                    <div class="uk-grid-margin">
+
+                                        <ng-template ngFor let-publicationInfo [ngForOf]="searchResults.results">
+
+                                            <div class="uk-grid" uk-grid="">
+                                                <div class="uk-width-expand">
+                                                    <!--<h4 class="uk-margin-small uk-text-left@m uk-text-center uk-h4 uk-scrollspy-inview uk-animation-fade"-->
+                                                        <!--uk-scrollspy-class="" style="">-->
+                                                        <!--{{publicationInfo.title}}-->
+                                                    <!--</h4>-->
+                                                    <div class="uk-margin-small uk-text-left@m uk-text-center uk-scrollspy-inview uk-animation-fade"
+                                                        uk-scrollspy-class="" style="">
+                                                        {{publicationInfo.title}}
+                                                    </div>
+                                                    <div>
+                                                        <a *ngIf="publicationInfo.hasMetadata"
+                                                           (click)="previewMetadata(publicationInfo.metadata_path)">
+                                                           <!--href="{{resourceService.prefix}}/request/corpus/downloadFile?path={{publicationInfo.metadata_path}}" -->
+                                                            <span class="uk-label uk-label-primary">
+                                                                View metadata
+                                                                <!--<i class="fa fa-external-link"></i>-->
+                                                            </span>
+                                                        </a>
+                                                        <a *ngIf="publicationInfo.hasAbstract"
+                                                           (click)="previewAbstract(publicationInfo.abstract_path)">
+                                                           <!--href="{{resourceService.prefix}}/request/corpus/downloadFile?path={{publicationInfo.abstract_path}}" -->
+                                                            <span class="uk-label uk-label-primary">
+                                                                View abstract
+                                                                <!--<i class="fa fa-external-link"></i>-->
+                                                            </span>
+                                                        </a>
+                                                        <a *ngIf="publicationInfo.hasFulltext"
+                                                           (click)="previewFullText(publicationInfo.fulltext_path)">
+                                                            <!--href="{{resourceService.prefix}}/request/corpus/downloadFile?path={{publicationInfo.abstract_path}}" -->
+                                                            <span class="uk-label uk-label-primary">
+                                                                View fulltext
+                                                                <!--<i class="fa fa-external-link"></i>-->
+                                                            </span>
+                                                        </a>
+                                                        <!--<span *ngIf="publicationInfo.hasFulltext" class="uk-label uk-label-primary">
+                                                        </span>-->
+                                                        <a *ngIf="publicationInfo.hasAnnotations"
+                                                           (click)="previewAnnotations(publicationInfo.archiveId, publicationInfo.id)">
+                                                            <span class="uk-label uk-label-primary">
+                                                                View annotations
+                                                                <!--<i class="fa fa-external-link"></i>-->
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr uk-scrollspy-class="" style=""
+                                                class="uk-scrollspy-inview uk-animation-slide-top-medium">
+
+                                        </ng-template>
+                                    </div>
+
+                                    <div class="uk-width-1-1 uk-row-first">
+                                        <ul class="uk-pagination">
+
+                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
+                                                <a class="uk-disabled" href="#">
+                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                                </a>
+                                            </li>
+                                            <li *ngIf="!isPreviousPageDisabled">
+                                                <a (click)="goToPreviousPage()">
+                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                                </a>
+                                            </li>
+
+                                            <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
+                                                <a class="uk-disabled" href="#">Next
+                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
+                                                </a>
+                                            </li>
+                                            <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
+                                                <a (click)="goToNextPage()">Next
+                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--I-Frame for displaying content-->
+                        <div *ngIf="corpusContent |  async" class="uk-width-expand@m uk-margin-medium-left documentViewer" style="border: 1px dotted #ccc">
+                            <iframe *ngIf="urlToDisplay && urlToDisplay!='reload'" [src]="iFrameURL"
+                                    style="width:100%; height:100%; overflow-x:hidden;">
+
+                            </iframe>
+                            <div *ngIf="urlToDisplay && urlToDisplay=='reload'"
+                                 class="uk-margin-medium-left uk-margin-medium-top uk-margin-medium-bottom">
+                            </div>
+                            <div *ngIf="!urlToDisplay" class="uk-margin-medium-left uk-margin-medium-top uk-margin-medium-bottom">
+                                <h4>Content Viewer</h4>
+                                <p>Nothing to display yet</p>
+                            </div>
+                        </div>
+
+                        <ng-template #loading>
+                            <div class="uk-width-expand@m uk-first-column">
+                                <div class="whiteFilm"><i class="fa fa-spinner fa-spin fa-5x loader" aria-hidden="true"></i></div>
+                            </div>
+                        </ng-template>
+
+                        <!-- RIGHT HELP CONTENT -->
+                        <aside-help-content #rightHelperContent [position]="'right'"
+                                            [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+                    </div>
+                </div>
+
+
+                <!-- BOTTOM HELP CONTENT -->
+                <help-content #bottomHelperContent [position]="'bottom'"
+                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<confirmation-dialog #deleteConfirmationModal [isModalShown]="isModalShown" [title]="'Delete Confirmation'"
+                     [confirmActionButton]="'Yes, delete it'" (emmitObject)="confirmedDelete($event)">
+    Are you sure you want to delete the selected corpus?
+</confirmation-dialog>
+
+<confirmation-dialog #makePublicConfirmationModal [title]="'Confirmation'" [isModalShown]="isModalShown"
+                     [confirmActionButton]="'Yes, make it public'" (emmitObject)="confirmedMakePublic($event)">
+    Are you sure you want to make public the selected corpus? Making it public will make it accessible to anyone using the
+    OpenMinTeD platform and you will no longer be able to edit it or delete it.
+</confirmation-dialog>

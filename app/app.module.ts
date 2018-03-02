@@ -31,6 +31,7 @@ import { ActionsModule } from "./pages/actions/actions.module";
 import { UserSpaceModule } from "./pages/user/user-space.module";
 import { LexicalRegistrationModule } from "./pages/resourceregistration/lexical/lexical-registration.module";
 import { LanguageDescriptionRegistrationModule } from "./pages/resourceregistration/languagedescription/language-description-registration.module";
+import { CorpusBrowserModule } from "./pages/corpusbrowser/corpus-browser.module";
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import { LanguageDescriptionRegistrationModule } from "./pages/resourceregistrat
         SupportModule,
         AboutModule,
         ActionsModule,
-        UserSpaceModule
+        UserSpaceModule,
+        CorpusBrowserModule
     ],
     declarations: [
         AppComponent,

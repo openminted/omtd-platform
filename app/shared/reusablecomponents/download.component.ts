@@ -8,7 +8,13 @@ import { saveAs } from "file-saver";
         <button class="uk-button uk-button-primary" (click)="download()" [ngClass]="{'uk-button-primary' : !disabled, 'uk-disabled' : disabled}">
             Download <i class="fa fa-download" aria-hidden="true"></i>
         </button>
-  `
+        <!--<a (click)="download()" [ngClass]="{'uk-disabled' : disabled}" class="download">-->
+            <!--Download <i class="fa fa-download" aria-hidden="true"></i>-->
+        <!--</a>-->
+  `,
+    // styles: [
+    //     'a.download {color: #524f4f; padding: 6px 0; display: block;} a:hover.download {color: #0055b9; text-decoration: none}'
+    // ]
 })
 export class DownloadComponent {
     @Input()

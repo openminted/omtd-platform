@@ -17,6 +17,7 @@ import { Resource } from "../domain/resource";
 import { EnrichedOperation } from "../domain/operation";
 import { MavenComponent } from "../domain/maven-component";
 import { GhQueryEncoder } from "../domain/utils";
+import { PublicationInfo } from "../domain/publication-info";
 
 
 @Injectable()
@@ -28,10 +29,15 @@ export class ResourceService {
         console.log(this.endpoint);
     }
 
+    public get prefix() : string {
+        return this.endpoint;
+    }
+
     private _searchUrl = this.endpoint + '/request/';
     private _resourcesUrl = this.endpoint + '/request/';
     private _uploadUrl = this.endpoint + '/resources/';
     private _uploadZip = this.endpoint + "/request/corpus/upload";
+    private _browseCorpusUrl = this.endpoint + '/request/corpus/getCorpusContent';
 
     private rearangeFacets(results : SearchResults<any>) : SearchResults<any> {
         for(let facet of results.facets) {
@@ -296,6 +302,12 @@ export class ResourceService {
         console.log(JSON.stringify(corpus_,null,2));
         return this.http.post(this._searchUrl + 'incompleteCorpus', JSON.stringify(corpus_), options)
             .map(res => res.status)
+            .catch(this.handleError);
+    }
+
+    browseCorpus(corpusId: string, urlParameters: URLSearchParams) {
+        return this.http.get(`${this._browseCorpusUrl}/${corpusId}`,{params : urlParameters})
+            .map(res => <SearchResults<PublicationInfo>> res.json())
             .catch(this.handleError);
     }
 

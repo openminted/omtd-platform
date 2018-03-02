@@ -92,7 +92,8 @@ module.exports = function(env) {
                     CONNECTOR_API_ENDPOINT : JSON.stringify(process.env.CONNECTOR_API_ENDPOINT || "http://83.212.101.85:8888/content-connector-service"),
                     WORKFLOW_API_ENDPOINT : JSON.stringify(process.env.WORKFLOW_API_ENDPOINT || "https://dev.openminted.eu:8881"),
                     OIDC_ENDPOINT : JSON.stringify(process.env.OIDC_ENDPOINT || "http://localhost:8080/omtd-registry/openid_connect_login"),
-                    AAI_ENDPOINT : JSON.stringify(process.env.AAI_ENDPOINT || "https://aai.openminted.eu/oidc")
+                    AAI_ENDPOINT : JSON.stringify(process.env.AAI_ENDPOINT || "https://aai.openminted.eu/oidc"),
+                    VIEWER_ENDPOINT : JSON.stringify(process.env.VIEWER_ENDPOINT || "https://beta.openminted.eu/viewer/#/?")
                 }})
             );
             webpackConfig.module.loaders.push(
@@ -121,7 +122,8 @@ module.exports = function(env) {
                     CONNECTOR_API_ENDPOINT : JSON.stringify("/connector"),
                     WORKFLOW_API_ENDPOINT : JSON.stringify("/workflow"),
                     OIDC_ENDPOINT : JSON.stringify("/api/openid_connect_login"),
-                    AAI_ENDPOINT : JSON.stringify("https://aai.openminted.eu/oidc")
+                    AAI_ENDPOINT : JSON.stringify("https://aai.openminted.eu/oidc"),
+                    VIEWER_ENDPOINT: JSON.stringify("/viewer/#/?")
                 }})
             );
             webpackConfig.module.loaders.push(
