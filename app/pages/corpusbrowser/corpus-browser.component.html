@@ -202,15 +202,3 @@
         </div>
     </div>
 </div>
-
-
-<confirmation-dialog #deleteConfirmationModal [isModalShown]="isModalShown" [title]="'Delete Confirmation'"
-                     [confirmActionButton]="'Yes, delete it'" (emmitObject)="confirmedDelete($event)">
-    Are you sure you want to delete the selected corpus?
-</confirmation-dialog>
-
-<confirmation-dialog #makePublicConfirmationModal [title]="'Confirmation'" [isModalShown]="isModalShown"
-                     [confirmActionButton]="'Yes, make it public'" (emmitObject)="confirmedMakePublic($event)">
-    Are you sure you want to make public the selected corpus? Making it public will make it accessible to anyone using the
-    OpenMinTeD platform and you will no longer be able to edit it or delete it.
-</confirmation-dialog>
