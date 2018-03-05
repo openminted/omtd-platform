@@ -24,6 +24,38 @@
 
                     <div class="uk-float-right uk-inline">
 
+                        <div class="uk-inline">
+                            <!--<button class="uk-button uk-button-primary" type="button">Actions</button>-->
+                            <!--<div uk-dropdown="pos: bottom-right;">-->
+                                <!--<ul class="uk-nav uk-dropdown-nav">-->
+                                    <!--<li class="">-->
+                                        <!--<a (click)="process()">Process <i class="fa fa-cogs" aria-hidden="true"></i></a>-->
+                                    <!--</li>-->
+                                    <!--<li class="">-->
+                                        <!--<a href="/corpusBrowser/{{corpus.metadataHeaderInfo.metadataRecordIdentifier.value}}">Browse</a>-->
+                                    <!--</li>-->
+                                    <!--<li *ngIf="corpus?.corpusInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginalCorpus)" class="">-->
+                                        <!--<ng-container [ngSwitch]="isGenerated">-->
+                                            <!--<span *ngSwitchCase="true" title="Download of generated corpora from our content providers is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">-->
+                                                <!--<download [url]="corpus.corpusInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                                            <!--</span>-->
+                                            <!--<span *ngSwitchCase="false">-->
+                                                <!--<download [url]="corpus.corpusInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                                            <!--</span>-->
+                                        <!--</ng-container>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        </div>
+
+                        <button class="uk-button uk-button-primary" (click)="process()">
+                            Process <i class="fa fa-cogs" aria-hidden="true"></i>
+                        </button>
+
+                        <a class="uk-button uk-button-primary" href="/corpusBrowser/{{corpus.metadataHeaderInfo.metadataRecordIdentifier.value}}">
+                            Browse <i class="fa fa-cogs" aria-hidden="true"></i>
+                        </a>
+
                         <ng-template [ngIf]="corpus?.corpusInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginalCorpus)">
                             <ng-container [ngSwitch]="isGenerated">
                                 <span *ngSwitchCase="true" title="Download of generated corpora from our content providers is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">
@@ -35,9 +67,7 @@
                             </ng-container>
                         </ng-template>
 
-                        <button class="uk-button uk-button-primary" (click)="process()">
-                            Process <i class="fa fa-cogs" aria-hidden="true"></i>
-                        </button>
+
 
                     </div>
 
