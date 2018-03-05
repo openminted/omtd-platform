@@ -6,6 +6,9 @@ import { ResourceService } from "../../services/resource.service";
 import { SearchResults } from "../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../shared/confirmation-dialog.component";
 import { title } from "../../domain/utils";
+import { Observable } from "rxjs/Observable";
+import { saveAs } from "file-saver";
+import { HttpResponse } from "@angular/common/http";
 
 @Component({
     selector: 'my-resource-base',
@@ -85,6 +88,16 @@ export class MyResourceComponent<T extends BaseMetadataRecord> {
 
     handleError(message: string, error: ErrorObservable) {
         this.errorMessage = message + ' (Server responded: ' + error.error + ')';
+    }
+
+    downloadResource(component : T, mediaType : string) : void {
+        let id = component.metadataHeaderInfo.metadataRecordIdentifier.value;
+        this.resourceService.getBlob(id,this.resourceType,mediaType).subscribe(data => {
+            console.log(data);
+            if (data instanceof HttpResponse) {
+                saveAs((data as HttpResponse<any>).body, `${id}.${mediaType}`);
+            }
+        });
     }
 
     goToDetails(component: T) {

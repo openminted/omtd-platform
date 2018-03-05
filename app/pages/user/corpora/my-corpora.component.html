@@ -79,12 +79,24 @@
                                                                         <i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i>
                                                                     </a>
                                                                     <a (click)="makePublicConfirmation(corpus)" class="" title="Share corpus" uk-tooltip>
-                                                                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                                                        <i class="fa fa-share-alt uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="downloadResource(corpus,'json')" title="Download {{resourceType}} as JSON" uk-tooltip>
+                                                                        <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="downloadResource(corpus,'xml')" title="Download {{resourceType}} as XML" uk-tooltip>
+                                                                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                                                     </a>
                                                                 </div>
                                                                 <div *ngIf="corpus.corpusInfo.identificationInfo.public" class="el-title">
                                                                     <a (click)="goToDetails(corpus)" title="View corpus" uk-tooltip>
-                                                                        <i class="fa fa-info" aria-hidden="true"></i>
+                                                                        <i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="downloadResource(corpus,'json')" title="Download {{resourceType}} as JSON" uk-tooltip>
+                                                                        <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
+                                                                    </a>
+                                                                    <a (click)="downloadResource(corpus,'xml')" title="Download {{resourceType}} as XML" uk-tooltip>
+                                                                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                                                     </a>
                                                                 </div>
                                                             </td>

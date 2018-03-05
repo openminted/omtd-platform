@@ -2,22 +2,21 @@
  * Created by stefania on 9/6/16.
  */
 import { Injectable } from "@angular/core";
-import { Headers, Http, RequestMethod, RequestOptions, Response, URLSearchParams } from "@angular/http";
+import {
+    Headers, Http, RequestMethod, RequestOptions, Response, ResponseContentType,
+    URLSearchParams
+} from "@angular/http";
 import { Observable } from "rxjs/Rx";
 import {
-    BaseMetadataRecord,
-    Component as OMTDComponent,
-    Corpus as OMTDCorpus,
-    LanguageDescription,
+    BaseMetadataRecord, Component as OMTDComponent, Corpus as OMTDCorpus, LanguageDescription,
     Lexical
 } from "../domain/openminted-model";
-import { URLParameter } from "../domain/url-parameter";
 import { SearchResults } from "../domain/search-results";
 import { Resource } from "../domain/resource";
-import { EnrichedOperation } from "../domain/operation";
 import { MavenComponent } from "../domain/maven-component";
 import { GhQueryEncoder } from "../domain/utils";
 import { PublicationInfo } from "../domain/publication-info";
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from "@angular/common/http";
 
 
 @Injectable()
@@ -25,7 +24,7 @@ export class ResourceService {
 
     private endpoint = process.env.API_ENDPOINT;
 
-    constructor (private http: Http) {
+    constructor (private http: Http, private httpClient : HttpClient) {
         console.log(this.endpoint);
     }
 
@@ -195,10 +194,27 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    get<T>(id : string,resourceType : string) : Observable<T> {
-        return this.http.get(`${this._resourcesUrl}${resourceType}/${id}`)
-            .map(res => <OMTDCorpus> res.json())
+    get<T>(id : string,resourceType : string, type : string = "json") : Observable<T> {
+        // let headers = new Headers({'Content-Type': `application/${type}`, 'Accept' : `application/${type}`});
+        let options = new RequestOptions({withCredentials : true});
+        switch (type) {
+            case "xml" :
+                options.responseType = ResponseContentType.Text; break;
+            case "json" :
+                options.responseType = ResponseContentType.Json; break;
+        }
+        return this.http.get(`${this._resourcesUrl}${resourceType}/${id}`,options)
+            .map(res => {if (type=='json') return <T> res.json(); else res.text();})
             .catch(this.handleError);
+    }
+
+    getBlob(id : string,resourceType : string, type : string = "json") : Observable<HttpEvent<any>> {
+        const headers = new HttpHeaders({'Content-Type': `application/${type}`, 'Accept' : `application/${type}`});
+        const req = new HttpRequest('GET', `${this._resourcesUrl}${resourceType}/${id}`, {
+            responseType: "blob",
+            headers : headers
+        });
+        return this.httpClient.request(req).catch(this.handleError);
     }
 
     getAll<T>(urlParameters : URLSearchParams, resourceType : string) : Observable<SearchResults<T>> {
