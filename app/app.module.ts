@@ -1,12 +1,11 @@
 /**
  * Created by stefania on 10/3/16.
  */
-import { NgModule }      from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
-import { ReactiveFormsModule } from "@angular/forms";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { routing, appRoutingProviders } from "./app.routing";
+import { appRoutingProviders, routing } from "./app.routing";
 
 import { UserService } from "./services/user.service";
 import { AuthenticationService } from "./services/authentication.service";
@@ -32,12 +31,14 @@ import { UserSpaceModule } from "./pages/user/user-space.module";
 import { LexicalRegistrationModule } from "./pages/resourceregistration/lexical/lexical-registration.module";
 import { LanguageDescriptionRegistrationModule } from "./pages/resourceregistration/languagedescription/language-description-registration.module";
 import { CorpusBrowserModule } from "./pages/corpusbrowser/corpus-browser.module";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
+        HttpClientModule,
         HttpModule,
         JsonpModule,
         // ResourceRegistrationModule,
