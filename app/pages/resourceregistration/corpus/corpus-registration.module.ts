@@ -20,6 +20,8 @@ import { CorpusBuilderComponent } from "./corpus-builder.component";
 import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reusable-components.module";
 import { CorpusUpdateUsingFormComponent } from "./corpus-update-using-form.component";
 import { CorpusBaseUsingFormComponent } from "./corpus-base-using-form.component";
+import { CorpusUploadUsingXmlComponent } from "./corpus-upload-using-xml.component";
+import { AceEditorModule } from "ng2-ace-editor";
 
 @NgModule({
     imports: [
@@ -33,7 +35,8 @@ import { CorpusBaseUsingFormComponent } from "./corpus-base-using-form.component
         AccordionModule.forRoot(),
         TypeaheadModule.forRoot(),
         ResourceRegistrationModule,
-        ReusableComponentsModule
+        ReusableComponentsModule,
+        AceEditorModule,
     ],
     declarations: [
         CorpusUploadComponent,
@@ -42,7 +45,8 @@ import { CorpusBaseUsingFormComponent } from "./corpus-base-using-form.component
         CorpusRegistrationFormComponent,
         CorpusBuilderComponent,
         CorpusUpdateUsingFormComponent,
-        CorpusBaseUsingFormComponent
+        CorpusBaseUsingFormComponent,
+        CorpusUploadUsingXmlComponent
     ],
     providers: [
         ResourceService, 

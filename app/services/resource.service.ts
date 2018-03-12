@@ -16,7 +16,8 @@ import { Resource } from "../domain/resource";
 import { MavenComponent } from "../domain/maven-component";
 import { GhQueryEncoder } from "../domain/utils";
 import { PublicationInfo } from "../domain/publication-info";
-import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from "@angular/common/http";
+import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse } from "@angular/common/http";
+import { saveAs } from "file-saver";
 
 
 @Injectable()
@@ -36,6 +37,7 @@ export class ResourceService {
     private _resourcesUrl = this.endpoint + '/request/';
     private _uploadUrl = this.endpoint + '/resources/';
     private _uploadZip = this.endpoint + "/request/corpus/upload";
+    private _uploadXMLZip = this.endpoint + '/request/xmlUpload';
     private _browseCorpusUrl = this.endpoint + '/request/corpus/getCorpusContent';
 
     private rearangeFacets(results : SearchResults<any>) : SearchResults<any> {
@@ -238,11 +240,29 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    uploadXMLComponent(component: string) {
+    uploadCorpusZip<T>(file : File, corpus : Blob) : Observable<HttpEvent<T>> {
+
+        let formBody : FormData = new FormData();
+        formBody.append('corpus',corpus);
+        formBody.append('file',file,file.name);
+        const req = new HttpRequest('POST', this._resourcesUrl + 'corpus/zipUpload', formBody,{
+            reportProgress: true,
+            withCredentials: true
+        });
+        return this.httpClient.request(req).catch(this.handleError);
+
+        // return this.http.post(this._resourcesUrl + 'corpus/zipUpload',formBody,options)
+        //     .map(res => res.json() as T)
+        //     .catch(this.handleError);
+    }
+
+    uploadXML<T>(component: string, resourceType : string, suffix? : string) : Observable<T> {
         let headers = new Headers({'Content-Type': 'application/xml'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
-        return this.http.post(this._searchUrl + 'component', component, options)
-            .map(res => res.status)
+        let url = this._searchUrl + resourceType;
+        if (suffix) url += '/' + suffix;
+        return this.http.post(url, component, options)
+            .map(res => res.json())
             .catch(this.handleError);
     }
 

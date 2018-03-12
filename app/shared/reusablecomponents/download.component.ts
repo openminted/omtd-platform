@@ -29,7 +29,8 @@ export class DownloadComponent {
     download() {
         const req = new HttpRequest('GET', this.url, {
             reportProgress: true,
-            responseType: "blob"
+            responseType: "blob",
+            withCredentials: true
         });
         let url_: URL = new URL(this.url);
         let filename = url_.searchParams.get('archiveId') || 'download';

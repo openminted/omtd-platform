@@ -10,6 +10,7 @@ import { CorpusBuilderComponent } from "./corpus-builder.component";
 import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-guard.service";
 import { CorpusUpdateUsingFormComponent } from "./corpus-update-using-form.component";
 import { ComingSoonPageComponent } from "../../../shared/reusablecomponents/coming-soon-page.component";
+import { CorpusUploadUsingXmlComponent } from "./corpus-upload-using-xml.component";
 
 const corpusRegistrationRoutes: Routes = [
     {
@@ -30,7 +31,7 @@ const corpusRegistrationRoutes: Routes = [
     },
     {
         path: 'resourceRegistration/corpus/xml',
-        component: ComingSoonPageComponent,
+        component: CorpusUploadUsingXmlComponent,
         canActivate: [
             CanActivateViaAuthGuard
         ],

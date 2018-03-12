@@ -4,28 +4,31 @@
 import { Component, Injector } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import {
+    Corpus,
     Corpus as OMTDCorpus, DistributionMediumEnum, ResourceIdentifier,
     ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
 import { CorpusBaseUsingFormComponent } from "./corpus-base-using-form.component";
+import { error } from "util";
+import { corpusBrowserRouting } from "../../corpusbrowser/corpus-browser.routing";
 import { HttpEventType, HttpResponse } from "@angular/common/http";
-import { ResourceService } from "../../../services/resource.service";
+import { saveAs } from "file-saver";
 
 @Component({
     selector: 'corpus-upload',
-    templateUrl: './corpus-upload.component.html',
+    templateUrl: './corpus-upload-using-xml.component.html',
     styleUrls:  ['./corpus-upload.component.css','./corpus-registration-form.component.css'],
 })
 
-export class CorpusUploadComponent extends CorpusBaseUsingFormComponent {
+export class CorpusUploadUsingXmlComponent extends CorpusBaseUsingFormComponent {
 
     zipForm: FormGroup;
     zipFile : File;
-    loaded = 0;
-    total = 0;
+    corpusXML : string;
     createdCorpusId : string;
     zipFormErrorMessage: string = null;
-
+    total = 0;
+    loaded = 0;
     private _fb;
 
     constructor(injector : Injector) {
@@ -33,9 +36,15 @@ export class CorpusUploadComponent extends CorpusBaseUsingFormComponent {
         this._fb = injector.get(FormBuilder);
     }
 
+
+
     updateFile($event : any) {
         this.zipFile = $event;
         //console.log($event);
+    }
+
+    validate() {
+        return true;
     }
 
     navigateToCorpus() {
@@ -44,6 +53,7 @@ export class CorpusUploadComponent extends CorpusBaseUsingFormComponent {
 
     onSubmit() {
 
+        this.loading = true;
         if(this.zipFile && this.zipFile.name.endsWith(".zip"))
             this.zipFormErrorMessage = null;
         else
@@ -51,10 +61,9 @@ export class CorpusUploadComponent extends CorpusBaseUsingFormComponent {
 
         if(!this.validate())
             return;
-        this.loading = true;
-        let tmp = ResourceService.removeNulls(this.corpusForm.formValue);
-        let corpus = new Blob([JSON.stringify(tmp)],{type : 'application/json'});
-        this.resourceService.uploadCorpusZip<OMTDCorpus>(this.zipFile,corpus).subscribe(event => {
+
+        let corpus = new Blob([this.corpusXML],{type : `application/xml`})
+        this.resourceService.uploadCorpusZip<Corpus>(this.zipFile,corpus).subscribe(event => {
             console.log(event);
             if (event.type === HttpEventType.UploadProgress) {
                 this.total = event.total; this.loaded = event.loaded;
@@ -62,12 +71,10 @@ export class CorpusUploadComponent extends CorpusBaseUsingFormComponent {
             } else if (event instanceof HttpResponse) {
                 console.log(event.body);
                 this.loading=false;
-                window.scrollTo(0,0);
                 this.successfulMessage = "Corpus uploaded successfully";
                 this.createdCorpusId = event.body.metadataHeaderInfo.metadataRecordIdentifier.value;
             }
-        },error => this.handleError("Error uploading Corpus",error));
-
+        },error => this.handleError("Error uploading Corpus XML",error));
     }
 
 }

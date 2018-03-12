@@ -47,9 +47,43 @@
                             <h2 class="uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
                                 2. Fill in the metadata for your corpus
                             </h2>
-                            <!--<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>-->
-                            <corpus-registration-form #corpusForm></corpus-registration-form>
-                            <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
+                            <div class="uk-grid">
+
+                                <div class=" uk-width-expand@m">
+                                    <!--[formGroup]="componentXMLForm"-->
+                                    <form role="form" class="m-t componentXMLForm" (ngSubmit)="onSubmit(componentXML, $event)">
+                                        <div class="form-group">
+                                            <!--<textarea class="form-control" rows="16" name="xml" formControlName="xml"></textarea>-->
+                                            <div ace-editor [(text)]="corpusXML" [mode]="'xml'" [theme]="'chrome'" style="min-height: 500px; width:100%; overflow: auto;"></div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <aside class="tm-sidebar uk-width-1-4@m uk-first-column">
+                                    <div class="uk-card uk-card-body uk-card-default uk-margin-bottom">
+                                        <h3 class="uk-panel-title">Local Path</h3>
+                                        <form class="m-t componentXMLFileForm">
+                                            <div class="form-group">
+                                                <input type="file" name="xmlFile" (change)="report($event)">
+                                            </div>
+                                            <a (click)="previewFromFile()" class="">
+                                                Preview <i class="fa fa-angle-right uk-margin-small-left"></i>
+                                            </a>
+                                        </form>
+                                    </div>
+                                    <div class="uk-card uk-card-body uk-card-default sidemenu uk-margin-bottom">
+                                        <h3 class="uk-panel-title">URL Path</h3>
+                                        <form class="m-t componentXMLURLForm">
+                                            <div class="form-group">
+                                                <input class="form-control" name="xmlURL" [(ngModel)]="xmlURL">
+                                            </div>
+                                            <a (click)="previewFromURL()" class="">
+                                                Preview <i class="fa fa-angle-right uk-margin-small-left"></i>
+                                            </a>
+                                        </form>
+                                    </div>
+                                </aside>
+                            </div>
 
                         </article>
 
@@ -60,6 +94,8 @@
                                             uk-button-blue registerButton">Register!</button>
                             </div>
                         </div>
+
+
 
                     </div>
 

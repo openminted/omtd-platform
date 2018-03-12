@@ -49,7 +49,7 @@ export class ComponentRegistrationUsingMavenCoordinatesComponent implements OnIn
 
     onSubmit() {
         console.log(this.editComponentIndex);
-        return this.resourceService.uploadXMLComponent(this.componentXML).subscribe(
+        return this.resourceService.uploadXML(this.componentXML,'component').subscribe(
             success => {
                 this.editMode = false;
                 this.mavenComponents[this.editComponentIndex].inserted = true;
