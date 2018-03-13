@@ -2,9 +2,9 @@
     <div *ngIf="loading" class="whiteFilm">
         <div class="loader">
             <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i>
-            <div [ngSwitch]="loaded > 0 && loaded==total">
+            <div class="uk-margin-top" [ngSwitch]="loaded > 0 && loaded==total">
                 <progress *ngSwitchCase="false" class="uk-progress uk-progress-small" [value]="loaded" [max]="total"></progress>
-                <span *ngSwitchCase="true">Processing Resources</span>
+                <span *ngSwitchCase="true"><strong>Processing Resources...</strong></span>
             </div>
         </div>
     </div>
