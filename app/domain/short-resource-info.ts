@@ -31,9 +31,9 @@ export class ShortResultInfo {
             this.resourceType = 'language';
         }
         this.title = resourceInfo.identificationInfo.resourceNames[0].value;
+        this.id = resource.metadataHeaderInfo.metadataRecordIdentifier.value;
         this.description = resourceInfo.identificationInfo.descriptions[0].value;
         this.rightsInfo = (resourceInfo.rightsInfo.rightsStatement as any) === "OPEN_ACCESS";
-        console.log(this.rightsInfo,resourceInfo.rightsInfo.rightsStatement as any );
         this.creationDate = resource.metadataHeaderInfo.metadataCreationDate;
     }
 }
