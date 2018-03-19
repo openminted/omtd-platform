@@ -46,7 +46,7 @@ export class ComponentLandingPageComponent {
     }
     
     handleError(error) {
-        this.errorMessage = 'System error loading component (Server responded: ' + error + ')';
+        this.errorMessage = 'System error loading component (Server responded: ' + error.error + ')';
     }
     
     process() {

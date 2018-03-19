@@ -45,6 +45,6 @@ export class LanguageDescriptionLandingPageComponent implements OnInit {
     }
 
     handleError(error) {
-        this.errorMessage = 'System error loading language description (Server responded: ' + error + ')';
+        this.errorMessage = 'System error loading language description (Server responded: ' + error.error + ')';
     }
 }

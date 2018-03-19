@@ -84,17 +84,17 @@
                                                         </thead>
                                                         <tbody>
                                                         <tr *ngFor="let component of resources" class="el-item">
-                                                            <td class=""><div class="el-title">{{component.componentInfo.identificationInfo.resourceNames[0].value}}</div></td>
+                                                            <td class=""><div class="el-title">{{component.languageDescriptionInfo.identificationInfo.resourceNames[0].value}}</div></td>
                                                             <td class=""><div class="el-title">{{component.metadataHeaderInfo.metadataCreationDate | date:'shortDate'}}</div></td>
-                                                            <td class=""><div class="el-title">{{component.componentInfo.identificationInfo.descriptions[0].value}}</div></td>
+                                                            <td class=""><div class="el-title">{{component.languageDescriptionInfo.identificationInfo.descriptions[0].value}}</div></td>
                                                             <td class="">
-                                                                <div *ngIf="component.componentInfo.identificationInfo.public" class="el-title">yes</div>
-                                                                <div *ngIf="!component.componentInfo.identificationInfo.public" class="el-title">no</div>
+                                                                <div *ngIf="component.languageDescriptionInfo.identificationInfo.public" class="el-title">yes</div>
+                                                                <div *ngIf="!component.languageDescriptionInfo.identificationInfo.public" class="el-title">no</div>
                                                             </td>
                                                             <td class=""><div class="el-title">--</div></td>
                                                             <td class=""><div class="el-title">--</div></td>
                                                             <td class="uk-text-nowrap">
-                                                                <div *ngIf="!component.componentInfo.identificationInfo.public" class="el-title">
+                                                                <div *ngIf="!component.languageDescriptionInfo.identificationInfo.public" class="el-title">
                                                                     <a (click)="goToDetails(component)" title="View {{resourceType}}" uk-tooltip>
                                                                         <i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i>
                                                                     </a>
@@ -114,7 +114,7 @@
                                                                         <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                                                     </a>
                                                                 </div>
-                                                                <div *ngIf="component.componentInfo.identificationInfo.public" class="el-title">
+                                                                <div *ngIf="component.languageDescriptionInfo.identificationInfo.public" class="el-title">
                                                                     <a (click)="goToDetails(component)" title="View {{resourceType}}" uk-tooltip><i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i></a>
                                                                     <a (click)="downloadResource(component,'json')" title="Download {{resourceType}} as JSON" uk-tooltip>
                                                                         <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>

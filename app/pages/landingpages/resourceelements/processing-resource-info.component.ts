@@ -4,7 +4,7 @@
 import { Component, Input } from '@angular/core';
 import { ProcessingResourceInfo } from "../../../domain/openminted-model";
 import {
-    annotationTypeTypeEnum, dataFormatTypeEnum, EnumValues,
+    annotationTypeTypeEnum, dataFormatTypeEnum, EnumValues, languageIdTypeEnum,
     processingResourceTypeEnum
 } from "../../../domain/omtd.enum";
 
@@ -17,8 +17,17 @@ export class ProcessingResourceInfoComponent {
 
     processingResourceTypeValues : EnumValues[] = processingResourceTypeEnum;
     dataFormatTypeValues : EnumValues[] = dataFormatTypeEnum;
+    languageValues : EnumValues[] = languageIdTypeEnum;
     annotationTypeTypeValues : EnumValues[] = annotationTypeTypeEnum;
     @Input() processingResourceInfo: ProcessingResourceInfo;
+
+    get languages() {
+        let languages : string[] = this.processingResourceInfo.languages.map(l => {
+            let tmp = this.languageValues.find(v => v.key === l.toUpperCase());
+            return tmp ? tmp.value : "Undefined";
+        });
+        return languages.join(', ');
+    }
 
     private processingResourceType(l : string) {
         let processingResourceType = this.processingResourceTypeValues.find(v => v.key === l);
@@ -34,4 +43,5 @@ export class ProcessingResourceInfoComponent {
         let annotationTypeType = this.annotationTypeTypeValues.find(v => v.key === l);
         return annotationTypeType && annotationTypeType.value;
     }
+
 }

@@ -20,9 +20,7 @@
     <!--</div>-->
     <div *ngIf="processingResourceInfo.languages && processingResourceInfo.languages.length>0">
         <strong>Language(s): </strong>
-        <span *ngFor="let language of processingResourceInfo.languages; let isLast = last;">
-            {{language}}{{isLast ? '' : ', '}}
-        </span>
+        <span>{{languages}}</span>
     </div>
     <div *ngIf="processingResourceInfo.annotationTypes && processingResourceInfo.annotationTypes.length>0">
         <strong>Annotation types: </strong>

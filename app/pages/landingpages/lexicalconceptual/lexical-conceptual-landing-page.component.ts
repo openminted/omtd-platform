@@ -45,6 +45,6 @@ export class LexicalConceptualLandingPageComponent implements OnInit {
     }
 
     handleError(error) {
-        this.errorMessage = 'System error loading lexical conceptual (Server responded: ' + error + ')';
+        this.errorMessage = 'System error loading lexical conceptual (Server responded: ' + error.error + ')';
     }
 }

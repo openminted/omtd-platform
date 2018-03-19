@@ -2,8 +2,7 @@
     <span *ngIf="relationInfo.relationType">
         {{relationType(relationInfo.relationType)}}:
     </span>
-    <span *ngIf="relationInfo.relatedResource && relationInfo.relatedResource.resourceNames
-    && relationInfo.relatedResource.resourceNames.length>0">
+    <span *ngIf="relationInfo?.relatedResource?.resourceNames?.length>0 && relationInfo?.relatedResource?.resourceIdentifiers?.length>0">
         <a [href]="getLink(relationInfo.relatedResource)">{{relationInfo.relatedResource.resourceNames[0].value}}</a>
     </span>
 </div>

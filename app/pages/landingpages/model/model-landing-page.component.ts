@@ -44,6 +44,6 @@ export class ModelLandingPageComponent implements OnInit {
     }
 
     handleError(error) {
-        this.errorMessage = 'System error loading model (Server responded: ' + error + ')';
+        this.errorMessage = 'System error loading model (Server responded: ' + error.error + ')';
     }
 }

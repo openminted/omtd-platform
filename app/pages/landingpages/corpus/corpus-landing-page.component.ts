@@ -62,7 +62,7 @@ export class CorpusLandingPageComponent implements OnInit {
     }
 
     handleError(error) {
-        this.errorMessage = 'System error loading corpus (Server responded: ' + error + ')';
+        this.errorMessage = 'System error loading corpus (Server responded: ' + error.error + ')';
     }
 
     get checkOriginalCorpus() : boolean {
