@@ -90,21 +90,7 @@ export class BrowseApplicationsComponent {
 
         this.shortResultsInfo.splice(0,this.shortResultsInfo.length);
 
-        for (let component of this.searchResults.results) {
-            var componentBody = component;
-            let componentInfo : ComponentInfo;
-            if (typeof componentBody['componentInfo'] != 'undefined') {
-                componentInfo = componentBody['componentInfo'];
-                var shortResultInfo: ShortResultInfo = {
-                    id: componentBody.metadataHeaderInfo.metadataRecordIdentifier.value,
-                    title: componentInfo.identificationInfo.resourceNames[0].value,
-                    description: componentInfo.identificationInfo.descriptions[0].value,
-                    resourceType: 'application',
-                    creationDate: componentBody.metadataHeaderInfo.metadataCreationDate
-                };
-                this.shortResultsInfo.push(shortResultInfo);
-            }
-        }
+        this.searchResults.results.forEach(result => this.shortResultsInfo.push(new ShortResultInfo(result)));
 
         if(this.shortResultsInfo.length==0)
             this.foundResults = false;

@@ -51,51 +51,7 @@ export class HomeComponent implements OnInit {
 
         this.shortResultsInfo.splice(0,this.shortResultsInfo.length);
 
-        for (let component of this.searchResults.results) {
-            let componentBody = component;
-            let corpusInfo : CorpusInfo;
-            let componentInfo : ComponentInfo;
-            let lexicalConceptualResourceInfo: LexicalConceptualResourceInfo;
-            let languageDescriptionInfo: LanguageDescriptionInfo;
-            let title : string;
-            let description : string;
-            let resourceType : string;
-            let creationDate: Date;
-            if (typeof componentBody['corpusInfo'] != 'undefined') {
-                corpusInfo = componentBody['corpusInfo'];
-                title = corpusInfo.identificationInfo.resourceNames[0].value;
-                description = corpusInfo.identificationInfo.descriptions[0].value;
-                resourceType = 'corpus';
-                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
-            } else if (typeof componentBody['componentInfo'] != 'undefined') {
-                componentInfo = componentBody['componentInfo'];
-                title = componentInfo.identificationInfo.resourceNames[0].value;
-                description = componentInfo.identificationInfo.descriptions[0].value;
-                resourceType = 'component';
-                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
-            } else if (typeof componentBody['lexicalConceptualResourceInfo'] != 'undefined') {
-                lexicalConceptualResourceInfo = componentBody['lexicalConceptualResourceInfo'];
-                title = lexicalConceptualResourceInfo.identificationInfo.resourceNames[0].value;
-                description = lexicalConceptualResourceInfo.identificationInfo.descriptions[0].value;
-                resourceType = 'lexical';
-                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
-            } else if (typeof componentBody['languageDescriptionInfo'] != 'undefined') {
-                languageDescriptionInfo = componentBody['languageDescriptionInfo'];
-                title = languageDescriptionInfo.identificationInfo.resourceNames[0].value;
-                description = languageDescriptionInfo.identificationInfo.descriptions[0].value;
-                resourceType = 'language';
-                creationDate = componentBody.metadataHeaderInfo.metadataCreationDate;
-            }
-            let shortResultInfo: ShortResultInfo = {
-                id: componentBody.metadataHeaderInfo.metadataRecordIdentifier.value,
-                title: title,
-                description: description,
-                resourceType: resourceType,
-                creationDate: creationDate
-            };
-            this.shortResultsInfo.push(shortResultInfo);
-        }
-
+        this.searchResults.results.forEach(result => this.shortResultsInfo.push(new ShortResultInfo(result)));
 
         if(this.shortResultsInfo.length==0)
             this.foundResults = false;

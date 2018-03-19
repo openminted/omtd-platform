@@ -90,23 +90,7 @@ export class BrowseCorporaComponent {
 
         this.shortResultsInfo.splice(0,this.shortResultsInfo.length);
 
-        for (let corpus of this.searchResults.results) {
-            var corpusBody = corpus;
-            let corpusInfo : CorpusInfo;
-            if (typeof corpusBody['corpusInfo'] != 'undefined') {
-                corpusInfo = corpusBody['corpusInfo']
-                var shortResultInfo: ShortResultInfo = {
-                    id: corpusBody.metadataHeaderInfo.metadataRecordIdentifier.value,
-                    title: corpusInfo.identificationInfo.resourceNames[0].value,
-                    description: corpusInfo.identificationInfo.descriptions[0].value,
-                    resourceType: 'corpus',
-                    creationDate: corpusBody.metadataHeaderInfo.metadataCreationDate
-                };
-                this.shortResultsInfo.push(shortResultInfo);
-            }
-
-
-        }
+        this.searchResults.results.forEach(result => this.shortResultsInfo.push(new ShortResultInfo(result)));
 
         if(this.shortResultsInfo.length==0)
             this.foundResults = false;
