@@ -90,7 +90,7 @@ module.exports = function(env) {
                     GALAXY_ENDPOINT : JSON.stringify(process.env.GALAXY_ENDPOINT || "/galaxy"),
                     FAQ_ENDPOINT : JSON.stringify(process.env.FAQ_ENDPOINT || "http://83.212.101.85:5555/api/"),
                     CONNECTOR_API_ENDPOINT : JSON.stringify(process.env.CONNECTOR_API_ENDPOINT || "http://83.212.101.85:8888/content-connector-service"),
-                    WORKFLOW_API_ENDPOINT : JSON.stringify(process.env.WORKFLOW_API_ENDPOINT || "https://dev.openminted.eu:8881"),
+                    WORKFLOW_API_ENDPOINT : JSON.stringify(process.env.WORKFLOW_API_ENDPOINT || "http://localhost:8080/omtd-registry"),
                     OIDC_ENDPOINT : JSON.stringify(process.env.OIDC_ENDPOINT || "http://localhost:8080/omtd-registry/openid_connect_login"),
                     AAI_ENDPOINT : JSON.stringify(process.env.AAI_ENDPOINT || "https://aai.openminted.eu/oidc"),
                     VIEWER_ENDPOINT : JSON.stringify(process.env.VIEWER_ENDPOINT || "https://beta.openminted.eu/viewer/#/?")
