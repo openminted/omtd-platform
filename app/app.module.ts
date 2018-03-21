@@ -29,9 +29,9 @@ import { DatasourceRegistrationModule } from "./pages/resourceregistration/datas
 import { ActionsModule } from "./pages/actions/actions.module";
 import { UserSpaceModule } from "./pages/user/user-space.module";
 import { LexicalRegistrationModule } from "./pages/resourceregistration/lexical/lexical-registration.module";
-import { LanguageDescriptionRegistrationModule } from "./pages/resourceregistration/languagedescription/language-description-registration.module";
 import { CorpusBrowserModule } from "./pages/corpusbrowser/corpus-browser.module";
 import { HttpClientModule } from "@angular/common/http";
+import { LanguageRegistrationModule } from "./pages/resourceregistration/language/language-registration.module";
 
 @NgModule({
     imports: [
@@ -46,7 +46,7 @@ import { HttpClientModule } from "@angular/common/http";
         ComponentRegistrationModule, 
         CorpusRegistrationModule,
         LexicalRegistrationModule,
-        LanguageDescriptionRegistrationModule,
+        LanguageRegistrationModule,
         DatasourceRegistrationModule,
         LandingPageModule, 
         TabsModule,

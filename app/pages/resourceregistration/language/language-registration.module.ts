@@ -9,18 +9,18 @@ import { AccordionModule, TypeaheadModule } from "ngx-bootstrap";
 import { ResourceRegistrationModule } from "../resource-registration.module";
 import { ReusableComponentsModule } from "../../../shared/reusablecomponents/reusable-components.module";
 import { AceEditorModule } from "ng2-ace-editor";
-import { lexicalRegistrationRouting } from "./lexical-registration.routing";
-import { LexicalRegistrationFormComponent } from "./lexical-registration-form.component";
-import { LexicalRegistrationComponent } from "./lexical-registration.component";
-import { LexicalUploadComponent } from "./lexical-upload.component";
-import { LexicalBaseUsingFormComponent } from "./lexical-base-using-form.component";
-import { LexicalUploadXMLComponent } from "./lexical-registration-xml.component";
-import { LexicalUpdateUsingFormComponent } from "./lexical-update-using-form.component";
+import { languageRegistrationRouting } from "./language-registration.routing";
+import { LanguageRegistrationFormComponent } from "./language-registration-form.component";
+import { LanguageRegistrationComponent } from "./language-registration.component";
+import { LanguageUploadComponent } from "./language-upload.component";
+import { LanguageBaseUsingFormComponent } from "./language-base-using-form.component";
+import { LanguageUploadXMLComponent } from "./language-registration-xml.component";
+import { LanguageUpdateUsingFormComponent } from "./language-update-using-form.component";
 
 
 @NgModule({
     imports: [
-        lexicalRegistrationRouting,
+        languageRegistrationRouting,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -31,16 +31,16 @@ import { LexicalUpdateUsingFormComponent } from "./lexical-update-using-form.com
         AceEditorModule,
     ],
     declarations: [
-        LexicalRegistrationFormComponent,
-        LexicalRegistrationComponent,
-        LexicalUploadComponent,
-        LexicalBaseUsingFormComponent,
-        LexicalUploadXMLComponent,
-        LexicalUpdateUsingFormComponent
+        LanguageRegistrationFormComponent,
+        LanguageRegistrationComponent,
+        LanguageUploadComponent,
+        LanguageBaseUsingFormComponent,
+        LanguageUploadXMLComponent,
+        LanguageUpdateUsingFormComponent
     ],
     providers: [
         ResourceService
     ]
 })
 
-export class LexicalRegistrationModule {}
+export class LanguageRegistrationModule {}

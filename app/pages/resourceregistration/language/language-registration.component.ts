@@ -1,16 +1,16 @@
 /**
- * Created by stefania on 02/02/2018.
+ * Created by stefania on 10/6/16.
  */
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
-    selector: 'language-description-registration-options',
-    templateUrl: './language-description-registration.component.html',
-    styleUrls: ['./language-description-registration.component.css'],
+    selector: 'language-registration-options',
+    templateUrl: './language-registration.component.html',
+    styleUrls: ['./language-registration.component.css'],
 })
 
-export class LanguageDescriptionRegistrationComponent {
+export class LanguageRegistrationComponent {
 
     activeTab;
 

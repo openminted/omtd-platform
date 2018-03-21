@@ -6,9 +6,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { CanActivateViaAuthGuard } from "../../../services/can-activate-auth-guard.service";
 import { LexicalRegistrationComponent } from "./lexical-registration.component";
 import { LexicalUploadComponent } from "./lexical-upload.component";
-import { LexicalUploadXMLComponent } from "./lexical-registration-xml.component";
 import { ComingSoonPageComponent } from "../../../shared/reusablecomponents/coming-soon-page.component";
-
+import { LexicalUploadXMLComponent } from "./lexical-registration-xml.component";
+import { LanguageUpdateUsingFormComponent } from "../language/language-update-using-form.component";
+import { LexicalUpdateUsingFormComponent } from "./lexical-update-using-form.component";
 
 
 const lexicalRegistrationRoutes: Routes = [
@@ -26,7 +27,7 @@ const lexicalRegistrationRoutes: Routes = [
         canActivate: [
             CanActivateViaAuthGuard
         ],
-        data : {resourceType : 'lexical', update : true }
+        data : {resourceType : 'lexical', update : false }
     },
     {
         path: 'resourceRegistration/lexical/xml',
@@ -35,15 +36,15 @@ const lexicalRegistrationRoutes: Routes = [
             CanActivateViaAuthGuard
         ],
         data : {title : 'Upload an XML file for your Annotation Resource'}
-    }
-    // {
-    //     path: 'resourceRegistration/lexical/xml',
-    //     component: LexicalUploadXMLComponent,
-    //     canActivate: [
-    //         CanActivateViaAuthGuard
-    //     ],
-    //     data : {resourceType : 'lexical'}
-    // }
+    },
+    {
+        path: 'resourceRegistration/lexical/form/edit/:id',
+        component: LexicalUpdateUsingFormComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ],
+        data : {resourceType : 'lexical', update : false }
+    },
 ];
 
 export const lexicalRegistrationRouting: ModuleWithProviders = RouterModule.forChild(lexicalRegistrationRoutes);

@@ -1,15 +1,6 @@
-import { Component, Injector, Type } from "@angular/core";
+import { Component, Injector } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
-import {
-    Description,
-    domainInfoDesc,
-    keywordDesc,
-    languageDesc, lexicalConceptualResourceTypeDesc,
-    metalanguageInfoDesc
-} from "../../../domain/omtd.description";
-import { SimpleLanguageTypeForm2 } from "./language-type-form.component";
-import { DomainInfoFormControl } from "./domain-info-form";
-import { MySingleStringForm } from "./my-string-form.component";
+import { Description, lexicalConceptualResourceTypeDesc } from "../../../domain/omtd.description";
 import { Validators } from "@angular/forms";
 import { EnumValues, lexicalConceptualResourceTypeEnum } from "../../../domain/omtd.enum";
 

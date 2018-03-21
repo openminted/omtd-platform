@@ -1,15 +1,14 @@
 /**
  * Created by stefanos on 1/22/17.
  */
-import { Component, Injector } from "@angular/core";
+import { Component, Injector, OnInit } from "@angular/core";
 import {
-    DistributionMediumEnum,
-    Lexical,
-    ResourceIdentifier,
-    ResourceIdentifierSchemeNameEnum
+    IdentificationInfo, Lexical, LexicalConceptualResourceInfo,
+    ResourceIdentifier
 } from "../../../domain/openminted-model";
 import { LexicalBaseUsingFormComponent } from "./lexical-base-using-form.component";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
+import { UUID } from "angular2-uuid";
 
 @Component({
     selector: 'lexical-upload',
@@ -17,12 +16,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
     styleUrls : ['./lexical-registration-form.component.css']
 })
 
-export class LexicalUploadComponent extends LexicalBaseUsingFormComponent {
-
-    zipForm: FormGroup;
-    zipFile : File;
-
-    zipFormErrorMessage: string = null;
+export class LexicalUploadComponent extends LexicalBaseUsingFormComponent implements OnInit {
 
     private _fb;
 
@@ -31,35 +25,32 @@ export class LexicalUploadComponent extends LexicalBaseUsingFormComponent {
         this._fb = injector.get(FormBuilder);
     }
 
-    updateFile($event : any) {
-        this.zipFile = $event;
+    ngOnInit() {
+        let lexical : Lexical = new Lexical();
+        lexical.lexicalConceptualResourceInfo = new LexicalConceptualResourceInfo();
+        lexical.lexicalConceptualResourceInfo.identificationInfo = new IdentificationInfo();
+        let identifier : ResourceIdentifier = new ResourceIdentifier();
+        identifier.value = UUID.UUID();
+        (identifier.resourceIdentifierSchemeName as any) = "OMTD";
+        lexical.lexicalConceptualResourceInfo.identificationInfo.resourceIdentifiers = [identifier];
+        setTimeout(() => this.lexicalForm.loadLexical(lexical),500);
+    }
+
+    navigateToLexical() {
+        super.navigateToLexical(this.lexicalMetadata.metadataRecordIdentifier.value);
     }
 
     onSubmit() {
-        if(this.zipFile && this.zipFile.name.endsWith(".zip"))
-            this.zipFormErrorMessage = null;
-        else
-            this.zipFormErrorMessage = 'You need to provide a zip file with the corpus.';
-
         if(!this.validate())
             return;
-
-        this.resourceService.uploadZip(this.zipFile.name,this.zipFile).subscribe(id => {
-            let corpusBody : Lexical = this.lexicalForm.formValue;
-            corpusBody.lexicalConceptualResourceInfo.identificationInfo.resourceIdentifiers = [new ResourceIdentifier()];
-            corpusBody.lexicalConceptualResourceInfo.identificationInfo.resourceIdentifiers[0].value=id;
-            corpusBody.lexicalConceptualResourceInfo.identificationInfo.resourceIdentifiers[0].resourceIdentifierSchemeName = ResourceIdentifierSchemeNameEnum.OTHER;
-            // corpusBody.lexicalConceptualResourceInfo.distributionInfos = [new DatasetDistributionInfo()];
-            corpusBody.lexicalConceptualResourceInfo.distributionInfos[0].distributionMedium = DistributionMediumEnum.DOWNLOADABLE;
-            corpusBody.lexicalConceptualResourceInfo.distributionInfos[0].distributionLocation = id;
-            this.resourceService.upload<Lexical>(this.lexicalForm.formValue,'lexical').subscribe(
-                () => {
-                    this.loading = false;
-                    this.successfulMessage = 'Lexical conceptual resource uploaded successfully.';
-                    window.scrollTo(0,0);
-                }, error => this.handleError("Error uploading corpus",error)
-            );
-        });
-
+        this.loading = true;
+        this.resourceService.upload<Lexical>(this.lexicalForm.formValue, 'lexical').subscribe(
+            data => {
+                this.loading = false;
+                this.lexicalMetadata = data.metadataHeaderInfo;
+                this.successfulMessage = 'Annotation Resource uploaded successfully.';
+                window.scrollTo(0, 0);
+            }, error => this.handleError("Error uploading annotation Resource.", error)
+        );
     }
 }

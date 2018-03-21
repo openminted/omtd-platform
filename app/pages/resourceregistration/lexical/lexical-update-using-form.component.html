@@ -1,0 +1,64 @@
+<div *ngIf="loading" class="whiteFilm"><i class="fa fa-spinner fa-spin fa-5x loader" aria-hidden="true"></i></div>
+<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div class="uk-container">
+        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+            <div class="uk-width-1-1@m uk-first-column">
+
+                <h2 class="uk-h2">
+                    Update the metadata for your Annotation Resource.
+                </h2>
+                <!--<hr class="uk-divider-icon uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">-->
+
+                <!-- TOP HELP CONTENT -->
+                <help-content #topHelperContent [position]="'top'"
+                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+                <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+                    <div class="uk-grid">
+
+                        <!-- LEFT HELP CONTENT -->
+                        <aside-help-content #leftHelperContent [position]="'left'"
+                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+
+                        <!-- MIDDLE -->
+                        <div *ngIf="!successfulMessage" class="uk-width-expand@m">
+                            <div *ngIf="errorMessage" class="alert uk-alert-danger uk-margin-top">{{errorMessage}}</div>
+                            <lexical-registration-form #lexicalForm class="uk-margin-top"></lexical-registration-form>
+                            <div class="uk-grid">
+                                <div class="uk-width-1-5"></div>
+                                <div class="uk-width-4-5">
+                                    <button [disabled]="loading" (click)="onSubmit()" class="uk-button uk-button-large
+                                            uk-button-blue registerButton">Update!
+                                        <span *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="successfulMessage" class="alert alert-success uk-width-expand@m">
+                            {{successfulMessage}} Click <a [routerLink]="['/landingPage/lexical/',lexicalMetadata.metadataRecordIdentifier.value]">here</a> to see it.
+                        </div>
+
+
+                        <!-- RIGHT HELP CONTENT -->
+                        <aside-help-content #rightHelperContent [position]="'right'"
+                                            [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+                    </div>
+                </div>
+
+
+                <!-- BOTTOM HELP CONTENT -->
+                <help-content #bottomHelperContent [position]="'bottom'"
+                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+
+            </div>
+        </div>
+    </div>
+</div>

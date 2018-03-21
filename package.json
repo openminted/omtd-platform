@@ -27,6 +27,7 @@
     "angular-in-memory-web-api": "~0.3.2",
     "angular-oauth2-oidc": "^1.0.20",
     "angular-tree-component": "^7.0.1",
+    "angular2-uuid": "^1.1.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.1",
     "file-saver": "^1.3.3",

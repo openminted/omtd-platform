@@ -23,7 +23,7 @@ import { LanguageVarietyInfoFormControl } from "./shared/language-variety-info-f
 import { LanguageInfoFormControl } from "./shared/languageInfo.component";
 import {
     DatasetDistributionInfoFormControl, DatasetDistributionLocInfoFormControl,
-    DatasetDistributionsInfoFormControl
+    DatasetDistributionsInfoFormControl, DatasetDistributionsZipInfoFormControl, DatasetDistributionZipInfoFormControl
 } from "./shared/datasetDistributionInfo.component";
 import { ZipUploadComponent } from "./shared/zip-upload-form.component";
 import {
@@ -71,8 +71,11 @@ import { ComponentDependenciesInfoFormControl } from "./shared/componentDependen
 import { ResourceDocumentationFormControl } from "./shared/resourceDocumentationInfo.component";
 import { RelationInfoFormControl } from "./shared/relationInfo.component";
 import { AnnotationTypeInfoFormControl } from "./shared/annotationTypeInfo.component";
+import { LanguageGenericFormControl } from "./shared/language-generic-info-form.component";
+import { ModelOperationFormControl } from "./shared/modelOperation.component";
 
 const entryComponents = [
+    DatasetDistributionZipInfoFormControl,
     PublicationIdentifierCommonFormControl,
     ResourceDocumentationFormControl,
     DomainInfoFormControl,
@@ -115,7 +118,10 @@ const entryComponents = [
 
 const declarations = [
     ...entryComponents,
+    DatasetDistributionsZipInfoFormControl,
+    ModelOperationFormControl,
     AccordionComponent,
+    LanguageGenericFormControl,
     ComponentCreationInfoFormControl,
     ComponentDistributionsInfoFormControl,
     ComponentGenericFormControl,

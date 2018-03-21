@@ -1,55 +1,60 @@
 <div class="uk-margin-medium-bottom">
-    <a *ngIf="production==false" (click)="loadLexical(testValue)" class="uk-button">Patch Value</a>
+    <a *ngIf="production==false" (click)="loadLanguage(testValue)" class="uk-button">Patch Value</a>
     <form class="form-horizontal corpusForm" [formGroup]="myForm">
         <ul uk-accordion="multiple: true">
 
 
-            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Lexical Conceptual'">
-                <lexicalGeneric-form [parentGroup]="myForm"
-                                     [name]="'lexicalConceptualResourceInfo'"></lexicalGeneric-form>
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Language Conceptual'">
+                <languageGeneric-form [parentGroup]="myForm"
+                                     [name]="'languageDescriptionInfo'"></languageGeneric-form>
 
 
-                <lexical-text-info-form [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"
-                                        [name]="'lexicalConceptualResourceTextInfo'"></lexical-text-info-form>
+                <lexical-text-info-form [parentGroup]="myForm.controls.languageDescriptionInfo"
+                                        [name]="'languageDescriptionTextInfo'"></lexical-text-info-form>
+            </li>
+
+            <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Model Operation'">
+                <model-operation-info-form [parentGroup]="myForm.controls.languageDescriptionInfo" [name]="'modelOperationInfo'">
+                </model-operation-info-form>
             </li>
 
 
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Identification'">
-                <identification-info-form [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"
+                <identification-info-form [parentGroup]="myForm.controls.languageDescriptionInfo"
                                           [name]="'identificationInfo'"></identification-info-form>
 
                 <div class="form-group-divider"></div>
 
-                <resourceCreationInfo-form [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"
+                <resourceCreationInfo-form [parentGroup]="myForm.controls.languageDescriptionInfo"
                                            [name]="'resourceCreationInfo'"></resourceCreationInfo-form>
             </li>
 
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Contact'">
-                <contact-info-form [required]="true" [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"
+                <contact-info-form [required]="true" [parentGroup]="myForm.controls.languageDescriptionInfo"
                                    [name]="'contactInfo'"></contact-info-form>
             </li>
 
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Version'">
-                <versionInfo-form [parentGroup]="myForm.controls.lexicalConceptualResourceInfo" [name]="'versionInfo'"></versionInfo-form>
+                <versionInfo-form [parentGroup]="myForm.controls.languageDescriptionInfo" [name]="'versionInfo'"></versionInfo-form>
             </li>
 
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Distribution'">
                 <datasetDistributionsZipInfo-form
-                        [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"></datasetDistributionsZipInfo-form>
+                        [parentGroup]="myForm.controls.languageDescriptionInfo"></datasetDistributionsZipInfo-form>
             </li>
 
             <li accordionSection class="uk-open uk-margin-large-bottom" [title]="'Rights Info'">
-                <rightsInfo-form [parentGroup]="myForm.controls.lexicalConceptualResourceInfo" [name]="'rightsInfo'"></rightsInfo-form>
+                <rightsInfo-form [parentGroup]="myForm.controls.languageDescriptionInfo" [name]="'rightsInfo'"></rightsInfo-form>
             </li>
 
             <li accordionSection class="uk-margin-large-bottom" [title]="'Documentations'">
-                <form-repeat [component]="resourceDocumentationType" [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"
+                <form-repeat [component]="resourceDocumentationType" [parentGroup]="myForm.controls.languageDescriptionInfo"
                              [name]="'resourceDocumentations'" [required]="false" [description]="resourceDocumentationDesc">
                 </form-repeat>
             </li>
 
             <li accordionSection class="uk-margin-large-bottom" [title]="'Relations'">
-                <form-repeat [component]="relationType" [parentGroup]="myForm.controls.lexicalConceptualResourceInfo"
+                <form-repeat [component]="relationType" [parentGroup]="myForm.controls.languageDescriptionInfo"
                              [name]="'relations'" [required]="false" [description]="relationTypeDesc">
                 </form-repeat>
             </li>

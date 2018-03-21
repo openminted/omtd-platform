@@ -3,7 +3,9 @@
  */
 import { Component, Injector, OnInit, ViewChild } from "@angular/core";
 import {
-    Component as OMTDComponent, MetadataHeaderInfo, ResourceIdentifier,
+    Component as OMTDComponent, ComponentInfo, IdentificationInfo, Lexical, LexicalConceptualResourceInfo,
+    MetadataHeaderInfo,
+    ResourceIdentifier,
     ResourceIdentifierSchemeNameEnum
 } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
@@ -11,6 +13,7 @@ import { ComponentRegistrationFormComponent } from "./component-registration-for
 import { randomString, title } from "../../../domain/utils";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { UUID } from "angular2-uuid";
 
 @Component({
     selector: 'component-registration-using-form',
@@ -43,13 +46,14 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        setTimeout(() => {
-            let resourceId = this.componentForm.get('componentInfo.identificationInfo.resourceIdentifiers.0');
-            let resourceIdentifier : any = new ResourceIdentifier();
-            resourceIdentifier.value = randomString();
-            resourceIdentifier.resourceIdentifierSchemeName = 'OMTD';
-            resourceId.patchValue(resourceIdentifier);
-        },1000);
+        let component : OMTDComponent = new OMTDComponent();
+        component.componentInfo = new ComponentInfo();
+        component.componentInfo.identificationInfo = new IdentificationInfo();
+        let identifier : ResourceIdentifier = new ResourceIdentifier();
+        identifier.value = UUID.UUID();
+        (identifier.resourceIdentifierSchemeName as any) = "OMTD";
+        component.componentInfo.identificationInfo.resourceIdentifiers = [identifier];
+        setTimeout(() => this.componentForm.loadComponent(component),500);
     }
 
     validate() : boolean {

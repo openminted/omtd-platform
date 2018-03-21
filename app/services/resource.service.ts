@@ -18,6 +18,7 @@ import { GhQueryEncoder } from "../domain/utils";
 import { PublicationInfo } from "../domain/publication-info";
 import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse } from "@angular/common/http";
 import { saveAs } from "file-saver";
+import { FileStats } from "../domain/filestats";
 
 
 @Injectable()
@@ -36,7 +37,7 @@ export class ResourceService {
     private _searchUrl = this.endpoint + '/request/';
     private _resourcesUrl = this.endpoint + '/request/';
     private _uploadUrl = this.endpoint + '/resources/';
-    private _uploadZip = this.endpoint + "/request/corpus/upload";
+    private _uploadZip = this.endpoint + "/request/store/upload";
     private _uploadXMLZip = this.endpoint + '/request/xmlUpload';
     private _browseCorpusUrl = this.endpoint + '/request/corpus/getCorpusContent';
 
@@ -196,6 +197,15 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
+    update<T>(resource : T, resourceType : string) : Observable<T> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        let resource_ = ResourceService.removeNulls(resource);
+        return this.http.put(this._searchUrl + resourceType, JSON.stringify(resource_), options)
+            .map(res => <T> res.json())
+            .catch(this.handleError);
+    }
+
     get<T>(id : string,resourceType : string, type : string = "json") : Observable<T> {
         // let headers = new Headers({'Content-Type': `application/${type}`, 'Accept' : `application/${type}`});
         let options = new RequestOptions({withCredentials : true});
@@ -231,7 +241,7 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
-    uploadZip(name : string,file : File) {
+    uploadZip(name : string,file : File) : Observable<FileStats> {
         let formBody : FormData = new FormData();
         formBody.append('filename',name);
         formBody.append('file',file);

@@ -5,23 +5,21 @@ import { Component, Injector, ViewChild } from "@angular/core";
 import { ResourceService } from "../../../services/resource.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
-import { LexicalRegistrationFormComponent } from "./lexical-registration-form.component";
+import { LanguageRegistrationFormComponent } from "./language-registration-form.component";
 import { MetadataHeaderInfo } from "../../../domain/openminted-model";
 
 @Component({
-    selector: 'lexical-base-using-form',
+    selector: 'language-base-using-form',
     template : ``
 })
-export class LexicalBaseUsingFormComponent {
+export class LanguageBaseUsingFormComponent {
 
     loading : boolean = false;
     successfulMessage: string = null;
     errorMessage: string = null;
 
-    @ViewChild('lexicalForm') lexicalForm : LexicalRegistrationFormComponent;
-
-    lexicalMetadata : MetadataHeaderInfo = null;
-
+    @ViewChild('languageForm') languageForm : LanguageRegistrationFormComponent;
+    languageMetadata : MetadataHeaderInfo = null;
     resourceService: ResourceService;
     route: ActivatedRoute;
     router: Router;
@@ -38,21 +36,21 @@ export class LexicalBaseUsingFormComponent {
         this.loading = false;
     }
 
-    navigateToLexical(id) {
-        this.router.navigate(['/landingPage/lexical/', id]);
+    navigateToLanguage(id) {
+        this.router.navigate(['/landingPage/language/', id]);
     }
 
     validate() : boolean {
         this.successfulMessage = null;
         this.errorMessage = null;
-        this.lexicalForm.setAsTouched();
-        if(this.lexicalForm.formValid && this.lexicalForm.tocValid) {
+        this.languageForm.setAsTouched();
+        if(this.languageForm.formValid && this.languageForm.tocValid) {
             return true;
-        } else if (!this.lexicalForm.formValid) {
+        } else if (!this.languageForm.formValid) {
             this.errorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
             window.scrollTo(0,0);
-        } else if (!this.lexicalForm.tocValid) {
+        } else if (!this.languageForm.tocValid) {
             this.errorMessage = "Please accept the terms and conditions";
             window.scrollTo(0,0);
         }

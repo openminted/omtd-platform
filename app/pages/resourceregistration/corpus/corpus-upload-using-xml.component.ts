@@ -56,8 +56,10 @@ export class CorpusUploadUsingXmlComponent extends CorpusBaseUsingFormComponent 
         this.loading = true;
         if(this.zipFile && this.zipFile.name.endsWith(".zip"))
             this.zipFormErrorMessage = null;
-        else
+        else {
             this.zipFormErrorMessage = 'You need to provide a zip file with the corpus.';
+            return;
+        }
 
         if(!this.validate())
             return;

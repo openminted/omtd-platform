@@ -1,15 +1,12 @@
 import { Component, Injector, Type } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import {
-    Description,
-    domainInfoDesc,
-    keywordDesc,
-    languageDesc,
+    Description, domainInfoDesc, keywordDesc, languageDesc,
     metalanguageInfoDesc
 } from "../../../domain/omtd.description";
 import { SimpleLanguageTypeForm2 } from "./language-type-form.component";
-import { DomainInfoFormControl } from "./domain-info-form";
 import { MySingleStringForm } from "./my-string-form.component";
+import { DomainIdentifierCommonFormControl } from "./identifierCommon.component";
 
 @Component({
     selector: 'lexical-text-info-form',
@@ -58,7 +55,7 @@ export class LexicalTextInfoFormControl extends MyGroup {
         mediaType : 'text'
     };
 
-    domainInfoType : Type<any> = DomainInfoFormControl;
+    domainInfoType : Type<any> = DomainIdentifierCommonFormControl;
     domainInfoDesc : Description = domainInfoDesc;
     languageInfoType : Type<any> = SimpleLanguageTypeForm2;
     languageDesc : Description = Object.assign({},languageDesc);
