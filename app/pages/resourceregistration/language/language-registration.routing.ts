@@ -8,6 +8,7 @@ import { LanguageRegistrationComponent } from "./language-registration.component
 import { LanguageUploadComponent } from "./language-upload.component";
 import { ComingSoonPageComponent } from "../../../shared/reusablecomponents/coming-soon-page.component";
 import { LanguageUpdateUsingFormComponent } from "./language-update-using-form.component";
+import { LanguageUploadXMLComponent } from "./language-registration-xml.component";
 
 
 const languageRegistrationRoutes: Routes = [
@@ -29,11 +30,11 @@ const languageRegistrationRoutes: Routes = [
     },
     {
         path: 'resourceRegistration/language/xml',
-        component: ComingSoonPageComponent,
+        component: LanguageUploadXMLComponent,
         canActivate: [
             CanActivateViaAuthGuard
         ],
-        data : {title : 'Upload an XML file for your Annotation Resource'}
+        data : {title : 'Upload an XML file for your Model or  Grammar',resourceType : 'language'}
     },
     {
         path: 'resourceRegistration/language/form/edit/:id',

@@ -1,12 +1,15 @@
 /**
  * Created by stefania on 10/6/16.
  */
-import { Component } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
+import { Component, Injector } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ResourceService } from "../../../services/resource.service";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { title } from "../../../domain/utils";
+import { HttpEventType, HttpResponse } from "@angular/common/http";
+import { Corpus, LanguageDescription } from "../../../domain/openminted-model";
+import { LanguageBaseUsingFormComponent } from "./language-base-using-form.component";
 
 @Component({
     selector: 'language-registration-xml',
@@ -14,26 +17,62 @@ import { title } from "../../../domain/utils";
     styleUrls:  ['./language-registration-xml.component.css'],
 })
 
-export class LanguageUploadXMLComponent {
+export class LanguageUploadXMLComponent extends LanguageBaseUsingFormComponent{
 
+    zipForm: FormGroup;
+    zipFile : File;
+    createdLanguageId : string;
+    zipFormErrorMessage: string = null;
     languageXML: string;
     errorMessage: string;
     xmlURL : string;
     successMessage: string;
-
+    loading : boolean = false;
+    total : number = 0;
+    loaded : number = 0;
     uploadedFile : File;
     resourceType : string;
     titleResourceType : string;
+    private fb : FormBuilder;
 
-    constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-                private resourceService: ResourceService) {
-        // this.componentXMLForm = fb.group({
-        //     "xml": [""],
-        // });
-        this.resourceType = this.activatedRoute.snapshot.data['resourceType'];
+    constructor(injector : Injector) {
+        super(injector);
+        this.resourceType = this.route.snapshot.data['resourceType'];
         this.titleResourceType = title(this.resourceType);
         this.uploadedFile = null;
         this.xmlURL = '';
+    }
+
+    updateFile($event : any) {
+        this.zipFile = $event;
+        //console.log($event);
+    }
+
+    uploadSansZip(componentXML : any) {
+        this.resourceService.uploadXML<LanguageDescription>(this.languageXML,this.resourceType).subscribe(
+            data => {
+                this.loading=false;
+                this.successfulMessage = "Model or Grammar uploaded successfully";
+                this.createdLanguageId = data.metadataHeaderInfo.metadataRecordIdentifier.value;
+            },
+            error => this.handleError("Error uploading Model or Grammar.",error)
+        );
+    }
+
+    uploadWithZip(componentXML: any) {
+        let resource = new Blob([this.languageXML],{type : `application/xml`});
+        this.resourceService.uploadResourceZip<LanguageDescription>(this.zipFile,resource,this.resourceType).subscribe(event => {
+            console.log(event);
+            if (event.type === HttpEventType.UploadProgress) {
+                this.total = event.total; this.loaded = event.loaded;
+                console.log(event.total, event.loaded);
+            } else if (event instanceof HttpResponse) {
+                console.log(event.body);
+                this.loading=false;
+                this.successfulMessage = "Model or Grammar uploaded successfully";
+                this.createdLanguageId = event.body.metadataHeaderInfo.metadataRecordIdentifier.value;
+            }
+        },error => this.handleError("Error uploading Model or Grammar.",error));
     }
 
     onSubmit(componentXML: any, event: Event) {
@@ -51,9 +90,13 @@ export class LanguageUploadXMLComponent {
 
         console.log("submit",this.xmlURL,this.uploadedFile);
 
-        this.resourceService.registerComponent(componentXML,this.resourceType).subscribe(
-            resource => this.successfullySubscribed(),
-            error => this.handleError(<any>error));
+        this.loading = true;
+        if(this.zipFile == null) {
+            this.uploadSansZip(componentXML);
+        } else {
+            this.uploadWithZip(componentXML);
+        }
+
     }
 
     previewFromURL() {
@@ -88,9 +131,5 @@ export class LanguageUploadXMLComponent {
         window.scrollTo(0, 0)
         this.successMessage = `Your ${this.resourceType} has been successfully registered`;
         return false;
-    }
-
-    handleError(error : ErrorObservable) {
-        this.errorMessage = `System error registering your ${this.resourceType} (Server responded: ${error.error} )`;
     }
 }

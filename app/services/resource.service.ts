@@ -16,7 +16,10 @@ import { Resource } from "../domain/resource";
 import { MavenComponent } from "../domain/maven-component";
 import { GhQueryEncoder } from "../domain/utils";
 import { PublicationInfo } from "../domain/publication-info";
-import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse } from "@angular/common/http";
+import {
+    HttpClient, HttpErrorResponse, HttpEvent, HttpEventType, HttpHeaders, HttpRequest,
+    HttpResponse
+} from "@angular/common/http";
 import { saveAs } from "file-saver";
 import { FileStats } from "../domain/filestats";
 
@@ -250,6 +253,22 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
+    uploadResourceZip<T>(file : File, corpus : Blob, resourceType : string) : Observable<HttpEvent<T>> {
+
+        let formBody : FormData = new FormData();
+        formBody.append(resourceType,corpus);
+        formBody.append('file',file,file.name);
+        const req = new HttpRequest('POST', this._resourcesUrl + `${resourceType}/zipUpload`, formBody,{
+            reportProgress: true,
+            withCredentials: true
+        });
+        return this.httpClient.request(req).catch(this.handleError);
+
+        // return this.http.post(this._resourcesUrl + 'corpus/zipUpload',formBody,options)
+        //     .map(res => res.json() as T)
+        //     .catch(this.handleError);
+    }
+
     uploadCorpusZip<T>(file : File, corpus : Blob) : Observable<HttpEvent<T>> {
 
         let formBody : FormData = new FormData();
@@ -371,6 +390,11 @@ export class ResourceService {
             errMsg.url = body['url'];
             errMsg.status = error.status;
             console.log(body);
+
+        } else if (error instanceof HttpErrorResponse) {
+            errMsg.error = error.error.error;
+            errMsg.url = error.error.url;
+            errMsg.status = error.status;
         } else {
             errMsg = (error.message) ? error.message :
                 error.status ? `${error.status} - ${error.statusText}` : 'Server error';

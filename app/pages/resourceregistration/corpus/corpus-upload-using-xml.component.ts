@@ -53,7 +53,6 @@ export class CorpusUploadUsingXmlComponent extends CorpusBaseUsingFormComponent 
 
     onSubmit() {
 
-        this.loading = true;
         if(this.zipFile && this.zipFile.name.endsWith(".zip"))
             this.zipFormErrorMessage = null;
         else {
@@ -64,6 +63,7 @@ export class CorpusUploadUsingXmlComponent extends CorpusBaseUsingFormComponent 
         if(!this.validate())
             return;
 
+        this.loading = true;
         let corpus = new Blob([this.corpusXML],{type : `application/xml`})
         this.resourceService.uploadCorpusZip<Corpus>(this.zipFile,corpus).subscribe(event => {
             console.log(event);

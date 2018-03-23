@@ -31,11 +31,11 @@ const lexicalRegistrationRoutes: Routes = [
     },
     {
         path: 'resourceRegistration/lexical/xml',
-        component: ComingSoonPageComponent,
+        component: LexicalUploadXMLComponent,
         canActivate: [
             CanActivateViaAuthGuard
         ],
-        data : {title : 'Upload an XML file for your Annotation Resource'}
+        data : {title : 'Upload an XML file for your Annotation Resource', resourceType : 'lexical'}
     },
     {
         path: 'resourceRegistration/lexical/form/edit/:id',

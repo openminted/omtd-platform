@@ -1,4 +1,14 @@
 <div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div *ngIf="loading" class="whiteFilm">
+        <div class="loader">
+            <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i>
+            <div class="uk-margin-top" [ngSwitch]="loaded > 0 && loaded==total">
+                <progress *ngSwitchCase="false" class="uk-progress uk-progress-small" [value]="loaded" [max]="total"></progress>
+                <span *ngSwitchCase="true"><strong>Processing Resources...</strong></span>
+            </div>
+        </div>
+    </div>
+
     <div class="uk-container">
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
@@ -16,9 +26,6 @@
                               [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
                 </help-content>
 
-                <div *ngIf="errorMessage" class="uk-alert uk-alert-danger">{{errorMessage}}</div>
-                <div *ngIf="successMessage" class="uk-alert uk-alert-success">{{successMessage}}</div>
-
                 <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
                     <div class="uk-grid">
 
@@ -28,46 +35,88 @@
                         </aside-help-content>
 
                         <!-- MIDDLE -->
-                        <div class=" uk-width-expand@m">
-                            <!--[formGroup]="componentXMLForm"-->
-                            <form role="form" class="m-t componentXMLForm" (ngSubmit)="onSubmit(lexicalXML, $event)">
-                                <div class="form-group">
-                                    <!--<textarea class="form-control" rows="16" name="xml" formControlName="xml"></textarea>-->
-                                    <div ace-editor [(text)]="lexicalXML" [mode]="'xml'" [theme]="'chrome'" style="min-height: 500px; width:100%; overflow: auto;"></div>
+                        <div class="uk-width-expand@m uk-first-column">
+
+                            <div *ngIf="!successfulMessage" class="uk-width-1-1@m uk-first-column uk-margin-bottom">
+                                <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+
+                                <article class="uk-article">
+                                    <!--<h3 class="subtitle">Upload your zip file</h3>-->
+                                    <h2 class="uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                                        1. Upload your zip file (optional)
+                                    </h2>
+                                    <div *ngIf="zipFormErrorMessage" class="alert alert-danger">{{zipFormErrorMessage}}</div>
+                                    <zip-upload [group]="zipForm" (file)="updateFile($event)" class="uk-width-1-1"></zip-upload>
+                                    <!--<p class="uk-article-lead">Browse through your files and select the file you wish to upload </p>-->
+                                </article>
+                                <!--<h1 class="uk-article-title">Upload your zip file</h1>-->
+
+
+                                <article class="uk-article">
+                                    <!--<h3 class="subtitle">Fill in the metadata for your corpus</h3>-->
+                                    <h2 class="uk-h2 uk-scrollspy-inview uk-animation-slide-bottom-small" uk-scrollspy-class="" style="">
+                                        2. Fill in the metadata for your Annotation Resource
+                                    </h2>
+                                    <div class="uk-grid">
+
+                                        <div class=" uk-width-expand@m">
+                                            <!--[formGroup]="componentXMLForm"-->
+                                            <form role="form" class="m-t componentXMLForm" (ngSubmit)="onSubmit(lexicalXML, $event)">
+                                                <div class="form-group">
+                                                    <!--<textarea class="form-control" rows="16" name="xml" formControlName="xml"></textarea>-->
+                                                    <div ace-editor [(text)]="lexicalXML" [mode]="'xml'" [theme]="'chrome'" style="min-height: 500px; width:100%; overflow: auto;"></div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                        <aside class="tm-sidebar uk-width-1-4@m uk-first-column">
+                                            <div class="uk-card uk-card-body uk-card-default uk-margin-bottom">
+                                                <h3 class="uk-panel-title">Local Path</h3>
+                                                <form class="m-t componentXMLFileForm">
+                                                    <div class="form-group">
+                                                        <input type="file" name="xmlFile" (change)="report($event)">
+                                                    </div>
+                                                    <a (click)="previewFromFile()" class="">
+                                                        Preview <i class="fa fa-angle-right uk-margin-small-left"></i>
+                                                    </a>
+                                                </form>
+                                            </div>
+                                            <div class="uk-card uk-card-body uk-card-default sidemenu uk-margin-bottom">
+                                                <h3 class="uk-panel-title">URL Path</h3>
+                                                <form class="m-t componentXMLURLForm">
+                                                    <div class="form-group">
+                                                        <input class="form-control" name="xmlURL" [(ngModel)]="xmlURL">
+                                                    </div>
+                                                    <a (click)="previewFromURL()" class="">
+                                                        Preview <i class="fa fa-angle-right uk-margin-small-left"></i>
+                                                    </a>
+                                                </form>
+                                            </div>
+                                        </aside>
+                                    </div>
+
+                                </article>
+
+                                <div class="uk-grid">
+                                    <div class="uk-width-1-5"></div>
+                                    <div class="uk-width-4-5">
+                                        <button (click)="onSubmit()" class="uk-button uk-button-large
+                                            uk-button-blue registerButton">Register!</button>
+                                    </div>
                                 </div>
-                                <button class="uk-button uk-button-primary registerButton" type="submit">Register!</button>
-                            </form>
 
+
+
+                            </div>
+
+                            <div *ngIf="successfulMessage" class="alert alert-success">
+                                {{successfulMessage}} Click <a [routerLink]="['/landingPage/lexical/',createdLexicalId]">here</a> to see it.
+                            </div>
                         </div>
-
-                        <aside class="tm-sidebar uk-width-1-4@m uk-first-column">
-                            <div class="uk-card uk-card-body uk-card-default uk-margin-bottom">
-                                <h3 class="uk-panel-title">Local Path</h3>
-                                <form class="m-t componentXMLFileForm">
-                                    <div class="form-group">
-                                        <input type="file" name="xmlFile" (change)="report($event)">
-                                    </div>
-                                    <a (click)="previewFromFile()" class="">
-                                        Preview <i class="fa fa-angle-right uk-margin-small-left"></i>
-                                    </a>
-                                </form>
-                            </div>
-                            <div class="uk-card uk-card-body uk-card-default sidemenu uk-margin-bottom">
-                                <h3 class="uk-panel-title">URL Path</h3>
-                                <form class="m-t componentXMLURLForm">
-                                    <div class="form-group">
-                                        <input class="form-control" name="xmlURL" [(ngModel)]="xmlURL">
-                                    </div>
-                                    <a (click)="previewFromURL()" class="">
-                                        Preview <i class="fa fa-angle-right uk-margin-small-left"></i>
-                                    </a>
-                                </form>
-                            </div>
-                        </aside>
 
                         <!--&lt;!&ndash; RIGHT HELP CONTENT &ndash;&gt;-->
                         <!--<aside-help-content #rightHelperContent [position]="'right'"-->
-                                            <!--[ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">-->
+                        <!--[ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">-->
                         <!--</aside-help-content>-->
 
                     </div>

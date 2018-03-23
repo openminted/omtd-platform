@@ -1,12 +1,12 @@
 /**
  * Created by stefania on 10/6/16.
  */
-import { Component } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { ResourceService } from "../../../services/resource.service";
-import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { Component, Injector } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { title } from "../../../domain/utils";
+import { LexicalBaseUsingFormComponent } from "./lexical-base-using-form.component";
+import { Lexical } from "../../../domain/openminted-model";
+import { HttpEventType, HttpResponse } from "@angular/common/http";
 
 @Component({
     selector: 'lexical-registration-xml',
@@ -14,26 +14,63 @@ import { title } from "../../../domain/utils";
     styleUrls:  ['./lexical-registration-xml.component.css'],
 })
 
-export class LexicalUploadXMLComponent {
+export class LexicalUploadXMLComponent extends LexicalBaseUsingFormComponent {
 
+    zipForm: FormGroup;
+    zipFile : File;
+    createdLexicalId : string;
+    zipFormErrorMessage: string = null;
     lexicalXML: string;
     errorMessage: string;
     xmlURL : string;
     successMessage: string;
-
+    loading : boolean = false;
+    total : number = 0;
+    loaded : number = 0;
     uploadedFile : File;
     resourceType : string;
     titleResourceType : string;
+    private fb : FormBuilder;
 
-    constructor(fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-                private resourceService: ResourceService) {
-        // this.componentXMLForm = fb.group({
-        //     "xml": [""],
-        // });
-        this.resourceType = this.activatedRoute.snapshot.data['resourceType'];
+    constructor(injector : Injector) {
+        super(injector);
+        this.resourceType = this.route.snapshot.data['resourceType'];
         this.titleResourceType = title(this.resourceType);
         this.uploadedFile = null;
         this.xmlURL = '';
+    }
+
+    updateFile($event : any) {
+        this.zipFile = $event;
+        //console.log($event);
+    }
+
+
+    uploadSansZip(componentXML : any) {
+        this.resourceService.uploadXML<Lexical>(this.lexicalXML,this.resourceType).subscribe(
+            data => {
+                this.loading=false;
+                this.successfulMessage = "Annotation Resource uploaded successfully.";
+                this.createdLexicalId = data.metadataHeaderInfo.metadataRecordIdentifier.value;
+            },
+            error => this.handleError("Error uploading Annotation Resource.",error)
+        );
+    }
+
+    uploadWithZip(componentXML: any) {
+        let resource = new Blob([this.lexicalXML],{type : `application/xml`});
+        this.resourceService.uploadResourceZip<Lexical>(this.zipFile,resource,this.resourceType).subscribe(event => {
+            console.log(event);
+            if (event.type === HttpEventType.UploadProgress) {
+                this.total = event.total; this.loaded = event.loaded;
+                console.log(event.total, event.loaded);
+            } else if (event instanceof HttpResponse) {
+                console.log(event.body);
+                this.loading=false;
+                this.successfulMessage = "Annotation Resource uploaded successfully.";
+                this.createdLexicalId = event.body.metadataHeaderInfo.metadataRecordIdentifier.value;
+            }
+        },error => this.handleError("Error uploading Annotation Resource.",error));
     }
 
     onSubmit(componentXML: any, event: Event) {
@@ -51,9 +88,12 @@ export class LexicalUploadXMLComponent {
 
         console.log("submit",this.xmlURL,this.uploadedFile);
 
-        this.resourceService.registerComponent(componentXML,this.resourceType).subscribe(
-            resource => this.successfullySubscribed(),
-            error => this.handleError(<any>error));
+        this.loading = true;
+        if(this.zipFile == null) {
+            this.uploadSansZip(componentXML);
+        } else {
+            this.uploadWithZip(componentXML);
+        }
     }
 
     previewFromURL() {
@@ -88,9 +128,5 @@ export class LexicalUploadXMLComponent {
         window.scrollTo(0, 0)
         this.successMessage = `Your ${this.resourceType} has been successfully registered`;
         return false;
-    }
-
-    handleError(error : ErrorObservable) {
-        this.errorMessage = `System error registering your ${this.resourceType} (Server responded: ${error.error} )`;
     }
 }
