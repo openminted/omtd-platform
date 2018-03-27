@@ -121,7 +121,29 @@ export class LexicalRegistrationFormComponent implements OnInit {
     }
 
     public setAsTouched() {
-        console.log("Not yet implemented");
+        let ret = {};
+        console.log(this.myForm.controls['lexicalConceptualResourceInfo'] as FormGroup);
+        this.setAsTouched_(this.myForm.controls['lexicalConceptualResourceInfo'] as FormGroup, ret);
+        console.log(ret);
+    }
+
+    private setAsTouched_(form : FormGroup, ret : any) {
+        Object.keys(form.controls).forEach(control =>{
+            let control_ = form.controls[control];
+            if( !control_.valid) {
+                ret[control] = {};
+                if (control_.hasOwnProperty('controls')) {
+                    this.setAsTouched_(control_ as FormGroup, ret[control]);
+                } else {
+                    if (control_.enabled && !control_.valid) {
+                        ret[control] = control_.valid;
+                        (control_ as FormGroup).markAsDirty();
+                        (control_ as FormGroup).markAsTouched();
+                        console.log(control, form.controls[control].valid);
+                    }
+                }
+            }
+        });
     }
 
     public get(path : string) : AbstractControl {
