@@ -83,47 +83,11 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let myOperation of operations" class="el-item">
-                                                                <td class="">
-                                                                    <div class="el-title" *ngIf="myOperation.operation && myOperation.operation.corpus && myOperation.operation.corpus.input
-                                                                    && myOperation.resources[myOperation.operation.corpus.input]">
-                                                                        <span><strong>{{toCorpus(myOperation.resources[myOperation.operation.corpus.input]).corpusInfo.identificationInfo.resourceNames[0].value}}</strong></span><br>
-                                                                        <span style="text-align: justify;">{{toCorpus(myOperation.resources[myOperation.operation.corpus.input]).corpusInfo.identificationInfo.descriptions[0].value}}</span><br>
-                                                                        <a (click)="gotoDetail('corpus', myOperation.operation.corpus.input)">
-                                                                            View details
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="el-title" *ngIf="!myOperation.operation || !myOperation.operation.corpus || !myOperation.operation.corpus.input
-                                                                    || !myOperation.resources[myOperation.operation.corpus.input]">
-                                                                        not available
-                                                                    </div>
+                                                                <td [display-resource]="myOperation.resources[myOperation.operation.corpus.input]">
                                                                 </td>
-                                                                <td class="">
-                                                                    <div class="el-title" *ngIf="myOperation?.operation?.component
-                                                                    && myOperation.resources[myOperation.operation.component]">
-                                                                        <span><strong>{{toComponent(myOperation.resources[myOperation.operation.component]).componentInfo.identificationInfo.resourceNames[0].value}}</strong></span><br>
-                                                                        <span style="text-align: justify;">{{toComponent(myOperation.resources[myOperation.operation.component]).componentInfo.identificationInfo.descriptions[0].value}}</span><br>
-                                                                        <a (click)="gotoDetail('component', myOperation.operation.component)">
-                                                                            View details
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="el-title" *ngIf="!myOperation?.operation?.component
-                                                                    || !myOperation.resources[myOperation.operation.component]">
-                                                                        not available
-                                                                    </div>
+                                                                <td [display-resource]="myOperation.resources[myOperation.operation.component]">
                                                                 </td>
-                                                                <td class="">
-                                                                    <div class="el-title" *ngIf="myOperation?.operation?.corpus?.output
-                                                                    && myOperation.resources[myOperation.operation.corpus.output]">
-                                                                        <span><strong>{{toCorpus(myOperation.resources[myOperation.operation.corpus.output]).corpusInfo.identificationInfo.resourceNames[0].value}}</strong></span><br>
-                                                                        <span style="text-align: justify;">{{toCorpus(myOperation.resources[myOperation.operation.corpus.output]).corpusInfo.identificationInfo.descriptions[0].value}}</span><br>
-                                                                        <a (click)="gotoDetail('corpus', myOperation.operation.corpus.output)">
-                                                                            View details
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="el-title" *ngIf="!myOperation?.operation?.corpus?.output
-                                                                    || !myOperation.resources[myOperation.operation.corpus.output]">
-                                                                        not available
-                                                                    </div>
+                                                                <td [display-resource]="myOperation.resources[myOperation.operation.corpus.output]">
                                                                 </td>
                                                                 <td class="">
                                                                     <div class="el-title" *ngIf="myOperation?.operation?.date?.submitted">

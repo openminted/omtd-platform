@@ -13,6 +13,7 @@ import { MyOperationsComponent } from "./operations/my-operations.component";
 import { MyLexicalsComponent } from "./lexical/my-lexicals.component";
 import { MyLanguagesComponent } from "./language/my-languages.component";
 import { MyResourceComponent } from "./my-resource.component";
+import { DisplayResourceDirective } from "./display-resource.directive";
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { MyResourceComponent } from "./my-resource.component";
         MyOperationsComponent,
         MyLexicalsComponent,
         MyLanguagesComponent,
-        MyResourceComponent
+        MyResourceComponent,
+        DisplayResourceDirective
     ],
     providers: [
         ResourceService

@@ -3,12 +3,16 @@
  */
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BaseMetadataRecord, Component as OMTDComponent, Corpus as OMTDCorpus } from "../../../domain/openminted-model";
+import {
+    BaseMetadataRecord, Component as OMTDComponent, Corpus as OMTDCorpus,
+    IdentificationInfo
+} from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { SearchResults } from "../../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog.component";
 import { EnrichedOperation } from "../../../domain/operation";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { ShortResultInfo } from "../../../domain/short-resource-info";
 
 @Component({
     selector: 'my-operations',
@@ -89,15 +93,15 @@ export class MyOperationsComponent {
         this.errorMessage = message + ' (Server responded: ' + error.error + ')';
     }
 
-    gotoDetail(resourceType: string, id: string) {
-        this.router.navigate(['/landingPage/' + resourceType + '/', id]);
+    toSearchResult(data : BaseMetadataRecord) : ShortResultInfo {
+        return new ShortResultInfo(data);
     }
 
-    toCorpus(data : BaseMetadataRecord) : OMTDCorpus {
-        return data as OMTDCorpus;
+    toCorpusIdentification(data : BaseMetadataRecord) : IdentificationInfo {
+        return (data as OMTDCorpus).corpusInfo.identificationInfo;
     }
 
-    toComponent(data : BaseMetadataRecord) : OMTDComponent {
-        return data as OMTDComponent;
+    toComponentIdentification(data : BaseMetadataRecord) : IdentificationInfo {
+        return (data as OMTDComponent).componentInfo.identificationInfo;
     }
 }
