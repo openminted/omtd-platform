@@ -58,7 +58,8 @@ export class ComponentRegistrationXMLComponent {
 
     previewFromURL() {
         this.resourceService.getXML(this.xmlURL,this.resourceType).subscribe(
-            xml => this.componentXML = xml
+            xml => this.componentXML = xml,
+            error => this.handleError(error)
         );
     }
 

@@ -120,7 +120,7 @@ export class ResourceService {
     getXML(url : string, resource : string, validate : boolean = true) {
         let params : URLSearchParams = new URLSearchParams();
         let headers = new Headers();
-        headers.append('Accept', 'application/xml');
+        headers.append('Accept', 'application/xml,application/json');
         params.append('url',url);
         params.append('validate',`${validate}`);
         return this.http.get(`${this._resourcesUrl}${resource}/load`,

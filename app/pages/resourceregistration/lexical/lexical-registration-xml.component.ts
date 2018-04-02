@@ -98,7 +98,8 @@ export class LexicalUploadXMLComponent extends LexicalBaseUsingFormComponent {
 
     previewFromURL() {
         this.resourceService.getXML(this.xmlURL,this.resourceType).subscribe(
-            xml => this.lexicalXML = xml
+            xml => this.lexicalXML = xml,
+            error => this.handleError("Error loading XML from URL",error)
         );
     }
 

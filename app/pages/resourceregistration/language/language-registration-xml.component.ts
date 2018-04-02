@@ -101,7 +101,8 @@ export class LanguageUploadXMLComponent extends LanguageBaseUsingFormComponent{
 
     previewFromURL() {
         this.resourceService.getXML(this.xmlURL,this.resourceType).subscribe(
-            xml => this.languageXML = xml
+            xml => this.languageXML = xml,
+            error => this.handleError("Error loading XML from URL",error)
         );
     }
 

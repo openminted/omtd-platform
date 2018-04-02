@@ -24,9 +24,12 @@ export class CorpusUploadUsingXmlComponent extends CorpusBaseUsingFormComponent 
 
     zipForm: FormGroup;
     zipFile : File;
+    xmlURL : string;
     corpusXML : string;
     createdCorpusId : string;
     zipFormErrorMessage: string = null;
+    resourceType : string = 'corpus';
+    uploadedFile : File;
     total = 0;
     loaded = 0;
     private _fb;
@@ -49,6 +52,34 @@ export class CorpusUploadUsingXmlComponent extends CorpusBaseUsingFormComponent 
 
     navigateToCorpus() {
         super.navigateToCorpus(this.createdCorpusId);
+    }
+
+    previewFromURL() {
+        this.resourceService.getXML(this.xmlURL,this.resourceType).subscribe(
+            xml => this.corpusXML = xml,
+            error => this.handleError("Error loading XML from URL",error)
+        );
+    }
+
+    report($event : any) {
+        this.uploadedFile = $event.target.files[0];
+    }
+
+    previewFromFile() {
+        let self = this;
+        if (this.uploadedFile) {
+            let myReader:FileReader = new FileReader();
+            // var tempForm = this.componentXMLForm;
+            console.log(this.uploadedFile);
+            myReader.onloadstart = function(e) {
+                //TODO validation here
+            };
+            myReader.onloadend = function(e){
+                self.corpusXML = myReader.result;
+            };
+            myReader.readAsText(this.uploadedFile);
+
+        }
     }
 
     onSubmit() {
