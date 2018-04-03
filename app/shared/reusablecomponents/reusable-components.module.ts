@@ -15,6 +15,8 @@ import { ConfirmationDialogComponent } from "../confirmation-dialog.component";
 import { ModalModule } from "ngx-bootstrap";
 import { ComingSoonPageComponent } from "./coming-soon-page.component";
 import { DownloadComponent } from "./download.component";
+import { PaginationDirective } from "./pagination.directive";
+import { RouterModule } from "@angular/router";
 
 
 const modules = [
@@ -23,13 +25,15 @@ const modules = [
     AsideHelpContentComponent,
     ConfirmationDialogComponent,
     ComingSoonPageComponent,
-    DownloadComponent
+    DownloadComponent,
+    PaginationDirective
 ];
 
 @NgModule({
     imports: [
         BrowserModule,
         CommonModule,
+        RouterModule,
         FormsModule,
         ReactiveFormsModule,
         HttpModule,

@@ -3,16 +3,12 @@
  */
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-    BaseMetadataRecord, Component as OMTDComponent, Corpus as OMTDCorpus,
-    IdentificationInfo
-} from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { SearchResults } from "../../../domain/search-results";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog.component";
 import { EnrichedOperation } from "../../../domain/operation";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
-import { ShortResultInfo } from "../../../domain/short-resource-info";
+import { URLParameter } from "../../../domain/url-parameter";
 
 @Component({
     selector: 'my-operations',
@@ -22,24 +18,11 @@ import { ShortResultInfo } from "../../../domain/short-resource-info";
 
 export class MyOperationsComponent {
 
-    @ViewChild('deleteConfirmationModal')
-    public deleteConfirmationModal : ConfirmationDialogComponent;
 
     public searchResults: SearchResults<EnrichedOperation>;
-    public operations: EnrichedOperation[] = [];
     public errorMessage: string;
     public successMessage: string;
-
-    private pageSize: number = 0;
-    private currentPage: number = 0;
-    private totalPages: number = 0;
-
-    isModalShown : boolean;
-
-    private isPreviousPageDisabled: boolean = false;
-    private isFirstPageDisabled: boolean = false;
-    private isNextPageDisabled: boolean = false;
-    private isLastPageDisabled: boolean = false;
+    private params : any = { order : 'desc', orderField : 'modification_date', from : 0};
 
     constructor(
         private route: ActivatedRoute,
@@ -50,58 +33,27 @@ export class MyOperationsComponent {
 
         this.errorMessage = null;
         this.successMessage = null;
-
-        this.resourceService.getMyResources<EnrichedOperation>('operation').subscribe(
-            searchResults => this.updateMyOperations(searchResults),
-            error => this.handleError('System error retrieving user operations', <any>error));
+        console.log(this.route.params);
+        this.route.params.subscribe(
+            params => {
+                if (typeof params['from'] != undefined) {
+                    console.log(params);
+                    this.params['from'] = params['from'];
+                }
+                this.resourceService.getMyResources<EnrichedOperation>('operation',this.params).subscribe(
+                    searchResults => this.updateMyOperations(searchResults),
+                    error => this.handleError('System error retrieving user operations', <any>error));
+            }
+        );
     }
 
     updateMyOperations(searchResults: SearchResults<EnrichedOperation>) {
-
         //INITIALISATIONS
         this.errorMessage = null;
-
         this.searchResults = searchResults;
-
-        this.isFirstPageDisabled = false;
-        this.isPreviousPageDisabled = false;
-        this.isLastPageDisabled = false;
-        this.isNextPageDisabled = false;
-
-        this.operations.length = 0;
-
-        for (let operation of this.searchResults.results) {
-            this.operations.push(<EnrichedOperation> operation);
-        }
-
-        this.pageSize = 10;
-        this.currentPage = (searchResults.from / this.pageSize) + 1;
-        this.totalPages = Math.ceil(searchResults.total / this.pageSize);
-
-        if(this.currentPage == 1) {
-            this.isFirstPageDisabled = true;
-            this.isPreviousPageDisabled = true;
-        }
-
-        if(this.currentPage == this.totalPages) {
-            this.isLastPageDisabled = true;
-            this.isNextPageDisabled = true;
-        }
     }
 
     handleError(message: string, error: ErrorObservable) {
         this.errorMessage = message + ' (Server responded: ' + error.error + ')';
-    }
-
-    toSearchResult(data : BaseMetadataRecord) : ShortResultInfo {
-        return new ShortResultInfo(data);
-    }
-
-    toCorpusIdentification(data : BaseMetadataRecord) : IdentificationInfo {
-        return (data as OMTDCorpus).corpusInfo.identificationInfo;
-    }
-
-    toComponentIdentification(data : BaseMetadataRecord) : IdentificationInfo {
-        return (data as OMTDComponent).componentInfo.identificationInfo;
     }
 }

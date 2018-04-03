@@ -37,32 +37,8 @@
 
                                 <div *ngIf="searchResults.total>0">
 
-                                    <div class="uk-width-1-1 uk-row-first">
-                                        <ul class="uk-pagination">
+                                    <div class="uk-width-1-1 uk-row-first" paginate [from]="searchResults.from" [total]="searchResults.total">
 
-                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
-                                                <a class="uk-disabled" href="#">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
-                                            <li *ngIf="!isPreviousPageDisabled">
-                                                <a (click)="goToPreviousPage()">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
-
-                                            <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
-                                                <a class="uk-disabled" href="#">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                            <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
-                                                <a (click)="goToNextPage()">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
                                     </div>
 
                                     <div class="uk-grid-margin">
@@ -82,7 +58,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let myOperation of operations" class="el-item">
+                                                            <tr *ngFor="let myOperation of searchResults.results" class="el-item">
                                                                 <td [display-resource]="myOperation.resources[myOperation.operation.corpus.input]">
                                                                 </td>
                                                                 <td [display-resource]="myOperation.resources[myOperation.operation.component]">
@@ -122,32 +98,8 @@
 
                                     </div>
 
-                                    <div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top">
-                                        <ul class="uk-pagination">
-
-                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
-                                                <a class="uk-disabled" href="#">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
-                                            <li *ngIf="!isPreviousPageDisabled">
-                                                <a (click)="goToPreviousPage()">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
-
-                                            <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
-                                                <a class="uk-disabled" href="#">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                            <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
-                                                <a (click)="goToNextPage()">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
+                                    <div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top"
+                                         paginate [from]="searchResults.from" [total]="searchResults.total">
                                     </div>
 
 
