@@ -33,7 +33,6 @@ export class MyOperationsComponent {
 
         this.errorMessage = null;
         this.successMessage = null;
-        console.log(this.route.params);
         this.route.params.subscribe(
             params => {
                 if (typeof params['from'] != undefined) {

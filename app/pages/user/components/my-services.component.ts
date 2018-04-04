@@ -4,6 +4,8 @@
 import { Component, Injector } from '@angular/core';
 import { Component as OMTDComponent } from "../../../domain/openminted-model";
 import { MyResourceComponent } from "../my-resource.component";
+import {title} from "../../../domain/utils";
+import { EnrichedOperation } from "../../../domain/operation";
 
 @Component({
     selector: 'my-services',
@@ -13,6 +15,7 @@ import { MyResourceComponent } from "../my-resource.component";
 
 export class MyServicesComponent extends MyResourceComponent<OMTDComponent> {
 
+    title = title;
 
     constructor(injector : Injector) {
         super(injector);
@@ -21,9 +24,17 @@ export class MyServicesComponent extends MyResourceComponent<OMTDComponent> {
 
     ngOnInit() {
         super.ngOnInit();
-        this.resourceService.getMyResources<OMTDComponent>(this.resourceType).subscribe(
-            searchResults => this.updateMyResources(searchResults),
-            error => this.handleError('System error retrieving user tools/services', <any>error));
+        this.route.params.subscribe(
+            params => {
+                console.log(params);
+                if (typeof params['from'] != undefined) {
+                    this.params['from'] = params['from'];
+                }
+                this.resourceService.getMyResources<OMTDComponent>(this.resourceType,this.params).subscribe(
+                    searchResults => this.updateMyResources(searchResults),
+                    error => this.handleError('System error retrieving user tools/services', <any>error));
+            }
+        );
     }
 
     editWorkflow(component: OMTDComponent) {

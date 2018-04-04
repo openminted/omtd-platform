@@ -14,6 +14,7 @@ import { MyLexicalsComponent } from "./lexical/my-lexicals.component";
 import { MyLanguagesComponent } from "./language/my-languages.component";
 import { MyResourceComponent } from "./my-resource.component";
 import { DisplayResourceDirective } from "./display-resource.directive";
+import { MyResourceWrapper } from "./my-resource-wrapper.component";
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { DisplayResourceDirective } from "./display-resource.directive";
         MyLexicalsComponent,
         MyLanguagesComponent,
         MyResourceComponent,
-        DisplayResourceDirective
+        DisplayResourceDirective,
+        MyResourceWrapper
     ],
     providers: [
         ResourceService

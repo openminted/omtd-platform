@@ -3,7 +3,7 @@
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
-                <h1 class="uk-h2">My corpora</h1>
+                <h1 class="uk-h2">My Corpora</h1>
                 <hr class="uk-divider-small">
 
                 <!-- TOP HELP CONTENT -->
@@ -68,30 +68,21 @@
                                                             <td class=""><div class="el-title">--</div></td>
                                                             <td class=""><div class="el-title">--</div></td>
                                                             <td class="uk-text-nowrap">
-                                                                <div *ngIf="!corpus.corpusInfo.identificationInfo.public" class="el-title">
-                                                                    <a (click)="goToDetails(corpus)" title="View corpus" uk-tooltip>
+                                                                <div class="el-title">
+                                                                    <a [routerLink]="goToDetails(corpus)" title="View corpus" uk-tooltip>
                                                                         <i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i>
                                                                     </a>
-                                                                    <a (click)="editResource(corpus)" title="Edit corpus" uk-tooltip>
-                                                                        <i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="deleteConfirmation(corpus)" title="Delete corpus" uk-tooltip>
-                                                                        <i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="makePublicConfirmation(corpus)" class="" title="Share corpus" uk-tooltip>
-                                                                        <i class="fa fa-share-alt uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="downloadResource(corpus,'json')" title="Download {{resourceType}} as JSON" uk-tooltip>
-                                                                        <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="downloadResource(corpus,'xml')" title="Download {{resourceType}} as XML" uk-tooltip>
-                                                                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </div>
-                                                                <div *ngIf="corpus.corpusInfo.identificationInfo.public" class="el-title">
-                                                                    <a (click)="goToDetails(corpus)" title="View corpus" uk-tooltip>
-                                                                        <i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
+                                                                    <ng-container *ngIf="!corpus.corpusInfo.identificationInfo.public">
+                                                                        <a [routerLink]="editResource(corpus)" title="Edit corpus" uk-tooltip>
+                                                                            <i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i>
+                                                                        </a>
+                                                                        <a (click)="deleteConfirmation(corpus)" title="Delete corpus" uk-tooltip>
+                                                                            <i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i>
+                                                                        </a>
+                                                                        <a (click)="makePublicConfirmation(corpus)" class="" title="Share corpus" uk-tooltip>
+                                                                            <i class="fa fa-share-alt uk-margin-small-right" aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </ng-container>
                                                                     <a (click)="downloadResource(corpus,'json')" title="Download {{resourceType}} as JSON" uk-tooltip>
                                                                         <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
                                                                     </a>

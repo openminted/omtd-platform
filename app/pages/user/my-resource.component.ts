@@ -40,6 +40,7 @@ export class MyResourceComponent<T extends BaseMetadataRecord> {
 
     resourceType: string = '';
 
+    protected params : any = { order : 'desc', orderField : 'modification_date', from : 0};
     route: ActivatedRoute;
     router: Router;
     resourceService: ResourceService;
@@ -57,33 +58,12 @@ export class MyResourceComponent<T extends BaseMetadataRecord> {
     }
 
     updateMyResources(searchResults: SearchResults<T>) {
-
         //INITIALISATIONS
         this.errorMessage = null;
-
         this.searchResults = searchResults;
-
-        this.isFirstPageDisabled = false;
-        this.isPreviousPageDisabled = false;
-        this.isLastPageDisabled = false;
-        this.isNextPageDisabled = false;
-
         this.resources.length = 0;
         this.resources = this.searchResults.results;
 
-        this.pageSize = 10;
-        this.currentPage = (searchResults.from / this.pageSize) + 1;
-        this.totalPages = Math.ceil(searchResults.total / this.pageSize);
-
-        if (this.currentPage == 1) {
-            this.isFirstPageDisabled = true;
-            this.isPreviousPageDisabled = true;
-        }
-
-        if (this.currentPage == this.totalPages) {
-            this.isLastPageDisabled = true;
-            this.isNextPageDisabled = true;
-        }
     }
 
     handleError(message: string, error: ErrorObservable) {
@@ -101,12 +81,11 @@ export class MyResourceComponent<T extends BaseMetadataRecord> {
     }
 
     goToDetails(component: T) {
-        this.router.navigate([`/landingPage/${this.resourceType}/`, component.metadataHeaderInfo.metadataRecordIdentifier.value]);
+        return [`/landingPage/${this.resourceType}/`, component.metadataHeaderInfo.metadataRecordIdentifier.value];
     }
 
     editResource(component: T) {
-        console.log(component);
-        this.router.navigate([`/resourceRegistration/${this.resourceType}/form/edit/`, component.metadataHeaderInfo.metadataRecordIdentifier.value]);
+        return [`/resourceRegistration/${this.resourceType}/form/edit/`, component.metadataHeaderInfo.metadataRecordIdentifier.value];
     }
 
     deleteConfirmation(resource: T) {

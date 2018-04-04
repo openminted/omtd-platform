@@ -1,190 +1,89 @@
-<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
-    <div class="uk-container">
-        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
-            <div class="uk-width-1-1@m uk-first-column">
+<div my-resource-wrapper="My Models and Grammars">
+    <div *ngIf="errorMessage" class="uk-alert uk-alert-danger uk-margin-medium-top">{{errorMessage}}</div>
 
-                <h1 class="uk-h2">My {{resourceType}}s</h1>
-                <hr class="uk-divider-small">
+    <div *ngIf="searchResults && !errorMessage">
 
-                <!-- TOP HELP CONTENT -->
-                <help-content #topHelperContent [position]="'top'"
-                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
-                </help-content>
+        <div *ngIf="successMessage" class="uk-alert uk-alert-success uk-margin-medium-top">
+            {{successMessage}}
+        </div>
 
-                <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
-                    <div class="uk-grid">
+        <div *ngIf="searchResults.total==0" class="uk-alert uk-alert-warning uk-margin-medium-top">
+            There are no models or grammars registered under your account
+        </div>
 
-                        <!-- LEFT HELP CONTENT -->
-                        <aside-help-content #leftHelperContent [position]="'left'"
-                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
-                        </aside-help-content>
+        <div *ngIf="searchResults.total>0">
 
+            <div class="uk-width-1-1 uk-row-first" paginate
+                 [from]="searchResults.from" [total]="searchResults.total">
+            </div>
 
-                        <!-- MIDDLE -->
-                        <div class=" uk-width-expand@m">
+            <div class="uk-grid-margin">
 
-                            <div *ngIf="errorMessage" class="uk-alert uk-alert-danger uk-margin-medium-top">{{errorMessage}}</div>
-
-                            <div *ngIf="searchResults && !errorMessage">
-
-                                <div *ngIf="successMessage" class="uk-alert uk-alert-success uk-margin-medium-top">
-                                    {{successMessage}}
-                                </div>
-
-                                <div *ngIf="searchResults.total==0" class="uk-alert uk-alert-warning uk-margin-medium-top">
-                                    There are no services/tools registered under your account
-                                </div>
-
-                                <div *ngIf="searchResults.total>0">
-
-                                    <div class="uk-width-1-1 uk-row-first">
-                                        <ul class="uk-pagination">
-
-                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
-                                                <a class="uk-disabled" href="#">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+                    <div class="uk-width-1-1@m uk-first-column">
+                        <div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
+                            <table class="uk-table uk-table-striped uk-table-middle">
+                                <thead>
+                                <tr>
+                                    <th class="">Name</th>
+                                    <th class="">Date</th>
+                                    <th class="">Description</th>
+                                    <th class="">Public</th>
+                                    <th class="">Views</th>
+                                    <th class="">Downloads</th>
+                                    <th class="">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let component of resources" class="el-item">
+                                    <td class=""><div class="el-title">{{component.languageDescriptionInfo.identificationInfo.resourceNames[0].value}}</div></td>
+                                    <td class=""><div class="el-title">{{component.metadataHeaderInfo.metadataCreationDate | date:'shortDate'}}</div></td>
+                                    <td class=""><div class="el-title">{{component.languageDescriptionInfo.identificationInfo.descriptions[0].value}}</div></td>
+                                    <td class="">
+                                        <div *ngIf="component.languageDescriptionInfo.identificationInfo.public" class="el-title">yes</div>
+                                        <div *ngIf="!component.languageDescriptionInfo.identificationInfo.public" class="el-title">no</div>
+                                    </td>
+                                    <td class=""><div class="el-title">--</div></td>
+                                    <td class=""><div class="el-title">--</div></td>
+                                    <td class="uk-text-nowrap">
+                                        <div class="el-title">
+                                            <a [routerLink]="goToDetails(component)" title="View {{resourceType}}" uk-tooltip>
+                                                <i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i>
+                                            </a>
+                                            <ng-container *ngIf="!component.languageDescriptionInfo.identificationInfo.public">
+                                                <a [routerLink]="editResource(component)" title="Edit {{resourceType}} metadata" uk-tooltip>
+                                                    <i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i>
                                                 </a>
-                                            </li>
-                                            <li *ngIf="!isPreviousPageDisabled">
-                                                <a (click)="goToPreviousPage()">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
+                                                <a (click)="deleteConfirmation(component)" title="Delete {{resourceType}}" uk-tooltip>
+                                                    <i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i>
                                                 </a>
-                                            </li>
-
-                                            <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
-                                                <a class="uk-disabled" href="#">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
+                                                <a (click)="makePublicConfirmation(component)" title="Share {{resourceType}}" uk-tooltip>
+                                                    <i class="fa fa-share-alt uk-margin-small-right" aria-hidden="true"></i>
                                                 </a>
-                                            </li>
-                                            <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
-                                                <a (click)="goToNextPage()">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
-                                    </div>
-
-                                    <div class="uk-grid-margin">
-
-                                        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
-                                            <div class="uk-width-1-1@m uk-first-column">
-                                                <div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
-                                                    <table class="uk-table uk-table-striped uk-table-middle">
-                                                        <thead>
-                                                        <tr>
-                                                            <th class="">Name</th>
-                                                            <th class="">Date</th>
-                                                            <th class="">Description</th>
-                                                            <th class="">Public</th>
-                                                            <th class="">Views</th>
-                                                            <th class="">Downloads</th>
-                                                            <th class="">Actions</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr *ngFor="let component of resources" class="el-item">
-                                                            <td class=""><div class="el-title">{{component.languageDescriptionInfo.identificationInfo.resourceNames[0].value}}</div></td>
-                                                            <td class=""><div class="el-title">{{component.metadataHeaderInfo.metadataCreationDate | date:'shortDate'}}</div></td>
-                                                            <td class=""><div class="el-title">{{component.languageDescriptionInfo.identificationInfo.descriptions[0].value}}</div></td>
-                                                            <td class="">
-                                                                <div *ngIf="component.languageDescriptionInfo.identificationInfo.public" class="el-title">yes</div>
-                                                                <div *ngIf="!component.languageDescriptionInfo.identificationInfo.public" class="el-title">no</div>
-                                                            </td>
-                                                            <td class=""><div class="el-title">--</div></td>
-                                                            <td class=""><div class="el-title">--</div></td>
-                                                            <td class="uk-text-nowrap">
-                                                                <div *ngIf="!component.languageDescriptionInfo.identificationInfo.public" class="el-title">
-                                                                    <a (click)="goToDetails(component)" title="View {{resourceType}}" uk-tooltip>
-                                                                        <i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="editResource(component)" title="Edit {{resourceType}} metadata" uk-tooltip>
-                                                                        <i class="fa fa-pencil uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="deleteConfirmation(component)" title="Delete {{resourceType}}" uk-tooltip>
-                                                                        <i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="makePublicConfirmation(component)" title="Share {{resourceType}}" uk-tooltip>
-                                                                        <i class="fa fa-share-alt uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="downloadResource(component,'json')" title="Download {{resourceType}} as JSON" uk-tooltip>
-                                                                        <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="downloadResource(component,'xml')" title="Download {{resourceType}} as XML" uk-tooltip>
-                                                                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </div>
-                                                                <div *ngIf="component.languageDescriptionInfo.identificationInfo.public" class="el-title">
-                                                                    <a (click)="goToDetails(component)" title="View {{resourceType}}" uk-tooltip><i class="fa fa-info uk-margin-small-right" aria-hidden="true"></i></a>
-                                                                    <a (click)="downloadResource(component,'json')" title="Download {{resourceType}} as JSON" uk-tooltip>
-                                                                        <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a (click)="downloadResource(component,'xml')" title="Download {{resourceType}} as XML" uk-tooltip>
-                                                                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                            </ng-container>
+                                            <a (click)="downloadResource(component,'json')" title="Download {{resourceType}} as JSON" uk-tooltip>
+                                                <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
+                                            </a>
+                                            <a (click)="downloadResource(component,'xml')" title="Download {{resourceType}} as XML" uk-tooltip>
+                                                <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                            </a>
                                         </div>
-
-                                    </div>
-
-                                    <div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top">
-                                        <ul class="uk-pagination">
-
-                                            <li class="uk-disabled" *ngIf="isPreviousPageDisabled">
-                                                <a class="uk-disabled" href="#">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
-                                            <li *ngIf="!isPreviousPageDisabled">
-                                                <a (click)="goToPreviousPage()">
-                                                    <span class="uk-margin-small-right" uk-pagination-previous></span> Previous
-                                                </a>
-                                            </li>
-
-                                            <li class="uk-margin-auto-left uk-disabled" *ngIf="isNextPageDisabled">
-                                                <a class="uk-disabled" href="#">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                            <li class="uk-margin-auto-left" *ngIf="!isNextPageDisabled">
-                                                <a (click)="goToNextPage()">Next
-                                                    <span class="uk-margin-small-left" uk-pagination-next></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div class="resultsPageLabel">page {{currentPage}} of {{totalPages}}</div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-
-
-                        <!-- RIGHT HELP CONTENT -->
-                        <aside-help-content #rightHelperContent [position]="'right'"
-                                            [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
-                        </aside-help-content>
-
                     </div>
                 </div>
 
-
-                <!-- BOTTOM HELP CONTENT -->
-                <help-content #bottomHelperContent [position]="'bottom'"
-                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
-                </help-content>
-
-
             </div>
+
+            <div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top"
+                 paginate [from]="searchResults.from" [total]="searchResults.total">
+            </div>
+
         </div>
+
     </div>
 </div>
 

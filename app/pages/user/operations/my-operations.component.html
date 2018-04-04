@@ -1,132 +1,85 @@
-<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
-    <div class="uk-container">
-        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
-            <div class="uk-width-1-1@m uk-first-column">
+<div my-resource-wrapper="My Operations">
+    <div *ngIf="errorMessage" class="uk-alert uk-alert-danger uk-margin-medium-top">{{errorMessage}}</div>
 
-                <h1 class="uk-h2">My operations</h1>
-                <hr class="uk-divider-small">
+    <div *ngIf="searchResults && !errorMessage">
 
-                <!-- TOP HELP CONTENT -->
-                <help-content #topHelperContent [position]="'top'"
-                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
-                </help-content>
+        <div *ngIf="successMessage" class="uk-alert uk-alert-success uk-margin-medium-top">
+            {{successMessage}}
+        </div>
 
-                <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
-                    <div class="uk-grid">
+        <div *ngIf="searchResults.total==0" class="uk-alert uk-alert-warning uk-margin-medium-top">
+            There are no operations registered under your account
+        </div>
 
-                        <!-- LEFT HELP CONTENT -->
-                        <aside-help-content #leftHelperContent [position]="'left'"
-                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
-                        </aside-help-content>
+        <div *ngIf="searchResults.total>0">
 
+            <div class="uk-width-1-1 uk-row-first" paginate
+                 [from]="searchResults.from" [total]="searchResults.total">
+            </div>
 
-                        <!-- MIDDLE -->
-                        <div class=" uk-width-expand@m">
+            <div class="uk-grid-margin">
 
-                            <div *ngIf="errorMessage" class="uk-alert uk-alert-danger uk-margin-medium-top">{{errorMessage}}</div>
-
-                            <div *ngIf="searchResults && !errorMessage">
-
-                                <div *ngIf="successMessage" class="uk-alert uk-alert-success uk-margin-medium-top">
-                                    {{successMessage}}
-                                </div>
-
-                                <div *ngIf="searchResults.total==0" class="uk-alert uk-alert-warning uk-margin-medium-top">
-                                    There are no operations registered under your account
-                                </div>
-
-                                <div *ngIf="searchResults.total>0">
-
-                                    <div class="uk-width-1-1 uk-row-first" paginate [from]="searchResults.from" [total]="searchResults.total">
-
-                                    </div>
-
-                                    <div class="uk-grid-margin">
-
-                                        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
-                                            <div class="uk-width-1-1@m uk-first-column">
-                                                <div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
-                                                    <table class="uk-table uk-table-striped uk-table-middle">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="">Input</th>
-                                                                <th class="">Application</th>
-                                                                <th class="">Output</th>
-                                                                <th class="">Date</th>
-                                                                <th class="">Status</th>
-                                                                <th class="">Actions</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let myOperation of searchResults.results" class="el-item">
-                                                                <td [display-resource]="myOperation.resources[myOperation.operation.corpus.input]">
-                                                                </td>
-                                                                <td [display-resource]="myOperation.resources[myOperation.operation.component]">
-                                                                </td>
-                                                                <td [display-resource]="myOperation.resources[myOperation.operation.corpus.output]">
-                                                                </td>
-                                                                <td class="">
-                                                                    <div class="el-title" *ngIf="myOperation?.operation?.date?.submitted">
-                                                                        {{myOperation.operation.date.submitted | date:'shortDate'}}
-                                                                    </div>
-                                                                    <div class="el-title" *ngIf="!myOperation?.operation?.date?.submitted">
-                                                                        not available
-                                                                    </div>
-                                                                </td>
-                                                                <td class="">
-                                                                    <div class="el-title" *ngIf="myOperation?.operation?.status">
-                                                                        {{myOperation.operation.status}}
-                                                                    </div>
-                                                                    <div class="el-title" *ngIf="!myOperation?.operation?.status">
-                                                                        not available
-                                                                    </div>
-                                                                </td>
-
-                                                                <td class="uk-text-nowrap">
-                                                                    <div class="el-title">
-                                                                        <!--<a (click)="pause(operation)" class=""><i class="fa fa-pause uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                                        <!--<a (click)="stop(operation)"><i class="fa fa-stop uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                                        <!--<a (click)="start(operation)" class=""><i class="fa fa-play uk-margin-small-right" aria-hidden="true"></i></a>-->
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+                    <div class="uk-width-1-1@m uk-first-column">
+                        <div class="uk-overflow-auto uk-scrollspy-inview uk-animation-slide-top-medium" uk-scrollspy-class="" style="">
+                            <table class="uk-table uk-table-striped uk-table-middle">
+                                <thead>
+                                <tr>
+                                    <th class="">Input</th>
+                                    <th class="">Application</th>
+                                    <th class="">Output</th>
+                                    <th class="">Date</th>
+                                    <th class="">Status</th>
+                                    <th class="">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let myOperation of searchResults.results" class="el-item">
+                                    <td [display-resource]="myOperation.resources[myOperation.operation.corpus.input]">
+                                    </td>
+                                    <td [display-resource]="myOperation.resources[myOperation.operation.component]">
+                                    </td>
+                                    <td [display-resource]="myOperation.resources[myOperation.operation.corpus.output]">
+                                    </td>
+                                    <td class="">
+                                        <div class="el-title" *ngIf="myOperation?.operation?.date?.submitted">
+                                            {{myOperation.operation.date.submitted | date:'shortDate'}}
                                         </div>
+                                        <div class="el-title" *ngIf="!myOperation?.operation?.date?.submitted">
+                                            not available
+                                        </div>
+                                    </td>
+                                    <td class="">
+                                        <div class="el-title" *ngIf="myOperation?.operation?.status">
+                                            {{myOperation.operation.status}}
+                                        </div>
+                                        <div class="el-title" *ngIf="!myOperation?.operation?.status">
+                                            not available
+                                        </div>
+                                    </td>
 
-                                    </div>
-
-                                    <div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top"
-                                         paginate [from]="searchResults.from" [total]="searchResults.total">
-                                    </div>
-
-
-                                    <!--You have {{searchResults.total}} corpora registered under your name-->
-                                </div>
-
-                            </div>
-
+                                    <td class="uk-text-nowrap">
+                                        <div class="el-title">
+                                            <!--<a (click)="pause(operation)" class=""><i class="fa fa-pause uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                            <!--<a (click)="stop(operation)"><i class="fa fa-stop uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                            <!--<a (click)="start(operation)" class=""><i class="fa fa-play uk-margin-small-right" aria-hidden="true"></i></a>-->
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-
-
-                        <!-- RIGHT HELP CONTENT -->
-                        <aside-help-content #rightHelperContent [position]="'right'"
-                                            [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
-                        </aside-help-content>
-
                     </div>
                 </div>
 
-
-                <!-- BOTTOM HELP CONTENT -->
-                <help-content #bottomHelperContent [position]="'bottom'"
-                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
-                </help-content>
-
-
             </div>
+
+            <div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top"
+                 paginate [from]="searchResults.from" [total]="searchResults.total">
+            </div>
+
         </div>
+
     </div>
+
 </div>

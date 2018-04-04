@@ -2,7 +2,7 @@
  * Created by stefanos on 7/10/17.
  */
 import { Component, Injector } from '@angular/core';
-import { Component as OMTDComponent, LanguageDescription } from "../../../domain/openminted-model";
+import { Component as OMTDComponent, LanguageDescription, Lexical } from "../../../domain/openminted-model";
 import { MyResourceComponent } from "../my-resource.component";
 
 @Component({
@@ -21,9 +21,18 @@ export class MyLanguagesComponent extends MyResourceComponent<LanguageDescriptio
 
     ngOnInit() {
         super.ngOnInit();
-        this.resourceService.getMyResources<LanguageDescription>(this.resourceType).subscribe(
-            searchResults => this.updateMyResources(searchResults),
-            error => this.handleError(`System error retrieving user ${this.resourceType}`, <any>error));
+        this.route.params.subscribe(
+            params => {
+                if (typeof params['from'] != undefined) {
+                    console.log(params);
+                    this.params['from'] = params['from'];
+                }
+                this.resourceService.getMyResources<LanguageDescription>(this.resourceType,this.params).subscribe(
+                    searchResults => this.updateMyResources(searchResults),
+                    error => this.handleError(`System error retrieving user ${this.resourceType}`, <any>error));
+            }
+        );
+
     }
 
 }

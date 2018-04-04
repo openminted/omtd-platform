@@ -21,9 +21,18 @@ export class MyLexicalsComponent extends MyResourceComponent<Lexical> {
 
     ngOnInit() {
         super.ngOnInit();
-        this.resourceService.getMyResources<Lexical>(this.resourceType).subscribe(
-            searchResults => this.updateMyResources(searchResults),
-            error => this.handleError(`System error retrieving user ${this.resourceType}`, <any>error));
+        this.route.params.subscribe(
+            params => {
+                if (typeof params['from'] != undefined) {
+                    console.log(params);
+                    this.params['from'] = params['from'];
+                }
+                this.resourceService.getMyResources<Lexical>(this.resourceType,this.params).subscribe(
+                    searchResults => this.updateMyResources(searchResults),
+                    error => this.handleError(`System error retrieving user ${this.resourceType}`, <any>error));
+            }
+        );
+
     }
 
 }
