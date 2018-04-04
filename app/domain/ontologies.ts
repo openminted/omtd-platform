@@ -1092,9 +1092,9 @@ export var dataFormatOntologies = [
                 "name": "PubMed"
             },
             {
-                "comment": "Plain Text",
-                "id": "http://w3id.org/meta-share/omtd-share/Text_plain",
-                "name": "Plain Text"
+                "comment": "Default value for the format of textual files; a textual file should be human-readable and must not contain binary data",
+                "id": "http://w3id.org/meta-share/omtd-share/Text",
+                "name": "Text"
             },
             {
                 "comment": "SGML format",
