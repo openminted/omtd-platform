@@ -30,7 +30,6 @@
                                     <th class="">Output</th>
                                     <th class="">Date</th>
                                     <th class="">Status</th>
-                                    <th class="">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -50,11 +49,22 @@
                                         </div>
                                     </td>
                                     <td class="">
-                                        <div class="el-title" *ngIf="myOperation?.operation?.status">
-                                            {{myOperation.operation.status}}
-                                        </div>
-                                        <div class="el-title" *ngIf="!myOperation?.operation?.status">
-                                            not available
+                                        <div class="el-title" [ngSwitch]="myOperation?.operation?.status">
+                                            <strong *ngSwitchCase="'RUNNING'">Running</strong>
+                                            <ng-container *ngSwitchCase="'FINISHED'">
+                                                <span><strong>Finished</strong></span>
+                                                <br>
+                                                <span style="text-align: justify;">
+                                                    in {{(myOperation.operation.date.finished - myOperation.operation.date.started)/ (1000 * 60) | number}} minutes
+                                                </span>
+                                            </ng-container>
+                                            <strong *ngSwitchCase="'PENDING'">Pending</strong>
+                                            <ng-container *ngSwitchCase="'FAILED'">
+                                                <span><strong>Failed</strong></span>
+                                                <br>
+                                                <span style="text-align: justify;">{{myOperation.operation.errors[0].message}}</span>
+                                            </ng-container>
+                                            <strong *ngSwitchDefault>not available</strong>
                                         </div>
                                     </td>
 
