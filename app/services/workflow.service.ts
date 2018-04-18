@@ -6,6 +6,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { WSJobStatus } from "../domain/ws-job-status";
 import { Operation } from "../domain/operation";
+import { HttpErrorResponse } from "@angular/common/http";
+import { OMTDError } from "./resource.service";
 
 @Injectable()
 export class WorkflowService {
@@ -49,15 +51,19 @@ export class WorkflowService {
 
     }
 
-    private handleError (error: Response | any) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        let errMsg = "";
-        console.log(error);
+    private handleError (error: Response | any){
+        let errMsg = new OMTDError();
         if (error instanceof Response) {
-            const body = error.text() || '';
-            //const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${body}`;
+            const body = error.json() || '';
+            errMsg.error = body['error'];
+            errMsg.url = body['url'];
+            errMsg.status = error.status;
+            console.log(body);
+
+        } else if (error instanceof HttpErrorResponse) {
+            errMsg.error = error.error.error;
+            errMsg.url = error.error.url;
+            errMsg.status = error.status;
         } else {
             errMsg = (error.message) ? error.message :
                 error.status ? `${error.status} - ${error.statusText}` : 'Server error';

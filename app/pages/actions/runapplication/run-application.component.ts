@@ -72,10 +72,8 @@ export class RunApplicationComponent {
                         // console.log(urlParameter);
                     }
                 }
-
                 sessionStorage.removeItem('runApplication.input');
                 sessionStorage.removeItem('runApplication.application');
-
                 //request selected resources from the registry
                 for (let urlParameter of this.urlParameters) {
                     if(urlParameter.key === 'input') {
@@ -97,6 +95,7 @@ export class RunApplicationComponent {
     }
 
     handleError(message: string, error : ErrorObservable) {
+        console.log(error);
         this.errorMessage = message + ' (Server responded: ' + error.error + ')';
         this.state = 'READY';
     }
@@ -166,7 +165,8 @@ export class RunApplicationComponent {
             this.state = 'FINISHED';
             clearInterval(this.intervalId);
         } else if(wsJobStatus.status == 'FAILED') {
-            this.errorMessage = 'There was a problem running the application. Try again in a while.';
+            this.errorMessage = `There was a problem running the application. Try again in a while.
+            (${wsJobStatus.errors[0].message})`;
             this.isRunning = true;
             this.state = 'READY';
             clearInterval(this.intervalId);
