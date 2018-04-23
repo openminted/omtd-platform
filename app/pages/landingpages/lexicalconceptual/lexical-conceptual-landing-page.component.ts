@@ -29,7 +29,7 @@ export class LexicalConceptualLandingPageComponent implements OnInit {
 
         this.sub = this.route.params.subscribe(params => {
             let id = params['id'];
-            this.resourceService.getLexicalConceptual(id).subscribe(
+            this.resourceService.get<Lexical>(id,'lexical').subscribe(
                 lexicalConceptual => this.lexicalConceptual = lexicalConceptual,
                 error => this.handleError(<any>error));
         });

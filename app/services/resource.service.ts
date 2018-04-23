@@ -83,7 +83,7 @@ export class ResourceService {
             searchUrl = `${this._searchUrl}${resourceType}/all`;
         }
 
-        return this.http.get(searchUrl,{params : urlParameters})
+        return this.http.get(searchUrl,{params : urlParameters, withCredentials : true})
             .map(res => <SearchResults<BaseMetadataRecord>> res.json())
             .map(res => this.rearangeFacets(res))
             .catch(this.handleError);

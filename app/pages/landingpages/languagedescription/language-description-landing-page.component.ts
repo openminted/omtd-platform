@@ -29,7 +29,7 @@ export class LanguageDescriptionLandingPageComponent implements OnInit {
 
         this.sub = this.route.params.subscribe(params => {
             let id = params['id'];
-            this.resourceService.getLanguageDescription(id).subscribe(
+            this.resourceService.get<LanguageDescription>(id,'language').subscribe(
                 languageDescription => this.languageDescription = languageDescription,
                 error => this.handleError(<any>error));
         });

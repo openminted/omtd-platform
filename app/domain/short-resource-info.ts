@@ -13,6 +13,7 @@ export class ShortResultInfo {
     description: string;
     resourceType: string;
     rightsInfo: boolean;
+    public : boolean;
     creationDate: Date;
 
     constructor(resource: BaseMetadataRecord) {
@@ -35,5 +36,6 @@ export class ShortResultInfo {
         this.description = resourceInfo.identificationInfo.descriptions[0].value;
         this.rightsInfo = (resourceInfo.rightsInfo.rightsStatement as any) === "OPEN_ACCESS";
         this.creationDate = resource.metadataHeaderInfo.metadataCreationDate;
+        this.public = resourceInfo.identificationInfo.public;
     }
 }

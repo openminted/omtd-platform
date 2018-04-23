@@ -46,7 +46,7 @@ export class AuthenticationService {
     logout() {
         deleteCookie('name');
         sessionStorage.removeItem('name');
-        window.location.href = `https://aai.openminted.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=${window.location.origin}`;
+        window.location.href = `https://aai.openminted.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=${window.location.origin}/api/openid_logout`;
         //https://aai.openminted.eu/registry/auth/logout
     }
 
