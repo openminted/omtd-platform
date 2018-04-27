@@ -10,6 +10,7 @@ import {
 import { ResourceService } from "../../../services/resource.service";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs/Observable";
+import { AuthenticationService } from "../../../services/authentication.service";
 
 @Component({
     selector: 'corpus-landing-page',
@@ -27,6 +28,7 @@ export class CorpusLandingPageComponent implements OnInit {
 
 
     constructor(
+        private authenticationService : AuthenticationService,
         private route: ActivatedRoute,
         private router: Router,
         private resourceService: ResourceService) {}
@@ -43,6 +45,7 @@ export class CorpusLandingPageComponent implements OnInit {
                         let rawCorpus = this.corpus.corpusInfo.relations.find(_ => _.relationType.toString() == 'IS_ANNOTATED_VERSION_OF');
                         console.log("finding raw corpus",rawCorpus);
                         let rawId = rawCorpus.relatedResource.resourceIdentifiers[0].value;
+                        console.log(rawId);
                         this.resourceService.get<OMTDCorpus>(rawId,'corpus').subscribe(
                             corpus => this.originalCorpus = corpus,
                             () => console.log("Cannot find original corpus with id " + rawId)
@@ -71,7 +74,7 @@ export class CorpusLandingPageComponent implements OnInit {
         }
         let pub = this.originalCorpus.corpusInfo.identificationInfo.public;
         let owned = this.isOwn_(this.originalCorpus);
-        let isGenerated = this.originalCorpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo == null;
+        let isGenerated = this.originalCorpus.metadataHeaderInfo.userQuery !== null;
         console.log(pub,owned,isGenerated);
         return (pub || owned) && !isGenerated;
     }
@@ -81,7 +84,7 @@ export class CorpusLandingPageComponent implements OnInit {
     }
 
     get isGenerated() : boolean {
-        return this.corpus.metadataHeaderInfo.userQuery != null;
+        return  this.corpus.metadataHeaderInfo.userQuery != null;
     }
 
     get isPublic() : boolean {
@@ -89,7 +92,10 @@ export class CorpusLandingPageComponent implements OnInit {
     }
 
     private isOwn_(corpus : OMTDCorpus) : boolean {
-        let ownerSub = sessionStorage.getItem('sub');
+        let ownerSub = this.authenticationService.getLoggedInUser;
+        if(this.authenticationService.admin){
+            return true;
+        }
         if (!ownerSub) return false;
         let isOwner : boolean = false;
        corpus.metadataHeaderInfo.metadataCreators.forEach(creator => {
