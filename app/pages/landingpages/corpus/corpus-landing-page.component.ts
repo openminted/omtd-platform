@@ -74,7 +74,7 @@ export class CorpusLandingPageComponent implements OnInit {
         }
         let pub = this.originalCorpus.corpusInfo.identificationInfo.public;
         let owned = this.isOwn_(this.originalCorpus);
-        let isGenerated = this.originalCorpus.metadataHeaderInfo.userQuery !== null;
+        let isGenerated = this.originalCorpus.metadataHeaderInfo.userQuery != null;
         console.log(pub,owned,isGenerated);
         return (pub || owned) && !isGenerated;
     }
@@ -92,13 +92,13 @@ export class CorpusLandingPageComponent implements OnInit {
     }
 
     private isOwn_(corpus : OMTDCorpus) : boolean {
-        let ownerSub = this.authenticationService.getLoggedInUser;
+        let ownerSub = this.authenticationService.sub;
         if(this.authenticationService.admin){
             return true;
         }
         if (!ownerSub) return false;
         let isOwner : boolean = false;
-       corpus.metadataHeaderInfo.metadataCreators.forEach(creator => {
+        corpus.metadataHeaderInfo.metadataCreators.forEach(creator => {
             let found = creator.personIdentifiers.find(_ => _.value == ownerSub);
             isOwner = isOwner || found != null;
         });

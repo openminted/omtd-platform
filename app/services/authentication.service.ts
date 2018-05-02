@@ -61,6 +61,10 @@ export class AuthenticationService {
         return this.session.email;
     }
 
+    public get sub() : string {
+        return this.session.sub;
+    }
+
     public get admin() : boolean {
         return this.session.role.includes("ROLE_ADMIN");
     }
