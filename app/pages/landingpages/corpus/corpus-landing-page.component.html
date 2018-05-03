@@ -52,7 +52,7 @@
                             Process <i class="fa fa-cogs" aria-hidden="true"></i>
                         </button>
 
-                        <a class="uk-button uk-button-primary" href="/corpusBrowser/{{corpus.metadataHeaderInfo.metadataRecordIdentifier.value}}">
+                        <a class="uk-button uk-button-primary" [routerLink]="['/corpusBrowser',corpus.metadataHeaderInfo.metadataRecordIdentifier.value]">
                             Browse <i class="fa fa-cogs" aria-hidden="true"></i>
                         </a>
 

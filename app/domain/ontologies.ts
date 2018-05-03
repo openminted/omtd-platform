@@ -391,191 +391,337 @@ export var componentOntologies = [
 export var applicationOntologies = [
 
     {
-        "comment": "The task/process of automatically searching large volumes of data for patterns that can be considered knowledge about the data",
+        "comment": "A note by way of explanation or comment added to a text or diagram [OED, https://en.oxforddictionaries.com/definition/annotation]. Text or corpus annotation refers to the interpretative linguistic information grounded in a knowledge resource that is added manually or automatically to a text or corpus respectively.",
         "children": [
             {
-                "comment": "The task/process of assigning documents into classes or categories",
-                "id": "http://w3id.org/meta-share/omtd-share/TextCategorization",
-                "name": "Text categorization"
-            },
-            {
-                "comment": "The process/task of computationally identifying and categorizing opinions expressed in a piece of text, especially in order to determine whether the writer's attitude towards a particular topic, product, etc. is positive, negative, or neutral",
-                "id": "http://w3id.org/meta-share/omtd-share/SentimentAnalysis",
-                "name": "Sentiment analysis"
-            },
-            {
-                "comment": "A task/process that intends to recognize for two text fragments whether the meaning of one text is entailed in that of the other, i.e. whether the truth of one text fragment follows from that of the other fragment.",
-                "id": "http://w3id.org/meta-share/omtd-share/RecognizingTextualEntailment",
-                "name": "Recognizing Textual Entailment"
-            },
-            {
-                "comment": "The task/process where computer systems try to automatically answer questions posed by users in the form of natural language.",
-                "id": "http://w3id.org/meta-share/omtd-share/QuestionAnswering",
-                "name": "Question Answering"
-            },
-            {
-                "comment": "The task/process of identifying the topic of a text or dataset (e.g. by clustering keywords or using topic models)",
-                "id": "http://w3id.org/meta-share/omtd-share/TopicDetection",
-                "name": "Topic detection"
-            }
-        ],
-        "id": "http://w3id.org/meta-share/omtd-share/KnowledgeDiscovery",
-        "name": "Knowledge discovery"
-    },
-    {
-        "comment": "In Machine Learning, it refers to the use of algorithms that learn from previous data in order to make predictions on data (by estimating probabilities from previous data)",
-        "id": "http://w3id.org/meta-share/omtd-share/Prediction",
-        "name": "Prediction"
-    },
-    {
-        "comment": "The activity of obtaining information resources relevant to an information need from a collection of information resources; searches can be based on full-text or other content-based indexing",
-        "children": [
-            {
-                "comment": "A type of search that seeks to improve search accuracy by understanding the searcher's intent and the contextual meaning of terms as they appear in the searchable dataspace, whether on the Web or within a closed system, to generate more relevant results.",
-                "id": "http://w3id.org/meta-share/omtd-share/SemanticSearch",
-                "name": "Semantic search"
-            },
-            {
-                "comment": "The process/task of removing (filtering out) redundant or unwanted information from an information stream using (semi)automated or computerized methods prior to presentation to a human user; the selection of the items is based on the correlation between the content of the items and the user\u2019s preferences (content-based filtering) or the correlation between people with similar preferences (collaborative filtering)",
+                "comment": "The process/task of adding annotations (notes or comments) to a text; in TDM, the annotations refer mainly to the interpretative linguistic information grounded in a knowledge resource that is added manually or automatically to a text",
                 "children": [
                     {
-                        "comment": "The delivery of information in the form of suggestions by recommender systems; recommender systems seek to predict the \"rating\" or \"preference\" that a user would give to an item",
-                        "id": "http://w3id.org/meta-share/omtd-share/InformationFilteringByRecommenderSystems",
-                        "name": "Information filtering by recommender systems"
+                        "comment": "The task/process of adding morphosyntactic tags to words in a text, i.e. part-of-speech and, optionally, morphological features per part-of-speech.",
+                        "children": [
+                            {
+                                "comment": "The annotation of words with morphological information besides the part of speech and dependent upon it (e.g. for nouns: gender, number and case; for verbs: tense, number, person etc.)",
+                                "id": "http://w3id.org/meta-share/omtd-share/BelowPosTagging",
+                                "name": "Below PoS Tagging"
+                            },
+                            {
+                                "comment": "The task/process of marking words with the part of speech (word category, e.g. noun, verb etc.) to which they belong",
+                                "id": "http://w3id.org/meta-share/omtd-share/PosTagging",
+                                "name": "PoS Tagging"
+                            }
+                        ],
+                        "id": "http://w3id.org/meta-share/omtd-share/MorphosyntacticTagging",
+                        "name": "Morphosyntactic tagging"
+                    },
+                    {
+                        "comment": "The task/process of segmenting a text and recognizing textual structural units (paragraphs, sentences, words etc.)",
+                        "children": [
+                            {
+                                "comment": "The task/process of segmenting a text into paragraphs and marking their boundaries",
+                                "id": "http://w3id.org/meta-share/omtd-share/ParagraphSplitting",
+                                "name": "Paragraph splitting"
+                            },
+                            {
+                                "comment": "The task/process of recognizing and tagging tokens (words, punctuation marks, digits etc.) in a text",
+                                "id": "http://w3id.org/meta-share/omtd-share/Tokenization",
+                                "name": "Tokenization"
+                            },
+                            {
+                                "comment": "The task/process of annotating the internal structure of a document (e.g. book chapters, sections in a journal article, title, preface, images/figures etc.)",
+                                "id": "http://w3id.org/meta-share/omtd-share/AnnotationOfDocumentStructure",
+                                "name": "Annotation of document structure"
+                            },
+                            {
+                                "comment": "The task/process of recognizing and tagging sentence boundaries in a text",
+                                "id": "http://w3id.org/meta-share/omtd-share/SentenceSplitting",
+                                "name": "Sentence splitting"
+                            }
+                        ],
+                        "id": "http://w3id.org/meta-share/omtd-share/StructuralAnnotation",
+                        "name": "Structural annotation"
+                    },
+                    {
+                        "comment": "Lemmatisation  (or lemmatization) in linguistics is the process of grouping together the inflected forms of a word so they can be analysed as a single item, identified by the word's lemma, or dictionary form. [Wikipedia]",
+                        "id": "http://w3id.org/meta-share/omtd-share/Lemmatization",
+                        "name": "Lemmatization"
+                    },
+                    {
+                        "comment": "The task/process of adding annotations pertaining to the morphological level of analysis (e.g. gender, number, person etc.)",
+                        "children": [
+                            {
+                                "comment": "The task/process of marking compounds (single words composed of two or more free morphemes) and their parts",
+                                "id": "http://w3id.org/meta-share/omtd-share/AnnotationOfCompoundingFeatures",
+                                "name": "Annotation of compounds"
+                            },
+                            {
+                                "comment": "The annotation of words with morphological information besides the part of speech and dependent upon it (e.g. for nouns: gender, number and case; for verbs: tense, number, person etc.)",
+                                "id": "http://w3id.org/meta-share/omtd-share/BelowPosTagging",
+                                "name": "Below PoS Tagging"
+                            },
+                            {
+                                "comment": "The task/process of annotating multi-word units, i.e. combinations of words that are considered as one",
+                                "id": "http://w3id.org/meta-share/omtd-share/AnnotationOfMultiWordUnits",
+                                "name": "Annotation of multi-word units"
+                            },
+                            {
+                                "comment": "The task/process of adding annotations relevant to the derivational level of analysis (e.g. recognizing derivational affixes, tagging their meaning etc.)",
+                                "id": "http://w3id.org/meta-share/omtd-share/AnnotationOfDerivationalFeatures",
+                                "name": "Annotation of derivational features"
+                            },
+                            {
+                                "comment": "The task/process of segmenting (cutting) a word into root and affixes",
+                                "id": "http://w3id.org/meta-share/omtd-share/WordSegmentation",
+                                "name": "Word segmentation"
+                            }
+                        ],
+                        "id": "http://w3id.org/meta-share/omtd-share/MorphologicalAnnotation",
+                        "name": "Morphological annotation"
+                    },
+                    {
+                        "comment": "The task/process of cutting off the ends of words (mainly inflectional affixes but sometimes also derivational affixes) aiming to relate words to a base form.",
+                        "id": "http://w3id.org/meta-share/omtd-share/Stemming",
+                        "name": "Stemming"
+                    },
+                    {
+                        "comment": "The task/process of adding annotations relevant to discourse, such as discourse structure, discourse markers etc.",
+                        "children": [
+                            {
+                                "comment": "The act or process of forming reasons and of drawing conclusions and applying them to a case in discussion [https://www.merriam-webster.com/dictionary/argumentation]",
+                                "id": "http://w3id.org/meta-share/omtd-share/Argumentation",
+                                "name": "Argumentation"
+                            }
+                        ],
+                        "id": "http://w3id.org/meta-share/omtd-share/DiscourseAnnotation",
+                        "name": "Discourse annotation"
+                    },
+                    {
+                        "comment": "The task/process of recognizing and marking the syntactic structure of a text or text segment",
+                        "children": [
+                            {
+                                "comment": "The task/process of identifying and marking the grammatical structure of a sentence, establishing relationships between \"head\" words and words that modify those heads",
+                                "id": "http://w3id.org/meta-share/omtd-share/DependencyParsing",
+                                "name": "Dependency parsing"
+                            },
+                            {
+                                "comment": "The task/process of recognising and labelling in a text predicate argument structures and the semantic roles of the constituents, in accordance to the frame semantics theory.",
+                                "id": "http://w3id.org/meta-share/omtd-share/FrameSemanticParsing",
+                                "name": "Frame-semantic parsing"
+                            },
+                            {
+                                "comment": "The task/process of identifying and marking constituents (phrases, governed by a head and including function words and/or modifiers ) in a text or text segment",
+                                "id": "http://w3id.org/meta-share/omtd-share/ConstituencyParsing",
+                                "name": "Constituency parsing"
+                            },
+                            {
+                                "comment": "The task/process of dividing a sentence into chunks (non-overlapping text segments consisting of a head and preceding function words and/or modifiers)",
+                                "id": "http://w3id.org/meta-share/omtd-share/Chunking",
+                                "name": "Chunking"
+                            }
+                        ],
+                        "id": "http://w3id.org/meta-share/omtd-share/Parsing",
+                        "name": "Parsing"
                     }
                 ],
-                "id": "http://w3id.org/meta-share/omtd-share/InformationFiltering",
-                "name": "Information filtering"
-            },
-            {
-                "comment": "A type of search which, in contrast to traditional lookup search, covers a broad class of activities, such as investigating, evaluating, comparing, and synthesizing",
-                "id": "http://w3id.org/meta-share/omtd-share/ExploratorySearch",
-                "name": "Exploratory search"
+                "id": "http://w3id.org/meta-share/omtd-share/TextAnnotation",
+                "name": "Text annotation"
             }
         ],
-        "id": "http://w3id.org/meta-share/omtd-share/InformationRetrieval",
-        "name": "Information retrieval"
+        "id": "http://w3id.org/meta-share/omtd-share/Annotation",
+        "name": "Annotation"
     },
     {
-        "comment": "The process/task of extracting, organising and systematising knowledge usually of a specific domain from external sources so that it can be used in a knowledge-based system",
+        "comment": "The automated processing of unstructured text and/or structured data leading to the extraction of previously hidden knowledge.",
         "children": [
             {
-                "comment": "The task/process of creating an ontology based on other resources (corpora, other lexical resources, etc.)",
-                "id": "http://w3id.org/meta-share/omtd-share/OntologyAcquisition",
-                "name": "Ontology acquisition"
-            },
-            {
-                "comment": "The task/process of improving an ontology, typically by adding new relations or entities",
-                "id": "http://w3id.org/meta-share/omtd-share/OntologyEnhancement",
-                "name": "Ontology enhancement"
-            }
-        ],
-        "id": "http://w3id.org/meta-share/omtd-share/KnowledgeAcquisition",
-        "name": "Knowledge acquisition"
-    },
-    {
-        "comment": "The task/process of representing information about entities in a form that machines are capable of understanding it",
-        "id": "http://w3id.org/meta-share/omtd-share/KnowledgeRepresentation",
-        "name": "Knowledge Representation"
-    },
-    {
-        "comment": "The process/task of automatically extracting structured information from unstructured and/or semi-structured data",
-        "children": [
-            {
-                "comment": "The task/process of assigning documents into classes or categories",
-                "id": "http://w3id.org/meta-share/omtd-share/TextCategorization",
-                "name": "Text categorization"
-            },
-            {
-                "comment": "The process/task of identifying types of feelings (e.g. anger, fear, happiness, sadness, etc.) in the linguistic expression of texts or facial expressions",
-                "id": "http://w3id.org/meta-share/omtd-share/EmotionDetection",
-                "name": "Emotion detection"
-            },
-            {
-                "comment": "The process/task of computationally identifying and categorizing opinions expressed in a piece of text, especially in order to determine whether the writer's attitude towards a particular topic, product, etc. is positive, negative, or neutral",
-                "id": "http://w3id.org/meta-share/omtd-share/SentimentAnalysis",
-                "name": "Sentiment analysis"
-            },
-            {
-                "comment": "Extraction of information that pertains to specific domains/disciplines; it can be used combined with \"Annotation type\" to specify the type of information extracted",
+                "comment": "The task/process of automatically searching large volumes of data for patterns that can be considered knowledge about the data",
                 "children": [
                     {
-                        "comment": "The task/process of detecting in a text and extracting information relevant to funding (e.g. funding programme, award, funder etc.)",
-                        "id": "http://w3id.org/meta-share/omtd-share/ExtractionOfFundingInformation",
-                        "name": "Extraction of funding information"
+                        "comment": "The task/process of assigning documents into classes or categories",
+                        "id": "http://w3id.org/meta-share/omtd-share/TextCategorization",
+                        "name": "Text categorization"
+                    },
+                    {
+                        "comment": "The process/task of computationally identifying and categorizing opinions expressed in a piece of text, especially in order to determine whether the writer's attitude towards a particular topic, product, etc. is positive, negative, or neutral",
+                        "id": "http://w3id.org/meta-share/omtd-share/SentimentAnalysis",
+                        "name": "Sentiment analysis"
+                    },
+                    {
+                        "comment": "A task/process that intends to recognize for two text fragments whether the meaning of one text is entailed in that of the other, i.e. whether the truth of one text fragment follows from that of the other fragment.",
+                        "id": "http://w3id.org/meta-share/omtd-share/RecognizingTextualEntailment",
+                        "name": "Recognizing Textual Entailment"
+                    },
+                    {
+                        "comment": "The task/process where computer systems try to automatically answer questions posed by users in the form of natural language.",
+                        "id": "http://w3id.org/meta-share/omtd-share/QuestionAnswering",
+                        "name": "Question Answering"
+                    },
+                    {
+                        "comment": "The task/process of identifying the topic of a text or dataset (e.g. by clustering keywords or using topic models)",
+                        "id": "http://w3id.org/meta-share/omtd-share/TopicDetection",
+                        "name": "Topic detection"
                     }
                 ],
-                "id": "http://w3id.org/meta-share/omtd-share/ExtractionOfDomainSpecificInformation",
-                "name": "Extraction of domain-specific information"
+                "id": "http://w3id.org/meta-share/omtd-share/KnowledgeDiscovery",
+                "name": "Knowledge discovery"
             },
             {
-                "comment": "The process/task of identifying and classifying relation mentions between entities in text and/or data.",
-                "id": "http://w3id.org/meta-share/omtd-share/RelationExtraction",
-                "name": "Relation extraction"
+                "comment": "In Machine Learning, it refers to the use of algorithms that learn from previous data in order to make predictions on data (by estimating probabilities from previous data)",
+                "id": "http://w3id.org/meta-share/omtd-share/Prediction",
+                "name": "Prediction"
             },
             {
-                "comment": "The process/task of identifying and representing argumentation in text, so that systems have the ability to use them in tasks, such as automated logical reasoning",
-                "id": "http://w3id.org/meta-share/omtd-share/ComputationalArgumentation",
-                "name": "Computational argumentation"
+                "comment": "The activity of obtaining information resources relevant to an information need from a collection of information resources; searches can be based on full-text or other content-based indexing",
+                "children": [
+                    {
+                        "comment": "A type of search that seeks to improve search accuracy by understanding the searcher's intent and the contextual meaning of terms as they appear in the searchable dataspace, whether on the Web or within a closed system, to generate more relevant results.",
+                        "id": "http://w3id.org/meta-share/omtd-share/SemanticSearch",
+                        "name": "Semantic search"
+                    },
+                    {
+                        "comment": "The process/task of removing (filtering out) redundant or unwanted information from an information stream using (semi)automated or computerized methods prior to presentation to a human user; the selection of the items is based on the correlation between the content of the items and the user\u2019s preferences (content-based filtering) or the correlation between people with similar preferences (collaborative filtering)",
+                        "children": [
+                            {
+                                "comment": "The delivery of information in the form of suggestions by recommender systems; recommender systems seek to predict the \"rating\" or \"preference\" that a user would give to an item",
+                                "id": "http://w3id.org/meta-share/omtd-share/InformationFilteringByRecommenderSystems",
+                                "name": "Information filtering by recommender systems"
+                            }
+                        ],
+                        "id": "http://w3id.org/meta-share/omtd-share/InformationFiltering",
+                        "name": "Information filtering"
+                    },
+                    {
+                        "comment": "A type of search which, in contrast to traditional lookup search, covers a broad class of activities, such as investigating, evaluating, comparing, and synthesizing",
+                        "id": "http://w3id.org/meta-share/omtd-share/ExploratorySearch",
+                        "name": "Exploratory search"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/InformationRetrieval",
+                "name": "Information retrieval"
             },
             {
-                "comment": "The task/process of identifying keywords (words deemed indicative of the topic/subject) in a text/corpus",
-                "id": "http://w3id.org/meta-share/omtd-share/KeywordExtraction",
-                "name": "Keyword extraction"
+                "comment": "The process/task of extracting, organising and systematising knowledge usually of a specific domain from external sources so that it can be used in a knowledge-based system",
+                "children": [
+                    {
+                        "comment": "The task/process of creating an ontology based on other resources (corpora, other lexical resources, etc.)",
+                        "id": "http://w3id.org/meta-share/omtd-share/OntologyAcquisition",
+                        "name": "Ontology acquisition"
+                    },
+                    {
+                        "comment": "The task/process of improving an ontology, typically by adding new relations or entities",
+                        "id": "http://w3id.org/meta-share/omtd-share/OntologyEnhancement",
+                        "name": "Ontology enhancement"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/KnowledgeAcquisition",
+                "name": "Knowledge acquisition"
             },
             {
-                "comment": "The task/process of identifying conflicting statements (contradictions) in a dataset",
-                "id": "http://w3id.org/meta-share/omtd-share/ContradictionDetection",
-                "name": "Contradiction detection"
+                "comment": "The task/process of representing information about entities in a form that machines are capable of understanding it",
+                "id": "http://w3id.org/meta-share/omtd-share/KnowledgeRepresentation",
+                "name": "Knowledge Representation"
             },
             {
-                "comment": "The task/process of identifying and extracting (especially from political speech texts) pieces of text that aim to persuade",
-                "id": "http://w3id.org/meta-share/omtd-share/PersuasiveExpressionMining",
-                "name": "Persuasive expression mining"
-            },
-            {
-                "comment": "A task/process that intends to recognize for two text fragments whether the meaning of one text is entailed in that of the other, i.e. whether the truth of one text fragment follows from that of the other fragment.",
-                "id": "http://w3id.org/meta-share/omtd-share/RecognizingTextualEntailment",
-                "name": "Recognizing Textual Entailment"
-            },
-            {
-                "comment": "A subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc.",
-                "id": "http://w3id.org/meta-share/omtd-share/NamedEntityRecognition",
-                "name": "Named Entity Recognition"
-            },
-            {
-                "comment": "The task/process of detecting in a text mentions of a specific class of entities (e.g. biochemical entities, historical persons)",
-                "id": "http://w3id.org/meta-share/omtd-share/EntityMentionRecognition",
-                "name": "Entity mention recognition"
-            },
-            {
-                "comment": "The task/process where computer systems try to automatically answer questions posed by users in the form of natural language.",
-                "id": "http://w3id.org/meta-share/omtd-share/QuestionAnswering",
-                "name": "Question Answering"
-            },
-            {
-                "comment": "The act/process of identifying and extracting candidate terms from a domain-specific corpus",
-                "id": "http://w3id.org/meta-share/omtd-share/TermExtraction",
-                "name": "Term extraction"
-            },
-            {
-                "comment": "The task/process of identifying temporal expressions (also called timex) in a text in order to extract temporal information",
-                "id": "http://w3id.org/meta-share/omtd-share/TemporalExpressionRecognition",
-                "name": "Temporal expression recognition"
-            },
-            {
-                "comment": "The process/task of identifying events in data (text, video, images etc.), usually combined with their classification into types of events and recognition of the event attributes (e.g. time, place, participants and duration)",
-                "id": "http://w3id.org/meta-share/omtd-share/EventDetection",
-                "name": "Event detection"
-            },
-            {
-                "comment": "The task/process of identifying the topic of a text or dataset (e.g. by clustering keywords or using topic models)",
-                "id": "http://w3id.org/meta-share/omtd-share/TopicDetection",
-                "name": "Topic detection"
+                "comment": "The process/task of automatically extracting structured information from unstructured and/or semi-structured data",
+                "children": [
+                    {
+                        "comment": "The task/process of assigning documents into classes or categories",
+                        "id": "http://w3id.org/meta-share/omtd-share/TextCategorization",
+                        "name": "Text categorization"
+                    },
+                    {
+                        "comment": "The process/task of identifying types of feelings (e.g. anger, fear, happiness, sadness, etc.) in the linguistic expression of texts or facial expressions",
+                        "id": "http://w3id.org/meta-share/omtd-share/EmotionDetection",
+                        "name": "Emotion detection"
+                    },
+                    {
+                        "comment": "The process/task of computationally identifying and categorizing opinions expressed in a piece of text, especially in order to determine whether the writer's attitude towards a particular topic, product, etc. is positive, negative, or neutral",
+                        "id": "http://w3id.org/meta-share/omtd-share/SentimentAnalysis",
+                        "name": "Sentiment analysis"
+                    },
+                    {
+                        "comment": "Extraction of information that pertains to specific domains/disciplines; it can be used combined with \"Annotation type\" to specify the type of information extracted",
+                        "children": [
+                            {
+                                "comment": "The task/process of detecting in a text and extracting information relevant to funding (e.g. funding programme, award, funder etc.)",
+                                "id": "http://w3id.org/meta-share/omtd-share/ExtractionOfFundingInformation",
+                                "name": "Extraction of funding information"
+                            }
+                        ],
+                        "id": "http://w3id.org/meta-share/omtd-share/ExtractionOfDomainSpecificInformation",
+                        "name": "Extraction of domain-specific information"
+                    },
+                    {
+                        "comment": "The process/task of identifying and classifying relation mentions between entities in text and/or data.",
+                        "id": "http://w3id.org/meta-share/omtd-share/RelationExtraction",
+                        "name": "Relation extraction"
+                    },
+                    {
+                        "comment": "The process/task of identifying and representing argumentation in text, so that systems have the ability to use them in tasks, such as automated logical reasoning",
+                        "id": "http://w3id.org/meta-share/omtd-share/ComputationalArgumentation",
+                        "name": "Computational argumentation"
+                    },
+                    {
+                        "comment": "The task/process of identifying keywords (words deemed indicative of the topic/subject) in a text/corpus",
+                        "id": "http://w3id.org/meta-share/omtd-share/KeywordExtraction",
+                        "name": "Keyword extraction"
+                    },
+                    {
+                        "comment": "The task/process of identifying conflicting statements (contradictions) in a dataset",
+                        "id": "http://w3id.org/meta-share/omtd-share/ContradictionDetection",
+                        "name": "Contradiction detection"
+                    },
+                    {
+                        "comment": "The task/process of identifying and extracting (especially from political speech texts) pieces of text that aim to persuade",
+                        "id": "http://w3id.org/meta-share/omtd-share/PersuasiveExpressionMining",
+                        "name": "Persuasive expression mining"
+                    },
+                    {
+                        "comment": "A task/process that intends to recognize for two text fragments whether the meaning of one text is entailed in that of the other, i.e. whether the truth of one text fragment follows from that of the other fragment.",
+                        "id": "http://w3id.org/meta-share/omtd-share/RecognizingTextualEntailment",
+                        "name": "Recognizing Textual Entailment"
+                    },
+                    {
+                        "comment": "A subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc.",
+                        "id": "http://w3id.org/meta-share/omtd-share/NamedEntityRecognition",
+                        "name": "Named Entity Recognition"
+                    },
+                    {
+                        "comment": "The task/process of detecting in a text mentions of a specific class of entities (e.g. biochemical entities, historical persons)",
+                        "id": "http://w3id.org/meta-share/omtd-share/EntityMentionRecognition",
+                        "name": "Entity mention recognition"
+                    },
+                    {
+                        "comment": "The task/process where computer systems try to automatically answer questions posed by users in the form of natural language.",
+                        "id": "http://w3id.org/meta-share/omtd-share/QuestionAnswering",
+                        "name": "Question Answering"
+                    },
+                    {
+                        "comment": "The act/process of identifying and extracting candidate terms from a domain-specific corpus",
+                        "id": "http://w3id.org/meta-share/omtd-share/TermExtraction",
+                        "name": "Term extraction"
+                    },
+                    {
+                        "comment": "The task/process of identifying temporal expressions (also called timex) in a text in order to extract temporal information",
+                        "id": "http://w3id.org/meta-share/omtd-share/TemporalExpressionRecognition",
+                        "name": "Temporal expression recognition"
+                    },
+                    {
+                        "comment": "The process/task of identifying events in data (text, video, images etc.), usually combined with their classification into types of events and recognition of the event attributes (e.g. time, place, participants and duration)",
+                        "id": "http://w3id.org/meta-share/omtd-share/EventDetection",
+                        "name": "Event detection"
+                    },
+                    {
+                        "comment": "The task/process of identifying the topic of a text or dataset (e.g. by clustering keywords or using topic models)",
+                        "id": "http://w3id.org/meta-share/omtd-share/TopicDetection",
+                        "name": "Topic detection"
+                    }
+                ],
+                "id": "http://w3id.org/meta-share/omtd-share/InformationExtraction",
+                "name": "Information extraction"
             }
         ],
-        "id": "http://w3id.org/meta-share/omtd-share/InformationExtraction",
-        "name": "Information extraction"
+        "id": "http://w3id.org/meta-share/omtd-share/TextAndDataMining",
+        "name": "Text and Data Mining"
     }
 ];
 
@@ -1451,7 +1597,7 @@ export var dataFormatOntologies = [
     }
 ];
 
-export var annotationOntologies = [
+export var annotationTypeOntologies = [
     {
         "comment": "Any type of annotation pertaining to the semantic level",
         "children": [

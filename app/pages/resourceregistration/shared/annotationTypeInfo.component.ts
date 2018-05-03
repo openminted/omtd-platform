@@ -3,7 +3,7 @@ import { Component, ElementRef, Injector, ViewChild } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { annotationTypeDesc, annotationTypeTypeDesc, Description } from "../../../domain/omtd.description";
 import { annotationTypeTypeEnum, EnumValues } from "../../../domain/omtd.enum";
-import { annotationOntologies } from "../../../domain/ontologies";
+import { annotationTypeOntologies } from "../../../domain/ontologies";
 declare var UIkit : any;
 
 @Component({
@@ -41,7 +41,7 @@ export class AnnotationTypeInfoFormControl extends MyGroup {
     annotationTypeDesc : Description = annotationTypeTypeDesc;
     annotationTypeOtherDesc : Description = new Description();
     annotationTypeEnum : EnumValues[] = annotationTypeTypeEnum;
-    annotationOntologies = annotationOntologies;
+    annotationOntologies = annotationTypeOntologies;
     groupDefinition : any = {
         annotationType : ["",Validators.required],
         annotationTypeOther : ""
