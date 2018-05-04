@@ -2,7 +2,6 @@
  * Created by stefania on 10/2/17.
  */
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'support',
@@ -11,14 +10,4 @@ import { Router } from '@angular/router';
 })
 
 export class SupportComponent {
-
-    constructor(private router: Router) {}
-
-    goToFAQsLegal() {
-        this.router.navigate(['/support/faqLegal']);
-    }
-
-    goToFAQsPolicies() {
-        this.router.navigate(['/support/faqPolicies']);
-    }
 }

@@ -10,6 +10,7 @@ import { FAQsComponent } from "./faqs/faqs-legal.component";
 import { FAQService } from "../../services/faq.service";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
 import { SupportComponent } from "./support.component";
+import { TermsAndConditionsComponent } from "./termsandconditions/terms-and-conditions.component";
 
     
 @NgModule({
@@ -21,7 +22,8 @@ import { SupportComponent } from "./support.component";
     declarations: [
         PoliciesComponent,
         FAQsComponent,
-        SupportComponent
+        SupportComponent,
+        TermsAndConditionsComponent
     ],
     providers: [
         FAQService
