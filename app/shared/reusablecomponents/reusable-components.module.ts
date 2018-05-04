@@ -17,6 +17,8 @@ import { ComingSoonPageComponent } from "./coming-soon-page.component";
 import { DownloadComponent } from "./download.component";
 import { PaginationDirective } from "./pagination.directive";
 import { RouterModule } from "@angular/router";
+import { ForbiddenPageComponent } from "./403-forbidden-page.component";
+import { reusableComponentsRouting } from "./reusable-components.routing";
 
 
 const modules = [
@@ -26,11 +28,13 @@ const modules = [
     ConfirmationDialogComponent,
     ComingSoonPageComponent,
     DownloadComponent,
-    PaginationDirective
+    PaginationDirective,
+    ForbiddenPageComponent
 ];
 
 @NgModule({
     imports: [
+        reusableComponentsRouting,
         BrowserModule,
         CommonModule,
         RouterModule,
