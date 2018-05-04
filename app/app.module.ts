@@ -30,8 +30,9 @@ import { ActionsModule } from "./pages/actions/actions.module";
 import { UserSpaceModule } from "./pages/user/user-space.module";
 import { LexicalRegistrationModule } from "./pages/resourceregistration/lexical/lexical-registration.module";
 import { CorpusBrowserModule } from "./pages/corpusbrowser/corpus-browser.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { LanguageRegistrationModule } from "./pages/resourceregistration/language/language-registration.module";
+import { AuthenticationInterceptor } from "./services/authentication-interceptor";
 
 @NgModule({
     imports: [
@@ -66,6 +67,11 @@ import { LanguageRegistrationModule } from "./pages/resourceregistration/languag
         FooterComponent,
     ],
     providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthenticationInterceptor,
+            multi: true
+        },
         UserService,
         AuthenticationService,
         CanActivateViaAuthGuard,

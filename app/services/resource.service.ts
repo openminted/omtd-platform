@@ -211,15 +211,9 @@ export class ResourceService {
 
     get<T>(id : string,resourceType : string, type : string = "json") : Observable<T> {
         // let headers = new Headers({'Content-Type': `application/${type}`, 'Accept' : `application/${type}`});
-        let options = new RequestOptions({withCredentials : true});
-        switch (type) {
-            case "xml" :
-                options.responseType = ResponseContentType.Text; break;
-            case "json" :
-                options.responseType = ResponseContentType.Json; break;
-        }
-        return this.http.get(`${this._resourcesUrl}${resourceType}/${id}`,options)
-            .map(res => {if (type=='json') return <T> res.json(); else res.text();})
+        let options = {withCredentials : true, resourceType : type};
+
+        return this.httpClient.get<T>(`${this._resourcesUrl}${resourceType}/${id}`,options)
             .catch(this.handleError);
     }
 
