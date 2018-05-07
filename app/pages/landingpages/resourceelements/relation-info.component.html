@@ -3,6 +3,17 @@
         {{relationType(relationInfo.relationType)}}:
     </span>
     <span *ngIf="relationInfo?.relatedResource?.resourceNames?.length>0 && relationInfo?.relatedResource?.resourceIdentifiers?.length>0">
-        <a [href]="getLink(relationInfo.relatedResource)">{{relationInfo.relatedResource.resourceNames[0].value}}</a>
+        <ng-container *ngIf="relationInfo.relatedResource.resourceIdentifiers[0].resourceIdentifierSchemeName=='OMTD'; else otherResource">
+            <ng-container [ngSwitch]="relationInfo.relationType">
+                <a [routerLink]="['/landingPage/corpus',getLink(relationInfo.relatedResource)]"
+                   *ngSwitchCase="'IS_ANNOTATED_VERSION_OF'">{{relationInfo.relatedResource.resourceNames[0].value}}</a>
+                <a [routerLink]="['/landingPage/application',getLink(relationInfo.relatedResource)]"
+                   *ngSwitchCase="'IS_CREATED_BY'">{{relationInfo.relatedResource.resourceNames[0].value}}</a>
+                <a *ngSwitchDefault>{{relationInfo.relatedResource.resourceNames[0].value}}</a>
+            </ng-container>
+        </ng-container>
+        <ng-template #otherResource>
+            <span>{{relationInfo.relatedResource.resourceNames[0].value}}</span>
+        </ng-template>
     </span>
 </div>
