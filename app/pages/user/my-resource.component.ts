@@ -128,23 +128,10 @@ export class MyResourceComponent<T extends BaseMetadataRecord> {
     confirmedMakePublic(ids: string[]) {
 
         let id = ids[0];
-        let components = this.resources.filter(component => component.metadataHeaderInfo.metadataRecordIdentifier.value === id);
-
-        if (components && components.length == 1) {
-
-            let component = JSON.parse(JSON.stringify(components[0]));
-
-            let info = Object.keys(component).find(_ => _ != 'metadataHeaderInfo');
-            component[info].identificationInfo.public = true;
-
-            this.resourceService.updateComponent(component, this.resourceType).subscribe(
-                component => this.updateResource(component),
-                error => this.handleError(`System error making this ${this.resourceType} public`, <any>error)
-            );
-
-        } else {
-            this.errorMessage = 'Error finding the component to make public';
-        }
+        this.resourceService.makePublic<T>(id, this.resourceType).subscribe(
+            component => this.updateResource(component),
+            error => this.handleError(`System error making this ${this.resourceType} public`, <any>error)
+        );
     }
 
     deleteResource(id: string) {

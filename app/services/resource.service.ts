@@ -210,10 +210,16 @@ export class ResourceService {
     }
 
     get<T>(id : string,resourceType : string, type : string = "json") : Observable<T> {
-        // let headers = new Headers({'Content-Type': `application/${type}`, 'Accept' : `application/${type}`});
         let options = {withCredentials : true, resourceType : type};
-
         return this.httpClient.get<T>(`${this._resourcesUrl}${resourceType}/${id}`,options)
+            .catch(this.handleError);
+    }
+
+    makePublic<T>(id : string,resourceType : string) : Observable<T> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers, withCredentials : true});
+        return this.http.post(`${this._resourcesUrl}${resourceType}/public/${id}`,null,options)
+            .map(res => <T> res.json())
             .catch(this.handleError);
     }
 
