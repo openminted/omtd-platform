@@ -23,10 +23,11 @@ export class AuthenticationInterceptor implements HttpInterceptor {
             }
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
-                if (err.status === 403) {
+                console.log(err);
+                if (err.status === 403 && err.url.search(/user$/) === -1) {
                     // redirect to the login route
                     // or show a modal
-                    console.log("Unauthorised!!");
+                    console.log("Unauthorised!!",err);
                     this.router.navigateByUrl("/403-forbidden", { skipLocationChange: true });
                 }
             }
