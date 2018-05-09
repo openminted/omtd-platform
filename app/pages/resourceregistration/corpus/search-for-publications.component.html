@@ -49,7 +49,7 @@
                 <div data-uk-alert="" class="uk-alert uk-alert-warning uk-margin-medium-bottom">
                     <p>To reduce the load on our data providers, OpenMinTeD has imposed a limit on the number of publications
                         in the user generated corpora. In this beta version the limit has been set to
-                        {{contentConnectorStatus.maxFulltextDocuments}} per data provider but this limit will be revised in
+                        {{contentConnectorStatus.maxFulltextDocuments | number}} per data provider but this limit will be revised in
                         future releases.
                     </p>
                 </div>
@@ -73,7 +73,7 @@
                                            (change)="onSelection($event, facet.field, facetValue.value)"
                                            [checked]="facetValue.isChecked">
                                     {{facetValue.label}}
-                                    <span>({{facetValue.count}})</span>
+                                    <span>({{facetValue.count | number}})</span>
                                 </div>
                             </read-more>
                         </div>
@@ -100,14 +100,14 @@
 
                         <div *ngIf="foundResults" class="uk-margin-left">
                             <div class="uk-margin uk-grid uk-panel uk-panel-box uk-panel-box-primary totalPublications">
-                                <h3>We found a total of {{publicationSearchResults.totalHits}} publications.</h3>
+                                <h3>We found a total of {{publicationSearchResults.totalHits | number}} publications.</h3>
                             </div>
 
                             <div *ngIf="publicationSources && publicationSources.values && publicationSources.values.length>0"
                                  class="uk-margin uk-grid uk-panel uk-panel-box uk-panel-box-primary sourcesList">
                                 <ul class="uk-list">
                                     <li *ngFor="let source of publicationSources.values">
-                                        <h4>{{source.count}} publications from {{source.value}}</h4>
+                                        <h4>{{source.count | number}} publications from {{source.value}}</h4>
                                     </li>
                                 </ul>
                             </div>
