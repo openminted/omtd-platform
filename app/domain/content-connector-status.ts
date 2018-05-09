@@ -4,4 +4,5 @@
 export class ContentConnectorStatus {
 
     maxFulltextDocuments: number;
+    contentConnectors: {[key : string] : boolean} = {};
 }

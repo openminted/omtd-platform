@@ -1,8 +1,10 @@
 /**
  * Created by stefania on 11/24/16.
  */
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { ContentConnectorStatus } from "../../../domain/content-connector-status";
+import { ContentConnectorService } from "../../../services/content-connector.service";
 
 @Component({
     selector: 'corpus-registration-options',
@@ -10,11 +12,20 @@ import { Router } from "@angular/router";
     styleUrls:  ['./corpus-registration.component.css'],
 })
 
-export class CorpusRegistrationComponent {
+export class CorpusRegistrationComponent implements OnInit {
 
     activeTab;
 
-    constructor(private router: Router) {}
+    contentConnectorStatus: ContentConnectorStatus;
+
+    constructor(private router: Router, private contentConnectorService: ContentConnectorService) {}
+
+    ngOnInit() {
+
+        this.contentConnectorService.getContentConnectorStatus().subscribe(
+            contentConnectorStatus => this.contentConnectorStatus = contentConnectorStatus,
+            error => console.log('System error retrieving content connector status', <any>error));
+    }
 
     corpusBuilder() {
         this.router.navigate(['/resourceRegistration/corpus/searchForPublications']);
