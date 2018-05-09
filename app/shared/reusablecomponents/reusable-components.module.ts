@@ -19,6 +19,7 @@ import { PaginationDirective } from "./pagination.directive";
 import { RouterModule } from "@angular/router";
 import { ForbiddenPageComponent } from "./403-forbidden-page.component";
 import { reusableComponentsRouting } from "./reusable-components.routing";
+import { ShortNumberPipe } from "./short-number.pipe";
 
 
 const modules = [
@@ -29,7 +30,8 @@ const modules = [
     ComingSoonPageComponent,
     DownloadComponent,
     PaginationDirective,
-    ForbiddenPageComponent
+    ForbiddenPageComponent,
+    ShortNumberPipe
 ];
 
 @NgModule({
