@@ -18,10 +18,11 @@ export class RelationInfoComponent {
 
     relationType(l : string) {
         let relationType = this.relationTypeValues.find(v => v.key === l);
+        console.log(this.relationInfo);
         return relationType && relationType.value;
     }
 
     public getLink(resource : RelatedResource) {
-        return `landingPage/corpus/${resource.resourceIdentifiers[0].value}`;
+        return resource.resourceIdentifiers[0].value;
     }
 }
