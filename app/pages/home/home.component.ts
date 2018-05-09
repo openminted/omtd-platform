@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     private searchResults: SearchResults<BaseMetadataRecord>;
     shortResultsInfo : ShortResultInfo[] = [];
     private foundResults = true;
-    private stats: HomePageStats;
+    public stats: HomePageStats;
 
     constructor(fb: FormBuilder,
                 private route: ActivatedRoute,
