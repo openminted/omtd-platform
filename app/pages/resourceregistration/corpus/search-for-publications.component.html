@@ -99,8 +99,13 @@
                         </div>
 
                         <div *ngIf="foundResults" class="uk-margin-left">
+
+                            <div class="uk-margin">
+                                Start by using the keyword search functionality and the filters on the left to create your desired corpus.
+                            </div>
+
                             <div class="uk-margin uk-grid uk-panel uk-panel-box uk-panel-box-primary totalPublications">
-                                <h3>We found a total of {{publicationSearchResults.totalHits | number}} publications.</h3>
+                                <h3>Current corpus contains {{publicationSearchResults.totalHits | number}} publications</h3>
                             </div>
 
                             <div *ngIf="publicationSources && publicationSources.values && publicationSources.values.length>0"
