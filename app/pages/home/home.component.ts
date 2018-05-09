@@ -13,6 +13,8 @@ import {
 import { SearchResults } from "../../domain/search-results";
 import { ShortResultInfo } from "../../domain/short-resource-info";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { HomePageStats } from "../../domain/home-page-stats";
+import { error } from "util";
 
 @Component({
     selector: 'home',
@@ -28,6 +30,7 @@ export class HomeComponent implements OnInit {
     private searchResults: SearchResults<BaseMetadataRecord>;
     shortResultsInfo : ShortResultInfo[] = [];
     private foundResults = true;
+    private stats: HomePageStats;
 
     constructor(fb: FormBuilder,
                 private route: ActivatedRoute,
@@ -42,6 +45,10 @@ export class HomeComponent implements OnInit {
         this.resourceService.getLatestResources(3).subscribe(
             searchResults => this.updateLatestResources(searchResults),
             error => this.handleError('System error getting latest resources', <any>error));
+
+        this.resourceService.getStats().subscribe(
+            stats => this.stats = stats,
+            error => this.handleError('System error getting stats', <any>error));
     }
 
     updateLatestResources(searchResults: SearchResults<BaseMetadataRecord>) {
