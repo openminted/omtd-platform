@@ -9,11 +9,15 @@
                    *ngSwitchCase="'IS_ANNOTATED_VERSION_OF'">{{relationInfo.relatedResource.resourceNames[0].value}}</a>
                 <a [routerLink]="['/landingPage/application',getLink(relationInfo.relatedResource)]"
                    *ngSwitchCase="'IS_CREATED_BY'">{{relationInfo.relatedResource.resourceNames[0].value}}</a>
+                <a [routerLink]="['/landingPage/language',getLink(relationInfo.relatedResource)]"
+                   *ngSwitchCase="'REQUIRES_LR'">{{relationInfo.relatedResource.resourceNames[0].value}}</a>
+                <a [routerLink]="['/landingPage/component',getLink(relationInfo.relatedResource)]"
+                   *ngSwitchCase="'HAS_PART'">{{relationInfo.relatedResource.resourceNames[0].value}}</a>
                 <a *ngSwitchDefault>{{relationInfo.relatedResource.resourceNames[0].value}}</a>
             </ng-container>
         </ng-container>
         <ng-template #otherResource>
-            <span>{{relationInfo.relatedResource.resourceNames[0].value}}</span>
+            <span>{{relationInfo.relatedResource.resourceNames[0].value}} - {{relationInfo.relatedResource.resourceIdentifiers[0].resourceIdentifierSchemeName}}</span>
         </ng-template>
     </span>
 </div>
