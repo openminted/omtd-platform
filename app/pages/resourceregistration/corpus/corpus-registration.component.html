@@ -143,13 +143,14 @@
 
                                                     <div class="el-content uk-margin">
                                                         Build your corpus using publications from the following content providers
-                                                        <ul class="uk-list uk-margin-top">
-                                                            <li (click)="corpusBuilderWithProvider('OpenAIRE')">
-                                                                <a>OpenAIRE</a>
-                                                            </li>
-                                                            <li (click)="corpusBuilderWithProvider('CORE')">
-                                                                <a>CORE</a>
-                                                            </li>
+                                                        <ul *ngIf="contentConnectorStatus?.contentConnectors"
+                                                            class="uk-list uk-margin-top">
+                                                            <ng-container *ngFor="let contentConnector of contentConnectorStatus.contentConnectors | values">
+                                                                <li *ngIf="contentConnectorStatus.contentConnectors[contentConnector]"
+                                                                    (click)="corpusBuilderWithProvider(contentConnector)">
+                                                                    <a>{{contentConnector}}</a>
+                                                                </li>
+                                                            </ng-container>
                                                         </ul>
                                                     </div>
                                                     <p>
