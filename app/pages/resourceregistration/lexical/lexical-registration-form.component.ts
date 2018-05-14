@@ -20,9 +20,6 @@ export class LexicalRegistrationFormComponent implements OnInit {
 
     myForm: FormGroup;
 
-    tocForm : FormGroup;
-
-
     production = process.env.PRODUCTION;
 
     resourceDocumentationType: Type<any> = ResourceDocumentationFormControl;
@@ -82,9 +79,6 @@ export class LexicalRegistrationFormComponent implements OnInit {
     };
 
     constructor(private _fb: FormBuilder) {
-        this.tocForm = _fb.group({
-            toc: [!this.production, Validators.requiredTrue]
-        })
     }
 
     loadLexical(lexical : Lexical) {
@@ -106,10 +100,6 @@ export class LexicalRegistrationFormComponent implements OnInit {
 
     public get debugValue() {
         return ResourceService.removeNulls(this.myForm.value);
-    }
-
-    public get tocValid() : boolean{
-        return this.tocForm.valid;
     }
 
     public get formValid() : boolean {

@@ -51,14 +51,11 @@ export class ComponentRegistrationUsingFormComponent {
         this.successfulMessage = null;
         this.errorMessage = null;
         this.componentForm.setAsTouched();
-        if(this.componentForm.formValid && this.componentForm.tocValid) {
+        if(this.componentForm.formValid) {
             return true;
         } else if (!this.componentForm.formValid) {
             this.errorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
-            window.scrollTo(0,0);
-        } else if (!this.componentForm.tocValid) {
-            this.errorMessage = "Please accept the terms and conditions";
             window.scrollTo(0,0);
         }
         return false;
