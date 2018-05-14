@@ -26,7 +26,7 @@ export class LexicalUpdateUsingFormComponent extends LexicalBaseUsingFormCompone
     ngOnInit() {
         this.route.params.subscribe(params => {
             let id = params['id'];
-            this.language = this.resourceService.getLexicalConceptual(id);
+            this.language = this.resourceService.get<Lexical>(id,this.resourceType);
             this.language.subscribe(language => {
                 this.lexicalMetadata = language.metadataHeaderInfo;
                 this.lexicalForm.loadLexical(language);
