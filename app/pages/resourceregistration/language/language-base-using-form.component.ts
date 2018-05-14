@@ -44,14 +44,11 @@ export class LanguageBaseUsingFormComponent {
         this.successfulMessage = null;
         this.errorMessage = null;
         this.languageForm.setAsTouched();
-        if(this.languageForm.formValid && this.languageForm.tocValid) {
+        if(this.languageForm.formValid) {
             return true;
         } else if (!this.languageForm.formValid) {
             this.errorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
-            window.scrollTo(0,0);
-        } else if (!this.languageForm.tocValid) {
-            this.errorMessage = "Please accept the terms and conditions";
             window.scrollTo(0,0);
         }
         return false;

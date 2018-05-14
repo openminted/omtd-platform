@@ -33,7 +33,7 @@ export class IdentificationInfoFormControl extends MyGroup {
     constructor(private injector : Injector) {
         super(injector);
         this.publicDesc.mandatory = false;
-        this.resourceIdentifierDesc.mandatory = true;
+        this.resourceIdentifierDesc.mandatory = false;
         this.route = injector.get(ActivatedRoute);
         this.isUpdateForm = this.route.snapshot.data['update'];
         this.isCorpusForm = this.route.snapshot.data['resourceType'] === 'corpus';

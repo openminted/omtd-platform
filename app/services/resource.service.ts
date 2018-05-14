@@ -248,7 +248,7 @@ export class ResourceService {
         let formBody : FormData = new FormData();
         formBody.append('filename',name);
         formBody.append('file',file);
-        return this.http.post(this._uploadZip,formBody)
+        return this.http.post(this._uploadZip,formBody,{withCredentials : true})
             .map(res => res.json())
             .catch(this.handleError);
     }

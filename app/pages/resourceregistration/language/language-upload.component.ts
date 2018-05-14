@@ -16,24 +16,13 @@ import { UUID } from "angular2-uuid";
     styleUrls: ['./language-registration-form.component.css']
 })
 
-export class LanguageUploadComponent extends LanguageBaseUsingFormComponent implements OnInit {
+export class LanguageUploadComponent extends LanguageBaseUsingFormComponent {
 
     private _fb;
 
     constructor(injector: Injector) {
         super(injector);
         this._fb = injector.get(FormBuilder);
-    }
-
-    ngOnInit() {
-        let language : LanguageDescription = new LanguageDescription();
-        language.languageDescriptionInfo = new LanguageDescriptionInfo();
-        language.languageDescriptionInfo.identificationInfo = new IdentificationInfo();
-        let identifier : ResourceIdentifier = new ResourceIdentifier();
-        identifier.value = UUID.UUID();
-        (identifier.resourceIdentifierSchemeName as any) = "OMTD";
-        language.languageDescriptionInfo.identificationInfo.resourceIdentifiers = [identifier];
-        setTimeout(() => this.languageForm.loadLanguage(language),500);
     }
 
     onSubmit() {

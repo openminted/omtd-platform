@@ -18,9 +18,9 @@
 
     <div class="form-group-divider"></div>
 
-    <div [hidden]="!showIdentifiers">
-        <form-repeat-inline [component]="resourceIdentifierType" [parentGroup]="group"
-                            [name]="'resourceIdentifiers'" [required]="showIdentifiers" [description]="resourceIdentifierDesc">
+    <div>
+        <form-repeat-inline [component]="resourceIdentifierType" [parentGroup]="group" [initEmpty]="true"
+                            [name]="'resourceIdentifiers'" [description]="resourceIdentifierDesc">
         </form-repeat-inline>
     </div>
     <div class="form-group-divider"></div>

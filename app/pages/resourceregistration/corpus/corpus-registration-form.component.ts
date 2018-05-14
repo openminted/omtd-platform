@@ -19,9 +19,6 @@ export class CorpusRegistrationFormComponent implements OnInit {
 
     myForm: FormGroup;
 
-    tocForm : FormGroup;
-
-
     production = process.env.PRODUCTION;
 
     testValue: any = {
@@ -99,9 +96,6 @@ export class CorpusRegistrationFormComponent implements OnInit {
 
 
     constructor(private _fb: FormBuilder) {
-        this.tocForm = _fb.group({
-            toc: [!this.production, Validators.requiredTrue]
-        })
     }
 
     loadCorpus(corpus : OMTDCorpus) {
@@ -125,9 +119,6 @@ export class CorpusRegistrationFormComponent implements OnInit {
         return ResourceService.removeNulls(this.myForm.value);
     }
 
-    public get tocValid() : boolean{
-        return this.tocForm.valid;
-    }
 
     public get formValid() : boolean {
         return this.myForm.valid;

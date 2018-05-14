@@ -160,6 +160,17 @@ export class ResourceIdentifierCommonFormControl extends MyGroup {
         schemeURI : '',
         resourceIdentifierSchemeName : ['', Validators.required]
     };
+
+    ngOnInit() {
+        super.ngOnInit();
+        let sub = this.getMyControl('resourceIdentifierSchemeName').valueChanges.subscribe( v => {
+            console.log(v);
+            if (v == 'OMTD') {
+                sub.unsubscribe();
+                this.group.disable({emitEvent:false});
+            }
+        });
+    }
 }
 
 @Component({

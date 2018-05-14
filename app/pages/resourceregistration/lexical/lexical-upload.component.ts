@@ -16,7 +16,7 @@ import { UUID } from "angular2-uuid";
     styleUrls : ['./lexical-registration-form.component.css']
 })
 
-export class LexicalUploadComponent extends LexicalBaseUsingFormComponent implements OnInit {
+export class LexicalUploadComponent extends LexicalBaseUsingFormComponent {
 
     private _fb;
 
@@ -25,16 +25,6 @@ export class LexicalUploadComponent extends LexicalBaseUsingFormComponent implem
         this._fb = injector.get(FormBuilder);
     }
 
-    ngOnInit() {
-        let lexical : Lexical = new Lexical();
-        lexical.lexicalConceptualResourceInfo = new LexicalConceptualResourceInfo();
-        lexical.lexicalConceptualResourceInfo.identificationInfo = new IdentificationInfo();
-        let identifier : ResourceIdentifier = new ResourceIdentifier();
-        identifier.value = UUID.UUID();
-        (identifier.resourceIdentifierSchemeName as any) = "OMTD";
-        lexical.lexicalConceptualResourceInfo.identificationInfo.resourceIdentifiers = [identifier];
-        setTimeout(() => this.lexicalForm.loadLexical(lexical),500);
-    }
 
     navigateToLexical() {
         super.navigateToLexical(this.lexicalMetadata.metadataRecordIdentifier.value);

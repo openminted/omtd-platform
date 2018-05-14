@@ -21,7 +21,7 @@ import { UUID } from "angular2-uuid";
     styleUrls : ['./component-registration-form.component.css']
 })
 
-export class ComponentRegistrationUsingFormComponent implements OnInit {
+export class ComponentRegistrationUsingFormComponent {
 
     errorMessage: string = null;
 
@@ -45,29 +45,17 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
         this.resourceType = this.route.snapshot.data['resourceType'];
     }
 
-    ngOnInit(): void {
-        let component : OMTDComponent = new OMTDComponent();
-        component.componentInfo = new ComponentInfo();
-        component.componentInfo.identificationInfo = new IdentificationInfo();
-        let identifier : ResourceIdentifier = new ResourceIdentifier();
-        identifier.value = UUID.UUID();
-        (identifier.resourceIdentifierSchemeName as any) = "OMTD";
-        component.componentInfo.identificationInfo.resourceIdentifiers = [identifier];
-        setTimeout(() => this.componentForm.loadComponent(component),500);
-    }
+
 
     validate() : boolean {
         this.successfulMessage = null;
         this.errorMessage = null;
         this.componentForm.setAsTouched();
-        if(this.componentForm.formValid && this.componentForm.tocValid) {
+        if(this.componentForm.formValid) {
             return true;
         } else if (!this.componentForm.formValid) {
             this.errorMessage = 'There are invalid or missing fields in the metadata you have submitted. You ' +
                 'can see the ones invalid or missing marked as red.';
-            window.scrollTo(0,0);
-        } else if (!this.componentForm.tocValid) {
-            this.errorMessage = "Please accept the terms and conditions";
             window.scrollTo(0,0);
         }
         return false;

@@ -20,9 +20,6 @@ export class LanguageRegistrationFormComponent implements OnInit {
 
     myForm: FormGroup;
 
-    tocForm : FormGroup;
-
-
     production = process.env.PRODUCTION;
 
     resourceDocumentationType: Type<any> = ResourceDocumentationFormControl;
@@ -82,9 +79,6 @@ export class LanguageRegistrationFormComponent implements OnInit {
     };
 
     constructor(private _fb: FormBuilder) {
-        this.tocForm = _fb.group({
-            toc: [!this.production, Validators.requiredTrue]
-        })
     }
 
     loadLanguage(language : LanguageDescription) {
@@ -106,10 +100,6 @@ export class LanguageRegistrationFormComponent implements OnInit {
 
     public get debugValue() {
         return ResourceService.removeNulls(this.myForm.value);
-    }
-
-    public get tocValid() : boolean{
-        return this.tocForm.valid;
     }
 
     public get formValid() : boolean {

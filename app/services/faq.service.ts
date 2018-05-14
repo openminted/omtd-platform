@@ -2,21 +2,21 @@
  * Created by stefania on 7/12/17.
  */
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { ActiveTopicQuestions } from "../domain/faq-active-topic-questions";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class FAQService {
 
     private _faqUrl = process.env.FAQ_ENDPOINT;
 
-    constructor (private http: Http) {
+    constructor (private http: HttpClient) {
     }
 
     getActiveTopicQuestions() {
-        return this.http.get(this._faqUrl + "/topic/active")
-            .map(res => <ActiveTopicQuestions[]> res.json())
+        return this.http.get<ActiveTopicQuestions[]>(this._faqUrl + "/topic/active")
             .catch(this.handleError);
     }
 

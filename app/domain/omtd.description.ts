@@ -1602,7 +1602,7 @@ export var conferenceDesc = {
 export var annotationTypeDesc = {
     desc : "Specifies the annotation type of the resource or what a s/w component consumes or produces as an output",
     label : "Annotation type",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 
@@ -2401,7 +2401,7 @@ export var archiveDesc = {
 export var processingResourceTypeDesc = {
     desc : "The type of the resource that a component takes as input or produces as output",
     label : "Processing resource type",
-    mandatory : false,
+    mandatory : true,
     recommended : false
 };
 
