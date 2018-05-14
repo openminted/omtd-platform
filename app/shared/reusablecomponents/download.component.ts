@@ -33,10 +33,10 @@ export class DownloadComponent {
             withCredentials: true
         });
         let url_: URL = new URL(this.url);
-        let filename = url_.searchParams.get('archiveId') || 'download';
+        let path = url_.pathname.split(/\//);
+        let filename = url_.searchParams.get('archiveId') || path[path.length - 1] || 'download';
         this.loading = true;
         this.http.request(req).subscribe(event => {
-            console.log(event);
             if (event.type === HttpEventType.DownloadProgress) {
                 this.total = event.total; this.loaded = event.loaded;
                 console.log(event.total, event.loaded);
@@ -47,10 +47,5 @@ export class DownloadComponent {
                 saveAs(blob, filename + '.zip');
             }
         });
-        // this.http.get(this.url, {responseType : ResponseContentType.Blob}).subscribe(
-        //     response => {
-        //         let blob = response.blob();
-        //         saveAs(blob,filename + '.zip');
-        //     });
     }
 }
