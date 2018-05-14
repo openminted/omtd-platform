@@ -15,6 +15,7 @@ import { BrowseApplicationsComponent } from "./utils/browse-applications.compone
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
 import { WorkflowService } from "../../services/workflow.service";
 import {GalaxyService} from "../../services/galaxy.service";
+import { LandingPageModule } from "../landingpages/landing-page.module";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {GalaxyService} from "../../services/galaxy.service";
         ReactiveFormsModule,
         HttpModule,
         JsonpModule,
-        ReusableComponentsModule
+        ReusableComponentsModule,
+        LandingPageModule
     ],
     declarations: [
         RunApplicationComponent,

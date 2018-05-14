@@ -1,11 +1,15 @@
 <div class="uk-background-norepeat uk-background-cover uk-background-fixed uk-section uk-padding-remove-bottom uk-flex uk-flex-middle"
-     style="background-image: url('./assets/imgs/Firstpage_v6.jpg'); box-sizing: border-box; height: 150px">
+     style="background-image: url('./assets/imgs/Firstpage_v3.jpg'); box-sizing: border-box; height: 150px">
     <div class="uk-width-1-1">
         <div class="uk-position-relative">
             <div class="uk-container uk-margin-medium">
                 <div class="search_box_bg uk-grid-large uk-flex-middle uk-grid uk-grid-stack" uk-grid="">
                     <div class="uk-width-1-1@m uk-first-column">
                         <div>
+                            <h2 class="uk-margin-large uk-margin-remove-top uk-text-center uk-h2 uk-scrollspy-inview"
+                                style="color: #fff" uk-scrollspy-class="">
+                                Run an application
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -34,71 +38,159 @@
                 <div class="uk-container uk-container-small uk-margin-bottom-large">
                     <div uk-grid="" class="uk-grid uk-grid-stack">
                         <div class="uk-width-1-1@m uk-first-column">
-                            <h2 class="uk-text-center uk-h5 uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
-                                Run an application
-                            </h2>
-                            <hr class="uk-scrollspy-inview uk-animation-slide-top-medium" style="" uk-scrollspy-class="">
-                            <div *ngIf="successfulMessage" class="alert alert-success uk-margin-top">{{successfulMessage}}</div>
-                            <div *ngIf="errorMessage" class="alert alert-danger uk-margin-top">{{errorMessage}}</div>
+                            <div class="uk-margin-top uk-margin-bottom">
+                                This process may take a while depending on the application and the size of the selected corpus.
+                                You will get a notification via email when the process is complete. You can also monitor its progress
+                                by monitor <a [routerLink]="['/mySpace/operations']">"Your operations"</a>
+                            </div>
+                            <!--<h2 class="uk-text-center uk-h5 uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">-->
+                                <!--Run an application-->
+                            <!--</h2>-->
+                            <!--<hr class="uk-scrollspy-inview uk-animation-slide-top-medium" style="" uk-scrollspy-class="">-->
+                            <div *ngIf="successfulMessage" class="alert alert-success uk-margin-top uk-margin-bottom">{{successfulMessage}}</div>
+                            <div *ngIf="errorMessage" class="alert alert-danger uk-margin-top uk-margin-bottom">{{errorMessage}}</div>
                         </div>
                     </div>
                 </div>
-                <div class="uk-margin-medium uk-grid uk-margin-large-bottom" uk-grid="">
-                    <div class="uk-width-1-5@m uk-first-column placeholderGrid" style="height: 200px">
-                        <a style="height: 100%" (click)="selectInput()">
-                            <div *ngIf="!corpus" class="uk-placeholder uk-text-center" style="height: 100%">
-                                Select an Input Corpus
-                            </div>
-                            <div *ngIf="corpus" class="uk-placeholder uk-text-center" style="height: 100%; overflow: auto;">
-                                <span class="strong">{{corpus.corpusInfo.identificationInfo.resourceNames[0].value}}</span>
-                                <span class="description uk-display-block">{{corpus.corpusInfo.identificationInfo.descriptions[0].value}}</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="uk-width-1-5@m placeholderGrid" style="text-align: center; height: 200px; line-height: 200px">
-                        <i aria-hidden="true" class="fa fa-plus fa-3x" style="vertical-align: middle;"></i>
-                    </div>
-                    <div class="uk-width-1-5@m placeholderGrid" style="height: 200px">
-                        <a style="height: 100%" (click)="selectApplication()">
-                            <div *ngIf="!component" class="uk-placeholder uk-text-center" style="height: 100%; overflow: auto;">
-                                Select an Application
-                            </div>
-                            <div *ngIf="component" class="uk-placeholder uk-text-center" style="height: 100%">
-                                <span class="strong">{{component.componentInfo.identificationInfo.resourceNames[0].value}}</span>
-                                <span class="description uk-display-block">{{component.componentInfo.identificationInfo.descriptions[0].value}}</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="uk-width-1-5@m placeholderGrid" style="text-align: center; height: 200px; line-height: 200px">
-                        <i aria-hidden="true" class="fa fa-arrow-right fa-3x" style="vertical-align: middle;"></i>
-                    </div>
+                <div class="uk-grid uk-margin-large-bottom row" uk-grid="">
 
-                    <div class="uk-width-1-5@m" [ngSwitch]="state" style="height: 200px">
+                    <!--<div class="uk-width-1-3@m" style="height: 200px">-->
+
+                    <div class="uk-width-1-3@m column">
+                        <div class="uk-grid placeholderGrid" style="height: 100%">
+
+                            <!--<div class="uk-width-5-6">-->
+                                <!--<a class="" style="height: 100%" (click)="selectInput()">-->
+                                    <!--<div *ngIf="!corpus" class="uk-placeholder uk-text-center transform-uppercase" style="height: 100%">-->
+                                        <!--Select an Input Corpus-->
+                                    <!--</div>-->
+                                    <!--<div *ngIf="corpus" class="uk-placeholder uk-text-center" style="height: 100%; overflow: auto;">-->
+                                        <!--<span class="strong">{{corpus.corpusInfo.identificationInfo.resourceNames[0].value}}</span>-->
+                                        <!--<div *ngIf="corpus.corpusInfo.resourceCreationInfo" class="uk-margin-small-bottom">-->
+                                            <!--<resource-creation-info-short [resourceCreationInfo]="corpus.corpusInfo.resourceCreationInfo"></resource-creation-info-short>-->
+                                        <!--</div>-->
+                                        <!--<div *ngIf="corpus.corpusInfo?.datasetDistributionInfo?.sizes-->
+                                        <!--&& corpus.corpusInfo?.datasetDistributionInfo?.sizes?.length>0" class="uk-margin-small-bottom">-->
+                                            <!--<ng-container *ngFor="let sizeInfo of corpus.corpusInfo.datasetDistributionInfo.sizes">-->
+                                                <!--<span class="uk-text-meta">{{sizeInfo.size}} {{sizeInfo.sizeUnit}}</span>-->
+                                            <!--</ng-container>-->
+                                        <!--</div>-->
+                                        <!--<span class="description uk-display-block">{{corpus.corpusInfo.identificationInfo.descriptions[0].value}}</span>-->
+                                    <!--</div>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <div class="uk-width-5-6" style="height: 100%">
+                                <a class="" style="height: 100%" (click)="selectInput()">
+                                    <div *ngIf="!corpus" class="uk-placeholder uk-text-center transform-uppercase" style="height: 100%">
+                                        Select an Input Corpus
+                                    </div>
+                                    <div *ngIf="corpus" class="uk-placeholder uk-text-center" style="height: 100%">
+                                        <span class="strong">{{corpus.corpusInfo.identificationInfo.resourceNames[0].value}}</span>
+                                        <div *ngIf="corpus.corpusInfo.resourceCreationInfo" class="uk-margin-small-bottom">
+                                            <resource-creation-info-short [resourceCreationInfo]="corpus.corpusInfo.resourceCreationInfo"></resource-creation-info-short>
+                                        </div>
+                                        <div *ngIf="corpus.corpusInfo?.datasetDistributionInfo?.sizes
+                                        && corpus.corpusInfo?.datasetDistributionInfo?.sizes?.length>0" class="uk-margin-small-bottom">
+                                            <ng-container *ngFor="let sizeInfo of corpus.corpusInfo.datasetDistributionInfo.sizes">
+                                                <span class="uk-text-meta">{{sizeInfo.size}} {{sizeInfo.sizeUnit}}</span>
+                                            </ng-container>
+                                        </div>
+                                        <span class="description uk-display-block">{{corpus.corpusInfo.identificationInfo.descriptions[0].value}}</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="uk-width-1-6@m placeholderGrid" style="text-align: center; height: 200px; line-height: 200px">
+                                <i aria-hidden="true" class="fa fa-plus fa-2x" style="vertical-align: middle;"></i>
+                            </div>
+                        </div>
+
+                        <!--<a class="uk-inline" style="height: 100%" (click)="selectInput()">-->
+                            <!--<div *ngIf="!corpus" class="uk-placeholder uk-text-center" style="height: 100%">-->
+                                <!--Select an Input Corpus-->
+                            <!--</div>-->
+                            <!--<div *ngIf="corpus" class="uk-placeholder uk-text-center" style="height: 100%; overflow: auto;">-->
+                                <!--<span class="strong">{{corpus.corpusInfo.identificationInfo.resourceNames[0].value}}</span>-->
+                                <!--<span class="description uk-display-block">{{corpus.corpusInfo.identificationInfo.descriptions[0].value}}</span>-->
+                            <!--</div>-->
+                        <!--</a>-->
+
+                        <!--<i aria-hidden="true" class="fa fa-plus fa-3x uk-inline" style="vertical-align: middle;"></i>-->
+                    </div>
+                    <!--<div class="uk-width-1-5@m placeholderGrid" style="text-align: center; height: 200px; line-height: 200px">-->
+                    <!--<i aria-hidden="true" class="fa fa-plus fa-3x" style="vertical-align: middle;"></i>-->
+                    <!--</div>-->
+                    <div class="uk-width-1-3@m column">
+
+                        <div class="uk-grid placeholderGrid" style="height: 100%">
+
+                            <!--<div class="uk-width-5-6">-->
+                                <!--<a class="" style="height: 100%" (click)="selectApplication()">-->
+                                    <!--<div *ngIf="!component" class="uk-placeholder uk-text-center transform-uppercase" style="height: 100%; overflow: auto;">-->
+                                        <!--Select an Application-->
+                                    <!--</div>-->
+                                    <!--<div *ngIf="component" class="uk-placeholder uk-text-center" style="height: 100%">-->
+                                        <!--<span class="strong">{{component.componentInfo.identificationInfo.resourceNames[0].value}}</span>-->
+                                        <!--<span class="description uk-display-block">{{component.componentInfo.identificationInfo.descriptions[0].value}}</span>-->
+                                    <!--</div>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <div class="uk-width-5-6" style="height: 100%">
+                                <a class="" style="height: 100%" (click)="selectApplication()">
+                                    <div *ngIf="!component" class="uk-placeholder uk-text-center transform-uppercase" style="height: 100%">
+                                        Select an Application
+                                    </div>
+                                    <div *ngIf="component" class="uk-placeholder uk-text-center" style="height: 100%">
+                                        <span class="strong">{{component.componentInfo.identificationInfo.resourceNames[0].value}}</span>
+                                        <div *ngIf="component.componentInfo.resourceCreationInfo" class="uk-margin-small-bottom">
+                                            <resource-creation-info-short [resourceCreationInfo]="component.componentInfo.resourceCreationInfo"></resource-creation-info-short>
+                                        </div>
+                                        <div *ngIf="component.componentInfo.functionInfo" class="uk-margin-small-bottom">
+                                            <function-info [functionInfo]="component.componentInfo.functionInfo"></function-info>
+                                        </div>
+                                        <span class="description uk-display-block">{{component.componentInfo.identificationInfo.descriptions[0].value}}</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="uk-width-1-6@m placeholderGrid" style="text-align: center; height: 200px; line-height: 200px">
+                                <i aria-hidden="true" class="fa fa-arrow-right fa-2x" style="vertical-align: middle;"></i>
+                            </div>
+                        </div>
+
+
+                        <!--<i aria-hidden="true" class="fa fa-arrow-right fa-3x uk-inline" style="vertical-align: middle;"></i>-->
+                    </div>
+                    <!--<div class="uk-width-1-5@m placeholderGrid" style="text-align: center; height: 200px; line-height: 200px">-->
+                    <!--<i aria-hidden="true" class="fa fa-arrow-right fa-3x" style="vertical-align: middle;"></i>-->
+                    <!--</div>-->
+
+                    <div class="uk-width-1-3@m column" [ngSwitch]="state">
                         <div *ngSwitchCase="'SELECT'" class="placeholderGrid uk-disabled" style="height: 100%">
                             <a class="uk-disabled" style="height: 100%">
-                                <div class="uk-placeholder uk-text-center" style="height: 100%"
+                                <div class="uk-placeholder uk-text-center transform-uppercase" style="height: 100%"
                                      title="You need to select both an input and an application">Click to run the application!
                                     (You need to select both an input and an application first)</div>
                             </a>
                         </div>
                         <div *ngSwitchCase="'READY'" class="placeholderGrid" style="height: 100%">
                             <a style="height: 100%" (click)="runApplication()">
-                                <div class="uk-placeholder uk-text-center" style="height: 100%">Click to run the application!</div>
+                                <div class="uk-placeholder uk-text-center transform-uppercase" style="height: 100%">Click to run the application!</div>
                             </a>
                         </div>
                         <div *ngSwitchCase="'RUNNING'" class="placeholderGrid uk-disabled" style="height: 100%">
                             <a class="uk-disabled" style="height: 100%" >
-                                <div class="uk-placeholder uk-text-center" style="height: 100%">Running....
+                                <div class="uk-placeholder uk-text-center transform-uppercase" style="height: 100%">Running....
                                     <i class="fa fa-spinner fa-spin uk-display-block fa-2x uk-margin-top"></i>
                                 </div>
                             </a>
                         </div>
                         <div *ngSwitchCase="'FINISHED'" class="placeholderGrid output" style="height: 100%">
                             <a style="height: 100%" href="/landingPage/corpus/{{wsJobStatus.corpus.output}}">
-                                <div class="uk-placeholder uk-text-center" style="height: 100%">Click here to view the output!</div>
+                                <div class="uk-placeholder uk-text-center transform-uppercase" style="height: 100%">Click here to view the output!</div>
                             </a>
                         </div>
                     </div>
+
+
                 </div>
 
             </div>
