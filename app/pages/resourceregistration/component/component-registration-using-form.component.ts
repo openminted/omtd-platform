@@ -21,7 +21,7 @@ import { UUID } from "angular2-uuid";
     styleUrls : ['./component-registration-form.component.css']
 })
 
-export class ComponentRegistrationUsingFormComponent implements OnInit {
+export class ComponentRegistrationUsingFormComponent {
 
     errorMessage: string = null;
 
@@ -45,16 +45,7 @@ export class ComponentRegistrationUsingFormComponent implements OnInit {
         this.resourceType = this.route.snapshot.data['resourceType'];
     }
 
-    ngOnInit(): void {
-        let component : OMTDComponent = new OMTDComponent();
-        component.componentInfo = new ComponentInfo();
-        component.componentInfo.identificationInfo = new IdentificationInfo();
-        let identifier : ResourceIdentifier = new ResourceIdentifier();
-        identifier.value = UUID.UUID();
-        (identifier.resourceIdentifierSchemeName as any) = "OMTD";
-        component.componentInfo.identificationInfo.resourceIdentifiers = [identifier];
-        setTimeout(() => this.componentForm.loadComponent(component),500);
-    }
+
 
     validate() : boolean {
         this.successfulMessage = null;
