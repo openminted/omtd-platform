@@ -13,6 +13,7 @@ import { PublicationInfo } from "../../domain/publication-info";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Observable } from "rxjs/Observable";
+import { Corpus as OMTDCorpus } from "../../domain/openminted-model";
 
 @Component({
     selector: 'corpus-browser',
@@ -35,6 +36,8 @@ export class CorpusBrowserComponent {
     searchResults: SearchResults<PublicationInfo>;
 
     private corpusId: string;
+
+    private corpus: OMTDCorpus;
 
     private resourceService: ResourceService;
     private sub: Subscription;
@@ -87,6 +90,10 @@ export class CorpusBrowserComponent {
                         // console.log(urlParameter);
                     }
                 }
+
+                this.resourceService.get<OMTDCorpus>(this.corpusId,'corpus').subscribe(
+                    corpus => this.corpus = corpus,
+                    error => this.handleError(<any>error));
 
                 this.corpusContent = this.resourceService.browseCorpus(this.corpusId, searchParams);
 
@@ -201,6 +208,10 @@ export class CorpusBrowserComponent {
         this.urlToDisplay = 'reload';
         setTimeout(() => {this.urlToDisplay = this.viewerAPI + 'archiveId=' + archiveId + '&documentId=' + publicationId;},500);
         console.log(this.urlToDisplay);
+    }
+
+    backToCorpus() {
+        this.router.navigate(['/landingPage/corpus/', this.corpusId]);
     }
 
     get iFrameURL() {
