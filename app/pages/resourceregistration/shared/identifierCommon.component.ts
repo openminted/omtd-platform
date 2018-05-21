@@ -161,16 +161,19 @@ export class ResourceIdentifierCommonFormControl extends MyGroup {
         resourceIdentifierSchemeName : ['', Validators.required]
     };
 
-    ngOnInit() {
-        super.ngOnInit();
-        let sub = this.getMyControl('resourceIdentifierSchemeName').valueChanges.subscribe( v => {
-            console.log(v);
-            if (v == 'OMTD') {
-                sub.unsubscribe();
-                this.group.disable({emitEvent:false});
-            }
-        });
-    }
+    // ngOnInit() {
+    //     super.ngOnInit();
+    //     const formGroup = this.parentGroup.parent.parent.parent.controls;
+    //     let name = Object.keys(formGroup).find(name => this.parentGroup.parent.parent === formGroup[name]) || null;
+    //     console.log(name);
+    //     let sub = this.getMyControl('resourceIdentifierSchemeName').valueChanges.subscribe( v => {
+    //         console.log(v);
+    //         if (v == 'OMTD' && name == 'identificationInfo') {
+    //             sub.unsubscribe();
+    //             this.group.disable({emitEvent:false});
+    //         }
+    //     });
+    // }
 }
 
 @Component({
@@ -235,4 +238,6 @@ export class DomainIdentifierCommonFormControl extends MyGroup {
         schemeURI : '',
         classificationSchemeName : ['', Validators.required]
     };
+
+
 }

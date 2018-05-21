@@ -1623,7 +1623,7 @@ export var mailingListNameDesc = {
 export var organizationIdentifierDesc = {
     desc : "Associates an organizationto an identifier, i.e. a string used to uniquely identify it",
     label : "Organization identifier",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 

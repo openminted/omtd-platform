@@ -1,5 +1,5 @@
 import { Validators } from "@angular/forms";
-import { Component, Type } from "@angular/core";
+import { Component, Injector, Input, Type } from "@angular/core";
 import { MyGroup } from "../myform/my-group.interface";
 import { MyStringFormGroup } from "./my-string-form.component";
 import {
@@ -35,9 +35,17 @@ import { OrganizationIdentifierCommonFormControl } from "./identifierCommon.comp
 })
 export class OrganizationInfoFormControl extends MyGroup {
 
+    @Input("organizationMandatory")
+    public organizationMandatory : boolean = true;
+
+    ngOnInit() {
+        super.ngOnInit();
+        this.organizationNameDesc.mandatory = this.organizationMandatory;
+    }
+
     simpleStringComponent : Type<any> = MyStringFormGroup;
     organizationIdentifierComponent : Type<any> = OrganizationIdentifierCommonFormControl;
-    organizationNameDesc : Description = organizationNameDesc;
+    organizationNameDesc : Description = Object.assign({},organizationNameDesc);
     organizationAlternativeNameDesc : Description = organizationAlternativeNameDesc;
     organizationIdentifierDesc : Description = organizationIdentifierDesc;
     communicationInfoDesc : Description = communicationInfoDesc;

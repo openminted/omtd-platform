@@ -36,7 +36,7 @@ export class ContactInfoFormControl extends MyGroup {
 
     public groupDefinition = {
         contactPoint : ["",Validators.required],
-        contactType : ContactTypeEnum.CONTACT_EMAIL
+        contactType : ContactTypeEnum.CONTACT_EMAIL.toString()
     };
 
     constructor(private injector : Injector){
@@ -53,10 +53,13 @@ export class ContactInfoFormControl extends MyGroup {
         super.ngOnInit();
         this.getMyControl('contactPoint').setValue(this.authenticationService.email);
         this.getMyControl('contactPoint').valueChanges.subscribe(_ => {
+            console.log(_);
            if(this.validateEmail(_)) {
-               this.getMyControl('contactType').setValue(ContactTypeEnum.CONTACT_EMAIL);
+               console.log("SET EMAIL");
+               this.getMyControl('contactType').setValue(ContactTypeEnum.CONTACT_EMAIL.toString());
            } else {
-               this.getMyControl('contactType').setValue(ContactTypeEnum.LANDING_PAGE);
+               console.log("SET LANDINGPAGE");
+               this.getMyControl('contactType').setValue(ContactTypeEnum.LANDING_PAGE.toString());
            }
         });
         // this.parentGroup.get('contactEmail').setValue(this.authenticationService.email);
