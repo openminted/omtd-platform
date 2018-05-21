@@ -409,3 +409,13 @@ tree-root .angular-tree-component-rtl .tree-children {
 tree-node-checkbox {
     padding: 1px;
 }
+
+/******************************************************/
+
+.uk-button-green {
+    border-color: #00b9b4;
+    background-color: #00b9b4;
+    color: #fff;
+}
+
+/******************************************************/

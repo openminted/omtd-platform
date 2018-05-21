@@ -3,7 +3,11 @@
         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
             <div class="uk-width-1-1@m uk-first-column">
 
-                <h1 class="uk-h2">Corpus Browser</h1>
+                <h1 *ngIf="!corpus" class="uk-h2">Corpus Browser</h1>
+                <h1 *ngIf="corpus?.corpusInfo?.identificationInfo?.resourceNames
+                    && corpus.corpusInfo.identificationInfo.resourceNames.length>0" class="uk-h2">
+                    {{corpus.corpusInfo.identificationInfo.resourceNames[0].value}}
+                </h1>
                 <hr class="uk-divider-small">
 
                 <!-- TOP HELP CONTENT -->
@@ -200,5 +204,13 @@
 
             </div>
         </div>
+    </div>
+</div>
+
+<div class="uk-inline">
+    <div class="uk-float-right" style="z-index: 100; bottom: 30px; position: fixed; right: 30px;">
+        <button style="box-shadow: 0 1px 10px #444444" class="uk-button uk-button-green" (click)="backToCorpus()">
+            Back to corpus
+        </button>
     </div>
 </div>

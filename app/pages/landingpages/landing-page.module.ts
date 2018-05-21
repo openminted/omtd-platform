@@ -92,6 +92,10 @@ import { SlickModule } from "ngx-slick";
     ],
     providers: [
         ResourceService
+    ],
+    exports: [
+        ResourceCreationInfoShortComponent,
+        FunctionInfoComponent
     ]
 })
 
