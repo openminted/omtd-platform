@@ -206,7 +206,7 @@ export class CorpusBrowserComponent {
 
     previewAnnotations(archiveId: string, publicationId: string) {
         this.urlToDisplay = 'reload';
-        setTimeout(() => {this.urlToDisplay = this.viewerAPI + 'archiveId=' + archiveId + '&documentId=' + publicationId;},500);
+        setTimeout(() => {this.urlToDisplay = this.viewerAPI + 'archiveId=' + archiveId + '&documentId=' + publicationId + '.pdf';},500);
         console.log(this.urlToDisplay);
     }
 
