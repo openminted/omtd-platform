@@ -37,7 +37,7 @@ export class CorpusBrowserComponent {
 
     private corpusId: string;
 
-    private corpus: OMTDCorpus;
+    public corpus: OMTDCorpus;
 
     private resourceService: ResourceService;
     private sub: Subscription;
