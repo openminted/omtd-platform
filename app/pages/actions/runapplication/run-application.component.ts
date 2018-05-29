@@ -134,12 +134,6 @@ export class RunApplicationComponent {
 
         let corpusId = this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value;
         let applicationId = this.component.metadataHeaderInfo.metadataRecordIdentifier.value;
-
-        let archiveId = this.corpus.corpusInfo.datasetDistributionInfo.distributionLocation.match(/\?archiveId=([\d\w-]+)$/);
-        if(!archiveId) {
-            this.handleError('This corpus has no valid archiveId',{error:"Error"} as any);
-            return;
-        }
         this.workflowService.executeJob(corpusId,applicationId).subscribe(
                 jobId => {
                     this.jobId = jobId;
