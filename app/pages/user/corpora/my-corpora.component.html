@@ -39,6 +39,11 @@
 
                                 <div *ngIf="searchResults.total>0">
 
+                                    <div class="uk-width-1-1 uk-row-first" paginate
+                                         [from]="searchResults.from" [total]="searchResults.total">
+                                    </div>
+
+
                                     <div class="uk-grid-margin">
 
                                         <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
@@ -96,6 +101,9 @@
                                                     </table>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="uk-width-1-1 uk-row-first uk-margin-large-bottom uk-margin-top"
+                                             paginate [from]="searchResults.from" [total]="searchResults.total">
                                         </div>
 
                                     </div>
