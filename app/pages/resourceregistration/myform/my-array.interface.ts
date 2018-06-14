@@ -84,7 +84,10 @@ export class MyArray extends MyGroup {
                 console.log(this.viewContainerRef.get(0));
                 ((this.parentGroup as FormArray).controls[this.name].at(0).corpus((<MyGroup>componentView.instance).generate().value));
             } else {
+
                 this.remove(index);
+                index = (index == 0) ? 1 : index;
+                //TODO this is a hotfix, the view index with the formArray do not synch when the values are patched
                 (this.parentGroup as FormArray).controls[this.name].removeAt(index-1);
                 this.arrayData_.splice(index-1,1);
             }
