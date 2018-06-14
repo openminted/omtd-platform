@@ -96,8 +96,8 @@ export class ParameterInfoFormComponent extends MyGroup {
         parameterLabel : "",
         parameterDescription : "",
         parameterType : "",
-        optional : "",
-        multiValue : "",
+        optional : true,
+        multiValue : false,
         // defaultValue : ""
     };
 

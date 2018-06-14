@@ -132,7 +132,7 @@ export var externalRefDesc = {
 export var multiValueDesc = {
     desc : "Specifies whether the parameter takes a list of values; the default value is set to false",
     label : "Multi-value",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 
@@ -1392,7 +1392,7 @@ export var samplesLocationDesc = {
 export var parameterDescriptionDesc = {
     desc : "Provides a short account of the parameter (function it performs, input / output requirements etc.) in free text",
     label : "Description of the parameter",
-    mandatory : false,
+    mandatory : true,
     recommended : false
 };
 
@@ -1490,7 +1490,7 @@ export var annotationSchemaDesc = {
 export var optionalDesc = {
     desc : "Specifies whether the parameter is mandatory or optional; the default value is set to true",
     label : "Optional",
-    mandatory : true,
+    mandatory : false,
     recommended : false
 };
 

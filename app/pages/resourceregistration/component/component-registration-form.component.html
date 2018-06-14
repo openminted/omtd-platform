@@ -52,7 +52,7 @@
             </li>
 
             <li accordionSection class="uk-margin-large-bottom" [title]="'Parameters'">
-                <form-repeat [component]="parameterType" [parentGroup]="myForm.controls.componentInfo"
+                <form-repeat [component]="parameterType" [parentGroup]="myForm.controls.componentInfo" [initEmpty]="true"
                              [name]="'parameterInfos'" [required]="false" [description]="parameterInfoDesc">
                 </form-repeat>
             </li>
