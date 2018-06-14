@@ -3,7 +3,7 @@
         {{relationType(relationInfo.relationType)}}:
     </span>
     <span *ngIf="relationInfo?.relatedResource?.resourceNames?.length>0 && relationInfo?.relatedResource?.resourceIdentifiers?.length>0">
-        <ng-container *ngIf="relationInfo.relatedResource.resourceIdentifiers[0].resourceIdentifierSchemeName=='OMTD'; else otherResource">
+        <ng-container *ngIf="relationInfo.relatedResource.resourceIdentifiers?.length > 0 && relationInfo.relatedResource.resourceIdentifiers[0]?.resourceIdentifierSchemeName=='OMTD'; else otherResource">
             <ng-container [ngSwitch]="relationInfo.relationType">
                 <a [routerLink]="['/landingPage/corpus',getLink(relationInfo.relatedResource)]"
                    *ngSwitchCase="'IS_ANNOTATED_VERSION_OF'">{{relationInfo.relatedResource.resourceNames[0].value}}</a>
@@ -17,7 +17,10 @@
             </ng-container>
         </ng-container>
         <ng-template #otherResource>
-            <span>{{relationInfo.relatedResource.resourceNames[0].value}} - {{relationInfo.relatedResource.resourceIdentifiers[0].resourceIdentifierSchemeName}}</span>
+            <span>{{relationInfo.relatedResource.resourceNames[0].value}} - {{relationInfo.relatedResource.resourceIdentifiers[0]?.resourceIdentifierSchemeName}}</span>
         </ng-template>
+    </span>
+    <span *ngIf="relationInfo?.relatedResource?.resourceNames?.length>0 && relationInfo?.relatedResource?.resourceIdentifiers?.length==0">
+        <span>{{relationInfo.relatedResource.resourceNames[0].value}}</span>
     </span>
 </div>
