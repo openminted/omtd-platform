@@ -28,7 +28,7 @@ import { MySingleStringForm } from "./my-string-form.component";
 export class CommunicationInfoFormControl extends MyGroup {
 
     simpleStringComponent : Type<any> = MySingleStringForm;
-    emailsDesc : Description = emailDesc;
+    emailsDesc : Description = Object.assign({},emailDesc);
     homepagesDesc : Description = homepageDesc;
     telephoneNumbersDesc : Description = telephoneNumberDesc;
 
@@ -37,6 +37,7 @@ export class CommunicationInfoFormControl extends MyGroup {
 
     constructor(injector : Injector) {
         super(injector);
+        this.emailsDesc.mandatory = false;
     }
 
 

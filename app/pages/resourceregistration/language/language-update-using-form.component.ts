@@ -32,7 +32,7 @@ export class LanguageUpdateUsingFormComponent extends LanguageBaseUsingFormCompo
             this.language.subscribe(component => {
                 this.languageMetadata = component.metadataHeaderInfo;
                 this.languageForm.loadLanguage(component);
-            }, error => this.handleError("Error loading Model and Grammar.",error));
+            }, error => this.handleError("Error loading Model or Grammar.",error));
         });
     }
 
@@ -43,9 +43,9 @@ export class LanguageUpdateUsingFormComponent extends LanguageBaseUsingFormCompo
                 console.log(component);
                 this.languageMetadata = component.metadataHeaderInfo;
                 this.loading = false;
-                this.successfulMessage = "Model and Grammar updated successfully.";
+                this.successfulMessage = "Model or Grammar updated successfully.";
                 window.scrollTo(0,0);},
-            error => this.handleError("Error updating Model and Grammar.",error)
+            error => this.handleError("Error updating Model or Grammar.",error)
         );
 
     }

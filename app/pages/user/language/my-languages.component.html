@@ -1,4 +1,4 @@
-<div my-resource-wrapper="My Models and Grammars">
+<div my-resource-wrapper="My ML Models and Grammars">
     <div *ngIf="errorMessage" class="uk-alert uk-alert-danger uk-margin-medium-top">{{errorMessage}}</div>
 
     <div *ngIf="searchResults && !errorMessage">
@@ -89,11 +89,11 @@
 
 <confirmation-dialog #deleteConfirmationModal [isModalShown]="isModalShown" [title]="'Delete Confirmation'"
                      [confirmActionButton]="'Yes, delete it'" (emmitObject)="confirmedDelete($event)">
-    Are you sure you want to delete the selected {{resourceType}}?
+    Are you sure you want to delete the selected model or grammar?
 </confirmation-dialog>
 
 <confirmation-dialog #makePublicConfirmationModal [title]="'Confirmation'" [isModalShown]="isModalShown"
                      [confirmActionButton]="'Yes, make it public'" (emmitObject)="confirmedMakePublic($event)">
-    Are you sure you want to make public the selected {{resourceType}}? Making it public will make it accessible to anyone using the
+    Are you sure you want to make public the selected model or grammer? Making it public will make it accessible to anyone using the
     OpenMinTeD platform and you will no longer be able to edit it or delete it.
 </confirmation-dialog>

@@ -34,9 +34,9 @@ export class LanguageUploadComponent extends LanguageBaseUsingFormComponent {
             data => {
                 this.loading = false;
                 this.languageMetadata = data.metadataHeaderInfo;
-                this.successfulMessage = 'Model and Grammar uploaded successfully.';
+                this.successfulMessage = 'Model or Grammar uploaded successfully.';
                 window.scrollTo(0, 0);
-            }, error => this.handleError("Error uploading Model and Grammar", error)
+            }, error => this.handleError("Error uploading Model or Grammar", error)
         );
     }
 }

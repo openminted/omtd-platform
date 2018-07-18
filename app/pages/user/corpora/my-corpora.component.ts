@@ -2,7 +2,7 @@
  * Created by stefania on 7/6/17.
  */
 import { Component, Injector } from '@angular/core';
-import { BaseMetadataRecord, Corpus as OMTDCorpus } from "../../../domain/openminted-model";
+import { BaseMetadataRecord, Component as OMTDComponent, Corpus as OMTDCorpus } from "../../../domain/openminted-model";
 import { SearchResults } from "../../../domain/search-results";
 import { Observable } from "rxjs/Observable";
 import { ContentConnectorService } from "../../../services/content-connector.service";
@@ -33,9 +33,19 @@ export class MyCorporaComponent extends MyResourceComponent<OMTDCorpus> {
     ngOnInit() {
         super.ngOnInit();
 
-        this.resourceService.getMyResources<OMTDCorpus>('corpus').subscribe(
-            searchResults => this.updateMyResources(searchResults),
-            error => this.handleError('System error retrieving user corpora', <any>error));
+        this.route.params.subscribe(
+            params => {
+                console.log(params);
+                if (typeof params['from'] != undefined) {
+                    this.params['from'] = params['from'];
+                }
+                this.resourceService.getMyResources<OMTDCorpus>('corpus',this.params).subscribe(
+                    searchResults => this.updateMyResources(searchResults),
+                    error => this.handleError('System error retrieving user corpora', <any>error));
+            }
+        );
+
+
 
         this.resourceService.getMyResources<OMTDCorpus>('incompleteCorpus').subscribe(
             incompleteCorporaSearchResults => this.updateMyIncompleteCorpora(incompleteCorporaSearchResults),

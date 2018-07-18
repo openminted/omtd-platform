@@ -12,7 +12,7 @@ import { Description, groupNameDesc } from "../../../domain/omtd.description";
 
             <div class="form-group-divider"></div>
 
-            <organizationInfo-form [parentGroup]="group" [name]="'affiliatedOrganization'"></organizationInfo-form>
+            <organizationInfo-form [parentGroup]="group" [name]="'affiliatedOrganization'" [organizationMandatory]="false"></organizationInfo-form>
         </div>
 `,
     styleUrls : ['./templates/common.css']

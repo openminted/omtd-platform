@@ -18,14 +18,14 @@ import { CorpusBaseUsingFormComponent } from "./corpus-base-using-form.component
 export class CorpusUpdateUsingFormComponent extends CorpusBaseUsingFormComponent implements OnInit {
 
     corpus : Observable<OMTDCorpus>;
-    metadata : MetadataHeaderInfo = null;
+    metadata : OMTDCorpus;
 
     ngOnInit() {
         this.route.params.subscribe(params => {
             let id = params['id'];
             this.corpus = this.resourceService.get<OMTDCorpus>(id,'corpus');
             this.corpus.subscribe(corpus => {
-                this.metadata = corpus.metadataHeaderInfo;
+                this.metadata = corpus;
                 this.corpusForm.loadCorpus(corpus);
                 },
                 error => this.handleError("Error occurred loading corpus",error));
@@ -47,12 +47,14 @@ export class CorpusUpdateUsingFormComponent extends CorpusBaseUsingFormComponent
         if(!this.validate())
             return;
         let corpusFilled : OMTDCorpus = Object.assign({},this.corpusForm.formValue);
-        corpusFilled.metadataHeaderInfo = this.metadata;
+        corpusFilled.metadataHeaderInfo = this.metadata.metadataHeaderInfo;
+        corpusFilled.corpusInfo.datasetDistributionInfo.distributionLocation = this.metadata.corpusInfo.datasetDistributionInfo.distributionLocation;
+        corpusFilled.corpusInfo.datasetDistributionInfo.distributionMedium = this.metadata.corpusInfo.datasetDistributionInfo.distributionMedium;
         this.updateCorpus(corpusFilled);
     }
 
 
     navigateToCorpus() {
-        super.navigateToCorpus(this.metadata.metadataRecordIdentifier.value);
+        super.navigateToCorpus(this.metadata.metadataHeaderInfo.metadataRecordIdentifier.value);
     }
 }
