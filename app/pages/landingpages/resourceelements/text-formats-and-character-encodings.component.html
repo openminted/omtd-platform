@@ -1,0 +1,18 @@
+<ng-container *ngIf="textFormats && textFormats.length>0">
+    <ng-container *ngFor="let textFormatInfo of textFormats">
+        <ng-container *ngIf="textFormatInfo.dataFormatInfo?.dataFormat">
+            <span class="uk-label uk-label-primary" style="margin-bottom: 5px">
+                {{dataFormatType(textFormatInfo.dataFormatInfo.dataFormat)}}
+            </span>
+        </ng-container>
+    </ng-container>
+</ng-container>
+<ng-container *ngIf="characterEncodings && characterEncodings.length>0">
+    <ng-container *ngFor="let characterEncodingInfo of characterEncodings">
+        <ng-container *ngIf="characterEncodingInfo.characterEncoding">
+            <span class="uk-label uk-label-primary" style="margin-bottom: 5px">
+                {{characterEncoding(characterEncodingInfo.characterEncoding)}}
+            </span>
+        </ng-container>
+    </ng-container>
+</ng-container>

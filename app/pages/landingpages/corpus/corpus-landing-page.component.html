@@ -123,8 +123,6 @@
                                   [versionInfo]="corpus.corpusInfo.versionInfo">
                     </version-info>
 
-                    <!--TODO add multilingualityType and languages-->
-
                     <ul class="uk-list" *ngIf="corpus.corpusInfo.identificationInfo.descriptions
                                                 && corpus.corpusInfo.identificationInfo.descriptions.length>0">
                         <li *ngFor="let description of corpus.corpusInfo.identificationInfo.descriptions; let isFirst = first;"
@@ -133,7 +131,48 @@
                         </li>
                     </ul>
 
-                    <!--TODO add size info-->
+                    <!--MultilingualityType and languages-->
+                    <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype=='rawCorpus'" class="uk-margin-bottom">
+                        <div *ngIf="(corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.languages
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.languages.length>0)
+                        || corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.lingualityInfo">
+                            <multilinguality-type-and-languages [languages]="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.languages"
+                                                                [lingualityInfo]="corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.lingualityInfo">
+                            </multilinguality-type-and-languages>
+                        </div>
+                    </div>
+                    <div *ngIf="corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.corpusSubtype=='annotatedCorpus'" class="uk-margin-bottom">
+                        <div *ngIf="(corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.languages
+                        && corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.languages.length>0)
+                        || corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.lingualityInfo">
+                            <multilinguality-type-and-languages [languages]="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.languages"
+                                                                [lingualityInfo]="corpus.corpusInfo.corpusSubtypeSpecificInfo.annotatedCorpusInfo.lingualityInfo">
+                            </multilinguality-type-and-languages>
+                        </div>
+                    </div>
+
+                    <!--Formats and character encodings-->
+                    <div *ngIf="(corpus?.corpusInfo?.datasetDistributionInfo?.textFormats
+                    && corpus?.corpusInfo?.datasetDistributionInfo?.textFormats.length>0)
+                    || (corpus?.corpusInfo?.datasetDistributionInfo?.characterEncodings
+                    && corpus?.corpusInfo?.datasetDistributionInfo?.characterEncodings.length>0)">
+                        <text-formats-and-character-encodings [textFormats]="corpus.corpusInfo.datasetDistributionInfo.textFormats"
+                                                             [characterEncodings]="corpus.corpusInfo.datasetDistributionInfo.characterEncodings">
+                        </text-formats-and-character-encodings>
+                    </div>
+
+                    <div *ngIf="corpus.corpusInfo?.datasetDistributionInfo?.sizes
+                                        && corpus.corpusInfo?.datasetDistributionInfo?.sizes?.length>0" class="uk-margin-small-bottom">
+                        Corpus size:
+                        <ng-container *ngFor="let sizeInfo of corpus.corpusInfo.datasetDistributionInfo.sizes; let isLast = last;">
+                            <span>{{sizeInfo.size}} {{sizeInfo.sizeUnit}}</span>
+                            {{isLast ? '' : ', '}}
+                        </ng-container>
+                    </div>
 
                     <div *ngIf="corpus.corpusInfo.resourceDocumentations
                         && corpus.corpusInfo.resourceDocumentations.length>0">

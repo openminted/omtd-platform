@@ -1,0 +1,14 @@
+<ng-container *ngIf="lingualityInfo && lingualityInfo.multilingualityType">
+    <span class="uk-label uk-label-primary" style="margin-bottom: 5px">
+        {{multilingualityType(lingualityInfo.multilingualityType)}}
+    </span>
+</ng-container>
+<ng-container *ngIf="languages && languages.length>0">
+    <span *ngFor="let languageInfo of languages">
+        <ng-template [ngIf]="languageInfo.language">
+            <span class="uk-label uk-label-primary" style="margin-bottom: 5px">
+                {{getLanguage(languageInfo.language)}}
+            </span>
+        </ng-template>
+    </span>
+</ng-container>

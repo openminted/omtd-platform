@@ -44,6 +44,8 @@ import { DomainsInfoComponent } from "./resourceelements/domains-info.component"
 import { KeywordsInfoComponent } from "./resourceelements/keywords-info.component";
 import { ResourceCreationInfoShortComponent } from "./resourceelements/resource-creation-info-short.component";
 import { SlickModule } from "ngx-slick";
+import { MultilingualityTypeAndLanguagesComponent } from "./resourceelements/multilinguality-type-and-languages.component";
+import { TextFormatsAndCharacterEncodingsComponent } from "./resourceelements/text-formats-and-character-encodings.component";
 
 @NgModule({
     imports: [
@@ -88,7 +90,9 @@ import { SlickModule } from "ngx-slick";
         RelationInfoComponent,
         DomainsInfoComponent,
         KeywordsInfoComponent,
-        ResourceCreationInfoShortComponent
+        ResourceCreationInfoShortComponent,
+        MultilingualityTypeAndLanguagesComponent,
+        TextFormatsAndCharacterEncodingsComponent
     ],
     providers: [
         ResourceService
