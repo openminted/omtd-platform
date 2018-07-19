@@ -46,6 +46,7 @@ import { ResourceCreationInfoShortComponent } from "./resourceelements/resource-
 import { SlickModule } from "ngx-slick";
 import { MultilingualityTypeAndLanguagesComponent } from "./resourceelements/multilinguality-type-and-languages.component";
 import { TextFormatsAndCharacterEncodingsComponent } from "./resourceelements/text-formats-and-character-encodings.component";
+import { MetalanguagesInfoComponent } from "./resourceelements/metalanguages-info.component";
 
 @NgModule({
     imports: [
@@ -92,7 +93,8 @@ import { TextFormatsAndCharacterEncodingsComponent } from "./resourceelements/te
         KeywordsInfoComponent,
         ResourceCreationInfoShortComponent,
         MultilingualityTypeAndLanguagesComponent,
-        TextFormatsAndCharacterEncodingsComponent
+        TextFormatsAndCharacterEncodingsComponent,
+        MetalanguagesInfoComponent
     ],
     providers: [
         ResourceService

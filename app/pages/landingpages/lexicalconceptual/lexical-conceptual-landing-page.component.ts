@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Lexical } from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { Subscription } from "rxjs/Subscription";
+import { dataFormatTypeEnum, EnumValues, lexicalConceptualResourceTypeEnum } from "../../../domain/omtd.enum";
 
 @Component({
     selector: 'lexical-conceptual-landing-page',
@@ -19,6 +20,8 @@ export class LexicalConceptualLandingPageComponent implements OnInit {
     public errorMessage: string;
     private sub: Subscription;
 
+    lexicalConceptualResourceTypeValues : EnumValues[] = lexicalConceptualResourceTypeEnum;
+    dataFormatTypeValues : EnumValues[] = dataFormatTypeEnum;
 
     constructor(
         private route: ActivatedRoute,
@@ -46,5 +49,15 @@ export class LexicalConceptualLandingPageComponent implements OnInit {
 
     handleError(error) {
         this.errorMessage = 'System error loading lexical conceptual (Server responded: ' + error.error + ')';
+    }
+
+    private lexicalConceptualResourceType(l : string) {
+        let lexicalConceptualResourceType = this.lexicalConceptualResourceTypeValues.find(v => v.key === l);
+        return lexicalConceptualResourceType && lexicalConceptualResourceType.value;
+    }
+
+    private dataFormatType(l : string) {
+        let dataFormatType = this.dataFormatTypeValues.find(v => v.key === l);
+        return dataFormatType && dataFormatType.value;
     }
 }
