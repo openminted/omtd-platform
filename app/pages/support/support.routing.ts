@@ -7,6 +7,7 @@ import { PoliciesComponent } from "./faqs/faqs-policies.component";
 import { FAQsComponent } from "./faqs/faqs-legal.component";
 import { SupportComponent } from "./support.component";
 import { TermsAndConditionsComponent } from "./termsandconditions/terms-and-conditions.component";
+import {OperationalLevelAgreementComponent} from "./operationallevelagreement/operational-level-agreement.component";
 
 const supportRoutes: Routes = [
     {
@@ -24,6 +25,10 @@ const supportRoutes: Routes = [
     {
         path: 'support/termsAndConditions',
         component: TermsAndConditionsComponent,
+    },
+    {
+        path: 'support/operationalLevelAgreement',
+        component: OperationalLevelAgreementComponent,
     },
 ];
 

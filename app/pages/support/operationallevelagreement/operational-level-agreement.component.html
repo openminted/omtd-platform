@@ -1,0 +1,87 @@
+<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div class="uk-container">
+        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+            <div class="uk-width-1-1@m uk-first-column">
+
+                <h1 class="uk-h2">Availability Indicators<br>
+                    <!--<span class="uk-margin-top"><strong>Availability Indicators</strong></span>-->
+                </h1>
+                <span class="uk-comment"><i>as provided by </i><img src="../../../../assets/imgs/grnet1.jpg" width="110px" class="uk-margin-small-left"></span>
+
+                <!-- TOP HELP CONTENT -->
+                <help-content #topHelperContent [position]="'top'"
+                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+                <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+                    <div class="uk-grid">
+
+                        <!-- LEFT HELP CONTENT -->
+                        <aside-help-content #leftHelperContent [position]="'left'"
+                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+                        <!-- MIDDLE -->
+                        <div class="uk-width-expand@m">
+
+                            <h3>Availability of the Data Center</h3>
+                            <p>
+                                The availability of the data center refers to the level of uninterrupted operation of the infrastructure,
+                                and in particular to the electrical infrastructure that powers all the data center devices and the mechanical
+                                systems that cool them. In this way, the operation of both the servers and the services running there is protected.
+                                Availability is defined as the percentage of time where the electrical infrastructure operates and provides power
+                                over a given period of time (usually a one-year period). It should be noted that in the case of power supply through
+                                the uninterruptible power supply system, the availability of the data center remains unaffected.
+                            </p>
+                            <p>
+                                In the attempt to model data center infrastructures, the TIA (Telecommunication Industry Association) issued
+                                in 2005 a standard for data center categorization, in which it sets tiers in a comprehensive and detailed manner.
+                                TIA is an accredited ANSI group that oversees the development of technical standards for products, services,
+                                processes, systems and staff.
+                            </p>
+                            <p>
+                                The node of GRNET SA is classified as TIER 1, which means that the maximum availability of the data center is
+                                99,671%, i.e. 28.8 hours of unavailability per year. For the purpose of calculating availability, the maintenance
+                                periods of the support systems are not taken into account when they are carried out on maintenance windows and
+                                if the installed equipment operates in an uninterrupted manner.
+                            </p>
+
+                            <h3>Availability of service ~ okeanos Infrastructure-as-a-Service (IaaS)</h3>
+                            <p>
+                                The ~okeanos IaaS availability refers to the time the service is running without errors and is available for use.
+                                Availability is defined as the percentage of time that the service operates continuously over a given period of time
+                                (usually a one-year period). Total availability of the ~okeanos IaaS is 99%. The percentage of unavailability is
+                                attributed to the following reasons: planned maintenance windows, subsystem failures, infrastructure operations,
+                                network and power outages, and software updates.
+                            </p>
+
+                            <h3>Availability of infrastructure aai.grnet.gr</h3>
+                            <p>
+                                The availability of the authentication and authorization (AAI) service refers to the time the service operates
+                                without errors and is available for use. Availability is defined as the percentage of time that the service
+                                operates continuously over a given period of time (usually a one-year period). The total availability of the
+                                infrastructure is 99%. The percentage of unavailability is attributed to the following reasons: planned
+                                maintenance windows, subsystem failures, infrastructure operations, network and power outages, and software updates.
+                            </p>
+
+                        </div>
+
+                        <!-- RIGHT HELP CONTENT -->
+                        <aside-help-content #rightHelperContent [position]="'right'"
+                                            [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+                    </div>
+                </div>
+
+
+                <!-- BOTTOM HELP CONTENT -->
+                <help-content #bottomHelperContent [position]="'bottom'"
+                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+
+            </div>
+        </div>
+    </div>
+</div>

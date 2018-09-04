@@ -11,6 +11,7 @@ import { FAQService } from "../../services/faq.service";
 import { ReusableComponentsModule } from "../../shared/reusablecomponents/reusable-components.module";
 import { SupportComponent } from "./support.component";
 import { TermsAndConditionsComponent } from "./termsandconditions/terms-and-conditions.component";
+import {OperationalLevelAgreementComponent} from "./operationallevelagreement/operational-level-agreement.component";
 
     
 @NgModule({
@@ -23,7 +24,8 @@ import { TermsAndConditionsComponent } from "./termsandconditions/terms-and-cond
         PoliciesComponent,
         FAQsComponent,
         SupportComponent,
-        TermsAndConditionsComponent
+        TermsAndConditionsComponent,
+        OperationalLevelAgreementComponent
     ],
     providers: [
         FAQService
