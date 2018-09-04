@@ -121,7 +121,8 @@ input.searchTextBox, input.searchTextBox:focus, input.searchTextBox:active  {
 
 .facets-selected .search-tag {
     background-color: transparent;
-    border-right: 1px solid #a3b8bd;
+    /*border-right: 1px solid #a3b8bd;*/
+    border-right: 1px solid #fff;
     color: #ffffff;
     font-size: 0.875rem;
 }
@@ -131,14 +132,16 @@ input.searchTextBox, input.searchTextBox:focus, input.searchTextBox:active  {
 }
 
 .search-tag .title {
-    color: rgba(255, 255, 255, 0.8);
+    /*color: rgba(255, 255, 255, 0.8);*/
+    color: rgba(255, 255, 255, 1);
     font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
 }
 
 .has-bgimage .search-tag .title {
-    color: rgba(255, 255, 255, 0.8);
+    /*color: rgba(255, 255, 255, 0.8);*/
+    color: rgba(255, 255, 255, 1);
 }
 
 .search-tag a[data-role="remove"] {
