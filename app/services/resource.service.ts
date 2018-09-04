@@ -79,7 +79,7 @@ export class ResourceService {
             resourceType = urlParameters.get('resourceType');
         }
         let searchUrl = this._searchUrl;
-        if(["component","corpus","application"].includes(resourceType)) {
+        if(["component","corpus","application","language","lexical"].includes(resourceType)) {
             searchUrl = `${this._searchUrl}${resourceType}/all`;
         }
 
