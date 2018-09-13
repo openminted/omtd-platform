@@ -1,9 +1,8 @@
-export class WorkflowDefinition {
-    openminted_id: string;
+import { Identifiable } from "./identifiable";
+
+export class WorkflowDefinition extends Identifiable {
     workflow_id: string;
+    executor_id: string;
     workflowName: string;
-    personIdentifier: string;
-    creationDate: Date;
-    modificationDate: Date;
     workflowDefinition: string;
 }

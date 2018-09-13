@@ -218,7 +218,7 @@ export class DatasetDistributionZipInfoFormControl extends MyGroup {
                 this.getMyControl('distributionMedium').setValue('DOWNLOADABLE');
                 this.getMyControl('sizes').patchValue([
                     {
-                        "size": (ret.compressedFileSize / (1024 ** 2)).toFixed(2),
+                        "size": (ret.size / (1024 ** 2)).toFixed(2),
                         "sizeUnit": "MB"
                     }
                 ])
