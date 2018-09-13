@@ -3,6 +3,11 @@
  */
 export interface HomePageStats {
     publications: number;
-    components: number;
-    applications: number;
+    components: Resources;
+    applications: Resources;
+}
+
+export interface Resources {
+    pub: number;
+    priv: number;
 }
