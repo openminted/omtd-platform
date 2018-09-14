@@ -392,6 +392,12 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
+    editInWebAnno(corpusId: string) {
+        return this.http.get(`${this.endpoint}/webanno/create/${corpusId}`)
+            .map(res => <any> res.json())
+            .catch(this.handleError);
+    }
+
 
     private extractData(res: Response) {
         let body = res.json();

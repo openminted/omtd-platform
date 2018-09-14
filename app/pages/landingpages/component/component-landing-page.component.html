@@ -30,10 +30,10 @@
                         <!--</span>-->
                     <!--</h2>-->
 
-                    <button *ngIf="component.componentInfo.application" class="uk-button uk-button-primary uk-float-right"
-                            (click)="process()">
-                        Select <i class="fa fa-cogs" aria-hidden="true"></i>
-                    </button>
+                    <!--<button *ngIf="component.componentInfo.application" class="uk-button uk-button-primary uk-float-right"-->
+                            <!--(click)="process()">-->
+                        <!--Select <i class="fa fa-cogs" aria-hidden="true"></i>-->
+                    <!--</button>-->
                 </div>
 
                 <div class="uk-width-expand@m uk-first-column">
@@ -115,6 +115,32 @@
 
                 <!--SIDEBAR-->
                 <div class="tm-sidebar uk-width-1-4@m">
+
+                    <div class="uk-margin-bottom">
+                        <button class="uk-width-1-1 uk-button uk-button-primary" type="button">
+                            Actions
+                            <i *ngIf="inProgress" class="fa fa-spin fa-spinner" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-custom" uk-dropdown>
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li *ngIf="component.componentInfo.application">
+                                    <a class="uk-link-primary" (click)="process()">
+                                        Select <i class="fa fa-cogs" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a (click)="downloadResource(component,'json')">
+                                        Download metadata in JSON format <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a (click)="downloadResource(component,'xml')">
+                                        Download metadata in XML format <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
                     <div class="uk-card uk-card-body uk-card-default sidemenu"
                          *ngIf="(component.componentInfo.domains && component.componentInfo.domains.length>0)

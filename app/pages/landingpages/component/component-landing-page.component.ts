@@ -3,10 +3,12 @@
  */
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component as OMTDComponent} from "../../../domain/openminted-model";
+import {Component as OMTDComponent, Corpus as OMTDCorpus} from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { Subscription } from "rxjs/Subscription";
 import { transform } from "../../../domain/utils";
+import {saveAs} from "file-saver";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
     selector: 'component-landing-page',
@@ -63,5 +65,15 @@ export class ComponentLandingPageComponent {
         }
 
         this.router.navigate(['/runApplication', map]);
+    }
+
+    downloadResource(component: OMTDComponent, mediaType : string) : void {
+        let id = component.metadataHeaderInfo.metadataRecordIdentifier.value;
+        this.resourceService.getBlob(id,'component',mediaType).subscribe(data => {
+            console.log(data);
+            if (data instanceof HttpResponse) {
+                saveAs((data as HttpResponse<any>).body, `${id}.${mediaType}`);
+            }
+        });
     }
 }

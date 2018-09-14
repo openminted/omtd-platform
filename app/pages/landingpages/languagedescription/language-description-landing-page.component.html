@@ -109,6 +109,39 @@
                 <!--SIDEBAR-->
                 <div class="tm-sidebar uk-width-1-4@m">
 
+                    <div class="uk-margin-bottom">
+                        <button class="uk-width-1-1 uk-button uk-button-primary" type="button">
+                            Actions
+                            <i *ngIf="inProgress" class="fa fa-spin fa-spinner" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-custom" uk-dropdown>
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <!--<li>-->
+                                <!--<ng-template [ngIf]="lexicalConceptual?.lexicalConceptualResourceInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginalCorpus)">-->
+                                <!--<ng-container [ngSwitch]="isGenerated">-->
+                                <!--<span *ngSwitchCase="true" title="Download of generated corpora from our content providers is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">-->
+                                <!--<download (loading)="inProgress=$event" [url]="lexicalConceptual.lexicalConceptualResourceInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                                <!--</span>-->
+                                <!--<span *ngSwitchCase="false">-->
+                                <!--<download (loading)="inProgress=$event" [url]="lexicalConceptual.lexicalConceptualResourceInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                                <!--</span>-->
+                                <!--</ng-container>-->
+                                <!--</ng-template>-->
+                                <!--</li>-->
+                                <li>
+                                    <a (click)="downloadResource(languageDescription,'json')">
+                                        Download metadata in JSON format <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a (click)="downloadResource(languageDescription,'xml')">
+                                        Download metadata in XML format <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <div *ngIf="languageDescription.languageDescriptionInfo.contactInfo" class="uk-card uk-card-body uk-card-default sidemenu">
                         <contact-info [contactInfo]="languageDescription.languageDescriptionInfo.contactInfo"></contact-info>
                     </div>

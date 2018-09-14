@@ -1,7 +1,7 @@
 /**
  * Created by stefania on 9/7/16.
  */
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
     Corpus as OMTDCorpus, PersonIdentifierSchemeNameEnum,
@@ -11,6 +11,9 @@ import { ResourceService } from "../../../services/resource.service";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs/Observable";
 import { AuthenticationService } from "../../../services/authentication.service";
+import { PromptComponent } from "../../../shared/prompt.component";
+import { saveAs } from "file-saver";
+import { HttpResponse } from "@angular/common/http";
 
 @Component({
     selector: 'corpus-landing-page',
@@ -19,6 +22,16 @@ import { AuthenticationService } from "../../../services/authentication.service"
 })
 
 export class CorpusLandingPageComponent implements OnInit {
+
+    @ViewChild('promptModal')
+    public promptModal: PromptComponent;
+
+    public isModalShown: boolean;
+    public webAnnoCreateError: string;
+    public promptMode: string = 'waitingMessage';
+    public webAnnoProjectName : string;
+
+    public inProgress : boolean = false;
 
     public corpus: OMTDCorpus;
     public originalCorpus: OMTDCorpus = null;
@@ -123,5 +136,32 @@ export class CorpusLandingPageComponent implements OnInit {
         }
 
         this.router.navigate(['/runApplication', map]);
+    }
+
+    editInWebAnno() {
+
+        this.promptMode = 'waitingMessage';
+        this.promptModal.showModal();
+
+        this.resourceService.editInWebAnno(this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
+            projectName => {
+                this.webAnnoProjectName = projectName['project_name'];
+                this.promptMode = 'successMessage'
+            },
+            error => {
+                this.webAnnoCreateError = error.error;
+                this.promptMode = 'errorMessage';
+            }
+        )
+    }
+
+    downloadResource(corpus: OMTDCorpus, mediaType : string) : void {
+        let id = corpus.metadataHeaderInfo.metadataRecordIdentifier.value;
+        this.resourceService.getBlob(id,'corpus',mediaType).subscribe(data => {
+            console.log(data);
+            if (data instanceof HttpResponse) {
+                saveAs((data as HttpResponse<any>).body, `${id}.${mediaType}`);
+            }
+        });
     }
 }

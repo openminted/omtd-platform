@@ -3,10 +3,12 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Lexical } from "../../../domain/openminted-model";
+import {Component as OMTDComponent, Lexical} from "../../../domain/openminted-model";
 import { ResourceService } from "../../../services/resource.service";
 import { Subscription } from "rxjs/Subscription";
 import { dataFormatTypeEnum, EnumValues, lexicalConceptualResourceTypeEnum } from "../../../domain/omtd.enum";
+import {saveAs} from "file-saver";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
     selector: 'lexical-conceptual-landing-page',
@@ -59,5 +61,15 @@ export class LexicalConceptualLandingPageComponent implements OnInit {
     private dataFormatType(l : string) {
         let dataFormatType = this.dataFormatTypeValues.find(v => v.key === l);
         return dataFormatType && dataFormatType.value;
+    }
+
+    downloadResource(lexicalConceptual: Lexical, mediaType : string) : void {
+        let id = lexicalConceptual.metadataHeaderInfo.metadataRecordIdentifier.value;
+        this.resourceService.getBlob(id,'lexical',mediaType).subscribe(data => {
+            console.log(data);
+            if (data instanceof HttpResponse) {
+                saveAs((data as HttpResponse<any>).body, `${id}.${mediaType}`);
+            }
+        });
     }
 }

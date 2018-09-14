@@ -158,3 +158,34 @@
 .lexicalConceptualResourceType {
     margin-left: -2px;
 }
+
+
+
+
+.dropdown-custom.uk-dropdown {
+    background: #fff;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+.dropdown-custom .uk-dropdown-nav .uk-nav-divider {
+    border-top: 1px solid #666;
+}
+
+.dropdown-custom .uk-dropdown-nav .uk-nav-header {
+    color: #666;
+}
+
+.dropdown-custom .uk-dropdown-nav > li {
+    margin-bottom: 10px;
+}
+
+.dropdown-custom .uk-dropdown-nav > li > a {
+    /*color: #666;*/
+    color: #0055b9;
+}
+
+.dropdown-custom .uk-dropdown-nav > li > a:hover {
+    color: #272424;
+    text-decoration: none;
+
+}

@@ -48,24 +48,64 @@
                             <!--</div>-->
                         </div>
 
-                        <button class="uk-button uk-button-primary" (click)="process()">
-                            Process <i class="fa fa-cogs" aria-hidden="true"></i>
-                        </button>
+                        <!--<button class="uk-button uk-button-primary" (click)="process()">-->
+                            <!--Process <i class="fa fa-cogs" aria-hidden="true"></i>-->
+                        <!--</button>-->
 
-                        <a class="uk-button uk-button-primary" [routerLink]="['/corpusBrowser',corpus.metadataHeaderInfo.metadataRecordIdentifier.value]">
-                            Browse <i class="fa fa-cogs" aria-hidden="true"></i>
-                        </a>
+                        <!--<a class="uk-button uk-button-primary" [routerLink]="['/corpusBrowser',corpus.metadataHeaderInfo.metadataRecordIdentifier.value]">-->
+                            <!--Browse <i class="fa fa-list" aria-hidden="true"></i>-->
+                        <!--</a>-->
 
-                        <ng-template [ngIf]="corpus?.corpusInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginalCorpus)">
-                            <ng-container [ngSwitch]="isGenerated">
-                                <span *ngSwitchCase="true" title="Download of generated corpora from our content providers is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">
-                                    <download [url]="corpus.corpusInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>
-                                </span>
-                                <span *ngSwitchCase="false">
-                                    <download [url]="corpus.corpusInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>
-                                </span>
-                            </ng-container>
-                        </ng-template>
+                        <!--<button class="uk-button uk-button-primary" (click)="editInWebAnno()"-->
+                                <!--*ngIf="corpus.corpusInfo?.corpusSubtypeSpecificInfo?.annotatedCorpusInfo?.corpusSubtype-->
+                                <!--&& corpus.corpusInfo?.corpusSubtypeSpecificInfo?.annotatedCorpusInfo?.corpusSubtype =='annotatedCorpus'">-->
+                            <!--Edit in WebAnno <i class="fa fa-pencil-square-o" aria-hidden="true"></i>-->
+                        <!--</button>-->
+
+                        <!--<div class="uk-inline">-->
+                            <!--<button class="uk-button uk-button-primary" type="button">-->
+                                <!--Actions-->
+                                <!--<i *ngIf="inProgress" class="fa fa-spin fa-spinner" aria-hidden="true"></i>-->
+                            <!--</button>-->
+                            <!--<div class="dropdown-custom" uk-dropdown>-->
+                                <!--<ul class="uk-nav uk-dropdown-nav">-->
+                                    <!--<li>-->
+                                        <!--<a class="uk-link-primary" (click)="process()">-->
+                                            <!--Process <i class="fa fa-cogs" aria-hidden="true"></i>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a class="uk-link-primary" [routerLink]="['/corpusBrowser',corpus.metadataHeaderInfo.metadataRecordIdentifier.value]">-->
+                                            <!--Browse <i class="fa fa-list" aria-hidden="true"></i>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+                                    <!--<li *ngIf="corpus.corpusInfo?.corpusSubtypeSpecificInfo?.annotatedCorpusInfo?.corpusSubtype-->
+                                        <!--&& corpus.corpusInfo?.corpusSubtypeSpecificInfo?.annotatedCorpusInfo?.corpusSubtype =='annotatedCorpus'">-->
+                                        <!--<a class="uk-link-primary" (click)="editInWebAnno()">-->
+                                            <!--Edit in WebAnno <i class="fa fa-pencil-square-o" aria-hidden="true"></i>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<ng-template [ngIf]="corpus?.corpusInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginalCorpus)">-->
+                                            <!--<ng-container [ngSwitch]="isGenerated">-->
+                                                <!--<span *ngSwitchCase="true" title="Download of generated corpora from our content providers is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">-->
+                                                    <!--<download (loading)="inProgress=$event" [url]="corpus.corpusInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                                                <!--</span>-->
+                                                                <!--<span *ngSwitchCase="false">-->
+                                                    <!--<download (loading)="inProgress=$event" [url]="corpus.corpusInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                                                <!--</span>-->
+                                            <!--</ng-container>-->
+                                        <!--</ng-template>-->
+                                    <!--</li>-->
+                                    <!--<li class="uk-nav-divider"></li>-->
+                                    <!--<li class="uk-nav-header">METADATA</li>-->
+                                    <!--<li><a href="#">In JSON format</a></li>-->
+                                    <!--<li><a href="#">In XML format</a></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
 
 
 
@@ -215,6 +255,57 @@
                 <!--SIDEBAR-->
                 <div class="tm-sidebar uk-width-1-4@m">
 
+                    <div class="uk-margin-bottom">
+                        <button class="uk-width-1-1 uk-button uk-button-primary" type="button">
+                            Actions
+                            <i *ngIf="inProgress" class="fa fa-spin fa-spinner" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-custom" uk-dropdown>
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>
+                                    <a class="uk-link-primary" (click)="process()">
+                                        Process <i class="fa fa-cogs" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="uk-link-primary" [routerLink]="['/corpusBrowser',corpus.metadataHeaderInfo.metadataRecordIdentifier.value]">
+                                        Browse <i class="fa fa-list" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li *ngIf="corpus.corpusInfo?.corpusSubtypeSpecificInfo?.annotatedCorpusInfo?.corpusSubtype
+                                        && corpus.corpusInfo?.corpusSubtypeSpecificInfo?.annotatedCorpusInfo?.corpusSubtype =='annotatedCorpus'">
+                                    <a class="uk-link-primary" (click)="editInWebAnno()">
+                                        Edit in WebAnno <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <ng-template [ngIf]="corpus?.corpusInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginalCorpus)">
+                                        <ng-container [ngSwitch]="isGenerated">
+                                                <span *ngSwitchCase="true" title="Download of generated corpora from our content providers is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">
+                                                    <download (loading)="inProgress=$event" [url]="corpus.corpusInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>
+                                                </span>
+                                            <span *ngSwitchCase="false">
+                                                    <download (loading)="inProgress=$event" [url]="corpus.corpusInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>
+                                                </span>
+                                        </ng-container>
+                                    </ng-template>
+                                </li>
+                                <!--<li class="uk-nav-divider"></li>-->
+                                <!--<li class="uk-nav-header">METADATA</li>-->
+                                <li>
+                                    <a (click)="downloadResource(corpus,'json')">
+                                        Download metadata in JSON format <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a (click)="downloadResource(corpus,'xml')">
+                                        Download metadata in XML format <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <div class="uk-card uk-card-body uk-card-default sidemenu"
                          *ngIf="(corpus.corpusInfo.corpusSubtypeSpecificInfo && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo
                         && corpus.corpusInfo.corpusSubtypeSpecificInfo.rawCorpusInfo.corpusSubtype
@@ -302,3 +393,18 @@
         </div>
     </div>
 </div>
+
+<prompt #promptModal [isModalShown]="isModalShown" [title]="'Edit annotated corpus in WebAnno'">
+    <div *ngIf="promptMode=='waitingMessage'">
+        Creating a new project in WebAnno may take some time (depending on the size of the corpus). When your project is created we
+        will let you know how to proceed.
+        <div class="uk-margin-top uk-text-center"><i class="fa fa-spinner fa-spin fa-3x" aria-hidden="true"></i></div>
+    </div>
+    <div *ngIf="promptMode=='errorMessage'">
+        There was a problem creating your project in WebAnno. We received the following error message: {{webAnnoCreateError}}.
+    </div>
+    <div *ngIf="promptMode=='successMessage'">
+        Your project with name <strong><i>{{webAnnoProjectName}}</i></strong> was created successfully in WebAnno. Visit
+        <a href="https://webanno.openminted.eu/curation.html" target="_blank">WebAnno</a> and select it from your projects' list.
+    </div>
+</prompt>
