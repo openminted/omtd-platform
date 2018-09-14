@@ -381,6 +381,17 @@ export class ResourceService {
             .catch(this.handleError);
     }
 
+    publishToZenodo(corpusId: string) {
+
+        console.log("Corpus ID", corpusId);
+
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers, withCredentials : true });
+        return this.http.post(`${this.endpoint}/zenodo/publishCorpus/${corpusId}`, options)
+            .map(res => res.status)
+            .catch(this.handleError);
+    }
+
 
     private extractData(res: Response) {
         let body = res.json();

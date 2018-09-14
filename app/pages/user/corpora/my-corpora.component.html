@@ -84,8 +84,13 @@
                                                                         <a (click)="deleteConfirmation(corpus)" title="Delete corpus" uk-tooltip>
                                                                             <i class="fa fa-trash uk-margin-small-right" aria-hidden="true"></i>
                                                                         </a>
-                                                                        <a (click)="makePublicConfirmation(corpus)" class="" title="Share corpus" uk-tooltip>
+                                                                        <a (click)="makePublicConfirmation(corpus)" class="" title="Make corpus public" uk-tooltip>
                                                                             <i class="fa fa-share-alt uk-margin-small-right" aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="corpus.corpusInfo.identificationInfo.public">
+                                                                        <a (click)="publishToZenodo(corpus)" title="Publish to Zenodo" uk-tooltip>
+                                                                            <i class="fa fa-upload uk-margin-small-right" aria-hidden="true"></i>
                                                                         </a>
                                                                     </ng-container>
                                                                     <a (click)="downloadResource(corpus,'json')" title="Download {{resourceType}} metadata as JSON" uk-tooltip>
@@ -201,3 +206,7 @@
     Are you sure you want to make public the selected corpus? Making it public will make it accessible to anyone using the
     OpenMinTeD platform and you will no longer be able to edit it or delete it.
 </confirmation-dialog>
+
+<prompt #promptModal [isModalShown]="isModalShown" [title]="'Publish corpus to Zenodo'">
+    This corpus has already been published to Zenodo with DOI: <a href="https://doi.org/{{zenodoDOI}}" target="_blank">{{zenodoDOI}}</a>
+</prompt>

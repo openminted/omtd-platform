@@ -20,6 +20,7 @@ import { RouterModule } from "@angular/router";
 import { ForbiddenPageComponent } from "./403-forbidden-page.component";
 import { reusableComponentsRouting } from "./reusable-components.routing";
 import { ShortNumberPipe } from "./short-number.pipe";
+import {PromptComponent} from "../prompt.component";
 
 
 const modules = [
@@ -27,6 +28,7 @@ const modules = [
     HelpContentComponent,
     AsideHelpContentComponent,
     ConfirmationDialogComponent,
+    PromptComponent,
     ComingSoonPageComponent,
     DownloadComponent,
     PaginationDirective,

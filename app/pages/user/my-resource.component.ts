@@ -1,5 +1,5 @@
 import { Component, Injector, ViewChild } from "@angular/core";
-import { BaseMetadataRecord } from "../../domain/openminted-model";
+import { BaseMetadataRecord, Corpus as OMTDCorpus } from "../../domain/openminted-model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { ResourceService } from "../../services/resource.service";
@@ -9,6 +9,7 @@ import { title } from "../../domain/utils";
 import { Observable } from "rxjs/Observable";
 import { saveAs } from "file-saver";
 import { HttpResponse } from "@angular/common/http";
+import { PromptComponent } from "../../shared/prompt.component";
 
 @Component({
     selector: 'my-resource-base',
@@ -21,6 +22,11 @@ export class MyResourceComponent<T extends BaseMetadataRecord> {
 
     @ViewChild('makePublicConfirmationModal')
     public makePublicConfirmationModal: ConfirmationDialogComponent;
+
+    @ViewChild('promptModal')
+    public promptModal: PromptComponent;
+
+    public zenodoDOI : string;
 
     public searchResults: SearchResults<T>;
     public resources: T[] = [];
@@ -148,5 +154,28 @@ export class MyResourceComponent<T extends BaseMetadataRecord> {
         this.resources[i] = component;
 
         this.successMessage = `${title(this.resourceType)} made public successfully`;
+    }
+
+    publishToZenodo(corpus: OMTDCorpus) {
+
+        let foundZenodoDOI: boolean = false;
+        // foundZenodoDOI = corpus.corpusInfo.identificationInfo.resourceIdentifiers
+        //     .some(x => x.resourceIdentifierSchemeName.toString() == 'DOI' && x.value.includes('zenodo'));
+
+        for(let resourceIdentifier of corpus.corpusInfo.identificationInfo.resourceIdentifiers) {
+            if(resourceIdentifier.resourceIdentifierSchemeName.toString() == 'DOI' && resourceIdentifier.value.includes('zenodo')) {
+                foundZenodoDOI = true;
+                this.zenodoDOI = resourceIdentifier.value;
+            }
+        }
+
+        if(foundZenodoDOI) {
+            this.promptModal.showModal();
+        } else {
+            this.resourceService.publishToZenodo(corpus.metadataHeaderInfo.metadataRecordIdentifier.value).subscribe(
+                _ => this.successMessage = 'Corpus published successfully to Zenodo',
+                error => this.handleError(`System error publishing this corpus to Zenodo`, <any>error)
+            )
+        }
     }
 }
