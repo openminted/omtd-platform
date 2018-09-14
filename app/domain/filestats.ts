@@ -1,8 +1,9 @@
-export class FileStats {
-    personIdentifier: string;
+import { Identifiable } from "./identifiable";
+
+export class FileStats extends Identifiable {
     archiveId: string;
-    compressedFileSize: number;
-    fileSize: number;
+    sizeOnDisk: number;
+    size: number;
     fileCount: number;
     filename: string;
     info: Info[];

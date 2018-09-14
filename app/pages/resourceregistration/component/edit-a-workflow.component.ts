@@ -54,7 +54,7 @@ export class EditAWorkflowComponent implements OnInit, OnDestroy {
                     .map(application => application.componentInfo.distributionInfos[0].distributionLocation.match(/\/([\w\d-]+)$/)[1])
                     .mergeMap( galaxyId => this.galaxyService.restoreWorkflow(galaxyId))
                     .map( workflow => {
-                        this.galaxyId = workflow.openminted_id;
+                        this.galaxyId = workflow.omtdId;
                         return workflow.workflow_id;
                     })
                     .subscribe(workflow_id => this.showIframe(workflow_id));
