@@ -20,7 +20,8 @@ import { RouterModule } from "@angular/router";
 import { ForbiddenPageComponent } from "./403-forbidden-page.component";
 import { reusableComponentsRouting } from "./reusable-components.routing";
 import { ShortNumberPipe } from "./short-number.pipe";
-import {PromptComponent} from "../prompt.component";
+import { PromptComponent } from "../prompt.component";
+import { CategoryFilterPipe } from "./category-filter.pipe";
 
 
 const modules = [
@@ -33,7 +34,8 @@ const modules = [
     DownloadComponent,
     PaginationDirective,
     ForbiddenPageComponent,
-    ShortNumberPipe
+    ShortNumberPipe,
+    CategoryFilterPipe
 ];
 
 @NgModule({

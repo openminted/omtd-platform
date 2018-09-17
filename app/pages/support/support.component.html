@@ -31,35 +31,45 @@
 
             <div class="uk-width-expand@m uk-first-column">
 
-                <div class="uk-container uk-container-small uk-margin-large-bottom">
-                    <div uk-grid="" class="uk-grid uk-grid-stack">
-                        <div class="uk-width-1-1@m uk-first-column">
+                <div class="uk-container uk-margin-large-bottom">
 
-                            <div class="uk-margin-medium-bottom">
-                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
-                                    <a href="https://groups.google.com/forum/#!forum/openminted-user-forum" target="_blank">
-                                        OpenMinTeD user forum: Google Group
+                    <div class="uk-grid">
+
+                        <div class="uk-width-expand@m">
+                            <h3 class="el-title uk-h2 uk-heading-bullet uk-text-primary">
+                                Technical <i class="fa fa-code" aria-hidden="true"></i>
+                            </h3>
+                            <div class="uk-margin-medium-bottom supportItems">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h4 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a href="https://github.com/openminted/Open-Call-Discussions" target="_blank">
+                                        OpenMinTeD GitHub technical issues
                                     </a>
                                 </h3>
-                                <p>The OpenMinTeD platform is still in its early stages and therefore bugs or questions may come up
-                                    while using it. Please, share your questions and best practices with the community on our
-                                    <a href="https://groups.google.com/forum/#!forum/openminted-user-forum" target="_blank">OpenMinTeD user Google Group</a>.
-                                    Discuss it with fellow users and experts, receive answers and help improve the platform.</p>
+                                <p>The OpenMinTeD platform is now at the operational state but bugs or questions may come up while using it.
+                                    You can check for answers or submit your questions at the OpenMinTeD GitHub for technical discussions (
+                                    <a href="https://github.com/openminted/Open-Call-Discussions" target="_blank">OpenMinTeD github issues</a>
+                                    ). Discuss your issues with fellow users and experts, receive answers and help improve the platform. </p>
                             </div>
 
-                            <div class="uk-margin-medium-bottom">
-                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
-                                    <a [routerLink]="['/support/faqPolicies']">
-                                        FAQ Policies
+                            <div class="uk-margin-medium-bottom supportItems">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h4 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a href="https://guidelines.openminted.eu/" target="_blank">
+                                        Interoperability Guidelines
                                     </a>
                                 </h3>
-                                <p>For general information about the policies of OpenMinTeD, instructions on how to use the
-                                    services provided by OpenMinTeD or how to contribute to OpenMinTeD, check this our
-                                    <a [routerLink]="['/support/faqPolicies']">frequently asked policies questions and answers</a>.</p>
+                                <p>If you are looking to contribute with content or TDM tools, services and auxiliary resources to
+                                    OpenMinTeD, you should check our <a href="https://guidelines.openminted.eu/" target="_blank">guidelines</a>
+                                    containing instructions on how to create metadata and how to register your content and TDM resources to
+                                    OpenMinTeD.</p>
                             </div>
+                        </div>
 
-                            <div class="uk-margin-medium-bottom">
-                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                        <div class="uk-width-expand@m">
+                            <h3 class="el-title uk-h2 uk-heading-bullet uk-text-primary">
+                                Legal <i class="fa fa-gavel" aria-hidden="true"></i>
+                            </h3>
+                            <div class="uk-margin-medium-bottom supportItems">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h4 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
                                     <a [routerLink]="['/support/faqLegal']">
                                         FAQ Legal
                                     </a>
@@ -70,8 +80,25 @@
                                     help you out and get you on your way again.</p>
                             </div>
 
-                            <div class="uk-margin-medium-bottom">
-                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                            <div class="uk-margin-medium-bottom supportItems">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h4 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a [routerLink]="['/support/licenseCompatibilityMatrix']">
+                                        License Compatibility Matrix
+                                    </a>
+                                </h3>
+                                <p>Do you want to mine a set of texts that are distributed with different licenses? Or build a new
+                                    TDM workflow with components licensed with different licenses or terms of use? Would you like to see what
+                                    you are allowed to do with these combinations and their outcomes? Our
+                                    <a [routerLink]="['/support/licenseCompatibilityMatrix']">license compatibility matrix</a> can help you find out!</p>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand@m">
+                            <h3 class="el-title uk-h2 uk-heading-bullet uk-text-primary">
+                                General <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            </h3>
+                            <div class="uk-margin-medium-bottom supportItems">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h4 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
                                     <a href="https://www.fosteropenscience.eu/openminted" target="_blank">
                                         Training and resources on text and data mining
                                     </a>
@@ -80,52 +107,135 @@
                                     <a href="https://www.fosteropenscience.eu/openminted" target="_blank">OpenMinTeD knowledge base</a>
                                     on the Foster platform. We collected resources and are working on online courses on TDM.</p>
                             </div>
-
-                            <div class="uk-margin-medium-bottom">
-                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
-                                    <a href="https://guidelines.openminted.eu/" target="_blank">
-                                        Guidelines
+                            <div class="uk-margin-medium-bottom supportItems">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h4 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                                    <a [routerLink]="['/support/faqPolicies']">
+                                        FAQ Policies
                                     </a>
                                 </h3>
-                                <p>If you are looking to contribute with content or TDM tools, services and auxiliary resources to
-                                    OpenMinTeD, you should check our <a href="https://guidelines.openminted.eu/" target="_blank">guidelines</a>
-                                    containing instructions on how to create metadata and how to register your content and TDM resources to
-                                    OpenMinTeD.</p>
+                                <p>For general information about the policies of OpenMinTeD, instructions on how to use the
+                                    services provided by OpenMinTeD or how to contribute to OpenMinTeD, check this our
+                                    <a [routerLink]="['/support/faqPolicies']">frequently asked policies questions and answers</a>.</p>
                             </div>
+                        </div>
 
-                            <div class="uk-margin-medium-bottom">
-                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
+                    </div>
+
+                    <div class="uk-grid">
+                        <div class="uk-width-expand@m">
+
+                            <div class="uk-margin-medium-bottom supportItems">
+                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h4 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
                                     <a href="http://openminted.eu/support/" target="_blank">
-                                        Specific questions
+                                        Helpdesk
                                     </a>
                                 </h3>
                                 <p>Are you not getting there with the resources and help above and are you stuck? Please, go to the
                                     <a href="http://openminted.eu/support/" target="_blank">OpenMinTeD online Support center</a>. We'll do our
                                     best to help you resume your mining, sharing or collaborating.</p>
                             </div>
-
-                            <div class="uk-margin-medium-bottom">
-                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
-                                    <a [routerLink]="['/support/termsAndConditions']">
-                                        Terms & Conditions
-                                    </a>
-                                </h3>
-                                <p>Click <a [routerLink]="['/support/termsAndConditions']">here</a> to read and/or download our Terms and Conditions</p>
-                            </div>
-
-                            <div class="uk-margin-medium-bottom">
-                                <h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">
-                                    <a [routerLink]="['/support/operationalLevelAgreement']">
-                                        Operational Level Agreement
-                                    </a>
-                                </h3>
-                                <p>Click <a [routerLink]="['/support/operationalLevelAgreement']">here</a> to read our Operational Level Agreement</p>
-                            </div>
-
-
                         </div>
                     </div>
                 </div>
+
+                <!--<div class="uk-container uk-container-small uk-margin-large-bottom">-->
+                    <!--<div uk-grid="" class="uk-grid uk-grid-stack">-->
+                        <!--<div class="uk-width-1-1@m uk-first-column">-->
+
+                            <!--<div class="uk-margin-medium-bottom">-->
+                                <!--<h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">-->
+                                    <!--<a href="https://github.com/openminted/Open-Call-Discussions" target="_blank">-->
+                                        <!--OpenMinTeD GitHub technical issues-->
+                                    <!--</a>-->
+                                <!--</h3>-->
+                                <!--<p>The OpenMinTeD platform is now at the operational state but bugs or questions may come up while using it.-->
+                                    <!--You can check for answers or submit your questions at the OpenMinTeD GitHub for technical discussions (-->
+                                    <!--<a href="https://github.com/openminted/Open-Call-Discussions" target="_blank">OpenMinTeD github issues</a>-->
+                                    <!--). Discuss your issues with fellow users and experts, receive answers and help improve the platform. </p>-->
+                            <!--</div>-->
+
+                            <!--<div class="uk-margin-medium-bottom">-->
+                                <!--<h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">-->
+                                    <!--<a href="https://guidelines.openminted.eu/" target="_blank">-->
+                                        <!--Interoperability Guidelines-->
+                                    <!--</a>-->
+                                <!--</h3>-->
+                                <!--<p>If you are looking to contribute with content or TDM tools, services and auxiliary resources to-->
+                                    <!--OpenMinTeD, you should check our <a href="https://guidelines.openminted.eu/" target="_blank">guidelines</a>-->
+                                    <!--containing instructions on how to create metadata and how to register your content and TDM resources to-->
+                                    <!--OpenMinTeD.</p>-->
+                            <!--</div>-->
+
+                            <!--<div class="uk-margin-medium-bottom">-->
+                                <!--<h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">-->
+                                    <!--<a [routerLink]="['/support/faqPolicies']">-->
+                                        <!--FAQ Policies-->
+                                    <!--</a>-->
+                                <!--</h3>-->
+                                <!--<p>For general information about the policies of OpenMinTeD, instructions on how to use the-->
+                                    <!--services provided by OpenMinTeD or how to contribute to OpenMinTeD, check this our-->
+                                    <!--<a [routerLink]="['/support/faqPolicies']">frequently asked policies questions and answers</a>.</p>-->
+                            <!--</div>-->
+
+                            <!--<div class="uk-margin-medium-bottom">-->
+                                <!--<h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">-->
+                                    <!--<a [routerLink]="['/support/faqLegal']">-->
+                                        <!--FAQ Legal-->
+                                    <!--</a>-->
+                                <!--</h3>-->
+                                <!--<p>Is the complex legal landscape holding you back from using our platform and doing TDM?-->
+                                    <!--Don't worry, you are not the only one. We compiled the most-->
+                                    <!--<a [routerLink]="['/support/faqLegal']">frequently asked legal questions and answers</a> to-->
+                                    <!--help you out and get you on your way again.</p>-->
+                            <!--</div>-->
+
+                            <!--<div class="uk-margin-medium-bottom">-->
+                                <!--<h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">-->
+                                    <!--<a [routerLink]="['/support/licenseCompatibilityMatrix']">-->
+                                        <!--License Compatibility Matrix-->
+                                    <!--</a>-->
+                                <!--</h3>-->
+                                <!--<p>Do you want to mine a set of texts that are distributed with different licenses? Or build a new-->
+                                    <!--TDM workflow with components licensed with different licenses or terms of use? Would you like to see what-->
+                                    <!--you are allowed to do with these combinations and their outcomes? Our-->
+                                    <!--<a [routerLink]="['/support/licenseCompatibilityMatrix']">license compatibility matrix</a> can help you find out!</p>-->
+                            <!--</div>-->
+
+                            <!--<div class="uk-margin-medium-bottom">-->
+                                <!--<h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">-->
+                                    <!--<a href="https://www.fosteropenscience.eu/openminted" target="_blank">-->
+                                        <!--Training and resources on text and data mining-->
+                                    <!--</a>-->
+                                <!--</h3>-->
+                                <!--<p>If you are looking for general information on text and data mining on educational resources, try our-->
+                                    <!--<a href="https://www.fosteropenscience.eu/openminted" target="_blank">OpenMinTeD knowledge base</a>-->
+                                    <!--on the Foster platform. We collected resources and are working on online courses on TDM.</p>-->
+                            <!--</div>-->
+
+                            <!--<div class="uk-margin-medium-bottom">-->
+                                <!--<h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">-->
+                                    <!--<a href="http://openminted.eu/support/" target="_blank">-->
+                                        <!--Specific questions-->
+                                    <!--</a>-->
+                                <!--</h3>-->
+                                <!--<p>Are you not getting there with the resources and help above and are you stuck? Please, go to the-->
+                                    <!--<a href="http://openminted.eu/support/" target="_blank">OpenMinTeD online Support center</a>. We'll do our-->
+                                    <!--best to help you resume your mining, sharing or collaborating.</p>-->
+                            <!--</div>-->
+
+                            <!--<div class="uk-margin-medium-bottom">-->
+                                <!--<h3 class="uk-margin-small uk-text-left@m uk-text-center uk-h3 uk-scrollspy-inview uk-animation-fade" style="" uk-scrollspy-class="">-->
+                                    <!--<a [routerLink]="['/support/operationalLevelAgreement']">-->
+                                        <!--Operational Level Agreement-->
+                                    <!--</a>-->
+                                <!--</h3>-->
+                                <!--<p>Click <a [routerLink]="['/support/operationalLevelAgreement']">here</a> to read our Operational Level Agreement</p>-->
+                            <!--</div>-->
+
+
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
             </div>
 

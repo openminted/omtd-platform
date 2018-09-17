@@ -22,6 +22,7 @@ import {
 } from "@angular/common/http";
 import { saveAs } from "file-saver";
 import { FileStats } from "../domain/filestats";
+import {License, LicenseCompatibility} from "../domain/license";
 
 
 @Injectable()
@@ -395,6 +396,18 @@ export class ResourceService {
     editInWebAnno(corpusId: string) {
         return this.http.get(`${this.endpoint}/webanno/create/${corpusId}`)
             .map(res => <any> res.json())
+            .catch(this.handleError);
+    }
+
+    getLicenses(): Observable<License[]> {
+        return this.http.get(`${this._resourcesUrl}/licence/all`)
+            .map(res => <License[]> res.json())
+            .catch(this.handleError);
+    }
+
+    compareLicenses(licenseID1: string, licenseID2: string) {
+        return this.http.get(`${this._resourcesUrl}/licence/compare?l1=${licenseID1}&l2=${licenseID2}`)
+            .map(res => <LicenseCompatibility> res.json())
             .catch(this.handleError);
     }
 

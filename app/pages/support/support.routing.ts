@@ -7,7 +7,8 @@ import { PoliciesComponent } from "./faqs/faqs-policies.component";
 import { FAQsComponent } from "./faqs/faqs-legal.component";
 import { SupportComponent } from "./support.component";
 import { TermsAndConditionsComponent } from "./termsandconditions/terms-and-conditions.component";
-import {OperationalLevelAgreementComponent} from "./operationallevelagreement/operational-level-agreement.component";
+import { OperationalLevelAgreementComponent } from "./operationallevelagreement/operational-level-agreement.component";
+import { LicenseCompatibilityMatrixComponent } from "./compatibilitymatrix/license-compatibility-matrix.component";
 
 const supportRoutes: Routes = [
     {
@@ -29,6 +30,10 @@ const supportRoutes: Routes = [
     {
         path: 'support/operationalLevelAgreement',
         component: OperationalLevelAgreementComponent,
+    },
+    {
+        path: 'support/licenseCompatibilityMatrix',
+        component: LicenseCompatibilityMatrixComponent,
     },
 ];
 

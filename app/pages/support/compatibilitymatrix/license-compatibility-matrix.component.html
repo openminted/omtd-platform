@@ -1,0 +1,156 @@
+<div class="uk-section-default uk-section uk-section-small uk-padding-remove-bottom" style="min-height: 325px">
+    <div class="uk-container">
+        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+            <div class="uk-width-1-1@m uk-first-column">
+
+                <h1 class="uk-h2">License Compatibility Matrix</h1>
+
+                <!-- TOP HELP CONTENT -->
+                <help-content #topHelperContent [position]="'top'"
+                              [ngClass]="topHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+                <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+                    <div class="uk-grid">
+
+                        <!-- LEFT HELP CONTENT -->
+                        <aside-help-content #leftHelperContent [position]="'left'"
+                                            [ngClass]="leftHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+                        <!-- MIDDLE -->
+                        <div class="uk-width-expand@m compatibilityWizard">
+
+                            <div class="disclaimer">
+                                <h5>Disclaimer</h5>
+                                <p>This is a Beta version of the OpenMinTeD Compatibility matrix, which is undergoing final
+                                    testing before its official release. Do not rely on the information therein provided,
+                                    which may be incorrect or incomplete and, in no circumstances, should be regarded as giving legal advice.
+                                    The scope of the Beta version is to obtain feedbacks. Any comments or suggestions can be
+                                    made by accessing the linked included in the matrix and by filling in the following
+                                    questionnaire: <a href="https://www.surveymonkey.co.uk/r/V2VBQC7" target="_blank">https://www.surveymonkey.co.uk/r/V2VBQC7</a></p>
+                            </div>
+
+                            <div class="uk-margin-bottom">
+                                <h4>1. Select type of License</h4>
+                                <div class="uk-margin uk-grid typeSelection">
+                                    <div class="uk-width-expand@m uk-width-1-3@s uk-grid-item-match uk-first-column">
+                                        <div class="uk-text-center uk-card uk-card-white-shadow uk-card-hover uk-scrollspy-inview uk-animation-slide-top-medium" data-id="" style="" uk-scrollspy-class="">
+                                            <a class="uk-position-cover uk-margin-remove-adjacent" (click)="selectLicenseType('contents')"></a>
+                                            <div class="uk-card-media-top">
+                                                <img alt="" src="../../../../assets/imgs/Icons_OpenMinted_Content_wide_70opacity_purple.png" style="width:100%;">
+                                            </div>
+                                            <div class="uk-card-body">
+                                                <h3 class="el-title uk-margin uk-card-title uk-margin-remove-adjacent uk-margin-small-bottom">
+                                                    Licenses for content
+                                                </h3>
+                                                <div *ngIf="selectedType=='contents'" class="el-meta uk-margin uk-text-meta" style="z-index:9999; position:relative;">
+                                                    <i class="fa fa-check uk-margin-right" aria-hidden="true"></i> (Selected)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-expand@m uk-width-1-3@s uk-grid-item-match uk-first-column">
+                                        <div class="uk-text-center uk-card uk-card-white-shadow uk-card-hover uk-scrollspy-inview uk-animation-slide-top-medium" data-id="" style="" uk-scrollspy-class="">
+                                            <a class="el-link uk-position-cover uk-margin-remove-adjacent" (click)="selectLicenseType('software')"></a>
+                                            <div class="uk-card-media-top">
+                                                <img alt="" class="el-image" src="../../../../assets/imgs/Icons_OpenMinted_Software_wide_70opacity.png" style="width:100%;">
+                                            </div>
+                                            <div class="uk-card-body">
+                                                <h3 class="el-title uk-margin uk-card-title uk-margin-remove-adjacent uk-margin-small-bottom">
+                                                    Licenses for software
+                                                </h3>
+                                                <div *ngIf="selectedType=='software'" class="el-meta uk-margin uk-text-meta" style="z-index:9999; position:relative;">
+                                                    <i class="fa fa-check uk-margin-right" aria-hidden="true"></i> (Selected)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-expand@m uk-width-1-3@s uk-grid-item-match uk-first-column">
+                                        <div class="uk-text-center uk-card uk-card-white-shadow uk-card-hover uk-scrollspy-inview uk-animation-slide-top-medium" data-id="" style="" uk-scrollspy-class="">
+                                            <a class="el-link uk-position-cover uk-margin-remove-adjacent" (click)="selectLicenseType('services')"></a>
+                                            <div class="uk-card-media-top">
+                                                <img alt="" class="el-image" src="../../../../assets/imgs/Icons_OpenMinted_Services2_wide_70opacity.png" style="width:100%;">
+                                            </div>
+                                            <div class="uk-card-body">
+                                                <h3 class="el-title uk-margin uk-card-title uk-margin-remove-adjacent uk-margin-small-bottom">
+                                                    Licenses for services
+                                                </h3>
+                                                <div *ngIf="selectedType=='services'" class="el-meta uk-margin uk-text-meta" style="z-index:9999; position:relative;">
+                                                    <i class="fa fa-check uk-margin-right" aria-hidden="true"></i> (Selected)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="uk-margin-bottom">
+                                <h4>2. Select the 2 licenses that you want to combine</h4>
+
+                                <div class="uk-margin-bottom">
+                                    <select #license1 (change)="selectLicense1(license1.value)">
+                                        <option value="" selected>-- select 1st license --</option>
+                                        <option *ngFor="let license of licenses | categoryFilter: selectedType" value="{{license.id}}">{{license.name}}</option>
+                                    </select>
+                                </div>
+
+
+                                <div>
+                                    <select #license2 (change)="selectLicense2(license2.value)">
+                                        <option value="" selected>-- select 2nd license --</option>
+                                        <option *ngFor="let license of licenses | categoryFilter: selectedType" value="{{license.id}}">{{license.name}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="uk-margin-large-bottom">
+                                <h4>3. Compatibility results</h4>
+
+                                <div *ngIf="!compatibilityResults">
+                                    You must first select the 2 licenses that you want to see the compatibility of
+                                </div>
+
+                                <div *ngIf="compatibilityResults">
+
+                                    <div *ngIf="compatibilityResults.compatible=='Yes'" class="uk-alert uk-alert-success">
+                                        Compatibility: {{compatibilityResults.compatible}}
+                                    </div>
+
+                                    <div *ngIf="compatibilityResults.compatible=='Yes (Under Conditions)'" class="uk-alert uk-alert-warning">
+                                        Compatibility: {{compatibilityResults.compatible}}
+                                    </div>
+
+                                    <div *ngIf="compatibilityResults.compatible=='No'" class="uk-alert uk-alert-danger">
+                                        Compatibility: {{compatibilityResults.compatible}}
+                                    </div>
+
+                                    <div>
+                                        <a href="{{compatibilityResults.url}}" target="_blank">Click here to view more details!</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- RIGHT HELP CONTENT -->
+                        <aside-help-content #rightHelperContent [position]="'right'"
+                                            [ngClass]="rightHelperContent.isPresent()?'tm-sidebar uk-width-1-4@m uk-first-column':'clear-style'">
+                        </aside-help-content>
+
+                    </div>
+                </div>
+
+
+                <!-- BOTTOM HELP CONTENT -->
+                <help-content #bottomHelperContent [position]="'bottom'"
+                              [ngClass]="bottomHelperContent.isPresent()?'uk-margin-medium-top uk-margin-medium-bottom':'clear-style'">
+                </help-content>
+
+
+            </div>
+        </div>
+    </div>
+</div>
