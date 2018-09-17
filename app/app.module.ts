@@ -33,10 +33,13 @@ import { CorpusBrowserModule } from "./pages/corpusbrowser/corpus-browser.module
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { LanguageRegistrationModule } from "./pages/resourceregistration/language/language-registration.module";
 import { AuthenticationInterceptor } from "./services/authentication-interceptor";
+import { CookieLawModule } from "./shared/reusablecomponents/cookie-law/cookie-law.module";
+import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
     imports: [
         BrowserModule,
+        NoopAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
@@ -51,6 +54,7 @@ import { AuthenticationInterceptor } from "./services/authentication-interceptor
         DatasourceRegistrationModule,
         LandingPageModule, 
         TabsModule,
+        CookieLawModule,
         OAuthModule.forRoot(),
         ReusableComponentsModule,
         SupportModule,
