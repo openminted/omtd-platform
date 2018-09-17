@@ -45,6 +45,8 @@ export class RunApplicationComponent {
 
     isRunning: boolean = false;
 
+    public inputFolder: string = 'fulltext';
+
     private endpoint = process.env.API_ENDPOINT;
 
     constructor(private  router: Router,private  activatedRoute: ActivatedRoute,
@@ -134,7 +136,7 @@ export class RunApplicationComponent {
 
         let corpusId = this.corpus.metadataHeaderInfo.metadataRecordIdentifier.value;
         let applicationId = this.component.metadataHeaderInfo.metadataRecordIdentifier.value;
-        this.workflowService.executeJob(corpusId,applicationId).subscribe(
+        this.workflowService.executeJob(corpusId,applicationId,this.inputFolder).subscribe(
                 jobId => {
                     this.jobId = jobId;
                     console.log('jobId', jobId);
@@ -165,5 +167,10 @@ export class RunApplicationComponent {
             this.state = 'READY';
             clearInterval(this.intervalId);
         }
+    }
+
+    selectInputFolder(inputVal: string) {
+        this.inputFolder = inputVal;
+        console.log("Event", this.inputFolder);
     }
 }

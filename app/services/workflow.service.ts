@@ -20,7 +20,7 @@ export class WorkflowService {
 
     private _workflowServiceUrl = this.endpoint + '/request/operation';
 
-    executeJob(corpusId: string, workflowId: string) {
+    executeJob(corpusId: string, workflowId: string, inputFolder : string) {
 
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers, withCredentials : true});
@@ -30,6 +30,7 @@ export class WorkflowService {
         // params.append('workflowId','DGTest1');
         params.append('corpusId', corpusId);
         params.append('applicationId', workflowId);
+        params.append('subArchive', inputFolder);
 
         return this.http.get(this._workflowServiceUrl + '/executeJob?' + params.toString(), options)
             .map(res => <string> res.text())
