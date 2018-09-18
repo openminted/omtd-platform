@@ -69,7 +69,7 @@ export class ComponentLandingPageComponent {
 
     downloadResource(component: OMTDComponent, mediaType : string) : void {
         let id = component.metadataHeaderInfo.metadataRecordIdentifier.value;
-        this.resourceService.getBlob(id,'component',mediaType).subscribe(data => {
+        this.resourceService.getBlob(id,this.resourceType ,mediaType).subscribe(data => {
             console.log(data);
             if (data instanceof HttpResponse) {
                 saveAs((data as HttpResponse<any>).body, `${id}.${mediaType}`);
