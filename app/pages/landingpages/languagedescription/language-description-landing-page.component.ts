@@ -8,6 +8,12 @@ import { ResourceService } from "../../../services/resource.service";
 import { Subscription } from "rxjs/Subscription";
 import {saveAs} from "file-saver";
 import {HttpResponse} from "@angular/common/http";
+import {
+    dataFormatTypeEnum,
+    EnumValues,
+    languageDescriptionTypeEnum,
+    lexicalConceptualResourceTypeEnum
+} from "../../../domain/omtd.enum";
 
 @Component({
     selector: 'language-description-landing-page',
@@ -21,6 +27,8 @@ export class LanguageDescriptionLandingPageComponent implements OnInit {
     public errorMessage: string;
     private sub: Subscription;
 
+    languageDescriptionResourceTypeValues : EnumValues[] = languageDescriptionTypeEnum;
+    dataFormatTypeValues : EnumValues[] = dataFormatTypeEnum;
 
     constructor(
         private route: ActivatedRoute,
@@ -44,6 +52,16 @@ export class LanguageDescriptionLandingPageComponent implements OnInit {
 
     goBack() {
         window.history.back();
+    }
+
+    private languageDescriptionResourceType(l : string) {
+        let languageDescriptionResourceType = this.languageDescriptionResourceTypeValues.find(v => v.key === l);
+        return languageDescriptionResourceType && languageDescriptionResourceType.value;
+    }
+
+    private dataFormatType(l : string) {
+        let dataFormatType = this.dataFormatTypeValues.find(v => v.key === l);
+        return dataFormatType && dataFormatType.value;
     }
 
     handleError(error) {

@@ -1,5 +1,5 @@
 <div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true" style="box-sizing: border-box;">
-    <div class="uk-container">
+    <div class="uk-container resourceLandingPage">
         <div class="uk-grid" uk-grid="">
 
             <ng-template [ngIf]="errorMessage">
@@ -13,96 +13,139 @@
             <ng-template [ngIf]="languageDescription && !errorMessage">
 
                 <div class="uk-width-1-1 uk-row-first uk-clearfix">
-                    <h2 class="uk-h2" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.resourceNames
+                    <h2 class="uk-h2 uk-inline" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.resourceNames
                             && languageDescription.languageDescriptionInfo.identificationInfo.resourceNames.length>0">
                         {{languageDescription.languageDescriptionInfo.identificationInfo.resourceNames[0].value}}
+                        <span *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.resourceShortName"
+                              class="element element-text uk-margin-small-left shortName">
+                            | {{languageDescription.languageDescriptionInfo.identificationInfo.resourceShortName}}
+                        </span>
                     </h2>
+
+                    <!--<div class="uk-float-right uk-inline">-->
+
+                    <!--<button class="uk-button uk-button-primary" (click)="process()">-->
+                    <!--Process <i class="fa fa-cogs" aria-hidden="true"></i>-->
+                    <!--</button>-->
+
+                    <!--<a class="uk-button uk-button-primary" [routerLink]="['/languageDescriptionBrowser',languageDescription.metadataHeaderInfo.metadataRecordIdentifier.value]">-->
+                    <!--Browse <i class="fa fa-cogs" aria-hidden="true"></i>-->
+                    <!--</a>-->
+
+                    <!--<ng-template [ngIf]="languageDescription?.languageDescriptionInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginallanguageDescription)">-->
+                    <!--<ng-container [ngSwitch]="isGenerated">-->
+                    <!--<span *ngSwitchCase="true" title="Download of generated corpora from our content providers is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">-->
+                    <!--<download [url]="languageDescription.languageDescriptionInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                    <!--</span>-->
+                    <!--<span *ngSwitchCase="false">-->
+                    <!--<download [url]="languageDescription.languageDescriptionInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                    <!--</span>-->
+                    <!--</ng-container>-->
+                    <!--</ng-template>-->
+                    <!---->
+                    <!--</div>-->
 
                 </div>
 
                 <div class="uk-width-expand@m uk-first-column">
 
-                    <ul class="uk-subnav">
-                        <li *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.resourceShortNames
-                                && languageDescription.languageDescriptionInfo.identificationInfo.resourceShortNames.length>0"
-                            class="element element-text">
-                            <strong>{{languageDescription.languageDescriptionInfo.identificationInfo.resourceShortNames[0].value}} </strong> </li>
-                    </ul>
-
-                    <div class="resourceIdentifiers" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.identifiers
-                            && languageDescription.languageDescriptionInfo.identificationInfo.identifiers.length>0">
-                        <div *ngFor="let identifier of languageDescription.languageDescriptionInfo.identificationInfo.identifiers">
-                            <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>
-                        </div>
+                    <div *ngIf="languageDescription.languageDescriptionInfo.resourceType" class="uk-margin-bottom">
+                        {{languageDescriptionResourceType(languageDescription.languageDescriptionInfo.resourceType)}}
                     </div>
 
-                    <ul class="uk-list" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.descriptions
-                                                    && languageDescription.languageDescriptionInfo.identificationInfo.descriptions.length>0">
-                        <li *ngFor="let description of languageDescription.languageDescriptionInfo.identificationInfo.descriptions; let isFirst = first;"
-                            [class.uk-margin-top]="!isFirst">
-                            {{description.value}}
-                        </li>
-                    </ul>
-                    <div *ngIf="languageDescription.languageDescriptionInfo.languageDescriptionType" class="uk-subnav uk-subnav-line languageDescriptionType">
-                        <strong>{{languageDescription.languageDescriptionInfo.languageDescriptionType}} </strong>
+                    <div *ngIf="languageDescription.languageDescriptionInfo.resourceCreationInfo" class="uk-margin-bottom">
+                        <resource-creation-info-short [resourceCreationInfo]="languageDescription.languageDescriptionInfo.resourceCreationInfo"></resource-creation-info-short>
                     </div>
+
+                    <div *ngIf="languageDescription.languageDescriptionInfo.rightsInfo" class="uk-margin-bottom">
+                        <rights-info [rightsInfo]="languageDescription.languageDescriptionInfo.rightsInfo"></rights-info>
+                    </div>
+
                     <version-info *ngIf="languageDescription.languageDescriptionInfo.versionInfo"
                                   [versionInfo]="languageDescription.languageDescriptionInfo.versionInfo">
                     </version-info>
-                    <resource-documentation-info *ngIf="languageDescription.languageDescriptionInfo.resourceDocumentationInfo"
-                                                 [resourceDocumentationInfo]="languageDescription.languageDescriptionInfo.resourceDocumentationInfo">
-                    </resource-documentation-info>
 
-
-
-                    <!--TABS-->
-                    <ul class=" uk-tab uk-visible@m" uk-tab="connect: #infoTabs; animation: uk-animation-fade">
-                        <li *ngIf="languageDescription.languageDescriptionInfo.distributionInfos
-                        && languageDescription.languageDescriptionInfo.distributionInfos.length>0">
-                            <a>Distribution</a>
-                        </li>
-                        <li *ngIf="languageDescription.languageDescriptionInfo.validationInfos
-                        && languageDescription.languageDescriptionInfo.validationInfos.length>0">
-                            <a>Validations</a>
-                        </li>
-                        <li *ngIf="languageDescription.languageDescriptionInfo.usageInfo">
-                            <a>Usage</a>
+                    <ul class="uk-list" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.descriptions
+                                                && languageDescription.languageDescriptionInfo.identificationInfo.descriptions.length>0">
+                        <li *ngFor="let description of languageDescription.languageDescriptionInfo.identificationInfo.descriptions; let isFirst = first;"
+                            [class.uk-margin-top]="!isFirst" class="uk-text-justify resourceDescription">
+                            {{description.value}}
                         </li>
                     </ul>
 
-                    <button class="uk-button uk-button-default uk-hidden@m" type="button">
-                        <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">{{activeTab}}</span>
-                    </button>
+                    <!--MultilingualityType and languages-->
+                    <div *ngIf="languageDescription.languageDescriptionInfo?.languageDescriptionTextInfo?.lingualityInfo
+                    || languageDescription.languageDescriptionInfo?.languageDescriptionTextInfo?.languages?.length>0">
+                        <multilinguality-type-and-languages [languages]="languageDescription.languageDescriptionInfo.languageDescriptionTextInfo.languages"
+                                                            [lingualityInfo]="languageDescription.languageDescriptionInfo.languageDescriptionTextInfo.lingualityInfo">
+                        </multilinguality-type-and-languages>
+                    </div>
 
-                    <ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m" uk-switcher="{connect: #infoTabs; animation: uk-animation-fade}" uk-dropdown="mode: click" uk-toggle="target: #toggle-small-tabs">
-                        <li *ngIf="languageDescription.languageDescriptionInfo.distributionInfos
-                        && languageDescription.languageDescriptionInfo.distributionInfos.length>0">
-                            <a>Distribution</a>
-                        </li>
-                        <li *ngIf="languageDescription.languageDescriptionInfo.validationInfos
-                        && languageDescription.languageDescriptionInfo.validationInfos.length>0">
-                            <a>Validations</a>
-                        </li>
-                        <li *ngIf="languageDescription.languageDescriptionInfo.usageInfo">
-                            <a>Usage</a>
-                        </li>
-                    </ul>
+                    <!--Metalanguages-->
+                    <div *ngIf="languageDescription.languageDescriptionInfo?.languageDescriptionTextInfo?.metalanguages?.length>0">
+                        <metalanguages-info [metalanguages]="languageDescription.languageDescriptionInfo.languageDescriptionTextInfo.metalanguages"></metalanguages-info>
+                    </div>
 
-                    <ul id="infoTabs" class="uk-switcher  uk-width-1-1 uk-margin-top custom-tab-content-large">
-                        <li *ngIf="languageDescription.languageDescriptionInfo.distributionInfos
-                        && languageDescription.languageDescriptionInfo.distributionInfos.length>0">
-                            <dataset-distribution-info *ngFor="let distributionInfo of languageDescription.languageDescriptionInfo.distributionInfos"
-                                                       [datasetDistributionInfo]="distributionInfo"></dataset-distribution-info>
-                        </li>
-                        <li *ngIf="languageDescription.languageDescriptionInfo.validationInfos
-                        && languageDescription.languageDescriptionInfo.validationInfos.length>0">
-                            <validation-info *ngFor="let validationInfo of languageDescription.languageDescriptionInfo.validationInfos"
-                                             [validationInfo]="validationInfo"></validation-info>
-                        </li>
-                        <li *ngIf="languageDescription.languageDescriptionInfo.usageInfo">
-                            <usage-info [usageInfo]="languageDescription.languageDescriptionInfo.usageInfo"></usage-info>
-                        </li>
-                    </ul>
+                    <!--&lt;!&ndash;Formats and character encodings&ndash;&gt;-->
+                    <!--<div *ngIf="(languageDescription?.languageDescriptionInfo?.datasetDistributionInfo?.textFormats-->
+                    <!--&& languageDescription?.languageDescriptionInfo?.datasetDistributionInfo?.textFormats.length>0)-->
+                    <!--|| (languageDescription?.languageDescriptionInfo?.datasetDistributionInfo?.characterEncodings-->
+                    <!--&& languageDescription?.languageDescriptionInfo?.datasetDistributionInfo?.characterEncodings.length>0)">-->
+                    <!--<text-formats-and-character-encodings [textFormats]="languageDescription.languageDescriptionInfo.datasetDistributionInfo.textFormats"-->
+                    <!--[characterEncodings]="languageDescription.languageDescriptionInfo.datasetDistributionInfo.characterEncodings">-->
+                    <!--</text-formats-and-character-encodings>-->
+                    <!--</div>-->
+
+
+                    <div *ngIf="languageDescription.languageDescriptionInfo?.distributionInfos?.length>0" class="uk-margin-top">
+                        <div *ngFor="let distributionInfo of languageDescription.languageDescriptionInfo.distributionInfos" class="uk-margin-small-bottom">
+                            <div *ngIf="distributionInfo.sizes?.length>0">
+                                Annotation resource size:
+                                <ng-container *ngFor="let sizeInfo of distributionInfo.sizes; let isLast = last;">
+                                    <span>{{sizeInfo.size}} {{sizeInfo.sizeUnit}}</span>
+                                    {{isLast ? '' : ', '}}
+                                </ng-container>
+                            </div>
+                            <div *ngIf="distributionInfo.textFormats?.length>0">
+                                Text formats:
+                                <ng-container *ngFor="let textFormatInfo of distributionInfo.textFormats">
+                                    <ng-container *ngIf="textFormatInfo.dataFormatInfo?.dataFormat">
+                                        <span class="uk-label uk-label-primary" style="margin-bottom: 5px">
+                                            {{dataFormatType(textFormatInfo.dataFormatInfo.dataFormat)}}
+                                        </span>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div *ngIf="languageDescription.languageDescriptionInfo.resourceDocumentations
+                        && languageDescription.languageDescriptionInfo.resourceDocumentations.length>0" class="uk-margin-top">
+                        <h4>Documentation</h4>
+                        <ul class="uk-list">
+                            <li *ngFor="let resourceDocumentationInfo of languageDescription.languageDescriptionInfo.resourceDocumentations" class="uk-margin-top">
+                                <resource-documentation-info [resourceDocumentationInfo]="resourceDocumentationInfo"></resource-documentation-info>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="resourceIdentifiers" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.resourceIdentifiers
+                        && languageDescription.languageDescriptionInfo.identificationInfo.resourceIdentifiers.length>0">
+                        <dl class="uk-description-list">
+                            <dt>Identifiers</dt>
+                            <dd *ngFor="let identifier of languageDescription.languageDescriptionInfo.identificationInfo.resourceIdentifiers">
+                                <span *ngIf="identifier.resourceIdentifierSchemeName=='URL' || identifier.resourceIdentifierSchemeName=='PURL'
+                                || identifier.resourceIdentifierSchemeName=='HANDLE'">
+                                    {{identifier.resourceIdentifierSchemeName}}: <a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>
+                                </span>
+                                <span *ngIf="identifier.resourceIdentifierSchemeName!='URL' && identifier.resourceIdentifierSchemeName!='PURL'
+                                && identifier.resourceIdentifierSchemeName!='HANDLE'">
+                                    {{identifier.resourceIdentifierSchemeName}}: {{identifier.value}}
+                                </span>
+                            </dd>
+                        </dl>
+                    </div>
 
                 </div>
 
@@ -117,13 +160,13 @@
                         <div class="dropdown-custom" uk-dropdown>
                             <ul class="uk-nav uk-dropdown-nav">
                                 <!--<li>-->
-                                <!--<ng-template [ngIf]="lexicalConceptual?.lexicalConceptualResourceInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginalCorpus)">-->
+                                <!--<ng-template [ngIf]="languageDescription?.languageDescriptionInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginalCorpus)">-->
                                 <!--<ng-container [ngSwitch]="isGenerated">-->
                                 <!--<span *ngSwitchCase="true" title="Download of generated corpora from our content providers is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">-->
-                                <!--<download (loading)="inProgress=$event" [url]="lexicalConceptual.lexicalConceptualResourceInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                                <!--<download (loading)="inProgress=$event" [url]="languageDescription.languageDescriptionInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
                                 <!--</span>-->
                                 <!--<span *ngSwitchCase="false">-->
-                                <!--<download (loading)="inProgress=$event" [url]="lexicalConceptual.lexicalConceptualResourceInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
+                                <!--<download (loading)="inProgress=$event" [url]="languageDescription.languageDescriptionInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>-->
                                 <!--</span>-->
                                 <!--</ng-container>-->
                                 <!--</ng-template>-->
@@ -142,20 +185,205 @@
                         </div>
                     </div>
 
-                    <div *ngIf="languageDescription.languageDescriptionInfo.contactInfo" class="uk-card uk-card-body uk-card-default sidemenu">
+                    <div class="uk-card uk-card-body uk-card-default sidemenu"
+                         *ngIf="languageDescription.languageDescriptionInfo?.languageDescriptionResourceTextInfo?.domains?.length>0
+                         || languageDescription.languageDescriptionInfo?.languageDescriptionResourceTextInfo?.keywords?.length>0">
+
+                        <!--DOMAINS-->
+                        <div *ngIf="languageDescription.languageDescriptionInfo?.languageDescriptionResourceTextInfo?.domains?.length>0" class="uk-margin-bottom">
+                            <h4>Domains</h4>
+                            <domains-info [domains]="languageDescription.languageDescriptionInfo.languageDescriptionResourceTextInfo.domains"></domains-info>
+                        </div>
+
+                        <!--KEYWORDS-->
+                        <div *ngIf="languageDescription.languageDescriptionInfo?.languageDescriptionResourceTextInfo?.keywords?.length>0" class="uk-margin-bottom">
+                            <h4>Keywords</h4>
+                            <keywords-info [textClassifications]="languageDescription.languageDescriptionInfo.languageDescriptionResourceTextInfo.keywords"></keywords-info>
+                        </div>
+                    </div>
+
+                    <div *ngIf="languageDescription.languageDescriptionInfo.relations && languageDescription.languageDescriptionInfo.relations.length>0"
+                         class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">
+                        <h4>Relations</h4>
+                        <ul class="uk-list">
+                            <li *ngFor="let relationInfo of languageDescription.languageDescriptionInfo.relations">
+                                <relation-info [relationInfo]="relationInfo"></relation-info>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div *ngIf="languageDescription.languageDescriptionInfo.contactInfo" class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">
                         <contact-info [contactInfo]="languageDescription.languageDescriptionInfo.contactInfo"></contact-info>
                     </div>
 
-                    <div *ngIf="languageDescription.languageDescriptionInfo.resourceCreationInfo" class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">
-                        <resource-creation-info [resourceCreationInfo]="languageDescription.languageDescriptionInfo.resourceCreationInfo"></resource-creation-info>
-                    </div>
+
                 </div>
 
             </ng-template>
 
-
-
-
         </div>
     </div>
 </div>
+
+
+<!--<div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true" style="box-sizing: border-box;">-->
+    <!--<div class="uk-container">-->
+        <!--<div class="uk-grid" uk-grid="">-->
+
+            <!--<ng-template [ngIf]="errorMessage">-->
+                <!--<div class="uk-width-expand@m uk-first-column">-->
+                    <!--<div data-uk-alert="" class="uk-alert uk-alert-danger">-->
+                        <!--<p>{{errorMessage}}</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</ng-template>-->
+
+            <!--<ng-template [ngIf]="languageDescription && !errorMessage">-->
+
+                <!--<div class="uk-width-1-1 uk-row-first uk-clearfix">-->
+                    <!--<h2 class="uk-h2" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.resourceNames-->
+                            <!--&& languageDescription.languageDescriptionInfo.identificationInfo.resourceNames.length>0">-->
+                        <!--{{languageDescription.languageDescriptionInfo.identificationInfo.resourceNames[0].value}}-->
+                    <!--</h2>-->
+
+                <!--</div>-->
+
+                <!--<div class="uk-width-expand@m uk-first-column">-->
+
+                    <!--<ul class="uk-subnav">-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.resourceShortNames-->
+                                <!--&& languageDescription.languageDescriptionInfo.identificationInfo.resourceShortNames.length>0"-->
+                            <!--class="element element-text">-->
+                            <!--<strong>{{languageDescription.languageDescriptionInfo.identificationInfo.resourceShortNames[0].value}} </strong> </li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="resourceIdentifiers" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.identifiers-->
+                            <!--&& languageDescription.languageDescriptionInfo.identificationInfo.identifiers.length>0">-->
+                        <!--<div *ngFor="let identifier of languageDescription.languageDescriptionInfo.identificationInfo.identifiers">-->
+                            <!--<a href="{{identifier.value}}" target="_blank">{{identifier.value}}</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<ul class="uk-list" *ngIf="languageDescription.languageDescriptionInfo.identificationInfo.descriptions-->
+                                                    <!--&& languageDescription.languageDescriptionInfo.identificationInfo.descriptions.length>0">-->
+                        <!--<li *ngFor="let description of languageDescription.languageDescriptionInfo.identificationInfo.descriptions; let isFirst = first;"-->
+                            <!--[class.uk-margin-top]="!isFirst">-->
+                            <!--{{description.value}}-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div *ngIf="languageDescription.languageDescriptionInfo.languageDescriptionType" class="uk-subnav uk-subnav-line languageDescriptionType">-->
+                        <!--<strong>{{languageDescription.languageDescriptionInfo.languageDescriptionType}} </strong>-->
+                    <!--</div>-->
+                    <!--<version-info *ngIf="languageDescription.languageDescriptionInfo.versionInfo"-->
+                                  <!--[versionInfo]="languageDescription.languageDescriptionInfo.versionInfo">-->
+                    <!--</version-info>-->
+                    <!--<resource-documentation-info *ngIf="languageDescription.languageDescriptionInfo.resourceDocumentationInfo"-->
+                                                 <!--[resourceDocumentationInfo]="languageDescription.languageDescriptionInfo.resourceDocumentationInfo">-->
+                    <!--</resource-documentation-info>-->
+
+
+
+                    <!--&lt;!&ndash;TABS&ndash;&gt;-->
+                    <!--<ul class=" uk-tab uk-visible@m" uk-tab="connect: #infoTabs; animation: uk-animation-fade">-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.distributionInfos-->
+                        <!--&& languageDescription.languageDescriptionInfo.distributionInfos.length>0">-->
+                            <!--<a>Distribution</a>-->
+                        <!--</li>-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.validationInfos-->
+                        <!--&& languageDescription.languageDescriptionInfo.validationInfos.length>0">-->
+                            <!--<a>Validations</a>-->
+                        <!--</li>-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.usageInfo">-->
+                            <!--<a>Usage</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<button class="uk-button uk-button-default uk-hidden@m" type="button">-->
+                        <!--<span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">{{activeTab}}</span>-->
+                    <!--</button>-->
+
+                    <!--<ul id="toggle-small-tabs" class="uk-subnav uk-subnav-pill uk-dropdown uk-hidden@m" uk-switcher="{connect: #infoTabs; animation: uk-animation-fade}" uk-dropdown="mode: click" uk-toggle="target: #toggle-small-tabs">-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.distributionInfos-->
+                        <!--&& languageDescription.languageDescriptionInfo.distributionInfos.length>0">-->
+                            <!--<a>Distribution</a>-->
+                        <!--</li>-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.validationInfos-->
+                        <!--&& languageDescription.languageDescriptionInfo.validationInfos.length>0">-->
+                            <!--<a>Validations</a>-->
+                        <!--</li>-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.usageInfo">-->
+                            <!--<a>Usage</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<ul id="infoTabs" class="uk-switcher  uk-width-1-1 uk-margin-top custom-tab-content-large">-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.distributionInfos-->
+                        <!--&& languageDescription.languageDescriptionInfo.distributionInfos.length>0">-->
+                            <!--<dataset-distribution-info *ngFor="let distributionInfo of languageDescription.languageDescriptionInfo.distributionInfos"-->
+                                                       <!--[datasetDistributionInfo]="distributionInfo"></dataset-distribution-info>-->
+                        <!--</li>-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.validationInfos-->
+                        <!--&& languageDescription.languageDescriptionInfo.validationInfos.length>0">-->
+                            <!--<validation-info *ngFor="let validationInfo of languageDescription.languageDescriptionInfo.validationInfos"-->
+                                             <!--[validationInfo]="validationInfo"></validation-info>-->
+                        <!--</li>-->
+                        <!--<li *ngIf="languageDescription.languageDescriptionInfo.usageInfo">-->
+                            <!--<usage-info [usageInfo]="languageDescription.languageDescriptionInfo.usageInfo"></usage-info>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                <!--</div>-->
+
+                <!--&lt;!&ndash;SIDEBAR&ndash;&gt;-->
+                <!--<div class="tm-sidebar uk-width-1-4@m">-->
+
+                    <!--<div class="uk-margin-bottom">-->
+                        <!--<button class="uk-width-1-1 uk-button uk-button-primary" type="button">-->
+                            <!--Actions-->
+                            <!--<i *ngIf="inProgress" class="fa fa-spin fa-spinner" aria-hidden="true"></i>-->
+                        <!--</button>-->
+                        <!--<div class="dropdown-custom" uk-dropdown>-->
+                            <!--<ul class="uk-nav uk-dropdown-nav">-->
+                                <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<ng-template [ngIf]="languageDescription?.languageDescriptionInfo?.datasetDistributionInfo && ((isPublic || isOwn) && checkOriginalCorpus)">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<ng-container [ngSwitch]="isGenerated">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span *ngSwitchCase="true" title="Download of generated corpora from our content providers is currently disabled while we are investigating the legal and copyright issues. Stay tuned!" uk-tooltip="">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<download (loading)="inProgress=$event" [url]="languageDescription.languageDescriptionInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span *ngSwitchCase="false">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<download (loading)="inProgress=$event" [url]="languageDescription.languageDescriptionInfo.datasetDistributionInfo.distributionLocation" [disabled]="isGenerated"></download>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</ng-container>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</ng-template>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                <!--<li>-->
+                                    <!--<a (click)="downloadResource(languageDescription,'json')">-->
+                                        <!--Download metadata in JSON format <i class="fa fa-file-code-o uk-margin-small-right" aria-hidden="true"></i>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a (click)="downloadResource(languageDescription,'xml')">-->
+                                        <!--Download metadata in XML format <i class="fa fa-file-excel-o" aria-hidden="true"></i>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div *ngIf="languageDescription.languageDescriptionInfo.contactInfo" class="uk-card uk-card-body uk-card-default sidemenu">-->
+                        <!--<contact-info [contactInfo]="languageDescription.languageDescriptionInfo.contactInfo"></contact-info>-->
+                    <!--</div>-->
+
+                    <!--<div *ngIf="languageDescription.languageDescriptionInfo.resourceCreationInfo" class="uk-card uk-card-body uk-card-default sidemenu uk-margin-top">-->
+                        <!--<resource-creation-info [resourceCreationInfo]="languageDescription.languageDescriptionInfo.resourceCreationInfo"></resource-creation-info>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            <!--</ng-template>-->
+
+
+
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
