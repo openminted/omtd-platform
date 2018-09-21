@@ -104,21 +104,19 @@ export class CorpusLandingPageComponent implements OnInit {
         return this.corpus.corpusInfo.identificationInfo.public;
     }
 
-    private isOwn_(corpus : OMTDCorpus) : boolean {
-        let ownerSub = this.authenticationService.sub;
-        if(this.authenticationService.admin){
-            return true;
-        }
-        if (!ownerSub) return false;
-        let isOwner : boolean = false;
-        corpus.metadataHeaderInfo.metadataCreators.forEach(creator => {
-            let found = creator.personIdentifiers.find(_ => _.value == ownerSub);
-            isOwner = isOwner || found != null;
+    private isOwn_(corpus : OMTDCorpus) : Observable<boolean> {
+        return this.authenticationService.session.map(user => {
+            let admin : boolean = user.role.includes(AuthenticationService.ROLE_ADMIN);
+            let isOwner : boolean = false;
+            corpus.metadataHeaderInfo.metadataCreators.forEach(creator => {
+                let found = creator.personIdentifiers.find(_ => _.value == user.sub);
+                isOwner = isOwner || found != null;
+            });
+            return isOwner || admin;
         });
-        return isOwner;
     }
 
-    get isOwn() : boolean{
+    get isOwn() : Observable<boolean>{
         return this.isOwn_(this.corpus);
     }
 

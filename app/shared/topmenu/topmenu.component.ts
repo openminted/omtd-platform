@@ -21,16 +21,9 @@ export class TopMenuComponent {
     constructor(public oAuthService: AuthenticationService) {
     }
 
-    private loginWithState() {
-        this.oAuthService.loginWithState();
-    }
-
     onClick(id: string) {
-        var el: HTMLElement = document.getElementById(id);
+        let el: HTMLElement = document.getElementById(id);
         el.classList.remove('uk-open');
-    }
-    private logout() {
-        this.oAuthService.logout();
     }
 
 }

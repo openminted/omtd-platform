@@ -6,6 +6,10 @@ import { User } from "../domain/user";
 import { deleteCookie, getCookie } from "../domain/utils";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
+import { timer } from "rxjs/observable/timer";
+import { switchMap, shareReplay, catchError } from "rxjs/operators";
+import { of } from "rxjs/observable/of";
 
 
 @Injectable()
@@ -17,14 +21,27 @@ export class AuthenticationService {
 
     private static readonly INTERVAL = 1000 * 60 * 15;
 
+    public static readonly  ROLE_ADMIN = 'ROLE_ADMIN';
+
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
     }
 
     private intervalId : number = 0;
 
-    private _storage: Storage = sessionStorage;
+    private session_ : Observable<User> = null;
 
-    private session_ : User = null;
+    public get session() : Observable<User> {
+        if (!this.session_ && this.isUserLoggedIn) {
+            const timer$ = timer(0,AuthenticationService.INTERVAL);
+            this.session_ = timer$.pipe(
+                switchMap(() => this.syncWithBackend()),
+                shareReplay(1),
+                catchError(err => {this.unsetSessionAttr(); return of(new User());}));
+            // this.session_.catch((err) => {this.unsetSessionAttr(); throw 'User is not logged in';})
+            // this.session_ = JSON.parse(sessionStorage.getItem('session'));
+        }
+        return this.session_;
+    }
 
     login(user: User) {
         localStorage.setItem('user', JSON.stringify(user));
@@ -36,13 +53,6 @@ export class AuthenticationService {
         window.location.href = this.oidcUrl;
     }
 
-    private get session() : User {
-        if (!this.session_) {
-            this.session_ = JSON.parse(sessionStorage.getItem('session'));
-        }
-        return this.session_;
-    }
-
     logout() {
         deleteCookie('name');
         sessionStorage.removeItem('session');
@@ -50,27 +60,27 @@ export class AuthenticationService {
     }
 
     public get isUserLoggedIn(): boolean {
-        return this.session != null;
+        return getCookie('name') != null;
     }
 
-    public get getLoggedInUser(): string {
-        return this.session.name;
+    public get getLoggedInUser(): Observable<string> {
+        return this.session.map(x => x.name);
     }
 
-    public get email(): string {
-        return this.session.email;
+    public get email(): Observable<string> {
+        return  this.session.map(x => x.email);
     }
 
-    public get sub() : string {
-        return this.session.sub;
+    public get sub() : Observable<string> {
+        return this.session.map(x => x.sub);
     }
 
-    public get admin() : boolean {
-        return this.session.role.includes("ROLE_ADMIN");
+    public get admin() : Observable<boolean> {
+        return this.session.map(x => x.role.includes("ROLE_ADMIN"));
     }
 
-    public get roles() : string[] {
-        return this.session.role;
+    public get roles() : Observable<string[]> {
+        return this.session.map(x => x.role);
     }
 
     private setSessionAttr(user : User) {
@@ -87,19 +97,18 @@ export class AuthenticationService {
         }
     }
 
-    private syncWithBackend() {
-        this.http.get<User>(this.endpoint + '/user',{withCredentials:true}).subscribe(
-            user => this.setSessionAttr(user),
-            () => this.unsetSessionAttr()
-        );
+    private syncWithBackend(): Observable<User> {
+        return this.http.get<User>(this.endpoint + '/user',{withCredentials:true});
     }
+
+//     this.response.subscribe(
+//         user => this.setSessionAttr(user),
+// () => this.unsetSessionAttr()
+// );
 
     public tryLogin() {
         if (getCookie('name')) {
             this.syncWithBackend();
-            this.intervalId = window.setInterval(() => {
-                this.syncWithBackend();
-            }, AuthenticationService.INTERVAL);
             if (sessionStorage.getItem("state.location")) {
                 let state = sessionStorage.getItem("state.location");
                 sessionStorage.removeItem("state.location");

@@ -51,17 +51,18 @@ export class ContactInfoFormControl extends MyGroup {
 
     ngOnInit() {
         super.ngOnInit();
-        this.getMyControl('contactPoint').setValue(this.authenticationService.email);
         this.getMyControl('contactPoint').valueChanges.subscribe(_ => {
             console.log(_);
-           if(this.validateEmail(_)) {
-               console.log("SET EMAIL");
-               this.getMyControl('contactType').setValue(ContactTypeEnum.CONTACT_EMAIL.toString());
-           } else {
-               console.log("SET LANDINGPAGE");
-               this.getMyControl('contactType').setValue(ContactTypeEnum.LANDING_PAGE.toString());
-           }
+            if(this.validateEmail(_)) {
+                console.log("SET EMAIL");
+                this.getMyControl('contactType').setValue(ContactTypeEnum.CONTACT_EMAIL.toString());
+            } else {
+                console.log("SET LANDINGPAGE");
+                this.getMyControl('contactType').setValue(ContactTypeEnum.LANDING_PAGE.toString());
+            }
         });
-        // this.parentGroup.get('contactEmail').setValue(this.authenticationService.email);
+        this.authenticationService.email.subscribe(email => {
+            this.getMyControl('contactPoint').setValue(email);
+        });
     }
 }
