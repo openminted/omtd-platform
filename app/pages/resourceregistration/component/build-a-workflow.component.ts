@@ -14,6 +14,7 @@ import {
 } from "../../../domain/openminted-model";
 import { WorkflowDefinition } from "../../../domain/galaxy-workflow";
 import { ComponentRegistrationUsingFormComponent } from "./component-registration-using-form.component";
+import { PRODUCTION } from "../../../constants";
 
 @Component({
     selector: 'build-a-workflow',
@@ -32,7 +33,7 @@ export class BuildAWorkflowComponent extends ComponentRegistrationUsingFormCompo
     metadataFormPage = false;
     workflowName : string = '';
     workflowDefinition : WorkflowDefinition = null;
-    production = process.env.PRODUCTION;
+    production = PRODUCTION;
 
     listener : any;
 

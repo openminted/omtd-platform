@@ -5,12 +5,13 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { AuthenticationService } from "./authentication.service";
 import {getCookie} from "../domain/utils";
+import { OIDC_ENDPOINT } from "../constants";
 
 
 @Injectable()
 export class CanActivateViaAuthGuard implements CanActivate {
 
-    private oidc_endpoint : string = process.env.OIDC_ENDPOINT;
+    private oidc_endpoint : string = OIDC_ENDPOINT;
 
     constructor(private authenticationService: AuthenticationService, private router: Router) {}
 

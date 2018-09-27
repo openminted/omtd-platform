@@ -6,13 +6,14 @@ import { Headers, Http, RequestOptions, Response } from "@angular/http";
 import { Observable } from "rxjs/Rx";
 import { WorkflowDefinition } from "../domain/galaxy-workflow";
 import { DomSanitizer } from "@angular/platform-browser";
+import { API_ENDPOINT, GALAXY_ENDPOINT } from "../constants";
 
 @Injectable()
 export class GalaxyService {
 
-    private galaxyEndpoint = process.env.GALAXY_ENDPOINT;
+    private galaxyEndpoint = GALAXY_ENDPOINT;
 
-    private registryEndpoint = process.env.API_ENDPOINT;
+    private registryEndpoint = API_ENDPOINT;
 
     constructor (private http: Http, private _sanitizer : DomSanitizer) {}
 

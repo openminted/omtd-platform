@@ -1,4 +1,5 @@
-# omtd-platform
+#![openminted](http://openminted.eu/wp-content/uploads/2016/01/OpenMINTED_Tag_Color_small.png)
+# OMTD Platform
 
 ## Requirements
 
@@ -6,46 +7,33 @@
 - npm (recommended: version >= 3)
 
 ## First time
-`npm intall` for all the dependencies.
+Run $`npm intall` for all the dependencies.
 
 ## Build
-For development `npm run build` and it can be deployed with `npm run start` using lite-server and browsersync.
 
-For production `npm run build_prod` and it can be deployed with `npm run serve` using simple-angular-server.
+The file `package.json` includes the commands available in order to build 
+the application, both for development and for release.
 
-To deploy to the simple server use `npm run serve`
+ - `npm clean` :  Deletes dist folder.
+ - `npm run build:prod` : Creates the dist folder for production (takes time).
+ - `npm run build:docker` : Builds the Docker file and tags it with `docker.openminted.eu/omtd-platform`.
+ - `npm run deploy:server` : Removes the running docker and redeploys the newest image.
+ - `npm run deploy:complete` : Builds the Docker and deploys it on port 80.
+ - `npm start` : Runs the platform in development mode.
+ - `npm run stats` : Useful tool to analyze bundles. 
 
-## Develop
+## Docker 
 
-To make it easier to develop with watchdog support using `npm start` make the according changes in the `index.html` file.
+The Dockerfile can parametrize the deployment of the application.
 
-### Release
-Using `npm run build_prod` and `npm run serve`.
+The supported environment variables that it can be overridden are:
 
-Uncomment this.
-```javascript
-<script src="dist/bundle.min.js"></script>
-```
+- `PLATFORM_API_ENDPOINT`
+- `PLATFORM_FAQ_ENDPOINT`
+- `PLATFORM_GALAXY_ENDPOINT`
+- `PLATFORM_CONNECTOR_API_ENDPOINT`
+- `PLATFORM_WORKFLOW_API_ENDPOINT`
+- `PLATFORM_OIDC_ENDPOINT`
+- `PLATFORM_AAI_ENDPOINT`
+- `PLATFORM_VIEWER_ENDPOINT`
 
-Comment this.
-```javascript
-<!--
-<script>
-    System.import('app').catch(function(err){ console.error(err); });
-</script> 
--->
-```
-
-### Develop
-Using `npm start`.
-
-Comment this.
-```javascript
-<!-- <script src="dist/bundle.min.js"></script> -->
-```
-Uncomment this.
-```javascript
-<script>
-    System.import('app').catch(function(err){ console.error(err); });
-</script> 
-```

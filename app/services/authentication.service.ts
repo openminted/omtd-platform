@@ -10,14 +10,15 @@ import { Observable } from "rxjs/Observable";
 import { timer } from "rxjs/observable/timer";
 import { switchMap, shareReplay, catchError } from "rxjs/operators";
 import { of } from "rxjs/observable/of";
+import { API_ENDPOINT, OIDC_ENDPOINT } from "../constants";
 
 
 @Injectable()
 export class AuthenticationService {
 
-    private endpoint = process.env.API_ENDPOINT;
+    private endpoint = API_ENDPOINT;
 
-    private oidcUrl = process.env.OIDC_ENDPOINT;
+    private oidcUrl = OIDC_ENDPOINT;
 
     private static readonly INTERVAL = 1000 * 60 * 15;
 

@@ -14,6 +14,7 @@ import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Observable } from "rxjs/Observable";
 import { Corpus as OMTDCorpus } from "../../domain/openminted-model";
+import { VIEWER_ENDPOINT } from "../../constants";
 
 @Component({
     selector: 'corpus-browser',
@@ -23,7 +24,7 @@ import { Corpus as OMTDCorpus } from "../../domain/openminted-model";
 export class CorpusBrowserComponent {
 
     private _sanitizer;
-    private viewerAPI: string = process.env.VIEWER_ENDPOINT;
+    private viewerAPI: string = VIEWER_ENDPOINT;
 
     public urlToDisplay: string = null;
     // public urlToDisplay: string = 'https://beta.openminted.eu/viewer/#/?archiveId=fd683ad2-75d4-4e3b-9c66-c7725cd7f9fe&documentId=od________18__8941c44f168cdbbc2af67591f8d754e5.pdf';

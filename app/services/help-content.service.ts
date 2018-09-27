@@ -5,12 +5,13 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { PageContent } from "../domain/page-content";
+import { FAQ_ENDPOINT } from "../constants";
 
 
 @Injectable()
 export class HelpContentService {
 
-    private _helpServiceUrl = process.env.FAQ_ENDPOINT;
+    private _helpServiceUrl = FAQ_ENDPOINT;
 
     constructor (private http: Http) {
     }

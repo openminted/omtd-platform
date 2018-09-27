@@ -12,6 +12,7 @@ import { ResourceService } from "../../../services/resource.service";
 import { ActivatedRoute } from "@angular/router";
 import { ResourceDocumentationFormControl } from "../shared/resourceDocumentationInfo.component";
 import { RelationInfoFormControl } from "../shared/relationInfo.component";
+import { PRODUCTION } from "../../../constants";
 
 @Component({
     selector: 'component-registration-form',
@@ -34,7 +35,7 @@ export class ComponentRegistrationFormComponent implements OnInit {
 
     parameterInfoDesc : Description = parameterInfoDesc;
 
-    production = process.env.PRODUCTION;
+    production = PRODUCTION;
 
     galaxyButtonUrl : string = null;
 

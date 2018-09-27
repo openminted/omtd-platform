@@ -13,6 +13,7 @@ import { WorkflowService } from "../../../services/workflow.service";
 import {WSJobStatus} from "../../../domain/ws-job-status";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { Operation } from "../../../domain/operation";
+import { API_ENDPOINT} from "../../../constants";
 
 
 @Component({
@@ -47,7 +48,7 @@ export class RunApplicationComponent {
 
     public inputFolder: string = 'fulltext';
 
-    private endpoint = process.env.API_ENDPOINT;
+    private endpoint = API_ENDPOINT;
 
     constructor(private  router: Router,private  activatedRoute: ActivatedRoute,
                 private resourceService: ResourceService,private  workflowService: WorkflowService) {

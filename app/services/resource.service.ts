@@ -23,12 +23,13 @@ import {
 import { saveAs } from "file-saver";
 import { FileStats } from "../domain/filestats";
 import {License, LicenseCompatibility} from "../domain/license";
+import { API_ENDPOINT } from "../constants";
 
 
 @Injectable()
 export class ResourceService {
 
-    private endpoint = process.env.API_ENDPOINT;
+    private endpoint = API_ENDPOINT;
 
     constructor (private http: Http, private httpClient : HttpClient) {
         console.log(this.endpoint);

@@ -6,11 +6,12 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { ActiveTopicQuestions } from "../domain/faq-active-topic-questions";
 import { HttpClient } from "@angular/common/http";
+import { FAQ_ENDPOINT } from "../constants";
 
 @Injectable()
 export class FAQService {
 
-    private _faqUrl = process.env.FAQ_ENDPOINT;
+    private _faqUrl = FAQ_ENDPOINT;
 
     constructor (private http: HttpClient) {
     }

@@ -8,11 +8,12 @@ import { WSJobStatus } from "../domain/ws-job-status";
 import { Operation } from "../domain/operation";
 import { HttpErrorResponse } from "@angular/common/http";
 import { OMTDError } from "./resource.service";
+import { API_ENDPOINT } from "../constants";
 
 @Injectable()
 export class WorkflowService {
 
-    private endpoint = process.env.API_ENDPOINT;
+    private endpoint = API_ENDPOINT;
 
     constructor (private http: Http) {
         console.log(this.endpoint);

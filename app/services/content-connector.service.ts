@@ -10,19 +10,20 @@ import { Corpus as OMTDCorpus } from "../domain/openminted-model";
 import { ResourceService } from "./resource.service";
 import { ContentConnectorStatus } from "../domain/content-connector-status";
 import {CorpusBuildingState} from "../domain/corpus-building-state";
+import { API_ENDPOINT, CONNECTOR_API_ENDPOINT } from "../constants";
 
 @Injectable()
 export class ContentConnectorService {
 
     constructor (private http: Http) {}
 
-    private _contentConnectorSearchUrl = process.env.CONNECTOR_API_ENDPOINT + '/content/browse/';
-    private _contentConnectorPrepareCorpusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/prepare/';
-    private _contentConnectorBuildCorpusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/build/';
-    private _contentConnectorBuildCorpusStatusUrl = process.env.CONNECTOR_API_ENDPOINT + '/corpus/status/?id=';
-    private _contentConnectorStatusUrl = process.env.CONNECTOR_API_ENDPOINT + '/content/status';
+    private _contentConnectorSearchUrl = CONNECTOR_API_ENDPOINT + '/content/browse/';
+    private _contentConnectorPrepareCorpusUrl = CONNECTOR_API_ENDPOINT + '/corpus/prepare/';
+    private _contentConnectorBuildCorpusUrl = CONNECTOR_API_ENDPOINT + '/corpus/build/';
+    private _contentConnectorBuildCorpusStatusUrl = CONNECTOR_API_ENDPOINT + '/corpus/status/?id=';
+    private _contentConnectorStatusUrl = CONNECTOR_API_ENDPOINT + '/content/status';
 
-    private _corpusBuildingStateUrl = process.env.API_ENDPOINT + '/request/corpusbuildingstate/aggregate/';
+    private _corpusBuildingStateUrl = API_ENDPOINT + '/request/corpusbuildingstate/aggregate/';
 
     getContentConnectorStatus() {
         return this.http.get(this._contentConnectorStatusUrl)

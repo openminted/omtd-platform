@@ -8,6 +8,7 @@ import { ResourceService } from "../../../services/resource.service";
 import { Description, relationTypeDesc, resourceDocumentationInfoDesc } from "../../../domain/omtd.description";
 import { ResourceDocumentationFormControl } from "../shared/resourceDocumentationInfo.component";
 import { RelationInfoFormControl } from "../shared/relationInfo.component";
+import { PRODUCTION } from "../../../constants";
 
 @Component({
     selector: 'corpus-registration-form',
@@ -19,7 +20,7 @@ export class CorpusRegistrationFormComponent implements OnInit {
 
     myForm: FormGroup;
 
-    production = process.env.PRODUCTION;
+    production = PRODUCTION;
 
     testValue: any = {
         "corpusInfo": {

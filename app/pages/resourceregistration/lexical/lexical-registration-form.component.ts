@@ -8,6 +8,7 @@ import { Lexical } from "../../../domain/openminted-model";
 import { Description, relationTypeDesc, resourceDocumentationInfoDesc } from "../../../domain/omtd.description";
 import { RelationInfoFormControl } from "../shared/relationInfo.component";
 import { ResourceDocumentationFormControl } from "../shared/resourceDocumentationInfo.component";
+import { PRODUCTION } from "../../../constants";
 
 @Component({
     selector: 'lexical-registration-form',
@@ -20,7 +21,7 @@ export class LexicalRegistrationFormComponent implements OnInit {
 
     myForm: FormGroup;
 
-    production = process.env.PRODUCTION;
+    production = PRODUCTION;
 
     resourceDocumentationType: Type<any> = ResourceDocumentationFormControl;
     resourceDocumentationDesc : Description = resourceDocumentationInfoDesc;

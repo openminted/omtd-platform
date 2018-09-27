@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { SafeUrl } from "@angular/platform-browser";
 import { ResourceService } from "../../../services/resource.service";
 import { Component as OMTDComponent} from "../../../domain/openminted-model";
+import { PRODUCTION } from "../../../constants";
 
 declare var UIkit : any;
 
@@ -32,7 +33,7 @@ export class EditAWorkflowComponent implements OnInit, OnDestroy {
     galaxyId : string = '';
     galaxyURL : SafeUrl = null;
     listener : any;
-    production = process.env.PRODUCTION;
+    production = PRODUCTION;
 
     constructor(injector : Injector){
         this.galaxyService = injector.get(GalaxyService);
